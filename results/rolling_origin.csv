@@ -1,0 +1,6 @@
+cutoff,test_end,n_eligible,governed_selected,mean_fill_gain_vs_sap_pct_pts,mean_cost_delta_vs_sap,informative
+2025-10-01,2026-01-09,7,0,0.0,0.0,False
+2025-11-15,2026-02-23,8,0,0.0,0.0,False
+2026-01-01,2026-04-11,75,12,0.3559,-73.2363,True
+2026-02-15,2026-05-26,93,20,1.2973,-102.6709,True
+2026-03-10,2026-06-18,98,21,3.1789,4.1839,True

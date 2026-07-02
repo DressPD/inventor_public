@@ -1,0 +1,49 @@
+{
+  "test": "synthetic_independent_replication",
+  "data_source": "inventor_tests/data/synthetic_panel.csv (seeded, non-proprietary)",
+  "train_cutoff": "2026-03-10",
+  "valid_end": "2026-06-19",
+  "governed_lambda": 100.0,
+  "governed_rule": "quantitative service-floor + lambda scalarization (bucket-agnostic)",
+  "n_eligible": 120,
+  "items_skipped": 0,
+  "governed_selected": 10,
+  "governed_selected_fraction": 0.0833,
+  "mean_sap_fill_pct": 94.626,
+  "mean_fill_gain_vs_sap_pct_pts": 1.187,
+  "mean_cost_delta_vs_sap": 71.1057,
+  "mean_cost_delta_on_selected": 853.2681,
+  "positive_service_gain": true,
+  "selectivity_leaves_adequate_baseline_alone": true,
+  "by_regime": {
+    "erratic": {
+      "n": 35,
+      "governed_selected": 4,
+      "mean_sap_fill_pct": 95.6369,
+      "mean_fill_gain_vs_sap_pct_pts": 0.662,
+      "mean_cost_delta_vs_sap": 43.3007
+    },
+    "intermittent": {
+      "n": 9,
+      "governed_selected": 4,
+      "mean_sap_fill_pct": 81.9377,
+      "mean_fill_gain_vs_sap_pct_pts": 11.0309,
+      "mean_cost_delta_vs_sap": 669.7595
+    },
+    "lumpy": {
+      "n": 30,
+      "governed_selected": 2,
+      "mean_sap_fill_pct": 89.2936,
+      "mean_fill_gain_vs_sap_pct_pts": 0.6663,
+      "mean_cost_delta_vs_sap": 32.9773
+    },
+    "smooth": {
+      "n": 46,
+      "governed_selected": 0,
+      "mean_sap_fill_pct": 99.8169,
+      "mean_fill_gain_vs_sap_pct_pts": 0.0,
+      "mean_cost_delta_vs_sap": 0.0
+    }
+  },
+  "verdict": "The governed rule replicates on independent synthetic data: it leaves the already-adequate smooth baseline untouched and selectively lifts service on the high-variability regimes (erratic, lumpy, intermittent) that the variance-blind ERP baseline under-provisions, buying cost only where a real service gap exists."
+}

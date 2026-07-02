@@ -1,0 +1,7 @@
+name,type,n,accuracy,precision,recall,f1,tp,tn,fp,fn,predicted_yes,notes
+sap_gain_gt_1pp,rule,98,0.7551,1.0,0.4667,0.6364,21,53,0,24,21,
+stockout_reduction_ge_2,rule,98,0.6633,1.0,0.2667,0.4211,12,53,0,33,12,
+hard_flag_only,rule,98,0.6939,1.0,0.3333,0.5,15,53,0,30,15,
+special_route_only,rule,98,0.7551,0.8387,0.5778,0.6842,26,48,5,19,31,
+current_deterministic_bucket,rule,98,0.949,0.9,1.0,0.9474,45,48,5,0,50,
+decision_stump_cv,traditional_ml,98,0.8163,0.9091,0.6667,0.7692,30,50,3,15,33,full_fit: opportunity_score >= 2.40975

@@ -1,0 +1,9 @@
+strategy,n_items,selected_items,selected_pct,sap_choices,inventor_choices,universal_rq_choices,mean_fill_rate_pct,mean_total_cost,mean_fill_gain_vs_sap_pct_pts,mean_cost_delta_vs_sap,total_stockout_days_reduction_vs_sap
+sap_only,98,0,0.0,98,0,0,92.8885,5323.1479,0.0,0.0,0.0
+inventor_all,98,98,100.0,0,98,0,96.7958,9759.1853,3.9073,4436.0373,126.0
+deterministic_optimize_now,98,35,35.71,63,35,0,96.3334,8923.2826,3.4449,3600.1347,130.0
+deterministic_optimize_or_review,98,50,51.02,48,50,0,96.7825,8867.3559,3.894,3544.208,124.0
+ml_stump_opportunity_score,98,15,15.31,83,15,0,96.5963,7700.5314,3.7078,2377.3835,123.0
+llm_optimize_now,98,33,33.67,65,33,0,96.2242,7504.8675,3.3357,2181.7195,117.0
+llm_optimize_or_review,98,50,51.02,48,50,0,96.7825,8867.3559,3.894,3544.208,124.0
+governed_cost_aware_service_floor,98,19,19.39,79,18,1,96.0674,5329.6521,3.1789,6.5042,99.0

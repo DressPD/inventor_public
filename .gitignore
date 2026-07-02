@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+outputs/
+.env
+.env.*
+*.aux
+*.bbl
+*.blg
+*.log
+*.spl
+*.out
+*.fdb_latexmk
+*.fls
+*.synctex.gz

@@ -1,0 +1,29 @@
+{
+  "test": "leave_one_plant_out_replication",
+  "governed_lambda": 100.0,
+  "n_plants": 2,
+  "replicates_all_plants": true,
+  "verdict": "Governed service gain replicates independently in every plant (cross-site transfer holds).",
+  "per_plant": [
+    {
+      "plant": "PLANT_A",
+      "n_items": 73,
+      "governed_selected": 12,
+      "sap_mean_fill_rate_pct": 97.0319,
+      "governed_mean_fill_rate_pct": 98.6905,
+      "governed_mean_fill_gain_vs_sap_pct_pts": 1.6586,
+      "governed_mean_cost_delta_vs_sap": -23.4394,
+      "governed_total_stockout_days_reduction_vs_sap": 17.0
+    },
+    {
+      "plant": "PLANT_B",
+      "n_items": 25,
+      "governed_selected": 7,
+      "sap_mean_fill_rate_pct": 80.7898,
+      "governed_mean_fill_rate_pct": 88.4079,
+      "governed_mean_fill_gain_vs_sap_pct_pts": 7.6181,
+      "governed_mean_cost_delta_vs_sap": 93.9393,
+      "governed_total_stockout_days_reduction_vs_sap": 82.0
+    }
+  ]
+}

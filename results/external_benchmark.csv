@@ -1,0 +1,7 @@
+policy,n_materials,mean_fill_rate_pct,agg_fill_rate_pct,pct_ge_95,zero_stockout_pct,mean_total_cost,total_cost_sum,total_stockout_days,mean_stockout_days,fill_delta_vs_sap_pct_pts,cost_delta_vs_sap,stockout_days_delta_vs_sap,benchmark_class
+inventor_selected,98,96.7958,66.9563,91.8367,87.7551,9759.1853,956400.1558,339,3.4592,3.9073,4436.0374,-126,InventOR
+universal_rq,98,96.8658,66.9763,91.8367,89.7959,9674.4333,948094.4658,324,3.3061,3.9773,4351.2854,-141,external_or_baseline
+universal_ss,98,99.7743,99.9971,98.9796,96.9388,24396.7473,2390881.2329,12,0.1224,6.8858,19073.5994,-453,external_or_baseline
+sap_static,98,92.8885,64.1735,84.6939,82.6531,5323.1479,521668.498,465,4.7449,0.0,0.0,0,external_or_baseline
+eoq_pure,98,89.7763,57.2218,70.4082,44.898,2012.3391,197209.2356,787,8.0306,-3.1122,-3310.8088,322,external_or_baseline
+k_sigma,98,92.825,59.3018,83.6735,66.3265,2817.4016,276105.3602,559,5.7041,-0.0635,-2505.7463,94,external_or_baseline

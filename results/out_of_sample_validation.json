@@ -1,0 +1,187 @@
+{
+  "design": "temporal holdout: select on S (cutoff..mid), evaluate on T (mid..valid_end)",
+  "train_cutoff": "2026-03-10",
+  "select_window_end_mid": "2026-04-30",
+  "valid_end": "2026-06-19",
+  "governed_selector": {
+    "service_value_lambda": 100.0,
+    "min_fill_gain_pct_pts": 0.0
+  },
+  "n_eligible": 98,
+  "n_selected_non_sap": 17,
+  "statistical_validation_all": [
+    {
+      "metric": "test_fill_gain_vs_sap_pct_pts",
+      "n": 98,
+      "mean_delta": 2.861,
+      "median_delta": 0.0,
+      "bootstrap_95ci_low": 0.9377,
+      "bootstrap_95ci_high": 5.2988,
+      "positive_count": 7,
+      "negative_count": 0,
+      "tie_count": 91,
+      "sign_test_p_two_sided": 0.015625,
+      "favorable_direction": "positive",
+      "cohort": "all_eligible"
+    },
+    {
+      "metric": "test_cost_delta_vs_sap",
+      "n": 98,
+      "mean_delta": -2.9318,
+      "median_delta": 0.0,
+      "bootstrap_95ci_low": -177.0105,
+      "bootstrap_95ci_high": 145.5514,
+      "positive_count": 7,
+      "negative_count": 10,
+      "tie_count": 81,
+      "sign_test_p_two_sided": 0.629059,
+      "favorable_direction": "negative",
+      "cohort": "all_eligible"
+    },
+    {
+      "metric": "test_stockout_days_reduction_vs_sap",
+      "n": 98,
+      "mean_delta": 0.9286,
+      "median_delta": 0.0,
+      "bootstrap_95ci_low": 0.2449,
+      "bootstrap_95ci_high": 1.7959,
+      "positive_count": 7,
+      "negative_count": 0,
+      "tie_count": 91,
+      "sign_test_p_two_sided": 0.015625,
+      "favorable_direction": "positive",
+      "cohort": "all_eligible"
+    }
+  ],
+  "statistical_validation_selected": [
+    {
+      "metric": "test_fill_gain_vs_sap_pct_pts",
+      "n": 17,
+      "mean_delta": 16.4927,
+      "median_delta": 0.0,
+      "bootstrap_95ci_low": 6.3121,
+      "bootstrap_95ci_high": 27.7377,
+      "positive_count": 7,
+      "negative_count": 0,
+      "tie_count": 10,
+      "sign_test_p_two_sided": 0.015625,
+      "favorable_direction": "positive",
+      "cohort": "selected_only"
+    },
+    {
+      "metric": "test_cost_delta_vs_sap",
+      "n": 17,
+      "mean_delta": -16.9007,
+      "median_delta": -16.7228,
+      "bootstrap_95ci_low": -994.4713,
+      "bootstrap_95ci_high": 824.022,
+      "positive_count": 7,
+      "negative_count": 10,
+      "tie_count": 0,
+      "sign_test_p_two_sided": 0.629059,
+      "favorable_direction": "negative",
+      "cohort": "selected_only"
+    },
+    {
+      "metric": "test_stockout_days_reduction_vs_sap",
+      "n": 17,
+      "mean_delta": 5.3529,
+      "median_delta": 0.0,
+      "bootstrap_95ci_low": 1.7059,
+      "bootstrap_95ci_high": 9.5897,
+      "positive_count": 7,
+      "negative_count": 0,
+      "tie_count": 10,
+      "sign_test_p_two_sided": 0.015625,
+      "favorable_direction": "positive",
+      "cohort": "selected_only"
+    }
+  ],
+  "robustness_sweep": [
+    {
+      "mid_date": "2026-04-09",
+      "n_eligible": 98,
+      "n_selected_non_sap": 14,
+      "all_fill_gain_mean": 2.1497,
+      "all_cost_delta_mean": -33.6946,
+      "all_stockout_gain_mean": 1.2143,
+      "selected_fill_gain_mean": 15.048,
+      "selected_cost_delta_mean": -235.8623,
+      "selected_stockout_gain_mean": 8.5
+    },
+    {
+      "mid_date": "2026-04-19",
+      "n_eligible": 98,
+      "n_selected_non_sap": 17,
+      "all_fill_gain_mean": 2.8561,
+      "all_cost_delta_mean": -8.04,
+      "all_stockout_gain_mean": 1.1735,
+      "selected_fill_gain_mean": 16.4645,
+      "selected_cost_delta_mean": -46.348,
+      "selected_stockout_gain_mean": 6.7647
+    },
+    {
+      "mid_date": "2026-04-29",
+      "n_eligible": 98,
+      "n_selected_non_sap": 17,
+      "all_fill_gain_mean": 2.879,
+      "all_cost_delta_mean": -3.8997,
+      "all_stockout_gain_mean": 0.9694,
+      "selected_fill_gain_mean": 16.5966,
+      "selected_cost_delta_mean": -22.4806,
+      "selected_stockout_gain_mean": 5.5882
+    },
+    {
+      "mid_date": "2026-05-10",
+      "n_eligible": 98,
+      "n_selected_non_sap": 18,
+      "all_fill_gain_mean": 2.8252,
+      "all_cost_delta_mean": 1.6947,
+      "all_stockout_gain_mean": 0.7551,
+      "selected_fill_gain_mean": 15.3816,
+      "selected_cost_delta_mean": 9.2265,
+      "selected_stockout_gain_mean": 4.1111
+    },
+    {
+      "mid_date": "2026-05-20",
+      "n_eligible": 98,
+      "n_selected_non_sap": 18,
+      "all_fill_gain_mean": 2.8122,
+      "all_cost_delta_mean": 0.0579,
+      "all_stockout_gain_mean": 0.5918,
+      "selected_fill_gain_mean": 15.3106,
+      "selected_cost_delta_mean": 0.3152,
+      "selected_stockout_gain_mean": 3.2222
+    }
+  ],
+  "robustness_summary": {
+    "n_splits": 5,
+    "split_mid_dates": [
+      "2026-04-09",
+      "2026-04-19",
+      "2026-04-29",
+      "2026-05-10",
+      "2026-05-20"
+    ],
+    "all_eligible_fill_gain_mean_range": [
+      2.1497,
+      2.879
+    ],
+    "all_eligible_cost_delta_mean_range": [
+      -33.6946,
+      1.6947
+    ],
+    "all_eligible_stockout_gain_mean_range": [
+      0.5918,
+      1.2143
+    ],
+    "selected_fill_gain_mean_range": [
+      15.048,
+      16.5966
+    ],
+    "all_eligible_fill_positive_splits": 5,
+    "all_eligible_cost_nonpositive_splits": 3,
+    "all_eligible_stockout_positive_splits": 5
+  },
+  "caveat": "Retrospective temporal holdout evidence on one cohort. Policy parameters are trained pre-cutoff; selection is decided on S; deltas are measured on held-out T. The fill gain on T is not sign-constrained, so the sign test and bootstrap CI are genuine two-sided inference. The robustness sweep rechecks the same design across several split dates, but it does not replace prospective multi-cohort validation."
+}

@@ -1,0 +1,77 @@
+Python REPL for inventOR — deterministic inventory optimization engine (ensemble mode).
+
+
+=== INPUT ===
+
+The user message contains a COMPLETED JSON block with ALL numeric values
+already pre-computed by stats_calculator.py (Python-side).
+Do NOT load any CSV file. Do NOT recompute any statistic or formula.
+
+
+=== TASK (3 steps only) ===
+
+STEP 1 — Write narrative:
+  Replace "<<REPLACE_WITH_NARRATIVE>>" in the JSON with a concise 3-5 sentence
+  paragraph. Summarise demand regime, key policy values, data quality, and any
+  MILP trigger. Do NOT change any numeric value.
+
+STEP 2 — Model selection (fill research_insights):
+  Using ONLY the statistics already present in the JSON (no new calculations),
+  select the single best-fit inventory model from the following closed set:
+
+    EOQ        — stationary demand, cv_wd < 0.30, stable lead time
+    (r,Q)      — default continuous-review route; general stochastic demand + lead time
+    (s,S)      — erratic demand (cv_wd > 0.50) with high lead-time variance (cv_lead_time > 0.50)
+    NegBin     — overdispersed lumpy demand (cv_wd > 1.0, non_zero_fraction_wd < 0.80)
+    Base-stock — Poisson/near-zero demand (mean_daily_demand < 1.0 or non_zero_fraction_wd < 0.20)
+
+  Note: Wagner-Whitin and Croston are excluded.
+  WW requires deterministic demand; Croston is a forecasting method, not an inventory policy.
+
+  Fill all four research_insights fields:
+    selected_model:      exact name from the closed set above
+    selection_rationale: 2 sentences citing specific statistic values
+    boundary_risk:       brief note if material sits near a regime boundary
+    escalation_flag:     "YES" if milp_trigger is set or manual review warranted, else "NO"
+
+STEP 3 — Save file:
+  Output the fully completed JSON in a ```json block, then save it:
+
+    import json
+    result = { ... }   # paste completed dict
+    json.dump(result, open("inventory_optimization_output.json", "w"), indent=2)
+    print("Saved.")
+
+  The JSON must match the frozen schema (see system_prompt.txt) exactly.
+  Rounding: 4 decimals default, policy values as integers.
+
+
+=== WHAT NOT TO DO ===
+
+- Do NOT read any CSV or load any file.
+- Do NOT recompute sigma_ltd, safety_stock, reorder_point, EOQ, or any other
+  numeric field. All values are already filled in — copy them verbatim.
+- Do NOT rename, add, or remove any JSON keys.
+- Do NOT change milp_trigger unless there is a verified T2 reason (max_stock clamp).
+
+
+=== AVAILABLE LIBRARIES ===
+
+import math, json   # sufficient for this task
+# pandas, numpy, scipy, matplotlib available if needed for supplementary charts only
+
+
+=== OUTPUT FORMAT RULES (CRITICAL) ===
+
+Plots:  plt.savefig('plot.png', dpi=150, bbox_inches='tight'); plt.close()
+        Reference: <png>plot.png</png>
+        NOT: [plot.png](<png>) or ![alt text]
+
+Tables: df.to_markdown('table.md', index=False)
+        Reference: <md>table.md</md>
+
+Data:   df.to_csv('data.csv')  or  json.dump(data, open('data.json','w'))
+        Files are auto-attached to your response.
+
+Full data science stack available: pandas, numpy, scipy, matplotlib, math, json.
+Persistent workspace. Debug errors. Multi-step execution is fine.

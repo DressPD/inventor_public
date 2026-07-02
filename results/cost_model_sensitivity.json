@@ -1,0 +1,285 @@
+{
+  "test": "cost_model_sensitivity_grid",
+  "governed_lambda": 100.0,
+  "train_cutoff": "2026-03-10",
+  "valid_end": "2026-06-19",
+  "holding_multipliers": [
+    0.5,
+    0.75,
+    1.0,
+    1.5,
+    2.0
+  ],
+  "ordering_multipliers": [
+    0.5,
+    0.75,
+    1.0,
+    1.5,
+    2.0
+  ],
+  "n_grid_points": 25,
+  "governed_selected_min": 18,
+  "governed_selected_max": 22,
+  "mean_fill_gain_min": 1.3698,
+  "mean_fill_gain_max": 3.1789,
+  "mean_cost_delta_min": -171.913,
+  "mean_cost_delta_max": 70.5926,
+  "cost_delta_pct_of_sap_min": -1.6148,
+  "cost_delta_pct_of_sap_max": 1.22,
+  "all_positive_service_gain": true,
+  "all_within_parity_band_pct": true,
+  "parity_band_pct": 5.0,
+  "verdict": "The governed selective-intervention property is robust to the cost model. Across a 25-point holding-rate x ordering-cost grid the mean service gain stays strictly positive (1.37 to 3.18 pp) and the governed set stays selective (18 to 22 of 98 items). The mean cost delta versus SAP ranges from -171.9 to 70.6 currency units (-1.61% to 1.22% of SAP cost), i.e. a small saving-to-slight-premium band rather than a material cost increase. The result does not hinge on the estimated cost parameters.",
+  "grid": [
+    {
+      "n_eligible": 98,
+      "governed_selected": 21,
+      "mean_fill_gain_vs_sap_pct_pts": 3.1789,
+      "mean_cost_delta_vs_sap": 2.3806,
+      "mean_sap_cost": 2661.574,
+      "cost_delta_pct_of_sap": 0.0894,
+      "holding_mult": 0.5,
+      "ordering_mult": 0.5
+    },
+    {
+      "n_eligible": 98,
+      "governed_selected": 21,
+      "mean_fill_gain_vs_sap_pct_pts": 2.9491,
+      "mean_cost_delta_vs_sap": 20.4243,
+      "mean_sap_cost": 3344.9159,
+      "cost_delta_pct_of_sap": 0.6106,
+      "holding_mult": 0.5,
+      "ordering_mult": 0.75
+    },
+    {
+      "n_eligible": 98,
+      "governed_selected": 21,
+      "mean_fill_gain_vs_sap_pct_pts": 2.9065,
+      "mean_cost_delta_vs_sap": 32.6407,
+      "mean_sap_cost": 3920.765,
+      "cost_delta_pct_of_sap": 0.8325,
+      "holding_mult": 0.5,
+      "ordering_mult": 1.0
+    },
+    {
+      "n_eligible": 98,
+      "governed_selected": 20,
+      "mean_fill_gain_vs_sap_pct_pts": 2.7041,
+      "mean_cost_delta_vs_sap": 48.4284,
+      "mean_sap_cost": 4557.0726,
+      "cost_delta_pct_of_sap": 1.0627,
+      "holding_mult": 0.5,
+      "ordering_mult": 1.5
+    },
+    {
+      "n_eligible": 98,
+      "governed_selected": 21,
+      "mean_fill_gain_vs_sap_pct_pts": 2.691,
+      "mean_cost_delta_vs_sap": 59.6666,
+      "mean_sap_cost": 5001.1504,
+      "cost_delta_pct_of_sap": 1.1931,
+      "holding_mult": 0.5,
+      "ordering_mult": 2.0
+    },
+    {
+      "n_eligible": 98,
+      "governed_selected": 21,
+      "mean_fill_gain_vs_sap_pct_pts": 3.1071,
+      "mean_cost_delta_vs_sap": 38.8317,
+      "mean_sap_cost": 3183.0106,
+      "cost_delta_pct_of_sap": 1.22,
+      "holding_mult": 0.75,
+      "ordering_mult": 0.5
+    },
+    {
+      "n_eligible": 98,
+      "governed_selected": 21,
+      "mean_fill_gain_vs_sap_pct_pts": 3.1789,
+      "mean_cost_delta_vs_sap": 3.5708,
+      "mean_sap_cost": 3992.361,
+      "cost_delta_pct_of_sap": 0.0894,
+      "holding_mult": 0.75,
+      "ordering_mult": 0.75
+    },
+    {
+      "n_eligible": 98,
+      "governed_selected": 22,
+      "mean_fill_gain_vs_sap_pct_pts": 3.0404,
+      "mean_cost_delta_vs_sap": 25.5408,
+      "mean_sap_cost": 4628.0886,
+      "cost_delta_pct_of_sap": 0.5519,
+      "holding_mult": 0.75,
+      "ordering_mult": 1.0
+    },
+    {
+      "n_eligible": 98,
+      "governed_selected": 21,
+      "mean_fill_gain_vs_sap_pct_pts": 2.9065,
+      "mean_cost_delta_vs_sap": 48.961,
+      "mean_sap_cost": 5881.1475,
+      "cost_delta_pct_of_sap": 0.8325,
+      "holding_mult": 0.75,
+      "ordering_mult": 1.5
+    },
+    {
+      "n_eligible": 98,
+      "governed_selected": 20,
+      "mean_fill_gain_vs_sap_pct_pts": 2.5567,
+      "mean_cost_delta_vs_sap": 56.3689,
+      "mean_sap_cost": 6574.7558,
+      "cost_delta_pct_of_sap": 0.8574,
+      "holding_mult": 0.75,
+      "ordering_mult": 2.0
+    },
+    {
+      "n_eligible": 98,
+      "governed_selected": 20,
+      "mean_fill_gain_vs_sap_pct_pts": 2.7625,
+      "mean_cost_delta_vs_sap": 21.0299,
+      "mean_sap_cost": 3638.1994,
+      "cost_delta_pct_of_sap": 0.578,
+      "holding_mult": 1.0,
+      "ordering_mult": 0.5
+    },
+    {
+      "n_eligible": 98,
+      "governed_selected": 20,
+      "mean_fill_gain_vs_sap_pct_pts": 3.1413,
+      "mean_cost_delta_vs_sap": 54.3324,
+      "mean_sap_cost": 4484.2329,
+      "cost_delta_pct_of_sap": 1.2116,
+      "holding_mult": 1.0,
+      "ordering_mult": 0.75
+    },
+    {
+      "n_eligible": 98,
+      "governed_selected": 21,
+      "mean_fill_gain_vs_sap_pct_pts": 3.1789,
+      "mean_cost_delta_vs_sap": 4.7611,
+      "mean_sap_cost": 5323.1479,
+      "cost_delta_pct_of_sap": 0.0894,
+      "holding_mult": 1.0,
+      "ordering_mult": 1.0
+    },
+    {
+      "n_eligible": 98,
+      "governed_selected": 21,
+      "mean_fill_gain_vs_sap_pct_pts": 2.9491,
+      "mean_cost_delta_vs_sap": 40.8486,
+      "mean_sap_cost": 6689.8318,
+      "cost_delta_pct_of_sap": 0.6106,
+      "holding_mult": 1.0,
+      "ordering_mult": 1.5
+    },
+    {
+      "n_eligible": 98,
+      "governed_selected": 20,
+      "mean_fill_gain_vs_sap_pct_pts": 2.275,
+      "mean_cost_delta_vs_sap": 0.5939,
+      "mean_sap_cost": 7841.53,
+      "cost_delta_pct_of_sap": 0.0076,
+      "holding_mult": 1.0,
+      "ordering_mult": 2.0
+    },
+    {
+      "n_eligible": 98,
+      "governed_selected": 20,
+      "mean_fill_gain_vs_sap_pct_pts": 2.5332,
+      "mean_cost_delta_vs_sap": 2.9987,
+      "mean_sap_cost": 4795.9219,
+      "cost_delta_pct_of_sap": 0.0625,
+      "holding_mult": 1.5,
+      "ordering_mult": 0.5
+    },
+    {
+      "n_eligible": 98,
+      "governed_selected": 20,
+      "mean_fill_gain_vs_sap_pct_pts": 2.7625,
+      "mean_cost_delta_vs_sap": 31.5448,
+      "mean_sap_cost": 5457.299,
+      "cost_delta_pct_of_sap": 0.578,
+      "holding_mult": 1.5,
+      "ordering_mult": 0.75
+    },
+    {
+      "n_eligible": 98,
+      "governed_selected": 20,
+      "mean_fill_gain_vs_sap_pct_pts": 3.0466,
+      "mean_cost_delta_vs_sap": 70.5926,
+      "mean_sap_cost": 6366.0213,
+      "cost_delta_pct_of_sap": 1.1089,
+      "holding_mult": 1.5,
+      "ordering_mult": 1.0
+    },
+    {
+      "n_eligible": 98,
+      "governed_selected": 21,
+      "mean_fill_gain_vs_sap_pct_pts": 3.1789,
+      "mean_cost_delta_vs_sap": 7.1417,
+      "mean_sap_cost": 7984.7219,
+      "cost_delta_pct_of_sap": 0.0894,
+      "holding_mult": 1.5,
+      "ordering_mult": 1.5
+    },
+    {
+      "n_eligible": 98,
+      "governed_selected": 18,
+      "mean_fill_gain_vs_sap_pct_pts": 1.3698,
+      "mean_cost_delta_vs_sap": -130.9144,
+      "mean_sap_cost": 9256.1772,
+      "cost_delta_pct_of_sap": -1.4143,
+      "holding_mult": 1.5,
+      "ordering_mult": 2.0
+    },
+    {
+      "n_eligible": 98,
+      "governed_selected": 20,
+      "mean_fill_gain_vs_sap_pct_pts": 2.4958,
+      "mean_cost_delta_vs_sap": -11.2313,
+      "mean_sap_cost": 5896.7222,
+      "cost_delta_pct_of_sap": -0.1905,
+      "holding_mult": 2.0,
+      "ordering_mult": 0.5
+    },
+    {
+      "n_eligible": 98,
+      "governed_selected": 21,
+      "mean_fill_gain_vs_sap_pct_pts": 2.5804,
+      "mean_cost_delta_vs_sap": 13.433,
+      "mean_sap_cost": 6627.6525,
+      "cost_delta_pct_of_sap": 0.2027,
+      "holding_mult": 2.0,
+      "ordering_mult": 0.75
+    },
+    {
+      "n_eligible": 98,
+      "governed_selected": 20,
+      "mean_fill_gain_vs_sap_pct_pts": 2.7625,
+      "mean_cost_delta_vs_sap": 42.0597,
+      "mean_sap_cost": 7276.3987,
+      "cost_delta_pct_of_sap": 0.578,
+      "holding_mult": 2.0,
+      "ordering_mult": 1.0
+    },
+    {
+      "n_eligible": 98,
+      "governed_selected": 19,
+      "mean_fill_gain_vs_sap_pct_pts": 2.664,
+      "mean_cost_delta_vs_sap": 54.8652,
+      "mean_sap_cost": 8968.4658,
+      "cost_delta_pct_of_sap": 0.6118,
+      "holding_mult": 2.0,
+      "ordering_mult": 1.5
+    },
+    {
+      "n_eligible": 98,
+      "governed_selected": 18,
+      "mean_fill_gain_vs_sap_pct_pts": 1.6667,
+      "mean_cost_delta_vs_sap": -171.913,
+      "mean_sap_cost": 10646.2959,
+      "cost_delta_pct_of_sap": -1.6148,
+      "holding_mult": 2.0,
+      "ordering_mult": 2.0
+    }
+  ]
+}

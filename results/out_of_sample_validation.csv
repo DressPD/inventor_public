@@ -1,0 +1,7 @@
+metric,n,mean_delta,median_delta,bootstrap_95ci_low,bootstrap_95ci_high,positive_count,negative_count,tie_count,sign_test_p_two_sided,favorable_direction,cohort
+test_fill_gain_vs_sap_pct_pts,98,2.861,0.0,0.9377,5.2988,7,0,91,0.015625,positive,all_eligible
+test_cost_delta_vs_sap,98,-2.9318,0.0,-177.0105,145.5514,7,10,81,0.629059,negative,all_eligible
+test_stockout_days_reduction_vs_sap,98,0.9286,0.0,0.2449,1.7959,7,0,91,0.015625,positive,all_eligible
+test_fill_gain_vs_sap_pct_pts,17,16.4927,0.0,6.3121,27.7377,7,0,10,0.015625,positive,selected_only
+test_cost_delta_vs_sap,17,-16.9007,-16.7228,-994.4713,824.022,7,10,0,0.629059,negative,selected_only
+test_stockout_days_reduction_vs_sap,17,5.3529,0.0,1.7059,9.5897,7,0,10,0.015625,positive,selected_only

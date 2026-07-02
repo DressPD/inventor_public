@@ -1,0 +1,59 @@
+{
+  "test": "rolling_origin_walk_forward",
+  "governed_lambda": 100.0,
+  "window_days": 100,
+  "min_informative_n": 20,
+  "n_origins": 5,
+  "n_informative_origins": 3,
+  "governed_rule": "quantitative bucket-agnostic service-floor + lambda scalarization",
+  "positive_gain_all_informative": true,
+  "cost_parity_all_informative": true,
+  "verdict": "Governed gain is directionally stable (positive service gain at cost parity) across all informative rolling origins; early origins are non-informative due to data-coverage funnel (fewer than 20 eligible items).",
+  "origins": [
+    {
+      "cutoff": "2025-10-01",
+      "test_end": "2026-01-09",
+      "n_eligible": 7,
+      "governed_selected": 0,
+      "mean_fill_gain_vs_sap_pct_pts": 0.0,
+      "mean_cost_delta_vs_sap": 0.0,
+      "informative": false
+    },
+    {
+      "cutoff": "2025-11-15",
+      "test_end": "2026-02-23",
+      "n_eligible": 8,
+      "governed_selected": 0,
+      "mean_fill_gain_vs_sap_pct_pts": 0.0,
+      "mean_cost_delta_vs_sap": 0.0,
+      "informative": false
+    },
+    {
+      "cutoff": "2026-01-01",
+      "test_end": "2026-04-11",
+      "n_eligible": 75,
+      "governed_selected": 12,
+      "mean_fill_gain_vs_sap_pct_pts": 0.3559,
+      "mean_cost_delta_vs_sap": -73.2363,
+      "informative": true
+    },
+    {
+      "cutoff": "2026-02-15",
+      "test_end": "2026-05-26",
+      "n_eligible": 93,
+      "governed_selected": 20,
+      "mean_fill_gain_vs_sap_pct_pts": 1.2973,
+      "mean_cost_delta_vs_sap": -102.6709,
+      "informative": true
+    },
+    {
+      "cutoff": "2026-03-10",
+      "test_end": "2026-06-18",
+      "n_eligible": 98,
+      "governed_selected": 21,
+      "mean_fill_gain_vs_sap_pct_pts": 3.1789,
+      "mean_cost_delta_vs_sap": 4.1839,
+      "informative": true
+    }
+  ]
+}

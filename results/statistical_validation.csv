@@ -1,0 +1,5 @@
+metric,n,mean_delta,median_delta,bootstrap_95ci_low,bootstrap_95ci_high,positive_count,negative_count,tie_count,sign_test_p_two_sided,cohen_dz,favorable_direction,source
+fill_gain_vs_sap_pct_pts,98,3.9073,0.0,1.7691,6.3698,17,2,79,0.000729,0.3255,positive,sample_artifacts/target_ranking.csv
+stockout_days_reduction_vs_sap,98,1.2857,0.0,0.3367,2.4796,16,2,80,0.001312,0.2306,positive,sample_artifacts/target_ranking.csv
+shortage_reduction_vs_sap,98,9134.4388,0.0,1995.7594,18406.2528,17,2,79,0.000729,0.2206,positive,sample_artifacts/target_ranking.csv
+cost_delta_vs_sap,98,4436.0373,578.5507,1952.5888,8018.3597,85,13,0,0.0,0.2834,negative,sample_artifacts/target_ranking.csv

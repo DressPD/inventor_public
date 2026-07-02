@@ -1,0 +1,64 @@
+item_key,plant_code,material_id,input_flag_bucket,final_bucket,route_to_code,requires_supplier_contact,requires_planner_contact,review_confidence,bucket_changed,direct_optimization_blocked_or_rerouted,fill_gain_vs_sap_pct_pts,stockout_days_reduction_vs_sap,cost_delta_vs_sap,governance_reason
+PLANT_B__MATERIAL_0135,PLANT_B,MATERIAL_0135,OPTIMIZE_NOW,OPTIMIZE_NOW,request_supplier_review,YES,NO,MEDIUM,NO,YES,10.9822,7.0,22703.6628,Contact the supplier to discuss reliability issues.
+PLANT_B__MATERIAL_0217,PLANT_B,MATERIAL_0217,OPTIMIZE_NOW,OPTIMIZE_NOW,optimize_policy,YES,YES,MEDIUM,NO,YES,42.2568,34.0,1069.8593,Proceed with a detailed review of the hard flag implications.
+PLANT_A__MATERIAL_0222,PLANT_A,MATERIAL_0222,OPTIMIZE_NOW,OPTIMIZE_NOW,request_supplier_review,YES,NO,MEDIUM,NO,YES,1.1483,1.0,7753.5193,Contact the supplier to assess reliability and lead time issues.
+PLANT_B__MATERIAL_0210,PLANT_B,MATERIAL_0210,OPTIMIZE_NOW,LLM_REVIEW,request_planner_review,NO,YES,MEDIUM,YES,YES,10.7074,13.0,137861.0228,Engage with the planner to assess operational constraints.
+PLANT_A__MATERIAL_0216,PLANT_A,MATERIAL_0216,OPTIMIZE_NOW,OPTIMIZE_NOW,optimize_policy,YES,YES,MEDIUM,NO,YES,12.3866,6.0,534.6634,Proceed with optimizing the policy while addressing supplier reliability issues.
+PLANT_A__MATERIAL_0154,PLANT_A,MATERIAL_0154,OPTIMIZE_NOW,OPTIMIZE_NOW,optimize_policy,YES,YES,MEDIUM,NO,YES,0.0,0.0,144.8698,Proceed with optimizing the policy while addressing supplier reliability issues.
+PLANT_B__MATERIAL_0230,PLANT_B,MATERIAL_0230,OPTIMIZE_NOW,OPTIMIZE_NOW,request_planner_review,YES,YES,MEDIUM,NO,YES,0.0,0.0,5708.7903,Engage with the planner to assess lead time impacts.
+PLANT_A__MATERIAL_0083,PLANT_A,MATERIAL_0083,OPTIMIZE_NOW,OPTIMIZE_NOW,optimize_policy,YES,YES,MEDIUM,NO,YES,0.0,0.0,70.4474,Assess the cost implications further before proceeding with optimization.
+PLANT_A__MATERIAL_0082,PLANT_A,MATERIAL_0082,OPTIMIZE_NOW,OPTIMIZE_NOW,optimize_policy,YES,YES,MEDIUM,NO,YES,0.0,0.0,251.0409,Proceed with a detailed review of supplier reliability metrics.
+PLANT_A__MATERIAL_0040,PLANT_A,MATERIAL_0040,LLM_REVIEW,LLM_REVIEW,request_planner_review,YES,YES,MEDIUM,NO,NO,31.4815,2.0,851.0584,Engage the planner to review the supplier reliability and delivery data.
+PLANT_A__MATERIAL_0087,PLANT_A,MATERIAL_0087,OPTIMIZE_NOW,OPTIMIZE_NOW,optimize_policy,YES,YES,MEDIUM,NO,YES,0.0,0.0,142.2475,Proceed with a detailed cost-benefit analysis.
+PLANT_A__MATERIAL_0088,PLANT_A,MATERIAL_0088,OPTIMIZE_NOW,OPTIMIZE_NOW,optimize_policy,YES,NO,MEDIUM,NO,YES,-2.4701,-6.0,-1190.3467,Proceed with optimization while monitoring cost implications.
+PLANT_A__MATERIAL_0036,PLANT_A,MATERIAL_0036,OPTIMIZE_NOW,OPTIMIZE_NOW,request_supplier_review,YES,NO,MEDIUM,NO,YES,4.3274,5.0,2728.5207,Contact the supplier to discuss reliability issues.
+PLANT_A__MATERIAL_0096,PLANT_A,MATERIAL_0096,OPTIMIZE_NOW,OPTIMIZE_NOW,request_supplier_review,YES,NO,MEDIUM,NO,YES,0.0,0.0,1375.9458,Contact the supplier to discuss reliability issues.
+PLANT_B__MATERIAL_0197,PLANT_B,MATERIAL_0197,LLM_REVIEW,LLM_REVIEW,request_planner_review,NO,YES,MEDIUM,NO,NO,-4.3914,-9.0,-993.9914,Conduct a planner review to assess counterfactuals and hidden constraints.
+PLANT_A__MATERIAL_0028,PLANT_A,MATERIAL_0028,OPTIMIZE_NOW,OPTIMIZE_NOW,request_supplier_review,YES,NO,MEDIUM,NO,YES,29.6,4.0,919.1756,Contact the supplier to assess reliability and delivery capabilities.
+PLANT_A__MATERIAL_0027,PLANT_A,MATERIAL_0027,OPTIMIZE_NOW,OPTIMIZE_NOW,optimize_policy,YES,YES,MEDIUM,NO,YES,0.0,0.0,26808.9882,Proceed with optimization policy implementation.
+PLANT_B__MATERIAL_0213,PLANT_B,MATERIAL_0213,OPTIMIZE_NOW,OPTIMIZE_NOW,request_planner_review,YES,YES,MEDIUM,NO,YES,63.5895,37.0,3602.1763,Engage with the planner to assess lead time implications.
+PLANT_B__MATERIAL_0057,PLANT_B,MATERIAL_0057,OPTIMIZE_NOW,OPTIMIZE_NOW,optimize_policy,YES,YES,MEDIUM,NO,YES,0.0,0.0,1531.1088,Proceed with optimization policy implementation while monitoring supplier reliability.
+PLANT_B__MATERIAL_0196,PLANT_B,MATERIAL_0196,OPTIMIZE_NOW,OPTIMIZE_NOW,request_supplier_review,YES,NO,MEDIUM,NO,YES,47.5097,12.0,49453.9228,Contact the supplier to assess reliability and lead time issues.
+PLANT_A__MATERIAL_0038,PLANT_A,MATERIAL_0038,LLM_REVIEW,LLM_REVIEW,request_planner_review,NO,YES,MEDIUM,NO,NO,16.129,0.0,161.915,Contact the planner for a detailed review of supplier reliability.
+PLANT_B__MATERIAL_0228,PLANT_B,MATERIAL_0228,LLM_REVIEW,LLM_REVIEW,request_planner_review,NO,YES,MEDIUM,NO,NO,0.0,0.0,2358.705,Engage the planner to review the stockout reduction strategy.
+PLANT_B__MATERIAL_0216,PLANT_B,MATERIAL_0216,OPTIMIZE_NOW,OPTIMIZE_NOW,request_supplier_review,YES,NO,MEDIUM,NO,YES,53.4766,6.0,3492.6965,Contact the supplier to discuss reliability issues.
+PLANT_A__MATERIAL_0060,PLANT_A,MATERIAL_0060,LLM_REVIEW,LLM_REVIEW,request_planner_review,NO,YES,MEDIUM,NO,NO,0.0,0.0,-20.4019,Engage the planner to review the supplier reliability and delivery data.
+PLANT_B__MATERIAL_0191,PLANT_B,MATERIAL_0191,LLM_REVIEW,LLM_REVIEW,request_planner_review,YES,YES,MEDIUM,NO,NO,0.7941,1.0,3969.9345,Conduct a planner review focusing on lead time and supplier reliability.
+PLANT_A__MATERIAL_0039,PLANT_A,MATERIAL_0039,OPTIMIZE_NOW,OPTIMIZE_NOW,request_supplier_review,YES,NO,LOW,NO,YES,31.4815,5.0,949.3804,Contact the supplier to assess reliability and delivery capabilities.
+PLANT_B__MATERIAL_0096,PLANT_B,MATERIAL_0096,MONITOR,MONITOR,keep_baseline,YES,NO,MEDIUM,NO,NO,0.0,0.0,1129.3027,Continue to observe the item for any changes in lead time or service performance.
+PLANT_B__MATERIAL_0214,PLANT_B,MATERIAL_0214,OPTIMIZE_NOW,OPTIMIZE_NOW,request_supplier_review,YES,NO,MEDIUM,NO,YES,31.1303,5.0,1795.4527,Contact the supplier to assess reliability and lead time issues.
+PLANT_A__MATERIAL_0110,PLANT_A,MATERIAL_0110,MONITOR,MONITOR,keep_baseline,YES,NO,MEDIUM,NO,NO,0.0,0.0,534.2159,Maintain observation on this item for potential lead time issues.
+PLANT_A__MATERIAL_0074,PLANT_A,MATERIAL_0074,LLM_REVIEW,LLM_REVIEW,request_planner_review,NO,YES,MEDIUM,NO,NO,0.0,0.0,-63.4541,Conduct a planner review to assess delivery data and cost implications.
+PLANT_B__MATERIAL_0222,PLANT_B,MATERIAL_0222,MONITOR,MONITOR,keep_baseline,YES,NO,MEDIUM,NO,NO,0.0,0.0,6828.9077,Monitor the item closely for any changes in lead time or supplier performance.
+PLANT_A__MATERIAL_0008,PLANT_A,MATERIAL_0008,LLM_REVIEW,LLM_REVIEW,request_planner_review,NO,YES,MEDIUM,NO,NO,0.0,0.0,422.6159,Conduct a planner review to assess the risks associated with this material.
+PLANT_A__MATERIAL_0025,PLANT_A,MATERIAL_0025,OPTIMIZE_NOW,OPTIMIZE_NOW,optimize_policy,YES,YES,MEDIUM,NO,YES,0.0,0.0,793.1048,Assess the impact of supplier reliability on the proposed optimization.
+PLANT_A__MATERIAL_0159,PLANT_A,MATERIAL_0159,OPTIMIZE_NOW,LLM_REVIEW,request_planner_review,YES,YES,LOW,YES,YES,0.0,0.0,1143.6603,Engage with the planner to assess the feasibility of the proposed changes.
+PLANT_A__MATERIAL_0107,PLANT_A,MATERIAL_0107,OPTIMIZE_NOW,OPTIMIZE_NOW,request_planner_review,YES,YES,MEDIUM,NO,YES,0.0,0.0,3831.8054,Engage the planner to assess the feasibility of the optimization given the current constraints.
+PLANT_A__MATERIAL_0024,PLANT_A,MATERIAL_0024,MONITOR,MONITOR,keep_baseline,YES,NO,MEDIUM,NO,NO,0.0,0.0,40.2804,Maintain observation of this item for any changes in lead time or supplier performance.
+PLANT_A__MATERIAL_0056,PLANT_A,MATERIAL_0056,LLM_REVIEW,LLM_REVIEW,request_planner_review,NO,YES,MEDIUM,NO,NO,0.0,0.0,-2.7101,Conduct a planner review to assess the risks associated with thin delivery data and unstable lead times.
+PLANT_A__MATERIAL_0061,PLANT_A,MATERIAL_0061,LEAVE_BASELINE,LEAVE_BASELINE,keep_baseline,YES,NO,LOW,NO,NO,0.0,0.0,475.9656,Continue routine monitoring of the item.
+PLANT_A__MATERIAL_0108,PLANT_A,MATERIAL_0108,MONITOR,MONITOR,keep_baseline,YES,NO,MEDIUM,NO,NO,0.0,0.0,4936.1045,Monitor the item closely for any changes in lead time or supplier performance.
+PLANT_A__MATERIAL_0122,PLANT_A,MATERIAL_0122,LLM_REVIEW,LLM_REVIEW,request_planner_review,NO,YES,MEDIUM,NO,NO,0.0,0.0,-21.5094,Conduct a detailed review of delivery data and lead time stability.
+PLANT_A__MATERIAL_0152,PLANT_A,MATERIAL_0152,MONITOR,MONITOR,keep_baseline,YES,NO,MEDIUM,NO,NO,0.0,0.0,2043.1194,Continue to monitor the item closely for any changes.
+PLANT_A__MATERIAL_0153,PLANT_A,MATERIAL_0153,MONITOR,MONITOR,keep_baseline,YES,NO,MEDIUM,NO,NO,0.0,0.0,1530.1866,Continue to monitor the item closely for any changes.
+PLANT_B__MATERIAL_0102,PLANT_B,MATERIAL_0102,LEAVE_BASELINE,LEAVE_BASELINE,keep_baseline,YES,NO,LOW,NO,NO,0.0,0.0,491.9477,Continue routine monitoring of the item.
+PLANT_A__MATERIAL_0045,PLANT_A,MATERIAL_0045,OPTIMIZE_NOW,OPTIMIZE_NOW,request_supplier_review,YES,NO,MEDIUM,NO,YES,0.0,0.0,2.7872,Contact the supplier to discuss reliability issues.
+PLANT_A__MATERIAL_0051,PLANT_A,MATERIAL_0051,OPTIMIZE_NOW,OPTIMIZE_NOW,request_supplier_review,YES,NO,MEDIUM,NO,YES,0.0,0.0,324.8754,Contact the supplier to discuss reliability issues.
+PLANT_A__MATERIAL_0064,PLANT_A,MATERIAL_0064,OPTIMIZE_NOW,OPTIMIZE_NOW,request_supplier_review,YES,NO,MEDIUM,NO,YES,0.0,0.0,763.8123,Contact the supplier to discuss reliability issues.
+PLANT_A__MATERIAL_0062,PLANT_A,MATERIAL_0062,OPTIMIZE_NOW,OPTIMIZE_NOW,request_supplier_review,YES,NO,MEDIUM,NO,YES,0.0,0.0,1162.3304,Contact the supplier to discuss reliability issues.
+PLANT_A__MATERIAL_0023,PLANT_A,MATERIAL_0023,LEAVE_BASELINE,LEAVE_BASELINE,keep_baseline,YES,NO,LOW,NO,NO,0.0,0.0,647.2574,Continue routine monitoring of the item.
+PLANT_A__MATERIAL_0030,PLANT_A,MATERIAL_0030,OPTIMIZE_NOW,OPTIMIZE_NOW,request_supplier_review,YES,NO,MEDIUM,NO,YES,0.0,0.0,17661.4124,Contact the supplier to discuss reliability issues.
+PLANT_A__MATERIAL_0046,PLANT_A,MATERIAL_0046,OPTIMIZE_NOW,OPTIMIZE_NOW,optimize_policy,YES,YES,MEDIUM,NO,YES,0.0,0.0,18.4942,Assess supplier reliability and lead time stability before proceeding.
+PLANT_A__MATERIAL_0075,PLANT_A,MATERIAL_0075,MONITOR,MONITOR,keep_baseline,YES,NO,MEDIUM,NO,NO,0.0,0.0,11.6176,Continue to monitor the item closely for any changes in lead time or supplier performance.
+PLANT_A__MATERIAL_0081,PLANT_A,MATERIAL_0081,LLM_REVIEW,LLM_REVIEW,request_planner_review,YES,YES,MEDIUM,NO,NO,0.0,0.0,-132.9358,Initiate a planner review to assess the impact of thin delivery data.
+PLANT_A__MATERIAL_0197,PLANT_A,MATERIAL_0197,LLM_REVIEW,LLM_REVIEW,request_planner_review,YES,YES,MEDIUM,NO,NO,0.0,0.0,-314.544,Engage the planner to review the counterfactuals and hidden constraints.
+PLANT_A__MATERIAL_0203,PLANT_A,MATERIAL_0203,LLM_REVIEW,LLM_REVIEW,request_planner_review,NO,YES,MEDIUM,NO,NO,0.0,0.0,-4571.7103,Contact the planner to discuss the implications of thin delivery data.
+PLANT_B__MATERIAL_0103,PLANT_B,MATERIAL_0103,MONITOR,MONITOR,keep_baseline,YES,NO,MEDIUM,NO,NO,0.0,0.0,123.3922,Monitor the item closely for any changes in lead time or supplier performance.
+PLANT_B__MATERIAL_0131,PLANT_B,MATERIAL_0131,MONITOR,MONITOR,keep_baseline,YES,NO,MEDIUM,NO,NO,0.0,0.0,-167.4715,Monitor the item closely for any changes in lead time or supplier performance.
+PLANT_B__MATERIAL_0201,PLANT_B,MATERIAL_0201,LLM_REVIEW,LLM_REVIEW,request_planner_review,NO,YES,MEDIUM,NO,NO,0.0,0.0,-32.2003,Conduct a planner review to assess the thin delivery data.
+PLANT_B__MATERIAL_0203,PLANT_B,MATERIAL_0203,LLM_REVIEW,LLM_REVIEW,request_planner_review,NO,YES,MEDIUM,NO,NO,0.0,0.0,-7091.5845,Initiate a planner review to assess the implications of thin delivery data.
+PLANT_A__MATERIAL_0200,PLANT_A,MATERIAL_0200,OPTIMIZE_NOW,OPTIMIZE_NOW,optimize_policy,YES,YES,MEDIUM,NO,YES,1.477,1.0,490.5563,Proceed with a detailed cost-benefit analysis.
+PLANT_A__MATERIAL_0206,PLANT_A,MATERIAL_0206,OPTIMIZE_NOW,OPTIMIZE_NOW,optimize_policy,YES,YES,MEDIUM,NO,YES,0.0,0.0,741.3347,Assess the cost implications and supplier reliability before proceeding.
+PLANT_A__MATERIAL_0205,PLANT_A,MATERIAL_0205,OPTIMIZE_NOW,OPTIMIZE_NOW,optimize_policy,YES,YES,MEDIUM,NO,YES,0.0,0.0,541.1623,Proceed with a detailed cost-benefit analysis.
+PLANT_A__MATERIAL_0029,PLANT_A,MATERIAL_0029,OPTIMIZE_NOW,OPTIMIZE_NOW,optimize_policy,YES,YES,MEDIUM,NO,YES,0.0,0.0,21900.1513,Proceed with a detailed cost-benefit analysis.
+PLANT_A__MATERIAL_0022,PLANT_A,MATERIAL_0022,OPTIMIZE_NOW,OPTIMIZE_NOW,request_supplier_review,YES,YES,LOW,NO,YES,0.0,0.0,35730.5664,Contact the supplier to discuss reliability issues.

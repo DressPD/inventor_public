@@ -1,0 +1,11 @@
+metric,value
+reviewed_items,98
+bucket_changed_count,2
+governance_intervention_count,63
+route_assigned_count,98
+supplier_contact_count,51
+planner_contact_count,35
+direct_optimize_rerouted_count,35
+route_counts,"{""keep_baseline"": 48, ""optimize_policy"": 15, ""request_planner_review"": 20, ""request_supplier_review"": 15}"
+intervened_fill_gain_sum,381.6164
+intervened_stockout_reduction_sum,124.0
