@@ -36,8 +36,8 @@ from the confidential study cohort. It includes cohort aggregates, anonymized
 plant aggregates, demand-concentration sensitivity, shortage totals, and paired
 diagnostics. It contains no material rows or failure lists.
 
-`outputs/review_evidence.json` records common-feasibility, outlier, and
-working-day-arrival sensitivity evidence. `outputs/run_manifest.json` records
+`outputs/review_evidence.json` records common-feasibility, outlier, working-day
+primary, and calendar-day-arrival sensitivity evidence. `outputs/run_manifest.json` records
 aggregate integrity hashes and unavailable inference metadata.
 
 The study inference stage cannot be rerun publicly. It depended on confidential

@@ -14,6 +14,8 @@ from __future__ import annotations
 
 import csv
 import json
+import os
+from collections import Counter
 from pathlib import Path
 from typing import Any
 
@@ -22,9 +24,28 @@ from inventory_llm import core
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 RESULTS_DIR = PROJECT_ROOT / "outputs"
-RUNS_DIR = RESULTS_DIR / "agentic_runs"
-OUT_JSON = RESULTS_DIR / "agentic_policy_backtest.json"
-OUT_CSV = RESULTS_DIR / "agentic_policy_backtest.csv"
+
+
+def _run_root() -> Path:
+    """Resolve the output root for the selected generation run.
+
+    Replicate generation runs are stored under ``outputs/runs/<run id>/``; when
+    ``INVENTOR_RUN_ID`` is unset the historical unlabelled root layout is used so
+    the primary evaluated cohort and its stored artifacts stay in place.
+    """
+    raw = (os.environ.get("INVENTOR_RUN_ID") or "").strip()
+    if not raw:
+        return RESULTS_DIR
+    safe = "".join(ch if (ch.isalnum() or ch in {"-", "_", "."}) else "_" for ch in raw)
+    if safe in {"", ".", ".."}:
+        raise SystemExit("INVENTOR_RUN_ID resolves to an unusable directory name")
+    return RESULTS_DIR / "runs" / safe
+
+
+RUN_ROOT = _run_root()
+RUNS_DIR = RUN_ROOT / "agentic_runs"
+OUT_JSON = RUN_ROOT / "agentic_policy_backtest.json"
+OUT_CSV = RUN_ROOT / "agentic_policy_backtest.csv"
 SUPPORTED_POLICY_LABELS = {"rq", "ss"}
 
 # The LLM (enterprise LLM platform) has emitted policy data under many different top-level key
@@ -277,6 +298,15 @@ def _selected_model(artifact: dict[str, Any]) -> str:
     return str(label or "")
 
 
+def _order_up_to_parameters(artifact: dict[str, Any]) -> tuple[int | None, int | None]:
+    """Return explicit (s,S) values; never infer them from an r/Q artifact."""
+    policy = artifact.get("policy_recommendation")
+    params = policy.get("parameters") if isinstance(policy, dict) else None
+    if not isinstance(params, dict):
+        return None, None
+    return _as_int(params.get("s")), _as_int(params.get("S"))
+
+
 def _policy_triple(artifact: dict[str, Any]) -> tuple[int | None, int | None, int | None]:
     merged = _merged_policy_block(artifact)
     rop = _first_numeric_int(merged, ROP_KEYS)
@@ -286,17 +316,13 @@ def _policy_triple(artifact: dict[str, Any]) -> tuple[int | None, int | None, in
     ss = _first_numeric_int(merged, SS_KEYS)
     if ss is None:
         ss = _ss_from_dedicated_containers(artifact)
-    # (s,S) recommendations expose a reorder threshold and order-up-to level
-    # rather than r/Q. Convert them to the simulator's r/Q representation.
+    # Use explicit (s,S) fields only for missing generic values. The returned
+    # values retain their original policy family and are not routed as r/Q.
     if (rop is None or oq is None) and _norm_family(_selected_model(artifact)) == "ss":
-        policy = artifact.get("policy_recommendation")
-        params = policy.get("parameters") if isinstance(policy, dict) else None
-        if isinstance(params, dict):
-            threshold = _as_int(params.get("s"))
-            out_to = _as_int(params.get("S"))
-            if threshold is not None and out_to is not None and out_to > threshold:
-                rop = threshold if rop is None else rop
-                oq = out_to - threshold if oq is None else oq
+        threshold, out_to = _order_up_to_parameters(artifact)
+        if threshold is not None and out_to is not None and out_to > threshold:
+            rop = threshold if rop is None else rop
+            oq = out_to - threshold if oq is None else oq
     return rop, oq, ss
 
 
@@ -331,8 +357,14 @@ def _llm_policy(artifact: dict[str, Any], stats: dict[str, Any]) -> dict[str, An
     family = _resolved_family(artifact)
     if family not in SUPPORTED_POLICY_LABELS:
         return None
-    out_to = rop + oq if family == "ss" else None
-    return {"policy": "llm_pure", "rop": rop, "oq": oq, "ss": ss, "out_to": out_to}
+    if family == "ss":
+        threshold, out_to = _order_up_to_parameters(artifact)
+        if threshold is None or out_to is None or out_to <= threshold:
+            return None
+        if threshold != rop or out_to - threshold != oq:
+            return None
+        return {"policy": "llm_ss", "rop": rop, "oq": oq, "ss": ss, "out_to": out_to}
+    return {"policy": "llm_rq", "rop": rop, "oq": oq, "ss": ss, "out_to": None}
 
 
 def parse_policy_artifact(artifact: dict[str, Any], stats: dict[str, Any]) -> dict[str, Any] | None:
@@ -358,6 +390,10 @@ def _invalid_reason(artifact: dict[str, Any], stats: dict[str, Any]) -> str:
     family = _resolved_family(artifact)
     if family not in SUPPORTED_POLICY_LABELS:
         return "unsupported_or_missing_policy_label"
+    if family == "ss":
+        threshold, out_to = _order_up_to_parameters(artifact)
+        if threshold is None or out_to is None or out_to <= threshold:
+            return "missing_or_invalid_order_up_to_parameters"
     if _llm_policy(artifact, stats) is None:
         if oq is not None and oq < int(stats.get("moq", 1) or 1):
             return "minimum_order_quantity_violation"
@@ -372,9 +408,16 @@ def _aggregate(rows: list[dict[str, Any]], key: str) -> dict[str, Any]:
     return core.aggregate([r[key] for r in rows if key in r])
 
 
-def build_backtest(arrival_mode: str = "calendar_days") -> dict[str, Any]:
+def build_backtest(
+    arrival_mode: str = "working_days",
+    shortage_penalty_multiplier: float = 0.0,
+    exclude_repaired_calendars: bool = False,
+) -> dict[str, Any]:
     grouped = core.load_grouped_rows()
+    repaired_plants = set(core.calendar_repair_metadata().get("calendar_repaired_plants", []))
     targets = _load_targets()
+    if exclude_repaired_calendars and repaired_plants:
+        targets = [key for key in targets if key.split("__", 1)[0] not in repaired_plants]
     valid_end = core.validation_end(grouped)
     rows: list[dict[str, Any]] = []
     missing: list[str] = []
@@ -414,11 +457,12 @@ def build_backtest(arrival_mode: str = "calendar_days") -> dict[str, Any]:
         capacity_projected["sap_static"] += int(bool(sap_policy["capacity_projected"]))
         capacity_projected["universal_rq"] += int(bool(rq_policy["capacity_projected"]))
         initial_inventory = core.opening_inventory(test, rq_policy["rop"] + rq_policy["oq"])
+        shortage_penalty = max(0.0, shortage_penalty_multiplier) * stats["unit_cost"]
         item = {
             "item_key": item_key,
-            "llm_pure": core.simulate(test, llm_policy, stats, initial_inventory, arrival_mode),
-            "sap_static": core.simulate(test, sap_policy, stats, initial_inventory, arrival_mode),
-            "universal_rq": core.simulate(test, rq_policy, stats, initial_inventory, arrival_mode),
+            "llm_pure": core.simulate(test, llm_policy, stats, initial_inventory, arrival_mode, shortage_penalty),
+            "sap_static": core.simulate(test, sap_policy, stats, initial_inventory, arrival_mode, shortage_penalty),
+            "universal_rq": core.simulate(test, rq_policy, stats, initial_inventory, arrival_mode, shortage_penalty),
             "llm_policy": llm_policy,
         }
         rows.append(item)
@@ -434,7 +478,18 @@ def build_backtest(arrival_mode: str = "calendar_days") -> dict[str, Any]:
         "n_targets": len(targets),
         "n_backtested": len(rows),
         "arrival_mode": arrival_mode,
+        "shortage_penalty_multiplier": max(0.0, shortage_penalty_multiplier),
+        "shortage_penalty_basis": "multiplier times source unit_cost per lost-sales unit",
         "policy_scoreability_validation": True,
+        "calendar_repair_policy": (
+            "imputed_working_day_calendars_excluded"
+            if exclude_repaired_calendars
+            else "imputed_working_day_calendars_included"
+        ),
+        "n_plants_with_imputed_working_day_calendar": len(repaired_plants),
+        "executed_policy_families": dict(
+            sorted(Counter(row["llm_policy"]["policy"] for row in rows).items())
+        ),
         "feasibility_rule": "MOQ <= Q and, when supplied, SS + Q <= max_storage_units",
         "capacity_projected_comparators": capacity_projected,
         "infeasible_comparators": infeasible_comparators,

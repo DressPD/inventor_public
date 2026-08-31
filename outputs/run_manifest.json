@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "scope": "aggregate integrity record; no confidential content or item identifiers",
-  "active_evaluation_code_sha256": "30565fbb202696e665887f829f21d918907ea290d2dd163a04223d3a30dd64e2",
+  "active_evaluation_code_sha256": "81ec1a57e73451018e494e0de8fc5b4012bd39de0928d46fb3c25b649058b37b",
   "stored_artifacts": {
     "scope": "all retained agentic_runs directories; counts can exceed the active 365-material cohort",
     "by_file_type": {
@@ -22,6 +22,12 @@
         "combined_sha256": "ccf3bfcabb4595c3a7a19625e61aff8ff304ce517696429b7ff0f57b402b92cd"
       }
     }
+  },
+  "declared_unverified_runtime": {
+    "status": "author declaration recorded retrospectively; not machine-verifiable from stored artifacts",
+    "model_family_declared": "Anthropic Claude Sonnet 4.6",
+    "tool_configuration_declared": "code-interpreter style Python execution tool",
+    "verification": "no deployed configuration, model identifier, or generation settings were persisted at run time"
   },
   "not_preserved": [
     "deployed_system_prompt_hash",

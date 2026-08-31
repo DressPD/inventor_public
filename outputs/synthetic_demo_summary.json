@@ -20,7 +20,7 @@
       "agg_fill_rate_pct": 100.0,
       "pct_ge_95": 100.0,
       "zero_stockout_pct": 100.0,
-      "mean_total_cost": 243.7472,
+      "mean_total_cost": 240.9627,
       "total_stockout_days": 0,
       "mean_stockout_days": 0
     },
@@ -30,7 +30,7 @@
       "agg_fill_rate_pct": 100.0,
       "pct_ge_95": 100.0,
       "zero_stockout_pct": 100.0,
-      "mean_total_cost": 220.0078,
+      "mean_total_cost": 218.1621,
       "total_stockout_days": 0,
       "mean_stockout_days": 0
     },
@@ -40,7 +40,7 @@
       "agg_fill_rate_pct": 100.0,
       "pct_ge_95": 100.0,
       "zero_stockout_pct": 100.0,
-      "mean_total_cost": 243.7472,
+      "mean_total_cost": 240.9627,
       "total_stockout_days": 0,
       "mean_stockout_days": 0
     }

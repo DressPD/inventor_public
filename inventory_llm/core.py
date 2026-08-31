@@ -115,6 +115,11 @@ def _repair_working_day_calendar(grouped: dict[str, list[dict[str, str]]]) -> No
     })
 
 
+def calendar_repair_metadata() -> dict[str, Any]:
+    """Return the last calendar-repair record produced by load_grouped_rows()."""
+    return dict(_CALENDAR_REPAIR_METADATA)
+
+
 def _aggregate_material_dates(rows: list[dict[str, str]]) -> list[dict[str, str]]:
     """Collapse duplicate material-date rows before policy simulation/statistics."""
     sum_fields = {"actual_demand", "goods_receipt_qty", "stock_correction", "scrap"}
@@ -293,7 +298,8 @@ def simulate(
     policy: dict[str, Any],
     stats: dict[str, Any],
     initial_inventory: int | None = None,
-    arrival_mode: str = "calendar_days",
+    arrival_mode: str = "working_days",
+    shortage_penalty_per_unit: float = 0.0,
 ) -> dict[str, Any]:
     fallback_inventory = max(policy.get("rop", 0) + policy.get("oq", 0), 0)
     inventory = opening_inventory(test_rows, fallback_inventory) if initial_inventory is None else max(0, initial_inventory)
@@ -305,8 +311,15 @@ def simulate(
     inv_sum = 0.0
     num_orders = 0
     lead_days = max(1, int(round(stats["mean_lead_time"])))
-    oq = max(1, int(policy.get("oq", 1)))
     rop = int(policy.get("rop", 0))
+    order_up_to_level: int | None = None
+    raw_out_to = policy.get("out_to")
+    is_order_up_to = raw_out_to is not None
+    if is_order_up_to:
+        order_up_to_level = max(0, int(raw_out_to))
+        if order_up_to_level <= rop:
+            raise ValueError("order-up-to level must exceed reorder point")
+    oq = max(1, int(policy.get("oq", 1)))
 
     working = [r for r in test_rows if is_working_day(r)]
     for index, r in enumerate(working):
@@ -325,11 +338,19 @@ def simulate(
             shortage_units += dem - fulfilled
         position = inventory + sum(q for _, q in on_order)
         if position <= rop:
+            order_quantity = int(max(0, order_up_to_level - position)) if order_up_to_level is not None else oq
+            if order_quantity == 0:
+                continue
             if arrival_mode == "working_days":
-                due = parse_date(working[min(index + lead_days, len(working) - 1)]["date"])
+                due_index = index + lead_days
+                due = (
+                    parse_date(working[due_index]["date"])
+                    if due_index < len(working)
+                    else current + timedelta(days=lead_days * 7)
+                )
             else:
                 due = current + timedelta(days=lead_days)
-            on_order.append((due, oq))
+            on_order.append((due, order_quantity))
             num_orders += 1
         inv_sum += inventory
 
@@ -337,11 +358,13 @@ def simulate(
     avg_inventory = inv_sum / n
     holding = avg_inventory * stats["annual_holding_cost_per_unit"] * n / ANNUAL_WORKING_DAYS
     ordering = num_orders * stats["ordering_cost"]
+    shortage_cost = shortage_units * max(0.0, shortage_penalty_per_unit)
     return {
         "fill_rate_pct": (served / total_demand * 100.0) if total_demand else 100.0,
-        "total_cost": holding + ordering,
+        "total_cost": holding + ordering + shortage_cost,
         "holding_cost": holding,
         "ordering_cost": ordering,
+        "shortage_cost": shortage_cost,
         "stockout_days": stockout_days,
         "shortage_units": shortage_units,
         "avg_inventory": avg_inventory,
