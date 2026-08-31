@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "scope": "aggregate integrity record; no confidential content or item identifiers",
+  "active_evaluation_code_sha256": "30565fbb202696e665887f829f21d918907ea290d2dd163a04223d3a30dd64e2",
+  "stored_artifacts": {
+    "scope": "all retained agentic_runs directories; counts can exceed the active 365-material cohort",
+    "by_file_type": {
+      "output.json": {
+        "count": 379,
+        "combined_sha256": "f865d7237ffcca464779ad539cf4cba5f40d0f9840e25486f7dbf6f35e65af29"
+      },
+      "prompt.txt": {
+        "count": 379,
+        "combined_sha256": "17d4a24dc5d273e86931701fc620503d38c0ad6615587de8c4cc10b8e42f2e29"
+      },
+      "raw_response.json": {
+        "count": 379,
+        "combined_sha256": "2c89c5bdf6aed27b35b9dfd1cca25117147c02893d1d06f6c81dcfbdd1a03d4f"
+      },
+      "run_metadata.json": {
+        "count": 379,
+        "combined_sha256": "ccf3bfcabb4595c3a7a19625e61aff8ff304ce517696429b7ff0f57b402b92cd"
+      }
+    }
+  },
+  "not_preserved": [
+    "deployed_system_prompt_hash",
+    "application_version",
+    "model_runtime_identifier",
+    "inference_generation_settings",
+    "inference_timestamps"
+  ]
+}

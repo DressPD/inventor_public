@@ -1,0 +1,48 @@
+{
+  "demo_type": "deterministic_synthetic_offline",
+  "seed": 20260718,
+  "train_cutoff": "2026-03-10",
+  "valid_end": "2026-05-31",
+  "n_targets": 3,
+  "n_backtested": 3,
+  "calendar_repair": {
+    "working_day_derivation_mode": "majority_tie_working",
+    "calendar_repaired_plants": [
+      "SYN_C"
+    ],
+    "calendar_repaired_rows": 151,
+    "calendar_derived_row_dates": 151
+  },
+  "aggregate": {
+    "synthetic_candidate": {
+      "n_materials": 3,
+      "mean_fill_rate_pct": 100.0,
+      "agg_fill_rate_pct": 100.0,
+      "pct_ge_95": 100.0,
+      "zero_stockout_pct": 100.0,
+      "mean_total_cost": 243.7472,
+      "total_stockout_days": 0,
+      "mean_stockout_days": 0
+    },
+    "sap_derived": {
+      "n_materials": 3,
+      "mean_fill_rate_pct": 100.0,
+      "agg_fill_rate_pct": 100.0,
+      "pct_ge_95": 100.0,
+      "zero_stockout_pct": 100.0,
+      "mean_total_cost": 220.0078,
+      "total_stockout_days": 0,
+      "mean_stockout_days": 0
+    },
+    "sap_slt_informed_or": {
+      "n_materials": 3,
+      "mean_fill_rate_pct": 100.0,
+      "agg_fill_rate_pct": 100.0,
+      "pct_ge_95": 100.0,
+      "zero_stockout_pct": 100.0,
+      "mean_total_cost": 243.7472,
+      "total_stockout_days": 0,
+      "mean_stockout_days": 0
+    }
+  }
+}

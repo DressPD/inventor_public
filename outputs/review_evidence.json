@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "primary_arrival_mode": "calendar_days",
+  "common_feasible_cohort": {
+    "n_materials": 346,
+    "excluded_comparator_infeasible_count": 19,
+    "capacity_projected_comparators": {
+      "sap_static": 115,
+      "universal_rq": 156
+    },
+    "feasibility_rule": "MOQ <= Q and, when supplied, SS + Q <= max_storage_units"
+  },
+  "paired_material_distribution": {
+    "vs_sap_derived": {
+      "llm_fill_not_lower_count": 321,
+      "llm_cost_not_higher_count": 235,
+      "llm_joint_count": 214,
+      "n_materials": 346,
+      "llm_minus_comparator_fill_rate_pct": {
+        "q1": 0.0,
+        "median": 0.0,
+        "q3": 0.0
+      },
+      "llm_minus_comparator_total_cost": {
+        "q1": -267.5395,
+        "median": -44.0024,
+        "q3": 38.2332
+      }
+    },
+    "vs_sap_slt_informed_or": {
+      "llm_fill_not_lower_count": 318,
+      "llm_cost_not_higher_count": 304,
+      "llm_joint_count": 279,
+      "n_materials": 346,
+      "llm_minus_comparator_fill_rate_pct": {
+        "q1": 0.0,
+        "median": 0.0,
+        "q3": 0.0
+      },
+      "llm_minus_comparator_total_cost": {
+        "q1": -816.0348,
+        "median": -203.6745,
+        "q3": -24.3022
+      }
+    }
+  },
+  "artifact_audit": {
+    "n_scoreable_artifacts": 365,
+    "normalized_family_agreement_pct": 90.68,
+    "n_outliers": 42,
+    "outlier_rule": "CV absolute error > 0.75 or safety-stock ratio outside [0.5, 2.0]",
+    "common_cohort_without_outliers": {
+      "n_materials": 323,
+      "aggregate": {
+        "llm_emitted": {
+          "n_materials": 323,
+          "mean_fill_rate_pct": 98.8581,
+          "agg_fill_rate_pct": 79.7995,
+          "pct_ge_95": 95.9752,
+          "zero_stockout_pct": 90.0929,
+          "mean_total_cost": 2999.3153,
+          "total_stockout_days": 544,
+          "mean_stockout_days": 1.6842
+        },
+        "sap_derived": {
+          "n_materials": 323,
+          "mean_fill_rate_pct": 98.9254,
+          "agg_fill_rate_pct": 80.3283,
+          "pct_ge_95": 97.2136,
+          "zero_stockout_pct": 85.1393,
+          "mean_total_cost": 3213.0002,
+          "total_stockout_days": 502,
+          "mean_stockout_days": 1.5542
+        },
+        "sap_slt_informed_or": {
+          "n_materials": 323,
+          "mean_fill_rate_pct": 98.8838,
+          "agg_fill_rate_pct": 79.9428,
+          "pct_ge_95": 96.5944,
+          "zero_stockout_pct": 92.8793,
+          "mean_total_cost": 3854.4205,
+          "total_stockout_days": 534,
+          "mean_stockout_days": 1.6533
+        }
+      }
+    }
+  },
+  "working_day_arrival_sensitivity": {
+    "n_materials": 346,
+    "aggregate": {
+      "llm_emitted": {
+        "n_materials": 346,
+        "mean_fill_rate_pct": 97.949,
+        "agg_fill_rate_pct": 77.525,
+        "pct_ge_95": 92.7746,
+        "zero_stockout_pct": 81.5029,
+        "mean_total_cost": 2851.5843,
+        "total_stockout_days": 935,
+        "mean_stockout_days": 2.7023
+      },
+      "sap_derived": {
+        "n_materials": 346,
+        "mean_fill_rate_pct": 98.3862,
+        "agg_fill_rate_pct": 79.9928,
+        "pct_ge_95": 94.5087,
+        "zero_stockout_pct": 80.3468,
+        "mean_total_cost": 3187.8241,
+        "total_stockout_days": 740,
+        "mean_stockout_days": 2.1387
+      },
+      "sap_slt_informed_or": {
+        "n_materials": 346,
+        "mean_fill_rate_pct": 98.2765,
+        "agg_fill_rate_pct": 79.5844,
+        "pct_ge_95": 93.9306,
+        "zero_stockout_pct": 88.7283,
+        "mean_total_cost": 3855.4007,
+        "total_stockout_days": 798,
+        "mean_stockout_days": 2.3064
+      }
+    }
+  }
+}

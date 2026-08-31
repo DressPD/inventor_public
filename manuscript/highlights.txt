@@ -1,0 +1,5 @@
+- Material-scoped LLM artifacts require no project-specific fine-tuning.
+- Deterministic simulation scores emitted inventory policy parameters.
+- All 365 artifacts are scoreable and LLM-capacity-feasible after retries.
+- Equal MOQ/capacity comparison covers 346 material pairs.
+- Results remain descriptive and require prospective validation.

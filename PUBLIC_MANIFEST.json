@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "files": {
+    ".gitignore": "328ae9581c57189cc067c027b031d4e839ab64e21acd17539ba12ca3595b9d58",
+    "README.md": "0d70672777891b077b9070418480234e5abebc1069dad58e0bdc5fc22d41885c",
+    "data/synthetic_inventory.csv": "82c1b181d4945e8be6204b8041cfb1505d8e952f2d0541c7249b3c246c9d8a2e",
+    "docs/methodology.md": "18c2bb1e32b3ba883507c2907af0570004615e7f3932e30ffb615a4e2392cbd9",
+    "docs/public_demo.md": "8156d11388fcf32608c9ebd1eac8ebeeff388194b730cd9ba870ae438bf67804",
+    "inventory_llm/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "inventory_llm/core.py": "398d8159eb30f70545734f3d23359ba1a93b4ecd81e54e63c18b5bed22f64a34",
+    "inventory_llm/policy_backtest.py": "bb2099ef2a470ff1d88514974774180a467a3cb830f9d74b5f73f9aea714e8fd",
+    "inventory_llm/synthetic_demo.py": "e9e8b436393c1bf0286053656d11230329552708cd6300d2ad6ed8824934b93e",
+    "manuscript/Figure_1_Workflow.pdf": "c6b34c853686b8cf44bba594932a1998bb4a2c1a857281710c2cf5de3d4114fb",
+    "manuscript/Figure_1_Workflow.tex": "3d928b37ed9fa634277082ef41eeadcb72ec86232d9f31b4edfa49f2b9449283",
+    "manuscript/Figure_2_Comparison.pdf": "8f97efa8cfdd42176f505d792154d7940122c9d62b7c289fb7e57c2670d17518",
+    "manuscript/Figure_2_Comparison.tex": "282a17c5d987304d00d0102da8a8b12b16f2c5778e0a123fda6e8bc2d19055ca",
+    "manuscript/Figure_2_Comparison_data.tex": "c4ce41272a8637acf01920bcb4b7909d11531c49a9498af032e10d73fae4ca49",
+    "manuscript/elsarticle-num.bst": "08d06d24a533fbe0c6e29d5bd5e7134781ab41a3c6640d73ad63112d4851b301",
+    "manuscript/elsarticle.cls": "ba7a1f25626a79fb39b53888dd826c4ae14d20db5429e236abdaaaf2fdf897ab",
+    "manuscript/highlights.txt": "86abc4561e0da12dbae6e7ef5782a7d807c9e8b39a1e68fb2777773162d22a8f",
+    "manuscript/main.pdf": "b5a9e646f262b45085bc4a15c1ae9f1ca4263ea8d94ef848fd59d687487938b6",
+    "manuscript/main.tex": "9f910695d8a9c8edd3ab4274d56a3e0cfb5cc1223bd020a5086298177db3be32",
+    "manuscript/refs.bib": "8615c5714fbc51dd5046366036a26e1542639c0789579d8ece72686e9625177f",
+    "outputs/agentic_policy_backtest_summary.json": "34f820011b6c41259bb042193fbae9a5b2225aae1d24ac08bd203244755508e8",
+    "outputs/review_evidence.json": "a74a3c7bc7bb6afe188a24d410cba049d4556ee87c0a95977328770ec06b778b",
+    "outputs/run_manifest.json": "a48287d09b1bf13cf6197314b0222c3fcd9bb755f5e7edcac84b26a51771452f",
+    "outputs/synthetic_demo_summary.json": "0edd2c5a003c30687d4a5ec98f39262051f166fa838a505b96a5c05a1c5175d7",
+    "prompts/system_prompt.txt": "2b84ab57badea6da969d8284869845fe1a7beb13a458c96e9cf7a6dcb10a758f",
+    "prompts/tool_prompt.txt": "89645abdefc4dc189585b0f85dd050a9e5b436d08a5c0de9e8713fa4d09af4c5",
+    "requirements.txt": "b6f13cd5189f481d3281d07ed5199b6ae694a320e600bccca976c333b2cc6f74",
+    "tests/test_synthetic_demo.py": "74c23804970c4181712029b03819461e55c6a3388e43e9a38c5dac2564a95ad7"
+  }
+}
