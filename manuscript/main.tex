@@ -380,14 +380,16 @@ The artifact audit covers all 365 scoreable policies: normalized policy-family a
 \subsection{Three-Run Reproducibility Check}
 \label{subsec:three-run-results}
 
-Runs 1, 2, and 3 each produced 365 output artifacts. The common material cohort is defined as plant-material artifact identifiers with parseable policy triples in all three runs; it contains 365 pairs. All Figure~\ref{fig:three-run-reproducibility} distributions and provenance counts use only this cohort. Runs 2 and 3 have 359 artifacts with complete matching provenance contracts; six are excluded because at least one required provenance field is absent. Among the 359 parseable policy pairs, all three numeric policy values match exactly for 38 pairs, resolved policy family matches for 357 pairs, and the median absolute differences are 122 units for reorder point, 5 units for order quantity, and 4 units for safety stock. Raw selected-model labels match for 12 pairs only, illustrating output-schema label variation rather than a second execution path. On the 338-pair outcome-common cohort, LLM aggregate fill is 79.05\% in Run 2 and 79.09\% in Run 3, mean material fill is 97.94\% and 98.11\%, mean holding/order cost is 2{,}861.73 and 2{,}880.12, and stockout days total 918 and 846. The corresponding deterministic comparators are identical on that aligned cohort. Run 1 predates provenance instrumentation; Runs 2 and 3 establish repeated completion under the current instrumented runner, but policy differences and incomplete provenance prevent a claim of stable policy values.
+Runs 1, 2, and 3 each produced 365 output artifacts. The common material cohort is defined as plant-material artifact identifiers with parseable policy triples in all three runs; it contains 365 pairs. All Figure~\ref{fig:three-run-reproducibility} distributions and provenance counts use only this cohort. Runs 2 and 3 have 359 artifacts with complete matching provenance contracts; six are excluded because at least one required provenance field is absent.
 
-\begin{figure}[htbp]
+\begin{figure}[!ht]
 \centering
 \includegraphics[width=\linewidth]{Figure_3_Three_Run_Reproducibility.pdf}
-\caption{Aggregate policy comparison across the 365-pair shared material cohort. Every row uses plant-material artifact identifiers with parseable policy triples in Runs 1, 2, and 3. Policy values report the first quartile, median, and third quartile. Run 1 predates provenance instrumentation; Runs 2 and 3 record current-runner provenance.}
+\caption{Policy-value distributions across the 365-pair shared material cohort. Grouped bars report materials per common bin in Runs 1, 2, and 3. Run 1 predates provenance instrumentation; Runs 2 and 3 record current-runner provenance.}
 \label{fig:three-run-reproducibility}
 \end{figure}
+
+Among the 359 parseable policy pairs in Runs 2 and 3, all three numeric policy values match exactly for 38 pairs, resolved policy family matches for 357 pairs, and the median absolute differences are 122 units for reorder point, 5 units for order quantity, and 4 units for safety stock. Raw selected-model labels match for 12 pairs only, illustrating output-schema label variation rather than a second execution path. On the 338-pair outcome-common cohort, LLM aggregate fill is 79.05\% in Run 2 and 79.09\% in Run 3, mean material fill is 97.94\% and 98.11\%, mean holding/order cost is 2{,}861.73 and 2{,}880.12, and stockout days total 918 and 846. The corresponding deterministic comparators are identical on that aligned cohort. Run 1 predates provenance instrumentation; Runs 2 and 3 establish repeated completion under the current instrumented runner, but policy differences and incomplete provenance prevent a claim of stable policy values.
 
 \section{Discussion}
 \label{sec:discussion}

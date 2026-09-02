@@ -1,38 +1,57 @@
 \documentclass[tikz,border=5pt]{standalone}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
-\usepackage{array}
-\usepackage{booktabs}
-\usepackage[table]{xcolor}
-\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
-\definecolor{tablehead}{RGB}{33,70,110}
-\definecolor{runone}{RGB}{242,244,247}
-\definecolor{runtwo}{RGB}{232,240,248}
-\definecolor{runthree}{RGB}{245,239,229}
+\usepackage{pgfplots}
+\usepgfplotslibrary{groupplots}
+\pgfplotsset{compat=1.18}
+\definecolor{runone}{RGB}{110,110,110}
+\definecolor{runtwo}{RGB}{38,108,165}
+\definecolor{runthree}{RGB}{211,122,42}
 \input{Figure_3_Three_Run_Reproducibility_data.tex}
 
 \begin{document}
-\begin{minipage}{15.5cm}
-\centering
-{\Large\bfseries Three-run policy comparison\par}
-\vspace{0.25em}
-{\small Shared material cohort ($n=365$). Policy cells report Q1 \textbar{} median \textbar{} Q3 units.\par}
-\vspace{0.65em}
-\renewcommand{\arraystretch}{1.45}
-\setlength{\tabcolsep}{3.4pt}
-\begin{tabular}{@{}>{\bfseries}p{1.15cm} C{1.35cm} C{2.05cm} C{3.3cm} C{3.3cm} C{3.3cm}@{}}
-\rowcolor{tablehead}
-\textcolor{white}{Run} & \textcolor{white}{Artifacts} & \textcolor{white}{\shortstack{Complete\\provenance}} & \textcolor{white}{\shortstack{Reorder point\\Q1 \textbar{} median \textbar{} Q3}} & \textcolor{white}{\shortstack{Order quantity\\Q1 \textbar{} median \textbar{} Q3}} & \textcolor{white}{\shortstack{Safety stock\\Q1 \textbar{} median \textbar{} Q3}} \\
-\toprule
-\rowcolor{runone}
-\RunOneLabel & \RunOneArtifacts & \RunOneProvenance & \RunOneRop & \RunOneOq & \RunOneSs \\
-\rowcolor{runtwo}
-\RunTwoLabel & \RunTwoArtifacts & \RunTwoProvenance & \RunTwoRop & \RunTwoOq & \RunTwoSs \\
-\rowcolor{runthree}
-\RunThreeLabel & \RunThreeArtifacts & \RunThreeProvenance & \RunThreeRop & \RunThreeOq & \RunThreeSs \\
-\bottomrule
-\end{tabular}
-\vspace{0.55em}
-\par\raggedright\footnotesize\color{black!72}\FigureThreeFootnote
-\end{minipage}
+\begin{tikzpicture}
+\node[anchor=west,font=\normalsize\bfseries] at (0,0) {Three-run policy-value distributions};
+\fill[runone] (0,-0.48) rectangle +(0.22,0.14);
+\node[anchor=west,font=\scriptsize] at (0.29,-0.41) {Run 1};
+\fill[runtwo] (1.26,-0.48) rectangle +(0.22,0.14);
+\node[anchor=west,font=\scriptsize] at (1.55,-0.41) {Run 2};
+\fill[runthree] (2.52,-0.48) rectangle +(0.22,0.14);
+\node[anchor=west,font=\scriptsize] at (2.81,-0.41) {Run 3};
+\node[anchor=west,font=\scriptsize,text=black!70] at (3.85,-0.41) {Shared material cohort ($n=365$); common log-spaced bins.};
+\begin{scope}[yshift=-1.30cm]
+\begin{groupplot}[
+  group style={group size=3 by 1,horizontal sep=0.45cm},
+  at={(0,0)},anchor=north west,
+  width=4.10cm,height=2.95cm,
+  ybar=2pt,/pgf/bar width=5.0pt,
+  ymin=0,ymajorgrids=true,
+  grid style={black!12},
+  axis line style={black!65},
+  ylabel={Materials},
+  xtick=\empty,
+  yticklabel style={font=\scriptsize},
+  title style={font=\small\bfseries},
+  enlarge x limits=0.06,
+  every axis plot/.append style={draw=none}
+]
+\nextgroupplot[title={A. Reorder point}]
+  \addplot[fill=runone,bar shift=-5pt] coordinates {\RopRunOneHistogram};
+  \addplot[fill=runtwo,bar shift=0pt] coordinates {\RopRunTwoHistogram};
+  \addplot[fill=runthree,bar shift=5pt] coordinates {\RopRunThreeHistogram};
+\nextgroupplot[title={B. Order quantity}]
+  \addplot[fill=runone,bar shift=-5pt] coordinates {\OqRunOneHistogram};
+  \addplot[fill=runtwo,bar shift=0pt] coordinates {\OqRunTwoHistogram};
+  \addplot[fill=runthree,bar shift=5pt] coordinates {\OqRunThreeHistogram};
+\nextgroupplot[title={C. Safety stock}]
+  \addplot[fill=runone,bar shift=-5pt] coordinates {\SsRunOneHistogram};
+  \addplot[fill=runtwo,bar shift=0pt] coordinates {\SsRunTwoHistogram};
+  \addplot[fill=runthree,bar shift=5pt] coordinates {\SsRunThreeHistogram};
+\end{groupplot}
+\end{scope}
+\node (bin-note)[anchor=north,font=\scriptsize,text=black!65]
+  at ([yshift=-0.10cm]current bounding box.south) {Shared log-spaced policy-unit bins (low to high)};
+\node[anchor=north west,font=\tiny,text=black!70,text width=13.35cm,align=left]
+  at ([yshift=-0.18cm]bin-note.south west) {\FigureThreeFootnote};
+\end{tikzpicture}
 \end{document}
