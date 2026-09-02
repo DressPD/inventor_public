@@ -3,6 +3,7 @@
 \usepackage{lmodern}
 \usepackage{pgfplots}
 \usepgfplotslibrary{groupplots}
+\usetikzlibrary{shapes.geometric}
 \pgfplotsset{compat=1.18}
 \definecolor{runone}{RGB}{110,110,110}
 \definecolor{runtwo}{RGB}{38,108,165}
@@ -12,83 +13,77 @@
 \begin{document}
 \begin{tikzpicture}
 \node[anchor=west,font=\large\bfseries] at (0,0) {Three-run policy-value distributions};
-\fill[runone] (0,-0.48) rectangle +(0.22,0.14);
-\node[anchor=west,font=\scriptsize] at (0.29,-0.41) {Run 1};
-\fill[runtwo] (1.26,-0.48) rectangle +(0.22,0.14);
-\node[anchor=west,font=\scriptsize] at (1.55,-0.41) {Run 2};
-\fill[runthree] (2.52,-0.48) rectangle +(0.22,0.14);
-\node[anchor=west,font=\scriptsize] at (2.81,-0.41) {Run 3};
-\node[anchor=west,font=\scriptsize,text=black!70] at (3.85,-0.41) {Shared material cohort ($n=365$); common log-spaced bins.};
+\draw[runone,thick] (0,-0.44) -- +(0.34,0) node[pos=0.5,circle,fill=runone,inner sep=1.1pt]{};
+\node[anchor=west,font=\scriptsize] at (0.42,-0.44) {Run 1};
+\draw[runtwo,thick,dashed] (1.55,-0.44) -- +(0.34,0) node[pos=0.5,rectangle,fill=runtwo,inner sep=1.1pt]{};
+\node[anchor=west,font=\scriptsize] at (1.97,-0.44) {Run 2};
+\draw[runthree,thick,dotted] (3.10,-0.44) -- +(0.34,0) node[pos=0.5,regular polygon,regular polygon sides=3,fill=runthree,inner sep=1.0pt]{};
+\node[anchor=west,font=\scriptsize] at (3.52,-0.44) {Run 3};
+\node[anchor=west,font=\scriptsize,text=black!70] at (4.75,-0.44) {Shared material cohort ($n=365$); common log-spaced bins; lines nearly coincide $=$ reproducible.};
 \begin{scope}[yshift=-1.25cm]
 \begin{axis}[
   at={(0,0)},anchor=north west,
-  width=13.35cm,height=2.45cm,
-  xbar=2pt,/pgf/bar width=5.5pt,
-  xmin=0,xmajorgrids=true,
+  width=13.35cm,height=4.05cm,
+  ymin=0,ymajorgrids=true,
   grid style={black!12},
   axis line style={black!65},
-  xlabel={Materials},
-  ylabel={Log-spaced policy-value bin},
-  ytick=\RopAxisTicks,
-  yticklabels=\RopAxisTickLabels,
-  yticklabel style={font=\footnotesize,anchor=east},
+  xlabel={Log-spaced policy-value bin},
+  ylabel={Materials},
+  xtick=\RopAxisTicks,
+  xticklabels=\RopAxisTickLabels,
+  xticklabel style={font=\scriptsize,rotate=35,anchor=north east},
   title style={font=\small\bfseries},
   title={A. Reorder point},
-  enlarge y limits=0.12,
-  every axis plot/.append style={draw=none}
+  enlarge x limits=0.08,
 ]
-  \addplot[fill=runone,bar shift=-5pt] coordinates {\RopRunOneHistogram};
-  \addplot[fill=runtwo,bar shift=0pt] coordinates {\RopRunTwoHistogram};
-  \addplot[fill=runthree,bar shift=5pt] coordinates {\RopRunThreeHistogram};
+  \addplot[runone,thick,mark=*,mark size=1.5pt,mark options={fill=runone,draw=none}] coordinates {\RopRunOneHistogram};
+  \addplot[runtwo,thick,dashed,mark=square*,mark size=1.4pt,mark options={fill=runtwo,draw=none}] coordinates {\RopRunTwoHistogram};
+  \addplot[runthree,thick,dotted,mark=triangle*,mark size=1.7pt,mark options={fill=runthree,draw=none}] coordinates {\RopRunThreeHistogram};
 \end{axis}
 \end{scope}
-\begin{scope}[yshift=-4.40cm]
+\begin{scope}[yshift=-5.75cm]
 \begin{axis}[
   at={(0,0)},anchor=north west,
-  width=13.35cm,height=2.45cm,
-  xbar=2pt,/pgf/bar width=5.5pt,
-  xmin=0,xmajorgrids=true,
+  width=13.35cm,height=4.05cm,
+  ymin=0,ymajorgrids=true,
   grid style={black!12},
   axis line style={black!65},
-  xlabel={Materials},
-  ylabel={Log-spaced policy-value bin},
-  ytick=\OqAxisTicks,
-  yticklabels=\OqAxisTickLabels,
-  yticklabel style={font=\footnotesize,anchor=east},
+  xlabel={Log-spaced policy-value bin},
+  ylabel={Materials},
+  xtick=\OqAxisTicks,
+  xticklabels=\OqAxisTickLabels,
+  xticklabel style={font=\scriptsize,rotate=35,anchor=north east},
   title={B. Order quantity},
   title style={font=\small\bfseries},
-  enlarge y limits=0.12,
-  every axis plot/.append style={draw=none}
+  enlarge x limits=0.08,
 ]
-  \addplot[fill=runone,bar shift=-5pt] coordinates {\OqRunOneHistogram};
-  \addplot[fill=runtwo,bar shift=0pt] coordinates {\OqRunTwoHistogram};
-  \addplot[fill=runthree,bar shift=5pt] coordinates {\OqRunThreeHistogram};
+  \addplot[runone,thick,mark=*,mark size=1.5pt,mark options={fill=runone,draw=none}] coordinates {\OqRunOneHistogram};
+  \addplot[runtwo,thick,dashed,mark=square*,mark size=1.4pt,mark options={fill=runtwo,draw=none}] coordinates {\OqRunTwoHistogram};
+  \addplot[runthree,thick,dotted,mark=triangle*,mark size=1.7pt,mark options={fill=runthree,draw=none}] coordinates {\OqRunThreeHistogram};
 \end{axis}
 \end{scope}
-\begin{scope}[yshift=-7.55cm]
+\begin{scope}[yshift=-10.25cm]
 \begin{axis}[
   at={(0,0)},anchor=north west,
-  width=13.35cm,height=2.45cm,
-  xbar=2pt,/pgf/bar width=5.5pt,
-  xmin=0,xmajorgrids=true,
+  width=13.35cm,height=4.05cm,
+  ymin=0,ymajorgrids=true,
   grid style={black!12},
   axis line style={black!65},
-  xlabel={Materials},
-  ylabel={Log-spaced policy-value bin},
-  ytick=\SsAxisTicks,
-  yticklabels=\SsAxisTickLabels,
-  yticklabel style={font=\footnotesize,anchor=east},
+  xlabel={Log-spaced policy-value bin},
+  ylabel={Materials},
+  xtick=\SsAxisTicks,
+  xticklabels=\SsAxisTickLabels,
+  xticklabel style={font=\scriptsize,rotate=35,anchor=north east},
   title={C. Safety stock},
   title style={font=\small\bfseries},
-  enlarge y limits=0.12,
-  every axis plot/.append style={draw=none}
+  enlarge x limits=0.08,
 ]
-  \addplot[fill=runone,bar shift=-5pt] coordinates {\SsRunOneHistogram};
-  \addplot[fill=runtwo,bar shift=0pt] coordinates {\SsRunTwoHistogram};
-  \addplot[fill=runthree,bar shift=5pt] coordinates {\SsRunThreeHistogram};
+  \addplot[runone,thick,mark=*,mark size=1.5pt,mark options={fill=runone,draw=none}] coordinates {\SsRunOneHistogram};
+  \addplot[runtwo,thick,dashed,mark=square*,mark size=1.4pt,mark options={fill=runtwo,draw=none}] coordinates {\SsRunTwoHistogram};
+  \addplot[runthree,thick,dotted,mark=triangle*,mark size=1.7pt,mark options={fill=runthree,draw=none}] coordinates {\SsRunThreeHistogram};
 \end{axis}
 \end{scope}
 \node[anchor=north west,font=\tiny,text=black!70,text width=13.35cm,align=left]
-  at ([yshift=-0.18cm]current bounding box.south west) {\FigureThreeFootnote};
+  at ([yshift=-2.55cm]current bounding box.south west) {\FigureThreeFootnote};
 \end{tikzpicture}
 \end{document}

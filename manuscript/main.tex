@@ -203,7 +203,7 @@ The table highlights the paper's narrower contribution: material-level parameter
 \section{Methodology}
 \label{sec:method}
 
-The unit of analysis is a plant-material pair. The framework records a chain of custody from historical records to planner-facing policy values by separating deterministic input preparation, configured LLM inference, schema parsing, deterministic simulation, and human review \cite{mersereau2013information, watts2009data}. Each LLM session receives one filtered, material-scoped historical CSV as a session resource and a small inline parameter block containing current cost, MOQ, service, SAP reference, and material-level storage-capacity fields. No project-specific model weights are trained, fine-tuned, or updated. The historical execution lacks frozen prompt, application-version, and model/runtime records, so it is not independently reproducible. Two later current-runner reruns record those provenance fields but form a distinct post-hoc execution set. Supplementary File S1 reproduces the intended application-side system and tool prompt texts verbatim, together with their disclosed discrepancies against the executable simulator.
+The unit of analysis is a plant-material pair. The framework records a chain of custody from historical records to planner-facing policy values by separating deterministic input preparation, configured LLM inference, schema parsing, deterministic simulation, and human review \cite{mersereau2013information, watts2009data}. Each LLM session receives one filtered, material-scoped historical CSV as a session resource and a small inline parameter block containing current cost, MOQ, service, SAP reference, and material-level storage-capacity fields. No project-specific model weights are trained, fine-tuned, or updated. Run 1 lacks frozen prompt, application-version, and model/runtime records, so it is not independently reproducible. Runs 2 and 3 record those provenance fields but form a distinct post-hoc execution set. Supplementary File S1 reproduces the intended application-side system and tool prompt texts verbatim, together with their disclosed discrepancies against the executable simulator.
 
 \subsection{Problem Definition: Single-Item Continuous-Review Control with Stress-Adjusted Service Buffering}
 \label{subsec:problem-framing}
@@ -385,7 +385,7 @@ Runs 1, 2, and 3 each produced 365 output artifacts. The common material cohort 
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=\linewidth]{Figure_3_Three_Run_Reproducibility.pdf}
-\caption{Policy-value distributions across the 365-pair shared material cohort. Grouped horizontal bars report materials per common log-spaced bin in Runs 1, 2, and 3. Run 1 predates provenance instrumentation; Runs 2 and 3 record current-runner provenance.}
+\caption{Policy-value distributions across the 365-pair shared material cohort. Overlaid lines report materials per common log-spaced bin in Runs 1, 2, and 3; near-coincident lines indicate reproducible distributions. Run 1 predates provenance instrumentation; Runs 2 and 3 record current-runner provenance.}
 \label{fig:three-run-reproducibility}
 \end{figure}
 
