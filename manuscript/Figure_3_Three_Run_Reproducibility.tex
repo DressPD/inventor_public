@@ -5,74 +5,75 @@
 \usepgfplotslibrary{groupplots}
 \pgfplotsset{compat=1.18}
 
-\definecolor{historicalgray}{RGB}{122,122,122}
-\definecolor{rerunblue}{RGB}{76,120,168}
-\definecolor{rerunorange}{RGB}{209,143,0}
+\definecolor{historicalgray}{RGB}{96,96,96}
+\definecolor{rerunblue}{RGB}{40,94,150}
+\definecolor{rerunorange}{RGB}{190,104,0}
 \input{Figure_3_Three_Run_Reproducibility_data.tex}
 
 \begin{document}
 \begin{tikzpicture}
-\node[anchor=west,font=\Large\bfseries] at (0,0) {Shared three-run material cohort: coverage and policy distributions};
-\node[anchor=west,font=\small,text=black!70] at (0,-0.55)
-  {Every panel uses plant-material pairs with parseable policies in all three execution sets.};
-\draw[black!25] (0,-0.88) -- (17.2,-0.88);
+\node[anchor=west,font=\large\bfseries] at (0,0)
+  {Shared three-run material cohort: coverage and policy distributions};
+\node[anchor=west,font=\scriptsize,text=black!70] at (0,-0.52)
+  {Shared cohort $n=365$. Bars: parseable artifacts (gray), complete provenance (blue). Lines: Q1 (gray dashed), median (blue), Q3 (orange).};
+\draw[black!25] (0,-0.84) -- (16.1,-0.84);
 
-\begin{scope}[yshift=-1.65cm]
+\begin{scope}[yshift=-1.45cm]
 \begin{groupplot}[
-  group style={group size=2 by 2,horizontal sep=1.25cm,vertical sep=1.45cm},
+  group style={group size=1 by 4,vertical sep=1.35cm},
   at={(0,0)},anchor=north west,
-  width=7.95cm,height=5.45cm,
-  tick label style={font=\scriptsize},
-  xticklabel style={font=\scriptsize,align=center},
+  width=15.35cm,height=2.50cm,
+  tick label style={font=\small},
+  xticklabel style={font=\small,align=center},
   title style={font=\small\bfseries},
   axis line style={black!70},
   ymajorgrids=true,grid style={black!12},
-  enlarge x limits=0.18
+  enlarge x limits=0.25
 ]
 \nextgroupplot[
   ybar,
   title={A. Shared-cohort artifacts and complete provenance},
+  ylabel={Artifacts},
   ymin=0,ymax=400,ytick={0,100,200,300,400},
-  symbolic x coords={Historical,Rerun 2,Rerun 3}, xtick=data,
-  bar width=12pt,
-  legend style={at={(0.5,-0.22)},anchor=north,legend columns=2,font=\tiny,draw=none},
-  nodes near coords, every node near coord/.append style={font=\tiny\bfseries,anchor=south}]
-  \addplot[fill=historicalgray,draw=none,bar shift=-7pt] coordinates {\ArtifactCoordinates};
-  \addlegendentry{Parseable artifacts}
-  \addplot[fill=rerunblue,draw=none,bar shift=7pt] coordinates {\ProvenanceCoordinates};
-  \addlegendentry{Complete provenance}
+  symbolic x coords={Historical,Rerun 2,Rerun 3},xtick=data,
+  bar width=14pt,
+  nodes near coords,
+  every node near coord/.append style={font=\small\bfseries,anchor=south}]
+  \addplot[fill=historicalgray,draw=none,bar shift=-8pt] coordinates {\ArtifactCoordinates};
+  \addplot[fill=rerunblue,draw=none,bar shift=8pt] coordinates {\ProvenanceCoordinates};
 
 \nextgroupplot[
   title={B. Reorder point distribution},
+  ylabel={Policy units},
   ymin=0,
-  symbolic x coords={Historical,Rerun 2,Rerun 3}, xtick=data,
-  legend style={at={(0.5,-0.22)},anchor=north,legend columns=3,font=\tiny,draw=none}]
-  \addplot[historicalgray,densely dashed,mark=none] coordinates {\RopQOneCoordinates};
-  \addlegendentry{Q1}
-  \addplot[rerunblue,very thick,mark=*] coordinates {\RopMedianCoordinates};
-  \addlegendentry{Median}
-  \addplot[historicalgray,densely dashed,mark=none] coordinates {\RopQThreeCoordinates};
-  \addlegendentry{Q3}
+  symbolic x coords={Historical,Rerun 2,Rerun 3},xtick=data]
+  \addplot[historicalgray,densely dashed,very thick,mark=triangle*,mark size=2.2pt] coordinates {\RopQOneCoordinates};
+  \addplot[rerunblue,very thick,mark=*,mark size=2.2pt] coordinates {\RopMedianCoordinates};
+  \addplot[rerunorange,solid,very thick,mark=triangle*,mark size=2.2pt] coordinates {\RopQThreeCoordinates};
 
 \nextgroupplot[
   title={C. Order quantity distribution},
+  ylabel={Policy units},
   ymin=0,
-  symbolic x coords={Historical,Rerun 2,Rerun 3}, xtick=data]
-  \addplot[historicalgray,densely dashed,mark=none] coordinates {\OqQOneCoordinates};
-  \addplot[rerunblue,very thick,mark=*] coordinates {\OqMedianCoordinates};
-  \addplot[historicalgray,densely dashed,mark=none] coordinates {\OqQThreeCoordinates};
+  symbolic x coords={Historical,Rerun 2,Rerun 3},xtick=data]
+  \addplot[historicalgray,densely dashed,very thick,mark=triangle*,mark size=2.2pt] coordinates {\OqQOneCoordinates};
+  \addplot[rerunblue,very thick,mark=*,mark size=2.2pt] coordinates {\OqMedianCoordinates};
+  \addplot[rerunorange,solid,very thick,mark=triangle*,mark size=2.2pt] coordinates {\OqQThreeCoordinates};
 
 \nextgroupplot[
   title={D. Safety-stock distribution},
+  ylabel={Policy units},
   ymin=0,
-  symbolic x coords={Historical,Rerun 2,Rerun 3}, xtick=data]
-  \addplot[historicalgray,densely dashed,mark=none] coordinates {\SsQOneCoordinates};
-  \addplot[rerunblue,very thick,mark=*] coordinates {\SsMedianCoordinates};
-  \addplot[historicalgray,densely dashed,mark=none] coordinates {\SsQThreeCoordinates};
+  symbolic x coords={Historical,Rerun 2,Rerun 3},xtick=data]
+  \addplot[historicalgray,densely dashed,very thick,mark=triangle*,mark size=2.2pt] coordinates {\SsQOneCoordinates};
+  \addplot[rerunblue,very thick,mark=*,mark size=2.2pt] coordinates {\SsMedianCoordinates};
+  \addplot[rerunorange,solid,very thick,mark=triangle*,mark size=2.2pt] coordinates {\SsQThreeCoordinates};
 \end{groupplot}
 \end{scope}
 
-\draw[black!20] (0,-14.15) -- (17.2,-14.15);
-\node[anchor=west,font=\footnotesize,text=black!70] at (0,-14.55) {\FigureThreeFootnote};
+\draw[black!20] ([yshift=-0.18cm]current bounding box.south west) --
+  ([yshift=-0.18cm]current bounding box.south east);
+\node[anchor=north west,font=\footnotesize,text=black!70,text width=15.35cm,align=left]
+  at ([yshift=-0.42cm]current bounding box.south west) {\FigureThreeFootnote};
 \end{tikzpicture}
 \end{document}
