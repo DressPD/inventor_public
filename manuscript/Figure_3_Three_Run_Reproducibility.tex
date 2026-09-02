@@ -19,8 +19,8 @@
 \node[anchor=west,font=\scriptsize] at (1.97,-0.44) {Run 2};
 \draw[runthree,thick,dotted] (3.10,-0.44) -- +(0.34,0) node[pos=0.5,regular polygon,regular polygon sides=3,fill=runthree,inner sep=1.0pt]{};
 \node[anchor=west,font=\scriptsize] at (3.52,-0.44) {Run 3};
-\node[anchor=west,font=\scriptsize,text=black!70] at (4.75,-0.44) {Shared material cohort ($n=365$); common log-spaced bins; lines nearly coincide $=$ reproducible.};
-\begin{scope}[yshift=-1.25cm]
+\node[anchor=north west,font=\scriptsize,text=black!70,text width=13.35cm,align=left] at (0,-0.78) {Shared material cohort ($n=365$); common log-spaced bins; lines nearly coincide $=$ reproducible.};
+\begin{scope}[yshift=-1.85cm]
 \begin{axis}[
   name=ropaxis,
   at={(0,0)},anchor=north west,
@@ -30,8 +30,8 @@
   axis line style={black!65},
   xlabel={Log-spaced policy-value bin index},
   ylabel={Materials},
-  xtick=\RopAxisTicks,
-  xticklabels=\RopAxisTickLabels,
+  xtick/.expand once=\RopAxisTicks,
+  xticklabels/.expand once=\RopAxisTickLabels,
   xticklabel style={font=\scriptsize},
   title style={font=\small\bfseries},
   title={A. Reorder point},
@@ -43,7 +43,7 @@
 \end{axis}
 \node[anchor=north,font=\tiny,text=black!70,text width=13.35cm,align=center] at ([yshift=-0.85cm]ropaxis.south) {\RopBinKey};
 \end{scope}
-\begin{scope}[yshift=-6.90cm]
+\begin{scope}[yshift=-7.50cm]
 \begin{axis}[
   name=oqaxis,
   at={(0,0)},anchor=north west,
@@ -53,8 +53,8 @@
   axis line style={black!65},
   xlabel={Log-spaced policy-value bin index},
   ylabel={Materials},
-  xtick=\OqAxisTicks,
-  xticklabels=\OqAxisTickLabels,
+  xtick/.expand once=\OqAxisTicks,
+  xticklabels/.expand once=\OqAxisTickLabels,
   xticklabel style={font=\scriptsize},
   title={B. Order quantity},
   title style={font=\small\bfseries},
@@ -66,7 +66,7 @@
 \end{axis}
 \node[anchor=north,font=\tiny,text=black!70,text width=13.35cm,align=center] at ([yshift=-0.85cm]oqaxis.south) {\OqBinKey};
 \end{scope}
-\begin{scope}[yshift=-12.55cm]
+\begin{scope}[yshift=-13.15cm]
 \begin{axis}[
   name=ssaxis,
   at={(0,0)},anchor=north west,
@@ -76,8 +76,8 @@
   axis line style={black!65},
   xlabel={Log-spaced policy-value bin index},
   ylabel={Materials},
-  xtick=\SsAxisTicks,
-  xticklabels=\SsAxisTickLabels,
+  xtick/.expand once=\SsAxisTicks,
+  xticklabels/.expand once=\SsAxisTickLabels,
   xticklabel style={font=\scriptsize},
   title={C. Safety stock},
   title style={font=\small\bfseries},
