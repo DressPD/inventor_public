@@ -22,16 +22,17 @@
 \node[anchor=west,font=\scriptsize,text=black!70] at (4.75,-0.44) {Shared material cohort ($n=365$); common log-spaced bins; lines nearly coincide $=$ reproducible.};
 \begin{scope}[yshift=-1.25cm]
 \begin{axis}[
+  name=ropaxis,
   at={(0,0)},anchor=north west,
   width=13.35cm,height=4.05cm,
   ymin=0,ymajorgrids=true,
   grid style={black!12},
   axis line style={black!65},
-  xlabel={Log-spaced policy-value bin},
+  xlabel={Log-spaced policy-value bin index},
   ylabel={Materials},
   xtick=\RopAxisTicks,
   xticklabels=\RopAxisTickLabels,
-  xticklabel style={font=\scriptsize,rotate=35,anchor=north east},
+  xticklabel style={font=\scriptsize},
   title style={font=\small\bfseries},
   title={A. Reorder point},
   enlarge x limits=0.08,
@@ -40,19 +41,21 @@
   \addplot[runtwo,thick,dashed,mark=square*,mark size=1.4pt,mark options={fill=runtwo,draw=none}] coordinates {\RopRunTwoHistogram};
   \addplot[runthree,thick,dotted,mark=triangle*,mark size=1.7pt,mark options={fill=runthree,draw=none}] coordinates {\RopRunThreeHistogram};
 \end{axis}
+\node[anchor=north,font=\tiny,text=black!70,text width=13.35cm,align=center] at ([yshift=-0.85cm]ropaxis.south) {\RopBinKey};
 \end{scope}
-\begin{scope}[yshift=-5.75cm]
+\begin{scope}[yshift=-6.90cm]
 \begin{axis}[
+  name=oqaxis,
   at={(0,0)},anchor=north west,
   width=13.35cm,height=4.05cm,
   ymin=0,ymajorgrids=true,
   grid style={black!12},
   axis line style={black!65},
-  xlabel={Log-spaced policy-value bin},
+  xlabel={Log-spaced policy-value bin index},
   ylabel={Materials},
   xtick=\OqAxisTicks,
   xticklabels=\OqAxisTickLabels,
-  xticklabel style={font=\scriptsize,rotate=35,anchor=north east},
+  xticklabel style={font=\scriptsize},
   title={B. Order quantity},
   title style={font=\small\bfseries},
   enlarge x limits=0.08,
@@ -61,19 +64,21 @@
   \addplot[runtwo,thick,dashed,mark=square*,mark size=1.4pt,mark options={fill=runtwo,draw=none}] coordinates {\OqRunTwoHistogram};
   \addplot[runthree,thick,dotted,mark=triangle*,mark size=1.7pt,mark options={fill=runthree,draw=none}] coordinates {\OqRunThreeHistogram};
 \end{axis}
+\node[anchor=north,font=\tiny,text=black!70,text width=13.35cm,align=center] at ([yshift=-0.85cm]oqaxis.south) {\OqBinKey};
 \end{scope}
-\begin{scope}[yshift=-10.25cm]
+\begin{scope}[yshift=-12.55cm]
 \begin{axis}[
+  name=ssaxis,
   at={(0,0)},anchor=north west,
   width=13.35cm,height=4.05cm,
   ymin=0,ymajorgrids=true,
   grid style={black!12},
   axis line style={black!65},
-  xlabel={Log-spaced policy-value bin},
+  xlabel={Log-spaced policy-value bin index},
   ylabel={Materials},
   xtick=\SsAxisTicks,
   xticklabels=\SsAxisTickLabels,
-  xticklabel style={font=\scriptsize,rotate=35,anchor=north east},
+  xticklabel style={font=\scriptsize},
   title={C. Safety stock},
   title style={font=\small\bfseries},
   enlarge x limits=0.08,
@@ -82,8 +87,9 @@
   \addplot[runtwo,thick,dashed,mark=square*,mark size=1.4pt,mark options={fill=runtwo,draw=none}] coordinates {\SsRunTwoHistogram};
   \addplot[runthree,thick,dotted,mark=triangle*,mark size=1.7pt,mark options={fill=runthree,draw=none}] coordinates {\SsRunThreeHistogram};
 \end{axis}
+\node[anchor=north,font=\tiny,text=black!70,text width=13.35cm,align=center] at ([yshift=-0.85cm]ssaxis.south) {\SsBinKey};
 \end{scope}
 \node[anchor=north west,font=\tiny,text=black!70,text width=13.35cm,align=left]
-  at ([yshift=-2.55cm]current bounding box.south west) {\FigureThreeFootnote};
+  at ([yshift=-1.2cm]ssaxis.south west) {\FigureThreeFootnote};
 \end{tikzpicture}
 \end{document}
