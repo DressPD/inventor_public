@@ -11,7 +11,7 @@
 
 \begin{document}
 \begin{tikzpicture}
-\node[anchor=west,font=\normalsize\bfseries] at (0,0) {Three-run policy-value distributions};
+\node[anchor=west,font=\large\bfseries] at (0,0) {Three-run policy-value distributions};
 \fill[runone] (0,-0.48) rectangle +(0.22,0.14);
 \node[anchor=west,font=\scriptsize] at (0.29,-0.41) {Run 1};
 \fill[runtwo] (1.26,-0.48) rectangle +(0.22,0.14);
@@ -19,39 +19,56 @@
 \fill[runthree] (2.52,-0.48) rectangle +(0.22,0.14);
 \node[anchor=west,font=\scriptsize] at (2.81,-0.41) {Run 3};
 \node[anchor=west,font=\scriptsize,text=black!70] at (3.85,-0.41) {Shared material cohort ($n=365$); common log-spaced bins.};
-\begin{scope}[yshift=-1.30cm]
+\begin{scope}[yshift=-1.35cm]
 \begin{groupplot}[
-  group style={group size=3 by 1,horizontal sep=0.45cm},
+  group style={group size=2 by 1,horizontal sep=0.85cm},
   at={(0,0)},anchor=north west,
-  width=4.10cm,height=2.95cm,
-  ybar=2pt,/pgf/bar width=5.0pt,
+  width=6.25cm,height=3.85cm,
+  ybar=2pt,/pgf/bar width=7.0pt,
   ymin=0,ymajorgrids=true,
   grid style={black!12},
   axis line style={black!65},
   ylabel={Materials},
-  xtick=\empty,
-  yticklabel style={font=\scriptsize},
+  xticklabel style={font=\footnotesize,rotate=0,anchor=north,align=center},
+  yticklabel style={font=\footnotesize},
   title style={font=\small\bfseries},
-  enlarge x limits=0.06,
+  enlarge x limits=0.12,
   every axis plot/.append style={draw=none}
 ]
-\nextgroupplot[title={A. Reorder point}]
+\nextgroupplot[title={A. Reorder point},xtick=\RopAxisTicks,xticklabels=\RopAxisTickLabels]
   \addplot[fill=runone,bar shift=-5pt] coordinates {\RopRunOneHistogram};
   \addplot[fill=runtwo,bar shift=0pt] coordinates {\RopRunTwoHistogram};
   \addplot[fill=runthree,bar shift=5pt] coordinates {\RopRunThreeHistogram};
-\nextgroupplot[title={B. Order quantity}]
+\nextgroupplot[title={B. Order quantity},xtick=\OqAxisTicks,xticklabels=\OqAxisTickLabels]
   \addplot[fill=runone,bar shift=-5pt] coordinates {\OqRunOneHistogram};
   \addplot[fill=runtwo,bar shift=0pt] coordinates {\OqRunTwoHistogram};
   \addplot[fill=runthree,bar shift=5pt] coordinates {\OqRunThreeHistogram};
-\nextgroupplot[title={C. Safety stock}]
+\end{groupplot}
+\end{scope}
+\begin{scope}[yshift=-6.40cm]
+\begin{axis}[
+  at={(0,0)},anchor=north west,
+  width=13.35cm,height=3.55cm,
+  ybar=2pt,/pgf/bar width=7.0pt,
+  ymin=0,ymajorgrids=true,
+  grid style={black!12},
+  axis line style={black!65},
+  ylabel={Materials},
+  xtick=\SsAxisTicks,
+  xticklabels=\SsAxisTickLabels,
+  xticklabel style={font=\footnotesize,rotate=0,anchor=north,align=center},
+  yticklabel style={font=\footnotesize},
+  title={C. Safety stock},
+  title style={font=\small\bfseries},
+  enlarge x limits=0.10,
+  every axis plot/.append style={draw=none}
+]
   \addplot[fill=runone,bar shift=-5pt] coordinates {\SsRunOneHistogram};
   \addplot[fill=runtwo,bar shift=0pt] coordinates {\SsRunTwoHistogram};
   \addplot[fill=runthree,bar shift=5pt] coordinates {\SsRunThreeHistogram};
-\end{groupplot}
+\end{axis}
 \end{scope}
-\node (bin-note)[anchor=north,font=\scriptsize,text=black!65]
-  at ([yshift=-0.10cm]current bounding box.south) {Shared log-spaced policy-unit bins (low to high)};
 \node[anchor=north west,font=\tiny,text=black!70,text width=13.35cm,align=left]
-  at ([yshift=-0.18cm]bin-note.south west) {\FigureThreeFootnote};
+  at ([yshift=-0.18cm]current bounding box.south west) {\FigureThreeFootnote};
 \end{tikzpicture}
 \end{document}
