@@ -14,8 +14,7 @@
 %% The list of all files belonging to the 'Elsarticle Bundle' is
 %% given in the file `manifest.txt'.
 %%
-%% InventOR manuscript prepared with Elsevier's `elsarticle' class
-%% using numbered bibliographic references.
+%% InventOR manuscript source uses elsarticle for generic preprint typesetting.
 %%
 \documentclass[preprint,11pt]{elsarticle}
 
@@ -69,8 +68,6 @@
 %% \usepackage{amsthm}
 
 \usepackage{lineno}
-
-\journal{Omega}
 
 \begin{document}
 
@@ -133,12 +130,12 @@
 
 %% Abstract
 \begin{abstract}
-We present \emph{InventOR}, a prompt-configured large-language-model (LLM) workflow that generates material-level $(r,Q)$ inventory policies from cutoff-bounded historical CSVs and inline parameter blocks through an enterprise LLM application, without project-specific model training or fine-tuning. Deterministic parsing and post-cutoff simulation evaluate each LLM artifact against an SAP-derived and an SAP-safety-lead-time-informed operations-research comparator on a common 346-pair cohort from a three-plant industrial dataset. All 365 eligible plant-material pairs yield scoreable, capacity-feasible artifacts after retry handling — a complete-cohort result that eliminates silent dropout. Working-day simulation reports 77.52\% demand-weighted aggregate fill and 97.94\% mean material fill for the LLM-emitted arm. Positive lost-sales penalty sensitivities remove the zero-penalty cost advantage. Stored metadata do not establish the exact deployed prompt or model/runtime identity; the contribution is an evaluation protocol with transparent boundary specification, manifest hashing, and prespecified exclusion rules whose first complete execution demonstrates complete-cohort reporting and the controls required for prospective evaluation.
+We present \emph{InventOR}, a prompt-configured large-language-model (LLM) workflow that generates material-level $(r,Q)$ inventory policies from cutoff-bounded historical CSVs and inline parameter blocks through an enterprise LLM application, without project-specific model training or fine-tuning. Deterministic parsing and post-cutoff simulation evaluate each LLM artifact against an SAP-derived and an SAP-safety-lead-time-informed operations-research comparator on a common 346-pair cohort from a three-plant industrial dataset. All 365 eligible plant-material pairs yield scoreable, capacity-feasible artifacts after retry handling. Working-day simulation reports 77.52\% demand-weighted aggregate fill and 97.94\% mean material fill for the LLM-emitted arm. Two post-hoc current-runner reruns show repeated completion but policy-value variation. Positive lost-sales penalty sensitivities remove the zero-penalty cost advantage. The historical deployed prompt and runtime were not preserved; the contribution is a transparent descriptive evaluation protocol with explicit boundaries and current-run provenance controls for prospective evaluation.
 \end{abstract}
 
 %% Keywords
 \begin{keyword}
-Generative Artificial Intelligence \sep Large Language Models \sep Operations Research \sep Supply Chain Management \sep Decision Support Systems \sep Explainable AI \sep Inventory Control
+Generative Artificial Intelligence \sep Large Language Models \sep Operations Research \sep Supply Chain Management \sep Decision Support Systems \sep Inventory Control
 \end{keyword}
 
 \end{frontmatter}
@@ -162,7 +159,7 @@ Our contribution is an evaluation protocol rather than a new inventory model or 
 \begin{enumerate}[label=\textbf{C\arabic*}, leftmargin=2.2em, itemsep=3pt]
 \item \textbf{Admissibility protocol for LLM-emitted policy artifacts.} Material-specific inputs pass through a configured enterprise LLM application without project-specific training or fine-tuning. Deterministic scoreability and capacity checks decide admission; the architecture reserves a planner release step, which we document as a design requirement rather than an evaluated intervention \cite{sahoo2024systematic}.
 \item \textbf{Executable boundary specification.} We document the material-input contract, alias-aware conversion, capacity validation, and simulation boundary, so that a competing generator can be substituted and scored under identical rules.
-\item \textbf{Complete-cohort reporting discipline.} All 365 eligible pairs from 233{,}078 parsed records yielded scoreable, capacity-feasible artifacts after retry handling; 346 pairs meet the common feasibility rules used for the three-arm descriptive comparison. No pair is silently dropped, and every exclusion rule is prespecified and reported.
+\item \textbf{Complete-cohort reporting discipline.} All 365 eligible pairs from 233{,}078 parsed records yielded scoreable, capacity-feasible artifacts after retry handling; 346 pairs meet the common feasibility rules used for the three-arm descriptive comparison. No pair is silently dropped, and every exclusion rule is reported.
 \end{enumerate}
 
 The remainder of the paper is organised as follows. Section~\ref{sec:literature} reviews related work and positions InventOR relative to recent AI-supported OR contributions. Section~\ref{sec:method} details the workflow, policy logic, and backtest design. Section~\ref{sec:results} reports completion and simulation results. Section~\ref{sec:discussion} interprets the findings and their limitations, and Section~\ref{sec:conclusion} summarises the contribution and outlines future work.
@@ -206,7 +203,7 @@ The table highlights the paper's narrower contribution: material-level parameter
 \section{Methodology}
 \label{sec:method}
 
-The unit of analysis is a plant-material pair. The framework records a chain of custody from historical records to planner-facing policy values by separating deterministic input preparation, configured LLM inference, schema parsing, deterministic simulation, and human review \cite{mersereau2013information, watts2009data}. Each LLM session receives one filtered, material-scoped historical CSV as a session resource and a small inline parameter block containing current cost, MOQ, service, SAP reference, and material-level storage-capacity fields. No project-specific model weights are trained, fine-tuned, or updated. Because the stored metadata omit prompt hash, application version, and model/runtime identifier, this study does not claim that the exact deployed instruction configuration is independently reproducible. Supplementary File S1 reproduces the intended application-side system and tool prompt texts verbatim, together with their disclosed discrepancies against the executable simulator.
+The unit of analysis is a plant-material pair. The framework records a chain of custody from historical records to planner-facing policy values by separating deterministic input preparation, configured LLM inference, schema parsing, deterministic simulation, and human review \cite{mersereau2013information, watts2009data}. Each LLM session receives one filtered, material-scoped historical CSV as a session resource and a small inline parameter block containing current cost, MOQ, service, SAP reference, and material-level storage-capacity fields. No project-specific model weights are trained, fine-tuned, or updated. The historical execution lacks frozen prompt, application-version, and model/runtime records, so it is not independently reproducible. Two later current-runner reruns record those provenance fields but form a distinct post-hoc execution set. Supplementary File S1 reproduces the intended application-side system and tool prompt texts verbatim, together with their disclosed discrepancies against the executable simulator.
 
 \subsection{Problem Definition: Single-Item Continuous-Review Control with Stress-Adjusted Service Buffering}
 \label{subsec:problem-framing}
@@ -309,7 +306,7 @@ The workflow transforms a material snapshot into a policy artifact through prepa
 \end{figure}
 \FloatBarrier
 
-The runner uploads a normalized CSV and inline block; the application returns a JSON artifact. The parser converts it to an executable $(r,Q)$ or $(s,S)$ policy and rejects malformed outputs. Missing artifacts are retried. The simulator evaluates LLM, SAP-derived, and SAP-SLT-informed OR policies on the common horizon. An aggregate-only manifest hashes active-input, evaluation-code, and stored-artifact files; it records unavailable provenance fields explicitly. Current runner code records these fields for future runs when the corresponding environment variables are supplied. The author declares retrospectively that evaluated artifacts were produced with an Anthropic Claude Sonnet 4.6 model behind the enterprise application, using a code-interpreter-style Python execution tool; this is recorded as unverified because no deployed model identifier or generation settings were persisted, and must not be read as machine-verified provenance. Stored inputs, artifacts, and code reproduce a simulation, not a fresh LLM completion; planners retain implementation authority.
+The runner uploads a normalized CSV and inline block; the application returns a JSON artifact. The parser converts it to an executable $(r,Q)$ or $(s,S)$ policy and rejects malformed outputs. Missing artifacts are retried. The simulator evaluates LLM, SAP-derived, and SAP-SLT-informed OR policies on the common horizon. An aggregate-only manifest hashes active-input, evaluation-code, and stored-artifact files; it records unavailable provenance fields explicitly. Current runner code records these fields when the corresponding environment variables are supplied. The author retrospectively identifies the historical model as Anthropic Claude Sonnet 4.6 behind the enterprise application with a code-interpreter-style Python tool; this is not machine-verified provenance. Stored inputs, artifacts, and code reproduce a simulation, not a fresh LLM completion; planners retain implementation authority.
 
 \subsection{Artifact Completeness and Future Readiness}
 \label{subsec:validation}
@@ -383,12 +380,12 @@ The artifact audit covers all 365 scoreable policies: normalized policy-family a
 \subsection{Post-Hoc Rerun Reproducibility Check}
 \label{subsec:rerun-results}
 
-Two current-runner reruns each produced 365 output artifacts. Of the 365 shared artifacts, 359 have complete matching provenance contracts across both reruns; six are excluded because at least one required provenance field is absent. Among the 359 parseable policy pairs, all three numeric policy values match exactly for 38 pairs, resolved policy family matches for 357 pairs, and the median absolute differences are 122 units for reorder point, 5 units for order quantity, and 4 units for safety stock. Raw selected-model labels match for 12 pairs only, illustrating output-schema label variation rather than a second execution path. On the 338-pair outcome-common cohort, LLM aggregate fill is 79.05\% and 79.09\% in the two reruns, mean material fill is 97.94\% and 98.11\%, mean holding/order cost is 2{,}861.73 and 2{,}880.12, and stockout days total 918 and 846. The corresponding deterministic comparators are identical on that aligned cohort. This post-hoc check establishes repeated completion under the current instrumented runner, but the policy differences and incomplete provenance prevent a claim of stable policy values or replication of the historical cohort.
+Two current-runner reruns each produced 365 output artifacts. The three-run common material cohort is defined as plant-material artifact identifiers with parseable policy triples in the historical execution and both reruns; it contains 365 pairs. All Figure~\ref{fig:three-run-reproducibility} distributions and provenance counts use only this cohort, excluding historical-only artifacts. Of the 365 shared rerun artifacts, 359 have complete matching provenance contracts across both reruns; six are excluded because at least one required provenance field is absent. Among the 359 parseable policy pairs, all three numeric policy values match exactly for 38 pairs, resolved policy family matches for 357 pairs, and the median absolute differences are 122 units for reorder point, 5 units for order quantity, and 4 units for safety stock. Raw selected-model labels match for 12 pairs only, illustrating output-schema label variation rather than a second execution path. On the 338-pair outcome-common cohort, LLM aggregate fill is 79.05\% and 79.09\% in the two reruns, mean material fill is 97.94\% and 98.11\%, mean holding/order cost is 2{,}861.73 and 2{,}880.12, and stockout days total 918 and 846. The corresponding deterministic comparators are identical on that aligned cohort. This post-hoc check establishes repeated completion under the current instrumented runner, but the policy differences and incomplete provenance prevent a claim of stable policy values or replication of the historical cohort.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{Figure_3_Three_Run_Reproducibility.pdf}
-\caption{Aggregate policy distributions across the historical execution set and two post-hoc current-runner reruns. Panel A reports parseable artifacts and complete provenance contracts. Panels B--D report quartiles and medians for parsed policy values. The historical set has no complete frozen provenance contract and is shown as descriptive context, not as a replication baseline.}
+\caption{Aggregate policy distributions across the 365-pair shared three-run material cohort: plant-material artifact identifiers with parseable policy triples in the historical execution and both post-hoc current-runner reruns. Panel A reports shared-cohort artifacts and complete provenance contracts. Panels B--D report quartiles and medians for parsed policy values. The historical set has no complete frozen provenance contract and is shown as descriptive context, not as a replication baseline.}
 \label{fig:three-run-reproducibility}
 \end{figure}
 

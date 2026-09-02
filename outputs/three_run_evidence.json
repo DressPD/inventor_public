@@ -1,35 +1,38 @@
 {
-  "schema_version": 1,
-  "analysis_type": "three_execution_set_distribution_summary",
+  "schema_version": 2,
+  "analysis_type": "three_execution_set_shared_material_distribution_summary",
   "run_order": [
     "historical",
     "replicate-02",
     "replicate-03"
   ],
+  "shared_material_cohort_definition": "Plant-material artifact directory identifiers with parseable policy triples in the historical execution and both current-runner reruns.",
   "three_run_shared_parseable_cohort": 365,
   "runs": {
     "historical": {
-      "parseable_output_artifact_count": 379,
+      "source_parseable_output_artifact_count": 379,
+      "parseable_output_artifact_count": 365,
       "complete_required_provenance_count": 0,
       "policy": {
         "rop": {
-          "q1": 668.5,
-          "median": 1470,
-          "q3": 4697.0
+          "q1": 728.0,
+          "median": 1580,
+          "q3": 5181.0
         },
         "order_quantity": {
-          "q1": 1228.0,
-          "median": 2655,
-          "q3": 8205.5
+          "q1": 1337.0,
+          "median": 2767,
+          "q3": 8407.0
         },
         "safety_stock": {
-          "q1": 358.5,
-          "median": 661,
-          "q3": 2169.0
+          "q1": 405.0,
+          "median": 683,
+          "q3": 2239.0
         }
       }
     },
     "replicate-02": {
+      "source_parseable_output_artifact_count": 365,
       "parseable_output_artifact_count": 365,
       "complete_required_provenance_count": 364,
       "policy": {
@@ -51,6 +54,7 @@
       }
     },
     "replicate-03": {
+      "source_parseable_output_artifact_count": 365,
       "parseable_output_artifact_count": 365,
       "complete_required_provenance_count": 360,
       "policy": {
@@ -95,6 +99,7 @@
   },
   "limitations": [
     "The historical execution set lacks a complete frozen provenance contract and is not a replication baseline.",
+    "All provenance counts and policy distributions are restricted to the shared material cohort; source parseable counts retain the unfiltered run totals.",
     "Policy distributions are aggregate descriptive summaries and contain no material identifiers or artifact contents."
   ]
 }
