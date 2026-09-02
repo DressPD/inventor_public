@@ -19,48 +19,68 @@
 \fill[runthree] (2.52,-0.48) rectangle +(0.22,0.14);
 \node[anchor=west,font=\scriptsize] at (2.81,-0.41) {Run 3};
 \node[anchor=west,font=\scriptsize,text=black!70] at (3.85,-0.41) {Shared material cohort ($n=365$); common log-spaced bins.};
-\begin{scope}[yshift=-1.35cm]
-\begin{groupplot}[
-  group style={group size=2 by 1,horizontal sep=0.85cm},
+\begin{scope}[yshift=-1.25cm]
+\begin{axis}[
   at={(0,0)},anchor=north west,
-  width=6.25cm,height=3.85cm,
-  ybar=2pt,/pgf/bar width=7.0pt,
-  ymin=0,ymajorgrids=true,
+  width=13.35cm,height=2.45cm,
+  xbar=2pt,/pgf/bar width=5.5pt,
+  xmin=0,xmajorgrids=true,
   grid style={black!12},
   axis line style={black!65},
-  ylabel={Materials},
-  xticklabel style={font=\footnotesize,rotate=0,anchor=north,align=center},
-  yticklabel style={font=\footnotesize},
+  xlabel={Materials},
+  ylabel={Log-spaced policy-value bin},
+  ytick=\RopAxisTicks,
+  yticklabels=\RopAxisTickLabels,
+  yticklabel style={font=\footnotesize,anchor=east},
   title style={font=\small\bfseries},
-  enlarge x limits=0.12,
+  title={A. Reorder point},
+  enlarge y limits=0.12,
   every axis plot/.append style={draw=none}
 ]
-\nextgroupplot[title={A. Reorder point},xtick=\RopAxisTicks,xticklabels=\RopAxisTickLabels]
   \addplot[fill=runone,bar shift=-5pt] coordinates {\RopRunOneHistogram};
   \addplot[fill=runtwo,bar shift=0pt] coordinates {\RopRunTwoHistogram};
   \addplot[fill=runthree,bar shift=5pt] coordinates {\RopRunThreeHistogram};
-\nextgroupplot[title={B. Order quantity},xtick=\OqAxisTicks,xticklabels=\OqAxisTickLabels]
+\end{axis}
+\end{scope}
+\begin{scope}[yshift=-4.40cm]
+\begin{axis}[
+  at={(0,0)},anchor=north west,
+  width=13.35cm,height=2.45cm,
+  xbar=2pt,/pgf/bar width=5.5pt,
+  xmin=0,xmajorgrids=true,
+  grid style={black!12},
+  axis line style={black!65},
+  xlabel={Materials},
+  ylabel={Log-spaced policy-value bin},
+  ytick=\OqAxisTicks,
+  yticklabels=\OqAxisTickLabels,
+  yticklabel style={font=\footnotesize,anchor=east},
+  title={B. Order quantity},
+  title style={font=\small\bfseries},
+  enlarge y limits=0.12,
+  every axis plot/.append style={draw=none}
+]
   \addplot[fill=runone,bar shift=-5pt] coordinates {\OqRunOneHistogram};
   \addplot[fill=runtwo,bar shift=0pt] coordinates {\OqRunTwoHistogram};
   \addplot[fill=runthree,bar shift=5pt] coordinates {\OqRunThreeHistogram};
-\end{groupplot}
+\end{axis}
 \end{scope}
-\begin{scope}[yshift=-6.40cm]
+\begin{scope}[yshift=-7.55cm]
 \begin{axis}[
   at={(0,0)},anchor=north west,
-  width=13.35cm,height=3.55cm,
-  ybar=2pt,/pgf/bar width=7.0pt,
-  ymin=0,ymajorgrids=true,
+  width=13.35cm,height=2.45cm,
+  xbar=2pt,/pgf/bar width=5.5pt,
+  xmin=0,xmajorgrids=true,
   grid style={black!12},
   axis line style={black!65},
-  ylabel={Materials},
-  xtick=\SsAxisTicks,
-  xticklabels=\SsAxisTickLabels,
-  xticklabel style={font=\footnotesize,rotate=0,anchor=north,align=center},
-  yticklabel style={font=\footnotesize},
+  xlabel={Materials},
+  ylabel={Log-spaced policy-value bin},
+  ytick=\SsAxisTicks,
+  yticklabels=\SsAxisTickLabels,
+  yticklabel style={font=\footnotesize,anchor=east},
   title={C. Safety stock},
   title style={font=\small\bfseries},
-  enlarge x limits=0.10,
+  enlarge y limits=0.12,
   every axis plot/.append style={draw=none}
 ]
   \addplot[fill=runone,bar shift=-5pt] coordinates {\SsRunOneHistogram};
