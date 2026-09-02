@@ -23,7 +23,7 @@ numerical reproduction of the confidential study.
 
 - deterministic synthetic inventory data generated from a fixed seed;
 - a credential-free execution pipeline for preprocessing, policy parsing, and simulation;
-- anonymized aggregate evidence from the historical execution and two current-runner reruns;
+- anonymized aggregate evidence from Run 1 and two current-runner reruns (Run 2 and Run 3);
 - manuscript source, figures, references, highlights, and compiled PDF; and
 - prompt specifications documenting the intended LLM interaction.
 
@@ -60,8 +60,8 @@ diagnostics. It contains no material rows or failure lists.
 `outputs/review_evidence.json` records common-feasibility, outlier, working-day
 primary, and calendar-day-arrival sensitivity evidence. `outputs/run_manifest.json` records
 aggregate integrity hashes and unavailable inference metadata. `outputs/three_run_evidence.json`
-reports aggregate-only policy distribution summaries for the historical execution and two
-post-hoc current-runner reruns; it does not establish reproduction of the historical deployment.
+reports aggregate-only policy distribution summaries for Run 1 and two
+post-hoc current-runner reruns (Run 2 and Run 3); it does not establish reproduction of the Run 1 deployment.
 
 The study inference stage cannot be rerun publicly. It depended on confidential
 operational data and a private enterprise LLM deployment. The aggregate evidence

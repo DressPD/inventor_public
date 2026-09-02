@@ -2,14 +2,14 @@
   "schema_version": 3,
   "analysis_type": "three_execution_set_shared_material_distribution_summary",
   "run_order": [
-    "historical",
-    "replicate-02",
-    "replicate-03"
+    "run-01",
+    "run-02",
+    "run-03"
   ],
   "shared_material_cohort_definition": "Plant-material artifact directory identifiers with parseable policy triples in all three execution sets.",
   "three_run_shared_parseable_cohort": 365,
   "runs": {
-    "historical": {
+    "run-01": {
       "display_label": "Run 1",
       "source_parseable_output_artifact_count": 379,
       "parseable_output_artifact_count": 365,
@@ -32,7 +32,7 @@
         }
       }
     },
-    "replicate-02": {
+    "run-02": {
       "display_label": "Run 2",
       "source_parseable_output_artifact_count": 365,
       "parseable_output_artifact_count": 365,
@@ -55,7 +55,7 @@
         }
       }
     },
-    "replicate-03": {
+    "run-03": {
       "display_label": "Run 3",
       "source_parseable_output_artifact_count": 365,
       "parseable_output_artifact_count": 365,
@@ -84,13 +84,13 @@
       "bin_labels": [
         "3--28",
         "28--204",
-        "204--1.5k",
+        "0.2k--1.5k",
         "1.5k--10.5k",
         "10.5k--75.3k",
         "75.3k--539.2k"
       ],
       "runs": {
-        "historical": {
+        "run-01": {
           "counts": [
             3,
             23,
@@ -100,7 +100,7 @@
             14
           ]
         },
-        "replicate-02": {
+        "run-02": {
           "counts": [
             5,
             19,
@@ -110,7 +110,7 @@
             14
           ]
         },
-        "replicate-03": {
+        "run-03": {
           "counts": [
             3,
             21,
@@ -125,14 +125,14 @@
     "order_quantity": {
       "bin_labels": [
         "62--298",
-        "298--1.4k",
+        "0.3k--1.4k",
         "1.4k--6.7k",
         "6.7k--31.9k",
         "31.9k--151.1k",
         "151.1k--716.8k"
       ],
       "runs": {
-        "historical": {
+        "run-01": {
           "counts": [
             15,
             81,
@@ -142,7 +142,7 @@
             12
           ]
         },
-        "replicate-02": {
+        "run-02": {
           "counts": [
             16,
             80,
@@ -152,7 +152,7 @@
             12
           ]
         },
-        "replicate-03": {
+        "run-03": {
           "counts": [
             15,
             81,
@@ -169,12 +169,12 @@
         "0--7",
         "7--65",
         "65--536",
-        "536--4.4k",
+        "0.5k--4.4k",
         "4.4k--35.5k",
         "35.5k--288.7k"
       ],
       "runs": {
-        "historical": {
+        "run-01": {
           "counts": [
             3,
             11,
@@ -184,7 +184,7 @@
             12
           ]
         },
-        "replicate-02": {
+        "run-02": {
           "counts": [
             3,
             11,
@@ -194,7 +194,7 @@
             13
           ]
         },
-        "replicate-03": {
+        "run-03": {
           "counts": [
             5,
             10,

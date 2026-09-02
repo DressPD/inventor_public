@@ -3,7 +3,8 @@
 Private evidence rerun:
     python3 -m inventory_llm.policy_backtest
 
-Reads outputs/agentic_runs/<item_key>/output.json, converts each valid LLM
+Reads outputs/runs/run-01/agentic_runs/<item_key>/output.json (default run
+id: run-01), converts each valid LLM
 policy block into simulator policy parameters, and evaluates it on the same
 validation window used by the deterministic backtest. Public users should run
 ``python3 -m inventory_llm.synthetic_demo`` instead; this command requires the
@@ -29,13 +30,11 @@ RESULTS_DIR = PROJECT_ROOT / "outputs"
 def _run_root() -> Path:
     """Resolve the output root for the selected generation run.
 
-    Replicate generation runs are stored under ``outputs/runs/<run id>/``; when
-    ``INVENTOR_RUN_ID`` is unset the historical unlabelled root layout is used so
-    the primary evaluated cohort and its stored artifacts stay in place.
+    Every generation run is stored under ``outputs/runs/<run id>/``.
+    ``INVENTOR_RUN_ID`` defaults to ``run-01`` (the primary evaluated cohort)
+    when unset, keeping all three runs in the same unified layout.
     """
-    raw = (os.environ.get("INVENTOR_RUN_ID") or "").strip()
-    if not raw:
-        return RESULTS_DIR
+    raw = (os.environ.get("INVENTOR_RUN_ID") or "run-01").strip() or "run-01"
     safe = "".join(ch if (ch.isalnum() or ch in {"-", "_", "."}) else "_" for ch in raw)
     if safe in {"", ".", ".."}:
         raise SystemExit("INVENTOR_RUN_ID resolves to an unusable directory name")
@@ -51,7 +50,7 @@ SUPPORTED_POLICY_LABELS = {"rq", "ss"}
 # The LLM (enterprise LLM platform) has emitted policy data under many different top-level key
 # names and field-name spellings across runs (schema drift, not a data
 # problem). These lists were derived by enumerating every key actually
-# present across all outputs/agentic_runs/*/output.json artifacts on
+# present across all outputs/runs/run-01/agentic_runs/*/output.json artifacts on
 # 2026-07-14. Keep this list in sync if the runner's system prompt changes.
 POLICY_CONTAINERS = [
     # "recommendations" is deliberately FIRST: it sometimes carries narrative
