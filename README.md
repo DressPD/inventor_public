@@ -23,7 +23,7 @@ numerical reproduction of the confidential study.
 
 - deterministic synthetic inventory data generated from a fixed seed;
 - a credential-free execution pipeline for preprocessing, policy parsing, and simulation;
-- anonymized aggregate evidence from 365 scoreable artifacts and the 346-pair common-feasible cohort;
+- anonymized aggregate evidence from the historical execution and two current-runner reruns;
 - manuscript source, figures, references, highlights, and compiled PDF; and
 - prompt specifications documenting the intended LLM interaction.
 
@@ -59,7 +59,9 @@ diagnostics. It contains no material rows or failure lists.
 
 `outputs/review_evidence.json` records common-feasibility, outlier, working-day
 primary, and calendar-day-arrival sensitivity evidence. `outputs/run_manifest.json` records
-aggregate integrity hashes and unavailable inference metadata.
+aggregate integrity hashes and unavailable inference metadata. `outputs/three_run_evidence.json`
+reports aggregate-only policy distribution summaries for the historical execution and two
+post-hoc current-runner reruns; it does not establish reproduction of the historical deployment.
 
 The study inference stage cannot be rerun publicly. It depended on confidential
 operational data and a private enterprise LLM deployment. The aggregate evidence
@@ -73,9 +75,13 @@ The reviewed manuscript is available at `manuscript/main.pdf`. Rebuild it with:
 
 ```bash
 cd manuscript
-latexmk -pdf -interaction=nonstopmode -halt-on-error Figure_1_Workflow.tex
-latexmk -pdf -interaction=nonstopmode -halt-on-error Figure_2_Comparison.tex
-latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+pdflatex -interaction=nonstopmode -halt-on-error Figure_1_Workflow.tex
+pdflatex -interaction=nonstopmode -halt-on-error Figure_2_Comparison.tex
+pdflatex -interaction=nonstopmode -halt-on-error Figure_3_Three_Run_Reproducibility.tex
+pdflatex -interaction=nonstopmode -halt-on-error main.tex
+bibtex main
+pdflatex -interaction=nonstopmode -halt-on-error main.tex
+pdflatex -interaction=nonstopmode -halt-on-error main.tex
 ```
 
 ## Repository Layout
@@ -88,6 +94,7 @@ inventory_llm/synthetic_demo.py                offline public pipeline
 outputs/agentic_policy_backtest_summary.json  anonymized study aggregates
 outputs/review_evidence.json                  aggregate review evidence
 outputs/run_manifest.json                     aggregate integrity manifest
+outputs/three_run_evidence.json               aggregate three-run evidence
 outputs/synthetic_demo_summary.json            synthetic aggregate demo
 manuscript/                                    article source and PDF
 prompts/                                       intended prompt specifications

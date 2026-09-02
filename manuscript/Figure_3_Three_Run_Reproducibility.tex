@@ -1,0 +1,78 @@
+\documentclass[tikz,border=5pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{pgfplots}
+\usepgfplotslibrary{groupplots}
+\pgfplotsset{compat=1.18}
+
+\definecolor{historicalgray}{RGB}{122,122,122}
+\definecolor{rerunblue}{RGB}{76,120,168}
+\definecolor{rerunorange}{RGB}{209,143,0}
+\input{Figure_3_Three_Run_Reproducibility_data.tex}
+
+\begin{document}
+\begin{tikzpicture}
+\node[anchor=west,font=\Large\bfseries] at (0,0) {Three execution sets: artifact coverage and policy distributions};
+\node[anchor=west,font=\small,text=black!70] at (0,-0.55)
+  {Historical execution is shown separately from two post-hoc current-runner reruns.};
+\draw[black!25] (0,-0.88) -- (17.2,-0.88);
+
+\begin{scope}[yshift=-1.65cm]
+\begin{groupplot}[
+  group style={group size=2 by 2,horizontal sep=1.25cm,vertical sep=1.45cm},
+  at={(0,0)},anchor=north west,
+  width=7.95cm,height=5.45cm,
+  tick label style={font=\scriptsize},
+  xticklabel style={font=\scriptsize,align=center},
+  title style={font=\small\bfseries},
+  axis line style={black!70},
+  ymajorgrids=true,grid style={black!12},
+  enlarge x limits=0.18
+]
+\nextgroupplot[
+  ybar,
+  title={A. Parseable artifacts and complete provenance},
+  ymin=0,ymax=400,ytick={0,100,200,300,400},
+  symbolic x coords={Historical,Rerun 2,Rerun 3}, xtick=data,
+  bar width=12pt,
+  legend style={at={(0.5,-0.22)},anchor=north,legend columns=2,font=\tiny,draw=none},
+  nodes near coords, every node near coord/.append style={font=\tiny\bfseries,anchor=south}]
+  \addplot[fill=historicalgray,draw=none,bar shift=-7pt] coordinates {\ArtifactCoordinates};
+  \addlegendentry{Parseable artifacts}
+  \addplot[fill=rerunblue,draw=none,bar shift=7pt] coordinates {\ProvenanceCoordinates};
+  \addlegendentry{Complete provenance}
+
+\nextgroupplot[
+  title={B. Reorder point distribution},
+  ymin=0,
+  symbolic x coords={Historical,Rerun 2,Rerun 3}, xtick=data,
+  legend style={at={(0.5,-0.22)},anchor=north,legend columns=3,font=\tiny,draw=none}]
+  \addplot[historicalgray,densely dashed,mark=none] coordinates {\RopQOneCoordinates};
+  \addlegendentry{Q1}
+  \addplot[rerunblue,very thick,mark=*] coordinates {\RopMedianCoordinates};
+  \addlegendentry{Median}
+  \addplot[historicalgray,densely dashed,mark=none] coordinates {\RopQThreeCoordinates};
+  \addlegendentry{Q3}
+
+\nextgroupplot[
+  title={C. Order quantity distribution},
+  ymin=0,
+  symbolic x coords={Historical,Rerun 2,Rerun 3}, xtick=data]
+  \addplot[historicalgray,densely dashed,mark=none] coordinates {\OqQOneCoordinates};
+  \addplot[rerunblue,very thick,mark=*] coordinates {\OqMedianCoordinates};
+  \addplot[historicalgray,densely dashed,mark=none] coordinates {\OqQThreeCoordinates};
+
+\nextgroupplot[
+  title={D. Safety-stock distribution},
+  ymin=0,
+  symbolic x coords={Historical,Rerun 2,Rerun 3}, xtick=data]
+  \addplot[historicalgray,densely dashed,mark=none] coordinates {\SsQOneCoordinates};
+  \addplot[rerunblue,very thick,mark=*] coordinates {\SsMedianCoordinates};
+  \addplot[historicalgray,densely dashed,mark=none] coordinates {\SsQThreeCoordinates};
+\end{groupplot}
+\end{scope}
+
+\draw[black!20] (0,-14.15) -- (17.2,-14.15);
+\node[anchor=west,font=\footnotesize,text=black!70] at (0,-14.55) {\FigureThreeFootnote};
+\end{tikzpicture}
+\end{document}

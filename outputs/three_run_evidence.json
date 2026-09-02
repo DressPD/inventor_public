@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "analysis_type": "three_execution_set_distribution_summary",
+  "run_order": [
+    "historical",
+    "replicate-02",
+    "replicate-03"
+  ],
+  "three_run_shared_parseable_cohort": 365,
+  "runs": {
+    "historical": {
+      "parseable_output_artifact_count": 379,
+      "complete_required_provenance_count": 0,
+      "policy": {
+        "rop": {
+          "q1": 668.5,
+          "median": 1470,
+          "q3": 4697.0
+        },
+        "order_quantity": {
+          "q1": 1228.0,
+          "median": 2655,
+          "q3": 8205.5
+        },
+        "safety_stock": {
+          "q1": 358.5,
+          "median": 661,
+          "q3": 2169.0
+        }
+      }
+    },
+    "replicate-02": {
+      "parseable_output_artifact_count": 365,
+      "complete_required_provenance_count": 364,
+      "policy": {
+        "rop": {
+          "q1": 784.0,
+          "median": 1507,
+          "q3": 4793.0
+        },
+        "order_quantity": {
+          "q1": 1341.0,
+          "median": 2689,
+          "q3": 8653.0
+        },
+        "safety_stock": {
+          "q1": 404.0,
+          "median": 688,
+          "q3": 2177.0
+        }
+      }
+    },
+    "replicate-03": {
+      "parseable_output_artifact_count": 365,
+      "complete_required_provenance_count": 360,
+      "policy": {
+        "rop": {
+          "q1": 759.0,
+          "median": 1522,
+          "q3": 4814.0
+        },
+        "order_quantity": {
+          "q1": 1337.0,
+          "median": 2737,
+          "q3": 8640.0
+        },
+        "safety_stock": {
+          "q1": 400.0,
+          "median": 698,
+          "q3": 2212.0
+        }
+      }
+    }
+  },
+  "current_rerun_pair": {
+    "n_parseable_pairs": 359,
+    "all_values_exact_count": 38,
+    "resolved_policy_family_match_count": 357,
+    "raw_selected_model_label_match_count": 12,
+    "median_absolute_difference": {
+      "rop": 122,
+      "oq": 5,
+      "safety_stock": 4
+    },
+    "resolved_policy_families": {
+      "left": {
+        "rq": 358,
+        "ss": 1
+      },
+      "right": {
+        "rq": 358,
+        "ss": 1
+      }
+    }
+  },
+  "limitations": [
+    "The historical execution set lacks a complete frozen provenance contract and is not a replication baseline.",
+    "Policy distributions are aggregate descriptive summaries and contain no material identifiers or artifact contents."
+  ]
+}

@@ -18,4 +18,5 @@ outputs/*
 !outputs/agentic_policy_backtest_summary.json
 !outputs/review_evidence.json
 !outputs/run_manifest.json
+!outputs/three_run_evidence.json
 !outputs/synthetic_demo_summary.json
