@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use this software or evaluation protocol, please cite it as below."
+title: "InventOR: A Prompt-Configured, No-Fine-Tuning LLM Workflow for Material-Level Inventory Control"
+authors:
+  - family-names: Dressino
+    given-names: Aris
+    affiliation: "TUM School of Management, Technical University of Munich"
+version: 1.1.0
+date-released: "2026-09-03"
+license: MIT
+repository-code: "https://github.com/DressPD/inventor_public"
+abstract: >-
+  A confidentiality-screened public release of InventOR: analysis code, the
+  anonymized variable schema, aggregate evaluation results for Run 1, Run 2,
+  and Run 3, manuscript sources, and an integrity manifest for a
+  prompt-configured large-language-model workflow that generates
+  material-level (r,Q) inventory policies without project-specific model
+  training or fine-tuning.
+keywords:
+  - large language models
+  - inventory management
+  - operations research
+  - reproducibility
+  - prompt engineering
+  - material-level inventory control

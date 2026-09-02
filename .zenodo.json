@@ -1,0 +1,21 @@
+{
+  "title": "InventOR: A Prompt-Configured, No-Fine-Tuning LLM Workflow for Material-Level Inventory Control",
+  "description": "Confidentiality-screened public release: analysis code, anonymized variable schema, aggregate evaluation results (Run 1, Run 2, Run 3), manuscript sources, and integrity manifest for InventOR, a prompt-configured LLM workflow that generates material-level (r,Q) inventory policies without project-specific model training or fine-tuning.",
+  "creators": [
+    {
+      "name": "Dressino, Aris",
+      "affiliation": "TUM School of Management, Technical University of Munich"
+    }
+  ],
+  "license": "MIT",
+  "upload_type": "software",
+  "access_right": "open",
+  "keywords": [
+    "large language models",
+    "inventory management",
+    "operations research",
+    "reproducibility",
+    "prompt engineering",
+    "material-level inventory control"
+  ]
+}
