@@ -412,6 +412,8 @@ def build_backtest(
     arrival_mode: str = "working_days",
     shortage_penalty_multiplier: float = 0.0,
     exclude_repaired_calendars: bool = False,
+    *,
+    run_id: str | None = None,
 ) -> dict[str, Any]:
     grouped = core.load_grouped_rows()
     repaired_plants = set(core.calendar_repair_metadata().get("calendar_repaired_plants", []))
@@ -427,7 +429,8 @@ def build_backtest(
     capacity_projected = {"sap_static": 0, "universal_rq": 0}
 
     for item_key in targets:
-        path = RUNS_DIR / item_key / "output.json"
+        artifact_dir = RUNS_DIR if run_id is None else RESULTS_DIR / "runs" / run_id / "agentic_runs"
+        path = artifact_dir / item_key / "output.json"
         if not path.exists():
             missing.append(item_key)
             continue

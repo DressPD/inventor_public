@@ -23,6 +23,15 @@ The fixture covers three synthetic plant-material pairs from 2026-01-01 through 
 
 All 24 source columns are present. The values use generic ranges and fixed pseudo-random streams. The candidate artifacts are generated deterministically from the fixture and explicitly marked `deterministic_synthetic_not_llm`; they are not LLM outputs and do not reproduce the manuscript results.
 
+## Reproducibility Boundary
+
+This fixture fully reproduces the released method and software behavior: fixture
+generation, schema handling, calendar repair, eligibility, policy parsing, and
+deterministic policy simulation. It does not reproduce the confidential-study
+numbers reported in the manuscript. Synthetic demand, lead-time, capacity, ERP
+baseline, and candidate-policy values are intentionally independent of the
+confidential study data.
+
 ## Study Boundary
 
-`scripts/export_public.py --dest <outside-repository-directory>` creates aggregate-only study, review-evidence, and integrity-manifest files in a screened public snapshot. The primary comparison uses the common cohort meeting identical MOQ and per-material capacity rules, but contains no material rows or identifiers. The operational CSV, material-level artifacts, private inference adapter, credentials, and runtime metadata are not distributed.
+`scripts/export_public.py --dest <outside-repository-directory>` creates aggregate-only study, review-evidence, and integrity-manifest files in a screened public snapshot. The primary comparison uses the common cohort meeting identical MOQ and per-material capacity rules, but contains no material rows or identifiers. The operational CSV, material-level artifacts, private inference adapter, credentials, and complete runtime metadata are not distributed. Published hashes support audit by an authorized data holder; they cannot reconstruct confidential inputs or independently regenerate study results.

@@ -1,25 +1,25 @@
 {
   "schema_version": 1,
   "scope": "aggregate integrity record; no confidential content or item identifiers",
-  "active_evaluation_code_sha256": "81ec1a57e73451018e494e0de8fc5b4012bd39de0928d46fb3c25b649058b37b",
+  "active_evaluation_code_sha256": "261b96a63778425f8e52a5536884cd6f4e77b002642ebc4ca55cfa2bc668bc76",
   "stored_artifacts": {
     "scope": "all retained agentic_runs directories; counts can exceed the active 365-material cohort",
     "by_file_type": {
       "output.json": {
         "count": 379,
-        "combined_sha256": "f865d7237ffcca464779ad539cf4cba5f40d0f9840e25486f7dbf6f35e65af29"
+        "combined_sha256": "9c7c9825ad4949d44172688f4ad11ae33e6e205f0b2ef0be8e3aa3e6e0779d55"
       },
       "prompt.txt": {
         "count": 379,
-        "combined_sha256": "17d4a24dc5d273e86931701fc620503d38c0ad6615587de8c4cc10b8e42f2e29"
+        "combined_sha256": "8d668dcb63d489d3967b42dc2facb0e41033814024954be3043b231ef11b2d07"
       },
       "raw_response.json": {
         "count": 379,
-        "combined_sha256": "2c89c5bdf6aed27b35b9dfd1cca25117147c02893d1d06f6c81dcfbdd1a03d4f"
+        "combined_sha256": "7ac1860896f8b890223baf0b7e5462d054bd2227f324066970b3608ac8fa5e60"
       },
       "run_metadata.json": {
         "count": 379,
-        "combined_sha256": "ccf3bfcabb4595c3a7a19625e61aff8ff304ce517696429b7ff0f57b402b92cd"
+        "combined_sha256": "ca6b5295a7a513bb92fbd85f8040746331120d86c8189ab0e1cfd48c0919e002"
       }
     }
   },

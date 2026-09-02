@@ -24,7 +24,7 @@
       "agg_fill_rate_pct": 77.517,
       "pct_ge_95": 92.4855,
       "zero_stockout_pct": 81.5029,
-      "mean_total_cost": 2848.9603,
+      "mean_total_cost": 2848.0431,
       "total_stockout_days": 936,
       "mean_stockout_days": 2.7052
     },
@@ -64,7 +64,7 @@
         "agg_fill_rate_pct": 91.816,
         "pct_ge_95": 92.9619,
         "zero_stockout_pct": 82.4047,
-        "mean_total_cost": 2604.8059,
+        "mean_total_cost": 2603.8753,
         "total_stockout_days": 754,
         "mean_stockout_days": 2.2111
       },
@@ -136,20 +136,20 @@
         "pct": 89.3064
       },
       "candidate_cost_not_higher": {
-        "count": 303,
-        "pct": 87.5723
+        "count": 304,
+        "pct": 87.8613
       },
       "both": {
-        "count": 269,
-        "pct": 77.7457
+        "count": 270,
+        "pct": 78.0347
       },
       "candidate_dominated": {
-        "count": 39,
-        "pct": 11.2717
+        "count": 38,
+        "pct": 10.9827
       },
       "comparator_minus_candidate_cost": {
         "q1": 25.2563,
-        "median": 209.3219,
+        "median": 210.8066,
         "q3": 787.827
       }
     }
@@ -163,7 +163,7 @@
         "agg_fill_rate_pct": 94.787,
         "pct_ge_95": 95.814,
         "zero_stockout_pct": 84.186,
-        "mean_total_cost": 2296.7192,
+        "mean_total_cost": 2296.3403,
         "total_stockout_days": 324,
         "mean_stockout_days": 1.507
       },
@@ -229,7 +229,7 @@
         "agg_fill_rate_pct": 96.6037,
         "pct_ge_95": 84.8485,
         "zero_stockout_pct": 80.303,
-        "mean_total_cost": 2659.2414,
+        "mean_total_cost": 2655.667,
         "total_stockout_days": 310,
         "mean_stockout_days": 4.697
       },

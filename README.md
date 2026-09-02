@@ -1,6 +1,25 @@
 # InventOR
 
-This repository contains a confidentiality-screened research release:
+This repository contains a confidentiality-screened research release.
+
+## Reproducibility Boundary
+
+The public synthetic benchmark fully reproduces the released software method:
+fixture generation, schema handling, calendar repair, eligibility, policy-artifact
+parsing, and deterministic policy simulation. It runs offline with a fixed seed
+and no credentials or network access.
+
+It does not reproduce the manuscript's confidential-study numerical findings.
+Those findings depended on confidential operational data and a private enterprise
+LLM deployment. The release provides aggregate-only study evidence and integrity
+hashes for audit, but does not include the source rows, material-level inputs,
+artifacts, credentials, or sufficient runtime metadata to independently regenerate
+the 365-material study outputs.
+
+The synthetic benchmark is methodological and software replication, not a
+numerical reproduction of the confidential study.
+
+## Release Contents
 
 - deterministic synthetic inventory data generated from a fixed seed;
 - a credential-free execution pipeline for preprocessing, policy parsing, and simulation;
@@ -27,7 +46,9 @@ candidate, SAP-derived, and SAP-SLT-informed OR arms. Detailed local outputs are
 written to `outputs/synthetic_demo/` and ignored by Git.
 
 The committed fixture summary is `outputs/synthetic_demo_summary.json`. It is a
-software demonstration, not study evidence and not an LLM evaluation.
+software demonstration, not study evidence and not an LLM evaluation. A matching
+result confirms deterministic public-method reproduction, not regeneration of
+the confidential-study results.
 
 ## Study Evidence
 
@@ -41,9 +62,10 @@ primary, and calendar-day-arrival sensitivity evidence. `outputs/run_manifest.js
 aggregate integrity hashes and unavailable inference metadata.
 
 The study inference stage cannot be rerun publicly. It depended on confidential
-operational data and an enterprise application whose deployed prompt, model,
-and runtime identifiers were not preserved completely. See
-`docs/methodology.md` and `docs/public_demo.md`.
+operational data and a private enterprise LLM deployment. The aggregate evidence
+is auditable against the published integrity record, but not independently
+regenerable from this repository. See `docs/methodology.md` and
+`docs/public_demo.md`.
 
 ## Manuscript
 
