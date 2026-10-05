@@ -312,7 +312,15 @@ def _policy_triple(artifact: dict[str, Any]) -> tuple[int | None, int | None, in
     oq = _first_numeric_int(merged, OQ_KEYS)
     if oq is None:
         oq = _oq_from_dedicated_containers(artifact)
-    ss = _first_numeric_int(merged, SS_KEYS)
+    # An explicit safety-stock field inside the policy container is the model's
+    # stated decision; the generic merge can otherwise pick up an unrelated
+    # "recommended" key from the order-quantity container.
+    ss = _first_numeric_int(
+        _policy_only_block(artifact),
+        ["safety_stock", "safety_stock_units", "policy_ss", "safety_stock_s"],
+    )
+    if ss is None:
+        ss = _first_numeric_int(merged, SS_KEYS)
     if ss is None:
         ss = _ss_from_dedicated_containers(artifact)
     # Use explicit (s,S) fields only for missing generic values. The returned
@@ -411,6 +419,7 @@ def build_backtest(
     arrival_mode: str = "working_days",
     shortage_penalty_multiplier: float = 0.0,
     exclude_repaired_calendars: bool = False,
+    enforce_capacity: bool = False,
     *,
     run_id: str | None = None,
 ) -> dict[str, Any]:
@@ -462,17 +471,23 @@ def build_backtest(
         shortage_penalty = max(0.0, shortage_penalty_multiplier) * stats["unit_cost"]
         item = {
             "item_key": item_key,
-            "llm_pure": core.simulate(test, llm_policy, stats, initial_inventory, arrival_mode, shortage_penalty),
-            "sap_static": core.simulate(test, sap_policy, stats, initial_inventory, arrival_mode, shortage_penalty),
-            "universal_rq": core.simulate(test, rq_policy, stats, initial_inventory, arrival_mode, shortage_penalty),
+            "llm_pure": core.simulate(test, llm_policy, stats, initial_inventory, arrival_mode, shortage_penalty, enforce_capacity),
+            "sap_static": core.simulate(test, sap_policy, stats, initial_inventory, arrival_mode, shortage_penalty, enforce_capacity),
+            "universal_rq": core.simulate(test, rq_policy, stats, initial_inventory, arrival_mode, shortage_penalty, enforce_capacity),
             "llm_policy": llm_policy,
         }
+        for arm, make in (("or_cold", core.make_cold_rq_policy), ("or_erp_floor", core.make_erp_floor_rq_policy)):
+            projected = core.project_policy_to_feasibility(make(stats), stats)
+            if projected is not None:
+                item[arm] = core.simulate(test, projected, stats, initial_inventory, arrival_mode, shortage_penalty, enforce_capacity)
         rows.append(item)
 
     aggregate = {
         "llm_pure": _aggregate(rows, "llm_pure"),
         "sap_static_subset": _aggregate(rows, "sap_static"),
         "universal_rq_subset": _aggregate(rows, "universal_rq"),
+        "or_cold_subset": _aggregate(rows, "or_cold"),
+        "or_erp_floor_subset": _aggregate(rows, "or_erp_floor"),
     }
     return {
         "train_cutoff": core.TRAIN_CUTOFF,
@@ -480,6 +495,7 @@ def build_backtest(
         "n_targets": len(targets),
         "n_backtested": len(rows),
         "arrival_mode": arrival_mode,
+        "enforce_capacity": enforce_capacity,
         "shortage_penalty_multiplier": max(0.0, shortage_penalty_multiplier),
         "shortage_penalty_basis": "multiplier times source unit_cost per lost-sales unit",
         "policy_scoreability_validation": True,

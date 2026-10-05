@@ -1,0 +1,438 @@
+{
+  "run_id": "run-01",
+  "variants": [
+    {
+      "label": "primary (majority, ties working)",
+      "derivation_mode": "majority_tie_working",
+      "arrival_mode": "working_days",
+      "exclude_repaired_plants": false,
+      "n_backtested": 346,
+      "n_missing_outputs": 0,
+      "n_invalid_outputs": 0,
+      "overall": {
+        "n": 346,
+        "llm": {
+          "fill": 98.152,
+          "cost": 2850.4,
+          "inv": 17113.8
+        },
+        "sap": {
+          "fill": 98.379,
+          "cost": 3184.2,
+          "inv": 21761.6
+        },
+        "or": {
+          "fill": 98.27,
+          "cost": 3852.2,
+          "inv": 25734.5
+        },
+        "llm_cheaper_than_sap": 230,
+        "llm_cost_vs_sap_pct": -10.48,
+        "llm_fill_vs_sap_pts": -0.227
+      },
+      "by_plant": {
+        "Plant A": {
+          "n": 215,
+          "llm": {
+            "fill": 99.174,
+            "cost": 2297.6,
+            "inv": 18253.2
+          },
+          "sap": {
+            "fill": 99.392,
+            "cost": 2615.0,
+            "inv": 23791.4
+          },
+          "or": {
+            "fill": 99.142,
+            "cost": 3342.1,
+            "inv": 28924.8
+          },
+          "llm_cheaper_than_sap": 171,
+          "llm_cost_vs_sap_pct": -12.14,
+          "llm_fill_vs_sap_pts": -0.218
+        },
+        "Plant B": {
+          "n": 65,
+          "llm": {
+            "fill": 96.235,
+            "cost": 4886.6,
+            "inv": 17471.0
+          },
+          "sap": {
+            "fill": 96.466,
+            "cost": 6305.3,
+            "inv": 24429.3
+          },
+          "or": {
+            "fill": 96.552,
+            "cost": 6903.1,
+            "inv": 28834.7
+          },
+          "llm_cheaper_than_sap": 50,
+          "llm_cost_vs_sap_pct": -22.5,
+          "llm_fill_vs_sap_pts": -0.231
+        },
+        "Plant C": {
+          "n": 66,
+          "llm": {
+            "fill": 96.71,
+            "cost": 2646.2,
+            "inv": 13050.3
+          },
+          "sap": {
+            "fill": 96.964,
+            "cost": 1964.7,
+            "inv": 12521.8
+          },
+          "or": {
+            "fill": 97.119,
+            "cost": 2509.4,
+            "inv": 12288.8
+          },
+          "llm_cheaper_than_sap": 9,
+          "llm_cost_vs_sap_pct": 34.69,
+          "llm_fill_vs_sap_pts": -0.254
+        }
+      }
+    },
+    {
+      "label": "strict: working only if all source plants working",
+      "derivation_mode": "all",
+      "arrival_mode": "working_days",
+      "exclude_repaired_plants": false,
+      "n_backtested": 280,
+      "n_missing_outputs": 0,
+      "n_invalid_outputs": 0,
+      "overall": {
+        "n": 280,
+        "llm": {
+          "fill": 98.491,
+          "cost": 2898.6,
+          "inv": 18071.6
+        },
+        "sap": {
+          "fill": 98.713,
+          "cost": 3471.7,
+          "inv": 23939.5
+        },
+        "or": {
+          "fill": 98.541,
+          "cost": 4168.8,
+          "inv": 28903.9
+        },
+        "llm_cheaper_than_sap": 221,
+        "llm_cost_vs_sap_pct": -16.51,
+        "llm_fill_vs_sap_pts": -0.222
+      },
+      "by_plant": {
+        "Plant A": {
+          "n": 215,
+          "llm": {
+            "fill": 99.174,
+            "cost": 2297.6,
+            "inv": 18253.2
+          },
+          "sap": {
+            "fill": 99.392,
+            "cost": 2615.0,
+            "inv": 23791.4
+          },
+          "or": {
+            "fill": 99.142,
+            "cost": 3342.1,
+            "inv": 28924.8
+          },
+          "llm_cheaper_than_sap": 171,
+          "llm_cost_vs_sap_pct": -12.14,
+          "llm_fill_vs_sap_pts": -0.218
+        },
+        "Plant B": {
+          "n": 65,
+          "llm": {
+            "fill": 96.235,
+            "cost": 4886.6,
+            "inv": 17471.0
+          },
+          "sap": {
+            "fill": 96.466,
+            "cost": 6305.3,
+            "inv": 24429.3
+          },
+          "or": {
+            "fill": 96.552,
+            "cost": 6903.1,
+            "inv": 28834.7
+          },
+          "llm_cheaper_than_sap": 50,
+          "llm_cost_vs_sap_pct": -22.5,
+          "llm_fill_vs_sap_pts": -0.231
+        }
+      }
+    },
+    {
+      "label": "permissive: working if any source plant working",
+      "derivation_mode": "any",
+      "arrival_mode": "working_days",
+      "exclude_repaired_plants": false,
+      "n_backtested": 346,
+      "n_missing_outputs": 0,
+      "n_invalid_outputs": 0,
+      "overall": {
+        "n": 346,
+        "llm": {
+          "fill": 98.184,
+          "cost": 2898.1,
+          "inv": 17166.3
+        },
+        "sap": {
+          "fill": 98.369,
+          "cost": 3216.7,
+          "inv": 21736.2
+        },
+        "or": {
+          "fill": 98.326,
+          "cost": 3892.0,
+          "inv": 25761.2
+        },
+        "llm_cheaper_than_sap": 229,
+        "llm_cost_vs_sap_pct": -9.9,
+        "llm_fill_vs_sap_pts": -0.185
+      },
+      "by_plant": {
+        "Plant A": {
+          "n": 215,
+          "llm": {
+            "fill": 99.174,
+            "cost": 2297.6,
+            "inv": 18253.2
+          },
+          "sap": {
+            "fill": 99.392,
+            "cost": 2615.0,
+            "inv": 23791.4
+          },
+          "or": {
+            "fill": 99.142,
+            "cost": 3342.1,
+            "inv": 28924.8
+          },
+          "llm_cheaper_than_sap": 171,
+          "llm_cost_vs_sap_pct": -12.14,
+          "llm_fill_vs_sap_pts": -0.218
+        },
+        "Plant B": {
+          "n": 65,
+          "llm": {
+            "fill": 96.235,
+            "cost": 4886.6,
+            "inv": 17471.0
+          },
+          "sap": {
+            "fill": 96.466,
+            "cost": 6305.3,
+            "inv": 24429.3
+          },
+          "or": {
+            "fill": 96.552,
+            "cost": 6903.1,
+            "inv": 28834.7
+          },
+          "llm_cheaper_than_sap": 50,
+          "llm_cost_vs_sap_pct": -22.5,
+          "llm_fill_vs_sap_pts": -0.231
+        },
+        "Plant C": {
+          "n": 66,
+          "llm": {
+            "fill": 96.879,
+            "cost": 2896.2,
+            "inv": 13325.5
+          },
+          "sap": {
+            "fill": 96.908,
+            "cost": 2135.2,
+            "inv": 12388.8
+          },
+          "or": {
+            "fill": 97.414,
+            "cost": 2717.7,
+            "inv": 12428.5
+          },
+          "llm_cheaper_than_sap": 8,
+          "llm_cost_vs_sap_pct": 35.64,
+          "llm_fill_vs_sap_pts": -0.029
+        }
+      }
+    },
+    {
+      "label": "calendar-day arrivals",
+      "derivation_mode": "majority_tie_working",
+      "arrival_mode": "calendar_days",
+      "exclude_repaired_plants": false,
+      "n_backtested": 346,
+      "n_missing_outputs": 0,
+      "n_invalid_outputs": 0,
+      "overall": {
+        "n": 346,
+        "llm": {
+          "fill": 98.286,
+          "cost": 3000.9,
+          "inv": 18877.6
+        },
+        "sap": {
+          "fill": 98.547,
+          "cost": 3346.9,
+          "inv": 23731.4
+        },
+        "or": {
+          "fill": 98.393,
+          "cost": 4016.8,
+          "inv": 27548.6
+        },
+        "llm_cheaper_than_sap": 229,
+        "llm_cost_vs_sap_pct": -10.34,
+        "llm_fill_vs_sap_pts": -0.261
+      },
+      "by_plant": {
+        "Plant A": {
+          "n": 215,
+          "llm": {
+            "fill": 99.29,
+            "cost": 2411.5,
+            "inv": 19977.7
+          },
+          "sap": {
+            "fill": 99.54,
+            "cost": 2739.0,
+            "inv": 25761.4
+          },
+          "or": {
+            "fill": 99.24,
+            "cost": 3467.9,
+            "inv": 30739.2
+          },
+          "llm_cheaper_than_sap": 170,
+          "llm_cost_vs_sap_pct": -11.96,
+          "llm_fill_vs_sap_pts": -0.25
+        },
+        "Plant B": {
+          "n": 65,
+          "llm": {
+            "fill": 96.566,
+            "cost": 5270.9,
+            "inv": 19750.9
+          },
+          "sap": {
+            "fill": 96.736,
+            "cost": 6713.5,
+            "inv": 26779.3
+          },
+          "or": {
+            "fill": 96.82,
+            "cost": 7323.5,
+            "inv": 31101.0
+          },
+          "llm_cheaper_than_sap": 50,
+          "llm_cost_vs_sap_pct": -21.49,
+          "llm_fill_vs_sap_pts": -0.17
+        },
+        "Plant C": {
+          "n": 66,
+          "llm": {
+            "fill": 96.71,
+            "cost": 2685.4,
+            "inv": 14433.8
+          },
+          "sap": {
+            "fill": 97.092,
+            "cost": 2011.5,
+            "inv": 14116.9
+          },
+          "or": {
+            "fill": 97.183,
+            "cost": 2548.4,
+            "inv": 13656.4
+          },
+          "llm_cheaper_than_sap": 9,
+          "llm_cost_vs_sap_pct": 33.5,
+          "llm_fill_vs_sap_pts": -0.382
+        }
+      }
+    },
+    {
+      "label": "repaired plants excluded",
+      "derivation_mode": "majority_tie_working",
+      "arrival_mode": "working_days",
+      "exclude_repaired_plants": true,
+      "n_backtested": 280,
+      "n_missing_outputs": 0,
+      "n_invalid_outputs": 0,
+      "overall": {
+        "n": 280,
+        "llm": {
+          "fill": 98.491,
+          "cost": 2898.6,
+          "inv": 18071.6
+        },
+        "sap": {
+          "fill": 98.713,
+          "cost": 3471.7,
+          "inv": 23939.5
+        },
+        "or": {
+          "fill": 98.541,
+          "cost": 4168.8,
+          "inv": 28903.9
+        },
+        "llm_cheaper_than_sap": 221,
+        "llm_cost_vs_sap_pct": -16.51,
+        "llm_fill_vs_sap_pts": -0.222
+      },
+      "by_plant": {
+        "Plant A": {
+          "n": 215,
+          "llm": {
+            "fill": 99.174,
+            "cost": 2297.6,
+            "inv": 18253.2
+          },
+          "sap": {
+            "fill": 99.392,
+            "cost": 2615.0,
+            "inv": 23791.4
+          },
+          "or": {
+            "fill": 99.142,
+            "cost": 3342.1,
+            "inv": 28924.8
+          },
+          "llm_cheaper_than_sap": 171,
+          "llm_cost_vs_sap_pct": -12.14,
+          "llm_fill_vs_sap_pts": -0.218
+        },
+        "Plant B": {
+          "n": 65,
+          "llm": {
+            "fill": 96.235,
+            "cost": 4886.6,
+            "inv": 17471.0
+          },
+          "sap": {
+            "fill": 96.466,
+            "cost": 6305.3,
+            "inv": 24429.3
+          },
+          "or": {
+            "fill": 96.552,
+            "cost": 6903.1,
+            "inv": 28834.7
+          },
+          "llm_cheaper_than_sap": 50,
+          "llm_cost_vs_sap_pct": -22.5,
+          "llm_fill_vs_sap_pts": -0.231
+        }
+      }
+    }
+  ]
+}

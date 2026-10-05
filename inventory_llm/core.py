@@ -260,6 +260,23 @@ def make_rq_policy(stats: dict[str, Any]) -> dict[str, Any]:
     return {"policy": "universal_rq", "rop": max(0, rop), "oq": _order_quantity(stats), "ss": max(0, ss), "out_to": None}
 
 
+def make_cold_rq_policy(stats: dict[str, Any]) -> dict[str, Any]:
+    """(r,Q) without any ERP safety stock or safety lead time: lead time and variance from observed history only."""
+    lt = max(stats["mean_lead_time"], 0.1)
+    sigma_ltd = math.sqrt(max(lt * stats["std_daily_demand"] ** 2 + (stats["mean_daily_demand"] ** 2) * (stats["std_lead_time"] ** 2), 0.0))
+    ss = int(math.ceil(_z(stats["service_level"]) * sigma_ltd))
+    rop = int(math.ceil(stats["mean_daily_demand"] * lt + ss))
+    return {"policy": "or_cold_start", "rop": max(0, rop), "oq": _order_quantity(stats), "ss": max(0, ss), "out_to": None}
+
+
+def make_erp_floor_rq_policy(stats: dict[str, Any]) -> dict[str, Any]:
+    """(r,Q) given the same ERP planning inputs as the LLM: SLT-informed lead time and the ERP safety stock as a floor."""
+    base = make_rq_policy(stats)
+    ss = max(base["ss"], stats["sap_safety_stock"])
+    rop = int(math.ceil(stats["mean_daily_demand"] * stats["effective_lead_time"] + ss))
+    return {"policy": "or_erp_floor", "rop": max(0, rop), "oq": base["oq"], "ss": ss, "out_to": None}
+
+
 def make_sap_policy(stats: dict[str, Any]) -> dict[str, Any]:
     ss = stats["sap_safety_stock"]
     rop = int(math.ceil(stats["mean_daily_demand"] * stats["effective_lead_time"] + ss))
@@ -300,6 +317,7 @@ def simulate(
     initial_inventory: int | None = None,
     arrival_mode: str = "working_days",
     shortage_penalty_per_unit: float = 0.0,
+    enforce_capacity: bool = False,
 ) -> dict[str, Any]:
     fallback_inventory = max(policy.get("rop", 0) + policy.get("oq", 0), 0)
     inventory = opening_inventory(test_rows, fallback_inventory) if initial_inventory is None else max(0, initial_inventory)
@@ -320,6 +338,11 @@ def simulate(
         if order_up_to_level <= rop:
             raise ValueError("order-up-to level must exceed reorder point")
     oq = max(1, int(policy.get("oq", 1)))
+    capacity = max(0, int(stats.get("max_storage_units", 0) or 0))
+    peak_on_hand = float(inventory)
+    peak_position = float(inventory)
+    days_over_capacity = 0
+    max_excess_units = 0.0
 
     working = [r for r in test_rows if is_working_day(r)]
     for index, r in enumerate(working):
@@ -328,6 +351,10 @@ def simulate(
         if arrived:
             inventory += sum(arrived)
             on_order = [(due, q) for due, q in on_order if due > current]
+        peak_on_hand = max(peak_on_hand, inventory)
+        if capacity > 0 and inventory > capacity:
+            days_over_capacity += 1
+            max_excess_units = max(max_excess_units, inventory - capacity)
         dem = demand(r)
         total_demand += dem
         fulfilled = min(inventory, dem)
@@ -337,21 +364,23 @@ def simulate(
             stockout_days += 1
             shortage_units += dem - fulfilled
         position = inventory + sum(q for _, q in on_order)
+        peak_position = max(peak_position, position)
         if position <= rop:
             order_quantity = int(max(0, order_up_to_level - position)) if order_up_to_level is not None else oq
-            if order_quantity == 0:
-                continue
-            if arrival_mode == "working_days":
-                due_index = index + lead_days
-                due = (
-                    parse_date(working[due_index]["date"])
-                    if due_index < len(working)
-                    else current + timedelta(days=lead_days * 7)
-                )
-            else:
-                due = current + timedelta(days=lead_days)
-            on_order.append((due, order_quantity))
-            num_orders += 1
+            if enforce_capacity and capacity > 0:
+                order_quantity = min(order_quantity, max(0, capacity - int(position)))
+            if order_quantity > 0:
+                if arrival_mode == "working_days":
+                    due_index = index + lead_days
+                    due = (
+                        parse_date(working[due_index]["date"])
+                        if due_index < len(working)
+                        else current + timedelta(days=lead_days * 7)
+                    )
+                else:
+                    due = current + timedelta(days=lead_days)
+                on_order.append((due, order_quantity))
+                num_orders += 1
         inv_sum += inventory
 
     n = max(len(working), 1)
@@ -371,6 +400,11 @@ def simulate(
         "num_orders": num_orders,
         "test_days": len(working),
         "total_demand": total_demand,
+        "max_storage_units": capacity,
+        "peak_on_hand": peak_on_hand,
+        "peak_inventory_position": peak_position,
+        "days_over_capacity": days_over_capacity,
+        "max_excess_units": max_excess_units,
     }
 
 

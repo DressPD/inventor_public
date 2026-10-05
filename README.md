@@ -25,7 +25,7 @@ numerical reproduction of the confidential study.
 
 - deterministic synthetic inventory data generated from a fixed seed;
 - a credential-free execution pipeline for preprocessing, policy parsing, and simulation;
-- anonymized aggregate evidence from Run 1 and two current-runner reruns (Run 2 and Run 3);
+- anonymized aggregate evidence from three full runs (Runs 1--3) with the final system prompt, an ablation run without ERP planning parameters, hard-limit replay, capacity-trajectory, information-asymmetry and Plant C calendar sensitivity analyses;
 - manuscript source, figures, references, highlights, and compiled PDF; and
 - prompt specifications documenting the intended LLM interaction.
 
@@ -62,8 +62,14 @@ diagnostics. It contains no material rows or failure lists.
 `outputs/review_evidence.json` records common-feasibility, outlier, working-day
 primary, and calendar-day-arrival sensitivity evidence. `outputs/run_manifest.json` records
 aggregate integrity hashes and unavailable inference metadata. `outputs/three_run_evidence.json`
-reports aggregate-only policy distribution summaries for Run 1 and two
-post-hoc current-runner reruns (Run 2 and Run 3); it does not establish reproduction of the Run 1 deployment.
+reports aggregate-only policy distribution summaries for the three full runs; it does not
+establish verification of the deployed model identifier or inference settings.
+`outputs/primary_evidence.json` holds the primary hard-limit replay results for all arms
+(including cost decomposition, plant and regime groups, shortage-penalty and calendar
+sensitivities), `outputs/information_asymmetry_evidence.json` the ERP-information comparisons
+and the ablation without ERP planning parameters, `outputs/capacity_trajectory_evidence.json`
+the storage-limit trajectory checks, and `outputs/plantc_calendar_sensitivity.json` the Plant C
+calendar sensitivities.
 
 The study inference stage cannot be rerun publicly. It depended on confidential
 operational data and a private enterprise LLM deployment. The aggregate evidence
@@ -97,6 +103,10 @@ outputs/agentic_policy_backtest_summary.json  anonymized study aggregates
 outputs/review_evidence.json                  aggregate review evidence
 outputs/run_manifest.json                     aggregate integrity manifest
 outputs/three_run_evidence.json               aggregate three-run evidence
+outputs/primary_evidence.json                 primary hard-limit replay evidence
+outputs/information_asymmetry_evidence.json   ERP-information comparisons and ablation
+outputs/capacity_trajectory_evidence.json     storage-limit trajectory checks
+outputs/plantc_calendar_sensitivity.json      Plant C calendar sensitivities
 outputs/synthetic_demo_summary.json            synthetic aggregate demo
 manuscript/                                    article source and PDF
 prompts/                                       intended prompt specifications

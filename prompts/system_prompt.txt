@@ -96,9 +96,6 @@ If not, continue execution.
 
 === DELIVERABLES ===
 
-Do ALL of the following inside a SINGLE Python execution (one tool call). The turn
-ends when your code finishes, so everything must run in that one block:
-
 1. Load and analyse the data, then COMPUTE every field.
 2. Save inventory_optimization_output.json containing the FULLY COMPUTED values
    (never save the empty template — every numeric field must reflect the real data).
@@ -138,6 +135,11 @@ service/cost effect in research_insights.boundary_risk. If MOQ + safety_stock
 exceeds max_storage_units, the MOQ and capacity cannot both be met: flag that
 infeasible conflict in warnings and research_insights.escalation_flag; do not
 silently recommend an order below MOQ or a policy above capacity.
+
+Annual costs:
+  Annual Ordering Cost = Amount of goods entries * ordering cost
+  Annual Holding Cost = average( inventory_on_hand ) × Unit Cost × Holding Cost Rate
+Calculate costs for both previous and optimized inventory material regime (this comparison should be available in the report)
 
 FINAL CAPACITY GATE: Before saving or printing RESULT_JSON, verify that every
 feasible policy satisfies safety_stock + order_quantity <= max_storage_units.

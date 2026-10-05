@@ -1,39 +1,43 @@
 {
   "schema_version": 1,
   "scope": "aggregate integrity record; no confidential content or item identifiers",
-  "active_evaluation_code_sha256": "98c994936c24569a2dd10ab7c31db984aa47e1cf3dec409b052faa6104535746",
+  "active_evaluation_code_sha256": "f6bebc9bc53f58cb6219503b603b8508cedb8863747b110e1834f5adc5213c0f",
   "stored_artifacts": {
     "scope": "all retained agentic_runs directories; counts can exceed the active 365-material cohort",
     "by_file_type": {
       "output.json": {
-        "count": 379,
-        "combined_sha256": "9c7c9825ad4949d44172688f4ad11ae33e6e205f0b2ef0be8e3aa3e6e0779d55"
+        "count": 365,
+        "combined_sha256": "874304df0f3622062ce83f52e3245a0beb16ef59f380335dfebc0edb01d577a1"
       },
       "prompt.txt": {
-        "count": 379,
-        "combined_sha256": "8d668dcb63d489d3967b42dc2facb0e41033814024954be3043b231ef11b2d07"
+        "count": 365,
+        "combined_sha256": "e30d6540e30d617149f4cfe0ebb88aaa79ecf3d4ddf6f1501b6b33f8078d503f"
       },
       "raw_response.json": {
-        "count": 379,
-        "combined_sha256": "7ac1860896f8b890223baf0b7e5462d054bd2227f324066970b3608ac8fa5e60"
+        "count": 365,
+        "combined_sha256": "177a8840f10534097b495e57ef752b68158a6fd339954e88b749a1f0b3b4154d"
       },
       "run_metadata.json": {
-        "count": 379,
-        "combined_sha256": "ca6b5295a7a513bb92fbd85f8040746331120d86c8189ab0e1cfd48c0919e002"
+        "count": 365,
+        "combined_sha256": "d0ee64ca67835f02ec648286e752d6aa110ec1014666d42eb64d132acdd29a23"
       }
     }
   },
   "declared_unverified_runtime": {
-    "status": "author declaration recorded retrospectively; not machine-verifiable from stored artifacts",
+    "status": "author declaration; the enterprise platform does not expose model identifier or generation settings to the client",
     "model_family_declared": "Anthropic Claude Sonnet 4.6",
     "tool_configuration_declared": "code-interpreter style Python execution tool",
-    "verification": "no deployed configuration, model identifier, or generation settings were persisted at run time"
+    "verification": "not machine-verifiable from stored artifacts; the application-side instruction text is the repository file prompts/system_prompt.txt"
   },
+  "preserved_per_call": [
+    "input_sha256",
+    "system_prompt_sha256 (hash of prompts/system_prompt.txt as held in the repository)",
+    "recorded_at_utc",
+    "session_identifier",
+    "raw_response.json (platform response with message timestamps)"
+  ],
   "not_preserved": [
-    "deployed_system_prompt_hash",
-    "application_version",
-    "model_runtime_identifier",
-    "inference_generation_settings",
-    "inference_timestamps"
+    "model_runtime_identifier (platform does not disclose)",
+    "inference_generation_settings (platform does not disclose)"
   ]
 }

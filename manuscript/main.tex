@@ -1,55 +1,19 @@
-%%
-%% Copyright 2007-2025 Elsevier Ltd
-%%
-%% This file is part of the 'Elsarticle Bundle'.
-%% Elsevier article template header
-%%
-%% It may be distributed under the conditions of the LaTeX Project Public
-%% License, either version 1.3 of this license or (at your option) any
-%% later version.  The latest version of this license is in
-%%    http://www.latex-project.org/lppl.txt
-%% and version 1.3 or later is part of all distributions of LaTeX
-%% version 1999/12/01 or later.
-%%
-%% The list of all files belonging to the 'Elsarticle Bundle' is
-%% given in the file `manifest.txt'.
-%%
-%% InventOR manuscript source uses elsarticle for generic preprint typesetting.
-%%
 \documentclass[preprint,11pt]{elsarticle}
 
-%% Use the option review to obtain double line spacing
-%% \documentclass[authoryear,preprint,review,12pt]{elsarticle}
-
-%% Use the options 1p,twocolumn; 3p; 3p,twocolumn; 5p; or 5p,twocolumn
-%% for a journal layout:
-%% \documentclass[final,1p,times]{elsarticle}
-%% \documentclass[final,1p,times,twocolumn]{elsarticle}
-%% \documentclass[final,3p,times]{elsarticle}
-%% \documentclass[final,3p,times,twocolumn]{elsarticle}
-%% \documentclass[final,5p,times]{elsarticle}
-%% \documentclass[final,5p,times,twocolumn]{elsarticle}
-
-%% For including figures, graphicx.sty has been loaded in
-%% elsarticle.cls. If you prefer to use the old commands
-%% please give \usepackage{epsfig}
-
-%% The amssymb package provides various useful mathematical symbols
 \usepackage{amssymb}
-%% The amsmath package provides various useful equation environments.
 \usepackage{amsmath}
 \usepackage{enumitem}
 \usepackage{array}
 \usepackage{tabularx}
+\usepackage{adjustbox}
 \usepackage[section]{placeins}
-\usepackage{amsthm}
 \usepackage{setspace}
+\usepackage{xcolor}
+\usepackage{lineno}
 \setstretch{1.5}
 \newcolumntype{L}{>{\raggedright\arraybackslash}X}
 \newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
-\theoremstyle{plain}
-\newtheorem{proposition}{Proposition}[section]
-\newtheorem{corollary}{Corollary}[proposition]
+\newcommand{\pending}[1]{\textbf{\textcolor{red}{[#1]}}}
 \setlength{\emergencystretch}{3em}
 \setlength{\textfloatsep}{8pt plus 2pt minus 2pt}
 \setlength{\intextsep}{8pt plus 2pt minus 2pt}
@@ -64,76 +28,27 @@
 \renewcommand{\floatpagefraction}{0.8}
 \hfuzz=20pt
 \hbadness=10000
-%% The amsthm package provides extended theorem environments
-%% \usepackage{amsthm}
-
-\usepackage{lineno}
 
 \begin{document}
 
 \begin{frontmatter}
 
-%% Title, authors and addresses
-
-%% use the tnoteref command within \title for footnotes;
-%% use the tnotetext command for theassociated footnote;
-%% use the fnref command within \author or \affiliation for footnotes;
-%% use the fntext command for theassociated footnote;
-%% use the corref command within \author for corresponding author footnotes;
-%% use the cortext command for theassociated footnote;
-%% use the ead command for the email address,
-%% and the form \ead[url] for the home page:
-%% \title{Title\tnoteref{label1}}
-%% \tnotetext[label1]{}
-%% \author{Name\corref{cor1}\fnref{label2}}
-%% \ead{email address}
-%% \ead[url]{home page}
-%% \fntext[label2]{}
-%% \cortext[cor1]{}
-%% \affiliation{organization={},
-%%             addressline={},
-%%             city={},
-%%             postcode={},
-%%             state={},
-%%             country={}}
-%% \fntext[label3]{}
-
 \title{InventOR: A Prompt-Configured, No-Fine-Tuning LLM Workflow for Material-Level Inventory Control}
 
-%% use optional labels to link authors explicitly to addresses:
-%% \author[label1,label2]{}
-%% \affiliation[label1]{organization={},
-%%             addressline={},
-%%             city={},
-%%             postcode={},
-%%             state={},
-%%             country={}}
-%%
-%% \affiliation[label2]{organization={},
-%%             addressline={},
-%%             city={},
-%%             postcode={},
-%%             state={},
-%%             country={}}
-
-\author[inst1]{Aris Dressino\corref{cor1}} %% Author name
+\author[inst1]{Aris Dressino\corref{cor1}}
 \cortext[cor1]{Corresponding author. Telephone: +49 89 289 25000. ORCID: 0009-0003-0693-9051.}
 \ead{aris.dressino@tum.de}
 
-%% Author affiliation
-%% Department of Advanced Analytics in Manufacturing Management
-\affiliation[inst1]{organization={TUM School of Management, Technical University of Munich},%Department and Organization
-            addressline={Arcisstraße 21},
+\affiliation[inst1]{organization={TUM School of Management, Technical University of Munich},
+            addressline={Arcisstra{\ss}e 21},
             city={Munich},
             postcode={80333},
             country={Germany}}
 
-%% Abstract
 \begin{abstract}
-We present \emph{InventOR}, a prompt-configured large-language-model (LLM) workflow that generates material-level $(r,Q)$ inventory policies from cutoff-bounded historical CSVs and inline parameter blocks through an enterprise LLM application, without project-specific model training or fine-tuning. Deterministic parsing and post-cutoff simulation evaluate each LLM artifact against an SAP-derived and an SAP-safety-lead-time-informed operations-research comparator on a common 346-pair cohort from a three-plant industrial dataset. All 365 eligible plant-material pairs yield scoreable, capacity-feasible artifacts after retry handling. Working-day simulation reports 77.52\% demand-weighted aggregate fill and 97.94\% mean material fill for the LLM-emitted arm. Runs 2 and 3 show repeated completion but policy-value variation. Run 1 lacks preserved deployed prompt and runtime metadata; the contribution is a transparent descriptive evaluation protocol with explicit boundaries and current-run provenance controls for prospective evaluation.
+Material planners in manufacturing set reorder points, safety stocks and order quantities for thousands of materials, usually with ERP parameters that were last revised long ago. We present \emph{InventOR}, a human-reviewed decision aid in which a large language model (LLM), configured only through a prompt and without any training or fine-tuning, reads one material's demand and lead-time history and proposes a reorder-point/order-quantity $(r,Q)$ policy. Deterministic software parses every proposal, checks it against minimum order quantities and storage limits, and replays it on held-out post-cutoff demand before a planner sees it. We evaluate the aid on 365 plant-material pairs from three plants of an industrial manufacturer (346 in the common-feasible cohort), with three independent LLM runs. Against ERP-derived parameters, the LLM policies cost about 11\% less in the simulation at a service level 0.1--0.4 percentage points lower; against an operations-research (OR) policy that uses the same ERP inputs the cost is about 30\% lower. However, an OR policy computed from the history alone costs about 6\% \emph{less} than the LLM at the same service, so much of the apparent gain reflects the weakness of the ERP benchmarks rather than an optimization advantage of the LLM; the saving comes from holding about 17\% less inventory, at about 13\% more stockout days. When shortages are priced at one unit cost or more, the ERP-derived parameters become the cheapest arm and the LLM is about 2.4\% more expensive than them. When the ERP planning parameters are withheld from the LLM in a 365-pair ablation, it stays about 9\% cheaper than ERP-derived parameters and about 9\% more expensive than the history-only OR. Storage limits that appear satisfied in a static check are exceeded on 53--66\% of pairs during unconstrained simulated trajectories, depending on the method; a hard-limit replay is therefore our primary evaluation, and it leaves the ranking unchanged. At one plant the LLM is 31--36\% more expensive than ERP-derived parameters in the three full runs, a result that is robust to our calendar repairs. We derive rules for when such a tool should be trusted, reviewed or rejected, and set out a research agenda.
 \end{abstract}
 
-%% Keywords
 \begin{keyword}
 Generative Artificial Intelligence \sep Large Language Models \sep Operations Research \sep Supply Chain Management \sep Decision Support Systems \sep Inventory Control
 \end{keyword}
@@ -142,272 +57,382 @@ Generative Artificial Intelligence \sep Large Language Models \sep Operations Re
 
 \linenumbers
 
-%% main text
-%%
-
 \section{Introduction}
 \label{sec:intro}
 
-Supply chain planning operates under volatile demand, uncertain replenishment, and disruption exposure \cite{sengupta2025uncertainty}. Many material-control decisions still depend on simple parameters: reorder points, safety stock, order quantities, and review periods; these settings strongly affect service and inventory exposure \cite{grasso1984simulation, vanKampen2010safety}. Classical operations research offers rigorous tools for stochastic and robust inventory decisions \cite{bertsimas2006robust, thorsen2017robust, zhang2025robust}, but planners often need a narrower capability: converting imperfect historical records — which are pervasive in practice \cite{dehoratius2008inventory} — into transparent, defensible, auditable material-level policy values \cite{mersereau2013information}.
+Replenishment parameters in manufacturing are set per plant-material pair: a reorder point that triggers an order, a safety stock that absorbs demand and lead-time variability, and an order quantity. In large ERP systems these values often remain at levels set years earlier, while demand patterns, supplier performance and storage constraints change. Revisiting them materially requires analysts who can fit demand and lead-time statistics, apply inventory theory, respect minimum order quantities (MOQs) and storage limits, and explain the result to planners. That scarce skill is exactly what a conversational large language model (LLM) with a code interpreter appears to offer, and a rapidly growing literature explores such tools for supply-chain and operations decisions \cite{jackson2024generative, fossowamba2023chatgpt, song2026llmscm, panja2026genai, trifone2026agentic}.
 
-Large language models (LLMs) can help connect business intent, operational evidence, and analytical workflows, and autonomous decision-making is an emerging capability frontier for supply chain management \cite{boone2025generative, jackson2024generative, wasserkrug2025enhancing}. Recommendations in inventory control require explainability, reproducibility, and meaningful human control before planners can act on them \cite{amershi2019guidelines, raji2020accountability}. This creates a design requirement for hybrid AI-supported OR: LLM artifacts must be inspectable, and numeric recommendations require explicit simulation and release controls \cite{wasserkrug2025enhancing, raji2020accountability}.
+The promise is real, but so are three problems that limit its use in practice. First, LLM outputs can be unfaithful or fabricated \cite{ji2023survey}, so a proposed policy must be treated as a candidate and not a decision. Second, claims of superiority over ERP parameters are hard to interpret when the LLM and the comparators are given different information; an LLM that sees a plant's ERP reference values and is compared with an OR policy that does not, or the reverse, tells us little about the LLM. Third, inventory policies live inside physical limits: a storage rule that holds when the policy is written down can be violated as stock builds up over time.
 
-This paper addresses that requirement through \emph{InventOR}, an operations-research-first workflow for material-level inventory decision support. An enterprise LLM application produces policy artifacts from material-scoped inputs; we parse and simulate their numeric values deterministically.
-
-Our contribution is an evaluation protocol rather than a new inventory model or solution algorithm. The comparator policies are standard textbook constructions; what we add is a reusable, auditable procedure for deciding whether LLM-emitted policy values are admissible and how they perform against ERP-derived baselines on a common simulation horizon. Three components make up that protocol.
-
-\begin{enumerate}[label=\textbf{C\arabic*}, leftmargin=2.2em, itemsep=3pt]
-\item \textbf{Admissibility protocol for LLM-emitted policy artifacts.} Material-specific inputs pass through a configured enterprise LLM application without project-specific training or fine-tuning. Deterministic scoreability and capacity checks decide admission; the architecture reserves a planner release step, which we document as a design requirement rather than an evaluated intervention \cite{sahoo2024systematic}.
-\item \textbf{Executable boundary specification.} We document the material-input contract, alias-aware conversion, capacity validation, and simulation boundary, so that a competing generator can be substituted and scored under identical rules.
-\item \textbf{Complete-cohort reporting discipline.} All 365 eligible pairs from 233{,}078 parsed records yielded scoreable, capacity-feasible artifacts after retry handling; 346 pairs meet the common feasibility rules used for the three-arm descriptive comparison. No pair is silently dropped, and every exclusion rule is reported.
+This paper addresses all three in an industrial application. We describe and evaluate \emph{InventOR}, a decision aid built around an enterprise LLM application that is configured with a prompt and receives no project-specific training or fine-tuning. The LLM proposes one $(r,Q)$ policy per plant-material pair; deterministic software parses, checks and simulates each proposal; a planner reviews proposals and simulation results before any ERP parameter is changed. Our contributions are:
+\begin{enumerate}[label=\textbf{C\arabic*.}, leftmargin=*]
+\item \textbf{A human-reviewed decision-aid design} (Section~\ref{sec:aid}) that separates generation, deterministic gating, simulation and planner review, and states explicit rules for when its output is trusted, escalated or rejected.
+\item \textbf{An information-controlled evaluation} (Section~\ref{sec:design}) with four reference arms that differ in the information they use and, partly, in method, including an OR policy computed from history alone and an LLM ablation that is denied the ERP planning parameters. This separates what the LLM adds from what it is given.
+\item \textbf{Trajectory-level storage verification}: every policy is replayed with orders truncated at the storage limit, and the replay, not the static parameter check, is the primary result.
+\item \textbf{Complete-cohort evidence from three LLM runs on 365 pairs}, with plant-level, regime-level and sensitivity analyses, and managerial and research implications.
 \end{enumerate}
 
-The remainder of the paper is organised as follows. Section~\ref{sec:literature} reviews related work and positions InventOR relative to recent AI-supported OR contributions. Section~\ref{sec:method} details the workflow, policy logic, and backtest design. Section~\ref{sec:results} reports completion and simulation results. Section~\ref{sec:discussion} interprets the findings and their limitations, and Section~\ref{sec:conclusion} summarises the contribution and outlines future work.
+Our main findings are as follows. Against ERP-derived parameters, the LLM policies are about 11\% cheaper at a service level that is 0.1--0.4 points lower. That advantage largely disappears when a reasonable OR baseline is available: a history-only $(r,Q)$ policy is about 6\% cheaper than the LLM at essentially equal service, and the LLM's saving over ERP parameters comes from carrying about 17\% less inventory at about 13\% more stockout days; once shortages are priced at one unit cost or more, the ERP-derived parameters are the cheapest arm. The LLM's value is therefore not superior optimization but the ability to produce a reviewable, auditable policy for every material without writing code. Storage limits are violated along unconstrained simulated trajectories for 53--66\% of pairs under every method, which makes trajectory checks a prerequisite for any replenishment decision aid. At one plant the LLM is 31--36\% more expensive than ERP-derived parameters, which we use to derive guidance on where to trust and where to review.
 
-\section{Literature Review}
+The remainder of the paper is organized as follows. Section~\ref{sec:literature} positions the work in the literature. Section~\ref{sec:aid} explains the decision aid for a non-specialist reader. Section~\ref{sec:design} describes the data and the evaluation design. Section~\ref{sec:results} reports results. Section~\ref{sec:managerial} derives managerial insights, and Section~\ref{sec:discussion} discusses limitations and research directions. Formal definitions are in Appendix~\ref{app:math}.
+
+\section{Related Work and Positioning}
 \label{sec:literature}
 
-Operations research has long addressed supply-chain uncertainty through stochastic programming, robust optimization, and scenario-based planning \cite{bertsimas2006robust, thorsen2017robust, zhang2025robust}. These methods formalize variability and recourse, but operational inventory teams often face a more direct implementation problem: maintaining reorder points, safety stock, safety lead time, and order quantities from incomplete historical evidence in ERP-driven planning environments \cite{hadley1963analysis, silver2017inventory, zipkin2000foundations, porteus2002foundations, grasso1984simulation, vanKampen2010safety}. Static rules can be too coarse, while sophisticated models can be difficult to explain and maintain. This motivates decision support that keeps OR discipline while making material-level parameter setting more transparent and auditable \cite{mersereau2013information, kang2005information}.
+\paragraph{LLMs in operations and supply-chain decisions.}
+Reviews and frameworks map the opportunities for generative AI in supply chains \cite{jackson2024generative, fossowamba2023chatgpt, song2026llmscm, panja2026genai, boone2025generative} and stress that adoption depends on assigned human roles, data quality and governance \cite{trifone2026agentic, cannas2023aiscm, venkatesh2023adoption, cohen2026supply}. A recent conceptual line proposes agentic digital twins that combine AI agents with model-based simulation and optimization to support decisions \cite{ivanov2026agentic}, and an LLM-plus-digital-twin method has been built for closed-loop supply-chain operations \cite{le2026llmdt}. Our decision aid follows the same logic at a smaller scale: an LLM proposes and a simulation model checks. Most technical LLM work focuses on translating natural-language problem statements into optimization models and solver code \cite{li2023large, huang2025orlm, ahmaditeshnizi2024optimus, zhang2025or}, on multi-agent control and consensus-seeking in inventory flows \cite{quan2024invagent, jannelli2025agentic}, on extracting supply-network structure from text \cite{almahri2025kgllm, zheng2025visibility}, on disruption modelling \cite{lin2025unisone}, or on evaluating LLMs on classical operations-research tasks such as vehicle routing \cite{hamdan2026routing}. The closest LLM study to ours uses an LLM as a forecasting copilot for spare-parts demand, combined with simulation, and reports high variability for irregular demand that can be reduced by averaging repeated queries and enriching prompts \cite{nakhost2025copilot}. We share the concern about run-to-run variability and test it directly (Section~\ref{subsec:stability}), but differ in that the LLM proposes a complete replenishment policy rather than a forecast.
 
-Recent LLM research proposes natural-language interfaces, tool-using agents, and pipelines that translate natural-language requests into optimization model structures or executable code, including multi-agent systems that make autonomous per-period inventory decisions or seek consensus on operational actions \cite{wasserkrug2025enhancing, huang2025orlm, cohen2026supply, ahmaditeshnizi2024optimus, zhang2025or, quan2024invagent, li2023large, jannelli2025agentic}. These approaches do not specify how inventory histories should be reduced into demand regimes, lead-time diagnostics, service buffers, and feasible policy parameters with deterministic auditability.
+\paragraph{Data-driven inventory control without LLMs.}
+Learning-based replenishment is well established. Deep reinforcement learning has been applied to omnichannel and multi-echelon systems \cite{kolyaei2025rl, stranieri2024drl} and aerospace replenishment \cite{wang2022aerospace}; deep-learning forecasting has been integrated with replenishment \cite{ma2026integrated}; contextual distributionally robust optimization uses side information to set order quantities \cite{wang2026contextual}; and distribution-free online algorithms handle capacitated warehouses under uncertain price and demand \cite{zhang2023replenishment}. Robust inventory control under demand and lead-time uncertainty has a longer history \cite{bertsimas2006robust, thorsen2017robust, zhang2025robust}, and lead-time variability and dependence are known to propagate through ordering decisions \cite{disney2025bullwhip}, while safety stock and safety lead time are alternative buffers against unreliability \cite{vanKampen2010safety}. The closest operational neighbour is a trained data-driven framework that jointly sets replenishment parameters, safety stock and safety lead time on real automotive data \cite{gabellini2026novel}. These methods require model training, historical scenario generation or tuned hyperparameters for each setting; InventOR requires none, at the price of an LLM-based generator whose internal logic cannot be inspected beyond its written justification.
 
-We follow this hybrid view. We supply a filtered material CSV plus an inline parameter block through an enterprise LLM application. The intended prompt prohibits stochastic simulation, machine-learning libraries, and unrestricted data fabrication, but stored run metadata do not independently identify the deployed prompt or runtime. Because LLM outputs can contain fabricated or unfaithful content \cite{ji2023survey}, our parser uses alias-aware lookups and nested-field resolution before requiring numeric positive reorder point and order quantity, numeric non-negative safety stock, and a resolvable simulator family. No project-specific model fitting or fine-tuning is performed. We treat the LLM as an artifact-generation component inside a bounded decision process. Table~\ref{tab:literature-positioning} positions our framework relative to recent AI-supported OR and inventory-control work.
+\paragraph{Intermittent and spare-parts demand.}
+Material histories in manufacturing are frequently intermittent or lumpy. The statistical literature offers specialized estimators and classification schemes \cite{croston1972forecasting, syntetos2005accuracy, willemain2004new, prak2021robust, babai2026fifty}, and recent studies develop feature-based forecast combinations and temporal aggregation for intermittent demand \cite{sanguri2023intermittent, li2022featurebased}, forecasting for spare parts across product life-cycle phases \cite{goldsmith2025spare}, and integrated forecasting and planning or multi-echelon stocking models for repairable and spare parts \cite{babaveisi2022repairable, caserta2026amazon}. Our regime analysis (Section~\ref{subsec:plants}) shows where an LLM that is forbidden from using specialized intermittent-demand estimators behaves differently on lumpy materials.
+
+Table~\ref{tab:literature-positioning} summarizes these streams and states how the contribution of InventOR differs. InventOR is not a new inventory model and does not claim to beat trained or optimized methods. It contributes (i) a way of using an off-the-shelf LLM as a bounded policy generator inside a reviewed process, (ii) an evaluation that controls the information available to each arm, and (iii) industrial evidence on cost, service and storage feasibility. The $(r,Q)$ policy it uses is the standard workhorse of continuous-review control \cite{hadley1963analysis, porteus2002foundations, silver2017inventory}.
 
 \begin{table}[htbp]
 \centering
-\caption{Literature positioning: InventOR relative to recent AI-supported OR contributions for inventory and supply chain decision support.}
+\caption{Literature positioning of InventOR relative to recent work on AI-supported inventory and supply-chain decisions.}
 \label{tab:literature-positioning}
 \scriptsize
 \setlength{\tabcolsep}{2pt}
 \renewcommand{\arraystretch}{1.10}
-\begin{tabularx}{\textwidth}{p{2.1cm} p{1.55cm} p{1.75cm} p{1.65cm} p{1.85cm} L}
+\begin{tabularx}{\textwidth}{p{2.6cm} p{1.9cm} p{2.5cm} L}
 \hline
-\textbf{Study} & \textbf{LLM role} & \textbf{Policy class} & \textbf{Demand model} & \textbf{Analytical result} & \textbf{Evaluation} \\
+\textbf{Study} & \textbf{Approach} & \textbf{Decision} & \textbf{Relation to InventOR} \\
 \hline
-Huang et al.~\cite{huang2025orlm} & NL$\to$code & General OR & Not specified & None & Benchmark \\
-Ahmaditeshnizi et al.~\cite{ahmaditeshnizi2024optimus} & NL$\to$model & General OR & Not specified & Solver-linked & Benchmark \\
-Zhang et al.~\cite{zhang2025or} & Reasoning agent & General OR & Not specified & Model and solve & Case studies \\
-Quan and Liu~\cite{quan2024invagent} & Multi-agent control & Inventory & Sequential demand & Per-period decisions & Simulation \\
-Prak et al.~\cite{prak2021robust} & None & Inventory control & Compound Poisson / intermittent & Robust estimation & Empirical study \\
-Babai et al.~\cite{babai2026fifty} & None & Forecasting-linked inventory & Regime-specific & Review synthesis & Review \\
-Wasserkrug et al.~\cite{wasserkrug2025enhancing} & Interface & General & Not specified & None & Conceptual \\
-Cohen et al.~\cite{cohen2026supply} & Vision & General SCM & Not specified & None & Vision statement \\
-\textbf{InventOR} & \textbf{Prototype} & \textbf{$(r,Q)$ executed; $(s,S)$ implemented, unexercised} & \textbf{Artifact-defined values} & \textbf{Descriptive} & \textbf{Post-cutoff simulation} \\
+\multicolumn{4}{@{}l}{\textit{LLMs for operations and supply chains}}\\
+Jackson et al.~\cite{jackson2024generative}; Fosso Wamba et al.~\cite{fossowamba2023chatgpt} & Framework / review & Broad supply-chain use & Motivates LLM use; no inventory-policy evidence \\
+Song et al.~\cite{song2026llmscm}; Panja et al.~\cite{panja2026genai} & Systematic reviews & LLMs in SCM and logistics & Place InventOR in the emerging empirical gap \\
+Trifone et al.~\cite{trifone2026agentic}; Cannas et al.~\cite{cannas2023aiscm}; Venkatesh et al.~\cite{venkatesh2023adoption} & Adoption studies, research agenda & AI roles, barriers, data quality & Support human-in-the-loop design and review rules \\
+Ivanov~\cite{ivanov2026agentic}; Le et al.~\cite{le2026llmdt} & Agentic / LLM digital twins & Model-based decision support & Pair AI proposals with simulation; InventOR applies this to $(r,Q)$ parameters \\
+Nakhost et al.~\cite{nakhost2025copilot} & LLM + simulation & Spare-parts forecast & Closest LLM study; forecast, not policy \\
+Jannelli et al.~\cite{jannelli2025agentic}; Quan and Liu~\cite{quan2024invagent} & Multi-agent LLM & Sequential ordering, consensus & Per-period agent decisions in simulation \\
+AlMahri et al.~\cite{almahri2025kgllm}; Zheng and Brintrup~\cite{zheng2025visibility} & LLM + knowledge graphs & Supply-network visibility & LLM for information extraction, not inventory control \\
+Hamdan and Brahimi~\cite{hamdan2026routing} & LLM benchmark & Routing & Evaluates LLM on a classical OR task \\
+Li et al.~\cite{li2023large}; Huang et al.~\cite{huang2025orlm}; Ahmaditeshnizi et al.~\cite{ahmaditeshnizi2024optimus}; Zhang et al.~\cite{zhang2025or} & NL$\to$model / solver & General OR models & Model formulation; not a fixed policy family \\
+\multicolumn{4}{@{}l}{\textit{Data-driven inventory control without LLMs}}\\
+Gabellini et al.~\cite{gabellini2026novel} & Trained data-driven & Replenishment, safety stock and safety lead time & Closest OR neighbour; needs training; automotive data \\
+Kolyaei et al.~\cite{kolyaei2025rl}; Stranieri et al.~\cite{stranieri2024drl}; Wang et al.~\cite{wang2022aerospace} & Deep reinforcement learning & Replenishment & Learned policies; require training environments \\
+Ma~\cite{ma2026integrated}; Wang et al.~\cite{wang2026contextual}; Zhang et al.~\cite{zhang2023replenishment} & Deep learning / contextual DRO / online algorithm & Forecast-plus-order; capacitated replenishment & Training, tuning or worst-case design per setting \\
+\multicolumn{4}{@{}l}{\textit{Intermittent and spare-parts demand}}\\
+Sanguri et al.~\cite{sanguri2023intermittent}; Li et al.~\cite{li2022featurebased}; Goldsmith and Sachs~\cite{goldsmith2025spare} & Statistical / ML forecasting & Intermittent demand & Specialized estimators the LLM is not allowed to use \\
+Babaveisi et al.~\cite{babaveisi2022repairable}; Caserta and D'Angelo~\cite{caserta2026amazon} & Optimization & Spare-part stocking & Multi-echelon or repairable settings; outside our single-echelon scope \\
+Prak et al.~\cite{prak2021robust}; Babai et al.~\cite{babai2026fifty} & Estimation / review & Inventory under intermittency & Regime-aware benchmarks for future work \\
+\textbf{InventOR (this paper)} & \textbf{Prompted LLM + deterministic gate and simulation} & \textbf{$(r,Q)$ per plant-material pair} & \textbf{No training; reviewed; information-controlled evaluation} \\
 \hline
 \end{tabularx}
 \end{table}
 \FloatBarrier
 
-The table highlights the paper's narrower contribution: material-level parameter artifacts evaluated by a deterministic policy-family simulator. Unlike InvAgent's sequential multi-agent decisions, InventOR emits one stationary policy per material from a bounded historical package; unlike OptiMUS and OR-LLM-Agent, it does not formulate or solve general optimization models. The $(r,Q)$ framework is the workhorse of the continuous-review inventory literature \cite{hadley1963analysis, porteus2002foundations}; the intermittent-demand stream represented by Prak et al.~\cite{prak2021robust} builds on Croston~\cite{croston1972forecasting}, Syntetos-Boylan~\cite{syntetos2005accuracy}, and Willemain et al.~\cite{willemain2004new} to handle sporadic, non-normal demand patterns which our current prototype does not explicitly model.
+\section{The InventOR Decision Aid}
+\label{sec:aid}
 
-\section{Methodology}
-\label{sec:method}
+\subsection{What the tool does, in plain terms}
+A planner's question is: \emph{given what this material has done in the past, how much safety stock should I hold, at what stock level should I reorder, and how much should I order?} InventOR answers this question in four steps (Figure~\ref{fig:tool_process_map}).
 
-The unit of analysis is a plant-material pair. The framework records a chain of custody from historical records to planner-facing policy values by separating deterministic input preparation, configured LLM inference, schema parsing, deterministic simulation, and human review \cite{mersereau2013information, watts2009data}. Each LLM session receives one filtered, material-scoped historical CSV as a session resource and a small inline parameter block containing current cost, MOQ, service, SAP reference, and material-level storage-capacity fields. No project-specific model weights are trained, fine-tuned, or updated. Run 1 lacks frozen prompt, application-version, and model/runtime records, so it is not independently reproducible. Runs 2 and 3 record those provenance fields but form a distinct post-hoc execution set. Supplementary File S1 reproduces the intended application-side system and tool prompt texts verbatim, together with their disclosed discrepancies against the executable simulator.
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.92\linewidth]{Figure_1_Workflow.pdf}
+  \caption{InventOR workflow: material data are prepared, an LLM proposes a policy, deterministic software parses, checks and simulates it, and a planner reviews the result.}
+  \label{fig:tool_process_map}
+\end{figure}
 
-\subsection{Problem Definition: Single-Item Continuous-Review Control with Stress-Adjusted Service Buffering}
-\label{subsec:problem-framing}
+\begin{enumerate}[label=\textbf{Step \arabic*.}, leftmargin=*]
+\item \textbf{Generate.} The LLM, accessed through an enterprise application with a code interpreter, receives one material's history (daily demand, realized lead times, working-day flags) and a short parameter block (unit cost, holding rate, ordering cost, MOQ, service target, storage limit, and current ERP safety stock and safety lead time for comparison). A written prompt (the only configuration; no weights are changed) \cite{sahoo2024systematic} instructs it to compute demand and lead-time statistics, classify the demand pattern, apply an economic-order-quantity (EOQ) argument and a normal-approximation safety stock, respect the storage limit, and report a structured policy together with a short justification and escalation flag.
+\item \textbf{Gate.} Deterministic code extracts the policy, rejects malformed or infeasible outputs (missing or non-numeric fields, non-positive reorder point or order quantity, negative safety stock, reorder point below safety stock, safety stock plus order quantity above the storage limit) and retries the generation up to three times. The backtest applies one further admission check, that the order quantity is not below the MOQ.
+\item \textbf{Simulate.} Each accepted policy is replayed on the material's demand observed \emph{after} the data cutoff, a held-out evaluation in the sense of out-of-sample forecast testing \cite{tashman2000out, hewamalage2023forecast}, together with the comparator policies, producing holding and ordering cost, fill rate and stockout days. This plays the role that model-based simulation plays in digital-twin decision support \cite{ivanov2026agentic}, at the scale of a single policy.
+\item \textbf{Review.} A planner sees the policy, the LLM's justification and flag, and the simulated comparison. Only the planner changes ERP parameters.
+\end{enumerate}
 
-The executed task is a single-item, single-echelon continuous-review simulation with lost sales \cite{silver2017inventory, zipkin2000foundations, bijvank2011lost}. Each plant-material pair is treated independently; multi-item coupling, shared capacity, substitution, and production scheduling are outside the pilot. For the SAP-SLT-informed OR comparator, pre-cutoff working-day demand yields mean demand $\bar d_i$, annualized demand $\bar D_i^{\mathrm{ann}}=250\bar d_i$, lead-time-demand dispersion, and stationary $(R_i,Q_i)$ parameters. This comparator is not independent of ERP inputs because source SAP safety lead time enters effective lead time. For the SAP-derived arm, source safety stock is retained while $R_i$ and $Q_i$ are recomputed by the same executable routines. For the LLM arm, scoreable policy parameters originate directly in the artifact and pass alias-aware compatibility parsing plus strict executable-contract validation; the reference equations below do not reconstruct them. The simulator executes validated $(r,Q)$ artifacts as fixed-quantity policies and validated $(s,S)$ artifacts as order-up-to policies. In this study all 365 scoreable artifacts resolved to the $(r,Q)$ family after validation, so the order-up-to path is an available but unexercised capability rather than an evaluated result.
+The role of the LLM is deliberately narrow. It is a \emph{candidate generator} whose output is never trusted without the gate, and it is not used to forecast, to place orders, or to run the simulation. The prompt prohibits Monte Carlo simulation, distribution fitting, machine-learning libraries and specialized intermittent-demand estimators, so that the policy rests on transparent statistics a planner can reproduce.
 
-\paragraph{Reference policy calculation}
-The following equations describe the executed SAP-SLT-informed OR comparator; they do not reconstruct direct LLM-emitted policies. The order quantity $Q_i>0$ is rounded upward to an integer, floored at source MOQ, and then projected to its material-level storage limit when possible. The reorder point $R_i\ge0$ triggers replenishment. The EOQ anchor minimizes the standard annual cost approximation
-\[
-\min_{Q_i}\;TC_i\!\left(Q_i;\,SS_i\right)=h_i\!\left(\frac{Q_i}{2}+SS_i\right)+K_i\frac{\bar D_i^{\mathrm{ann}}}{Q_i},
-\]
-where $SS_i$ is arm-specific safety stock, $h_i=\texttt{holding\_cost\_rate}_i\cdot\texttt{unit\_cost}_i$, and $K_i=\texttt{ordering\_cost}_i$. The implementation first uses $Q_i=\max\{\mathrm{MOQ}_i,\lceil\sqrt{2K_i(250\bar d_i)/h_i}\rceil\}$ when demand and ordering cost are positive, and MOQ otherwise. For every arm, a supplied capacity requires $\mathrm{MOQ}_i\leq Q_i$ and $SS_i+Q_i\leq\texttt{max\_storage\_units}_i$; comparator quantities above the residual limit are reduced, while pairs with $SS_i+\mathrm{MOQ}_i$ above the limit are excluded from the common cohort. The SAP-SLT-informed OR safety stock is $SS_i=\lceil z_{\alpha_i}\sigma_{LTD,i}\rceil$, with $R_i=\lceil\bar d_iL_i^{\mathrm{eff}}+SS_i\rceil$. The SAP-derived arm substitutes source SAP safety stock into the same reorder-point expression. No lot-size multiple or stress coefficient is executed. The primary holding/order cost has a zero shortage penalty; positive lost-sales penalties are sensitivity analyses.
+\subsection{Trust, review and reject rules}
+\label{subsec:rules}
+We propose three explicit rules for planners, in line with guidelines for human--AI interaction and with internal-auditing practice for AI systems \cite{amershi2019guidelines, raji2020accountability}, and motivated by the evidence in Section~\ref{sec:results}.
+\begin{description}[leftmargin=*]
+\item[Trust (apply after review)] when the proposal passes the gate, the simulated trajectory respects the storage limit when orders are truncated at it, and the simulated cost is not above that of a history-only OR reference with a fill rate not more than about 0.5 points lower.
+\item[Escalate] when the LLM raises an escalation flag, the material is lumpy or has strongly seasonal or trending demand, the plant or calendar data were repaired, or the policy differs strongly between repeated generations.
+\item[Reject] when the proposal fails the gate after the retry budget, exceeds the storage limit in the hard-limit replay, or is dominated (higher cost and lower fill) by the history-only reference.
+\end{description}
 
-\paragraph{Core constraints}
-Inventory evolves under a lost-sales continuous-review rule on the working-day decision set $\mathcal{W}$. All arms share the first observed post-cutoff on-hand inventory; the SAP-SLT-informed OR $R_i+Q_i$ is used only when that observation is unavailable. The initial on-order pipeline is empty. Duplicate same-material, same-date rows are aggregated by summing demand, receipts, corrections, and scrap and averaging positive lead times, but the simulator consumes only demand and excludes observed receipts, corrections, and scrap. The simulator rounds mean source lead time and schedules every modeled order by that number of subsequent working observations:
-\[
-I_{i,t}=\max\!\left(0,\;I_{i,t-1}+a_{i,t}-d_{i,t}\right),\quad t\in\mathcal{W},
-\]
-where $a_{i,t}$ is the quantity whose working-day due observation is no later than $t$. Scheduled arrivals are added first, realized demand is served subject to lost sales, and the post-demand inventory position is computed as on-hand plus outstanding orders. For a validated $(r,Q)$ artifact, a fixed quantity is ordered when
-\[
-\delta_{i,t}=\mathbf{1}\{\mathrm{IP}_{i,t}^{+}\le R_i\},
-\qquad
-\mathrm{IP}_{i,t}^{+}=I_{i,t}+\sum_{s:\,\mathrm{due}(s)>t}o_{i,s},
-\]
-with $o_{i,t}=Q_i\delta_{i,t}$. For a validated $(s,S)$ artifact, the same threshold test uses $s_i$, and an order of $S_i-\mathrm{IP}_{i,t}^{+}$ is placed when positive; no artifact in this study triggered that branch. Orders due after the observed horizon remain in transit rather than being forced onto the final observation. Parameters remain stationary. Shared observed initialization and the empty initial pipeline are part of the executed comparison design.
+\subsection{Provenance and reproducibility of the configuration}
+\label{subsec:provenance}
+The system prompt, which fully defines the task, the forbidden methods, the capacity rules and the output schema, is a plain-text file that is deployed unchanged in the enterprise application; it is distributed with the paper (Supplementary File S1) and the code repository. Every call logs the SHA-256 of its input data, the UTC time, the application session identifier and the full raw response. The platform does not expose the underlying model identifier or sampling settings to the client; the evaluated model (Anthropic Claude Sonnet 4.6, with a code interpreter) is therefore declared by the operator and is not machine-verifiable. We report this limitation openly and base the reproducibility argument on the prompt file, the per-call logs and three independent runs (Section~\ref{subsec:stability}) rather than on a model checkpoint.
 
-The reorder point targets a nominal cycle service level $\alpha_i\in[0.5,0.999]$ after numeric clamping. Under the normal approximation,
-\[
-\mathbb{P}\!\left(D_{i,L_i^{\mathrm{eff}}}\le R_i\right)\ge\alpha_i
-\;\Longleftrightarrow\;
-R_i\ge\bar d_i L_i^{\mathrm{eff}}+z_{\alpha_i}\,\sigma_{LTD,i}.
-\]
-The reported backtest metric is the ex-post fill rate, which is distinct from the nominal cycle-service target because it also depends on $Q_i$ and realized demand \cite{axsater2015inventory}.
+\section{Application and Evaluation Design}
+\label{sec:design}
 
-Lead-time-demand variance is propagated under the demand and lead-time independence approximation,
-\[
-\sigma_{LTD,i}^2=L_i^{\mathrm{eff}}\sigma_{D,i}^2+\bar d_i^2\sigma_{L,i}^2.
-\]
-The executed SAP-SLT-informed OR buffer is
-\[
-SS_i^{\mathrm{OR}}=z_{\alpha_i}\sigma_{LTD,i},
-\]
-with values rounded upward:
-\[
-SS_i^{\mathrm{OR}}=\left\lceil z_{\alpha_i}\sigma_{LTD,i}\right\rceil,
-\qquad
-R_i=\left\lceil\bar d_iL_i^{\mathrm{eff}}+SS_i^{\mathrm{OR}}\right\rceil.
-\]
-The executable statistics add non-negative source SAP safety-lead-time days to mean lead time when constructing comparator lead-time-demand dispersion (Section~\ref{subsec:slt} discusses this confound). LLM-emitted values remain artifact values accepted by alias-aware parsing and strict executable-contract validation.
-
-\paragraph{Parser and review boundary}
-Artifact policy labels determine simulator routing after validation. The parser resolves compatibility aliases, then requires a valid $(r,Q)$ tuple or explicit $s$ and $S$ values for an $(s,S)$ label; it rejects malformed, infeasible, or internally inconsistent artifacts. It does not execute label-specific optimization or deterministic escalation. Because no artifact supplied explicit and internally consistent $s$ and $S$ values, every scored policy in this study was executed as $(r,Q)$; the reported evidence therefore concerns fixed-quantity control only. Planner review remains required before any operational use.
-
-\subsection{Historical Input Schema and Canonical Analysis Table}
-\label{subsec:data-schema}
-
-The uploaded CSV contains only the subset of source-table columns listed in Table~\ref{tab:lt-schema}. Plant and material identifiers are carried by the run key and inline block rather than repeated in the uploaded rows. The inline block passes cost, MOQ, service, SAP reference, and material-level storage-capacity variables. Stock-flow fields omitted from the uploaded subset are not analyzed by the executed LLM path.
+\subsection{Industrial application and data}
+The application is a pilot at a large manufacturer. The dataset contains 233{,}078 daily records for 411 plant-material pairs from three plants (A, B and C), with a data cutoff on 10 March 2026 and a post-cutoff horizon observed to 27 August 2026. Of the 411 pairs, 365 are eligible for scoring (234 in Plant A, 65 in Plant B, 66 in Plant C) and are sent to the LLM. For 19 pairs (all in Plant A) the supplied MOQ plus the reference safety stock exceeds the storage limit, so no comparator can satisfy both rules; these are excluded from outcome comparison, leaving a \emph{common-feasible cohort} of 346 pairs (215, 65 and 66). All 365 pairs receive an LLM policy. Demand is concentrated: the five largest materials account for 40.3\% of demand and the ten largest for 57.8\%. The source working-day flag of Plant C is all zero; we reconstruct it from the same-date majority of Plants A and B (ties count as working days) and test the effect of this repair in Section~\ref{subsec:sensitivity}. Such data-quality problems are a known threat to analytics-based decision support \cite{watts2009data} and, for inventory systems, to record accuracy \cite{dehoratius2008inventory, kang2005information, mersereau2013information}.
 
 \begin{table}[htbp]
 \centering
-\caption{Fields included in the material-scoped CSV uploaded by the executed runner.}
+\caption{Fields of the material-scoped CSV given to the LLM.}
 \label{tab:lt-schema}
 \scriptsize
 \setlength{\tabcolsep}{2pt}
 \renewcommand{\arraystretch}{1.03}
 \begin{tabularx}{\textwidth}{@{}P{3.35cm} P{1.15cm} L@{}}
 \hline
-\textbf{Column} & \textbf{Type} & \textbf{Description and method use} \\
+\textbf{Column} & \textbf{Type} & \textbf{Description and use} \\
 \hline
-\texttt{date} & date / datetime & Calendar observation date; time ordering, aggregation, and diagnostics \\
-\texttt{actual\_demand} & numeric & Realized demand; mean, variability, intermittency, trend, and regime classification \\
-\texttt{delivery\_time} & numeric & Recorded replenishment lead time; rounded and scheduled as subsequent working observations by the simulator \\
-\texttt{minimum\_order\_quantity} & numeric & Minimum replenishment quantity; order-size feasibility constraint \\
-\texttt{safety\_stock\_units} & numeric & Existing safety stock; benchmarking against computed recommendations \\
-\texttt{safety\_time\_}\linebreak\texttt{workdays\_actual} & numeric & Source SAP safety-lead-time field; currently enters comparator effective lead time \\
-\texttt{supplier\_plant\_}\linebreak\texttt{distance} & numeric & Supplier-to-plant distance; contextual lead-time-risk information \\
-\texttt{reliability\_calc} & numeric & Source supplier or lane reliability context \\
-\texttt{transportation\_network} & string & Source transportation-network context \\
-\texttt{service\_level\_target} & numeric & Source service target used by comparator calculations \\
-\texttt{unit\_cost} & numeric & Purchase or standard cost per unit in the source dataset's internal cost denomination; inventory-value proxy and input to holding-cost derivation and EOQ calculation \\
-\texttt{holding\_cost\_rate} & numeric & Annual carrying-cost rate as a decimal (e.g., 0.20 for 20\% of unit value); used to derive the annual cost of carrying one unit in stock, balance replenishment frequency against stock exposure, and compute economic order quantity \\
-\texttt{ordering\_cost} & numeric & Fixed replenishment cost in the source dataset's internal cost denomination; input to EOQ calculation and simulated material-horizon holding/order cost \\
-\texttt{max\_storage\_units} & numeric & Material-level upper bound applied to all evaluated arms: $\mathrm{MOQ}\leq Q$ and $SS+Q\leq\texttt{max\_storage\_units}$ \\
-\texttt{is\_working\_day} & binary & Working-day flag; working-day demand statistics and non-zero demand share \\
+\texttt{date} & date & Observation date; time ordering and aggregation \\
+\texttt{actual\_demand} & numeric & Realized daily demand; mean, variability, intermittency, regime \\
+\texttt{delivery\_time} & numeric & Recorded replenishment lead time (receipt rows) \\
+\texttt{is\_working\_day} & binary & Working-day flag; demand statistics over working days \\
+\texttt{minimum\_order\_quantity} & numeric & MOQ; order-size constraint \\
+\texttt{unit\_cost}, \texttt{holding\_cost\_rate}, \texttt{ordering\_cost} & numeric & Unit value, annual carrying-cost rate, fixed ordering cost; EOQ and cost evaluation \\
+\texttt{service\_level\_target} & numeric & Target service used in safety-stock computation \\
+\texttt{max\_storage\_units} & numeric & Storage limit: $\mathrm{MOQ}\le Q$ and $SS+Q\le\texttt{max\_storage\_units}$ \\
+\texttt{safety\_stock\_units}, \texttt{safety\_time\_workdays\_actual} & numeric & \textbf{ERP planning parameters} (current safety stock, safety lead time); withheld in the ablation arm \\
+\texttt{reliability\_calc}, \texttt{supplier\_plant\_distance}, \texttt{transportation\_network} & mixed & Supplier and lane context \\
 \hline
 \end{tabularx}
 \end{table}
-\FloatBarrier
 
-\subsection{Analytical Workflow}
-\label{subsec:workflow}
+\subsection{Reference arms and information content}
+\label{subsec:arms}
+The LLM and the classical comparators do not necessarily use the same information, and this matters for the interpretation of any cost difference, because ERP safety stock and safety lead time embed accumulated planner judgement, and safety stock and safety lead time are alternative ways of buffering unreliability \cite{vanKampen2010safety}. Planned lead times can also drift upward when they are adjusted dynamically (the ``lead time syndrome'' \cite{thurer2022planned}), which would inflate any comparator that adds them to the lead time. We therefore construct arms that make the information explicit (Table~\ref{tab:arms}).
 
-The workflow transforms a material snapshot into a policy artifact through preparation, LLM inference, parsing, and simulation (Figure~\ref{fig:tool_process_map}).
+\begin{table}[htbp]
+\centering
+\caption{Comparison arms and the information each uses. All arms respect MOQ and are projected to the storage limit when possible.}
+\label{tab:arms}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.1}
+\begin{tabularx}{\textwidth}{p{3.1cm} p{3.1cm} p{2.4cm} L}
+\hline
+\textbf{Arm} & \textbf{Parameters from} & \textbf{ERP inputs used} & \textbf{Purpose} \\
+\hline
+\textbf{SAP-derived} & ERP safety stock; EOQ order quantity & Safety stock & Status quo of the plant \\
+\textbf{SLT-informed OR} & Stationary $(r,Q)$ with ERP safety lead time added to the lead time & Safety lead time & Original OR comparator \\
+\textbf{ERP-floor OR} & SLT-informed OR with safety stock floored at the ERP value & Both & OR arm matched to the LLM's full information \\
+\textbf{History-only OR} & Stationary $(r,Q)$ from demand and lead-time history, mean lead time & None & ERP-independent baseline \\
+\textbf{LLM (runs 1--3)} & LLM proposal with all fields of Table~\ref{tab:lt-schema} & Both & Main treatment \\
+\textbf{LLM without ERP} & LLM with ERP safety stock and safety lead time set to ``not supplied'' & None & Ablation: what the LLM does when it cannot anchor on ERP \\
+\hline
+\end{tabularx}
+\end{table}
 
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.92\linewidth]{Figure_1_Workflow.pdf}
-\caption{Prototype workflow from material input preparation to policy artifact and simulation output.}
-  \label{fig:tool_process_map}
-\end{figure}
-\FloatBarrier
+\subsection{Simulation, capacity replay and metrics}
+Each pair is simulated independently on the post-cutoff horizon as a single-item, single-echelon continuous-review $(r,Q)$ system \cite{hadley1963analysis, axsater2015inventory, zipkin2000foundations, silver2017inventory, porteus2002foundations} with lost sales \cite{bijvank2011lost}, in the spirit of simulation-based experiments on supply and timing uncertainty \cite{grasso1984simulation}, a shared opening stock, an empty pipeline and arrivals after the rounded mean lead time in working days (Appendix~\ref{app:math}). MOQs are treated as hard order-size constraints, as imposed by suppliers \cite{heese2025moq}, and storage limits as capacity bounds on the replenishment decision \cite{zhang2023replenishment}. The primary metrics are the mean material-horizon holding-plus-ordering cost, the mean material-level fill rate, the aggregate (volume-weighted) fill rate and the number of stockout days. We report paired differences with 10{,}000-sample bootstrap 95\% intervals.
 
-The runner uploads a normalized CSV and inline block; the application returns a JSON artifact. The parser converts it to an executable $(r,Q)$ or $(s,S)$ policy and rejects malformed outputs. Missing artifacts are retried. The simulator evaluates LLM, SAP-derived, and SAP-SLT-informed OR policies on the common horizon. An aggregate-only manifest hashes active-input, evaluation-code, and stored-artifact files; it records unavailable provenance fields explicitly. Current runner code records these fields when the corresponding environment variables are supplied. The author retrospectively identifies the historical model as Anthropic Claude Sonnet 4.6 behind the enterprise application with a code-interpreter-style Python tool; this is not machine-verified provenance. Stored inputs, artifacts, and code reproduce a simulation, not a fresh LLM completion; planners retain implementation authority.
+A static check $SS+Q\le\texttt{max\_storage\_units}$ does not show that storage limits are respected as the inventory evolves, because the reorder point includes lead-time demand and inventory on order can exceed the limit when it arrives. We therefore record, for every policy and every simulated day, the post-receipt on-hand stock and report the share of pairs and days above the limit (the \emph{unconstrained} simulation). We then \emph{replay} every policy with each order truncated to the storage limit minus the current inventory position (the \emph{hard-limit replay}). The hard-limit replay is our primary evaluation.
 
-\subsection{Artifact Completeness and Future Readiness}
-\label{subsec:validation}
-
-The completeness audit asks whether each eligible pair has a scoreable artifact after retries; it does not estimate first-pass reliability, explanation completeness, or deployment readiness. The empirical section is a retrospective audit of an already-executed workflow rather than a controlled experiment: the generation cohort was produced before the evaluation protocol was finalized, the deployed configuration was not frozen or instrumented in advance, and no treatment was assigned. The post-cutoff simulation uses artifacts generated exclusively from pre-cutoff inputs and is descriptive rather than a controlled prospective trial \cite{tashman2000out, hewamalage2023forecast}. A future evaluation must freeze the deployed configuration, model/runtime identifiers, access controls, and approval workflow.
-
-\subsection{Safety Lead Time Computation}
-\label{subsec:slt}
-
-Safety lead time (SLT) is an ancillary ERP-facing design field. The prototype specification proposes combining transport, supplier, and quality lead-time variability with a reliability-deficit premium \cite{silver2017inventory, vanKampen2010safety}, but the present release does not document estimators for those components. In the executed comparator code, non-negative source SAP safety-lead-time days are added to mean lead time before computing both SAP-derived and OR-computed dispersion and reorder points (this coupling is also flagged in Section~\ref{subsec:problem-framing}). The OR arm is therefore labelled SAP-SLT-informed, and no separate SLT effect is identified.
-
-\subsection{Post-Cutoff Policy Simulation}
-\label{subsec:backtest-design}
-
-The confidential operational extract contains 233{,}078 parsed CSV records, 411 plant-material pairs, and three anonymized plants (Plant A, Plant B, and Plant C). The parameter cutoff is 2026-03-10 and the post-cutoff simulation horizon ends on 2026-08-27. Eligibility filters retain 365 plant-material pairs with sufficient pre-cutoff and post-cutoff evidence: 234 from Plant A, 65 from Plant B, and 66 from Plant C. Plant C has no positive source working-day flags, so its calendar flags are derived from same-date Plant A and Plant B votes; ties classify as working days. This deterministic repair permits a common decision calendar; because no alternative Plant C calendar exists, robustness is examined by reporting calendar-day arrivals and by re-running the full comparison on the native-calendar subset that excludes Plant C entirely. SAP-derived and SAP-SLT-informed OR parameters use pre-cutoff information. Stored LLM artifacts were generated from cutoff-bounded pre-cutoff inputs, so every arm is evaluated on the same post-cutoff horizon. Nineteen pairs cannot meet comparator safety stock plus MOQ within their supplied capacity; these are excluded before the common 346-pair comparison.
-
-The simulated arms are: (i) SAP-derived, retaining source SAP safety stock while recomputing reorder point and EOQ order quantity from pre-cutoff statistics; (ii) SAP-SLT-informed OR, using the same statistics, source safety-lead-time input, and feasibility rules but without LLM inference; and (iii) LLM-emitted, a validated $(r,Q)$ or $(s,S)$ artifact. The simulator is continuous-review and lost-sales: all arms begin with the same first observed post-cutoff on-hand inventory, using the OR $ROP+Q$ only as a shared fallback. The initial on-order pipeline is empty. On each working row, modeled arrivals due after rounded mean working-day lead time are received, demand is served subject to lost sales, post-demand inventory position is checked, and a policy-specific order is placed if its threshold is met. Observed post-cutoff receipts, corrections, and scrap are excluded. This common startup design may create cutoff transients. Metrics are fill rate, aggregate demand-weighted fill rate, materials above 95\% fill, zero-stockout materials, stockout days, average on-hand inventory, and simulated material-horizon cost.
-
-For policy $p$ and material $i$, the cost summaries use the simulated horizon of $T_i$ working days. Let $\overline{I}_{i,p}$ be average on-hand inventory, $h_i$ annual holding cost per unit, $K_i$ fixed ordering cost, and $n^{\mathrm{orders}}_{i,p}$ simulated orders. The implementation uses a constant 250 annual working days and computes
-\[
-TC_{i,p}=h_i\overline{I}_{i,p}\frac{T_i}{250}+K_i n^{\mathrm{orders}}_{i,p}.
-\]
-This is a simulated material-horizon holding/order cost in the source dataset's internal cost denomination, not an audited annual financial or booked accounting result. Table~\ref{tab:backtest-results} reports arithmetic means across the cohort with zero shortage penalty. Sensitivities add lost-sales penalties of one and five times source unit cost; cost values must be read jointly with fill rate and stockout days.
+\subsection{Repeated runs and sensitivities}
+To examine run-to-run variation, the entire cohort is generated three times (runs 1, 2 and 3) with the same prompt file and the same data. Run~1 serves as the reference for tabulated results unless stated otherwise; runs 2 and 3 provide replicates. Sensitivity analyses vary the working-day reconstruction (majority, any-plant, strict-all, exclusion of Plant C and calendar-day arrivals), the shortage penalty (zero, one and five times unit cost), and the exclusion of diagnostic outliers (52 pairs with coefficient-of-variation error above 0.75 or safety stock outside half to twice the reference).
 
 \section{Results}
 \label{sec:results}
 
-\subsection{Completion and Artifact Validity}
-\label{subsec:completion-results}
+\subsection{Completion and policy characteristics}
+All four runs (three with the full input and one ablation, Section~\ref{subsec:ablation}) return a valid, storage-feasible $(r,Q)$ policy for all 365 pairs after at most three attempts per pair. Retries were mostly caused by schema errors (invalid policy), not by capacity violations. The validity gate rejects non-positive reorder points and order quantities, negative safety stocks and reorder points below the safety stock. The ERP safety stock is zero for 198 of the 365 pairs (188 of the 346 in the cohort below), so for a majority of pairs the SAP-derived arm holds no safety stock at all.
 
-The final execution produced parser-scoreable artifacts for all 365 eligible plant-material pairs with zero missing and zero parser-rejected outputs after retry handling. Every artifact passes alias-aware parsing, nested-field resolution, and capacity validation against the supplied material-level storage bound; all resolve to the $(r,Q)$ family after validation.
+\subsection{Headline comparison with ERP-derived parameters}
+Unless stated otherwise, all results from here on use the hard-limit replay (every order truncated at the storage limit) on the 346-pair common-feasible cohort, with working-day receipts and no shortage penalty; Section~\ref{subsec:capacity} reports the unconstrained simulation for comparison. Table~\ref{tab:backtest-results} compares all arms. In run~1 the LLM policies cost 11.4\% less than SAP-derived policies and 30.5\% less than the SLT-informed OR comparator (mean 2{,}928 versus 3{,}305 and 4{,}211). The mean fill rate is 0.18 points lower than for SAP-derived (98.11\% versus 98.30\%; bootstrap interval $-0.54$ to $+0.10$) and 0.11 points lower than for the SLT-informed OR. The mean cost difference against SAP-derived is $-377$ (95\% interval $-651$ to $-154$); the LLM is cheaper than SAP-derived in 241 of 346 pairs and, in 226 pairs, simultaneously no more expensive and no worse in fill. The LLM incurs more stockout days in total (910 versus 804 and 831), and aggregate fill is 78.87\% versus 79.34\% and 79.15\%. Aggregate fill is dominated by a few high-demand materials: in the unconstrained simulation of run~1, excluding the five largest materials raises all three to 94.6--95.8\% (Figure~\ref{fig:publication-summary-graphics}).
 
-\subsection{Main Three-Arm Exploratory Simulation}
-\label{subsec:backtest-results}
-
-Table~\ref{tab:backtest-results} reports three policy arms on the same 346 common-feasible material trajectories under working-day post-cutoff simulation. All arms satisfy identical MOQ and supplied per-material storage rules; 19 otherwise eligible pairs whose comparator safety stock plus MOQ exceed capacity are excluded.
+The cost decomposition shows where the saving comes from. Relative to SAP-derived parameters the LLM carries about 17\% less average inventory (16{,}256 versus 19{,}565 units) and has about 16\% lower holding cost, while it places about the same number of orders per year (17.3 versus 17.6). The saving is therefore a trade of inventory for service: the LLM holds less stock and accepts about 13\% more stockout days. It is not the consequence of a better ordering rhythm, and it is not free of service cost. Section~\ref{subsec:sensitivity} shows that, once shortages carry a cost, this trade no longer favours the LLM.
 
 \begin{table}[htbp]
 \centering
-\caption{Post-cutoff working-day simulation on 346 common-feasible plant-material pairs. All arms use pre-cutoff parameterization or cutoff-bounded inputs and satisfy identical MOQ and supplied storage rules. Cost is mean simulated material-horizon holding/order cost with zero shortage penalty. SO days is the total count of stockout days across the cohort.}
+\caption{Hard-limit replay, common-feasible cohort ($n=346$), working-day receipts, zero shortage penalty. Cost is the mean material-horizon holding-plus-ordering cost; average inventory is in units; orders are per year.}
 \label{tab:backtest-results}
 \scriptsize
-\setlength{\tabcolsep}{1.2pt}
-\renewcommand{\arraystretch}{1.14}
-\begin{tabularx}{\textwidth}{@{}P{1.75cm} c c c c c r r@{}}
+\setlength{\tabcolsep}{3pt}
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{l r r r r r r r r}
 \hline
-\textbf{Policy} & \textbf{$n$} & \textbf{\shortstack{Mean\\FR (\%)}} & \textbf{\shortstack{Agg.\\FR (\%)}} & \textbf{\shortstack{$\ge$95\%\\(\%)}} & \textbf{\shortstack{Zero\\SO (\%)}} & \textbf{\shortstack{Mean\\cost}} & \textbf{\shortstack{SO\\days}} \\
+\textbf{Arm} & \textbf{Mean cost} & \textbf{Holding} & \textbf{Ordering} & \textbf{Avg.\ inventory} & \textbf{Orders} & \textbf{Mean fill (\%)} & \textbf{Aggr.\ fill (\%)} & \textbf{Stockout days} \\
 \hline
-SAP-derived & 346 & 98.38 & 79.99 & 94.51 & 80.35 & 3{,}184.20 & 741 \\
-SAP-SLT OR & 346 & 98.27 & 79.58 & 93.93 & 88.73 & 3{,}852.22 & 799 \\
-LLM-emitted & 346 & 97.94 & 77.52 & 92.49 & 81.50 & 2{,}848.04 & 936 \\
+SAP-derived & 3{,}305 & 2{,}172 & 1{,}132 & 19{,}565 & 17.6 & 98.30 & 79.34 & 804 \\
+SLT-informed OR & 4{,}211 & 2{,}608 & 1{,}603 & 21{,}614 & 24.5 & 98.23 & 79.15 & 831 \\
+ERP-floor OR & 4{,}248 & 2{,}633 & 1{,}616 & 21{,}937 & 24.7 & 98.23 & 79.15 & 831 \\
+History-only OR & 2{,}764 & 1{,}725 & 1{,}039 & 15{,}972 & 16.3 & 98.14 & 78.72 & 874 \\
 \hline
-\end{tabularx}
+LLM (run 1) & 2{,}928 & 1{,}824 & 1{,}104 & 16{,}256 & 17.3 & 98.11 & 78.87 & 910 \\
+LLM (run 2) & 2{,}931 & 1{,}850 & 1{,}081 & 16{,}599 & 17.0 & 97.89 & 78.70 & 968 \\
+LLM (run 3) & 2{,}929 & 1{,}841 & 1{,}088 & 16{,}958 & 17.0 & 98.16 & 78.90 & 890 \\
+LLM without ERP & 3{,}014 & 1{,}902 & 1{,}112 & 16{,}507 & 17.3 & 98.06 & 78.89 & 890 \\
+\hline
+\end{tabular}
+\end{adjustbox}
 \end{table}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.98\linewidth]{Figure_2_Comparison.pdf}
-\caption{Demand concentration and aggregate-fill sensitivity. Panel A reports cumulative demand share for the largest materials. Panel B compares full-cohort aggregate fill with the value after excluding the five largest-demand materials.}
+\caption{Demand concentration and aggregate-fill sensitivity (unconstrained simulation, run~1). Panel A: cumulative demand share of the largest materials. Panel B: aggregate fill for the full cohort and after excluding the five largest materials.}
 \label{fig:publication-summary-graphics}
 \end{figure}
 
-Relative to SAP-derived, LLM-emitted policies show 2.48 percentage points lower aggregate fill, 336.16 lower mean holding/order cost, and 195 additional stockout days. Relative to SAP-SLT-informed OR, 2.07 percentage points lower aggregate fill, 1{,}004.18 lower mean holding/order cost, and 137 additional stockout days.
+\subsection{Information asymmetry: what the LLM adds beyond the ERP inputs}
+\label{subsec:arms-results}
+Table~\ref{tab:arms-results} compares the arms in the hard-limit replay on the 346 pairs of the cohort, for all three runs. Three results stand out.
 
-Aggregate evidence is demand-concentrated. The largest 1, 5, 10, and 20 materials contribute 12.57\%, 40.34\%, 57.76\%, and 73.35\% of post-cutoff demand. Excluding the five largest-demand materials raises aggregate fill to 91.82\% for LLM-emitted, 95.80\% for SAP-derived, and 95.11\% for SAP-SLT-informed OR, versus 77.52--79.99\% in the full cohort (Figure~\ref{fig:publication-summary-graphics}). The largest-demand items drive aggregate fill.
+First, the SLT-informed OR and its ERP-floor variant are the most expensive arms (4{,}211 and 4{,}248). The ERP safety lead time inflates their effective lead time, hence their buffers; against them the LLM is about 30--31\% cheaper in every run. This comparison therefore mainly measures how heavily ERP inputs over-buffer, not the quality of the LLM.
 
-At material level, LLM-emitted fill is not lower than SAP-derived for 314 of 346 materials (90.8\%), while its cost is no higher for 238 (68.8\%); both conditions hold for 211 (61.0\%). Against SAP-SLT-informed OR, the corresponding counts are 309 (89.3\%), 304 (87.9\%), and 270 (78.0\%). Paired LLM-minus-comparator fill differences have first quartile, median, and third quartile of 0.00 percentage points for both comparators, reflecting many exact fill ties. Corresponding cost differences are $-259.24$, $-47.17$, and $34.96$ versus SAP-derived and $-787.83$, $-209.32$, and $-25.26$ versus SAP-SLT-informed OR. A deterministic 10{,}000-resample paired bootstrap gives LLM-minus-SAP fill and cost means of $-0.44$ percentage points (95\% interval $[-0.99,-0.02]$) and $-336.16$ (95\% interval $[-630.53,-106.52]$); against SAP-SLT-informed OR, the corresponding values are $-0.33$ percentage points ($[-0.89,0.14]$) and $-1{,}004.18$ ($[-1{,}363.81,-705.90]$). These descriptive resampling intervals and aggregate results show service--cost trade-offs rather than uniform policy ranking.
+Second, the \emph{history-only OR}, which uses no ERP inputs, has the lowest cost of all non-LLM arms (2{,}764 at a fill of 98.14\%). Against it the LLM is 5.9--6.0\% more expensive in all three runs (run 1: mean difference $+164$, 95\% interval $+91$ to $+240$), with fill differences of $-0.03$, $-0.25$ and $+0.01$ points whose intervals include zero in all three runs. The LLM is cheaper than the history-only OR in only 74--77 of 346 pairs. Part of the LLM's lower cost relative to ERP therefore reflects the weakness of the ERP benchmarks and not LLM superiority.
 
-The artifact audit covers all 365 scoreable policies: normalized policy-family agreement is 91.51\%, and 42 artifacts meet a reported diagnostic-outlier rule (CV absolute error above 0.75 or LLM-to-pipeline safety-stock ratio outside [0.5, 2.0]). Removing the 23 flagged artifacts present in the common cohort raises LLM aggregate fill from 77.52\% to 79.55\%, while SAP-derived reaches 80.08\% and SAP-SLT-informed OR reaches 79.70\%; this post-hoc diagnostic subset does not establish a causal correction. Replacing primary working-day receipt offsets with calendar-day offsets gives aggregate fills of 77.77\%, 80.25\%, and 79.84\%, respectively. Removing the one plant whose source working-day flags are entirely absent, and whose calendar is therefore imputed, leaves 280 native-calendar pairs with aggregate fills of 74.03\% for LLM-emitted, 76.55\% for SAP-derived, and 76.35\% for SAP-SLT-informed OR, mean material-level fills of 98.19\%, 98.71\%, and 98.54\%, zero-stockout shares of 81.79\%, 88.21\%, and 90.71\%, and mean holding/order costs of 2{,}893.39, 3{,}471.66, and 4{,}168.76. In this native-calendar subset both comparators retain higher fill and higher zero-stockout shares than the LLM arm, so the imputed calendar does not manufacture the observed service gap. With a lost-sales penalty of one times unit cost, mean total costs are 1{,}688{,}921.83, 1{,}631{,}321.28, and 1{,}692{,}746.91, respectively; at five times unit cost, they are 8{,}433{,}217.00, 8{,}143{,}869.56, and 8{,}448{,}325.64. Thus, zero-penalty holding/order cost cannot establish economic superiority. These sensitivities do not resolve empty-pipeline, excluded-flow, or calendar-repair limitations.
+Third, the LLM is nonetheless cheaper than ERP-derived parameters (11.3--11.4\%) at a mean fill that is lower by 0.14--0.40 points (the interval excludes zero only in run~2), so it is useful when the alternative is the status quo, and it approaches a competent OR benchmark without code or training. Whether the LLM relies on the ERP planning parameters it is given is tested in the ablation of Section~\ref{subsec:ablation}.
 
-\subsection{Three-Run Reproducibility Check}
-\label{subsec:three-run-results}
+\begin{table}[htbp]
+\centering
+\caption{Hard-limit replay: mean cost and mean fill by arm, $n=346$; LLM cost relative to each arm (negative = LLM cheaper).}
+\label{tab:arms-results}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\textwidth}{L r r r r r}
+\hline
+\textbf{Arm} & \textbf{Mean cost} & \textbf{Mean fill (\%)} & \multicolumn{3}{c}{\textbf{LLM cost vs arm (\%)}} \\
+ & & & Run 1 & Run 2 & Run 3 \\
+\hline
+SAP-derived & 3{,}305 & 98.30 & $-11.4$ & $-11.3$ & $-11.4$ \\
+SLT-informed OR & 4{,}211 & 98.23 & $-30.5$ & $-30.4$ & $-30.5$ \\
+ERP-floor OR & 4{,}248 & 98.23 & $-31.1$ & $-31.0$ & $-31.1$ \\
+History-only OR & 2{,}764 & 98.14 & $+5.9$ & $+6.0$ & $+5.9$ \\
+\hline
+LLM (runs 1, 2, 3) & 2{,}928 / 2{,}931 / 2{,}929 & 98.11 / 97.89 / 98.16 & & & \\
+LLM without ERP (ablation) & 3{,}014 & 98.06 & $-8.8^{\dagger}$ & & \\
+\hline
+\end{tabularx}
 
-Runs 1, 2, and 3 each produced 365 output artifacts. The common material cohort is defined as plant-material artifact identifiers with parseable policy triples in all three runs; it contains 365 pairs. All Figure~\ref{fig:three-run-reproducibility} distributions and provenance counts use only this cohort. Runs 2 and 3 have 359 artifacts with complete matching provenance contracts; six are excluded because at least one required provenance field is absent.
+\smallskip
+\footnotesize $^{\dagger}$ Relative to SAP-derived; other comparisons are in Section~\ref{subsec:ablation}.
+\end{table}
+
+\subsection{LLM without ERP planning parameters (ablation)}
+\label{subsec:ablation}
+In this ablation the LLM receives exactly the same material histories, cost parameters, MOQ, service target and storage limit as in runs 1--3, but the ERP safety stock and ERP safety lead time are blanked in the uploaded CSV and marked ``not supplied'' in the inline parameter block; the system prompt file is unchanged. It tests whether the LLM anchors on the ERP planning parameters it is given, and therefore whether the comparison with the ERP-informed arms is confounded by information. The ablation run has the same structure as runs 1--3: all 365 pairs returned a valid, storage-compliant policy.
+
+\emph{Policy values.} Withholding the ERP parameters changes the LLM's policies only slightly beyond its ordinary run-to-run variation. The median ratios of safety stock and reorder point to run~1 are both 1.00 (346 common pairs). The reorder point differs by more than 10\% in 54.6\% of pairs, against 48.3\% between runs~1 and~3 and 48.0\% between runs~2 and~3 with the ERP parameters supplied; the safety stock differs by more than 10\% in 11.0\% of pairs, against 9.8\% and 9.5\%. The median absolute reorder-point difference is 128 units, against 90 and 84 between ERP-supplied runs. The mean ratio is slightly above one (1.04 for safety stock, 1.05 for the reorder point), so the LLM tends to buffer a little more when it has no ERP anchor.
+
+\emph{Outcomes.} In the hard-limit replay the LLM without ERP parameters has a mean cost of 3{,}014 at a mean fill of 98.06\%, against 2{,}928--2{,}931 and 97.89--98.16\% in runs~1--3. It remains 8.8\% cheaper than SAP-derived parameters (95\% interval of the mean difference $-566$ to $-61$; fill $-0.24$ points, interval including zero) and 28.4--29.1\% cheaper than the SLT-informed and ERP-floor ORs, but it is 9.0\% more expensive than the history-only OR (interval $+134$ to $+387$; fill $-0.09$ points; cheaper in 91 of 346 pairs). In the unconstrained simulation the corresponding figures are $-7.0\%$ against SAP-derived (interval $-513$ to $+16$, which includes zero), $-23.2\%$ and $-23.8\%$ against the two ERP-informed ORs, and $+8.8\%$ against the history-only OR. Withholding the ERP parameters thus raises the LLM's cost by roughly 3 percentage points relative to the history-only OR and does not reverse any ranking.
+
+\emph{By plant.} The pattern is the same as with ERP inputs: the LLM remains cheaper than SAP-derived at Plants A (215 pairs, $-10.8\%$) and B (65 pairs, $-21.9\%$) and more expensive at Plant C (66 pairs, $+41.6\%$ against $+36.2\%$ in run~1; cheaper in 8 pairs). The Plant~C loss is therefore not caused by the LLM leaning on ERP parameters either.
+
+\emph{Interpretation.} Two conclusions follow. First, the information-asymmetry concern (that the LLM benefits from ERP inputs) does not explain the LLM's performance: with the ERP parameters removed the LLM keeps most of its advantage over ERP-derived parameters, and the gap to the history-only OR widens only moderately. Second, the ERP parameters are of limited use to the LLM; most of its output is determined by the demand and lead-time histories. A practical consequence is that the LLM can be deployed for materials whose ERP planning data are missing or stale. One limitation is that the ablation tests only the two ERP planning fields; the LLM still sees unit cost, holding rate, ordering cost, MOQ, service target and storage limit, which all reference arms also use.
+
+\subsection{Storage limits along simulated trajectories}
+\label{subsec:capacity}
+All 365 LLM policies satisfy the static rule $SS+Q\le\texttt{max\_storage\_units}$. Along the simulated trajectories, however, the unconstrained simulation exceeds the limit on post-receipt on-hand stock for 183 pairs (52.9\%) for the LLM (10.2\% of simulated pair-days; median peak 1.02 times the limit; maximum 2.52), 198 pairs (57.2\%; 15.9\% of days) for SAP-derived and 230 pairs (66.5\%; 23.4\% of days) for the SLT-informed OR; no pair starts above the limit. The three LLM runs give 183, 181 and 178 pairs. Exceedances arise because inventory on order and lead-time demand can add to stock above $SS+Q$; the static check is therefore necessary but not sufficient, and it applies to every method, not just the LLM.
+
+Under the hard-limit replay no arm exceeds the limit by more than one unit (rounding). Enforcing the limit raises the LLM mean cost from 2{,}850 to 2{,}928 and lowers its mean fill by 0.04 points (98.15\% to 98.11\%); SAP-derived rises from 3{,}184 to 3{,}305 and the SLT-informed OR from 3{,}852 to 4{,}211, with the latter placing 24.5 instead of 15.8 orders on average. The ranking among arms is unchanged, and the LLM's relative advantage over SAP-derived is 11.4\% instead of 10.5\%. We therefore use the replay as the primary evaluation.
+
+\subsection{Plants and demand regimes}
+\label{subsec:plants}
+The average hides a strong plant effect (Table~\ref{tab:plants}, hard-limit replay, run~1). The LLM is 14.1\% cheaper than SAP-derived in Plant A (cheaper in 179 of 215 pairs) and 22.7\% cheaper in Plant B (54 of 65), but 36.2\% \emph{more} expensive in Plant C, where it is cheaper in only 8 of 66 pairs. The Plant~C loss is similar in the other full runs ($+32.2\%$ and $+31.5\%$ in runs~2 and~3) and larger without the ERP parameters ($+41.6\%$). Plant C is also the plant whose calendar we repaired; Section~\ref{subsec:sensitivity} shows that the loss persists under every working-day reconstruction in which Plant C can be scored. Against the history-only OR the LLM is 7.2\% costlier in Plant A, 3.6\% in Plant B and 6.7\% in Plant C (run~1), so no plant favours the LLM over a plain history-based $(r,Q)$ policy. Note that the SLT-informed and history-only ORs give identical results in Plant C, because the ERP safety lead time is zero for all 66 Plant~C pairs.
+
+By demand regime, the 33 lumpy materials show the largest cost reduction against SAP-derived ($-25.4\%$ in run~1; $-23.7\%$ to $-25.2\%$ in the other runs), whereas the 313 smooth materials show $-9.8\%$ at a 0.24-point lower mean fill (98.64\% versus 98.88\%). The service effect for lumpy materials is not consistent (mean fill $+0.38$ points in run~1, $-0.29$ in run~2), and the history-only OR is again 9\% cheaper than the LLM there while achieving a much lower aggregate fill (54.3\% versus 57.0\% for the LLM and 65.8\% for SAP-derived), so part of any cost saving on lumpy materials is bought with service. With only 33 lumpy materials we regard this as indicative only. By demand variability (terciles of the coefficient of variation), the LLM is 15.7\% cheaper than SAP-derived at equal fill in the lowest tercile, 7.5\% cheaper with a 0.68-point lower mean fill in the middle tercile (98.10\% versus 98.78\%), and 12.9\% cheaper in the highest tercile.
+
+\begin{table}[htbp]
+\centering
+\caption{Mean simulated cost per pair and mean fill by plant, run~1, hard-limit replay (common-feasible cohort). The SLT-informed and history-only ORs coincide in Plant~C.}
+\label{tab:plants}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{l r r r r r r r r}
+\hline
+\textbf{Plant ($n$)} & \textbf{LLM cost} & \textbf{SAP-derived cost} & \textbf{SLT-informed OR cost} & \textbf{History-only OR cost} & \textbf{LLM vs SAP} & \textbf{Cheaper pairs} & \textbf{Fill LLM / SAP (\%)} \\
+\hline
+All (346) & 2{,}928 & 3{,}305 & 4{,}211 & 2{,}764 & $-11.4\%$ & 241 & 98.11 / 98.30 \\
+A (215) & 2{,}391 & 2{,}782 & 3{,}779 & 2{,}231 & $-14.1\%$ & 179 & 99.18 / 99.37 \\
+B (65) & 4{,}916 & 6{,}360 & 7{,}329 & 4{,}746 & $-22.7\%$ & 54 & 96.23 / 96.47 \\
+C (66) & 2{,}719 & 1{,}997 & 2{,}549 & 2{,}549 & $+36.2\%$ & 8 & 96.50 / 96.61 \\
+\hline
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+\subsection{Run-to-run stability}
+\label{subsec:stability}
+Across the three runs the aggregate results are very similar: LLM cost relative to SAP-derived is $-10.5\%$, $-9.8\%$ and $-10.2\%$ in the unconstrained simulation, and $-11.4\%$, $-11.3\%$ and $-11.4\%$ in the hard-limit replay, so the spread is below one percentage point. The distributions of policy values are near-identical (median reorder point 1{,}584, 1{,}582 and 1{,}466; median order quantity 2{,}737, 2{,}777 and 2{,}693; median safety stock 683, 688 and 669; Figure~\ref{fig:three-run-reproducibility}). Individual policies, however, vary. Comparing runs 2 and 3 on the 365 pairs, all three policy values are identical for only 36 pairs; every policy resolves to the $(r,Q)$ family, and the median absolute differences are 81 units for the reorder point, 6 for the order quantity and 3 for the safety stock. A few pairs vary strongly (for one material the reorder point was 14{,}882, 14{,}947 and 29{,}218 units in the three runs; for two others the safety stock was zero in one run and 660 or 1{,}075 units in the others). The practical implication is that one generation per material is a noisy estimate whose aggregate behaviour is stable but whose individual values should be reviewed. Non-determinism of this kind is a documented property of LLMs \cite{ouyang2025nondeterminism}, so that repeated-run reporting should be standard.
 
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=\linewidth]{Figure_3_Three_Run_Reproducibility.pdf}
-\caption{Policy-value distributions across the 365-pair shared material cohort. Overlaid lines report materials per common log-spaced bin in Runs 1, 2, and 3; near-coincident lines indicate reproducible distributions. Run 1 predates provenance instrumentation; Runs 2 and 3 record current-runner provenance.}
+\caption{Policy-value distributions across the 365 shared pairs for runs 1, 2 and 3 (materials per common log-spaced bin); near-coincident lines indicate that aggregate behaviour is reproducible.}
 \label{fig:three-run-reproducibility}
 \end{figure}
 
-Among the 359 parseable policy pairs in Runs 2 and 3, all three numeric policy values match exactly for 38 pairs, resolved policy family matches for 357 pairs, and the median absolute differences are 122 units for reorder point, 5 units for order quantity, and 4 units for safety stock. Raw selected-model labels match for 12 pairs only, illustrating output-schema label variation rather than a second execution path. On the 338-pair outcome-common cohort, LLM aggregate fill is 79.05\% in Run 2 and 79.09\% in Run 3, mean material fill is 97.94\% and 98.11\%, mean holding/order cost is 2{,}861.73 and 2{,}880.12, and stockout days total 918 and 846. The corresponding deterministic comparators are identical on that aligned cohort. Run 1 predates provenance instrumentation; Runs 2 and 3 establish repeated completion under the current instrumented runner, but policy differences and incomplete provenance prevent a claim of stable policy values.
+\subsection{Sensitivity analyses}
+\label{subsec:sensitivity}
+\paragraph{Plant C calendar.} Plant C's source working-day flag is all zero, which required reconstruction. We re-scored all policies (hard-limit replay) under four alternatives: any-plant, strict-all, exclusion of Plant C and calendar-day arrivals. In every variant in which Plant C can be scored (any-plant and calendar-day arrivals), the LLM remains 31--35\% more expensive than SAP-derived in Plant C across the three full runs. The cohort-wide advantage over SAP-derived is $-10.8\%$ to $-11.1\%$ in these variants (primary calendar: $-11.3\%$ to $-11.4\%$), and the cost excess over the history-only OR is 5.6--6.1\%. The strict and exclusion variants (280 pairs) drop Plant C and show a larger LLM advantage over SAP-derived ($-17.0\%$ to $-17.6\%$) and a 5.8--6.6\% excess over the history-only OR. The Plant C result is therefore not an artefact of our calendar repair. One residual risk remains: the LLM saw demand series for Plant C that were themselves built on the repaired calendar, and only a re-generation with alternative inputs could remove that dependence.
 
-\section{Discussion}
+\paragraph{Shortage penalty.} With a positive lost-sales penalty the zero-penalty cost ranking changes. Table~\ref{tab:penalty} gives mean total cost per pair (holding, ordering and shortage cost) in the hard-limit replay for penalties of zero, one and five times the unit cost. The SAP-derived parameters become the cheapest arm as soon as shortages are priced, because they carry more inventory and fewer stockouts. Run~1 of the LLM then costs 2.4\% more than SAP-derived at both one and five times the unit cost; it remains cheaper than the SLT-informed OR (1.2\% lower at both multiples) and the ERP-floor OR, and slightly cheaper than the history-only OR (0.8\% lower at both multiples). The LLM's cost advantage over ERP-derived parameters is therefore specific to the case in which service shortfalls are not charged, and the service deficit is a real cost when shortages are priced.
+
+\begin{table}[htbp]
+\centering
+\caption{Mean total cost per pair in the hard-limit replay (346 pairs) when lost sales are charged at a multiple of the unit cost.}
+\label{tab:penalty}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{l r r r r r r r r}
+\hline
+\textbf{Penalty} & \textbf{SAP-derived} & \textbf{SLT-informed OR} & \textbf{ERP-floor OR} & \textbf{History-only OR} & \textbf{LLM run~1} & \textbf{LLM run~2} & \textbf{LLM run~3} & \textbf{LLM no ERP} \\
+\hline
+$0\times$ & 3{,}305 & 4{,}211 & 4{,}248 & 2{,}764 & 2{,}928 & 2{,}931 & 2{,}929 & 3{,}014 \\
+$1\times$ & 1{,}634{,}136 & 1{,}694{,}183 & 1{,}694{,}220 & 1{,}687{,}191 & 1{,}673{,}003 & 1{,}683{,}280 & 1{,}671{,}759 & 1{,}689{,}961 \\
+$5\times$ & 8{,}157{,}462 & 8{,}454{,}072 & 8{,}454{,}109 & 8{,}424{,}899 & 8{,}353{,}306 & 8{,}404{,}676 & 8{,}347{,}082 & 8{,}437{,}748 \\
+\hline
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+\paragraph{Diagnostic outliers and calendar arrivals.} In the unconstrained simulation of run~1, removing the 52 diagnostic outliers (314 pairs; coefficient of variation error above 0.75 or safety stock outside half to twice the reference) leaves LLM, SAP-derived and SLT-informed OR aggregate fill at 79.96\%, 80.38\% and 79.99\%, with mean cost 2{,}864, 3{,}098 and 3{,}748, so the ordering of the arms is unchanged. The findings thus do not depend on a few extreme cases.
+
+\section{Managerial Insights}
+\label{sec:managerial}
+
+\begin{enumerate}[leftmargin=*]
+\item \textbf{Position the tool as a reviewed decision aid, not an autonomous policy engine.} Single generations differ at the material level, and roughly 6--8\% of outputs carry a free-text escalation flag. The gate-simulate-review structure (Section~\ref{subsec:rules}) captures most of the value of the LLM (a candidate policy for every material, with a justification) while leaving the decision to the planner.
+\item \textbf{Benchmark against a history-only OR policy before claiming value.} ERP-derived parameters and ERP-informed OR policies are weak benchmarks: safety stocks are often stale or zero and safety lead times inflate the effective lead time. A planning team that evaluates an LLM aid only against ERP will overestimate its benefit. The history-only $(r,Q)$ is cheap to compute and was cheaper than the LLM in our data.
+\item \textbf{Where the LLM is useful.} Plants A and B (cost reductions of 14--23\% against ERP), lumpy materials (about 25\% cheaper than ERP-derived parameters, although with mixed service effects and only 33 materials) and the many materials with no analyst time are the sweet spot. Plant C, where the LLM loses, indicates that conditions with repaired calendars, small samples or atypical lead-time behaviour need escalation.
+\item \textbf{Verify storage along the trajectory.} The static rule $SS+Q\le\mathrm{limit}$ cannot protect a warehouse: 53--66\% of pairs breach the limit in simulation under every method. Operations should enforce a cap in the order-release logic (order-up-to or truncation), or treat the limit as a design requirement in the policy.
+\item \textbf{Price shortages explicitly.} Without a shortage penalty the cost ranking rewards under-stocking. With a penalty of one unit cost the LLM's cost advantage over SAP disappears (it is about 2.4\% more expensive). Planners should set service targets and penalties before reading the cost comparison.
+\item \textbf{Freeze and log the configuration.} Treat the system prompt as a controlled file, log every call (input hash, time, session, raw response) and re-run before changing the prompt. Our reproducibility argument rests on this log, not on the platform's model identifier, which the client cannot see.
+\item \textbf{Cost and latency.} Each LLM generation took about 7--20 minutes, whereas the OR baseline takes milliseconds. The LLM is attractive where analyst time and not compute is scarce, but a deployment needs batching and monitoring. Periodic regeneration as demand and lead times change would also support adaptable planning under uncertainty \cite{sengupta2025uncertainty}.
+\end{enumerate}
+
+\section{Discussion, Limitations and Research Perspectives}
 \label{sec:discussion}
 
-We identify three findings as the principal scientific contribution. First, 100\% of 365 eligible plant-material pairs yield scoreable, capacity-feasible policy artifacts after retry handling; complete-cohort accounting avoids silent dropout. Second, all scored artifacts resolve to the $(r,Q)$ family; the LLM constructs every policy value from only the material-scoped history and parameter block, while both comparators use ERP-derived inputs that embed accumulated planner judgment. The observed aggregate-fill deficit of roughly two percentage points and higher stockout-day count (936 versus 741 for SAP-derived and 799 for SAP-SLT-informed OR) are consistent with this cold-start asymmetry, but do not identify its causal effect. An ERP-independent cold-start OR arm is required to isolate generator quality. Third, positive lost-sales penalty sensitivities remove the zero-penalty cost ranking, so that ranking cannot establish generator quality.
+\paragraph{What the evidence shows.}
+In a three-plant industrial dataset, a prompt-configured LLM generates feasible, reviewable $(r,Q)$ policies for every material. They are cheaper than ERP-derived parameters in the simulation, but they do not beat a history-only OR policy. We therefore describe InventOR as a way to make a competent analyst's workflow available at scale, not as a method that outperforms optimization. The information-controlled evaluation is what allows this conclusion; without the ERP-independent arm, the first-cut result ($-11.4\%$ against SAP and $-30.5\%$ against the SLT-informed OR in the hard-limit replay) would have been presented as superiority.
 
-The evaluation protocol is the reusable contribution. An aggregate-only manifest hashes active inputs, evaluation code, and stored artifacts, flagging unavailable provenance fields. The input-contract specification, alias-aware parser, capacity-validation rules, and the full exclusion log form a reproducible boundary within which any LLM or OR generator can be substituted and scored under identical rules. Runs 2 and 3 add evidence on current-runner completion and policy variation relative to Run 1: six shared artifacts lack complete provenance and only 38 of 359 provenance-matched pairs have identical numeric policies. Future repeated-inference studies must freeze the configuration before generation and define the alignment analysis ex ante \cite{ouyang2025nondeterminism}.
+\paragraph{Limitations.}
+(i) The data come from one manufacturer and three plants; generalization to other settings is not shown. (ii) The platform does not expose the model identifier or inference settings, so the model is operator-declared. (iii) The simulation excludes observed receipts, corrections and scrap and starts with an empty pipeline; a prospective field trial with planners is needed to assess realized benefit, which we do not claim. (iv) The cost model has zero shortage penalty in the primary results and standard holding and ordering costs; with a positive penalty the cost ranking changes. (v) The $(r,Q)$ policy is a single-item, single-echelon family; multi-item coupling and shared capacity are outside the scope. (vi) Run-to-run variation of individual policies is substantial. (vii) Plant C required calendar reconstruction. (viii) No planner outcomes were measured: we make no claim about planner workload or decision quality. (ix) The reference arms are normal-approximation $(r,Q)$ policies; we did not include an intermittent-demand-specific baseline (for example Croston- or SBA-based forecasts \cite{croston1972forecasting, syntetos2005accuracy}) or a trained data-driven or reinforcement-learning policy, so the comparison with the state of the art is incomplete, particularly for lumpy materials.
 
-Our study is bounded by a single anonymized three-plant dataset, an uninstrumented Run 1 configuration, two post-hoc current-runner executions (Runs 2 and 3), and a post-cutoff simulation that excludes observed receipts, corrections, and scrap with an empty initial pipeline. These are explicit limitations. The contribution is the protocol and its descriptive execution, not a deployment-performance claim.
+\paragraph{Research perspectives.}
+\begin{enumerate}[leftmargin=*]
+\item \emph{Ensembling and consistency.} Aggregating several generations (median or consensus policies) may reduce the individual-policy noise while retaining the LLM's justification; the copilot findings for spare parts \cite{nakhost2025copilot} suggest this is promising.
+\item \emph{Hybrid generators.} Combining the history-only OR with the LLM (the LLM reviewing and annotating the OR policy, or choosing among candidates by regime), as proposed for LLM--OR integration \cite{wasserkrug2025enhancing}, could capture the OR's cost level and the LLM's flags.
+\item \emph{Comparison with trained methods.} A benchmark that compares prompt-based generators with trained data-driven or reinforcement-learning policies \cite{gabellini2026novel, kolyaei2025rl, stranieri2024drl} on identical data and information would clarify the trade-off between setup effort and policy quality.
+\item \emph{Intermittent-demand and richer policy families.} Allowing order-up-to or $(s,S)$ policies and regime-specific estimators may help the lumpy and Plant C pairs \cite{prak2021robust, babai2026fifty}.
+\item \emph{Planner-in-the-loop field trials.} Prospective studies should measure planner time, override rates and realized service and inventory, which our simulation cannot, and should examine adoption drivers and barriers with mixed-methods designs \cite{venkatesh2023adoption, cannas2023aiscm, trifone2026agentic}.
+\item \emph{Standards for information-controlled evaluation.} Studies of LLM decision aids should report an ERP-independent baseline, an ablation that withholds the incumbent's inputs, trajectory-level feasibility, and run-to-run variation.
+\end{enumerate}
 
 \section{Conclusion}
 \label{sec:conclusion}
+InventOR shows that a prompt-configured LLM can generate feasible, justified inventory policies for every material of an industrial portfolio without training, and that a deterministic gate and simulation make these proposals reviewable. On a three-plant dataset, the proposals cost about 11\% less than ERP-derived parameters at slightly lower service, but about 6\% more than a history-only OR policy; when lost sales are priced at one unit cost or more, ERP-derived parameters become the cheapest arm. Storage limits that hold in a static check are exceeded along simulated trajectories for every method, and the LLM loses to ERP at one plant. We therefore recommend the LLM as a human-reviewed aid benchmarked against history-only OR, with trajectory-level storage checks, explicit shortage pricing and a frozen, logged configuration. These results are simulated-comparison evidence, not field evidence of improved planning outcomes.
 
-We present \emph{InventOR}, an applied AI/OR prototype that treats LLMs as candidate-policy generators within deterministic preparation, parsing, and simulation. The framework preserves an inspectable link between material histories, policy fields, and simulated outcomes without project-specific model training or fine-tuning.
+\appendix
+\section{Formal Definitions}
+\label{app:math}
 
-The executed artifact set contains 365 scoreable policies generated from cutoff-bounded, pre-cutoff material histories, all satisfying their material-level storage bounds. On the 346-pair cohort where all arms satisfy identical MOQ and supplied storage rules, LLM-emitted aggregate fill is 77.52\%, mean material-level fill is 97.94\%, mean simulated material-horizon holding/order cost is 2{,}848.04, and stockout days total 936 under working-day receipt scheduling. The ERP-informed comparator construction prevents attributing the service gap to generator quality. Positive shortage-cost sensitivities remove the zero-penalty cost advantage. Runs 2 and 3 confirm repeated completion but show policy-value variation. These values are descriptive simulated-comparison evidence, not deployment or production-trial evidence.
+\paragraph{Reference calculation.}
+These are the standard textbook calculations \cite{silver2017inventory, axsater2015inventory}. For pair $i$, let $\bar d_i$ and $\sigma_{D,i}$ be the mean and standard deviation of pre-cutoff working-day demand, $L_i$ and $\sigma_{L,i}$ the mean and standard deviation of the lead time in working days, $K_i$ the ordering cost, $h_i$ the annual holding cost per unit (unit cost times holding rate), $z_i$ the standard normal quantile of the service target, and $250$ the working days per year. The order quantity is $Q_i=\max\{\mathrm{MOQ}_i,\lceil\sqrt{2K_i\cdot250\bar d_i/h_i}\,\rceil\}$. The lead-time-demand standard deviation is $\sigma_{LTD,i}=\sqrt{L_i\sigma_{D,i}^2+\bar d_i^2\sigma_{L,i}^2}$, the safety stock $SS_i=\lceil z_i\sigma_{LTD,i}\rceil$ and the reorder point $R_i=\lceil\bar d_iL_i^{\mathrm{eff}}+SS_i\rceil$, where $L^{\mathrm{eff}}_i$ is the mean lead time for the history-only OR and the mean lead time plus the ERP safety lead time for the SLT-informed OR and the ERP-floor OR. The SAP-derived arm uses the ERP safety stock and the same $Q_i$. All policies are projected to $SS_i+Q_i\le\texttt{max\_storage\_units}_i$ when $\mathrm{MOQ}_i+SS_i$ fits.
 
-Future work should supply an ERP-independent cold-start OR arm, predefine repeated-inference alignment and stability measures before cohort-scale generation, extend the admissible policy family beyond $(r,Q)$ to order-up-to and intermittent-demand regimes, and run a prospective evaluation with planner-in-the-loop review and fixed instrumentation. An ex-ante diagnostic-outlier exclusion rule and a documented SLT-component estimator belong in the same evaluation protocol upgrade.
+\paragraph{Simulation.}
+On each post-cutoff working day, demand is served from on-hand stock, unmet demand is lost, and an order of size $Q_i$ is placed when the inventory position (on-hand plus on order) is at or below $R_i$ and arrives after the rounded mean lead time in subsequent working observations. Observed receipts, corrections and scrap are ignored. The total cost is $TC_i=h_i\bar I_iT/250+K_iN_i$, where $\bar I_i$ is the mean on-hand stock over the $T$ simulated working days and $N_i$ the number of orders. Fill rate is served divided by demanded units. In the hard-limit replay an order is truncated to $\texttt{max\_storage\_units}_i$ minus the inventory position, and no order is placed if the truncated quantity is zero.
+
+\section{Reproducibility Record}
+\label{app:repro}
+Prompt file, runner code, evaluation scripts, aggregate outputs and per-call input hashes are distributed with the code release (Data and Code Availability). The three runs and the ablation use the same prompt file; the ablation differs only in that the two ERP planning fields are blanked in the uploaded data and marked ``not supplied'' in the inline block. The deployed system prompt is the file \texttt{system\_prompt.txt} in the release. The platform does not expose the model identifier or inference settings to the client; the model is therefore operator-declared (Anthropic Claude Sonnet 4.6 on an enterprise platform with a code-interpreter tool) and not independently verified. For each call the release records the input data, a hash of the input, the UTC time, the session identifier and the raw response.
 
 \section*{Author Contributions}
 Conceptualization, Methodology, Software, Formal analysis, Validation, Visualization, Writing -- original draft, Writing -- review and editing: Aris Dressino.
@@ -419,19 +444,14 @@ This research did not receive any specific grant from funding agencies in the pu
 The author declares no known competing financial interests or personal relationships that could have appeared to influence the work reported in this paper.
 
 \section*{Data and Code Availability}
-The raw operational data and material-level artifacts cannot be publicly released because they contain commercially sensitive material, supplier, and planning information. A confidentiality-screened release package containing analysis code, the anonymized variable schema, aggregate evaluation results, manuscript sources, and aggregate integrity manifest is available at \texttt{github.com/DressPD/inventor\_public}. The GitHub repository is the development mirror. A versioned Zenodo archive of this release is available at \texttt{https://doi.org/10.5281/zenodo.22262052}. A preprint of this manuscript is archived at \texttt{https://doi.org/10.5281/zenodo.22262180}. Supplementary File S1 accompanies this submission and contains the intended application-side prompt specification. Run 1 deployed application configuration, model/runtime identifier, inference dates, and prompt hashes were not preserved and are not claimed as available; the current runner records these fields for future executions.
+The raw operational data and material-level artifacts cannot be publicly released because they contain commercially sensitive material, supplier and planning information. A confidentiality-screened release package containing analysis code, the anonymized variable schema, aggregate evaluation results, manuscript sources and prompt files is available at \texttt{github.com/DressPD/inventor\_public}. A versioned Zenodo archive of the release is available at \texttt{https://doi.org/10.5281/zenodo.22262052}. A preprint of an earlier version is archived at \texttt{https://doi.org/10.5281/zenodo.22262180}. Supplementary File S1 contains the system prompt used for all runs.
 
-\section{Acknowledgments}
-\label{sec:ack}
-
-The author thanks the industrial collaborators and material-control experts who contributed domain knowledge and access to anonymized operational data. The author also acknowledges the associated enterprise data and IT teams for supporting data access and prototype execution. No formal full-population planner evaluation is claimed. Any errors or omissions remain the responsibility of the author.
+\section*{Acknowledgments}
+The author thanks the industrial collaborators and material-control experts who contributed domain knowledge and access to anonymized operational data, and the enterprise data and IT teams for supporting data access and prototype execution. No formal planner evaluation is claimed. Any errors or omissions remain the responsibility of the author.
 
 \section*{Declaration of Generative AI and AI-Assisted Technologies in the Writing Process}
-During manuscript preparation, the author used OpenAI GPT-5.6 through OpenCode for language editing, consistency checks, citation review, and LaTeX proofing support; this is a writing-assistance tool and is distinct from the Anthropic Claude Sonnet 4.6 deployment evaluated in the research workflow. The author reviewed and edited the content after use and takes full responsibility for the content of the published article. Figures were rendered deterministically from author-reviewed LaTeX and Python source; generative AI did not directly create or manipulate image content. The research workflow evaluated in the paper is itself the object of study and is described separately in the methodology.
+During manuscript preparation and revision, the author used OpenAI GPT-5.6 and Anthropic Claude models through the OpenCode coding assistant. They supported language editing, restructuring and redrafting of the text, consistency checks, citation verification against Crossref metadata, LaTeX proofing, and the writing and execution of the analysis scripts that produce the evidence tables (for example the capacity-trajectory, information-asymmetry and sensitivity analyses). These writing and coding assistants are distinct from the Anthropic Claude Sonnet 4.6 deployment that is the object of evaluation in the research workflow. The author specified the analyses, reviewed and edited all content and results after use, and takes full responsibility for the content of the published article. Figures were rendered deterministically from author-reviewed LaTeX and Python source; generative AI did not directly create or manipulate image content.
 
-%% If you have bib database file and want bibtex to generate the
-%% bibitems, please use
-%%
 \begingroup
 \small
 \bibliographystyle{elsarticle-num}
@@ -439,7 +459,3 @@ During manuscript preparation, the author used OpenAI GPT-5.6 through OpenCode f
 \endgroup
 
 \end{document}
-
-\endinput
-%%
-%% End of InventOR manuscript.

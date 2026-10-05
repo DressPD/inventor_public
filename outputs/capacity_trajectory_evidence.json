@@ -1,0 +1,154 @@
+{
+  "run_id": "run-01",
+  "n_backtested": 346,
+  "n_opening_inventory_over_capacity": 0,
+  "definition": "on-hand after receipts, before demand, versus max_storage_units",
+  "all_pairs": {
+    "llm_pure": {
+      "n_pairs_with_capacity": 346,
+      "n_pairs_peak_on_hand_over_capacity": 183,
+      "pct_pairs_over_capacity": 52.89,
+      "n_pairs_peak_position_over_capacity": 178,
+      "total_days_over_capacity": 2812,
+      "pct_days_over_capacity": 10.244,
+      "max_excess_units": 159044.0,
+      "median_peak_on_hand_to_capacity": 1.0214,
+      "max_peak_on_hand_to_capacity": 2.5213
+    },
+    "sap_static": {
+      "n_pairs_with_capacity": 346,
+      "n_pairs_peak_on_hand_over_capacity": 198,
+      "pct_pairs_over_capacity": 57.23,
+      "n_pairs_peak_position_over_capacity": 198,
+      "total_days_over_capacity": 4369,
+      "pct_days_over_capacity": 15.916,
+      "max_excess_units": 239297.0,
+      "median_peak_on_hand_to_capacity": 1.0651,
+      "max_peak_on_hand_to_capacity": 1.7949
+    },
+    "universal_rq": {
+      "n_pairs_with_capacity": 346,
+      "n_pairs_peak_on_hand_over_capacity": 230,
+      "pct_pairs_over_capacity": 66.47,
+      "n_pairs_peak_position_over_capacity": 228,
+      "total_days_over_capacity": 6435,
+      "pct_days_over_capacity": 23.443,
+      "max_excess_units": 540904.0,
+      "median_peak_on_hand_to_capacity": 1.1198,
+      "max_peak_on_hand_to_capacity": 2.1868
+    }
+  },
+  "excluding_opening_over_capacity": {
+    "llm_pure": {
+      "n_pairs_with_capacity": 346,
+      "n_pairs_peak_on_hand_over_capacity": 183,
+      "pct_pairs_over_capacity": 52.89,
+      "n_pairs_peak_position_over_capacity": 178,
+      "total_days_over_capacity": 2812,
+      "pct_days_over_capacity": 10.244,
+      "max_excess_units": 159044.0,
+      "median_peak_on_hand_to_capacity": 1.0214,
+      "max_peak_on_hand_to_capacity": 2.5213
+    },
+    "sap_static": {
+      "n_pairs_with_capacity": 346,
+      "n_pairs_peak_on_hand_over_capacity": 198,
+      "pct_pairs_over_capacity": 57.23,
+      "n_pairs_peak_position_over_capacity": 198,
+      "total_days_over_capacity": 4369,
+      "pct_days_over_capacity": 15.916,
+      "max_excess_units": 239297.0,
+      "median_peak_on_hand_to_capacity": 1.0651,
+      "max_peak_on_hand_to_capacity": 1.7949
+    },
+    "universal_rq": {
+      "n_pairs_with_capacity": 346,
+      "n_pairs_peak_on_hand_over_capacity": 230,
+      "pct_pairs_over_capacity": 66.47,
+      "n_pairs_peak_position_over_capacity": 228,
+      "total_days_over_capacity": 6435,
+      "pct_days_over_capacity": 23.443,
+      "max_excess_units": 540904.0,
+      "median_peak_on_hand_to_capacity": 1.1198,
+      "max_peak_on_hand_to_capacity": 2.1868
+    }
+  },
+  "hard_capacity_replay": {
+    "rule": "order quantity truncated to max_storage_units minus inventory position",
+    "capacity_summary": {
+      "llm_pure": {
+        "n_pairs_with_capacity": 346,
+        "n_pairs_peak_on_hand_over_capacity": 0,
+        "pct_pairs_over_capacity": 0.0,
+        "n_pairs_peak_position_over_capacity": 0,
+        "total_days_over_capacity": 0,
+        "pct_days_over_capacity": 0.0,
+        "max_excess_units": 0.0,
+        "median_peak_on_hand_to_capacity": 0.9151,
+        "max_peak_on_hand_to_capacity": 1.0
+      },
+      "sap_static": {
+        "n_pairs_with_capacity": 346,
+        "n_pairs_peak_on_hand_over_capacity": 1,
+        "pct_pairs_over_capacity": 0.29,
+        "n_pairs_peak_position_over_capacity": 0,
+        "total_days_over_capacity": 12,
+        "pct_days_over_capacity": 0.044,
+        "max_excess_units": 0.9499999999825377,
+        "median_peak_on_hand_to_capacity": 0.9405,
+        "max_peak_on_hand_to_capacity": 1.0
+      },
+      "universal_rq": {
+        "n_pairs_with_capacity": 346,
+        "n_pairs_peak_on_hand_over_capacity": 1,
+        "pct_pairs_over_capacity": 0.29,
+        "n_pairs_peak_position_over_capacity": 0,
+        "total_days_over_capacity": 13,
+        "pct_days_over_capacity": 0.047,
+        "max_excess_units": 0.8499999999767169,
+        "median_peak_on_hand_to_capacity": 0.9618,
+        "max_peak_on_hand_to_capacity": 1.0
+      }
+    },
+    "unconstrained_aggregate": {
+      "llm_pure": {
+        "mean_fill_rate_pct": 98.1516,
+        "mean_total_cost": 2850.44,
+        "mean_avg_inventory": 17113.79,
+        "mean_num_orders": 15.098
+      },
+      "sap_static": {
+        "mean_fill_rate_pct": 98.3795,
+        "mean_total_cost": 3184.2,
+        "mean_avg_inventory": 21761.57,
+        "mean_num_orders": 13.983
+      },
+      "universal_rq": {
+        "mean_fill_rate_pct": 98.2698,
+        "mean_total_cost": 3852.22,
+        "mean_avg_inventory": 25734.51,
+        "mean_num_orders": 15.78
+      }
+    },
+    "enforced_aggregate": {
+      "llm_pure": {
+        "mean_fill_rate_pct": 98.1133,
+        "mean_total_cost": 2927.83,
+        "mean_avg_inventory": 16255.59,
+        "mean_num_orders": 17.286
+      },
+      "sap_static": {
+        "mean_fill_rate_pct": 98.2981,
+        "mean_total_cost": 3304.64,
+        "mean_avg_inventory": 19564.52,
+        "mean_num_orders": 17.627
+      },
+      "universal_rq": {
+        "mean_fill_rate_pct": 98.2271,
+        "mean_total_cost": 4211.04,
+        "mean_avg_inventory": 21614.33,
+        "mean_num_orders": 24.535
+      }
+    }
+  }
+}
