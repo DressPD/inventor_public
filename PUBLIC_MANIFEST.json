@@ -4,7 +4,7 @@
     ".gitignore": "468323c2ccae8aeee3b7ffa7b9cde1aa581159af2dc6e05734a73dff2966a669",
     "README.md": "ef1606125a7782ed3924f43849e5e971572877d7237eadda3a87b0c3a776f9f3",
     "data/synthetic_inventory.csv": "82c1b181d4945e8be6204b8041cfb1505d8e952f2d0541c7249b3c246c9d8a2e",
-    "docs/methodology.md": "02d4c8bcc08673c3699785f42792697963ac238c312eb5d264ce9ff3b05f68e1",
+    "docs/methodology.md": "c2f54e2fb0d277c94b684fc95fe4477d78e03737968ed4e68645ea10ef9cb883",
     "docs/public_demo.md": "f4decd8808689c10b9e75fe7d9dd42851134f1d8df31cf95a15514baae19ba4b",
     "inventory_llm/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "inventory_llm/core.py": "93e2924c938c3c603f6a7eaef611e44a9f269aa460fc884a3c027e9ce10cbe30",

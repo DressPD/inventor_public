@@ -2,38 +2,50 @@
 
 ## Question
 
-Can a general-purpose LLM, without training or fine-tuning, receive one material trace and produce replenishment parameters that backtest well?
+Can a general-purpose LLM, without training or fine-tuning, receive one material trace and produce replenishment parameters that are admissible, storage-feasible and competitive with ERP-derived and operations-research policies when replayed on held-out data?
 
 ## Arms
 
 | Arm | Role |
 |---|---|
-| SAP-derived | Recomputed reorder point and quantity with source safety stock |
-| SAP-SLT-informed OR | Deterministic `(r,Q)` comparator retaining source SAP safety lead time |
-| LLM-emitted | Validated LLM artifact; every scoreable artifact in this study resolved to `(r,Q)` |
+| SAP-derived | Recomputed reorder point and quantity with the ERP safety stock |
+| SLT-informed OR | Deterministic `(r,Q)` policy that adds the ERP safety lead time to the mean lead time |
+| ERP-floor OR | SLT-informed OR with the ERP safety stock as a floor (same ERP inputs as the LLM) |
+| History-only OR | Deterministic `(r,Q)` policy computed from demand and lead-time history only, no ERP planning inputs |
+| LLM (runs 1-3) | Validated LLM artifact; every artifact resolved to `(r,Q)` |
+| LLM without ERP | Ablation: the two ERP planning fields (safety stock, safety lead time) are blanked and marked `not_supplied` |
 
 ## Workflow
 
 1. Load the confidential operational CSV extract.
 2. Repair all 39,451 all-zero Plant C calendar rows from Plant A/B same-date votes; ties count as working days.
-3. Select eligible plant-materials using the working-day rule.
-4. Send one material at a time to the enterprise LLM platform with prompt variables and a material-scoped CSV.
+3. Select eligible plant-materials (at least 20 pre-cutoff and 40 validation working days).
+4. Send one material at a time to the enterprise LLM platform with prompt variables and a material-scoped CSV. The system prompt is `prompts/system_prompt.txt`.
 5. Extract `inventory_optimization_output.json`.
-6. Convert valid LLM policy values to `(r,Q)` or `(s,S)` simulator policies; reject and retry malformed, inconsistent, MOQ-, or storage-violating artifacts. In this study all 365 scoreable artifacts resolved to `(r,Q)`, so the order-up-to branch is supported but unexercised.
-7. Project each deterministic comparator to the same MOQ and per-material storage rule; exclude pairs where comparator safety stock plus MOQ cannot fit.
-8. Simulate LLM-emitted, SAP-derived, and SAP-SLT-informed OR on the same post-cutoff horizon and shared observed opening inventory.
-9. Report failures, malformed outputs, and outliers without imputation.
+6. Gate: reject and retry malformed artifacts, non-positive reorder point or order quantity, negative safety stock, reorder point below safety stock, and safety stock plus order quantity above the storage limit. The backtest additionally requires the order quantity to be at least the MOQ.
+7. Project each deterministic comparator to the same MOQ and storage rule; exclude pairs where comparator safety stock plus MOQ cannot fit.
+8. Replay every arm on the same post-cutoff horizon from the shared observed opening inventory. Primary basis: hard-limit replay, in which orders are truncated to storage limit minus inventory position; the unconstrained replay is reported only for the capacity-trajectory check.
+9. Report failures and outliers without imputation.
 
-## Active Eligibility
+## Eligibility
 
-The active data contain 411 plant-material pairs. Plant C has rows for the full date range but an all-zero `is_working_day` field, so its working-day calendar is derived from same-date calendars in Plants A and B. With at least 20 pre-cutoff working days and 40 validation working days, 365 materials are eligible: 234 from Plant A, 65 from Plant B, and 66 from Plant C.
+411 plant-material pairs; 365 eligible (Plant A 234, Plant B 65, Plant C 66). 19 Plant A pairs are excluded because a comparator safety stock plus MOQ exceeds the storage limit, leaving a common-feasible cohort of 346 pairs.
 
-## Final Run State
+## Primary results (hard-limit replay, 346 pairs, zero shortage penalty)
 
-All 365 eligible pairs have scoreable, LLM-capacity-feasible artifacts after retry handling. The equal-feasibility comparison covers 346 pairs: 19 pairs are excluded because a comparator safety stock plus MOQ cannot fit its supplied storage limit. All included arms satisfy `MOQ <= order_quantity` and `safety_stock + order_quantity <= max_storage_units` when supplied. LLM-emitted reaches 77.52% aggregate fill at 2,848.04 mean simulated holding/order cost, compared with SAP-derived at 79.99% and 3,184.20, and SAP-SLT-informed OR at 79.58% and 3,852.22. Stockout-day totals are 936, 741, and 799, respectively. The top five materials represent 40.34% of demand; excluding them raises aggregate fill to 91.82%, 95.80%, and 95.11%, respectively.
+| Arm | Mean cost | Mean fill (%) | Stockout days |
+|---|---:|---:|---:|
+| SAP-derived | 3,305 | 98.30 | 804 |
+| SLT-informed OR | 4,211 | 98.23 | 831 |
+| ERP-floor OR | 4,248 | 98.23 | 831 |
+| History-only OR | 2,764 | 98.14 | 874 |
+| LLM run 1 / 2 / 3 | 2,928 / 2,931 / 2,929 | 98.11 / 97.89 / 98.16 | 910 / 968 / 890 |
+| LLM without ERP | 3,014 | 98.06 | 890 |
 
-Every arm starts with observed on-hand inventory and an empty on-order pipeline. Observed receipts, corrections, and scrap are excluded after cutoff. Primary results use rounded source lead time as a working-day offset; calendar-day offsets give aggregate fill of 77.77%, 80.25%, and 79.84%, respectively. Excluding the plant with an imputed working-day calendar leaves 280 native-calendar pairs with aggregate fill of 74.03%, 76.55%, and 76.35%, and mean holding/order cost of 2,893.39, 3,471.66, and 4,168.76. The primary holding/order cost uses zero shortage penalty; one-times-unit-cost lost-sales penalties yield mean total costs of 1,688,921.83, 1,631,321.28, and 1,692,746.91, respectively. The storage limit is per material, not shared capacity. The 365-artifact audit finds 42 diagnostic outliers and 91.51% normalized family agreement. These choices and the SAP safety-lead-time input prevent causal or independent-comparator claims.
+The LLM is about 11% cheaper than the SAP-derived arm and about 30% cheaper than the SLT-informed and ERP-floor OR arms, and about 6% more expensive than the history-only OR; without ERP planning inputs it is 8.8% cheaper than SAP-derived and 9.0% more expensive than the history-only OR. The saving comes from about 17% lower average inventory at about 13% more stockout days. With shortages priced at one unit cost or more, the SAP-derived arm is cheapest (the LLM is about 2.4% more expensive). At Plant C the LLM is 31-36% more expensive than SAP-derived across all three runs and all calendar variants.
 
-## Three-Run Evidence
+Storage limits: in the unconstrained replay the peak on-hand stock exceeds the limit for 178-183 of 346 pairs (LLM, 9-10% of days), 198 (SAP-derived) and 230 (SLT-informed OR). The static check `safety_stock + order_quantity <= max_storage_units` therefore does not guarantee trajectory compliance, which is why the hard-limit replay is primary.
 
-The three-run common material cohort contains 365 plant-material artifact identifiers with parseable policy triples in Runs 1, 2, and 3. All three-run distributions and provenance counts use only this cohort. Runs 2 and 3 retain 359 artifacts with complete matching provenance contracts and exclude six with incomplete provenance. Only 38 of 359 policy triples are numerically identical; median absolute differences are 122 units for reorder point, 5 for order quantity, and 4 for safety stock. On the 338-pair outcome-common cohort, LLM aggregate fill is 79.05% in Run 2 and 79.09% in Run 3. Runs 2 and 3 demonstrate repeated completion under the instrumented runner; Run 1 predates provenance instrumentation and none of the three runs establishes prospective operating performance.
+## Repeated runs
+
+Three full runs with the same prompt file give nearly identical aggregate results (cost spread below one percentage point). Exact policy equality between runs 2 and 3 holds for only 36 of 365 pairs; median absolute differences are 81 units for reorder point, 6 for order quantity and 3 for safety stock. None of these results establishes prospective operating performance.
