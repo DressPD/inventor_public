@@ -19,7 +19,7 @@
   name=a,xbar stacked,bar width=8pt,
   symbolic y coords={sap,slt,erp,hist,sba,emp,tuned,llm,noerp},yticklabels={{SAP-derived},{SLT-informed OR},{ERP-floor OR},{History-only OR},{Croston/SBA OR},{Empirical-quantile OR},{Simulation-tuned OR},{\textbf{LLM (run 1)}},{\textbf{LLM without ERP}}},
   xmin=0,xmax=5300,xlabel={Mean cost per pair, no shortage penalty},
-  title={A. Where the cost comes from},
+  title={A},
   legend style={font=\footnotesize,at={(0.98,0.04)},anchor=south east,draw=none,fill=white,fill opacity=0.8,text opacity=1},
 ]
   \addplot[fill=holdc,draw=none] coordinates {(2172.4,sap) (2608.2,slt) (2632.7,erp) (1725.4,hist) (1665.0,sba) (1542.9,emp) (2472.6,tuned) (1824.2,llm) (1902.4,noerp)};
@@ -38,7 +38,7 @@
   symbolic y coords={sap,slt,erp,hist,sba,emp,tuned,llm,noerp},yticklabels={},
   xmin=-40,xmax=10,xtick={-40,-30,-20,-10,0,10},xlabel={Total cost vs SAP-derived (\%)},
   extra x ticks=0,extra x tick style={grid=major,grid style={black!60}},extra x tick labels={},
-  title={B. With shortages priced},
+  title={B},
   legend style={font=\footnotesize,at={(0.02,0.04)},anchor=south west,draw=none,fill=white,fill opacity=0.8,text opacity=1},
 ]
   \addplot[fill=sapgray,draw=none] coordinates {(0.0,sap) (3.7,slt) (3.7,erp) (3.2,hist) (2.5,sba) (3.7,emp) (-33.1,tuned) (2.4,llm) (3.4,noerp)};
