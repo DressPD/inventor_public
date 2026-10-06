@@ -5,7 +5,7 @@ authors:
   - family-names: Dressino
     given-names: Aris
     affiliation: "TUM School of Management, Technical University of Munich"
-version: 1.1.0
+version: 1.2.0
 date-released: "2026-09-03"
 license: MIT
 repository-code: "https://github.com/DressPD/inventor_public"
