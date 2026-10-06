@@ -1,0 +1,52 @@
+\documentclass[tikz,border=5pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\definecolor{holdc}{RGB}{76,120,168}
+\definecolor{ordc}{RGB}{209,143,0}
+\definecolor{sapgray}{RGB}{122,122,122}
+\definecolor{llmred}{RGB}{190,60,50}
+\definecolor{runtwo}{RGB}{38,108,165}
+\definecolor{greenc}{RGB}{70,140,90}
+\begin{document}
+\begin{tikzpicture}
+\begin{axis}[
+  width=13.2cm,height=4.4cm,
+  ymajorgrids=true,grid style={black!12},axis line style={black!65},
+  xticklabel style={font=\scriptsize,rotate=30,anchor=east},
+  yticklabel style={font=\scriptsize},ylabel style={font=\small},
+  title style={font=\small\bfseries},
+  enlarge x limits=0.07,
+  ybar stacked,bar width=13pt,
+  symbolic x coords={sap,slt,erp,hist,sba,emp,tuned,llm,noerp},xtick=data,xticklabels={{SAP-derived},{SLT OR},{ERP-floor OR},{History-only OR},{Croston/SBA},{Empirical quantile},{Simulation-tuned},{LLM (run 1)},{LLM without ERP}},
+  ymin=0,ylabel={Mean annual cost per pair},
+  title={A. Cost decomposition (zero shortage penalty, hard storage limit, $n=346$)},
+  legend style={font=\scriptsize,at={(0.02,0.97)},anchor=north west,draw=none,fill=none},
+  legend columns=2,
+]
+  \addplot[fill=holdc,draw=none] coordinates {(sap,2172.4) (slt,2608.2) (erp,2632.7) (hist,1725.4) (sba,1665.0) (emp,1542.9) (tuned,2472.6) (llm,1824.2) (noerp,1902.4)};
+  \addplot[fill=ordc,draw=none] coordinates {(sap,1132.2) (slt,1602.8) (erp,1615.7) (hist,1038.9) (sba,1040.2) (emp,945.8) (tuned,793.4) (llm,1103.6) (noerp,1111.8)};
+  \legend{Holding,Ordering}
+\end{axis}
+\begin{axis}[
+  width=13.2cm,height=4.4cm,
+  ymajorgrids=true,grid style={black!12},axis line style={black!65},
+  xticklabel style={font=\scriptsize,rotate=30,anchor=east},
+  yticklabel style={font=\scriptsize},ylabel style={font=\small},
+  title style={font=\small\bfseries},
+  enlarge x limits=0.07,
+  at={(0,-7.6cm)},anchor=north west,
+  ybar,bar width=6pt,
+  symbolic x coords={slt,erp,hist,sba,emp,tuned,llm,noerp},xtick=data,xticklabels={{SLT OR},{ERP-floor OR},{History-only OR},{Croston/SBA},{Empirical quantile},{Simulation-tuned},{LLM (run 1)},{LLM without ERP}},
+  ylabel={Total cost vs SAP-derived (\%)},
+  title={B. Total cost when shortages are priced at one and five unit costs},
+  extra y ticks=0,extra y tick style={grid=major,grid style={black!55}},extra y tick labels={},
+  legend style={font=\scriptsize,at={(0.98,0.05)},anchor=south east,draw=none,fill=none},
+]
+  \addplot[fill=sapgray,draw=none] coordinates {(slt,3.7) (erp,3.7) (hist,3.2) (sba,2.5) (emp,3.7) (tuned,-33.1) (llm,2.4) (noerp,3.4)};
+  \addplot[fill=llmred,draw=none] coordinates {(slt,3.6) (erp,3.6) (hist,3.3) (sba,2.5) (emp,3.7) (tuned,-33.1) (llm,2.4) (noerp,3.4)};
+  \legend{1$\times$ unit cost,5$\times$ unit cost}
+\end{axis}
+\end{tikzpicture}
+\end{document}
