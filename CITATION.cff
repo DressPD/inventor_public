@@ -1,12 +1,12 @@
 cff-version: 1.2.0
 message: "If you use this software or evaluation protocol, please cite it as below."
-title: "InventOR: A Prompt-Configured, No-Fine-Tuning LLM Workflow for Material-Level Inventory Control"
+title: "InventOR: A Human-Reviewed, Prompt-Configured Large Language Model Decision Support System for Material-Level Inventory Control"
 authors:
   - family-names: Dressino
     given-names: Aris
     affiliation: "TUM School of Management, Technical University of Munich"
 version: 1.2.0
-date-released: "2026-09-03"
+date-released: "2026-10-06"
 license: MIT
 repository-code: "https://github.com/DressPD/inventor_public"
 abstract: >-
