@@ -98,28 +98,7 @@ In the classical DSS architecture of data, model and dialog components \cite{spr
 
 \subsection{Scope}
 \label{subsec:scope}
-Table~\ref{tab:scope} states what is and is not part of the system and of the evaluation, so that the claims of the paper are read at the right level.
-
-\begin{table}[htbp]
-\centering
-\caption{Scope of InventOR and of its evaluation.}
-\label{tab:scope}
-\scriptsize
-\setlength{\tabcolsep}{3pt}
-\renewcommand{\arraystretch}{1.1}
-\begin{tabularx}{\textwidth}{p{2.6cm} L L}
-\hline
-\textbf{Dimension} & \textbf{In scope} & \textbf{Out of scope} \\
-\hline
-Decision & Reorder point, safety stock and order quantity per plant-material pair, reviewed periodically & Order release, supplier selection, pricing, forecasting-model development \\
-Inventory system & Single item, single echelon, continuous review, lost sales, $(r,Q)$ family & Multi-item coupling, shared capacity, multi-echelon networks \\
-Inputs & Daily demand and realized lead times, working-day flags, cost and constraint parameters, ERP reference parameters & External signals, supplier forecasts, market data \\
-Role of the LLM & Candidate generator with justification and escalation flag & Forecasting, order placement, running the simulation, final decision \\
-Human role & Planner reviews and decides; rules for trust, escalation and rejection & Autonomous execution without review \\
-Evaluation & Ex-post simulation on real post-cutoff demand, information-controlled comparison, hard storage-limit replay, repeated runs & Field trial, planner workload or decision quality, user acceptance \\
-\hline
-\end{tabularx}
-\end{table}
+InventOR covers the periodic review of reorder point, safety stock and order quantity for one plant-material pair at a time (single item, single echelon, continuous review, lost sales, $(r,Q)$ family). Order release, supplier selection, pricing, forecasting-model development, multi-item coupling and multi-echelon networks are out of scope. The LLM is a candidate generator with a justification and an escalation flag; it does not forecast, place orders, run the simulation or take the final decision, which stays with the planner. The evaluation is an ex-post simulation on real post-cutoff demand with information-controlled comparison, hard storage-limit replay and repeated runs; field trials, planner workload, decision quality and user acceptance are outside it.
 
 \subsection{Design requirements}
 \label{subsec:requirements}
@@ -166,41 +145,9 @@ Learning-based replenishment is well established, including data-driven policies
 \paragraph{Intermittent and spare-parts demand.}
 Material histories in manufacturing are frequently intermittent or lumpy. The statistical literature offers specialized estimators and classification schemes \cite{croston1972forecasting, syntetos2005accuracy, willemain2004new, prak2021robust, babai2026fifty}, and recent studies develop feature-based forecast combinations and temporal aggregation for intermittent demand \cite{sanguri2023intermittent, li2022featurebased}, forecasting for spare parts across product life-cycle phases \cite{goldsmith2025spare}, and integrated forecasting and planning or multi-echelon stocking models for repairable and spare parts \cite{babaveisi2022repairable, caserta2026amazon}. Related industrial studies examine how manufacturers identify and select safety buffers \cite{hedvall2025buffers}. Our regime analysis (Section~\ref{subsec:plants}) shows where an LLM that is forbidden from using specialized intermittent-demand estimators behaves differently on lumpy materials.
 
-Table~\ref{tab:literature-positioning} summarizes these streams and states how the contribution of InventOR differs. InventOR is not a new inventory model and does not claim to beat trained or optimized methods. It contributes (i) a DSS design in which an off-the-shelf LLM is a bounded candidate generator inside a reviewed process, (ii) an evaluation that controls the information available to each arm, and (iii) industrial evidence on cost, service and storage feasibility. The $(r,Q)$ policy it uses is the standard workhorse of continuous-review control \cite{hadley1963analysis, porteus2002foundations, silver2017inventory}.
+In summary, InventOR is not a new inventory model and does not claim to beat trained or optimized methods. It contributes (i) a DSS design in which an off-the-shelf LLM is a bounded candidate generator inside a reviewed process, (ii) an evaluation that controls the information available to each arm, and (iii) industrial evidence on cost, service and storage feasibility. The $(r,Q)$ policy it uses is the standard workhorse of continuous-review control \cite{hadley1963analysis, porteus2002foundations, silver2017inventory}.
 
-\begin{table}[htbp]
-\centering
-\caption{Literature positioning of InventOR relative to recent work on AI-supported inventory and supply-chain decisions.}
-\label{tab:literature-positioning}
-\scriptsize
-\setlength{\tabcolsep}{2pt}
-\renewcommand{\arraystretch}{1.10}
-\begin{tabularx}{\textwidth}{p{2.6cm} p{1.9cm} p{2.5cm} L}
-\hline
-\textbf{Study} & \textbf{Approach} & \textbf{Decision} & \textbf{Relation to InventOR} \\
-\hline
-\multicolumn{4}{@{}l}{\textit{LLMs for operations and supply chains}}\\
-Jackson et al.~\cite{jackson2024generative}; Fosso Wamba et al.~\cite{fossowamba2023chatgpt} & Framework / review & Broad supply-chain use & Motivates LLM use; no inventory-policy evidence \\
-Song et al.~\cite{song2026llmscm}; Panja et al.~\cite{panja2026genai} & Systematic reviews & LLMs in SCM and logistics & Place InventOR in the emerging empirical gap \\
-Trifone et al.~\cite{trifone2026agentic}; Cannas et al.~\cite{cannas2023aiscm}; Venkatesh et al.~\cite{venkatesh2023adoption} & Adoption studies, research agenda & AI roles, barriers, data quality & Support human-in-the-loop design and review rules \\
-Ivanov~\cite{ivanov2026agentic}; Le et al.~\cite{le2026llmdt} & Agentic / LLM digital twins & Model-based decision support & Pair AI proposals with simulation; InventOR applies this to $(r,Q)$ parameters \\
-Nakhost et al.~\cite{nakhost2025copilot} & LLM + simulation & Spare-parts forecast & Closest LLM study; forecast, not policy \\
-Jannelli et al.~\cite{jannelli2025agentic}; Quan and Liu~\cite{quan2024invagent} & Multi-agent LLM & Sequential ordering, consensus & Per-period agent decisions in simulation \\
-AlMahri et al.~\cite{almahri2025kgllm}; Zheng and Brintrup~\cite{zheng2025visibility} & LLM + knowledge graphs & Supply-network visibility & LLM for information extraction, not inventory control \\
-Hamdan and Brahimi~\cite{hamdan2026routing} & LLM benchmark & Routing & Evaluates LLM on a classical OR task \\
-Li et al.~\cite{li2023large}; Huang et al.~\cite{huang2025orlm}; Ahmaditeshnizi et al.~\cite{ahmaditeshnizi2024optimus}; Zhang et al.~\cite{zhang2025or} & NL$\to$model / solver & General OR models & Model formulation; not a fixed policy family \\
-\multicolumn{4}{@{}l}{\textit{Data-driven inventory control without LLMs}}\\
-Gabellini et al.~\cite{gabellini2026novel} & Trained data-driven & Replenishment, safety stock and safety lead time & Closest OR neighbour; needs training; automotive data \\
-Kolyaei et al.~\cite{kolyaei2025rl}; Stranieri et al.~\cite{stranieri2024drl}; Wang et al.~\cite{wang2022aerospace} & Deep reinforcement learning & Replenishment & Learned policies; require training environments \\
-Ma~\cite{ma2026integrated}; Wang et al.~\cite{wang2026contextual}; Zhang et al.~\cite{zhang2023replenishment} & Deep learning / contextual DRO / online algorithm & Forecast-plus-order; capacitated replenishment & Training, tuning or worst-case design per setting \\
-\multicolumn{4}{@{}l}{\textit{Intermittent and spare-parts demand}}\\
-Sanguri et al.~\cite{sanguri2023intermittent}; Li et al.~\cite{li2022featurebased}; Goldsmith and Sachs~\cite{goldsmith2025spare} & Statistical / ML forecasting & Intermittent demand & Specialized estimators the LLM is not allowed to use \\
-Babaveisi et al.~\cite{babaveisi2022repairable}; Caserta and D'Angelo~\cite{caserta2026amazon} & Optimization & Spare-part stocking & Multi-echelon or repairable settings; outside our single-echelon scope \\
-Prak et al.~\cite{prak2021robust}; Babai et al.~\cite{babai2026fifty} & Estimation / review & Inventory under intermittency & Regime-aware benchmarks for future work \\
-\textbf{InventOR (this paper)} & \textbf{Prompted LLM + deterministic gate and simulation} & \textbf{$(r,Q)$ per plant-material pair} & \textbf{No training; reviewed; information-controlled evaluation} \\
-\hline
-\end{tabularx}
-\end{table}
+
 \FloatBarrier
 
 \section{The InventOR Decision Support System}
@@ -208,28 +155,7 @@ Prak et al.~\cite{prak2021robust}; Babai et al.~\cite{babai2026fifty} & Estimati
 
 \subsection{Architecture and components}
 \label{subsec:architecture}
-Table~\ref{tab:architecture} maps the classical DSS components \cite{sprague1980framework, shim2002past} to their realization in InventOR and to the design requirements of Section~\ref{subsec:requirements}. The generator is the only component whose internal logic is not inspectable, and it is surrounded by components that are deterministic and auditable. In the evaluated prototype the dialog component is the per-pair output record and the comparison tables; an interactive planner interface was not built or evaluated.
-
-\begin{table}[htbp]
-\centering
-\caption{DSS components of InventOR.}
-\label{tab:architecture}
-\scriptsize
-\setlength{\tabcolsep}{3pt}
-\renewcommand{\arraystretch}{1.1}
-\begin{tabularx}{\textwidth}{p{2.5cm} L p{1.6cm}}
-\hline
-\textbf{Component} & \textbf{Realization in InventOR} & \textbf{Requirement} \\
-\hline
-Data & Material-scoped extract of daily demand, lead times, working-day flags, cost and constraint parameters, and ERP reference values (Table~\ref{tab:lt-schema}); the set of fields supplied is controlled and logged & DR4 \\
-Knowledge & System prompt file defining the task, the prohibited methods, the storage rules and the output schema (Supplementary File S1) & DR1, DR5 \\
-Model: generator & Enterprise LLM application with a code interpreter, configured only by the prompt; proposes one $(r,Q)$ policy, a justification and an escalation flag & DR1 \\
-Model: verifier and simulator & Deterministic parser and gate; held-out simulation with hard storage-limit replay; reference arms & DR2, DR3 \\
-Dialog (review) & Policy, justification, flag and simulated comparison presented to the planner under the trust, escalate and reject rules & DR6 \\
-Governance & Frozen prompt file, per-call log of input hash, time, session and raw response, repeated runs & DR5 \\
-\hline
-\end{tabularx}
-\end{table}
+Following the classical DSS components \cite{sprague1980framework, shim2002past}, InventOR has a \emph{data} component (a material-scoped extract of daily demand, lead times, working-day flags, cost and constraint parameters and ERP reference values; the fields supplied are controlled and logged; DR4), a \emph{knowledge} component (the system prompt file defining the task, the prohibited methods, the storage rules and the output schema, Supplementary File S1; DR1, DR5), a \emph{model} component split into a generator (an enterprise LLM application with a code interpreter, configured only by the prompt, proposing one $(r,Q)$ policy with a justification and an escalation flag; DR1) and a deterministic verifier and simulator (parser, gate, held-out simulation with hard storage-limit replay and reference arms; DR2, DR3), a \emph{dialog} component (policy, justification, flag and simulated comparison shown to the planner under the trust, escalate and reject rules; DR6) and a \emph{governance} layer (frozen prompt file, per-call log of input hash, time, session and raw response, repeated runs; DR5). The generator is the only component whose internal logic is not inspectable; it is surrounded by deterministic and auditable components. In the evaluated prototype the dialog component is the per-pair output record and the comparison tables; an interactive planner interface was not built or evaluated.
 
 \subsection{Operation in four steps}
 A planner's question is: \emph{given what this material has done in the past, how much safety stock should I hold, at what stock level should I reorder, and how much should I order?} InventOR answers this question in four steps (Figure~\ref{fig:tool_process_map}).
@@ -270,33 +196,10 @@ The system prompt, which fully defines the task, the forbidden methods, the capa
 \label{subsec:evalapproach}
 The evaluation addresses each design requirement in turn (Table~\ref{tab:requirements}): whether the pipeline returns valid, feasible policies (DR1, DR2); what cost and service the policies achieve against reference arms on held-out demand (DR3); how much of that result is due to the information given to the LLM rather than to its reasoning (DR4); whether storage limits hold along the simulated trajectory (DR2); how stable policies are across independent runs (DR5); and where proposals should be escalated (DR6). The primary basis is the hard-limit replay with working-day receipts and no shortage penalty; sensitivity analyses vary these choices. The evaluation is ex post and uses no live users (Section~\ref{subsec:approach}).
 
-\subsection{Industrial application and data}
+\subsection{Industrial application and data}\label{subsec:data}
 The application is a pilot at a large manufacturer. The dataset contains 233{,}078 daily records for 411 plant-material pairs from three plants (A, B and C), with a data cutoff on 10 March 2026 and a post-cutoff horizon observed to 27 August 2026. Of the 411 pairs, 365 are eligible for scoring (234 in Plant A, 65 in Plant B, 66 in Plant C) and are sent to the LLM. For 19 pairs (all in Plant A) the supplied MOQ plus the reference safety stock exceeds the storage limit, so no comparator can satisfy both rules; these are excluded from outcome comparison, leaving a \emph{common-feasible cohort} of 346 pairs (215, 65 and 66). All 365 pairs receive an LLM policy. Demand is concentrated: the five largest materials account for 40.3\% of demand and the ten largest for 57.8\%. The source working-day flag of Plant C is all zero; we reconstruct it from the same-date majority of Plants A and B (ties count as working days) and test the effect of this repair in Section~\ref{subsec:sensitivity}. Such data-quality problems are a known threat to analytics-based decision support \cite{watts2009data} and, for inventory systems, to record accuracy \cite{dehoratius2008inventory, kang2005information, mersereau2013information}.
 
-\begin{table}[htbp]
-\centering
-\caption{Fields of the material-scoped CSV given to the LLM.}
-\label{tab:lt-schema}
-\scriptsize
-\setlength{\tabcolsep}{2pt}
-\renewcommand{\arraystretch}{1.03}
-\begin{tabularx}{\textwidth}{@{}P{3.35cm} P{1.15cm} L@{}}
-\hline
-\textbf{Column} & \textbf{Type} & \textbf{Description and use} \\
-\hline
-\texttt{date} & date & Observation date; time ordering and aggregation \\
-\texttt{actual\_demand} & numeric & Realized daily demand; mean, variability, intermittency, regime \\
-\texttt{delivery\_time} & numeric & Recorded replenishment lead time (receipt rows) \\
-\texttt{is\_working\_day} & binary & Working-day flag; demand statistics over working days \\
-\texttt{minimum\_order\_quantity} & numeric & MOQ; order-size constraint \\
-\texttt{unit\_cost}, \texttt{holding\_cost\_rate}, \texttt{ordering\_cost} & numeric & Unit value, annual carrying-cost rate, fixed ordering cost; EOQ and cost evaluation \\
-\texttt{service\_level\_target} & numeric & Target service used in safety-stock computation \\
-\texttt{max\_storage\_units} & numeric & Storage limit: $\mathrm{MOQ}\le Q$ and $SS+Q\le\texttt{max\_storage\_units}$ \\
-\texttt{safety\_stock\_units}, \texttt{safety\_time\_workdays\_actual} & numeric & \textbf{ERP planning parameters} (current safety stock, safety lead time); withheld in the ablation arm \\
-\texttt{reliability\_calc}, \texttt{supplier\_plant\_distance}, \texttt{transportation\_network} & mixed & Supplier and lane context \\
-\hline
-\end{tabularx}
-\end{table}
+Each pair is sent as a material-scoped CSV with daily demand, recorded lead times, a working-day flag, the minimum order quantity, unit cost, holding-cost rate, ordering cost, service-level target, the storage limit, and two \emph{ERP planning parameters} (current safety stock and safety lead time), which are withheld in the ablation arm. The CSV also carries supplier and lane context fields that the prompt does not use.
 
 \subsection{Reference arms and information content}
 \label{subsec:arms}
@@ -320,7 +223,7 @@ The LLM and the classical comparators do not necessarily use the same informatio
 \textbf{Croston/SBA OR} & $(r,Q)$ with the Syntetos--Boylan-approximated Croston demand rate and its forecast-error spread, mean lead time & None & Intermittent-demand baseline \\
 \textbf{Empirical-quantile OR} & $(r,Q)$ with the reorder point set to the service-level quantile of historical rolling lead-time demand & None & Distribution-free baseline \\
 \textbf{Simulation-tuned $(r,Q)$} & Reserve factor and order-quantity multiple chosen by simulation on the last 250 working days before the cutoff & None & Trained data-driven baseline \\
-\textbf{LLM (runs 1--3)} & LLM proposal with all fields of Table~\ref{tab:lt-schema} & Both & Main treatment \\
+\textbf{LLM (runs 1--3)} & LLM proposal with all CSV fields (Section~\ref{subsec:data}) & Both & Main treatment \\
 \textbf{LLM without ERP} & LLM with ERP safety stock and safety lead time set to ``not supplied'' & None & Ablation: what the LLM does when it cannot anchor on ERP \\
 \hline
 \end{tabularx}
