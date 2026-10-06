@@ -1,5 +1,5 @@
 {
-  "title": "InventOR: A Prompt-Configured, No-Fine-Tuning LLM Workflow for Material-Level Inventory Control",
+  "title": "InventOR: A Human-Reviewed, Prompt-Configured Large Language Model Decision Support System for Material-Level Inventory Control",
   "description": "Confidentiality-screened public release: analysis code, anonymized variable schema, aggregate evaluation results (Run 1, Run 2, Run 3), manuscript sources, and integrity manifest for InventOR, a prompt-configured LLM workflow that generates material-level (r,Q) inventory policies without project-specific model training or fine-tuning.",
   "creators": [
     {
