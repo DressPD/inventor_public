@@ -277,6 +277,97 @@ def make_erp_floor_rq_policy(stats: dict[str, Any]) -> dict[str, Any]:
     return {"policy": "or_erp_floor", "rop": max(0, rop), "oq": base["oq"], "ss": ss, "out_to": None}
 
 
+CROSTON_ALPHA = 0.1
+TUNING_WINDOW_WORKING_DAYS = 250
+TUNING_RESERVE_Z = tuple(x / 4 for x in range(-2, 15))
+TUNING_ORDER_MULTIPLES = (0.5, 0.75, 1.0, 1.5, 2.0)
+
+
+def _working_demand(train_rows: list[dict[str, str]]) -> list[float]:
+    return [demand(r) for r in train_rows if is_working_day(r)]
+
+
+def croston_sba_forecast(wd: list[float], alpha: float = CROSTON_ALPHA) -> tuple[float, float]:
+    """Syntetos-Boylan approximation of Croston's method; returns (demand rate per working day, one-step RMSE)."""
+    z_hat = p_hat = None
+    gap = 1
+    errors: list[float] = []
+    for d in wd:
+        if z_hat is not None:
+            errors.append(d - (1.0 - alpha / 2.0) * z_hat / p_hat)
+        if d > 0:
+            if z_hat is None:
+                z_hat, p_hat = d, float(gap)
+            else:
+                z_hat += alpha * (d - z_hat)
+                p_hat += alpha * (gap - p_hat)
+            gap = 1
+        else:
+            gap += 1
+    if z_hat is None:
+        return 0.0, 0.0
+    rmse = math.sqrt(sum(e * e for e in errors) / len(errors)) if errors else 0.0
+    return (1.0 - alpha / 2.0) * z_hat / p_hat, rmse
+
+
+def make_sba_rq_policy(train_rows: list[dict[str, str]], stats: dict[str, Any]) -> dict[str, Any]:
+    """(r,Q) with Croston/SBA demand rate and one-step forecast-error dispersion; history only, no ERP inputs."""
+    rate, rmse = croston_sba_forecast(_working_demand(train_rows))
+    lt = max(stats["mean_lead_time"], 0.1)
+    sigma_ltd = math.sqrt(max(lt * rmse**2 + (rate**2) * (stats["std_lead_time"] ** 2), 0.0))
+    ss = int(math.ceil(_z(stats["service_level"]) * sigma_ltd))
+    rop = int(math.ceil(rate * lt + ss))
+    oq = _order_quantity({**stats, "mean_daily_demand": rate})
+    return {"policy": "or_sba", "rop": max(0, rop), "oq": oq, "ss": max(0, ss), "out_to": None}
+
+
+def make_empirical_rq_policy(train_rows: list[dict[str, str]], stats: dict[str, Any]) -> dict[str, Any]:
+    """(r,Q) with the reorder point set to the empirical service-level quantile of historical lead-time demand."""
+    wd = _working_demand(train_rows)
+    lead_days = max(1, int(round(stats["mean_lead_time"])))
+    if len(wd) < lead_days:
+        cold = make_cold_rq_policy(stats)
+        return {**cold, "policy": "or_empirical"}
+    sums = sorted(sum(wd[i:i + lead_days]) for i in range(len(wd) - lead_days + 1))
+    index = min(len(sums) - 1, max(0, int(math.ceil(min(max(stats["service_level"], 0.5), 0.999) * len(sums))) - 1))
+    rop = int(math.ceil(sums[index]))
+    ss = max(0, rop - int(math.ceil(stats["mean_daily_demand"] * lead_days)))
+    return {"policy": "or_empirical", "rop": max(0, rop), "oq": _order_quantity(stats), "ss": ss, "out_to": None}
+
+
+def make_tuned_rq_policy(train_rows: list[dict[str, str]], stats: dict[str, Any]) -> dict[str, Any]:
+    """Data-driven (r,Q): reserve factor and order-quantity multiple chosen by simulating the pre-cutoff history.
+
+    Selects the cheapest candidate whose in-sample fill rate reaches the service target, or the highest-fill candidate
+    if none does. Only rows before the cutoff are used, so there is no leakage into the evaluation window.
+    """
+    window = [r for r in train_rows if is_working_day(r)][-TUNING_WINDOW_WORKING_DAYS:]
+    lt = max(stats["mean_lead_time"], 0.1)
+    base_rop = stats["mean_daily_demand"] * lt
+    sigma_hist = math.sqrt(max(lt * stats["std_daily_demand"] ** 2 + (stats["mean_daily_demand"] ** 2) * (stats["std_lead_time"] ** 2), 0.0))
+    base_oq = _order_quantity(stats)
+    target = 100.0 * min(max(stats["service_level"], 0.5), 0.999)
+    best: tuple[tuple[int, float], dict[str, Any]] | None = None
+    for k in TUNING_RESERVE_Z:
+        rop = max(0, int(math.ceil(base_rop + k * sigma_hist)))
+        ss = max(0, int(math.ceil(k * sigma_hist)))
+        for multiple in TUNING_ORDER_MULTIPLES:
+            candidate = project_policy_to_feasibility(
+                {"policy": "or_tuned", "rop": rop, "oq": int(math.ceil(base_oq * multiple)), "ss": ss, "out_to": None}, stats
+            )
+            if candidate is None:
+                continue
+            res = simulate(window, candidate, stats, candidate["rop"] + candidate["oq"])
+            meets = res["fill_rate_pct"] >= target
+            score = (0, res["total_cost"]) if meets else (1, -res["fill_rate_pct"])
+            if best is None or score < best[0]:
+                best = (score, candidate)
+    if best is None:
+        return {**make_cold_rq_policy(stats), "policy": "or_tuned"}
+    chosen = best[1]
+    return {"policy": "or_tuned", "rop": chosen["rop"], "oq": chosen["oq"], "ss": chosen["ss"], "out_to": None}
+
+
 def make_sap_policy(stats: dict[str, Any]) -> dict[str, Any]:
     ss = stats["sap_safety_stock"]
     rop = int(math.ceil(stats["mean_daily_demand"] * stats["effective_lead_time"] + ss))

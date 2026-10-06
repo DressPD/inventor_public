@@ -72,6 +72,45 @@
         "mean_orders": 16.27,
         "stockout_days": 874
       },
+      "or_sba": {
+        "n": 346,
+        "mean_fill": 98.302,
+        "agg_fill": 78.868,
+        "pct_fill_ge95": 93.06,
+        "pct_zero_stockout": 83.82,
+        "mean_cost": 2705.25,
+        "mean_holding": 1665.0,
+        "mean_ordering": 1040.25,
+        "mean_avg_inventory": 15521.2,
+        "mean_orders": 16.34,
+        "stockout_days": 803
+      },
+      "or_empirical": {
+        "n": 346,
+        "mean_fill": 98.352,
+        "agg_fill": 78.866,
+        "pct_fill_ge95": 93.06,
+        "pct_zero_stockout": 79.48,
+        "mean_cost": 2488.69,
+        "mean_holding": 1542.88,
+        "mean_ordering": 945.81,
+        "mean_avg_inventory": 13331.0,
+        "mean_orders": 14.82,
+        "stockout_days": 747
+      },
+      "or_tuned": {
+        "n": 346,
+        "mean_fill": 96.046,
+        "agg_fill": 84.843,
+        "pct_fill_ge95": 75.43,
+        "pct_zero_stockout": 17.63,
+        "mean_cost": 3266.0,
+        "mean_holding": 2472.57,
+        "mean_ordering": 793.42,
+        "mean_avg_inventory": 11914.3,
+        "mean_orders": 12.58,
+        "stockout_days": 1973
+      },
       "run-01": {
         "n": 346,
         "mean_fill": 98.113,
@@ -218,6 +257,75 @@
           "fill_not_lower_pairs": 331,
           "joint_pairs": 147,
           "n": 346
+        },
+        "or_sba": {
+          "cost_vs_ref_pct": 8.23,
+          "mean_cost_diff": 222.58,
+          "mean_cost_diff_ci95": [
+            97.31,
+            361.53
+          ],
+          "cost_diff_q1_med_q3": [
+            -1.95,
+            21.71,
+            207.31
+          ],
+          "mean_fill_diff_pts": -0.189,
+          "mean_fill_diff_ci95": [
+            -0.46,
+            0.04
+          ],
+          "cheaper_pairs": 99,
+          "cost_not_higher_pairs": 111,
+          "fill_not_lower_pairs": 321,
+          "joint_pairs": 94,
+          "n": 346
+        },
+        "or_empirical": {
+          "cost_vs_ref_pct": 17.65,
+          "mean_cost_diff": 439.14,
+          "mean_cost_diff_ci95": [
+            329.23,
+            556.71
+          ],
+          "cost_diff_q1_med_q3": [
+            7.71,
+            112.9,
+            461.64
+          ],
+          "mean_fill_diff_pts": -0.239,
+          "mean_fill_diff_ci95": [
+            -0.61,
+            0.1
+          ],
+          "cheaper_pairs": 44,
+          "cost_not_higher_pairs": 55,
+          "fill_not_lower_pairs": 319,
+          "joint_pairs": 37,
+          "n": 346
+        },
+        "or_tuned": {
+          "cost_vs_ref_pct": -10.35,
+          "mean_cost_diff": -338.17,
+          "mean_cost_diff_ci95": [
+            -2526.92,
+            857.04
+          ],
+          "cost_diff_q1_med_q3": [
+            96.29,
+            295.54,
+            1022.58
+          ],
+          "mean_fill_diff_pts": 2.067,
+          "mean_fill_diff_ci95": [
+            1.42,
+            2.64
+          ],
+          "cheaper_pairs": 15,
+          "cost_not_higher_pairs": 17,
+          "fill_not_lower_pairs": 329,
+          "joint_pairs": 6,
+          "n": 346
         }
       },
       "run-02": {
@@ -311,6 +419,75 @@
           "cost_not_higher_pairs": 161,
           "fill_not_lower_pairs": 328,
           "joint_pairs": 147,
+          "n": 346
+        },
+        "or_sba": {
+          "cost_vs_ref_pct": 8.35,
+          "mean_cost_diff": 225.76,
+          "mean_cost_diff_ci95": [
+            109.15,
+            358.54
+          ],
+          "cost_diff_q1_med_q3": [
+            -0.8,
+            30.17,
+            169.7
+          ],
+          "mean_fill_diff_pts": -0.407,
+          "mean_fill_diff_ci95": [
+            -0.94,
+            -0.05
+          ],
+          "cheaper_pairs": 91,
+          "cost_not_higher_pairs": 101,
+          "fill_not_lower_pairs": 316,
+          "joint_pairs": 78,
+          "n": 346
+        },
+        "or_empirical": {
+          "cost_vs_ref_pct": 17.77,
+          "mean_cost_diff": 442.31,
+          "mean_cost_diff_ci95": [
+            327.39,
+            565.55
+          ],
+          "cost_diff_q1_med_q3": [
+            3.76,
+            126.96,
+            512.46
+          ],
+          "mean_fill_diff_pts": -0.457,
+          "mean_fill_diff_ci95": [
+            -1.01,
+            -0.02
+          ],
+          "cheaper_pairs": 49,
+          "cost_not_higher_pairs": 64,
+          "fill_not_lower_pairs": 316,
+          "joint_pairs": 42,
+          "n": 346
+        },
+        "or_tuned": {
+          "cost_vs_ref_pct": -10.26,
+          "mean_cost_diff": -334.99,
+          "mean_cost_diff_ci95": [
+            -2512.83,
+            869.03
+          ],
+          "cost_diff_q1_med_q3": [
+            99.31,
+            272.13,
+            983.98
+          ],
+          "mean_fill_diff_pts": 1.849,
+          "mean_fill_diff_ci95": [
+            1.09,
+            2.49
+          ],
+          "cheaper_pairs": 16,
+          "cost_not_higher_pairs": 17,
+          "fill_not_lower_pairs": 325,
+          "joint_pairs": 5,
           "n": 346
         }
       },
@@ -406,6 +583,75 @@
           "fill_not_lower_pairs": 330,
           "joint_pairs": 153,
           "n": 346
+        },
+        "or_sba": {
+          "cost_vs_ref_pct": 8.25,
+          "mean_cost_diff": 223.29,
+          "mean_cost_diff_ci95": [
+            89.22,
+            373.01
+          ],
+          "cost_diff_q1_med_q3": [
+            -1.68,
+            23.12,
+            147.87
+          ],
+          "mean_fill_diff_pts": -0.147,
+          "mean_fill_diff_ci95": [
+            -0.36,
+            0.05
+          ],
+          "cheaper_pairs": 97,
+          "cost_not_higher_pairs": 108,
+          "fill_not_lower_pairs": 318,
+          "joint_pairs": 89,
+          "n": 346
+        },
+        "or_empirical": {
+          "cost_vs_ref_pct": 17.67,
+          "mean_cost_diff": 439.84,
+          "mean_cost_diff_ci95": [
+            327.02,
+            563.2
+          ],
+          "cost_diff_q1_med_q3": [
+            10.98,
+            106.76,
+            487.38
+          ],
+          "mean_fill_diff_pts": -0.198,
+          "mean_fill_diff_ci95": [
+            -0.48,
+            0.09
+          ],
+          "cheaper_pairs": 47,
+          "cost_not_higher_pairs": 55,
+          "fill_not_lower_pairs": 313,
+          "joint_pairs": 33,
+          "n": 346
+        },
+        "or_tuned": {
+          "cost_vs_ref_pct": -10.33,
+          "mean_cost_diff": -337.46,
+          "mean_cost_diff_ci95": [
+            -2511.77,
+            852.52
+          ],
+          "cost_diff_q1_med_q3": [
+            103.74,
+            298.46,
+            903.16
+          ],
+          "mean_fill_diff_pts": 2.108,
+          "mean_fill_diff_ci95": [
+            1.54,
+            2.64
+          ],
+          "cheaper_pairs": 16,
+          "cost_not_higher_pairs": 16,
+          "fill_not_lower_pairs": 331,
+          "joint_pairs": 6,
+          "n": 346
         }
       },
       "run-noerp": {
@@ -500,6 +746,75 @@
           "fill_not_lower_pairs": 329,
           "joint_pairs": 166,
           "n": 346
+        },
+        "or_sba": {
+          "cost_vs_ref_pct": 11.42,
+          "mean_cost_diff": 309.02,
+          "mean_cost_diff_ci95": [
+            149.21,
+            499.15
+          ],
+          "cost_diff_q1_med_q3": [
+            -0.59,
+            16.38,
+            160.43
+          ],
+          "mean_fill_diff_pts": -0.246,
+          "mean_fill_diff_ci95": [
+            -0.63,
+            0.07
+          ],
+          "cheaper_pairs": 90,
+          "cost_not_higher_pairs": 110,
+          "fill_not_lower_pairs": 315,
+          "joint_pairs": 85,
+          "n": 346
+        },
+        "or_empirical": {
+          "cost_vs_ref_pct": 21.12,
+          "mean_cost_diff": 525.57,
+          "mean_cost_diff_ci95": [
+            385.67,
+            683.87
+          ],
+          "cost_diff_q1_med_q3": [
+            3.4,
+            111.13,
+            523.91
+          ],
+          "mean_fill_diff_pts": -0.296,
+          "mean_fill_diff_ci95": [
+            -0.65,
+            -0.04
+          ],
+          "cheaper_pairs": 48,
+          "cost_not_higher_pairs": 63,
+          "fill_not_lower_pairs": 313,
+          "joint_pairs": 39,
+          "n": 346
+        },
+        "or_tuned": {
+          "cost_vs_ref_pct": -7.71,
+          "mean_cost_diff": -251.74,
+          "mean_cost_diff_ci95": [
+            -2435.69,
+            951.33
+          ],
+          "cost_diff_q1_med_q3": [
+            96.82,
+            275.9,
+            1019.51
+          ],
+          "mean_fill_diff_pts": 2.01,
+          "mean_fill_diff_ci95": [
+            1.34,
+            2.61
+          ],
+          "cheaper_pairs": 14,
+          "cost_not_higher_pairs": 14,
+          "fill_not_lower_pairs": 330,
+          "joint_pairs": 4,
+          "n": 346
         }
       }
     }
@@ -575,6 +890,45 @@
           "mean_avg_inventory": 17235.7,
           "mean_orders": 13.67,
           "stockout_days": 271
+        },
+        "or_sba": {
+          "n": 215,
+          "mean_fill": 99.173,
+          "agg_fill": 98.872,
+          "pct_fill_ge95": 95.81,
+          "pct_zero_stockout": 85.58,
+          "mean_cost": 2114.41,
+          "mean_holding": 1273.13,
+          "mean_ordering": 841.28,
+          "mean_avg_inventory": 15959.4,
+          "mean_orders": 13.83,
+          "stockout_days": 276
+        },
+        "or_empirical": {
+          "n": 215,
+          "mean_fill": 99.195,
+          "agg_fill": 98.922,
+          "pct_fill_ge95": 96.28,
+          "pct_zero_stockout": 83.72,
+          "mean_cost": 1979.92,
+          "mean_holding": 1217.48,
+          "mean_ordering": 762.44,
+          "mean_avg_inventory": 13951.7,
+          "mean_orders": 12.53,
+          "stockout_days": 260
+        },
+        "or_tuned": {
+          "n": 215,
+          "mean_fill": 97.032,
+          "agg_fill": 97.903,
+          "pct_fill_ge95": 81.86,
+          "pct_zero_stockout": 22.79,
+          "mean_cost": 1591.95,
+          "mean_holding": 957.65,
+          "mean_ordering": 634.3,
+          "mean_avg_inventory": 11244.7,
+          "mean_orders": 10.51,
+          "stockout_days": 833
         },
         "run-01": {
           "n": 215,
@@ -722,6 +1076,75 @@
             "fill_not_lower_pairs": 208,
             "joint_pairs": 97,
             "n": 215
+          },
+          "or_sba": {
+            "cost_vs_ref_pct": 13.07,
+            "mean_cost_diff": 276.4,
+            "mean_cost_diff_ci95": [
+              125.83,
+              449.74
+            ],
+            "cost_diff_q1_med_q3": [
+              0.0,
+              48.89,
+              248.25
+            ],
+            "mean_fill_diff_pts": 0.004,
+            "mean_fill_diff_ci95": [
+              -0.18,
+              0.21
+            ],
+            "cheaper_pairs": 53,
+            "cost_not_higher_pairs": 57,
+            "fill_not_lower_pairs": 203,
+            "joint_pairs": 48,
+            "n": 215
+          },
+          "or_empirical": {
+            "cost_vs_ref_pct": 20.75,
+            "mean_cost_diff": 410.9,
+            "mean_cost_diff_ci95": [
+              254.84,
+              576.51
+            ],
+            "cost_diff_q1_med_q3": [
+              9.21,
+              103.19,
+              426.86
+            ],
+            "mean_fill_diff_pts": -0.018,
+            "mean_fill_diff_ci95": [
+              -0.34,
+              0.35
+            ],
+            "cheaper_pairs": 25,
+            "cost_not_higher_pairs": 30,
+            "fill_not_lower_pairs": 201,
+            "joint_pairs": 18,
+            "n": 215
+          },
+          "or_tuned": {
+            "cost_vs_ref_pct": 50.18,
+            "mean_cost_diff": 798.86,
+            "mean_cost_diff_ci95": [
+              595.57,
+              1014.76
+            ],
+            "cost_diff_q1_med_q3": [
+              86.23,
+              307.18,
+              1021.7
+            ],
+            "mean_fill_diff_pts": 2.145,
+            "mean_fill_diff_ci95": [
+              1.54,
+              2.7
+            ],
+            "cheaper_pairs": 9,
+            "cost_not_higher_pairs": 11,
+            "fill_not_lower_pairs": 208,
+            "joint_pairs": 4,
+            "n": 215
           }
         },
         "run-02": {
@@ -815,6 +1238,75 @@
             "cost_not_higher_pairs": 109,
             "fill_not_lower_pairs": 203,
             "joint_pairs": 99,
+            "n": 215
+          },
+          "or_sba": {
+            "cost_vs_ref_pct": 10.12,
+            "mean_cost_diff": 213.92,
+            "mean_cost_diff_ci95": [
+              92.56,
+              351.0
+            ],
+            "cost_diff_q1_med_q3": [
+              0.28,
+              48.91,
+              174.68
+            ],
+            "mean_fill_diff_pts": -0.077,
+            "mean_fill_diff_ci95": [
+              -0.3,
+              0.14
+            ],
+            "cheaper_pairs": 47,
+            "cost_not_higher_pairs": 52,
+            "fill_not_lower_pairs": 200,
+            "joint_pairs": 41,
+            "n": 215
+          },
+          "or_empirical": {
+            "cost_vs_ref_pct": 17.6,
+            "mean_cost_diff": 348.41,
+            "mean_cost_diff_ci95": [
+              218.0,
+              486.33
+            ],
+            "cost_diff_q1_med_q3": [
+              7.6,
+              127.59,
+              423.72
+            ],
+            "mean_fill_diff_pts": -0.1,
+            "mean_fill_diff_ci95": [
+              -0.46,
+              0.3
+            ],
+            "cheaper_pairs": 26,
+            "cost_not_higher_pairs": 34,
+            "fill_not_lower_pairs": 199,
+            "joint_pairs": 20,
+            "n": 215
+          },
+          "or_tuned": {
+            "cost_vs_ref_pct": 46.26,
+            "mean_cost_diff": 736.38,
+            "mean_cost_diff_ci95": [
+              563.26,
+              916.91
+            ],
+            "cost_diff_q1_med_q3": [
+              92.72,
+              262.81,
+              833.46
+            ],
+            "mean_fill_diff_pts": 2.063,
+            "mean_fill_diff_ci95": [
+              1.45,
+              2.61
+            ],
+            "cheaper_pairs": 10,
+            "cost_not_higher_pairs": 10,
+            "fill_not_lower_pairs": 204,
+            "joint_pairs": 2,
             "n": 215
           }
         },
@@ -910,6 +1402,75 @@
             "fill_not_lower_pairs": 208,
             "joint_pairs": 103,
             "n": 215
+          },
+          "or_sba": {
+            "cost_vs_ref_pct": 13.07,
+            "mean_cost_diff": 276.26,
+            "mean_cost_diff_ci95": [
+              117.07,
+              459.78
+            ],
+            "cost_diff_q1_med_q3": [
+              0.17,
+              51.15,
+              179.06
+            ],
+            "mean_fill_diff_pts": 0.009,
+            "mean_fill_diff_ci95": [
+              -0.19,
+              0.23
+            ],
+            "cheaper_pairs": 50,
+            "cost_not_higher_pairs": 53,
+            "fill_not_lower_pairs": 202,
+            "joint_pairs": 44,
+            "n": 215
+          },
+          "or_empirical": {
+            "cost_vs_ref_pct": 20.75,
+            "mean_cost_diff": 410.76,
+            "mean_cost_diff_ci95": [
+              249.0,
+              576.61
+            ],
+            "cost_diff_q1_med_q3": [
+              11.08,
+              102.22,
+              485.26
+            ],
+            "mean_fill_diff_pts": -0.013,
+            "mean_fill_diff_ci95": [
+              -0.33,
+              0.36
+            ],
+            "cheaper_pairs": 24,
+            "cost_not_higher_pairs": 30,
+            "fill_not_lower_pairs": 198,
+            "joint_pairs": 18,
+            "n": 215
+          },
+          "or_tuned": {
+            "cost_vs_ref_pct": 50.17,
+            "mean_cost_diff": 798.72,
+            "mean_cost_diff_ci95": [
+              588.59,
+              1021.19
+            ],
+            "cost_diff_q1_med_q3": [
+              103.87,
+              282.93,
+              927.06
+            ],
+            "mean_fill_diff_pts": 2.15,
+            "mean_fill_diff_ci95": [
+              1.55,
+              2.69
+            ],
+            "cheaper_pairs": 9,
+            "cost_not_higher_pairs": 9,
+            "fill_not_lower_pairs": 210,
+            "joint_pairs": 4,
+            "n": 215
           }
         },
         "run-noerp": {
@@ -1004,6 +1565,75 @@
             "fill_not_lower_pairs": 208,
             "joint_pairs": 113,
             "n": 215
+          },
+          "or_sba": {
+            "cost_vs_ref_pct": 17.33,
+            "mean_cost_diff": 366.53,
+            "mean_cost_diff_ci95": [
+              159.85,
+              627.84
+            ],
+            "cost_diff_q1_med_q3": [
+              0.0,
+              30.06,
+              172.22
+            ],
+            "mean_fill_diff_pts": -0.045,
+            "mean_fill_diff_ci95": [
+              -0.51,
+              0.33
+            ],
+            "cheaper_pairs": 46,
+            "cost_not_higher_pairs": 57,
+            "fill_not_lower_pairs": 202,
+            "joint_pairs": 45,
+            "n": 215
+          },
+          "or_empirical": {
+            "cost_vs_ref_pct": 25.31,
+            "mean_cost_diff": 501.02,
+            "mean_cost_diff_ci95": [
+              314.5,
+              721.75
+            ],
+            "cost_diff_q1_med_q3": [
+              6.18,
+              105.47,
+              512.16
+            ],
+            "mean_fill_diff_pts": -0.067,
+            "mean_fill_diff_ci95": [
+              -0.27,
+              0.1
+            ],
+            "cheaper_pairs": 24,
+            "cost_not_higher_pairs": 35,
+            "fill_not_lower_pairs": 202,
+            "joint_pairs": 23,
+            "n": 215
+          },
+          "or_tuned": {
+            "cost_vs_ref_pct": 55.84,
+            "mean_cost_diff": 888.98,
+            "mean_cost_diff_ci95": [
+              656.34,
+              1174.16
+            ],
+            "cost_diff_q1_med_q3": [
+              93.32,
+              292.79,
+              1020.47
+            ],
+            "mean_fill_diff_pts": 2.096,
+            "mean_fill_diff_ci95": [
+              1.35,
+              2.71
+            ],
+            "cheaper_pairs": 8,
+            "cost_not_higher_pairs": 8,
+            "fill_not_lower_pairs": 209,
+            "joint_pairs": 2,
+            "n": 215
           }
         }
       }
@@ -1062,6 +1692,45 @@
           "mean_avg_inventory": 16986.5,
           "mean_orders": 19.08,
           "stockout_days": 306
+        },
+        "or_sba": {
+          "n": 65,
+          "mean_fill": 96.2,
+          "agg_fill": 58.415,
+          "pct_fill_ge95": 89.23,
+          "pct_zero_stockout": 80.0,
+          "mean_cost": 4805.84,
+          "mean_holding": 3551.61,
+          "mean_ordering": 1254.23,
+          "mean_avg_inventory": 18706.7,
+          "mean_orders": 18.74,
+          "stockout_days": 275
+        },
+        "or_empirical": {
+          "n": 65,
+          "mean_fill": 96.14,
+          "agg_fill": 57.987,
+          "pct_fill_ge95": 86.15,
+          "pct_zero_stockout": 66.15,
+          "mean_cost": 4566.24,
+          "mean_holding": 3280.08,
+          "mean_ordering": 1286.15,
+          "mean_avg_inventory": 15449.0,
+          "mean_orders": 19.09,
+          "stockout_days": 293
+        },
+        "or_tuned": {
+          "n": 65,
+          "mean_fill": 93.861,
+          "agg_fill": 72.17,
+          "pct_fill_ge95": 52.31,
+          "pct_zero_stockout": 12.31,
+          "mean_cost": 10364.04,
+          "mean_holding": 9287.12,
+          "mean_ordering": 1076.92,
+          "mean_avg_inventory": 17962.1,
+          "mean_orders": 16.52,
+          "stockout_days": 543
         },
         "run-01": {
           "n": 65,
@@ -1209,6 +1878,75 @@
             "fill_not_lower_pairs": 63,
             "joint_pairs": 22,
             "n": 65
+          },
+          "or_sba": {
+            "cost_vs_ref_pct": 2.29,
+            "mean_cost_diff": 110.24,
+            "mean_cost_diff_ci95": [
+              -283.5,
+              594.94
+            ],
+            "cost_diff_q1_med_q3": [
+              -40.19,
+              4.79,
+              113.6
+            ],
+            "mean_fill_diff_pts": 0.035,
+            "mean_fill_diff_ci95": [
+              -0.24,
+              0.34
+            ],
+            "cheaper_pairs": 26,
+            "cost_not_higher_pairs": 27,
+            "fill_not_lower_pairs": 58,
+            "joint_pairs": 20,
+            "n": 65
+          },
+          "or_empirical": {
+            "cost_vs_ref_pct": 7.66,
+            "mean_cost_diff": 349.84,
+            "mean_cost_diff_ci95": [
+              144.34,
+              601.06
+            ],
+            "cost_diff_q1_med_q3": [
+              0.62,
+              56.17,
+              292.91
+            ],
+            "mean_fill_diff_pts": 0.096,
+            "mean_fill_diff_ci95": [
+              -0.1,
+              0.31
+            ],
+            "cheaper_pairs": 12,
+            "cost_not_higher_pairs": 16,
+            "fill_not_lower_pairs": 60,
+            "joint_pairs": 13,
+            "n": 65
+          },
+          "or_tuned": {
+            "cost_vs_ref_pct": -52.57,
+            "mean_cost_diff": -5447.96,
+            "mean_cost_diff_ci95": [
+              -16538.33,
+              675.77
+            ],
+            "cost_diff_q1_med_q3": [
+              97.57,
+              266.49,
+              576.41
+            ],
+            "mean_fill_diff_pts": 2.374,
+            "mean_fill_diff_ci95": [
+              0.34,
+              4.18
+            ],
+            "cheaper_pairs": 5,
+            "cost_not_higher_pairs": 5,
+            "fill_not_lower_pairs": 61,
+            "joint_pairs": 1,
+            "n": 65
           }
         },
         "run-02": {
@@ -1302,6 +2040,75 @@
             "cost_not_higher_pairs": 24,
             "fill_not_lower_pairs": 64,
             "joint_pairs": 24,
+            "n": 65
+          },
+          "or_sba": {
+            "cost_vs_ref_pct": 8.61,
+            "mean_cost_diff": 413.69,
+            "mean_cost_diff_ci95": [
+              -20.8,
+              972.91
+            ],
+            "cost_diff_q1_med_q3": [
+              -18.81,
+              17.9,
+              207.42
+            ],
+            "mean_fill_diff_pts": 0.009,
+            "mean_fill_diff_ci95": [
+              -0.29,
+              0.33
+            ],
+            "cheaper_pairs": 23,
+            "cost_not_higher_pairs": 23,
+            "fill_not_lower_pairs": 57,
+            "joint_pairs": 15,
+            "n": 65
+          },
+          "or_empirical": {
+            "cost_vs_ref_pct": 14.31,
+            "mean_cost_diff": 653.29,
+            "mean_cost_diff_ci95": [
+              276.81,
+              1123.48
+            ],
+            "cost_diff_q1_med_q3": [
+              0.0,
+              58.53,
+              354.27
+            ],
+            "mean_fill_diff_pts": 0.07,
+            "mean_fill_diff_ci95": [
+              -0.13,
+              0.29
+            ],
+            "cheaper_pairs": 16,
+            "cost_not_higher_pairs": 21,
+            "fill_not_lower_pairs": 59,
+            "joint_pairs": 16,
+            "n": 65
+          },
+          "or_tuned": {
+            "cost_vs_ref_pct": -49.64,
+            "mean_cost_diff": -5144.51,
+            "mean_cost_diff_ci95": [
+              -16220.73,
+              1048.26
+            ],
+            "cost_diff_q1_med_q3": [
+              87.06,
+              258.42,
+              688.81
+            ],
+            "mean_fill_diff_pts": 2.348,
+            "mean_fill_diff_ci95": [
+              0.35,
+              4.18
+            ],
+            "cheaper_pairs": 5,
+            "cost_not_higher_pairs": 6,
+            "fill_not_lower_pairs": 61,
+            "joint_pairs": 2,
             "n": 65
           }
         },
@@ -1397,6 +2204,75 @@
             "fill_not_lower_pairs": 61,
             "joint_pairs": 22,
             "n": 65
+          },
+          "or_sba": {
+            "cost_vs_ref_pct": 4.35,
+            "mean_cost_diff": 209.15,
+            "mean_cost_diff_ci95": [
+              -245.54,
+              777.11
+            ],
+            "cost_diff_q1_med_q3": [
+              -67.73,
+              2.74,
+              114.31
+            ],
+            "mean_fill_diff_pts": -0.16,
+            "mean_fill_diff_ci95": [
+              -0.5,
+              0.2
+            ],
+            "cheaper_pairs": 27,
+            "cost_not_higher_pairs": 28,
+            "fill_not_lower_pairs": 57,
+            "joint_pairs": 21,
+            "n": 65
+          },
+          "or_empirical": {
+            "cost_vs_ref_pct": 9.83,
+            "mean_cost_diff": 448.75,
+            "mean_cost_diff_ci95": [
+              166.17,
+              800.3
+            ],
+            "cost_diff_q1_med_q3": [
+              -0.93,
+              53.31,
+              243.02
+            ],
+            "mean_fill_diff_pts": -0.099,
+            "mean_fill_diff_ci95": [
+              -0.3,
+              0.06
+            ],
+            "cheaper_pairs": 17,
+            "cost_not_higher_pairs": 17,
+            "fill_not_lower_pairs": 57,
+            "joint_pairs": 10,
+            "n": 65
+          },
+          "or_tuned": {
+            "cost_vs_ref_pct": -51.61,
+            "mean_cost_diff": -5349.05,
+            "mean_cost_diff_ci95": [
+              -16340.79,
+              759.86
+            ],
+            "cost_diff_q1_med_q3": [
+              90.39,
+              259.91,
+              607.67
+            ],
+            "mean_fill_diff_pts": 2.179,
+            "mean_fill_diff_ci95": [
+              0.17,
+              3.95
+            ],
+            "cheaper_pairs": 6,
+            "cost_not_higher_pairs": 6,
+            "fill_not_lower_pairs": 60,
+            "joint_pairs": 1,
+            "n": 65
           }
         },
         "run-noerp": {
@@ -1491,6 +2367,75 @@
             "fill_not_lower_pairs": 61,
             "joint_pairs": 27,
             "n": 65
+          },
+          "or_sba": {
+            "cost_vs_ref_pct": 3.4,
+            "mean_cost_diff": 163.17,
+            "mean_cost_diff_ci95": [
+              -255.9,
+              712.4
+            ],
+            "cost_diff_q1_med_q3": [
+              -48.06,
+              1.6,
+              106.62
+            ],
+            "mean_fill_diff_pts": -0.107,
+            "mean_fill_diff_ci95": [
+              -0.5,
+              0.29
+            ],
+            "cheaper_pairs": 27,
+            "cost_not_higher_pairs": 28,
+            "fill_not_lower_pairs": 55,
+            "joint_pairs": 19,
+            "n": 65
+          },
+          "or_empirical": {
+            "cost_vs_ref_pct": 8.82,
+            "mean_cost_diff": 402.78,
+            "mean_cost_diff_ci95": [
+              152.64,
+              709.92
+            ],
+            "cost_diff_q1_med_q3": [
+              0.0,
+              61.3,
+              247.48
+            ],
+            "mean_fill_diff_pts": -0.046,
+            "mean_fill_diff_ci95": [
+              -0.37,
+              0.25
+            ],
+            "cheaper_pairs": 16,
+            "cost_not_higher_pairs": 17,
+            "fill_not_lower_pairs": 54,
+            "joint_pairs": 8,
+            "n": 65
+          },
+          "or_tuned": {
+            "cost_vs_ref_pct": -52.06,
+            "mean_cost_diff": -5395.03,
+            "mean_cost_diff_ci95": [
+              -16390.6,
+              692.37
+            ],
+            "cost_diff_q1_med_q3": [
+              97.43,
+              191.74,
+              608.7
+            ],
+            "mean_fill_diff_pts": 2.232,
+            "mean_fill_diff_ci95": [
+              0.27,
+              4.0
+            ],
+            "cheaper_pairs": 5,
+            "cost_not_higher_pairs": 5,
+            "fill_not_lower_pairs": 61,
+            "joint_pairs": 1,
+            "n": 65
           }
         }
       }
@@ -1549,6 +2494,45 @@
           "mean_avg_inventory": 10855.5,
           "mean_orders": 21.98,
           "stockout_days": 297
+        },
+        "or_sba": {
+          "n": 66,
+          "mean_fill": 97.535,
+          "agg_fill": 94.023,
+          "pct_fill_ge95": 87.88,
+          "pct_zero_stockout": 81.82,
+          "mean_cost": 2561.17,
+          "mean_holding": 1083.52,
+          "mean_ordering": 1477.65,
+          "mean_avg_inventory": 10956.1,
+          "mean_orders": 22.12,
+          "stockout_days": 252
+        },
+        "or_empirical": {
+          "n": 66,
+          "mean_fill": 97.787,
+          "agg_fill": 95.212,
+          "pct_fill_ge95": 89.39,
+          "pct_zero_stockout": 78.79,
+          "mean_cost": 2100.0,
+          "mean_holding": 892.05,
+          "mean_ordering": 1207.95,
+          "mean_avg_inventory": 9222.9,
+          "mean_orders": 18.09,
+          "stockout_days": 194
+        },
+        "or_tuned": {
+          "n": 66,
+          "mean_fill": 94.988,
+          "agg_fill": 92.646,
+          "pct_fill_ge95": 77.27,
+          "pct_zero_stockout": 6.06,
+          "mean_cost": 1728.83,
+          "mean_holding": 696.25,
+          "mean_ordering": 1032.58,
+          "mean_avg_inventory": 8139.6,
+          "mean_orders": 15.45,
+          "stockout_days": 597
         },
         "run-01": {
           "n": 66,
@@ -1696,6 +2680,75 @@
             "fill_not_lower_pairs": 60,
             "joint_pairs": 28,
             "n": 66
+          },
+          "or_sba": {
+            "cost_vs_ref_pct": 6.17,
+            "mean_cost_diff": 157.9,
+            "mean_cost_diff_ci95": [
+              79.02,
+              247.61
+            ],
+            "cost_diff_q1_med_q3": [
+              -1.83,
+              10.57,
+              210.16
+            ],
+            "mean_fill_diff_pts": -1.035,
+            "mean_fill_diff_ci95": [
+              -2.24,
+              -0.09
+            ],
+            "cheaper_pairs": 20,
+            "cost_not_higher_pairs": 27,
+            "fill_not_lower_pairs": 60,
+            "joint_pairs": 26,
+            "n": 66
+          },
+          "or_empirical": {
+            "cost_vs_ref_pct": 29.48,
+            "mean_cost_diff": 619.06,
+            "mean_cost_diff_ci95": [
+              431.08,
+              837.88
+            ],
+            "cost_diff_q1_med_q3": [
+              64.76,
+              224.27,
+              984.91
+            ],
+            "mean_fill_diff_pts": -1.288,
+            "mean_fill_diff_ci95": [
+              -3.03,
+              -0.19
+            ],
+            "cheaper_pairs": 7,
+            "cost_not_higher_pairs": 9,
+            "fill_not_lower_pairs": 58,
+            "joint_pairs": 6,
+            "n": 66
+          },
+          "or_tuned": {
+            "cost_vs_ref_pct": 57.28,
+            "mean_cost_diff": 990.24,
+            "mean_cost_diff_ci95": [
+              721.36,
+              1296.72
+            ],
+            "cost_diff_q1_med_q3": [
+              145.19,
+              389.64,
+              1632.79
+            ],
+            "mean_fill_diff_pts": 1.511,
+            "mean_fill_diff_ci95": [
+              -0.28,
+              2.76
+            ],
+            "cheaper_pairs": 1,
+            "cost_not_higher_pairs": 1,
+            "fill_not_lower_pairs": 60,
+            "joint_pairs": 1,
+            "n": 66
           }
         },
         "run-02": {
@@ -1789,6 +2842,75 @@
             "cost_not_higher_pairs": 28,
             "fill_not_lower_pairs": 61,
             "joint_pairs": 24,
+            "n": 66
+          },
+          "or_sba": {
+            "cost_vs_ref_pct": 3.09,
+            "mean_cost_diff": 79.25,
+            "mean_cost_diff_ci95": [
+              21.92,
+              135.52
+            ],
+            "cost_diff_q1_med_q3": [
+              -1.73,
+              12.88,
+              130.26
+            ],
+            "mean_fill_diff_pts": -1.888,
+            "mean_fill_diff_ci95": [
+              -4.53,
+              -0.18
+            ],
+            "cheaper_pairs": 21,
+            "cost_not_higher_pairs": 26,
+            "fill_not_lower_pairs": 59,
+            "joint_pairs": 22,
+            "n": 66
+          },
+          "or_empirical": {
+            "cost_vs_ref_pct": 25.73,
+            "mean_cost_diff": 540.42,
+            "mean_cost_diff_ci95": [
+              383.94,
+              714.16
+            ],
+            "cost_diff_q1_med_q3": [
+              65.48,
+              263.9,
+              785.09
+            ],
+            "mean_fill_diff_pts": -2.14,
+            "mean_fill_diff_ci95": [
+              -4.82,
+              -0.4
+            ],
+            "cheaper_pairs": 7,
+            "cost_not_higher_pairs": 9,
+            "fill_not_lower_pairs": 58,
+            "joint_pairs": 6,
+            "n": 66
+          },
+          "or_tuned": {
+            "cost_vs_ref_pct": 52.73,
+            "mean_cost_diff": 911.6,
+            "mean_cost_diff_ci95": [
+              672.6,
+              1182.52
+            ],
+            "cost_diff_q1_med_q3": [
+              157.09,
+              440.06,
+              1324.54
+            ],
+            "mean_fill_diff_pts": 0.659,
+            "mean_fill_diff_ci95": [
+              -2.1,
+              2.52
+            ],
+            "cheaper_pairs": 1,
+            "cost_not_higher_pairs": 1,
+            "fill_not_lower_pairs": 60,
+            "joint_pairs": 1,
             "n": 66
           }
         },
@@ -1884,6 +3006,75 @@
             "fill_not_lower_pairs": 61,
             "joint_pairs": 28,
             "n": 66
+          },
+          "or_sba": {
+            "cost_vs_ref_pct": 2.52,
+            "mean_cost_diff": 64.64,
+            "mean_cost_diff_ci95": [
+              -0.56,
+              130.15
+            ],
+            "cost_diff_q1_med_q3": [
+              -1.43,
+              3.92,
+              112.49
+            ],
+            "mean_fill_diff_pts": -0.644,
+            "mean_fill_diff_ci95": [
+              -1.49,
+              -0.02
+            ],
+            "cheaper_pairs": 20,
+            "cost_not_higher_pairs": 27,
+            "fill_not_lower_pairs": 59,
+            "joint_pairs": 24,
+            "n": 66
+          },
+          "or_empirical": {
+            "cost_vs_ref_pct": 25.04,
+            "mean_cost_diff": 525.8,
+            "mean_cost_diff_ci95": [
+              362.93,
+              720.28
+            ],
+            "cost_diff_q1_med_q3": [
+              78.27,
+              195.57,
+              625.57
+            ],
+            "mean_fill_diff_pts": -0.896,
+            "mean_fill_diff_ci95": [
+              -2.06,
+              -0.1
+            ],
+            "cheaper_pairs": 6,
+            "cost_not_higher_pairs": 8,
+            "fill_not_lower_pairs": 58,
+            "joint_pairs": 5,
+            "n": 66
+          },
+          "or_tuned": {
+            "cost_vs_ref_pct": 51.88,
+            "mean_cost_diff": 896.98,
+            "mean_cost_diff_ci95": [
+              651.82,
+              1179.23
+            ],
+            "cost_diff_q1_med_q3": [
+              154.81,
+              390.97,
+              1275.63
+            ],
+            "mean_fill_diff_pts": 1.903,
+            "mean_fill_diff_ci95": [
+              0.68,
+              2.86
+            ],
+            "cheaper_pairs": 1,
+            "cost_not_higher_pairs": 1,
+            "fill_not_lower_pairs": 61,
+            "joint_pairs": 1,
+            "n": 66
           }
         },
         "run-noerp": {
@@ -1978,6 +3169,75 @@
             "fill_not_lower_pairs": 60,
             "joint_pairs": 26,
             "n": 66
+          },
+          "or_sba": {
+            "cost_vs_ref_pct": 10.36,
+            "mean_cost_diff": 265.3,
+            "mean_cost_diff_ci95": [
+              106.11,
+              480.11
+            ],
+            "cost_diff_q1_med_q3": [
+              -0.02,
+              6.59,
+              154.29
+            ],
+            "mean_fill_diff_pts": -1.035,
+            "mean_fill_diff_ci95": [
+              -2.28,
+              -0.06
+            ],
+            "cheaper_pairs": 17,
+            "cost_not_higher_pairs": 25,
+            "fill_not_lower_pairs": 58,
+            "joint_pairs": 21,
+            "n": 66
+          },
+          "or_empirical": {
+            "cost_vs_ref_pct": 34.59,
+            "mean_cost_diff": 726.47,
+            "mean_cost_diff_ci95": [
+              462.3,
+              1040.22
+            ],
+            "cost_diff_q1_med_q3": [
+              51.3,
+              217.08,
+              663.19
+            ],
+            "mean_fill_diff_pts": -1.288,
+            "mean_fill_diff_ci95": [
+              -3.02,
+              -0.19
+            ],
+            "cheaper_pairs": 8,
+            "cost_not_higher_pairs": 11,
+            "fill_not_lower_pairs": 57,
+            "joint_pairs": 8,
+            "n": 66
+          },
+          "or_tuned": {
+            "cost_vs_ref_pct": 63.49,
+            "mean_cost_diff": 1097.65,
+            "mean_cost_diff_ci95": [
+              760.94,
+              1475.64
+            ],
+            "cost_diff_q1_med_q3": [
+              106.41,
+              367.98,
+              1329.57
+            ],
+            "mean_fill_diff_pts": 1.511,
+            "mean_fill_diff_ci95": [
+              -0.31,
+              2.77
+            ],
+            "cheaper_pairs": 1,
+            "cost_not_higher_pairs": 1,
+            "fill_not_lower_pairs": 60,
+            "joint_pairs": 1,
+            "n": 66
           }
         }
       }
@@ -2036,6 +3296,45 @@
           "mean_avg_inventory": 1976.6,
           "mean_orders": 14.52,
           "stockout_days": 227
+        },
+        "or_sba": {
+          "n": 33,
+          "mean_fill": 94.545,
+          "agg_fill": 56.179,
+          "pct_fill_ge95": 78.79,
+          "pct_zero_stockout": 36.36,
+          "mean_cost": 2391.13,
+          "mean_holding": 1491.88,
+          "mean_ordering": 899.24,
+          "mean_avg_inventory": 2050.9,
+          "mean_orders": 14.67,
+          "stockout_days": 154
+        },
+        "or_empirical": {
+          "n": 33,
+          "mean_fill": 93.78,
+          "agg_fill": 57.312,
+          "pct_fill_ge95": 66.67,
+          "pct_zero_stockout": 57.58,
+          "mean_cost": 2656.14,
+          "mean_holding": 1752.35,
+          "mean_ordering": 903.79,
+          "mean_avg_inventory": 2160.4,
+          "mean_orders": 15.03,
+          "stockout_days": 191
+        },
+        "or_tuned": {
+          "n": 33,
+          "mean_fill": 88.356,
+          "agg_fill": 82.079,
+          "pct_fill_ge95": 42.42,
+          "pct_zero_stockout": 3.03,
+          "mean_cost": 3367.49,
+          "mean_holding": 2616.73,
+          "mean_ordering": 750.76,
+          "mean_avg_inventory": 3039.3,
+          "mean_orders": 12.67,
+          "stockout_days": 301
         },
         "run-01": {
           "n": 33,
@@ -2183,6 +3482,75 @@
             "fill_not_lower_pairs": 30,
             "joint_pairs": 16,
             "n": 33
+          },
+          "or_sba": {
+            "cost_vs_ref_pct": 9.69,
+            "mean_cost_diff": 231.81,
+            "mean_cost_diff_ci95": [
+              1.37,
+              599.29
+            ],
+            "cost_diff_q1_med_q3": [
+              -11.33,
+              8.4,
+              98.63
+            ],
+            "mean_fill_diff_pts": -1.421,
+            "mean_fill_diff_ci95": [
+              -3.42,
+              0.11
+            ],
+            "cheaper_pairs": 11,
+            "cost_not_higher_pairs": 14,
+            "fill_not_lower_pairs": 24,
+            "joint_pairs": 9,
+            "n": 33
+          },
+          "or_empirical": {
+            "cost_vs_ref_pct": -1.25,
+            "mean_cost_diff": -33.2,
+            "mean_cost_diff_ci95": [
+              -293.34,
+              151.05
+            ],
+            "cost_diff_q1_med_q3": [
+              -105.2,
+              0.0,
+              15.49
+            ],
+            "mean_fill_diff_pts": -0.656,
+            "mean_fill_diff_ci95": [
+              -1.6,
+              0.17
+            ],
+            "cheaper_pairs": 15,
+            "cost_not_higher_pairs": 17,
+            "fill_not_lower_pairs": 21,
+            "joint_pairs": 6,
+            "n": 33
+          },
+          "or_tuned": {
+            "cost_vs_ref_pct": -22.11,
+            "mean_cost_diff": -744.55,
+            "mean_cost_diff_ci95": [
+              -3007.59,
+              488.14
+            ],
+            "cost_diff_q1_med_q3": [
+              5.41,
+              132.46,
+              313.43
+            ],
+            "mean_fill_diff_pts": 4.768,
+            "mean_fill_diff_ci95": [
+              1.55,
+              7.7
+            ],
+            "cheaper_pairs": 4,
+            "cost_not_higher_pairs": 6,
+            "fill_not_lower_pairs": 30,
+            "joint_pairs": 4,
+            "n": 33
           }
         },
         "run-02": {
@@ -2276,6 +3644,75 @@
             "cost_not_higher_pairs": 16,
             "fill_not_lower_pairs": 27,
             "joint_pairs": 11,
+            "n": 33
+          },
+          "or_sba": {
+            "cost_vs_ref_pct": 12.3,
+            "mean_cost_diff": 294.04,
+            "mean_cost_diff_ci95": [
+              -19.68,
+              728.38
+            ],
+            "cost_diff_q1_med_q3": [
+              -41.24,
+              1.87,
+              88.25
+            ],
+            "mean_fill_diff_pts": -2.095,
+            "mean_fill_diff_ci95": [
+              -4.32,
+              -0.27
+            ],
+            "cheaper_pairs": 12,
+            "cost_not_higher_pairs": 15,
+            "fill_not_lower_pairs": 21,
+            "joint_pairs": 7,
+            "n": 33
+          },
+          "or_empirical": {
+            "cost_vs_ref_pct": 1.09,
+            "mean_cost_diff": 29.02,
+            "mean_cost_diff_ci95": [
+              -283.09,
+              347.6
+            ],
+            "cost_diff_q1_med_q3": [
+              -92.85,
+              0.0,
+              11.23
+            ],
+            "mean_fill_diff_pts": -1.33,
+            "mean_fill_diff_ci95": [
+              -2.55,
+              -0.26
+            ],
+            "cheaper_pairs": 14,
+            "cost_not_higher_pairs": 19,
+            "fill_not_lower_pairs": 20,
+            "joint_pairs": 7,
+            "n": 33
+          },
+          "or_tuned": {
+            "cost_vs_ref_pct": -20.26,
+            "mean_cost_diff": -682.33,
+            "mean_cost_diff_ci95": [
+              -3005.1,
+              650.21
+            ],
+            "cost_diff_q1_med_q3": [
+              1.43,
+              147.17,
+              333.29
+            ],
+            "mean_fill_diff_pts": 4.093,
+            "mean_fill_diff_ci95": [
+              0.79,
+              7.18
+            ],
+            "cheaper_pairs": 5,
+            "cost_not_higher_pairs": 6,
+            "fill_not_lower_pairs": 27,
+            "joint_pairs": 3,
             "n": 33
           }
         },
@@ -2371,6 +3808,75 @@
             "fill_not_lower_pairs": 28,
             "joint_pairs": 11,
             "n": 33
+          },
+          "or_sba": {
+            "cost_vs_ref_pct": 10.79,
+            "mean_cost_diff": 257.94,
+            "mean_cost_diff_ci95": [
+              -2.86,
+              650.0
+            ],
+            "cost_diff_q1_med_q3": [
+              -22.77,
+              9.34,
+              122.36
+            ],
+            "mean_fill_diff_pts": -1.496,
+            "mean_fill_diff_ci95": [
+              -3.22,
+              -0.07
+            ],
+            "cheaper_pairs": 12,
+            "cost_not_higher_pairs": 14,
+            "fill_not_lower_pairs": 22,
+            "joint_pairs": 9,
+            "n": 33
+          },
+          "or_empirical": {
+            "cost_vs_ref_pct": -0.27,
+            "mean_cost_diff": -7.07,
+            "mean_cost_diff_ci95": [
+              -283.06,
+              209.64
+            ],
+            "cost_diff_q1_med_q3": [
+              -54.32,
+              0.0,
+              14.97
+            ],
+            "mean_fill_diff_pts": -0.73,
+            "mean_fill_diff_ci95": [
+              -1.41,
+              -0.09
+            ],
+            "cheaper_pairs": 15,
+            "cost_not_higher_pairs": 20,
+            "fill_not_lower_pairs": 18,
+            "joint_pairs": 8,
+            "n": 33
+          },
+          "or_tuned": {
+            "cost_vs_ref_pct": -21.33,
+            "mean_cost_diff": -718.42,
+            "mean_cost_diff_ci95": [
+              -2989.37,
+              532.47
+            ],
+            "cost_diff_q1_med_q3": [
+              5.36,
+              133.87,
+              339.37
+            ],
+            "mean_fill_diff_pts": 4.693,
+            "mean_fill_diff_ci95": [
+              1.54,
+              7.47
+            ],
+            "cheaper_pairs": 6,
+            "cost_not_higher_pairs": 6,
+            "fill_not_lower_pairs": 30,
+            "joint_pairs": 3,
+            "n": 33
           }
         },
         "run-noerp": {
@@ -2465,6 +3971,75 @@
             "fill_not_lower_pairs": 27,
             "joint_pairs": 13,
             "n": 33
+          },
+          "or_sba": {
+            "cost_vs_ref_pct": 9.98,
+            "mean_cost_diff": 238.55,
+            "mean_cost_diff_ci95": [
+              -9.5,
+              611.61
+            ],
+            "cost_diff_q1_med_q3": [
+              -37.51,
+              0.24,
+              102.61
+            ],
+            "mean_fill_diff_pts": -1.801,
+            "mean_fill_diff_ci95": [
+              -3.81,
+              -0.25
+            ],
+            "cheaper_pairs": 14,
+            "cost_not_higher_pairs": 16,
+            "fill_not_lower_pairs": 19,
+            "joint_pairs": 5,
+            "n": 33
+          },
+          "or_empirical": {
+            "cost_vs_ref_pct": -1.0,
+            "mean_cost_diff": -26.46,
+            "mean_cost_diff_ci95": [
+              -306.9,
+              176.49
+            ],
+            "cost_diff_q1_med_q3": [
+              -99.15,
+              0.0,
+              14.29
+            ],
+            "mean_fill_diff_pts": -1.035,
+            "mean_fill_diff_ci95": [
+              -2.29,
+              -0.04
+            ],
+            "cheaper_pairs": 15,
+            "cost_not_higher_pairs": 21,
+            "fill_not_lower_pairs": 19,
+            "joint_pairs": 8,
+            "n": 33
+          },
+          "or_tuned": {
+            "cost_vs_ref_pct": -21.91,
+            "mean_cost_diff": -737.82,
+            "mean_cost_diff_ci95": [
+              -3013.83,
+              504.08
+            ],
+            "cost_diff_q1_med_q3": [
+              5.41,
+              136.84,
+              408.91
+            ],
+            "mean_fill_diff_pts": 4.388,
+            "mean_fill_diff_ci95": [
+              1.06,
+              7.37
+            ],
+            "cheaper_pairs": 6,
+            "cost_not_higher_pairs": 6,
+            "fill_not_lower_pairs": 28,
+            "joint_pairs": 2,
+            "n": 33
           }
         }
       }
@@ -2523,6 +4098,45 @@
           "mean_avg_inventory": 17447.4,
           "mean_orders": 16.46,
           "stockout_days": 647
+        },
+        "or_sba": {
+          "n": 313,
+          "mean_fill": 98.698,
+          "agg_fill": 79.662,
+          "pct_fill_ge95": 94.57,
+          "pct_zero_stockout": 88.82,
+          "mean_cost": 2738.36,
+          "mean_holding": 1683.25,
+          "mean_ordering": 1055.11,
+          "mean_avg_inventory": 16941.3,
+          "mean_orders": 16.51,
+          "stockout_days": 649
+        },
+        "or_empirical": {
+          "n": 313,
+          "mean_fill": 98.834,
+          "agg_fill": 79.62,
+          "pct_fill_ge95": 95.85,
+          "pct_zero_stockout": 81.79,
+          "mean_cost": 2471.04,
+          "mean_holding": 1520.8,
+          "mean_ordering": 950.24,
+          "mean_avg_inventory": 14508.7,
+          "mean_orders": 14.8,
+          "stockout_days": 556
+        },
+        "or_tuned": {
+          "n": 313,
+          "mean_fill": 96.857,
+          "agg_fill": 84.939,
+          "pct_fill_ge95": 78.91,
+          "pct_zero_stockout": 19.17,
+          "mean_cost": 3255.3,
+          "mean_holding": 2457.37,
+          "mean_ordering": 797.92,
+          "mean_avg_inventory": 12850.0,
+          "mean_orders": 12.57,
+          "stockout_days": 1672
         },
         "run-01": {
           "n": 313,
@@ -2670,6 +4284,75 @@
             "fill_not_lower_pairs": 301,
             "joint_pairs": 131,
             "n": 313
+          },
+          "or_sba": {
+            "cost_vs_ref_pct": 8.09,
+            "mean_cost_diff": 221.61,
+            "mean_cost_diff_ci95": [
+              89.92,
+              379.55
+            ],
+            "cost_diff_q1_med_q3": [
+              -1.54,
+              27.52,
+              217.02
+            ],
+            "mean_fill_diff_pts": -0.059,
+            "mean_fill_diff_ci95": [
+              -0.27,
+              0.13
+            ],
+            "cheaper_pairs": 88,
+            "cost_not_higher_pairs": 97,
+            "fill_not_lower_pairs": 297,
+            "joint_pairs": 85,
+            "n": 313
+          },
+          "or_empirical": {
+            "cost_vs_ref_pct": 19.79,
+            "mean_cost_diff": 488.93,
+            "mean_cost_diff_ci95": [
+              372.04,
+              615.86
+            ],
+            "cost_diff_q1_med_q3": [
+              20.11,
+              137.2,
+              539.08
+            ],
+            "mean_fill_diff_pts": -0.195,
+            "mean_fill_diff_ci95": [
+              -0.61,
+              0.15
+            ],
+            "cheaper_pairs": 29,
+            "cost_not_higher_pairs": 38,
+            "fill_not_lower_pairs": 298,
+            "joint_pairs": 31,
+            "n": 313
+          },
+          "or_tuned": {
+            "cost_vs_ref_pct": -9.07,
+            "mean_cost_diff": -295.32,
+            "mean_cost_diff_ci95": [
+              -2630.62,
+              961.52
+            ],
+            "cost_diff_q1_med_q3": [
+              106.11,
+              328.73,
+              1096.85
+            ],
+            "mean_fill_diff_pts": 1.782,
+            "mean_fill_diff_ci95": [
+              1.18,
+              2.3
+            ],
+            "cheaper_pairs": 11,
+            "cost_not_higher_pairs": 11,
+            "fill_not_lower_pairs": 299,
+            "joint_pairs": 2,
+            "n": 313
           }
         },
         "run-02": {
@@ -2763,6 +4446,75 @@
             "cost_not_higher_pairs": 145,
             "fill_not_lower_pairs": 301,
             "joint_pairs": 136,
+            "n": 313
+          },
+          "or_sba": {
+            "cost_vs_ref_pct": 7.98,
+            "mean_cost_diff": 218.56,
+            "mean_cost_diff_ci95": [
+              99.54,
+              363.3
+            ],
+            "cost_diff_q1_med_q3": [
+              -0.03,
+              40.81,
+              173.57
+            ],
+            "mean_fill_diff_pts": -0.228,
+            "mean_fill_diff_ci95": [
+              -0.73,
+              0.1
+            ],
+            "cheaper_pairs": 79,
+            "cost_not_higher_pairs": 86,
+            "fill_not_lower_pairs": 295,
+            "joint_pairs": 71,
+            "n": 313
+          },
+          "or_empirical": {
+            "cost_vs_ref_pct": 19.66,
+            "mean_cost_diff": 485.89,
+            "mean_cost_diff_ci95": [
+              359.53,
+              617.61
+            ],
+            "cost_diff_q1_med_q3": [
+              17.6,
+              140.71,
+              529.19
+            ],
+            "mean_fill_diff_pts": -0.365,
+            "mean_fill_diff_ci95": [
+              -0.95,
+              0.09
+            ],
+            "cheaper_pairs": 35,
+            "cost_not_higher_pairs": 45,
+            "fill_not_lower_pairs": 296,
+            "joint_pairs": 35,
+            "n": 313
+          },
+          "or_tuned": {
+            "cost_vs_ref_pct": -9.17,
+            "mean_cost_diff": -298.37,
+            "mean_cost_diff_ci95": [
+              -2612.18,
+              959.62
+            ],
+            "cost_diff_q1_med_q3": [
+              111.82,
+              310.25,
+              1055.43
+            ],
+            "mean_fill_diff_pts": 1.612,
+            "mean_fill_diff_ci95": [
+              0.86,
+              2.23
+            ],
+            "cheaper_pairs": 11,
+            "cost_not_higher_pairs": 11,
+            "fill_not_lower_pairs": 298,
+            "joint_pairs": 2,
             "n": 313
           }
         },
@@ -2858,6 +4610,75 @@
             "fill_not_lower_pairs": 302,
             "joint_pairs": 142,
             "n": 313
+          },
+          "or_sba": {
+            "cost_vs_ref_pct": 8.02,
+            "mean_cost_diff": 219.64,
+            "mean_cost_diff_ci95": [
+              75.76,
+              391.94
+            ],
+            "cost_diff_q1_med_q3": [
+              -1.29,
+              25.87,
+              148.52
+            ],
+            "mean_fill_diff_pts": -0.005,
+            "mean_fill_diff_ci95": [
+              -0.14,
+              0.15
+            ],
+            "cheaper_pairs": 85,
+            "cost_not_higher_pairs": 94,
+            "fill_not_lower_pairs": 296,
+            "joint_pairs": 80,
+            "n": 313
+          },
+          "or_empirical": {
+            "cost_vs_ref_pct": 19.71,
+            "mean_cost_diff": 486.96,
+            "mean_cost_diff_ci95": [
+              360.28,
+              622.79
+            ],
+            "cost_diff_q1_med_q3": [
+              25.25,
+              131.22,
+              531.61
+            ],
+            "mean_fill_diff_pts": -0.142,
+            "mean_fill_diff_ci95": [
+              -0.45,
+              0.16
+            ],
+            "cheaper_pairs": 32,
+            "cost_not_higher_pairs": 35,
+            "fill_not_lower_pairs": 295,
+            "joint_pairs": 25,
+            "n": 313
+          },
+          "or_tuned": {
+            "cost_vs_ref_pct": -9.13,
+            "mean_cost_diff": -297.3,
+            "mean_cost_diff_ci95": [
+              -2638.68,
+              952.84
+            ],
+            "cost_diff_q1_med_q3": [
+              109.87,
+              326.78,
+              1052.31
+            ],
+            "mean_fill_diff_pts": 1.836,
+            "mean_fill_diff_ci95": [
+              1.29,
+              2.31
+            ],
+            "cheaper_pairs": 10,
+            "cost_not_higher_pairs": 10,
+            "fill_not_lower_pairs": 301,
+            "joint_pairs": 3,
+            "n": 313
           }
         },
         "run-noerp": {
@@ -2952,6 +4773,75 @@
             "fill_not_lower_pairs": 302,
             "joint_pairs": 153,
             "n": 313
+          },
+          "or_sba": {
+            "cost_vs_ref_pct": 11.56,
+            "mean_cost_diff": 316.44,
+            "mean_cost_diff_ci95": [
+              141.62,
+              525.67
+            ],
+            "cost_diff_q1_med_q3": [
+              0.0,
+              18.04,
+              170.08
+            ],
+            "mean_fill_diff_pts": -0.082,
+            "mean_fill_diff_ci95": [
+              -0.44,
+              0.21
+            ],
+            "cheaper_pairs": 76,
+            "cost_not_higher_pairs": 94,
+            "fill_not_lower_pairs": 296,
+            "joint_pairs": 80,
+            "n": 313
+          },
+          "or_empirical": {
+            "cost_vs_ref_pct": 23.62,
+            "mean_cost_diff": 583.77,
+            "mean_cost_diff_ci95": [
+              431.29,
+              750.55
+            ],
+            "cost_diff_q1_med_q3": [
+              10.21,
+              132.11,
+              578.96
+            ],
+            "mean_fill_diff_pts": -0.218,
+            "mean_fill_diff_ci95": [
+              -0.61,
+              0.03
+            ],
+            "cheaper_pairs": 33,
+            "cost_not_higher_pairs": 42,
+            "fill_not_lower_pairs": 294,
+            "joint_pairs": 31,
+            "n": 313
+          },
+          "or_tuned": {
+            "cost_vs_ref_pct": -6.16,
+            "mean_cost_diff": -200.49,
+            "mean_cost_diff_ci95": [
+              -2540.12,
+              1070.91
+            ],
+            "cost_diff_q1_med_q3": [
+              106.79,
+              298.84,
+              1055.6
+            ],
+            "mean_fill_diff_pts": 1.759,
+            "mean_fill_diff_ci95": [
+              1.11,
+              2.32
+            ],
+            "cheaper_pairs": 8,
+            "cost_not_higher_pairs": 8,
+            "fill_not_lower_pairs": 302,
+            "joint_pairs": 2,
+            "n": 313
           }
         }
       }
@@ -3010,6 +4900,45 @@
           "mean_avg_inventory": 33177.3,
           "mean_orders": 13.91,
           "stockout_days": 114
+        },
+        "or_sba": {
+          "n": 115,
+          "mean_fill": 99.213,
+          "agg_fill": 81.145,
+          "pct_fill_ge95": 99.13,
+          "pct_zero_stockout": 91.3,
+          "mean_cost": 1982.07,
+          "mean_holding": 1142.72,
+          "mean_ordering": 839.35,
+          "mean_avg_inventory": 31583.6,
+          "mean_orders": 13.64,
+          "stockout_days": 116
+        },
+        "or_empirical": {
+          "n": 115,
+          "mean_fill": 99.17,
+          "agg_fill": 81.268,
+          "pct_fill_ge95": 99.13,
+          "pct_zero_stockout": 85.22,
+          "mean_cost": 1684.46,
+          "mean_holding": 941.64,
+          "mean_ordering": 742.83,
+          "mean_avg_inventory": 26955.7,
+          "mean_orders": 11.97,
+          "stockout_days": 128
+        },
+        "or_tuned": {
+          "n": 115,
+          "mean_fill": 97.207,
+          "agg_fill": 85.217,
+          "pct_fill_ge95": 82.61,
+          "pct_zero_stockout": 21.74,
+          "mean_cost": 1413.55,
+          "mean_holding": 748.98,
+          "mean_ordering": 664.57,
+          "mean_avg_inventory": 21947.2,
+          "mean_orders": 10.79,
+          "stockout_days": 533
         },
         "run-01": {
           "n": 115,
@@ -3157,6 +5086,75 @@
             "fill_not_lower_pairs": 114,
             "joint_pairs": 46,
             "n": 115
+          },
+          "or_sba": {
+            "cost_vs_ref_pct": 15.08,
+            "mean_cost_diff": 298.87,
+            "mean_cost_diff_ci95": [
+              186.32,
+              428.37
+            ],
+            "cost_diff_q1_med_q3": [
+              0.83,
+              55.65,
+              268.97
+            ],
+            "mean_fill_diff_pts": 0.009,
+            "mean_fill_diff_ci95": [
+              -0.0,
+              0.03
+            ],
+            "cheaper_pairs": 19,
+            "cost_not_higher_pairs": 23,
+            "fill_not_lower_pairs": 114,
+            "joint_pairs": 23,
+            "n": 115
+          },
+          "or_empirical": {
+            "cost_vs_ref_pct": 35.41,
+            "mean_cost_diff": 596.48,
+            "mean_cost_diff_ci95": [
+              426.77,
+              789.62
+            ],
+            "cost_diff_q1_med_q3": [
+              38.05,
+              140.85,
+              580.86
+            ],
+            "mean_fill_diff_pts": 0.052,
+            "mean_fill_diff_ci95": [
+              0.0,
+              0.14
+            ],
+            "cheaper_pairs": 1,
+            "cost_not_higher_pairs": 4,
+            "fill_not_lower_pairs": 114,
+            "joint_pairs": 4,
+            "n": 115
+          },
+          "or_tuned": {
+            "cost_vs_ref_pct": 61.36,
+            "mean_cost_diff": 867.4,
+            "mean_cost_diff_ci95": [
+              600.17,
+              1134.93
+            ],
+            "cost_diff_q1_med_q3": [
+              85.8,
+              328.73,
+              1166.58
+            ],
+            "mean_fill_diff_pts": 2.015,
+            "mean_fill_diff_ci95": [
+              1.34,
+              2.64
+            ],
+            "cheaper_pairs": 1,
+            "cost_not_higher_pairs": 1,
+            "fill_not_lower_pairs": 114,
+            "joint_pairs": 0,
+            "n": 115
           }
         },
         "run-02": {
@@ -3250,6 +5248,75 @@
             "cost_not_higher_pairs": 53,
             "fill_not_lower_pairs": 114,
             "joint_pairs": 52,
+            "n": 115
+          },
+          "or_sba": {
+            "cost_vs_ref_pct": 11.51,
+            "mean_cost_diff": 228.07,
+            "mean_cost_diff_ci95": [
+              138.8,
+              328.87
+            ],
+            "cost_diff_q1_med_q3": [
+              0.81,
+              56.53,
+              216.63
+            ],
+            "mean_fill_diff_pts": 0.01,
+            "mean_fill_diff_ci95": [
+              0.0,
+              0.02
+            ],
+            "cheaper_pairs": 17,
+            "cost_not_higher_pairs": 22,
+            "fill_not_lower_pairs": 115,
+            "joint_pairs": 22,
+            "n": 115
+          },
+          "or_empirical": {
+            "cost_vs_ref_pct": 31.21,
+            "mean_cost_diff": 525.68,
+            "mean_cost_diff_ci95": [
+              384.21,
+              683.63
+            ],
+            "cost_diff_q1_med_q3": [
+              28.78,
+              154.02,
+              626.61
+            ],
+            "mean_fill_diff_pts": 0.053,
+            "mean_fill_diff_ci95": [
+              0.0,
+              0.14
+            ],
+            "cheaper_pairs": 2,
+            "cost_not_higher_pairs": 6,
+            "fill_not_lower_pairs": 114,
+            "joint_pairs": 6,
+            "n": 115
+          },
+          "or_tuned": {
+            "cost_vs_ref_pct": 56.35,
+            "mean_cost_diff": 796.6,
+            "mean_cost_diff_ci95": [
+              546.84,
+              1048.03
+            ],
+            "cost_diff_q1_med_q3": [
+              87.93,
+              266.54,
+              1056.47
+            ],
+            "mean_fill_diff_pts": 2.016,
+            "mean_fill_diff_ci95": [
+              1.34,
+              2.65
+            ],
+            "cheaper_pairs": 1,
+            "cost_not_higher_pairs": 1,
+            "fill_not_lower_pairs": 114,
+            "joint_pairs": 0,
             "n": 115
           }
         },
@@ -3345,6 +5412,75 @@
             "fill_not_lower_pairs": 113,
             "joint_pairs": 47,
             "n": 115
+          },
+          "or_sba": {
+            "cost_vs_ref_pct": 13.78,
+            "mean_cost_diff": 273.03,
+            "mean_cost_diff_ci95": [
+              152.1,
+              422.74
+            ],
+            "cost_diff_q1_med_q3": [
+              3.4,
+              48.91,
+              210.68
+            ],
+            "mean_fill_diff_pts": -0.002,
+            "mean_fill_diff_ci95": [
+              -0.04,
+              0.03
+            ],
+            "cheaper_pairs": 18,
+            "cost_not_higher_pairs": 21,
+            "fill_not_lower_pairs": 114,
+            "joint_pairs": 20,
+            "n": 115
+          },
+          "or_empirical": {
+            "cost_vs_ref_pct": 33.88,
+            "mean_cost_diff": 570.64,
+            "mean_cost_diff_ci95": [
+              404.68,
+              763.73
+            ],
+            "cost_diff_q1_med_q3": [
+              30.78,
+              140.85,
+              608.34
+            ],
+            "mean_fill_diff_pts": 0.041,
+            "mean_fill_diff_ci95": [
+              -0.02,
+              0.13
+            ],
+            "cheaper_pairs": 1,
+            "cost_not_higher_pairs": 1,
+            "fill_not_lower_pairs": 113,
+            "joint_pairs": 1,
+            "n": 115
+          },
+          "or_tuned": {
+            "cost_vs_ref_pct": 59.54,
+            "mean_cost_diff": 841.56,
+            "mean_cost_diff_ci95": [
+              564.94,
+              1129.04
+            ],
+            "cost_diff_q1_med_q3": [
+              103.31,
+              297.76,
+              1166.2
+            ],
+            "mean_fill_diff_pts": 2.004,
+            "mean_fill_diff_ci95": [
+              1.33,
+              2.64
+            ],
+            "cheaper_pairs": 1,
+            "cost_not_higher_pairs": 1,
+            "fill_not_lower_pairs": 114,
+            "joint_pairs": 0,
+            "n": 115
           }
         },
         "run-noerp": {
@@ -3439,6 +5575,75 @@
             "fill_not_lower_pairs": 114,
             "joint_pairs": 66,
             "n": 115
+          },
+          "or_sba": {
+            "cost_vs_ref_pct": 10.5,
+            "mean_cost_diff": 208.11,
+            "mean_cost_diff_ci95": [
+              107.41,
+              334.87
+            ],
+            "cost_diff_q1_med_q3": [
+              0.43,
+              30.06,
+              172.22
+            ],
+            "mean_fill_diff_pts": 0.005,
+            "mean_fill_diff_ci95": [
+              -0.02,
+              0.03
+            ],
+            "cheaper_pairs": 17,
+            "cost_not_higher_pairs": 27,
+            "fill_not_lower_pairs": 114,
+            "joint_pairs": 27,
+            "n": 115
+          },
+          "or_empirical": {
+            "cost_vs_ref_pct": 30.02,
+            "mean_cost_diff": 505.72,
+            "mean_cost_diff_ci95": [
+              351.65,
+              683.74
+            ],
+            "cost_diff_q1_med_q3": [
+              23.12,
+              131.22,
+              590.35
+            ],
+            "mean_fill_diff_pts": 0.049,
+            "mean_fill_diff_ci95": [
+              -0.01,
+              0.13
+            ],
+            "cheaper_pairs": 3,
+            "cost_not_higher_pairs": 6,
+            "fill_not_lower_pairs": 114,
+            "joint_pairs": 5,
+            "n": 115
+          },
+          "or_tuned": {
+            "cost_vs_ref_pct": 54.94,
+            "mean_cost_diff": 776.64,
+            "mean_cost_diff_ci95": [
+              521.48,
+              1036.22
+            ],
+            "cost_diff_q1_med_q3": [
+              94.63,
+              257.12,
+              1053.82
+            ],
+            "mean_fill_diff_pts": 2.011,
+            "mean_fill_diff_ci95": [
+              1.34,
+              2.64
+            ],
+            "cheaper_pairs": 1,
+            "cost_not_higher_pairs": 1,
+            "fill_not_lower_pairs": 114,
+            "joint_pairs": 0,
+            "n": 115
           }
         }
       }
@@ -3497,6 +5702,45 @@
           "mean_avg_inventory": 8159.4,
           "mean_orders": 21.16,
           "stockout_days": 419
+        },
+        "or_sba": {
+          "n": 115,
+          "mean_fill": 98.24,
+          "agg_fill": 89.377,
+          "pct_fill_ge95": 92.17,
+          "pct_zero_stockout": 87.83,
+          "mean_cost": 3497.19,
+          "mean_holding": 2124.15,
+          "mean_ordering": 1373.04,
+          "mean_avg_inventory": 7686.2,
+          "mean_orders": 21.46,
+          "stockout_days": 395
+        },
+        "or_empirical": {
+          "n": 115,
+          "mean_fill": 98.489,
+          "agg_fill": 91.256,
+          "pct_fill_ge95": 93.91,
+          "pct_zero_stockout": 74.78,
+          "mean_cost": 3263.52,
+          "mean_holding": 1997.0,
+          "mean_ordering": 1266.52,
+          "mean_avg_inventory": 7032.0,
+          "mean_orders": 19.85,
+          "stockout_days": 331
+        },
+        "or_tuned": {
+          "n": 115,
+          "mean_fill": 96.227,
+          "agg_fill": 94.053,
+          "pct_fill_ge95": 71.3,
+          "pct_zero_stockout": 15.65,
+          "mean_cost": 5704.18,
+          "mean_holding": 4682.88,
+          "mean_ordering": 1021.3,
+          "mean_avg_inventory": 8379.1,
+          "mean_orders": 16.23,
+          "stockout_days": 766
         },
         "run-01": {
           "n": 115,
@@ -3644,6 +5888,75 @@
             "fill_not_lower_pairs": 107,
             "joint_pairs": 42,
             "n": 115
+          },
+          "or_sba": {
+            "cost_vs_ref_pct": 9.88,
+            "mean_cost_diff": 345.43,
+            "mean_cost_diff_ci95": [
+              27.14,
+              727.56
+            ],
+            "cost_diff_q1_med_q3": [
+              -5.34,
+              27.85,
+              329.63
+            ],
+            "mean_fill_diff_pts": -0.144,
+            "mean_fill_diff_ci95": [
+              -0.73,
+              0.34
+            ],
+            "cheaper_pairs": 41,
+            "cost_not_higher_pairs": 42,
+            "fill_not_lower_pairs": 104,
+            "joint_pairs": 33,
+            "n": 115
+          },
+          "or_empirical": {
+            "cost_vs_ref_pct": 17.74,
+            "mean_cost_diff": 579.09,
+            "mean_cost_diff_ci95": [
+              336.43,
+              841.24
+            ],
+            "cost_diff_q1_med_q3": [
+              43.95,
+              195.19,
+              789.87
+            ],
+            "mean_fill_diff_pts": -0.392,
+            "mean_fill_diff_ci95": [
+              -1.52,
+              0.55
+            ],
+            "cheaper_pairs": 13,
+            "cost_not_higher_pairs": 15,
+            "fill_not_lower_pairs": 106,
+            "joint_pairs": 10,
+            "n": 115
+          },
+          "or_tuned": {
+            "cost_vs_ref_pct": -32.64,
+            "mean_cost_diff": -1861.57,
+            "mean_cost_diff_ci95": [
+              -7970.09,
+              1359.55
+            ],
+            "cost_diff_q1_med_q3": [
+              109.86,
+              424.55,
+              1497.27
+            ],
+            "mean_fill_diff_pts": 1.869,
+            "mean_fill_diff_ci95": [
+              0.55,
+              2.99
+            ],
+            "cheaper_pairs": 7,
+            "cost_not_higher_pairs": 7,
+            "fill_not_lower_pairs": 106,
+            "joint_pairs": 1,
+            "n": 115
           }
         },
         "run-02": {
@@ -3737,6 +6050,75 @@
             "cost_not_higher_pairs": 52,
             "fill_not_lower_pairs": 108,
             "joint_pairs": 48,
+            "n": 115
+          },
+          "or_sba": {
+            "cost_vs_ref_pct": 11.06,
+            "mean_cost_diff": 386.66,
+            "mean_cost_diff_ci95": [
+              90.69,
+              748.06
+            ],
+            "cost_diff_q1_med_q3": [
+              -2.79,
+              52.87,
+              188.91
+            ],
+            "mean_fill_diff_pts": 0.041,
+            "mean_fill_diff_ci95": [
+              -0.27,
+              0.4
+            ],
+            "cheaper_pairs": 35,
+            "cost_not_higher_pairs": 35,
+            "fill_not_lower_pairs": 103,
+            "joint_pairs": 24,
+            "n": 115
+          },
+          "or_empirical": {
+            "cost_vs_ref_pct": 19.01,
+            "mean_cost_diff": 620.33,
+            "mean_cost_diff_ci95": [
+              352.6,
+              922.34
+            ],
+            "cost_diff_q1_med_q3": [
+              46.29,
+              200.87,
+              601.57
+            ],
+            "mean_fill_diff_pts": -0.207,
+            "mean_fill_diff_ci95": [
+              -1.0,
+              0.59
+            ],
+            "cheaper_pairs": 14,
+            "cost_not_higher_pairs": 17,
+            "fill_not_lower_pairs": 104,
+            "joint_pairs": 10,
+            "n": 115
+          },
+          "or_tuned": {
+            "cost_vs_ref_pct": -31.91,
+            "mean_cost_diff": -1820.33,
+            "mean_cost_diff_ci95": [
+              -7900.21,
+              1437.57
+            ],
+            "cost_diff_q1_med_q3": [
+              134.24,
+              454.77,
+              1241.0
+            ],
+            "mean_fill_diff_pts": 2.054,
+            "mean_fill_diff_ci95": [
+              0.96,
+              3.03
+            ],
+            "cheaper_pairs": 7,
+            "cost_not_higher_pairs": 7,
+            "fill_not_lower_pairs": 106,
+            "joint_pairs": 1,
             "n": 115
           }
         },
@@ -3832,6 +6214,75 @@
             "fill_not_lower_pairs": 108,
             "joint_pairs": 49,
             "n": 115
+          },
+          "or_sba": {
+            "cost_vs_ref_pct": 11.21,
+            "mean_cost_diff": 392.19,
+            "mean_cost_diff_ci95": [
+              46.21,
+              810.42
+            ],
+            "cost_diff_q1_med_q3": [
+              -10.06,
+              45.76,
+              156.03
+            ],
+            "mean_fill_diff_pts": 0.034,
+            "mean_fill_diff_ci95": [
+              -0.3,
+              0.43
+            ],
+            "cheaper_pairs": 39,
+            "cost_not_higher_pairs": 41,
+            "fill_not_lower_pairs": 104,
+            "joint_pairs": 32,
+            "n": 115
+          },
+          "or_empirical": {
+            "cost_vs_ref_pct": 19.18,
+            "mean_cost_diff": 625.86,
+            "mean_cost_diff_ci95": [
+              362.01,
+              917.17
+            ],
+            "cost_diff_q1_med_q3": [
+              53.1,
+              174.73,
+              638.85
+            ],
+            "mean_fill_diff_pts": -0.214,
+            "mean_fill_diff_ci95": [
+              -1.01,
+              0.59
+            ],
+            "cheaper_pairs": 14,
+            "cost_not_higher_pairs": 14,
+            "fill_not_lower_pairs": 104,
+            "joint_pairs": 7,
+            "n": 115
+          },
+          "or_tuned": {
+            "cost_vs_ref_pct": -31.82,
+            "mean_cost_diff": -1814.8,
+            "mean_cost_diff_ci95": [
+              -7899.72,
+              1407.01
+            ],
+            "cost_diff_q1_med_q3": [
+              120.07,
+              407.57,
+              1317.78
+            ],
+            "mean_fill_diff_pts": 2.047,
+            "mean_fill_diff_ci95": [
+              0.97,
+              3.01
+            ],
+            "cheaper_pairs": 6,
+            "cost_not_higher_pairs": 6,
+            "fill_not_lower_pairs": 108,
+            "joint_pairs": 2,
+            "n": 115
           }
         },
         "run-noerp": {
@@ -3926,6 +6377,75 @@
             "fill_not_lower_pairs": 108,
             "joint_pairs": 47,
             "n": 115
+          },
+          "or_sba": {
+            "cost_vs_ref_pct": 18.24,
+            "mean_cost_diff": 637.82,
+            "mean_cost_diff_ci95": [
+              209.66,
+              1181.28
+            ],
+            "cost_diff_q1_med_q3": [
+              -2.84,
+              50.78,
+              348.83
+            ],
+            "mean_fill_diff_pts": -0.3,
+            "mean_fill_diff_ci95": [
+              -1.24,
+              0.43
+            ],
+            "cheaper_pairs": 35,
+            "cost_not_higher_pairs": 37,
+            "fill_not_lower_pairs": 105,
+            "joint_pairs": 28,
+            "n": 115
+          },
+          "or_empirical": {
+            "cost_vs_ref_pct": 26.7,
+            "mean_cost_diff": 871.49,
+            "mean_cost_diff_ci95": [
+              528.12,
+              1290.62
+            ],
+            "cost_diff_q1_med_q3": [
+              11.18,
+              200.87,
+              726.51
+            ],
+            "mean_fill_diff_pts": -0.548,
+            "mean_fill_diff_ci95": [
+              -1.59,
+              0.08
+            ],
+            "cheaper_pairs": 14,
+            "cost_not_higher_pairs": 16,
+            "fill_not_lower_pairs": 102,
+            "joint_pairs": 8,
+            "n": 115
+          },
+          "or_tuned": {
+            "cost_vs_ref_pct": -27.51,
+            "mean_cost_diff": -1569.17,
+            "mean_cost_diff_ci95": [
+              -7706.07,
+              1739.22
+            ],
+            "cost_diff_q1_med_q3": [
+              112.3,
+              468.54,
+              1437.24
+            ],
+            "mean_fill_diff_pts": 1.713,
+            "mean_fill_diff_ci95": [
+              0.16,
+              2.97
+            ],
+            "cheaper_pairs": 5,
+            "cost_not_higher_pairs": 5,
+            "fill_not_lower_pairs": 108,
+            "joint_pairs": 1,
+            "n": 115
           }
         }
       }
@@ -3984,6 +6504,45 @@
           "mean_avg_inventory": 6659.8,
           "mean_orders": 13.77,
           "stockout_days": 341
+        },
+        "or_sba": {
+          "n": 116,
+          "mean_fill": 97.459,
+          "agg_fill": 64.87,
+          "pct_fill_ge95": 87.93,
+          "pct_zero_stockout": 72.41,
+          "mean_cost": 2637.07,
+          "mean_holding": 1727.59,
+          "mean_ordering": 909.48,
+          "mean_avg_inventory": 7364.6,
+          "mean_orders": 13.92,
+          "stockout_days": 292
+        },
+        "or_empirical": {
+          "n": 116,
+          "mean_fill": 97.407,
+          "agg_fill": 62.938,
+          "pct_fill_ge95": 86.21,
+          "pct_zero_stockout": 78.45,
+          "mean_cost": 2517.84,
+          "mean_holding": 1688.75,
+          "mean_ordering": 829.09,
+          "mean_avg_inventory": 6068.3,
+          "mean_orders": 12.67,
+          "stockout_days": 288
+        },
+        "or_tuned": {
+          "n": 116,
+          "mean_fill": 94.716,
+          "agg_fill": 75.887,
+          "pct_fill_ge95": 72.41,
+          "pct_zero_stockout": 15.52,
+          "mean_cost": 2685.31,
+          "mean_holding": 1990.06,
+          "mean_ordering": 695.26,
+          "mean_avg_inventory": 5472.7,
+          "mean_orders": 10.73,
+          "stockout_days": 674
         },
         "run-01": {
           "n": 116,
@@ -4131,6 +6690,75 @@
             "fill_not_lower_pairs": 110,
             "joint_pairs": 59,
             "n": 116
+          },
+          "or_sba": {
+            "cost_vs_ref_pct": 0.95,
+            "mean_cost_diff": 25.17,
+            "mean_cost_diff_ci95": [
+              -103.5,
+              159.19
+            ],
+            "cost_diff_q1_med_q3": [
+              -3.97,
+              4.7,
+              107.35
+            ],
+            "mean_fill_diff_pts": -0.429,
+            "mean_fill_diff_ci95": [
+              -1.01,
+              0.02
+            ],
+            "cheaper_pairs": 39,
+            "cost_not_higher_pairs": 46,
+            "fill_not_lower_pairs": 103,
+            "joint_pairs": 38,
+            "n": 116
+          },
+          "or_empirical": {
+            "cost_vs_ref_pct": 5.73,
+            "mean_cost_diff": 144.39,
+            "mean_cost_diff_ci95": [
+              10.65,
+              274.95
+            ],
+            "cost_diff_q1_med_q3": [
+              -0.3,
+              34.91,
+              230.92
+            ],
+            "mean_fill_diff_pts": -0.376,
+            "mean_fill_diff_ci95": [
+              -0.79,
+              -0.02
+            ],
+            "cheaper_pairs": 30,
+            "cost_not_higher_pairs": 36,
+            "fill_not_lower_pairs": 99,
+            "joint_pairs": 23,
+            "n": 116
+          },
+          "or_tuned": {
+            "cost_vs_ref_pct": -0.86,
+            "mean_cost_diff": -23.08,
+            "mean_cost_diff_ci95": [
+              -877.15,
+              570.7
+            ],
+            "cost_diff_q1_med_q3": [
+              86.99,
+              212.1,
+              532.56
+            ],
+            "mean_fill_diff_pts": 2.315,
+            "mean_fill_diff_ci95": [
+              1.18,
+              3.4
+            ],
+            "cheaper_pairs": 7,
+            "cost_not_higher_pairs": 9,
+            "fill_not_lower_pairs": 109,
+            "joint_pairs": 5,
+            "n": 116
           }
         },
         "run-02": {
@@ -4224,6 +6852,75 @@
             "cost_not_higher_pairs": 56,
             "fill_not_lower_pairs": 106,
             "joint_pairs": 47,
+            "n": 116
+          },
+          "or_sba": {
+            "cost_vs_ref_pct": 2.43,
+            "mean_cost_diff": 63.96,
+            "mean_cost_diff_ci95": [
+              -93.6,
+              224.01
+            ],
+            "cost_diff_q1_med_q3": [
+              -6.37,
+              5.58,
+              98.71
+            ],
+            "mean_fill_diff_pts": -1.263,
+            "mean_fill_diff_ci95": [
+              -2.74,
+              -0.26
+            ],
+            "cheaper_pairs": 39,
+            "cost_not_higher_pairs": 44,
+            "fill_not_lower_pairs": 98,
+            "joint_pairs": 32,
+            "n": 116
+          },
+          "or_empirical": {
+            "cost_vs_ref_pct": 7.28,
+            "mean_cost_diff": 183.18,
+            "mean_cost_diff_ci95": [
+              29.48,
+              330.9
+            ],
+            "cost_diff_q1_med_q3": [
+              -1.63,
+              22.03,
+              192.57
+            ],
+            "mean_fill_diff_pts": -1.211,
+            "mean_fill_diff_ci95": [
+              -2.68,
+              -0.27
+            ],
+            "cheaper_pairs": 33,
+            "cost_not_higher_pairs": 41,
+            "fill_not_lower_pairs": 98,
+            "joint_pairs": 26,
+            "n": 116
+          },
+          "or_tuned": {
+            "cost_vs_ref_pct": 0.59,
+            "mean_cost_diff": 15.71,
+            "mean_cost_diff_ci95": [
+              -840.66,
+              618.93
+            ],
+            "cost_diff_q1_med_q3": [
+              80.29,
+              201.94,
+              574.45
+            ],
+            "mean_fill_diff_pts": 1.48,
+            "mean_fill_diff_ci95": [
+              -0.34,
+              2.95
+            ],
+            "cheaper_pairs": 8,
+            "cost_not_higher_pairs": 9,
+            "fill_not_lower_pairs": 105,
+            "joint_pairs": 4,
             "n": 116
           }
         },
@@ -4319,6 +7016,75 @@
             "fill_not_lower_pairs": 109,
             "joint_pairs": 57,
             "n": 116
+          },
+          "or_sba": {
+            "cost_vs_ref_pct": 0.25,
+            "mean_cost_diff": 6.52,
+            "mean_cost_diff_ci95": [
+              -134.4,
+              150.44
+            ],
+            "cost_diff_q1_med_q3": [
+              -9.09,
+              3.92,
+              87.6
+            ],
+            "mean_fill_diff_pts": -0.471,
+            "mean_fill_diff_ci95": [
+              -0.99,
+              -0.04
+            ],
+            "cheaper_pairs": 40,
+            "cost_not_higher_pairs": 46,
+            "fill_not_lower_pairs": 100,
+            "joint_pairs": 37,
+            "n": 116
+          },
+          "or_empirical": {
+            "cost_vs_ref_pct": 4.99,
+            "mean_cost_diff": 125.75,
+            "mean_cost_diff_ci95": [
+              -11.45,
+              260.46
+            ],
+            "cost_diff_q1_med_q3": [
+              -1.23,
+              54.34,
+              181.92
+            ],
+            "mean_fill_diff_pts": -0.419,
+            "mean_fill_diff_ci95": [
+              -0.79,
+              -0.11
+            ],
+            "cheaper_pairs": 32,
+            "cost_not_higher_pairs": 40,
+            "fill_not_lower_pairs": 96,
+            "joint_pairs": 25,
+            "n": 116
+          },
+          "or_tuned": {
+            "cost_vs_ref_pct": -1.55,
+            "mean_cost_diff": -41.72,
+            "mean_cost_diff_ci95": [
+              -904.66,
+              550.22
+            ],
+            "cost_diff_q1_med_q3": [
+              85.81,
+              215.38,
+              513.01
+            ],
+            "mean_fill_diff_pts": 2.272,
+            "mean_fill_diff_ci95": [
+              1.16,
+              3.31
+            ],
+            "cheaper_pairs": 9,
+            "cost_not_higher_pairs": 9,
+            "fill_not_lower_pairs": 109,
+            "joint_pairs": 4,
+            "n": 116
           }
         },
         "run-noerp": {
@@ -4413,6 +7179,75 @@
             "fill_not_lower_pairs": 107,
             "joint_pairs": 53,
             "n": 116
+          },
+          "or_sba": {
+            "cost_vs_ref_pct": 3.15,
+            "mean_cost_diff": 83.08,
+            "mean_cost_diff_ci95": [
+              -87.32,
+              283.48
+            ],
+            "cost_diff_q1_med_q3": [
+              -12.16,
+              4.43,
+              86.84
+            ],
+            "mean_fill_diff_pts": -0.441,
+            "mean_fill_diff_ci95": [
+              -1.11,
+              0.12
+            ],
+            "cheaper_pairs": 38,
+            "cost_not_higher_pairs": 46,
+            "fill_not_lower_pairs": 96,
+            "joint_pairs": 30,
+            "n": 116
+          },
+          "or_empirical": {
+            "cost_vs_ref_pct": 8.03,
+            "mean_cost_diff": 202.3,
+            "mean_cost_diff_ci95": [
+              54.6,
+              354.57
+            ],
+            "cost_diff_q1_med_q3": [
+              -0.77,
+              15.04,
+              206.49
+            ],
+            "mean_fill_diff_pts": -0.388,
+            "mean_fill_diff_ci95": [
+              -0.81,
+              -0.03
+            ],
+            "cheaper_pairs": 31,
+            "cost_not_higher_pairs": 41,
+            "fill_not_lower_pairs": 97,
+            "joint_pairs": 26,
+            "n": 116
+          },
+          "or_tuned": {
+            "cost_vs_ref_pct": 1.3,
+            "mean_cost_diff": 34.83,
+            "mean_cost_diff_ci95": [
+              -828.28,
+              634.62
+            ],
+            "cost_diff_q1_med_q3": [
+              82.22,
+              202.92,
+              569.89
+            ],
+            "mean_fill_diff_pts": 2.303,
+            "mean_fill_diff_ci95": [
+              1.17,
+              3.35
+            ],
+            "cheaper_pairs": 8,
+            "cost_not_higher_pairs": 8,
+            "fill_not_lower_pairs": 108,
+            "joint_pairs": 3,
+            "n": 116
           }
         }
       }
@@ -4424,6 +7259,9 @@
       "universal_rq": 4211.0,
       "or_erp_floor": 4248.4,
       "or_cold": 2764.3,
+      "or_sba": 2705.2,
+      "or_empirical": 2488.7,
+      "or_tuned": 3266.0,
       "run-01": 2927.8,
       "run-02": 2931.0,
       "run-03": 2928.5,
@@ -4434,6 +7272,9 @@
       "universal_rq": 1694183.2,
       "or_erp_floor": 1694220.5,
       "or_cold": 1687191.3,
+      "or_sba": 1674925.4,
+      "or_empirical": 1693784.3,
+      "or_tuned": 1094043.0,
       "run-01": 1673003.4,
       "run-02": 1683280.1,
       "run-03": 1671759.3,
@@ -4444,6 +7285,9 @@
       "universal_rq": 8454071.9,
       "or_erp_floor": 8454109.2,
       "or_cold": 8424899.3,
+      "or_sba": 8363806.0,
+      "or_empirical": 8458966.5,
+      "or_tuned": 5457151.2,
       "run-01": 8353305.7,
       "run-02": 8404676.4,
       "run-03": 8347082.4,
@@ -4505,6 +7349,45 @@
           "mean_avg_inventory": 17699.4,
           "mean_orders": 16.29,
           "stockout_days": 773
+        },
+        "or_sba": {
+          "n": 346,
+          "mean_fill": 98.434,
+          "agg_fill": 79.157,
+          "pct_fill_ge95": 94.8,
+          "pct_zero_stockout": 87.86,
+          "mean_cost": 2854.73,
+          "mean_holding": 1813.11,
+          "mean_ordering": 1041.62,
+          "mean_avg_inventory": 17327.3,
+          "mean_orders": 16.35,
+          "stockout_days": 738
+        },
+        "or_empirical": {
+          "n": 346,
+          "mean_fill": 98.524,
+          "agg_fill": 79.254,
+          "pct_fill_ge95": 94.8,
+          "pct_zero_stockout": 87.28,
+          "mean_cost": 2644.5,
+          "mean_holding": 1697.46,
+          "mean_ordering": 947.04,
+          "mean_avg_inventory": 15065.1,
+          "mean_orders": 14.84,
+          "stockout_days": 657
+        },
+        "or_tuned": {
+          "n": 346,
+          "mean_fill": 97.443,
+          "agg_fill": 86.078,
+          "pct_fill_ge95": 87.86,
+          "pct_zero_stockout": 34.68,
+          "mean_cost": 3410.67,
+          "mean_holding": 2609.08,
+          "mean_ordering": 801.59,
+          "mean_avg_inventory": 13402.2,
+          "mean_orders": 12.69,
+          "stockout_days": 1509
         },
         "run-01": {
           "n": 346,
@@ -4652,6 +7535,75 @@
             "fill_not_lower_pairs": 331,
             "joint_pairs": 148,
             "n": 346
+          },
+          "or_sba": {
+            "cost_vs_ref_pct": 7.88,
+            "mean_cost_diff": 224.9,
+            "mean_cost_diff_ci95": [
+              97.8,
+              368.52
+            ],
+            "cost_diff_q1_med_q3": [
+              -3.03,
+              27.18,
+              202.45
+            ],
+            "mean_fill_diff_pts": -0.182,
+            "mean_fill_diff_ci95": [
+              -0.46,
+              0.05
+            ],
+            "cheaper_pairs": 101,
+            "cost_not_higher_pairs": 113,
+            "fill_not_lower_pairs": 326,
+            "joint_pairs": 99,
+            "n": 346
+          },
+          "or_empirical": {
+            "cost_vs_ref_pct": 16.45,
+            "mean_cost_diff": 435.12,
+            "mean_cost_diff_ci95": [
+              323.62,
+              553.15
+            ],
+            "cost_diff_q1_med_q3": [
+              5.49,
+              111.62,
+              452.98
+            ],
+            "mean_fill_diff_pts": -0.272,
+            "mean_fill_diff_ci95": [
+              -0.64,
+              0.06
+            ],
+            "cheaper_pairs": 49,
+            "cost_not_higher_pairs": 60,
+            "fill_not_lower_pairs": 322,
+            "joint_pairs": 42,
+            "n": 346
+          },
+          "or_tuned": {
+            "cost_vs_ref_pct": -9.71,
+            "mean_cost_diff": -331.04,
+            "mean_cost_diff_ci95": [
+              -2524.7,
+              867.05
+            ],
+            "cost_diff_q1_med_q3": [
+              86.91,
+              288.93,
+              981.47
+            ],
+            "mean_fill_diff_pts": 0.809,
+            "mean_fill_diff_ci95": [
+              0.27,
+              1.29
+            ],
+            "cheaper_pairs": 15,
+            "cost_not_higher_pairs": 17,
+            "fill_not_lower_pairs": 329,
+            "joint_pairs": 6,
+            "n": 346
           }
         },
         "run-02": {
@@ -4745,6 +7697,75 @@
             "cost_not_higher_pairs": 165,
             "fill_not_lower_pairs": 331,
             "joint_pairs": 152,
+            "n": 346
+          },
+          "or_sba": {
+            "cost_vs_ref_pct": 8.16,
+            "mean_cost_diff": 232.97,
+            "mean_cost_diff_ci95": [
+              111.36,
+              375.15
+            ],
+            "cost_diff_q1_med_q3": [
+              -1.19,
+              31.8,
+              159.63
+            ],
+            "mean_fill_diff_pts": -0.373,
+            "mean_fill_diff_ci95": [
+              -0.9,
+              -0.02
+            ],
+            "cheaper_pairs": 95,
+            "cost_not_higher_pairs": 105,
+            "fill_not_lower_pairs": 327,
+            "joint_pairs": 92,
+            "n": 346
+          },
+          "or_empirical": {
+            "cost_vs_ref_pct": 16.76,
+            "mean_cost_diff": 443.2,
+            "mean_cost_diff_ci95": [
+              326.9,
+              568.69
+            ],
+            "cost_diff_q1_med_q3": [
+              2.54,
+              117.97,
+              490.07
+            ],
+            "mean_fill_diff_pts": -0.463,
+            "mean_fill_diff_ci95": [
+              -1.01,
+              -0.04
+            ],
+            "cheaper_pairs": 56,
+            "cost_not_higher_pairs": 71,
+            "fill_not_lower_pairs": 325,
+            "joint_pairs": 54,
+            "n": 346
+          },
+          "or_tuned": {
+            "cost_vs_ref_pct": -9.47,
+            "mean_cost_diff": -322.97,
+            "mean_cost_diff_ci95": [
+              -2505.19,
+              887.33
+            ],
+            "cost_diff_q1_med_q3": [
+              93.39,
+              270.19,
+              982.37
+            ],
+            "mean_fill_diff_pts": 0.618,
+            "mean_fill_diff_ci95": [
+              -0.06,
+              1.17
+            ],
+            "cheaper_pairs": 17,
+            "cost_not_higher_pairs": 18,
+            "fill_not_lower_pairs": 325,
+            "joint_pairs": 5,
             "n": 346
           }
         },
@@ -4840,6 +7861,75 @@
             "fill_not_lower_pairs": 335,
             "joint_pairs": 156,
             "n": 346
+          },
+          "or_sba": {
+            "cost_vs_ref_pct": 8.13,
+            "mean_cost_diff": 232.13,
+            "mean_cost_diff_ci95": [
+              96.18,
+              387.03
+            ],
+            "cost_diff_q1_med_q3": [
+              -2.63,
+              23.66,
+              145.44
+            ],
+            "mean_fill_diff_pts": -0.098,
+            "mean_fill_diff_ci95": [
+              -0.31,
+              0.09
+            ],
+            "cheaper_pairs": 102,
+            "cost_not_higher_pairs": 113,
+            "fill_not_lower_pairs": 326,
+            "joint_pairs": 100,
+            "n": 346
+          },
+          "or_empirical": {
+            "cost_vs_ref_pct": 16.73,
+            "mean_cost_diff": 442.36,
+            "mean_cost_diff_ci95": [
+              328.28,
+              567.51
+            ],
+            "cost_diff_q1_med_q3": [
+              8.15,
+              106.45,
+              476.43
+            ],
+            "mean_fill_diff_pts": -0.188,
+            "mean_fill_diff_ci95": [
+              -0.46,
+              0.1
+            ],
+            "cheaper_pairs": 50,
+            "cost_not_higher_pairs": 59,
+            "fill_not_lower_pairs": 321,
+            "joint_pairs": 43,
+            "n": 346
+          },
+          "or_tuned": {
+            "cost_vs_ref_pct": -9.49,
+            "mean_cost_diff": -323.81,
+            "mean_cost_diff_ci95": [
+              -2497.17,
+              867.92
+            ],
+            "cost_diff_q1_med_q3": [
+              99.19,
+              287.77,
+              884.9
+            ],
+            "mean_fill_diff_pts": 0.893,
+            "mean_fill_diff_ci95": [
+              0.4,
+              1.32
+            ],
+            "cheaper_pairs": 16,
+            "cost_not_higher_pairs": 16,
+            "fill_not_lower_pairs": 331,
+            "joint_pairs": 6,
+            "n": 346
           }
         },
         "run-noerp": {
@@ -4933,6 +8023,75 @@
             "cost_not_higher_pairs": 179,
             "fill_not_lower_pairs": 332,
             "joint_pairs": 167,
+            "n": 346
+          },
+          "or_sba": {
+            "cost_vs_ref_pct": 11.06,
+            "mean_cost_diff": 315.69,
+            "mean_cost_diff_ci95": [
+              152.42,
+              511.03
+            ],
+            "cost_diff_q1_med_q3": [
+              -2.13,
+              16.57,
+              151.08
+            ],
+            "mean_fill_diff_pts": -0.194,
+            "mean_fill_diff_ci95": [
+              -0.56,
+              0.11
+            ],
+            "cheaper_pairs": 98,
+            "cost_not_higher_pairs": 118,
+            "fill_not_lower_pairs": 326,
+            "joint_pairs": 103,
+            "n": 346
+          },
+          "or_empirical": {
+            "cost_vs_ref_pct": 19.89,
+            "mean_cost_diff": 525.92,
+            "mean_cost_diff_ci95": [
+              385.94,
+              684.69
+            ],
+            "cost_diff_q1_med_q3": [
+              2.62,
+              106.85,
+              510.84
+            ],
+            "mean_fill_diff_pts": -0.284,
+            "mean_fill_diff_ci95": [
+              -0.63,
+              -0.04
+            ],
+            "cheaper_pairs": 49,
+            "cost_not_higher_pairs": 64,
+            "fill_not_lower_pairs": 322,
+            "joint_pairs": 47,
+            "n": 346
+          },
+          "or_tuned": {
+            "cost_vs_ref_pct": -7.04,
+            "mean_cost_diff": -240.25,
+            "mean_cost_diff_ci95": [
+              -2431.44,
+              966.3
+            ],
+            "cost_diff_q1_med_q3": [
+              93.18,
+              280.09,
+              983.78
+            ],
+            "mean_fill_diff_pts": 0.797,
+            "mean_fill_diff_ci95": [
+              0.19,
+              1.32
+            ],
+            "cheaper_pairs": 13,
+            "cost_not_higher_pairs": 13,
+            "fill_not_lower_pairs": 331,
+            "joint_pairs": 3,
             "n": 346
           }
         }
@@ -5036,6 +8195,45 @@
           "mean_avg_inventory": 17177.8,
           "mean_orders": 14.93,
           "stockout_days": 577
+        },
+        "or_sba": {
+          "n": 280,
+          "mean_fill": 98.483,
+          "agg_fill": 76.096,
+          "pct_fill_ge95": 94.29,
+          "pct_zero_stockout": 84.29,
+          "mean_cost": 2739.21,
+          "mean_holding": 1802.06,
+          "mean_ordering": 937.14,
+          "mean_avg_inventory": 16597.2,
+          "mean_orders": 14.97,
+          "stockout_days": 551
+        },
+        "or_empirical": {
+          "n": 280,
+          "mean_fill": 98.486,
+          "agg_fill": 75.877,
+          "pct_fill_ge95": 93.93,
+          "pct_zero_stockout": 79.64,
+          "mean_cost": 2580.31,
+          "mean_holding": 1696.3,
+          "mean_ordering": 884.02,
+          "mean_avg_inventory": 14299.3,
+          "mean_orders": 14.05,
+          "stockout_days": 553
+        },
+        "or_tuned": {
+          "n": 280,
+          "mean_fill": 96.296,
+          "agg_fill": 83.416,
+          "pct_fill_ge95": 75.0,
+          "pct_zero_stockout": 20.36,
+          "mean_cost": 3628.33,
+          "mean_holding": 2891.28,
+          "mean_ordering": 737.05,
+          "mean_avg_inventory": 12804.1,
+          "mean_orders": 11.9,
+          "stockout_days": 1376
         },
         "run-01": {
           "n": 280,
@@ -5183,6 +8381,75 @@
             "fill_not_lower_pairs": 271,
             "joint_pairs": 119,
             "n": 280
+          },
+          "or_sba": {
+            "cost_vs_ref_pct": 8.68,
+            "mean_cost_diff": 237.83,
+            "mean_cost_diff_ci95": [
+              83.93,
+              411.67
+            ],
+            "cost_diff_q1_med_q3": [
+              -1.98,
+              27.08,
+              207.08
+            ],
+            "mean_fill_diff_pts": 0.011,
+            "mean_fill_diff_ci95": [
+              -0.15,
+              0.18
+            ],
+            "cheaper_pairs": 79,
+            "cost_not_higher_pairs": 84,
+            "fill_not_lower_pairs": 261,
+            "joint_pairs": 68,
+            "n": 280
+          },
+          "or_empirical": {
+            "cost_vs_ref_pct": 15.37,
+            "mean_cost_diff": 396.72,
+            "mean_cost_diff_ci95": [
+              267.85,
+              540.17
+            ],
+            "cost_diff_q1_med_q3": [
+              6.76,
+              93.06,
+              403.68
+            ],
+            "mean_fill_diff_pts": 0.008,
+            "mean_fill_diff_ci95": [
+              -0.23,
+              0.3
+            ],
+            "cheaper_pairs": 37,
+            "cost_not_higher_pairs": 46,
+            "fill_not_lower_pairs": 261,
+            "joint_pairs": 31,
+            "n": 280
+          },
+          "or_tuned": {
+            "cost_vs_ref_pct": -17.95,
+            "mean_cost_diff": -651.3,
+            "mean_cost_diff_ci95": [
+              -3364.3,
+              809.09
+            ],
+            "cost_diff_q1_med_q3": [
+              86.55,
+              274.35,
+              814.17
+            ],
+            "mean_fill_diff_pts": 2.198,
+            "mean_fill_diff_ci95": [
+              1.55,
+              2.84
+            ],
+            "cheaper_pairs": 14,
+            "cost_not_higher_pairs": 16,
+            "fill_not_lower_pairs": 269,
+            "joint_pairs": 5,
+            "n": 280
           }
         },
         "run-02": {
@@ -5276,6 +8543,75 @@
             "cost_not_higher_pairs": 133,
             "fill_not_lower_pairs": 267,
             "joint_pairs": 123,
+            "n": 280
+          },
+          "or_sba": {
+            "cost_vs_ref_pct": 9.5,
+            "mean_cost_diff": 260.3,
+            "mean_cost_diff_ci95": [
+              114.11,
+              432.71
+            ],
+            "cost_diff_q1_med_q3": [
+              -0.01,
+              36.21,
+              181.91
+            ],
+            "mean_fill_diff_pts": -0.057,
+            "mean_fill_diff_ci95": [
+              -0.24,
+              0.12
+            ],
+            "cheaper_pairs": 70,
+            "cost_not_higher_pairs": 75,
+            "fill_not_lower_pairs": 257,
+            "joint_pairs": 56,
+            "n": 280
+          },
+          "or_empirical": {
+            "cost_vs_ref_pct": 16.25,
+            "mean_cost_diff": 419.19,
+            "mean_cost_diff_ci95": [
+              281.01,
+              576.35
+            ],
+            "cost_diff_q1_med_q3": [
+              2.8,
+              99.71,
+              412.62
+            ],
+            "mean_fill_diff_pts": -0.06,
+            "mean_fill_diff_ci95": [
+              -0.32,
+              0.26
+            ],
+            "cheaper_pairs": 42,
+            "cost_not_higher_pairs": 55,
+            "fill_not_lower_pairs": 258,
+            "joint_pairs": 36,
+            "n": 280
+          },
+          "or_tuned": {
+            "cost_vs_ref_pct": -17.33,
+            "mean_cost_diff": -628.83,
+            "mean_cost_diff_ci95": [
+              -3325.72,
+              829.57
+            ],
+            "cost_diff_q1_med_q3": [
+              88.36,
+              260.62,
+              804.27
+            ],
+            "mean_fill_diff_pts": 2.129,
+            "mean_fill_diff_ci95": [
+              1.48,
+              2.78
+            ],
+            "cheaper_pairs": 15,
+            "cost_not_higher_pairs": 16,
+            "fill_not_lower_pairs": 265,
+            "joint_pairs": 4,
             "n": 280
           }
         },
@@ -5371,6 +8707,75 @@
             "fill_not_lower_pairs": 269,
             "joint_pairs": 125,
             "n": 280
+          },
+          "or_sba": {
+            "cost_vs_ref_pct": 9.52,
+            "mean_cost_diff": 260.69,
+            "mean_cost_diff_ci95": [
+              98.0,
+              448.96
+            ],
+            "cost_diff_q1_med_q3": [
+              -1.87,
+              31.47,
+              155.92
+            ],
+            "mean_fill_diff_pts": -0.03,
+            "mean_fill_diff_ci95": [
+              -0.21,
+              0.16
+            ],
+            "cheaper_pairs": 77,
+            "cost_not_higher_pairs": 81,
+            "fill_not_lower_pairs": 259,
+            "joint_pairs": 65,
+            "n": 280
+          },
+          "or_empirical": {
+            "cost_vs_ref_pct": 16.26,
+            "mean_cost_diff": 419.58,
+            "mean_cost_diff_ci95": [
+              279.79,
+              568.45
+            ],
+            "cost_diff_q1_med_q3": [
+              7.61,
+              95.43,
+              409.77
+            ],
+            "mean_fill_diff_pts": -0.033,
+            "mean_fill_diff_ci95": [
+              -0.27,
+              0.26
+            ],
+            "cheaper_pairs": 41,
+            "cost_not_higher_pairs": 47,
+            "fill_not_lower_pairs": 255,
+            "joint_pairs": 28,
+            "n": 280
+          },
+          "or_tuned": {
+            "cost_vs_ref_pct": -17.32,
+            "mean_cost_diff": -628.44,
+            "mean_cost_diff_ci95": [
+              -3343.24,
+              828.78
+            ],
+            "cost_diff_q1_med_q3": [
+              101.61,
+              277.8,
+              800.04
+            ],
+            "mean_fill_diff_pts": 2.157,
+            "mean_fill_diff_ci95": [
+              1.52,
+              2.78
+            ],
+            "cheaper_pairs": 15,
+            "cost_not_higher_pairs": 15,
+            "fill_not_lower_pairs": 270,
+            "joint_pairs": 5,
+            "n": 280
           }
         },
         "run-noerp": {
@@ -5465,6 +8870,75 @@
             "fill_not_lower_pairs": 269,
             "joint_pairs": 140,
             "n": 280
+          },
+          "or_sba": {
+            "cost_vs_ref_pct": 11.66,
+            "mean_cost_diff": 319.32,
+            "mean_cost_diff_ci95": [
+              118.09,
+              552.43
+            ],
+            "cost_diff_q1_med_q3": [
+              -1.04,
+              17.18,
+              154.37
+            ],
+            "mean_fill_diff_pts": -0.059,
+            "mean_fill_diff_ci95": [
+              -0.43,
+              0.25
+            ],
+            "cheaper_pairs": 73,
+            "cost_not_higher_pairs": 85,
+            "fill_not_lower_pairs": 257,
+            "joint_pairs": 64,
+            "n": 280
+          },
+          "or_empirical": {
+            "cost_vs_ref_pct": 18.53,
+            "mean_cost_diff": 478.21,
+            "mean_cost_diff_ci95": [
+              319.66,
+              663.68
+            ],
+            "cost_diff_q1_med_q3": [
+              2.84,
+              97.49,
+              428.32
+            ],
+            "mean_fill_diff_pts": -0.062,
+            "mean_fill_diff_ci95": [
+              -0.23,
+              0.08
+            ],
+            "cheaper_pairs": 40,
+            "cost_not_higher_pairs": 52,
+            "fill_not_lower_pairs": 256,
+            "joint_pairs": 31,
+            "n": 280
+          },
+          "or_tuned": {
+            "cost_vs_ref_pct": -15.7,
+            "mean_cost_diff": -569.81,
+            "mean_cost_diff_ci95": [
+              -3272.74,
+              910.74
+            ],
+            "cost_diff_q1_med_q3": [
+              95.97,
+              257.43,
+              856.81
+            ],
+            "mean_fill_diff_pts": 2.128,
+            "mean_fill_diff_ci95": [
+              1.42,
+              2.81
+            ],
+            "cheaper_pairs": 13,
+            "cost_not_higher_pairs": 13,
+            "fill_not_lower_pairs": 270,
+            "joint_pairs": 3,
+            "n": 280
           }
         }
       },
@@ -5553,6 +9027,45 @@
           "mean_avg_inventory": 15993.0,
           "mean_orders": 16.56,
           "stockout_days": 885
+        },
+        "or_sba": {
+          "n": 346,
+          "mean_fill": 98.321,
+          "agg_fill": 79.011,
+          "pct_fill_ge95": 93.35,
+          "pct_zero_stockout": 83.82,
+          "mean_cost": 2747.46,
+          "mean_holding": 1688.21,
+          "mean_ordering": 1059.25,
+          "mean_avg_inventory": 15509.4,
+          "mean_orders": 16.63,
+          "stockout_days": 820
+        },
+        "or_empirical": {
+          "n": 346,
+          "mean_fill": 98.365,
+          "agg_fill": 79.037,
+          "pct_fill_ge95": 93.06,
+          "pct_zero_stockout": 78.32,
+          "mean_cost": 2524.46,
+          "mean_holding": 1562.61,
+          "mean_ordering": 961.85,
+          "mean_avg_inventory": 13353.0,
+          "mean_orders": 15.07,
+          "stockout_days": 769
+        },
+        "or_tuned": {
+          "n": 346,
+          "mean_fill": 96.072,
+          "agg_fill": 84.948,
+          "pct_fill_ge95": 74.86,
+          "pct_zero_stockout": 17.63,
+          "mean_cost": 3300.74,
+          "mean_holding": 2490.04,
+          "mean_ordering": 810.69,
+          "mean_avg_inventory": 11954.2,
+          "mean_orders": 12.85,
+          "stockout_days": 2002
         },
         "run-01": {
           "n": 346,
@@ -5700,6 +9213,75 @@
             "fill_not_lower_pairs": 330,
             "joint_pairs": 140,
             "n": 346
+          },
+          "or_sba": {
+            "cost_vs_ref_pct": 8.2,
+            "mean_cost_diff": 225.23,
+            "mean_cost_diff_ci95": [
+              100.18,
+              364.25
+            ],
+            "cost_diff_q1_med_q3": [
+              -2.4,
+              24.01,
+              207.31
+            ],
+            "mean_fill_diff_pts": -0.177,
+            "mean_fill_diff_ci95": [
+              -0.44,
+              0.05
+            ],
+            "cheaper_pairs": 100,
+            "cost_not_higher_pairs": 113,
+            "fill_not_lower_pairs": 321,
+            "joint_pairs": 96,
+            "n": 346
+          },
+          "or_empirical": {
+            "cost_vs_ref_pct": 17.76,
+            "mean_cost_diff": 448.23,
+            "mean_cost_diff_ci95": [
+              337.21,
+              566.43
+            ],
+            "cost_diff_q1_med_q3": [
+              7.71,
+              119.06,
+              461.64
+            ],
+            "mean_fill_diff_pts": -0.22,
+            "mean_fill_diff_ci95": [
+              -0.58,
+              0.11
+            ],
+            "cheaper_pairs": 47,
+            "cost_not_higher_pairs": 58,
+            "fill_not_lower_pairs": 319,
+            "joint_pairs": 40,
+            "n": 346
+          },
+          "or_tuned": {
+            "cost_vs_ref_pct": -9.94,
+            "mean_cost_diff": -328.05,
+            "mean_cost_diff_ci95": [
+              -2521.9,
+              868.61
+            ],
+            "cost_diff_q1_med_q3": [
+              94.18,
+              307.94,
+              1022.58
+            ],
+            "mean_fill_diff_pts": 2.073,
+            "mean_fill_diff_ci95": [
+              1.43,
+              2.64
+            ],
+            "cheaper_pairs": 18,
+            "cost_not_higher_pairs": 20,
+            "fill_not_lower_pairs": 330,
+            "joint_pairs": 8,
+            "n": 346
           }
         },
         "run-02": {
@@ -5793,6 +9375,75 @@
             "cost_not_higher_pairs": 159,
             "fill_not_lower_pairs": 326,
             "joint_pairs": 142,
+            "n": 346
+          },
+          "or_sba": {
+            "cost_vs_ref_pct": 8.27,
+            "mean_cost_diff": 227.14,
+            "mean_cost_diff_ci95": [
+              110.63,
+              359.82
+            ],
+            "cost_diff_q1_med_q3": [
+              -1.33,
+              29.49,
+              172.98
+            ],
+            "mean_fill_diff_pts": -0.403,
+            "mean_fill_diff_ci95": [
+              -0.94,
+              -0.04
+            ],
+            "cheaper_pairs": 92,
+            "cost_not_higher_pairs": 102,
+            "fill_not_lower_pairs": 316,
+            "joint_pairs": 79,
+            "n": 346
+          },
+          "or_empirical": {
+            "cost_vs_ref_pct": 17.83,
+            "mean_cost_diff": 450.15,
+            "mean_cost_diff_ci95": [
+              335.63,
+              575.57
+            ],
+            "cost_diff_q1_med_q3": [
+              3.76,
+              126.96,
+              500.96
+            ],
+            "mean_fill_diff_pts": -0.446,
+            "mean_fill_diff_ci95": [
+              -0.99,
+              -0.01
+            ],
+            "cheaper_pairs": 51,
+            "cost_not_higher_pairs": 67,
+            "fill_not_lower_pairs": 317,
+            "joint_pairs": 46,
+            "n": 346
+          },
+          "or_tuned": {
+            "cost_vs_ref_pct": -9.88,
+            "mean_cost_diff": -326.13,
+            "mean_cost_diff_ci95": [
+              -2502.49,
+              879.07
+            ],
+            "cost_diff_q1_med_q3": [
+              99.95,
+              266.58,
+              983.98
+            ],
+            "mean_fill_diff_pts": 1.847,
+            "mean_fill_diff_ci95": [
+              1.1,
+              2.49
+            ],
+            "cheaper_pairs": 20,
+            "cost_not_higher_pairs": 21,
+            "fill_not_lower_pairs": 324,
+            "joint_pairs": 7,
             "n": 346
           }
         },
@@ -5888,6 +9539,75 @@
             "fill_not_lower_pairs": 329,
             "joint_pairs": 152,
             "n": 346
+          },
+          "or_sba": {
+            "cost_vs_ref_pct": 8.18,
+            "mean_cost_diff": 224.64,
+            "mean_cost_diff_ci95": [
+              90.46,
+              375.71
+            ],
+            "cost_diff_q1_med_q3": [
+              -2.57,
+              23.12,
+              148.94
+            ],
+            "mean_fill_diff_pts": -0.152,
+            "mean_fill_diff_ci95": [
+              -0.38,
+              0.05
+            ],
+            "cheaper_pairs": 99,
+            "cost_not_higher_pairs": 111,
+            "fill_not_lower_pairs": 318,
+            "joint_pairs": 93,
+            "n": 346
+          },
+          "or_empirical": {
+            "cost_vs_ref_pct": 17.73,
+            "mean_cost_diff": 447.65,
+            "mean_cost_diff_ci95": [
+              334.14,
+              572.28
+            ],
+            "cost_diff_q1_med_q3": [
+              10.08,
+              104.67,
+              487.38
+            ],
+            "mean_fill_diff_pts": -0.195,
+            "mean_fill_diff_ci95": [
+              -0.48,
+              0.1
+            ],
+            "cheaper_pairs": 50,
+            "cost_not_higher_pairs": 58,
+            "fill_not_lower_pairs": 314,
+            "joint_pairs": 37,
+            "n": 346
+          },
+          "or_tuned": {
+            "cost_vs_ref_pct": -9.96,
+            "mean_cost_diff": -328.63,
+            "mean_cost_diff_ci95": [
+              -2505.69,
+              861.66
+            ],
+            "cost_diff_q1_med_q3": [
+              105.0,
+              298.46,
+              933.93
+            ],
+            "mean_fill_diff_pts": 2.098,
+            "mean_fill_diff_ci95": [
+              1.53,
+              2.62
+            ],
+            "cheaper_pairs": 19,
+            "cost_not_higher_pairs": 19,
+            "fill_not_lower_pairs": 331,
+            "joint_pairs": 9,
+            "n": 346
           }
         },
         "run-noerp": {
@@ -5981,6 +9701,75 @@
             "cost_not_higher_pairs": 179,
             "fill_not_lower_pairs": 328,
             "joint_pairs": 164,
+            "n": 346
+          },
+          "or_sba": {
+            "cost_vs_ref_pct": 11.34,
+            "mean_cost_diff": 311.62,
+            "mean_cost_diff_ci95": [
+              150.14,
+              503.32
+            ],
+            "cost_diff_q1_med_q3": [
+              -0.82,
+              17.18,
+              163.98
+            ],
+            "mean_fill_diff_pts": -0.234,
+            "mean_fill_diff_ci95": [
+              -0.62,
+              0.08
+            ],
+            "cheaper_pairs": 90,
+            "cost_not_higher_pairs": 108,
+            "fill_not_lower_pairs": 315,
+            "joint_pairs": 85,
+            "n": 346
+          },
+          "or_empirical": {
+            "cost_vs_ref_pct": 21.18,
+            "mean_cost_diff": 534.62,
+            "mean_cost_diff_ci95": [
+              393.34,
+              692.88
+            ],
+            "cost_diff_q1_med_q3": [
+              3.4,
+              117.8,
+              524.93
+            ],
+            "mean_fill_diff_pts": -0.278,
+            "mean_fill_diff_ci95": [
+              -0.62,
+              -0.03
+            ],
+            "cheaper_pairs": 50,
+            "cost_not_higher_pairs": 65,
+            "fill_not_lower_pairs": 315,
+            "joint_pairs": 42,
+            "n": 346
+          },
+          "or_tuned": {
+            "cost_vs_ref_pct": -7.32,
+            "mean_cost_diff": -241.66,
+            "mean_cost_diff_ci95": [
+              -2425.28,
+              963.59
+            ],
+            "cost_diff_q1_med_q3": [
+              99.23,
+              271.27,
+              1028.61
+            ],
+            "mean_fill_diff_pts": 2.015,
+            "mean_fill_diff_ci95": [
+              1.34,
+              2.6
+            ],
+            "cheaper_pairs": 17,
+            "cost_not_higher_pairs": 17,
+            "fill_not_lower_pairs": 330,
+            "joint_pairs": 6,
             "n": 346
           }
         }
@@ -6084,6 +9873,45 @@
           "mean_avg_inventory": 17177.8,
           "mean_orders": 14.93,
           "stockout_days": 577
+        },
+        "or_sba": {
+          "n": 280,
+          "mean_fill": 98.483,
+          "agg_fill": 76.096,
+          "pct_fill_ge95": 94.29,
+          "pct_zero_stockout": 84.29,
+          "mean_cost": 2739.21,
+          "mean_holding": 1802.06,
+          "mean_ordering": 937.14,
+          "mean_avg_inventory": 16597.2,
+          "mean_orders": 14.97,
+          "stockout_days": 551
+        },
+        "or_empirical": {
+          "n": 280,
+          "mean_fill": 98.486,
+          "agg_fill": 75.877,
+          "pct_fill_ge95": 93.93,
+          "pct_zero_stockout": 79.64,
+          "mean_cost": 2580.31,
+          "mean_holding": 1696.3,
+          "mean_ordering": 884.02,
+          "mean_avg_inventory": 14299.3,
+          "mean_orders": 14.05,
+          "stockout_days": 553
+        },
+        "or_tuned": {
+          "n": 280,
+          "mean_fill": 96.296,
+          "agg_fill": 83.416,
+          "pct_fill_ge95": 75.0,
+          "pct_zero_stockout": 20.36,
+          "mean_cost": 3628.33,
+          "mean_holding": 2891.28,
+          "mean_ordering": 737.05,
+          "mean_avg_inventory": 12804.1,
+          "mean_orders": 11.9,
+          "stockout_days": 1376
         },
         "run-01": {
           "n": 280,
@@ -6231,6 +10059,75 @@
             "fill_not_lower_pairs": 271,
             "joint_pairs": 119,
             "n": 280
+          },
+          "or_sba": {
+            "cost_vs_ref_pct": 8.68,
+            "mean_cost_diff": 237.83,
+            "mean_cost_diff_ci95": [
+              83.93,
+              411.67
+            ],
+            "cost_diff_q1_med_q3": [
+              -1.98,
+              27.08,
+              207.08
+            ],
+            "mean_fill_diff_pts": 0.011,
+            "mean_fill_diff_ci95": [
+              -0.15,
+              0.18
+            ],
+            "cheaper_pairs": 79,
+            "cost_not_higher_pairs": 84,
+            "fill_not_lower_pairs": 261,
+            "joint_pairs": 68,
+            "n": 280
+          },
+          "or_empirical": {
+            "cost_vs_ref_pct": 15.37,
+            "mean_cost_diff": 396.72,
+            "mean_cost_diff_ci95": [
+              267.85,
+              540.17
+            ],
+            "cost_diff_q1_med_q3": [
+              6.76,
+              93.06,
+              403.68
+            ],
+            "mean_fill_diff_pts": 0.008,
+            "mean_fill_diff_ci95": [
+              -0.23,
+              0.3
+            ],
+            "cheaper_pairs": 37,
+            "cost_not_higher_pairs": 46,
+            "fill_not_lower_pairs": 261,
+            "joint_pairs": 31,
+            "n": 280
+          },
+          "or_tuned": {
+            "cost_vs_ref_pct": -17.95,
+            "mean_cost_diff": -651.3,
+            "mean_cost_diff_ci95": [
+              -3364.3,
+              809.09
+            ],
+            "cost_diff_q1_med_q3": [
+              86.55,
+              274.35,
+              814.17
+            ],
+            "mean_fill_diff_pts": 2.198,
+            "mean_fill_diff_ci95": [
+              1.55,
+              2.84
+            ],
+            "cheaper_pairs": 14,
+            "cost_not_higher_pairs": 16,
+            "fill_not_lower_pairs": 269,
+            "joint_pairs": 5,
+            "n": 280
           }
         },
         "run-02": {
@@ -6324,6 +10221,75 @@
             "cost_not_higher_pairs": 133,
             "fill_not_lower_pairs": 267,
             "joint_pairs": 123,
+            "n": 280
+          },
+          "or_sba": {
+            "cost_vs_ref_pct": 9.5,
+            "mean_cost_diff": 260.3,
+            "mean_cost_diff_ci95": [
+              114.11,
+              432.71
+            ],
+            "cost_diff_q1_med_q3": [
+              -0.01,
+              36.21,
+              181.91
+            ],
+            "mean_fill_diff_pts": -0.057,
+            "mean_fill_diff_ci95": [
+              -0.24,
+              0.12
+            ],
+            "cheaper_pairs": 70,
+            "cost_not_higher_pairs": 75,
+            "fill_not_lower_pairs": 257,
+            "joint_pairs": 56,
+            "n": 280
+          },
+          "or_empirical": {
+            "cost_vs_ref_pct": 16.25,
+            "mean_cost_diff": 419.19,
+            "mean_cost_diff_ci95": [
+              281.01,
+              576.35
+            ],
+            "cost_diff_q1_med_q3": [
+              2.8,
+              99.71,
+              412.62
+            ],
+            "mean_fill_diff_pts": -0.06,
+            "mean_fill_diff_ci95": [
+              -0.32,
+              0.26
+            ],
+            "cheaper_pairs": 42,
+            "cost_not_higher_pairs": 55,
+            "fill_not_lower_pairs": 258,
+            "joint_pairs": 36,
+            "n": 280
+          },
+          "or_tuned": {
+            "cost_vs_ref_pct": -17.33,
+            "mean_cost_diff": -628.83,
+            "mean_cost_diff_ci95": [
+              -3325.72,
+              829.57
+            ],
+            "cost_diff_q1_med_q3": [
+              88.36,
+              260.62,
+              804.27
+            ],
+            "mean_fill_diff_pts": 2.129,
+            "mean_fill_diff_ci95": [
+              1.48,
+              2.78
+            ],
+            "cheaper_pairs": 15,
+            "cost_not_higher_pairs": 16,
+            "fill_not_lower_pairs": 265,
+            "joint_pairs": 4,
             "n": 280
           }
         },
@@ -6419,6 +10385,75 @@
             "fill_not_lower_pairs": 269,
             "joint_pairs": 125,
             "n": 280
+          },
+          "or_sba": {
+            "cost_vs_ref_pct": 9.52,
+            "mean_cost_diff": 260.69,
+            "mean_cost_diff_ci95": [
+              98.0,
+              448.96
+            ],
+            "cost_diff_q1_med_q3": [
+              -1.87,
+              31.47,
+              155.92
+            ],
+            "mean_fill_diff_pts": -0.03,
+            "mean_fill_diff_ci95": [
+              -0.21,
+              0.16
+            ],
+            "cheaper_pairs": 77,
+            "cost_not_higher_pairs": 81,
+            "fill_not_lower_pairs": 259,
+            "joint_pairs": 65,
+            "n": 280
+          },
+          "or_empirical": {
+            "cost_vs_ref_pct": 16.26,
+            "mean_cost_diff": 419.58,
+            "mean_cost_diff_ci95": [
+              279.79,
+              568.45
+            ],
+            "cost_diff_q1_med_q3": [
+              7.61,
+              95.43,
+              409.77
+            ],
+            "mean_fill_diff_pts": -0.033,
+            "mean_fill_diff_ci95": [
+              -0.27,
+              0.26
+            ],
+            "cheaper_pairs": 41,
+            "cost_not_higher_pairs": 47,
+            "fill_not_lower_pairs": 255,
+            "joint_pairs": 28,
+            "n": 280
+          },
+          "or_tuned": {
+            "cost_vs_ref_pct": -17.32,
+            "mean_cost_diff": -628.44,
+            "mean_cost_diff_ci95": [
+              -3343.24,
+              828.78
+            ],
+            "cost_diff_q1_med_q3": [
+              101.61,
+              277.8,
+              800.04
+            ],
+            "mean_fill_diff_pts": 2.157,
+            "mean_fill_diff_ci95": [
+              1.52,
+              2.78
+            ],
+            "cheaper_pairs": 15,
+            "cost_not_higher_pairs": 15,
+            "fill_not_lower_pairs": 270,
+            "joint_pairs": 5,
+            "n": 280
           }
         },
         "run-noerp": {
@@ -6512,6 +10547,75 @@
             "cost_not_higher_pairs": 151,
             "fill_not_lower_pairs": 269,
             "joint_pairs": 140,
+            "n": 280
+          },
+          "or_sba": {
+            "cost_vs_ref_pct": 11.66,
+            "mean_cost_diff": 319.32,
+            "mean_cost_diff_ci95": [
+              118.09,
+              552.43
+            ],
+            "cost_diff_q1_med_q3": [
+              -1.04,
+              17.18,
+              154.37
+            ],
+            "mean_fill_diff_pts": -0.059,
+            "mean_fill_diff_ci95": [
+              -0.43,
+              0.25
+            ],
+            "cheaper_pairs": 73,
+            "cost_not_higher_pairs": 85,
+            "fill_not_lower_pairs": 257,
+            "joint_pairs": 64,
+            "n": 280
+          },
+          "or_empirical": {
+            "cost_vs_ref_pct": 18.53,
+            "mean_cost_diff": 478.21,
+            "mean_cost_diff_ci95": [
+              319.66,
+              663.68
+            ],
+            "cost_diff_q1_med_q3": [
+              2.84,
+              97.49,
+              428.32
+            ],
+            "mean_fill_diff_pts": -0.062,
+            "mean_fill_diff_ci95": [
+              -0.23,
+              0.08
+            ],
+            "cheaper_pairs": 40,
+            "cost_not_higher_pairs": 52,
+            "fill_not_lower_pairs": 256,
+            "joint_pairs": 31,
+            "n": 280
+          },
+          "or_tuned": {
+            "cost_vs_ref_pct": -15.7,
+            "mean_cost_diff": -569.81,
+            "mean_cost_diff_ci95": [
+              -3272.74,
+              910.74
+            ],
+            "cost_diff_q1_med_q3": [
+              95.97,
+              257.43,
+              856.81
+            ],
+            "mean_fill_diff_pts": 2.128,
+            "mean_fill_diff_ci95": [
+              1.42,
+              2.81
+            ],
+            "cheaper_pairs": 13,
+            "cost_not_higher_pairs": 13,
+            "fill_not_lower_pairs": 270,
+            "joint_pairs": 3,
             "n": 280
           }
         }

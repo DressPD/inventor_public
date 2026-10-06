@@ -12,6 +12,9 @@ Can a general-purpose LLM, without training or fine-tuning, receive one material
 | SLT-informed OR | Deterministic `(r,Q)` policy that adds the ERP safety lead time to the mean lead time |
 | ERP-floor OR | SLT-informed OR with the ERP safety stock as a floor (same ERP inputs as the LLM) |
 | History-only OR | Deterministic `(r,Q)` policy computed from demand and lead-time history only, no ERP planning inputs |
+| Croston/SBA OR | History-only `(r,Q)` with the Syntetos-Boylan-corrected Croston demand rate (alpha 0.1) and forecast-error spread |
+| Empirical-quantile OR | History-only `(r,Q)` with the reorder point set to the service-level quantile of historical rolling lead-time demand |
+| Simulation-tuned (r,Q) | Grid search over reserve factor and order-quantity multiples on the last 250 pre-cutoff working days; no post-cutoff data |
 | LLM (runs 1-3) | Validated LLM artifact; every artifact resolved to `(r,Q)` |
 | LLM without ERP | Ablation: the two ERP planning fields (safety stock, safety lead time) are blanked and marked `not_supplied` |
 
@@ -39,10 +42,13 @@ Can a general-purpose LLM, without training or fine-tuning, receive one material
 | SLT-informed OR | 4,211 | 98.23 | 831 |
 | ERP-floor OR | 4,248 | 98.23 | 831 |
 | History-only OR | 2,764 | 98.14 | 874 |
+| Croston/SBA OR | 2,705 | 98.30 | 803 |
+| Empirical-quantile OR | 2,489 | 98.35 | 747 |
+| Simulation-tuned (r,Q) | 3,266 | 96.05 | 1,973 |
 | LLM run 1 / 2 / 3 | 2,928 / 2,931 / 2,929 | 98.11 / 97.89 / 98.16 | 910 / 968 / 890 |
 | LLM without ERP | 3,014 | 98.06 | 890 |
 
-The LLM is about 11% cheaper than the SAP-derived arm and about 30% cheaper than the SLT-informed and ERP-floor OR arms, and about 6% more expensive than the history-only OR; without ERP planning inputs it is 8.8% cheaper than SAP-derived and 9.0% more expensive than the history-only OR. The saving comes from about 17% lower average inventory at about 13% more stockout days. With shortages priced at one unit cost or more, the SAP-derived arm is cheapest (the LLM is about 2.4% more expensive). At Plant C the LLM is 31-36% more expensive than SAP-derived across all three runs and all calendar variants.
+The LLM is about 11% cheaper than the SAP-derived arm and about 30% cheaper than the SLT-informed and ERP-floor OR arms, about 6% more expensive than the history-only OR, about 8% more than Croston/SBA and about 18% more than the empirical-quantile OR (the simulation-tuned arm is a different operating point: lower fill, much lower cost once shortages are priced); without ERP planning inputs it is 8.8% cheaper than SAP-derived and 9.0% more expensive than the history-only OR. The saving comes from about 17% lower average inventory at about 13% more stockout days. With shortages priced at one unit cost or more, the simulation-tuned arm is cheapest and SAP-derived is cheapest among the others (the LLM is about 2.4% more expensive than SAP-derived). At Plant C the LLM is 31-36% more expensive than SAP-derived across all three runs and all calendar variants.
 
 Storage limits: in the unconstrained replay the peak on-hand stock exceeds the limit for 178-183 of 346 pairs (LLM, 9-10% of days), 198 (SAP-derived) and 230 (SLT-informed OR). The static check `safety_stock + order_quantity <= max_storage_units` therefore does not guarantee trajectory compliance, which is why the hard-limit replay is primary.
 

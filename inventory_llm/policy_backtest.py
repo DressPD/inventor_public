@@ -411,6 +411,16 @@ def _invalid_reason(artifact: dict[str, Any], stats: dict[str, Any]) -> str:
     return "unknown_invalid_policy"
 
 
+_POLICY_CACHE: dict[tuple[str, str, str, str], dict[str, Any]] = {}
+
+
+def _cached_policy(arm: str, item_key: str, build: Any) -> dict[str, Any]:
+    key = (arm, item_key, core.WORKING_DAY_DERIVATION_MODE, core.TRAIN_CUTOFF)
+    if key not in _POLICY_CACHE:
+        _POLICY_CACHE[key] = build()
+    return _POLICY_CACHE[key]
+
+
 def _aggregate(rows: list[dict[str, Any]], key: str) -> dict[str, Any]:
     return core.aggregate([r[key] for r in rows if key in r])
 
@@ -476,10 +486,18 @@ def build_backtest(
             "universal_rq": core.simulate(test, rq_policy, stats, initial_inventory, arrival_mode, shortage_penalty, enforce_capacity),
             "llm_policy": llm_policy,
         }
-        for arm, make in (("or_cold", core.make_cold_rq_policy), ("or_erp_floor", core.make_erp_floor_rq_policy)):
-            projected = core.project_policy_to_feasibility(make(stats), stats)
+        history_arms = (
+            ("or_cold", lambda: core.make_cold_rq_policy(stats)),
+            ("or_erp_floor", lambda: core.make_erp_floor_rq_policy(stats)),
+            ("or_sba", lambda: _cached_policy("or_sba", item_key, lambda: core.make_sba_rq_policy(train, stats))),
+            ("or_empirical", lambda: _cached_policy("or_empirical", item_key, lambda: core.make_empirical_rq_policy(train, stats))),
+            ("or_tuned", lambda: _cached_policy("or_tuned", item_key, lambda: core.make_tuned_rq_policy(train, stats))),
+        )
+        for arm, make in history_arms:
+            projected = core.project_policy_to_feasibility(make(), stats)
             if projected is not None:
                 item[arm] = core.simulate(test, projected, stats, initial_inventory, arrival_mode, shortage_penalty, enforce_capacity)
+                item[arm + "_policy"] = {k: projected[k] for k in ("rop", "oq", "ss")}
         rows.append(item)
 
     aggregate = {
@@ -488,6 +506,9 @@ def build_backtest(
         "universal_rq_subset": _aggregate(rows, "universal_rq"),
         "or_cold_subset": _aggregate(rows, "or_cold"),
         "or_erp_floor_subset": _aggregate(rows, "or_erp_floor"),
+        "or_sba_subset": _aggregate(rows, "or_sba"),
+        "or_empirical_subset": _aggregate(rows, "or_empirical"),
+        "or_tuned_subset": _aggregate(rows, "or_tuned"),
     }
     return {
         "train_cutoff": core.TRAIN_CUTOFF,
