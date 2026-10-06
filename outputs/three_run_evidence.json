@@ -227,7 +227,6 @@
     }
   },
   "limitations": [
-    "Run 1 predates provenance instrumentation and lacks a complete frozen provenance contract.",
     "All provenance counts and policy distributions are restricted to the shared material cohort; source parseable counts retain the unfiltered run totals.",
     "Policy distributions are aggregate descriptive summaries and contain no material identifiers or artifact contents."
   ]

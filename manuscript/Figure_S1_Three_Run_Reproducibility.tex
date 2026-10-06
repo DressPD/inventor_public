@@ -12,19 +12,17 @@
 
 \begin{document}
 \begin{tikzpicture}
-\node[anchor=west,font=\large\bfseries] at (0,0) {Three-run policy-value distributions};
-\draw[runone,thick] (0,-0.44) -- +(0.34,0) node[pos=0.5,circle,fill=runone,inner sep=1.1pt]{};
-\node[anchor=west,font=\scriptsize] at (0.42,-0.44) {Run 1};
-\draw[runtwo,thick,dashed] (1.55,-0.44) -- +(0.34,0) node[pos=0.5,rectangle,fill=runtwo,inner sep=1.1pt]{};
-\node[anchor=west,font=\scriptsize] at (1.97,-0.44) {Run 2};
-\draw[runthree,thick,dotted] (3.10,-0.44) -- +(0.34,0) node[pos=0.5,regular polygon,regular polygon sides=3,fill=runthree,inner sep=1.0pt]{};
-\node[anchor=west,font=\scriptsize] at (3.52,-0.44) {Run 3};
-\node[anchor=north west,font=\scriptsize,text=black!70,text width=13.35cm,align=left] at (0,-0.78) {Shared material cohort ($n=365$); common log-spaced bins; lines nearly coincide $=$ reproducible.};
-\begin{scope}[yshift=-1.85cm]
+\draw[runone,thick] (0,0) -- +(0.34,0) node[pos=0.5,circle,fill=runone,inner sep=1.1pt]{};
+\node[anchor=west,font=\scriptsize] at (0.42,0) {Run 1};
+\draw[runtwo,thick,dashed] (1.55,0) -- +(0.34,0) node[pos=0.5,rectangle,fill=runtwo,inner sep=1.1pt]{};
+\node[anchor=west,font=\scriptsize] at (1.97,0) {Run 2};
+\draw[runthree,thick,dotted] (3.10,0) -- +(0.34,0) node[pos=0.5,regular polygon,regular polygon sides=3,fill=runthree,inner sep=1.0pt]{};
+\node[anchor=west,font=\scriptsize] at (3.52,0) {Run 3};
+\begin{scope}[yshift=-0.6cm]
 \begin{axis}[
   name=ropaxis,
   at={(0,0)},anchor=north west,
-  width=13.35cm,height=4.05cm,
+  width=13.35cm,height=2.35cm,
   ymin=0,ymajorgrids=true,
   grid style={black!12},
   axis line style={black!65},
@@ -41,13 +39,13 @@
   \addplot[runtwo,thick,dashed,mark=square*,mark size=1.4pt,mark options={fill=runtwo,draw=none}] coordinates {\RopRunTwoHistogram};
   \addplot[runthree,thick,dotted,mark=triangle*,mark size=1.7pt,mark options={fill=runthree,draw=none}] coordinates {\RopRunThreeHistogram};
 \end{axis}
-\node[anchor=north,font=\tiny,text=black!70,text width=13.35cm,align=center] at ([yshift=-0.85cm]ropaxis.south) {\RopBinKey};
+\node[anchor=north,font=\tiny,text=black!70,text width=13.35cm,align=center] at ([yshift=-0.8cm]ropaxis.south) {\RopBinKey};
 \end{scope}
-\begin{scope}[yshift=-7.50cm]
+\begin{scope}[yshift=-4.5cm]
 \begin{axis}[
   name=oqaxis,
   at={(0,0)},anchor=north west,
-  width=13.35cm,height=4.05cm,
+  width=13.35cm,height=2.35cm,
   ymin=0,ymajorgrids=true,
   grid style={black!12},
   axis line style={black!65},
@@ -64,13 +62,13 @@
   \addplot[runtwo,thick,dashed,mark=square*,mark size=1.4pt,mark options={fill=runtwo,draw=none}] coordinates {\OqRunTwoHistogram};
   \addplot[runthree,thick,dotted,mark=triangle*,mark size=1.7pt,mark options={fill=runthree,draw=none}] coordinates {\OqRunThreeHistogram};
 \end{axis}
-\node[anchor=north,font=\tiny,text=black!70,text width=13.35cm,align=center] at ([yshift=-0.85cm]oqaxis.south) {\OqBinKey};
+\node[anchor=north,font=\tiny,text=black!70,text width=13.35cm,align=center] at ([yshift=-0.8cm]oqaxis.south) {\OqBinKey};
 \end{scope}
-\begin{scope}[yshift=-13.15cm]
+\begin{scope}[yshift=-8.4cm]
 \begin{axis}[
   name=ssaxis,
   at={(0,0)},anchor=north west,
-  width=13.35cm,height=4.05cm,
+  width=13.35cm,height=2.35cm,
   ymin=0,ymajorgrids=true,
   grid style={black!12},
   axis line style={black!65},
@@ -87,9 +85,7 @@
   \addplot[runtwo,thick,dashed,mark=square*,mark size=1.4pt,mark options={fill=runtwo,draw=none}] coordinates {\SsRunTwoHistogram};
   \addplot[runthree,thick,dotted,mark=triangle*,mark size=1.7pt,mark options={fill=runthree,draw=none}] coordinates {\SsRunThreeHistogram};
 \end{axis}
-\node[anchor=north,font=\tiny,text=black!70,text width=13.35cm,align=center] at ([yshift=-0.85cm]ssaxis.south) {\SsBinKey};
+\node[anchor=north,font=\tiny,text=black!70,text width=13.35cm,align=center] at ([yshift=-0.8cm]ssaxis.south) {\SsBinKey};
 \end{scope}
-\node[anchor=north west,font=\tiny,text=black!70,text width=13.35cm,align=left]
-  at ([yshift=-1.2cm]ssaxis.south west) {\FigureThreeFootnote};
 \end{tikzpicture}
 \end{document}
