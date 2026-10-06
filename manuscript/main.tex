@@ -262,25 +262,25 @@ LLM without ERP & 3{,}014 & 1{,}902 & 1{,}112 & 16{,}507 & 17.3 & 98.06 & 78.89 
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.85\linewidth]{Figure_2_Cost_Decomposition.pdf}
-\caption{(A) Mean holding and ordering cost per pair for each arm, hard-limit replay, zero shortage penalty (346 pairs). (B) Mean total cost including shortages priced at one and five times the unit cost, relative to SAP-derived parameters. Absolute values are in Table~\ref{tab:backtest-results} and in the text of Section~\ref{subsec:sensitivity}.}
+\includegraphics[width=\linewidth]{Figure_2_Cost_Decomposition.pdf}
+\caption{Cost structure and effect of pricing shortages (hard-limit replay, 346 pairs; LLM rows in bold). (A) Mean cost per pair split into holding and ordering cost, with the total at the end of each bar. The LLM and the data-driven ORs carry less inventory than SAP-derived parameters and the ERP-informed ORs. (B) Total cost when lost sales are charged at one and five times the unit cost, relative to SAP-derived parameters (negative: cheaper). Once shortages are priced SAP-derived parameters beat the LLM, and the simulation-tuned policy is cheapest.}
 \label{fig:cost}
 \end{figure}
 
 \subsection{Information asymmetry: what the LLM adds beyond the ERP inputs}
 \label{subsec:arms-results}
 
-First, the SLT-informed OR and its ERP-floor variant are the most expensive arms (4{,}211 and 4{,}248): the ERP safety lead time inflates their effective lead time and buffers. Against them the LLM is 30--31\% cheaper in every run, which mainly measures how heavily ERP inputs over-buffer.
+First, the SLT-informed OR and its ERP-floor variant are the most expensive arms (4{,}211 and 4{,}248): the ERP safety lead time inflates their effective lead time and buffers. Against them the LLM is 30--31\% cheaper in every run, which mostly measures how heavily ERP inputs over-buffer.
 
 Second, the \emph{history-only OR}, which uses no ERP inputs, costs 2{,}764 at a fill of 98.14\%. The LLM costs 5.9--6.0\% more in all three runs (run~1: $+164$, interval $+91$ to $+240$), with fill differences of $-0.03$, $-0.25$ and $+0.01$ points whose intervals include zero, and is cheaper in only 74--77 of 346 pairs. The stronger data-driven arms widen the gap: the LLM costs 8.2--8.4\% more than the Croston/SBA OR (2{,}705, fill 98.30\%; run~1: $+223$, interval $+97$ to $+362$; cheaper in 91--99 pairs) and 17.7--17.8\% more than the empirical-quantile OR (2{,}489, fill 98.35\%; $+439$, interval $+329$ to $+557$; cheaper in 44--49 pairs; mean fill 0.24 points lower). Part of the LLM's advantage over ERP-derived parameters therefore reflects weak ERP benchmarks.
 
 The simulation-tuned $(r,Q)$ policy sits at a different operating point: an aggregate fill of 84.8\% and the lowest inventory (11{,}914 units) but a mean fill of 96.05\% and 1{,}973 stockout days, because it is tuned on the pre-cutoff year. The LLM costs 10.3--10.4\% less at zero penalty with a 2.1-point higher mean fill, but the interval includes zero ($-2{,}527$ to $+857$); once shortages are priced the tuned policy is by far the cheapest arm (Section~\ref{subsec:sensitivity}).
 
-Third, the LLM improves on ERP-derived parameters (11.3--11.4\% cheaper at 0.14--0.40 points lower fill; the interval excludes zero only in run~2) but does not reach the best classical baselines, which also yield a policy for every material at lower cost.
+Third, the LLM improves on ERP-derived parameters (11.3--11.4\% cheaper at 0.14--0.40 points lower fill) but not on the best classical baselines, which also yield a policy for every material at lower cost.
 
 \subsection{LLM without ERP planning parameters (ablation)}
 \label{subsec:ablation}
-In this ablation the LLM receives the same inputs as in runs 1--3, but the ERP safety stock and safety lead time are blanked in the CSV and marked ``not supplied''; the system prompt file is unchanged. It tests whether the LLM anchors on the ERP planning parameters. All 365 pairs returned a valid, storage-compliant policy, and the policies change only slightly beyond ordinary run-to-run variation: the median ratios of safety stock and reorder point to run~1 are 1.00; the reorder point differs by more than 10\% in 54.6\% of pairs (48.3\% and 48.0\% between ERP-supplied runs) and the safety stock in 11.0\% (9.8\% and 9.5\%); the mean ratio is 1.04 for safety stock and 1.05 for the reorder point. In the hard-limit replay the cost is 3{,}014 at a mean fill of 98.06\%, against 2{,}928--2{,}931 in runs~1--3. It is 8.8\% below SAP-derived parameters (interval $-566$ to $-61$; fill $-0.24$ points, interval including zero) and 28.4--29.1\% below the SLT-informed and ERP-floor ORs, but 9.0\% above the history-only OR (interval $+134$ to $+387$; cheaper in 91 of 346 pairs), 11.4\% above the Croston/SBA OR, 21.1\% above the empirical-quantile OR and 7.7\% below the simulation-tuned policy. By plant the pattern is unchanged ($-10.8\%$ in Plant A, $-21.9\%$ in Plant B, $+41.6\%$ in Plant C against $+36.2\%$ in run~1), so the Plant~C loss does not stem from reliance on ERP parameters. The information-asymmetry concern therefore does not explain the LLM's advantage over ERP-derived parameters, and the ERP planning fields appear to be of limited use to the LLM. The ablation withholds only these two fields; unit cost, holding rate, ordering cost, MOQ, service target and storage limit remain available, as they are for all reference arms.
+In this ablation the LLM receives the same inputs as in runs 1--3, but the ERP safety stock and safety lead time are blanked in the CSV and marked ``not supplied''; the system prompt file is unchanged. It tests whether the LLM anchors on the ERP planning parameters. All 365 pairs returned a valid, storage-compliant policy, and the policies change only slightly beyond run-to-run variation: median ratios to run~1 are 1.00, and the reorder point differs by more than 10\% in 54.6\% of pairs (48.3\% and 48.0\% between ERP-supplied runs). In the hard-limit replay the cost is 3{,}014 at a mean fill of 98.06\%, against 2{,}928--2{,}931 in runs~1--3. It is 8.8\% below SAP-derived parameters (interval $-566$ to $-61$; fill $-0.24$ points, interval including zero) and 28.4--29.1\% below the SLT-informed and ERP-floor ORs, but 9.0\% above the history-only OR (interval $+134$ to $+387$; cheaper in 91 of 346 pairs), 11.4\% above the Croston/SBA OR, 21.1\% above the empirical-quantile OR and 7.7\% below the simulation-tuned policy. By plant the pattern is unchanged ($-10.8\%$ in Plant A, $-21.9\%$ in Plant B, $+41.6\%$ in Plant C against $+36.2\%$ in run~1), so the Plant~C loss does not stem from reliance on ERP parameters. The information-asymmetry concern therefore does not explain the LLM's advantage over ERP-derived parameters, and the ERP planning fields appear to be of limited use to the LLM. The ablation withholds only these two fields; unit cost, holding rate, ordering cost, MOQ, service target and storage limit remain available, as they are for all reference arms.
 
 
 
@@ -298,8 +298,8 @@ By demand regime, the 33 lumpy materials show the largest reduction against SAP-
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.85\linewidth]{Figure_3_Segments.pdf}
-\caption{Cost of the LLM (run~1, hard-limit replay, common-feasible cohort) relative to SAP-derived parameters and to three data-driven $(r,Q)$ baselines, by plant, demand regime and coefficient-of-variation tercile (number of pairs in brackets). Positive values mean the LLM costs more. The SLT-informed and history-only ORs coincide in Plant~C.}
+\includegraphics[width=0.8\linewidth]{Figure_3_Segments.pdf}
+\caption{Where the LLM wins and loses (run~1, hard-limit replay). Each marker is the LLM's mean cost relative to one comparator in a segment of pairs (number of pairs in brackets); markers to the right of the vertical line mean the LLM costs more. The LLM is cheaper than SAP-derived parameters in Plants A and B but not in Plant C, and costs more than the three data-driven baselines in almost every segment.}
 \label{fig:segments}
 \end{figure}
 

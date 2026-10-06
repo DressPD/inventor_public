@@ -1,52 +1,49 @@
-\documentclass[tikz,border=5pt]{standalone}
+\documentclass[tikz,border=4pt]{standalone}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.18}
 \definecolor{holdc}{RGB}{76,120,168}
-\definecolor{ordc}{RGB}{209,143,0}
+\definecolor{ordc}{RGB}{233,160,40}
 \definecolor{sapgray}{RGB}{122,122,122}
 \definecolor{llmred}{RGB}{190,60,50}
-\definecolor{runtwo}{RGB}{38,108,165}
 \definecolor{greenc}{RGB}{70,140,90}
 \begin{document}
 \begin{tikzpicture}
 \begin{axis}[
-  width=13.2cm,height=4.4cm,
-  ymajorgrids=true,grid style={black!12},axis line style={black!65},
-  xticklabel style={font=\scriptsize,rotate=30,anchor=east},
-  yticklabel style={font=\scriptsize},ylabel style={font=\small},
-  title style={font=\small\bfseries},
-  enlarge x limits=0.07,
-  ybar stacked,bar width=13pt,
-  symbolic x coords={sap,slt,erp,hist,sba,emp,tuned,llm,noerp},xtick=data,xticklabels={{SAP-derived},{SLT OR},{ERP-floor OR},{History-only OR},{Croston/SBA},{Empirical quantile},{Simulation-tuned},{LLM (run 1)},{LLM without ERP}},
-  ymin=0,ylabel={Mean annual cost per pair},
-  title={A. Cost decomposition (zero shortage penalty, hard storage limit, $n=346$)},
-  legend style={font=\scriptsize,at={(0.02,0.97)},anchor=north west,draw=none,fill=none},
-  legend columns=2,
+  width=8.8cm,height=6.6cm,
+  xmajorgrids=true,grid style={black!12},axis line style={black!65},
+  tick label style={font=\footnotesize},label style={font=\footnotesize},
+  title style={font=\footnotesize\bfseries,align=left},
+  y dir=reverse,ytick=data,ytick style={draw=none},
+  name=a,xbar stacked,bar width=8pt,
+  symbolic y coords={sap,slt,erp,hist,sba,emp,tuned,llm,noerp},yticklabels={{SAP-derived},{SLT-informed OR},{ERP-floor OR},{History-only OR},{Croston/SBA OR},{Empirical-quantile OR},{Simulation-tuned OR},{\textbf{LLM (run 1)}},{\textbf{LLM without ERP}}},
+  xmin=0,xmax=5300,xlabel={Mean cost per pair, no shortage penalty},
+  title={A. Where the cost comes from},
+  legend style={font=\footnotesize,at={(0.98,0.04)},anchor=south east,draw=none,fill=white,fill opacity=0.8,text opacity=1},
 ]
-  \addplot[fill=holdc,draw=none] coordinates {(sap,2172.4) (slt,2608.2) (erp,2632.7) (hist,1725.4) (sba,1665.0) (emp,1542.9) (tuned,2472.6) (llm,1824.2) (noerp,1902.4)};
-  \addplot[fill=ordc,draw=none] coordinates {(sap,1132.2) (slt,1602.8) (erp,1615.7) (hist,1038.9) (sba,1040.2) (emp,945.8) (tuned,793.4) (llm,1103.6) (noerp,1111.8)};
+  \addplot[fill=holdc,draw=none] coordinates {(2172.4,sap) (2608.2,slt) (2632.7,erp) (1725.4,hist) (1665.0,sba) (1542.9,emp) (2472.6,tuned) (1824.2,llm) (1902.4,noerp)};
+  \addplot[fill=ordc,draw=none,nodes near coords,point meta=explicit symbolic,
+    every node near coord/.style={font=\scriptsize,anchor=west}] coordinates {(1132.2,sap) [3{,}305] (1602.8,slt) [4{,}211] (1615.7,erp) [4{,}248] (1038.9,hist) [2{,}764] (1040.2,sba) [2{,}705] (945.8,emp) [2{,}489] (793.4,tuned) [3{,}266] (1103.6,llm) [2{,}928] (1111.8,noerp) [3{,}014]};
   \legend{Holding,Ordering}
 \end{axis}
 \begin{axis}[
-  width=13.2cm,height=4.4cm,
-  ymajorgrids=true,grid style={black!12},axis line style={black!65},
-  xticklabel style={font=\scriptsize,rotate=30,anchor=east},
-  yticklabel style={font=\scriptsize},ylabel style={font=\small},
-  title style={font=\small\bfseries},
-  enlarge x limits=0.07,
-  at={(0,-7.6cm)},anchor=north west,
-  ybar,bar width=6pt,
-  symbolic x coords={slt,erp,hist,sba,emp,tuned,llm,noerp},xtick=data,xticklabels={{SLT OR},{ERP-floor OR},{History-only OR},{Croston/SBA},{Empirical quantile},{Simulation-tuned},{LLM (run 1)},{LLM without ERP}},
-  ylabel={Total cost vs SAP-derived (\%)},
-  title={B. Total cost when shortages are priced at one and five unit costs},
-  extra y ticks=0,extra y tick style={grid=major,grid style={black!55}},extra y tick labels={},
-  legend style={font=\scriptsize,at={(0.98,0.05)},anchor=south east,draw=none,fill=none},
+  width=8.8cm,height=6.6cm,
+  xmajorgrids=true,grid style={black!12},axis line style={black!65},
+  tick label style={font=\footnotesize},label style={font=\footnotesize},
+  title style={font=\footnotesize\bfseries,align=left},
+  y dir=reverse,ytick=data,ytick style={draw=none},
+  at={(a.east)},anchor=west,xshift=0.5cm,width=5.8cm,
+  xbar,bar width=4.5pt,
+  symbolic y coords={sap,slt,erp,hist,sba,emp,tuned,llm,noerp},yticklabels={},
+  xmin=-40,xmax=10,xtick={-40,-30,-20,-10,0,10},xlabel={Total cost vs SAP-derived (\%)},
+  extra x ticks=0,extra x tick style={grid=major,grid style={black!60}},extra x tick labels={},
+  title={B. With shortages priced},
+  legend style={font=\footnotesize,at={(0.02,0.04)},anchor=south west,draw=none,fill=white,fill opacity=0.8,text opacity=1},
 ]
-  \addplot[fill=sapgray,draw=none] coordinates {(slt,3.7) (erp,3.7) (hist,3.2) (sba,2.5) (emp,3.7) (tuned,-33.1) (llm,2.4) (noerp,3.4)};
-  \addplot[fill=llmred,draw=none] coordinates {(slt,3.6) (erp,3.6) (hist,3.3) (sba,2.5) (emp,3.7) (tuned,-33.1) (llm,2.4) (noerp,3.4)};
-  \legend{1$\times$ unit cost,5$\times$ unit cost}
+  \addplot[fill=sapgray,draw=none] coordinates {(0.0,sap) (3.7,slt) (3.7,erp) (3.2,hist) (2.5,sba) (3.7,emp) (-33.1,tuned) (2.4,llm) (3.4,noerp)};
+  \addplot[fill=llmred,draw=none] coordinates {(0.0,sap) (3.6,slt) (3.6,erp) (3.3,hist) (2.5,sba) (3.7,emp) (-33.1,tuned) (2.4,llm) (3.4,noerp)};
+  \legend{$1\times$ unit cost,$5\times$ unit cost}
 \end{axis}
 \end{tikzpicture}
 \end{document}
