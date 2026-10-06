@@ -1,8 +1,7 @@
-\documentclass[tikz,border=5pt]{standalone}
+\documentclass[tikz,border=4pt]{standalone}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{pgfplots}
-\usepgfplotslibrary{groupplots}
 \usetikzlibrary{shapes.geometric}
 \pgfplotsset{compat=1.18}
 \definecolor{runone}{RGB}{110,110,110}
@@ -12,80 +11,34 @@
 
 \begin{document}
 \begin{tikzpicture}
-\draw[runone,thick] (0,0) -- +(0.34,0) node[pos=0.5,circle,fill=runone,inner sep=1.1pt]{};
-\node[anchor=west,font=\scriptsize] at (0.42,0) {Run 1};
-\draw[runtwo,thick,dashed] (1.55,0) -- +(0.34,0) node[pos=0.5,rectangle,fill=runtwo,inner sep=1.1pt]{};
-\node[anchor=west,font=\scriptsize] at (1.97,0) {Run 2};
-\draw[runthree,thick,dotted] (3.10,0) -- +(0.34,0) node[pos=0.5,regular polygon,regular polygon sides=3,fill=runthree,inner sep=1.0pt]{};
-\node[anchor=west,font=\scriptsize] at (3.52,0) {Run 3};
-\begin{scope}[yshift=-0.6cm]
-\begin{axis}[
-  name=ropaxis,
-  at={(0,0)},anchor=north west,
-  width=13.35cm,height=2.35cm,
-  ymin=0,ymajorgrids=true,
-  grid style={black!12},
-  axis line style={black!65},
-  xlabel={Policy-value bin},
-  ylabel={Materials},
-  xtick/.expand once=\RopAxisTicks,
-  xticklabels/.expand once=\RopAxisTickLabels,
-  xticklabel style={font=\scriptsize},
-  title style={font=\small\bfseries},
-  title={A. Reorder point},
-  enlarge x limits=0.08,
-]
-  \addplot[runone,thick,mark=*,mark size=1.5pt,mark options={fill=runone,draw=none}] coordinates {\RopRunOneHistogram};
-  \addplot[runtwo,thick,dashed,mark=square*,mark size=1.4pt,mark options={fill=runtwo,draw=none}] coordinates {\RopRunTwoHistogram};
-  \addplot[runthree,thick,dotted,mark=triangle*,mark size=1.7pt,mark options={fill=runthree,draw=none}] coordinates {\RopRunThreeHistogram};
+\draw[runone,thick] (4.6,0) -- +(0.5,0) node[pos=0.5,circle,fill=runone,inner sep=1.2pt]{};
+\node[anchor=west,font=\footnotesize] at (5.2,0) {Run 1};
+\draw[runtwo,thick,dashed] (7.0,0) -- +(0.5,0) node[pos=0.5,rectangle,fill=runtwo,inner sep=1.2pt]{};
+\node[anchor=west,font=\footnotesize] at (7.6,0) {Run 2};
+\draw[runthree,thick,dotted] (9.4,0) -- +(0.5,0) node[pos=0.5,regular polygon,regular polygon sides=3,fill=runthree,inner sep=1.1pt]{};
+\node[anchor=west,font=\footnotesize] at (10.0,0) {Run 3};
+\pgfplotsset{panel/.style={
+  width=4.3cm,height=3.2cm,ymin=0,ymajorgrids=true,grid style={black!12},
+  axis line style={black!65},xlabel={Log-spaced bin},
+  tick label style={font=\scriptsize},label style={font=\footnotesize},
+  title style={font=\footnotesize\bfseries},enlarge x limits=0.08}}
+\begin{axis}[panel,name=rop,at={(0,-1.45cm)},anchor=north west,ylabel={Materials},
+  xtick/.expand once=\RopAxisTicks,xticklabels/.expand once=\RopAxisTickLabels,title={A. Reorder point}]
+  \addplot[runone,thick,mark=*,mark size=1.4pt,mark options={fill=runone,draw=none}] coordinates {\RopRunOneHistogram};
+  \addplot[runtwo,thick,dashed,mark=square*,mark size=1.3pt,mark options={fill=runtwo,draw=none}] coordinates {\RopRunTwoHistogram};
+  \addplot[runthree,thick,dotted,mark=triangle*,mark size=1.6pt,mark options={fill=runthree,draw=none}] coordinates {\RopRunThreeHistogram};
 \end{axis}
-\node[anchor=north,font=\tiny,text=black!70,text width=13.35cm,align=center] at ([yshift=-0.8cm]ropaxis.south) {\RopBinKey};
-\end{scope}
-\begin{scope}[yshift=-4.5cm]
-\begin{axis}[
-  name=oqaxis,
-  at={(0,0)},anchor=north west,
-  width=13.35cm,height=2.35cm,
-  ymin=0,ymajorgrids=true,
-  grid style={black!12},
-  axis line style={black!65},
-  xlabel={Policy-value bin},
-  ylabel={Materials},
-  xtick/.expand once=\OqAxisTicks,
-  xticklabels/.expand once=\OqAxisTickLabels,
-  xticklabel style={font=\scriptsize},
-  title={B. Order quantity},
-  title style={font=\small\bfseries},
-  enlarge x limits=0.08,
-]
-  \addplot[runone,thick,mark=*,mark size=1.5pt,mark options={fill=runone,draw=none}] coordinates {\OqRunOneHistogram};
-  \addplot[runtwo,thick,dashed,mark=square*,mark size=1.4pt,mark options={fill=runtwo,draw=none}] coordinates {\OqRunTwoHistogram};
-  \addplot[runthree,thick,dotted,mark=triangle*,mark size=1.7pt,mark options={fill=runthree,draw=none}] coordinates {\OqRunThreeHistogram};
+\begin{axis}[panel,name=oq,at={(rop.east)},anchor=west,xshift=1.15cm,
+  xtick/.expand once=\OqAxisTicks,xticklabels/.expand once=\OqAxisTickLabels,title={B. Order quantity}]
+  \addplot[runone,thick,mark=*,mark size=1.4pt,mark options={fill=runone,draw=none}] coordinates {\OqRunOneHistogram};
+  \addplot[runtwo,thick,dashed,mark=square*,mark size=1.3pt,mark options={fill=runtwo,draw=none}] coordinates {\OqRunTwoHistogram};
+  \addplot[runthree,thick,dotted,mark=triangle*,mark size=1.6pt,mark options={fill=runthree,draw=none}] coordinates {\OqRunThreeHistogram};
 \end{axis}
-\node[anchor=north,font=\tiny,text=black!70,text width=13.35cm,align=center] at ([yshift=-0.8cm]oqaxis.south) {\OqBinKey};
-\end{scope}
-\begin{scope}[yshift=-8.4cm]
-\begin{axis}[
-  name=ssaxis,
-  at={(0,0)},anchor=north west,
-  width=13.35cm,height=2.35cm,
-  ymin=0,ymajorgrids=true,
-  grid style={black!12},
-  axis line style={black!65},
-  xlabel={Policy-value bin},
-  ylabel={Materials},
-  xtick/.expand once=\SsAxisTicks,
-  xticklabels/.expand once=\SsAxisTickLabels,
-  xticklabel style={font=\scriptsize},
-  title={C. Safety stock},
-  title style={font=\small\bfseries},
-  enlarge x limits=0.08,
-]
-  \addplot[runone,thick,mark=*,mark size=1.5pt,mark options={fill=runone,draw=none}] coordinates {\SsRunOneHistogram};
-  \addplot[runtwo,thick,dashed,mark=square*,mark size=1.4pt,mark options={fill=runtwo,draw=none}] coordinates {\SsRunTwoHistogram};
-  \addplot[runthree,thick,dotted,mark=triangle*,mark size=1.7pt,mark options={fill=runthree,draw=none}] coordinates {\SsRunThreeHistogram};
+\begin{axis}[panel,name=ss,at={(oq.east)},anchor=west,xshift=1.15cm,
+  xtick/.expand once=\SsAxisTicks,xticklabels/.expand once=\SsAxisTickLabels,title={C. Safety stock}]
+  \addplot[runone,thick,mark=*,mark size=1.4pt,mark options={fill=runone,draw=none}] coordinates {\SsRunOneHistogram};
+  \addplot[runtwo,thick,dashed,mark=square*,mark size=1.3pt,mark options={fill=runtwo,draw=none}] coordinates {\SsRunTwoHistogram};
+  \addplot[runthree,thick,dotted,mark=triangle*,mark size=1.6pt,mark options={fill=runthree,draw=none}] coordinates {\SsRunThreeHistogram};
 \end{axis}
-\node[anchor=north,font=\tiny,text=black!70,text width=13.35cm,align=center] at ([yshift=-0.8cm]ssaxis.south) {\SsBinKey};
-\end{scope}
 \end{tikzpicture}
 \end{document}
