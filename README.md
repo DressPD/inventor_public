@@ -84,7 +84,6 @@ The reviewed manuscript is available at `manuscript/main.pdf`. Rebuild it with:
 ```bash
 cd manuscript
 pdflatex -interaction=nonstopmode -halt-on-error Figure_1_Workflow.tex
-pdflatex -interaction=nonstopmode -halt-on-error Figure_2_Comparison.tex
 pdflatex -interaction=nonstopmode -halt-on-error Figure_3_Three_Run_Reproducibility.tex
 pdflatex -interaction=nonstopmode -halt-on-error main.tex
 bibtex main

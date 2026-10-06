@@ -1,5 +1,5 @@
-- Material-scoped LLM artifacts require no project-specific fine-tuning.
-- Deterministic validation executes every emitted policy artifact as (r,Q).
-- All 365 artifacts are scoreable and LLM-capacity-feasible after retries.
-- Equal MOQ/capacity comparison covers 346 material pairs.
-- Results remain descriptive and require prospective validation.
+- Prompt-configured LLM proposes reviewable (r,Q) policies without training
+- LLM costs 11% less than ERP parameters but 6-18% more than OR baselines
+- Static storage checks fail: 53-66% of pairs exceed limits in simulation
+- Withholding ERP inputs does not remove the LLM advantage over ERP
+- Design principles and review rules for LLM-based decision support
