@@ -1,4 +1,4 @@
-\documentclass[preprint,11pt]{elsarticle}
+\documentclass[preprint,12pt]{elsarticle}
 
 \usepackage{amssymb}
 \usepackage{amsmath}
@@ -9,8 +9,11 @@
 \usepackage[section]{placeins}
 \usepackage{setspace}
 \usepackage{xcolor}
-\usepackage{lineno}
-\setstretch{1.5}
+\usepackage[margin=1in]{geometry}
+\usepackage{etoolbox}
+\setstretch{2}
+\AtBeginEnvironment{table}{\singlespacing}
+\AtBeginEnvironment{thebibliography}{\singlespacing\footnotesize}
 \newcolumntype{L}{>{\raggedright\arraybackslash}X}
 \newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
 \setlength{\emergencystretch}{3em}
@@ -52,7 +55,6 @@ Decision Support Systems \sep Large Language Models \sep Generative Artificial I
 
 \end{frontmatter}
 
-\linenumbers
 
 \section{Introduction}
 \label{sec:intro}
