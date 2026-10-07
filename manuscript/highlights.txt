@@ -1,5 +1,5 @@
-- Prompt-configured LLM proposes reviewable (r,Q) policies without training
+- Prompt-configured LLM sets (r,Q) parameters for 365 plant-material pairs
 - LLM costs 11% less than ERP parameters but 6-18% more than OR baselines
 - Static storage checks fail: 53-66% of pairs exceed limits in simulation
 - Withholding ERP inputs does not remove the LLM advantage over ERP
-- Design principles and review rules for LLM-based decision support
+- Priced shortages reverse the ranking; simulation-tuned policy is cheapest
