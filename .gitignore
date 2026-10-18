@@ -19,6 +19,7 @@ outputs/*
 !outputs/review_evidence.json
 !outputs/run_manifest.json
 !outputs/three_run_evidence.json
+!outputs/mechanism_evidence.json
 !outputs/primary_evidence.json
 !outputs/information_asymmetry_evidence.json
 !outputs/capacity_trajectory_evidence.json
