@@ -1,0 +1,111 @@
+{
+  "material_id": "PL1__MB4CB31A",
+  "analysis_timestamp": "2026-10-22T10:59:57.001058",
+  "input_parameters": {
+    "unit_cost": 0.638053,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 50.0,
+    "minimum_order_quantity": 1812,
+    "service_level_target": 0.95,
+    "sap_safety_stock": 0,
+    "sap_safety_lead_time_days": 3.0,
+    "max_storage_units": 9520.321
+  },
+  "data_summary": {
+    "total_rows": 172,
+    "working_days": 172,
+    "date_range_start": "2025-03-04",
+    "date_range_end": "2026-03-06",
+    "lead_time_observations": 22
+  },
+  "demand_analysis": {
+    "mean_demand": 450.8956,
+    "median_demand": 404.5,
+    "std_demand": 281.6132,
+    "robust_std": 249.8919,
+    "cv_demand": 0.6246,
+    "non_zero_fraction": 0.9186,
+    "trend_detected": true,
+    "trend_slope": -1.938079,
+    "trend_p_value": 4e-06,
+    "regime": "moderate",
+    "distribution_type": "normal",
+    "skewness": 0.3994
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.7932,
+    "std_lead_time": 1.1053,
+    "cv_lead_time": 1.3936,
+    "stability": "unstable",
+    "effective_lead_time": 1.8985,
+    "min_lead_time": 0.11,
+    "max_lead_time": 4.46
+  },
+  "buffer_analysis": {
+    "service_level_target": 0.95,
+    "z_score": 1.6449,
+    "sigma_ltd": 557.942,
+    "safety_stock": 918,
+    "safety_stock_robust": 898
+  },
+  "eoq_capacity": {
+    "annual_demand": 117232.85,
+    "eoq_raw": 12373.87,
+    "unconstrained_order_quantity": 12374,
+    "remaining_storage_after_safety_stock": 8602.32,
+    "order_quantity": 8602,
+    "escalation_flag": false
+  },
+  "inventory_policy": {
+    "reorder_point": 1775,
+    "order_quantity": 8602,
+    "safety_stock": 918,
+    "review_period_days": 20
+  },
+  "safety_lead_time_analysis": {
+    "recommended_safety_lead_time_days": 2.0359,
+    "sap_safety_lead_time_days": 3.0,
+    "comparison_action": "reduce",
+    "sigma_effective_days": 1.2374,
+    "variance_components": {
+      "transport_variability": 0.5,
+      "supplier_variability": 0.4,
+      "quality_issues": 0.1
+    },
+    "disruption_premium": 1.0
+  },
+  "cost_analysis": {
+    "annual_holding_cost_per_unit": 0.0766,
+    "previous_policy": {
+      "order_quantity": 1812,
+      "safety_stock": 0,
+      "reorder_point": 1353,
+      "num_orders_per_year": 64.7,
+      "annual_ordering_cost": 3234.9,
+      "annual_holding_cost": 69.37,
+      "total_annual_cost": 3304.27
+    },
+    "recommended_policy": {
+      "order_quantity": 8602,
+      "safety_stock": 918,
+      "reorder_point": 1775,
+      "num_orders_per_year": 13.63,
+      "annual_ordering_cost": 681.43,
+      "annual_holding_cost": 399.6,
+      "total_annual_cost": 1081.03
+    },
+    "savings": {
+      "absolute_savings": 2223.24,
+      "percentage_savings": 67.28
+    }
+  },
+  "diagnostics": {
+    "capacity_check": {
+      "safety_stock_plus_order_quantity": 9520,
+      "max_storage_units": 9520.321,
+      "within_capacity": true
+    },
+    "moq_constraint_active": false,
+    "capacity_constraint_active": true
+  }
+}

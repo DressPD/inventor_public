@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__MED357F1",
+  "data_quality": {
+    "total_rows": 197,
+    "working_days": 197,
+    "outliers_detected": 5,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 3312.17
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1355.14,
+    "std_daily_demand": 837.43,
+    "robust_std_daily": 619.52,
+    "cv_wd": 0.618,
+    "non_zero_fraction_wd": 0.951,
+    "trend_detected": true,
+    "regime": "erratic",
+    "distribution_type": "right-skewed continuous"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.0988,
+    "std_lead_time": 0.032,
+    "cv_lead_time": 0.324,
+    "stability": "moderate",
+    "effective_lead_time": 0.0988
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 263.48,
+    "safety_stock": 473.0,
+    "safety_stock_robust": 351.0
+  },
+  "order_quantity": {
+    "eoq_raw": 1393.87,
+    "order_quantity": 1395
+  },
+  "cost_analysis": {
+    "unit_cost": 145.235126,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 17.428
+  },
+  "policy": {
+    "safety_stock": 473,
+    "reorder_point": 607,
+    "order_quantity": 1395,
+    "review_period_days": 1
+  },
+  "safety_lead_time": {
+    "recommended_days": 0.35,
+    "sigma_eff_days": 0.032,
+    "dominant_factor": "demand_variability",
+    "dominant_pct": 71.5,
+    "variance_components": {
+      "transport": 0.0,
+      "supplier": 0.028,
+      "quality": 0.004
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce_slt",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MED357F1 exhibits erratic demand (CV=0.62) with a confirmed upward trend across the observation window (March 2025 \u2013 March 2026). Lead times are extremely short (~0.099 working days) but moderately variable (CV=0.32), making demand variability the dominant uncertainty driver at 71.5% of total variance. An (r,Q) continuous-review policy with safety stock of 473 units and reorder point of 607 units is recommended to achieve the 95% service level target, while remaining well within the 2,209-unit storage constraint.",
+  "warnings": [
+    "SAP safety stock is 0; this provides no buffer against the observed demand variability (CV=0.62).",
+    "Upward demand trend detected \u2014 mean demand estimate may be conservative; monitor and update quarterly.",
+    "5 outliers winsorised at upper bound 3312 units."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) continuous-review with fixed reorder point and fixed order quantity",
+    "selection_rationale": "Given the high daily demand volume (mean 1,355 units), erratic but largely non-intermittent pattern (95.1% non-zero days), and extremely short lead times, a continuous-review (r,Q) model minimises response lag and matches the near-real-time replenishment capability implied by sub-day lead times. EOQ balances ordering and holding costs efficiently at this volume.",
+    "boundary_risk": "Storage capacity (2,209 units) is non-binding for the current policy (SS=473 + OQ=1,395 = 1,868 units, headroom=341 units). If the demand trend continues, safety stock requirements will rise and may eventually compress the feasible order quantity below EOQ; recommend re-evaluating capacity allocation within 12 months.",
+    "escalation_flag": "none"
+  }
+}

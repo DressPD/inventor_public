@@ -1,0 +1,77 @@
+{
+  "material_id": "PL3__M06DA03F",
+  "data_quality": {
+    "total_rows": 216,
+    "working_days": 216,
+    "outliers_detected": 7,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 16.587999999999965
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 2.103046296296296,
+    "std_daily_demand": 3.7533575985992793,
+    "robust_std_daily": 0.0,
+    "cv_wd": 1.7847241904324074,
+    "non_zero_fraction_wd": 0.2777777777777778,
+    "trend_detected": true,
+    "regime": "lumpy",
+    "distribution_type": "zero-inflated"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.7000000000000001,
+    "std_lead_time": 0.1212435565298214,
+    "cv_lead_time": 0.1732050807568877,
+    "stability": "stable",
+    "effective_lead_time": 0.8212435565298215
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 3.150619065965011,
+    "safety_stock": 6.0,
+    "safety_stock_robust": 3.0
+  },
+  "order_quantity": {
+    "eoq_raw": 213.9042552557864,
+    "order_quantity": 419
+  },
+  "cost_analysis": {
+    "unit_cost": 14.363491,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.7236189199999998
+  },
+  "policy": {
+    "safety_stock": 6,
+    "reorder_point": 8,
+    "order_quantity": 419,
+    "review_period_days": 200
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.8530042398813014,
+    "sigma_eff_days": 1.498121592241507,
+    "dominant_factor": "demand_variability",
+    "dominant_pct": 99.34502728601483,
+    "variance_components": {
+      "transport": 0.006549727139851736,
+      "supplier": 0.9934502728601483,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase from 0.0 to 2.85 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__M06DA03F exhibits lumpy demand with a coefficient of variation of 1.78 and 27.8% non-zero demand days. Mean daily demand is 2.10 units with standard deviation 3.75 units. Lead time is stable with mean 0.70 days and CV 0.17. The recommended (r,Q) policy sets safety stock at 6 units, reorder point at 8 units, and order quantity at 419 units (MOQ-constrained), targeting a 95% service level at a marginal annual cost increase of $10.34.",
+  "warnings": [
+    "Recommended policy increases costs by $10.34/year due to higher safety stock",
+    "Very intermittent demand - normal approximation is conservative; robust safety stock of 3 units is an alternative lower bound"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review reorder-point / fixed-order-quantity",
+    "selection_rationale": "Demand is lumpy with 27.8% non-zero observations. The (r,Q) model is appropriate as it triggers replenishment when stock falls to the reorder point, providing a direct service-level guarantee without requiring complex forecasting. Normal approximation is used with robust variance estimation to handle intermittency.",
+    "boundary_risk": "Moderate - a statistically significant demand trend was detected; the model should be recalibrated quarterly to avoid safety stock erosion over time.",
+    "escalation_flag": "None - MOQ (419) + safety stock (6) = 425 units is well within storage capacity of 1,222 units. No infeasibility conflict."
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "material_id": "PL1__ME16AB86",
+  "data_quality": {
+    "total_rows": 179,
+    "working_days": 179,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 598.166
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 104.08,
+    "std_daily_demand": 144.57,
+    "robust_std_daily": 107.16,
+    "cv_wd": 1.39,
+    "non_zero_fraction_wd": 0.486,
+    "trend_detected": false,
+    "regime": "INTERMITTENT",
+    "distribution_type": "right-skewed / zero-inflated"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.77,
+    "std_lead_time": 1.04,
+    "cv_lead_time": 0.37,
+    "stability": "MODERATE",
+    "effective_lead_time": 2.77
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 263.3,
+    "safety_stock": 433.0,
+    "safety_stock_robust": 401.0
+  },
+  "order_quantity": {
+    "eoq_raw": 823.6,
+    "order_quantity": 824
+  },
+  "cost_analysis": {
+    "unit_cost": 31.943544,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 3.833
+  },
+  "policy": {
+    "safety_stock": 433,
+    "reorder_point": 722,
+    "order_quantity": 824,
+    "review_period_days": 8
+  },
+  "safety_lead_time": {
+    "recommended_days": 3.9,
+    "sigma_eff_days": 1.04,
+    "dominant_factor": "demand_variability",
+    "dominant_pct": 83.2,
+    "variance_components": {
+      "transport": 0.7,
+      "supplier": 0.25,
+      "quality": 0.05
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "REDUCE_MARGINALLY",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__ME16AB86 displays a clearly intermittent demand pattern \u2014 nearly half of all working days record zero consumption, while active days show large, batched withdrawals producing a CV of 1.39. Lead times are moderately variable (CV=0.37, range 1.06\u20134.23 days) and contribute only 16.8% of total buffer risk; demand variability dominates at 83.2%. An (r,Q) continuous-review policy is selected: the reorder point of 722 units triggers a fixed replenishment of 824 units (EOQ-optimal, well above MOQ=220), and a safety stock of 433 units is required to maintain the 95% service level target against the high demand uncertainty.",
+  "warnings": [
+    "SAP safety stock (69 units) is critically below the statistically required level (433 units) for 95% service level \u2014 stockout risk is high under current policy.",
+    "2 upper-tail outliers winsorised at 598.166 units to prevent distortion of standard deviation estimates."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) continuous-review replenishment policy",
+    "selection_rationale": "The intermittent but non-negligible demand (48.6% active days, mean 104 units/day) combined with moderate lead time variability suits a continuous-review (r,Q) model. The fixed-order-quantity structure exploits the EOQ cost optimum while the reorder point provides a statistically grounded buffer. Periodic review would add unnecessary exposure during the variable lead times.",
+    "boundary_risk": "Storage capacity (1,891 units) is not binding: safety_stock + order_quantity = 1,257 units leaves 634 units of headroom. No capacity-driven service degradation expected.",
+    "escalation_flag": "none"
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "material_id": "PL1__MCAEDE30",
+  "data_quality": {
+    "total_rows": 123,
+    "working_days": 123,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 599.184
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 173.54,
+    "std_daily_demand": 199.42,
+    "robust_std_daily": 141.97,
+    "cv_wd": 1.149,
+    "non_zero_fraction_wd": 0.587,
+    "trend_detected": true,
+    "regime": "lumpy",
+    "distribution_type": "Gamma"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 4.277,
+    "std_lead_time": 1.566,
+    "cv_lead_time": 0.366,
+    "stability": "moderate",
+    "effective_lead_time": 5.843
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 496.03,
+    "safety_stock": 815.0,
+    "safety_stock_robust": 579.0
+  },
+  "order_quantity": {
+    "eoq_raw": 2759.4,
+    "order_quantity": 2295
+  },
+  "cost_analysis": {
+    "unit_cost": 4.758543,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.571
+  },
+  "policy": {
+    "safety_stock": 815,
+    "reorder_point": 1558,
+    "order_quantity": 2295,
+    "review_period_days": 14
+  },
+  "safety_lead_time": {
+    "recommended_days": 4.7,
+    "sigma_eff_days": 2.86,
+    "dominant_factor": "demand_variability",
+    "dominant_pct": 70.0,
+    "variance_components": {
+      "transport": 0.7,
+      "supplier": 0.2,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase from 4.0 to 4.70 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MCAEDE30 displays lumpy demand with a CV of 1.15 and only 59% non-zero working days, combined with a statistically significant upward demand trend of +0.96 units/day. Lead times are moderately variable (CV=0.37, mean 4.28 days), with demand variability accounting for 70% of total lead-time demand variance. A continuous-review (r,Q) policy with safety stock of 815 units and order quantity of 2,295 units was selected to achieve 95% service level while respecting the 3,110-unit storage cap \u2014 which binds exactly at the recommended policy.",
+  "warnings": [
+    "Storage capacity binds: unconstrained EOQ 2,759 capped to 2,295 (max_storage_units 3,110 minus safety_stock 815). Service level impact is marginal; cost impact is a slight increase in ordering frequency.",
+    "Upward demand trend detected (+0.96 units/day). Mean demand estimate may understate future requirements; review policy in 60-90 days."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review policy",
+    "selection_rationale": "The (r,Q) model is appropriate for lumpy, high-CV continuous demand with moderate lead-time variability. It provides a clear trigger (reorder point r=1,558) and fixed replenishment batch (Q=2,295), which is compatible with the MOQ constraint of 1,539 and allows straightforward SAP implementation via MRP reorder-point planning.",
+    "boundary_risk": "Storage cap of 3,110 units binds at the recommended policy (815 + 2,295 = 3,110). Any increase in safety stock (e.g., due to higher demand volatility) would require a corresponding reduction in order quantity, increasing ordering frequency and cost. If the upward trend materialises, storage capacity will become a binding operational constraint within 1-2 quarters.",
+    "escalation_flag": "none"
+  }
+}

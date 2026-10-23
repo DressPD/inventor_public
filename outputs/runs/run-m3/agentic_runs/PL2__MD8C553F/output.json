@@ -1,0 +1,105 @@
+{
+  "material_id": "PL2__MD8C553F",
+  "analysis_timestamp": "2026-10-22T22:06:05.635643",
+  "parameters": {
+    "unit_cost": 0.355312,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 50.0,
+    "moq": 12614,
+    "service_level_target": 0.95,
+    "max_storage_units": 1160491.68
+  },
+  "data_quality": {
+    "total_rows": 129,
+    "working_days": 129,
+    "non_working_days": 0,
+    "outliers_detected": 2,
+    "outliers_winsorized": 2,
+    "date_range_start": "2025-03-03",
+    "date_range_end": "2026-03-09"
+  },
+  "demand_analysis": {
+    "mean_daily": 20098.95,
+    "std_daily": 15208.59,
+    "robust_std": 19422.63,
+    "cv": 0.757,
+    "non_zero_fraction_wd": 0.829,
+    "trend_detected": false,
+    "trend_slope": 0.0,
+    "regime": "erratic",
+    "distribution_type": "gamma-like",
+    "annual_demand": 5024736.59
+  },
+  "lead_time_analysis": {
+    "mean_days": 1.364,
+    "std_days": 0.903,
+    "cv": 0.662,
+    "stability": "unstable",
+    "effective_lead_time": 2.267
+  },
+  "safety_stock": {
+    "z_score": 1.645,
+    "sigma_ltd": 25390.06,
+    "safety_stock": 41763,
+    "safety_stock_robust": 47778,
+    "sap_safety_stock": 53268,
+    "recommendation": "REDUCE"
+  },
+  "order_quantity": {
+    "eoq_raw": 108557.81,
+    "unconstrained": 108558,
+    "final": 108558,
+    "moq_binding": false,
+    "capacity_binding": false
+  },
+  "policy": {
+    "safety_stock": 41763,
+    "reorder_point": 69176,
+    "order_quantity": 108558,
+    "review_period_days": 6
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.08,
+    "sap_safety_lead_time_days": 3.4,
+    "sigma_eff_days": 1.26,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "disruption_premium": 1.0,
+    "comparison_action": "REDUCE",
+    "override_flag": null
+  },
+  "cost_analysis": {
+    "annual_holding_cost_per_unit": 0.0426,
+    "previous": {
+      "orders_per_year": 94.33,
+      "annual_ordering_cost": 4716.47,
+      "annual_holding_cost": 2271.21,
+      "total_annual_cost": 6987.68
+    },
+    "optimized": {
+      "orders_per_year": 46.29,
+      "annual_ordering_cost": 2314.31,
+      "avg_inventory": 96042.0,
+      "annual_holding_cost": 4094.99,
+      "total_annual_cost": 6409.29
+    },
+    "savings": 578.38,
+    "savings_pct": 8.28
+  },
+  "diagnostics": {
+    "warnings": [
+      "High demand variability detected (CV=0.76)",
+      "Unstable lead time (CV=0.66)"
+    ],
+    "capacity_check": {
+      "safety_stock_plus_order": 150321,
+      "max_storage": 1160491.68,
+      "utilization_pct": 12.95
+    }
+  }
+}

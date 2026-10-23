@@ -1,0 +1,103 @@
+{
+  "material_id": "PL1__M02238AC",
+  "analysis_metadata": {
+    "timestamp": "2026-03-09T12:00:00Z",
+    "data_quality": {
+      "total_rows": 216,
+      "working_days": 216,
+      "outliers_winsorized": 6
+    }
+  },
+  "input_parameters": {
+    "unit_cost": 2.742038,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 50.0,
+    "moq": 433,
+    "service_level_target": 0.95,
+    "sap_safety_stock": 0,
+    "sap_safety_lead_time_days": 3.0,
+    "max_storage_units": 11899.927
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1906.3409784722223,
+    "std_daily_demand": 398.0141254760801,
+    "robust_std_daily": 299.43309859154914,
+    "cv_demand": 0.2087843308047945,
+    "annual_demand": 476585.2446180556,
+    "non_zero_fraction": 1.0,
+    "trend_detected": false,
+    "trend_slope_per_month": 8.824918303950964,
+    "demand_regime": "moderate",
+    "distribution_type": "skewed-normal",
+    "skewness": -0.7248152750100304
+  },
+  "lead_time_analysis": {
+    "mean_lead_time_days": 1.3601092896174862,
+    "std_lead_time_days": 0.9127160223424925,
+    "cv_lead_time": 0.671060795856473,
+    "effective_lead_time_days": 2.861393549344256,
+    "lead_time_stability": "unstable"
+  },
+  "buffer_analysis": {
+    "z_score": 1.644853626951472,
+    "sigma_ltd": 1800.8000809483738,
+    "sigma_ltd_robust": 1774.645466256862,
+    "safety_stock": 2963,
+    "safety_stock_robust": 2920
+  },
+  "eoq_analysis": {
+    "eoq_raw": 12034.912540185913,
+    "unconstrained_order_quantity": 12035,
+    "order_quantity": 8936,
+    "capacity_constraint_binds": true,
+    "capacity_warnings": [
+      "Capacity constraint binds: Order quantity reduced from optimal EOQ"
+    ]
+  },
+  "policy_recommendation": {
+    "policy_type": "continuous_review",
+    "reorder_point": 5556,
+    "order_quantity": 8936,
+    "safety_stock": 2963,
+    "review_period_days": 5,
+    "policy_description": "(r,Q) continuous review: reorder when inventory reaches 5556 units, order 8936 units"
+  },
+  "safety_lead_time_analysis": {
+    "recommended_safety_lead_time_days": 1.5542864752215546,
+    "sigma_effective_days": 0.9446369255470598,
+    "variance_components": {
+      "transport": 0.4998303224644207,
+      "supplier": 0.24991516123221036,
+      "quality": 0.08330505374407013,
+      "dominant_factor": "transport"
+    },
+    "disruption_premium": 1.0,
+    "comparison_vs_sap": {
+      "sap_safety_lead_time_days": 3.0,
+      "recommended_days": 1.5542864752215546,
+      "action": "decrease_moderately"
+    }
+  },
+  "cost_analysis": {
+    "annual_holding_cost_per_unit": 0.32904456,
+    "previous_policy": {
+      "order_quantity": 12035,
+      "safety_stock": 0,
+      "orders_per_year": 39.59993723457047,
+      "annual_ordering_cost": 1979.9968617285235,
+      "annual_holding_cost": 1980.0256398,
+      "total_annual_cost": 3960.022501528523
+    },
+    "optimized_policy": {
+      "order_quantity": 8936,
+      "safety_stock": 2963,
+      "orders_per_year": 53.33317419629091,
+      "annual_ordering_cost": 2666.6587098145455,
+      "annual_holding_cost": 2445.13012536,
+      "total_annual_cost": 5111.788835174546
+    },
+    "cost_savings": -1151.7663336460228,
+    "cost_savings_percent": -29.084843159387457
+  },
+  "narrative": "Material PL1__M02238AC exhibits moderate demand with CV of 0.21 and unstable lead times (CV 0.67). The recommended policy implements a continuous review system with reorder point 5556 and order quantity 8936, maintaining safety stock of 2963 units to achieve 95% service level. While capacity constraints limit order quantity below optimal EOQ, the policy provides robust protection against demand and lead time variability."
+}

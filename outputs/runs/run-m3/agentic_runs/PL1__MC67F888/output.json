@@ -1,0 +1,90 @@
+{
+  "material_id": "PL1__MC67F888",
+  "input_parameters": {
+    "unit_cost": 10.995427,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 50.0,
+    "moq": 1317,
+    "service_level_target": 0.95,
+    "sap_safety_stock": 152,
+    "sap_safety_lead_time_days": 2.5,
+    "max_storage_units": 92133.86
+  },
+  "data_summary": {
+    "total_observations": 130,
+    "working_days": 130,
+    "date_range_start": "2025-03-03",
+    "date_range_end": "2026-03-09"
+  },
+  "demand_statistics": {
+    "mean_daily_demand": 3780.05,
+    "std_daily_demand": 1612.82,
+    "robust_std_daily": 927.74,
+    "cv_working_days": 0.4267,
+    "non_zero_fraction_working_days": 0.9846,
+    "demand_regime": "continuous",
+    "distribution_type": "normal",
+    "trend_slope": -15.8185,
+    "outliers_detected": 4,
+    "demand_p1": 392.56,
+    "demand_p99": 9772.04
+  },
+  "lead_time_statistics": {
+    "mean_lead_time": 1.4716,
+    "std_lead_time": 0.9667,
+    "cv_lead_time": 0.6569,
+    "stability": "unstable",
+    "effective_lead_time": 2.4383
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 4144.99,
+    "sigma_ltd_robust": 3823.56,
+    "z_score": 1.6449,
+    "safety_stock": 6818,
+    "safety_stock_robust": 6290
+  },
+  "eoq_analysis": {
+    "annual_demand": 945013.48,
+    "eoq_raw": 8462.96,
+    "unconstrained_order_quantity": 8463,
+    "capacity_constrained": false,
+    "final_order_quantity": 8463
+  },
+  "inventory_policy": {
+    "reorder_point": 12381,
+    "order_quantity": 8463,
+    "safety_stock": 6818,
+    "review_period_days": 3
+  },
+  "safety_lead_time_analysis": {
+    "recommended_safety_lead_time_days": 2.0,
+    "sap_safety_lead_time_days": 2.5,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "dominant_factor": "transport"
+  },
+  "cost_analysis": {
+    "annual_holding_cost_per_unit": 1.3195,
+    "previous_policy": {
+      "safety_stock": 152,
+      "avg_inventory": 4383.5,
+      "annual_holding_cost": 5783.81,
+      "annual_ordering_cost": 5583.21,
+      "total_annual_cost": 11367.02
+    },
+    "optimized_policy": {
+      "safety_stock": 6818,
+      "avg_inventory": 11049.5,
+      "annual_holding_cost": 14579.28,
+      "annual_ordering_cost": 5583.21,
+      "total_annual_cost": 20162.48
+    },
+    "savings": {
+      "annual_cost_reduction": -8795.46,
+      "savings_percentage": -77.38
+    }
+  }
+}

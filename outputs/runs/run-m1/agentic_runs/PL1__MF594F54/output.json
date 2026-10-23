@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__MF594F54",
+  "data_quality": {
+    "total_rows": 194,
+    "working_days": 194,
+    "outliers_detected": 22,
+    "winsorisation": {
+      "lower_bound": 29.355875000000008,
+      "upper_bound": 82.638875
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 56.90540206185567,
+    "std_daily_demand": 24.19957589902003,
+    "robust_std_daily": 9.874536693847292,
+    "cv_wd": 0.4252597296951756,
+    "non_zero_fraction_wd": 0.9948453608247423,
+    "trend_detected": true,
+    "regime": "Smooth",
+    "distribution_type": "Right-skewed (Lognormal/Gamma candidate)"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.2237288135593218,
+    "std_lead_time": 0.9531832300337294,
+    "cv_lead_time": 0.7789170439333801,
+    "stability": "Highly variable",
+    "effective_lead_time": 2.176912043593051
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 60.487646104436806,
+    "safety_stock": 100,
+    "safety_stock_robust": 92
+  },
+  "order_quantity": {
+    "eoq_raw": 122.66642705568472,
+    "order_quantity": 123
+  },
+  "cost_analysis": {
+    "unit_cost": 787.881363,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 94.54576356
+  },
+  "policy": {
+    "safety_stock": 100,
+    "reorder_point": 170,
+    "order_quantity": 123,
+    "review_period_days": 2.1614819602943864
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.7573024067434035,
+    "sigma_eff_days": 0.9531832300337294,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 80.41302686690062,
+    "variance_components": {
+      "transport": 26.804342288966875,
+      "supplier": 26.804342288966875,
+      "quality": 26.804342288966875
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "DECREASE from 3.0 to 1.8 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization for material PL1__MF594F54. Mean daily demand: 56.91 units. Safety stock: 100 units. Order quantity: 123 units. Reorder point: 170 units. Review period: 2.16 days. Service level: 95%. Demand regime: Smooth.",
+  "warnings": [
+    "Trend detected in demand - consider forecasting model update",
+    "Detected and winsorized 22 demand outliers",
+    "Optimized policy increases total cost by $9,454.58 but provides 95% service level"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with safety stock",
+    "selection_rationale": "Standard EOQ model with safety stock appropriate for Smooth demand pattern with Highly variable lead time",
+    "boundary_risk": "Medium - high variability detected",
+    "escalation_flag": "none"
+  }
+}

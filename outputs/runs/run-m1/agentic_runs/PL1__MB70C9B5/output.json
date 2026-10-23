@@ -1,0 +1,74 @@
+{
+  "material_id": "PL1__MB70C9B5",
+  "data_quality": {
+    "total_rows": 127,
+    "working_days": 127,
+    "outliers_detected": 1,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 9415.39
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 4306.55,
+    "std_daily_demand": 1481.78,
+    "robust_std_daily": 1177.0,
+    "cv_wd": 0.344,
+    "non_zero_fraction_wd": 0.98,
+    "trend_detected": false,
+    "regime": "moderate",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 5.26,
+    "std_lead_time": 1.27,
+    "cv_lead_time": 0.242,
+    "stability": "stable",
+    "effective_lead_time": 6.53
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 3808.67,
+    "safety_stock": 6263.26,
+    "safety_stock_robust": 4977.09
+  },
+  "order_quantity": {
+    "eoq_raw": 20117.35,
+    "order_quantity": 20118
+  },
+  "cost_analysis": {
+    "unit_cost": 5.668354,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.68
+  },
+  "policy": {
+    "safety_stock": 6263,
+    "reorder_point": 34384,
+    "order_quantity": 20118,
+    "review_period_days": 4.7
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.27,
+    "sigma_eff_days": 1.27,
+    "dominant_factor": "demand",
+    "dominant_pct": 85.2,
+    "variance_components": {
+      "transport": 14.8,
+      "supplier": 0.0,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "OPTIMIZED POLICY DELIVERS 75.0% COST SAVINGS ($64,472.95 annually) by reducing safety stock from 13,423 to 6,263 units and increasing order quantity from 2,013 to 20,118 units. Material exhibits MODERATE demand variability (CV=0.344) with STABLE lead times (CV=0.242). Demand variance is the dominant risk factor (85.2%). The policy maintains 95% service level while optimizing inventory costs. Storage capacity constraint satisfied (26,381 \u2264 240,295 units).",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Standard EOQ with Safety Stock",
+    "selection_rationale": "Material exhibits moderate demand variability (CV=0.344) with stable lead times (CV=0.242). Normal distribution assumptions are valid. Classic EOQ model provides optimal balance between ordering and holding costs.",
+    "boundary_risk": "Low - demand pattern is stable and predictable with sufficient historical data (127 observations)",
+    "escalation_flag": "none"
+  }
+}

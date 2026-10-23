@@ -1,0 +1,77 @@
+{
+  "material_id": "PL2__MDC55497",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "outliers_detected": 5,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 1160.249
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 621.46,
+    "std_daily_demand": 359.29,
+    "robust_std_daily": 214.93,
+    "cv_wd": 0.578,
+    "non_zero_fraction_wd": 0.882,
+    "trend_detected": true,
+    "regime": "smooth",
+    "distribution_type": "right-skewed"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.12,
+    "std_lead_time": 0.77,
+    "cv_lead_time": 0.682,
+    "stability": "volatile",
+    "effective_lead_time": 1.88
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1260.1,
+    "safety_stock": 2072.0,
+    "safety_stock_robust": 1561.0
+  },
+  "order_quantity": {
+    "eoq_raw": 2784.6,
+    "order_quantity": 2785
+  },
+  "cost_analysis": {
+    "unit_cost": 25.806171,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 3.097
+  },
+  "policy": {
+    "safety_stock": 2072,
+    "reorder_point": 3226,
+    "order_quantity": 2785,
+    "review_period_days": 4
+  },
+  "safety_lead_time": {
+    "recommended_days": 3.33,
+    "sigma_eff_days": 2.03,
+    "dominant_factor": "transport",
+    "dominant_pct": 50.0,
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.3,
+      "quality": 0.2
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Increase SAP safety lead time from 3.0 to 3.33 days to account for volatile lead time variability",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL2__MDC55497 exhibits smooth daily demand averaging 621 units with a statistically significant upward trend (+1.70 units/day), indicating growing consumption over the analysis period. Lead times are volatile (CV=0.68, mean 1.12 days), necessitating a substantial safety stock of 2,072 units to achieve the 95% service level target. An (r,Q) continuous-review policy is recommended with a reorder point of 3,226 units and fixed order quantity of 2,785 units derived from the Economic Order Quantity model, ensuring cost-efficient replenishment while remaining well within the 9,934-unit storage capacity.",
+  "warnings": [
+    "Upward demand trend detected; EOQ and safety stock should be reviewed quarterly.",
+    "Lead time CV of 0.68 classified as volatile; monitor supplier performance closely."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) Continuous Review with EOQ",
+    "selection_rationale": "Smooth, high-frequency demand with volatile lead times makes continuous review (r,Q) optimal. EOQ minimises the sum of ordering and holding costs given the cost parameters. The upward trend justifies frequent review rather than periodic.",
+    "boundary_risk": "Storage capacity of 9,934 units is not binding (SS+OQ=4,857). If demand trend continues at +1.70 units/day, annual demand grows ~425 units; reorder point and safety stock should be recalculated in 6 months.",
+    "escalation_flag": "none"
+  }
+}

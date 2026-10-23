@@ -1,0 +1,128 @@
+{
+  "metadata": {
+    "analysis_timestamp": "2026-10-22T10:45:36.571221",
+    "material_id": "PL1__MBB420CC",
+    "analyst": "Automated Inventory Optimization System",
+    "version": "2.0"
+  },
+  "input_parameters": {
+    "material_id": "PL1__MBB420CC",
+    "unit_cost": 290.830382,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 50.0,
+    "moq": 307,
+    "service_level_target": 0.95,
+    "sap_safety_stock": 0,
+    "sap_safety_lead_time_days": 2.5,
+    "max_storage_units": 2475.437
+  },
+  "data_quality": {
+    "total_rows": 172,
+    "working_days": 172,
+    "calendar_days": null,
+    "data_start_date": "2025-03-04",
+    "data_end_date": "2026-03-09",
+    "demand_zeros": 64,
+    "demand_non_zeros": 108,
+    "lead_time_observations": 63
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 181.2281918604651,
+    "std_daily_demand": 172.72680926128072,
+    "robust_std_daily": 230.24333219999997,
+    "cv_wd": 0.9530901759162839,
+    "non_zero_fraction_wd": 0.627906976744186,
+    "regime": "highly_variable",
+    "trend_detected": false,
+    "trend_slope": 0.0,
+    "distribution_type": "right_skewed_empirical",
+    "annual_demand": 45307.047965116275,
+    "narrative": "Demand shows highly_variable pattern with mean daily consumption of 181.23 units."
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.08174603174603176,
+    "std_lead_time": 0.04573908057737378,
+    "cv_lead_time": 0.5595266167717569,
+    "stability": "unstable",
+    "effective_lead_time": 0.12748511232340554,
+    "mean_lead_time_days": 1.716666666666667,
+    "std_lead_time_days": 0.9605206921248495,
+    "unit": "months"
+  },
+  "buffer_analysis": {
+    "service_level_target": 0.95,
+    "z_score": 1.644853626951472,
+    "sigma_ltd": 285.51276158360196,
+    "safety_stock_raw": 470,
+    "safety_stock_robust": 573,
+    "safety_stock": 573,
+    "selected_model": "robust_std",
+    "selection_rationale": "Using robust standard deviation (MAD-based) for more stable estimation in presence of demand variability"
+  },
+  "order_policy": {
+    "eoq_raw": 360.3067291629422,
+    "unconstrained_order_quantity": 361,
+    "order_quantity": 361,
+    "reorder_point": 1059,
+    "review_period_days": 2,
+    "safety_stock": 573,
+    "max_storage_units": 2475.437,
+    "capacity_utilization_pct": 37.73071178947394,
+    "boundary_risk": "low - adequate capacity buffer"
+  },
+  "safety_lead_time_analysis": {
+    "variance_transport": 0.23064999999999997,
+    "variance_supplier": 0.147616,
+    "variance_quality": 0.009226,
+    "dominant_factor": "transport",
+    "dominant_pct": 59.52380952380951,
+    "recommended_safety_lead_time_days": 3.1617597357103016,
+    "sap_safety_lead_time_days": 2.5,
+    "comparison_action": "increase"
+  },
+  "cost_analysis": {
+    "previous_policy": {
+      "safety_stock": 0,
+      "order_quantity": 307,
+      "annual_orders": 147.57996079842434,
+      "annual_ordering_cost": 7378.998039921217,
+      "avg_inventory": 153.5,
+      "annual_holding_cost": 5357.09563644,
+      "total_annual_cost": 12736.093676361217
+    },
+    "optimized_policy": {
+      "safety_stock": 573,
+      "order_quantity": 361,
+      "annual_orders": 125.50428799201184,
+      "annual_ordering_cost": 6275.214399600592,
+      "avg_inventory": 753.5,
+      "annual_holding_cost": 26296.883140439997,
+      "total_annual_cost": 32572.097540040588
+    },
+    "savings": {
+      "absolute": -19836.00386367937,
+      "percent": -155.74637222161704
+    }
+  },
+  "diagnostics": {
+    "escalation_flag": "no",
+    "warnings": [],
+    "recommendations": [
+      "Implement safety stock of 573 units",
+      "Set reorder point to 1059 units",
+      "Order in quantities of 361 units",
+      "Review inventory every 2 days",
+      "Increase safety lead time from 2.5 to 3.16 days"
+    ]
+  },
+  "summary": {
+    "narrative": "Material PL1__MBB420CC exhibits highly_variable demand behavior with a coefficient of variation of 0.95 and 62.8% working days with non-zero demand. Lead time variability is unstable (CV=0.56), driven primarily by transport factors. The optimized policy increases safety stock to 573 units (from 0) to achieve the 95% service level target, resulting in higher total inventory costs but significantly improved service reliability.",
+    "key_metrics": {
+      "current_service_level_estimate": "unknown",
+      "target_service_level": "95%",
+      "safety_stock_increase": 573,
+      "total_cost_change": -19836.00386367937,
+      "cost_change_pct": -155.74637222161704
+    }
+  }
+}

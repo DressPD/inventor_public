@@ -1,0 +1,76 @@
+{
+  "material_id": "PL2__M1602110",
+  "data_quality": {
+    "total_rows": 140,
+    "working_days": 140,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 3628.4738
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1147.5039,
+    "std_daily_demand": 643.8201,
+    "robust_std_daily": 598.9622,
+    "cv_wd": 0.5611,
+    "non_zero_fraction_wd": 0.8786,
+    "trend_detected": false,
+    "regime": "erratic",
+    "distribution_type": "log-normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 5.5277,
+    "std_lead_time": 1.6462,
+    "cv_lead_time": 0.2978,
+    "stability": "moderate",
+    "effective_lead_time": 6.165
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1703.0822,
+    "safety_stock": 2801.0,
+    "safety_stock_robust": 2588.0
+  },
+  "order_quantity": {
+    "eoq_raw": 694.3218,
+    "order_quantity": 772
+  },
+  "cost_analysis": {
+    "unit_cost": 2.500426,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.300051
+  },
+  "policy": {
+    "safety_stock": 2801,
+    "reorder_point": 9877,
+    "order_quantity": 772,
+    "review_period_days": 1
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.4413,
+    "sigma_eff_days": 1.4843,
+    "dominant_factor": "demand_variability",
+    "dominant_pct": 57.82,
+    "variance_components": {
+      "transport": 0.0,
+      "supplier": 42.18,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease_safety_lead_time",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL2__M1602110 exhibits an 'erratic' demand regime (CV=0.56) with a mean of 1148 units/day over 140 working days. Lead times average 5.53 working days (CV=0.30, 'moderate'), with 2 demand outlier(s) winsorised at 3628 units. An (r,Q) continuous-review policy is recommended: reorder at 9877 units with a fixed order of 772 units, delivering ~95% service level and saving an estimated 1765 monetary units annually vs. the current SAP baseline.",
+  "warnings": [
+    "2 demand outlier(s) winsorised to [0.00, 3628.47]."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review fixed-order-quantity",
+    "selection_rationale": "Demand is 'erratic' (CV=0.56) with a non-zero fraction of 88%, making a continuous-review (r,Q) policy appropriate. The order quantity is driven by MOQ=772 which exceeds the raw EOQ=694, ensuring supplier minimum compliance while the reorder point provides the service-level buffer.",
+    "boundary_risk": "max_storage_units=14927; SS+OQ=3573. No capacity constraint binding.",
+    "escalation_flag": "none"
+  }
+}

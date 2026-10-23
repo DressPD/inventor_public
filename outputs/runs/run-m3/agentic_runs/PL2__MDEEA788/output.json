@@ -1,0 +1,104 @@
+{
+  "material_id": "PL2__MDEEA788",
+  "data_quality": {
+    "total_rows": 237,
+    "working_days": 237,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 746.62688
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 332.46224742616033,
+    "std_daily_demand": 206.14909872065377,
+    "robust_std_daily": 268.2876204595997,
+    "cv_wd": 0.6200676928481612,
+    "non_zero_fraction_wd": 0.919831223628692,
+    "trend_detected": false,
+    "trend_slope": -0.7471930053600486,
+    "regime": "erratic",
+    "distribution_type": "gamma"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.7279166666666665,
+    "std_lead_time": 1.5396079500056368,
+    "cv_lead_time": 0.8910197926244342,
+    "stability": "unstable",
+    "effective_lead_time": 3.2675246166723033
+  },
+  "buffer_analysis": {
+    "z_score": 1.644853626951472,
+    "sigma_ltd": 579.1668745351799,
+    "safety_stock": 953,
+    "safety_stock_robust": 1023
+  },
+  "order_quantity": {
+    "eoq_raw": 3103.929403458933,
+    "unconstrained_oq": 3104,
+    "order_quantity": 3104,
+    "moq": 64,
+    "max_storage_units": 7688.132
+  },
+  "cost_analysis": {
+    "unit_cost": 7.476714,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.89720568,
+    "annual_demand": 86440.18433080168,
+    "previous_policy": {
+      "safety_stock": 0,
+      "order_quantity": 64,
+      "orders_per_year": 1350.6278801687763,
+      "annual_ordering_cost": 67531.39400843882,
+      "annual_holding_cost": 28.71058176,
+      "total_annual_cost": 67560.10459019881
+    },
+    "new_policy": {
+      "safety_stock": 953,
+      "order_quantity": 3104,
+      "orders_per_year": 27.84799752925312,
+      "annual_ordering_cost": 1392.399876462656,
+      "annual_holding_cost": 2247.5002284,
+      "total_annual_cost": 3639.900104862656
+    },
+    "savings": {
+      "cost_savings": 63920.20448533616,
+      "savings_percent": 94.6123527680407
+    }
+  },
+  "policy": {
+    "safety_stock": 953,
+    "reorder_point": 1528,
+    "order_quantity": 3104,
+    "review_period_days": 10,
+    "service_level_target": 0.95
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.8654222894914425,
+    "sigma_eff_days": 1.7420530572085857,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "sap_safety_lead_time_days": 4.5,
+    "comparison_action": "DECREASE: Recommended 2.87 days < SAP 4.5 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "INVENTORY OPTIMIZATION ANALYSIS FOR PL2__MDEEA788\n\nDEMAND CHARACTERISTICS:\nThe material exhibits erratic demand behavior with a coefficient of variation of 0.62. \nThe mean daily demand is 332.46 units with a standard deviation of 206.15 units.\nDemand shows no significant trend, indicating stable consumption patterns.\nThe distribution is best modeled as gamma.\n\nLEAD TIME CHARACTERISTICS:\nLead time analysis shows unstable variability with a mean of 1.73 days and \nstandard deviation of 1.54 days (CV=0.89). \nThe effective lead time for planning purposes is 3.27 days.\n\nRECOMMENDED POLICY:\n- Safety Stock: 953 units (vs. current SAP: 0 units)\n- Reorder Point: 1528 units\n- Order Quantity: 3104 units (vs. current MOQ: 64 units)\n- Review Period: 10 days\n\nSAFETY LEAD TIME:\nThe recommended safety lead time is 2.87 days, compared to the current SAP value of 4.5 days.\nDECREASE: Recommended 2.87 days < SAP 4.5 days\nThe dominant source of lead time variance is transport (60.0%).\n\nCOST IMPACT:\nThe optimized policy delivers annual cost savings of $63,920.20 (94.6% reduction)\nby reducing ordering frequency from 1351 to 28 orders per year\nwhile maintaining a 95% service level.\n\nSTORAGE COMPLIANCE:\nTotal inventory requirement (4057 units) is within the maximum storage capacity (7688 units).",
+  "warnings": [
+    "Unstable lead times (CV=0.89) increase stockout risk"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with Safety Stock (continuous review)",
+    "selection_rationale": "Selected due to erratic demand pattern with CV=0.62 and unstable lead time variability. The classical EOQ model with safety stock is appropriate for this service level target.",
+    "boundary_risk": "Medium",
+    "escalation_flag": "none"
+  }
+}

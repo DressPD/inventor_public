@@ -1,0 +1,87 @@
+{
+  "material_id": "PL1__MEF645C1",
+  "analysis_metadata": {
+    "total_observations": 132,
+    "working_days": 132,
+    "date_range_start": "2025-03-03",
+    "date_range_end": "2026-03-09",
+    "analysis_timestamp": "2025-03-03T00:00:00Z"
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1739.4056,
+    "std_daily_demand": 445.9828,
+    "robust_std": 433.6807,
+    "cv": 0.2564,
+    "non_zero_fraction": 1.0,
+    "trend_slope": 1.577079,
+    "trend_p_value": 0.122029,
+    "has_trend": false,
+    "outlier_count": 1,
+    "outlier_percentage": 0.76,
+    "regime_classification": "Smooth",
+    "distribution_type": "Normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time_days": 1.5595,
+    "std_lead_time_days": 0.9525,
+    "cv_lead_time": 0.6108,
+    "min_lead_time_days": 0.04,
+    "max_lead_time_days": 3.83,
+    "stability_classification": "volatile",
+    "effective_lead_time_days": 2.9882
+  },
+  "buffer_analysis": {
+    "service_level_target": 0.95,
+    "z_score": 1.6449,
+    "sigma_ltd": 1747.8411,
+    "safety_stock_units": 2875,
+    "safety_stock_robust_units": 2867,
+    "variance_contribution_demand_pct": 10.15,
+    "variance_contribution_leadtime_pct": 89.85
+  },
+  "eoq_analysis": {
+    "annual_demand_estimate": 434851.4,
+    "eoq_raw": 46122.34,
+    "eoq_with_moq": 46122.34,
+    "moq_constraint": 8762,
+    "capacity_constraint_units": 28119.938,
+    "available_capacity_units": 25245.0,
+    "order_quantity_final": 25244,
+    "capacity_utilization_pct": 100.0
+  },
+  "cost_analysis": {
+    "current_policy": {
+      "order_quantity": 8762,
+      "safety_stock": 3129,
+      "average_inventory_units": 7510.0,
+      "annual_ordering_cost_usd": 2481.46,
+      "annual_holding_cost_usd": 153.52,
+      "total_annual_cost_usd": 2634.98
+    },
+    "optimized_policy": {
+      "order_quantity": 25244,
+      "safety_stock": 2875,
+      "average_inventory_units": 15496.94,
+      "annual_ordering_cost_usd": 861.3,
+      "annual_holding_cost_usd": 316.78,
+      "total_annual_cost_usd": 1178.08
+    },
+    "savings": {
+      "annual_savings_usd": 1456.9,
+      "savings_percentage": 55.29
+    }
+  },
+  "recommendations": {
+    "recommended_order_quantity": 25244,
+    "recommended_safety_stock": 2875,
+    "recommended_safety_lead_time_days": 3,
+    "reorder_point": 5588,
+    "key_insight": "Lead time variability is the dominant source of uncertainty. Focus on supplier reliability.",
+    "action_items": [
+      "Increase order quantity from 8762 to 25244 units",
+      "Adjust safety stock from 3129 to 2875 units",
+      "Focus on improving supplier reliability to reduce lead time variability",
+      "Expected annual savings: $1456.9"
+    ]
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "material_id": "PL1__M0E3F279",
+  "data_quality": {
+    "total_rows": 172,
+    "working_days": 172,
+    "outliers_detected": 1,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 1062.409
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 386.54188372093023,
+    "std_daily_demand": 241.3930079761789,
+    "robust_std_daily": 244.70016479999998,
+    "cv_wd": 0.6244937952195013,
+    "non_zero_fraction_wd": 0.9186046511627907,
+    "trend_detected": true,
+    "regime": "variable",
+    "distribution_type": "right-skewed"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.8509375000000001,
+    "std_lead_time": 1.084195433445108,
+    "cv_lead_time": 1.2741187613016325,
+    "stability": "unstable",
+    "effective_lead_time": 1.9351329334451082
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 474.57190491616063,
+    "safety_stock": 781,
+    "safety_stock_robust": 783
+  },
+  "order_quantity": {
+    "eoq_raw": 8799.243417387419,
+    "order_quantity": 6586
+  },
+  "cost_analysis": {
+    "unit_cost": 1.040075,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.124809,
+    "previous_policy": {
+      "order_quantity": 757,
+      "safety_stock": 0,
+      "annual_ordering_cost": 6382.792003317871,
+      "annual_holding_cost": 47.240206500000006,
+      "total_annual_cost": 6430.03220981787
+    },
+    "optimized_policy": {
+      "order_quantity": 6586,
+      "safety_stock": 781,
+      "annual_ordering_cost": 733.6431136519326,
+      "annual_holding_cost": 508.471866,
+      "total_annual_cost": 1242.1149796519326
+    },
+    "savings": {
+      "absolute": 5187.917230165938,
+      "percentage": 80.6826009711837
+    }
+  },
+  "policy": {
+    "safety_stock": 781,
+    "reorder_point": 1530,
+    "order_quantity": 6586,
+    "review_period_days": 18
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.0204796243085905,
+    "sigma_eff_days": 1.2277373420645536,
+    "dominant_factor": "transport",
+    "dominant_pct": 50.0,
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.3,
+      "quality": 0.2
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M0E3F279 exhibits variable demand characteristics with a coefficient of variation of 0.62, indicating moderate demand volatility. The demand pattern shows 91.9% non-zero demand days, classified as a right-skewed distribution. A statistically significant linear trend was detected in the demand series, suggesting systematic growth or decline that should be monitored. The lead time analysis reveals unstable supply characteristics with mean lead time of 0.85 days (CV=1.27). This unstable lead time profile significantly increases supply chain risk and necessitates higher safety stock levels. The effective lead time, incorporating one standard deviation buffer, is 1.94 days. The optimized inventory policy achieves substantial cost reduction of $5187.92 annually (80.7% savings) compared to the baseline SAP policy. This is accomplished by balancing ordering frequency (reduced from 128 to 15 orders per year) against holding costs through strategic safety stock positioning at 781 units. The reorder point is set at 1530 units to maintain 95% service level protection. Capacity utilization is optimized at 100.0% of maximum storage (7368 units), ensuring efficient space usage while maintaining service level commitments. The 18-day review cycle provides operational flexibility and aligns with demand consumption patterns.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Stochastic (Q,r) Model with Lead Time Variability",
+    "selection_rationale": "Selected due to variable demand profile (CV=0.62) and unstable lead time characteristics (CV_LT=1.27). The model explicitly accounts for both demand and lead time uncertainty through combined variance formulation, appropriate for this material's risk profile.",
+    "boundary_risk": "The material operates near capacity boundaries with 100.0% storage utilization. Critical risk: lead time instability (CV=1.27) may cause stockouts if demand spikes coincide with extended lead times. Recommended: Implement expedited supply agreements and increase monitoring frequency.",
+    "escalation_flag": ""
+  }
+}

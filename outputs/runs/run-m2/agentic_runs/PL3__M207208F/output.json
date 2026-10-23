@@ -1,0 +1,76 @@
+{
+  "material_id": "PL3__M207208F",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "outliers_detected": 53,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 52616.228
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 34072.98,
+    "std_daily_demand": 20020.0,
+    "robust_std_daily": 33809.3,
+    "cv_wd": 0.5876,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "erratic",
+    "distribution_type": "log-normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.1469,
+    "std_lead_time": 0.9209,
+    "cv_lead_time": 0.8029,
+    "stability": "unstable",
+    "effective_lead_time": 2.0678
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 38003.29,
+    "safety_stock": 62510.0,
+    "safety_stock_robust": 78809.0
+  },
+  "order_quantity": {
+    "eoq_raw": 215885.31,
+    "order_quantity": 193631
+  },
+  "cost_analysis": {
+    "unit_cost": 0.228462,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.02741544
+  },
+  "policy": {
+    "safety_stock": 62510,
+    "reorder_point": 101589,
+    "order_quantity": 193631,
+    "review_period_days": 6
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.8346,
+    "sigma_eff_days": 0.9209,
+    "dominant_factor": "transport",
+    "dominant_pct": 68.17,
+    "variance_components": {
+      "transport": 984566724.47,
+      "supplier": 459682993.96,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__M207208F exhibits an erratic demand pattern (CV=0.59) with all 228 working days showing positive demand and no detectable trend; the bimodal intra-week profile (low-demand boundary days vs. high-demand core days) contributes to high variability. Lead times are unstable (CV=0.80, mean 1.15 days) with transport variability contributing 68% of total buffer variance, driving safety stock 69% above the current SAP setting. The recommended (r,Q) policy sets safety stock at 62,510 units and order quantity at 193,631 units (capacity-constrained from EOQ of 215,886), achieving a 95% service level at a modest annual cost premium of ~$693 over the current SAP configuration.",
+  "warnings": [
+    "Capacity constraint is binding: order quantity reduced from EOQ 215,886 to 193,631 to satisfy max_storage_units=256,141. Post-replenishment stock exactly fills storage with near-zero headroom."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review fixed-order-quantity policy",
+    "selection_rationale": "Demand is continuous (100% non-zero working days) with erratic but non-intermittent pattern, making a fixed reorder-point/fixed-quantity (r,Q) policy appropriate. EOQ provides the cost-minimising order size, and the normal-approximation safety stock formula is adequate given the moderate CV and large absolute volumes.",
+    "boundary_risk": "Storage capacity is fully utilised post-replenishment (256,141 of 256,141 units). Any demand shortfall before the next cycle completes will leave no buffer above safety stock; a single late shipment combined with above-average demand could cause a stockout. Recommend exploring capacity expansion or supplier lead time reduction to restore headroom.",
+    "escalation_flag": "none"
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "material_id": "PL3__MB2FB294",
+  "analysis_metadata": {
+    "total_rows": 228,
+    "working_days": 228,
+    "date_range_start": "2025-03-03",
+    "date_range_end": "2026-03-09",
+    "service_level_target": 0.95
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1367.95,
+    "std_daily_demand": 815.83,
+    "robust_std_daily": 1365.88,
+    "cv_wd": 0.5964,
+    "non_zero_fraction_wd": 0.9649,
+    "trend_detected": false,
+    "trend_slope": 0.0,
+    "regime": "erratic",
+    "distribution_type": "right-skewed",
+    "annual_demand": 341987.17
+  },
+  "lead_time_analysis": {
+    "mean_lead_time_days": 2.1,
+    "std_lead_time_days": 1.3337,
+    "cv_lead_time": 0.6359,
+    "stability": "unstable",
+    "effective_lead_time_days": 3.43,
+    "num_observations": 149
+  },
+  "safety_stock": {
+    "recommended_units": 3576,
+    "robust_units": 4427,
+    "sap_current_units": 1315,
+    "difference_from_sap": 2261,
+    "sigma_ltd": 2173.6,
+    "z_score": 1.645
+  },
+  "order_quantity": {
+    "eoq_raw": 5389.07,
+    "moq": 44,
+    "unconstrained": 5390,
+    "recommended": 5390,
+    "capacity_constrained": false
+  },
+  "policy": {
+    "reorder_point": 6446,
+    "safety_stock": 3576,
+    "order_quantity": 5390,
+    "review_period_days": 4
+  },
+  "cost_analysis": {
+    "unit_cost": 19.625951,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 100.0,
+    "annual_holding_cost_per_unit": 2.36,
+    "optimized_policy": {
+      "orders_per_year": 63.45,
+      "annual_ordering_cost": 6344.85,
+      "annual_holding_cost": 14768.92,
+      "total_annual_cost": 21113.77
+    },
+    "sap_current_policy": {
+      "orders_per_year": 63.45,
+      "annual_ordering_cost": 6344.85,
+      "annual_holding_cost": 9444.01,
+      "total_annual_cost": 15788.85
+    },
+    "savings": {
+      "annual_cost_difference": -5324.91,
+      "percent_change": -33.73
+    }
+  },
+  "safety_lead_time": {
+    "recommended_days": 0.001,
+    "sap_current_days": 0.0,
+    "sigma_eff_days": 1.3337,
+    "dominant_factor": "supplier",
+    "variance_components": {
+      "transport": 0.8894,
+      "supplier": 0.8894,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase"
+  },
+  "constraints": {
+    "max_storage_units": 14950.354,
+    "total_required": 8966,
+    "utilization_percent": 59.97
+  },
+  "diagnostics": {
+    "narrative": "Material PL3__MB2FB294 exhibits a erratic demand pattern with right-skewed distribution. \nDaily demand averages 1367.95 units with a coefficient of variation of 0.60. \nLead time is unstable with mean 2.10 days (CV: 0.64). \nThe optimized safety stock of 3576 units provides 95% service level protection \nagainst demand and lead time variability, representing a 2261 unit \nincrease from the current SAP setting of 1315. \nThe recommended order quantity of 5390 units balances ordering and holding costs.",
+    "selected_model": "Standard Safety Stock (Normal Approximation)",
+    "selection_rationale": "The standard safety stock formula accounts for both demand variability (std=815.83) \nand lead time variability (std=1.33 days). Given the erratic demand regime and unstable lead times, \nthis approach provides appropriate protection. The EOQ of 5390 units optimizes total inventory costs.",
+    "boundary_risk": "No capacity constraints. Safety stock and order quantity fit within storage limits.",
+    "escalation_flag": "HIGH: Recommended safety stock significantly exceeds current SAP setting due to high variability."
+  }
+}

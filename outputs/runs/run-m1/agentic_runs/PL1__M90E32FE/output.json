@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__M90E32FE",
+  "data_quality": {
+    "total_rows": 168,
+    "working_days": 168,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 5.523,
+      "upper_bound": 349.821
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 130.18,
+    "std_daily_demand": 136.72,
+    "robust_std_daily": 136.45,
+    "cv_wd": 1.05,
+    "non_zero_fraction_wd": 0.56,
+    "trend_detected": false,
+    "regime": "intermittent",
+    "distribution_type": "negative-binomial/lumpy"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.69,
+    "std_lead_time": 0.72,
+    "cv_lead_time": 1.04,
+    "stability": "unstable",
+    "effective_lead_time": 1.05
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 112.62,
+    "safety_stock": 185.0,
+    "safety_stock_robust": 185.0
+  },
+  "order_quantity": {
+    "eoq_raw": 1547.3,
+    "order_quantity": 1865
+  },
+  "cost_analysis": {
+    "unit_cost": 5.969318,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.7163
+  },
+  "policy": {
+    "safety_stock": 185,
+    "reorder_point": 323,
+    "order_quantity": 1865,
+    "review_period_days": 15
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.0,
+    "sigma_eff_days": 0.72,
+    "dominant_factor": "transport",
+    "dominant_pct": 50.0,
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.3,
+      "quality": 0.2
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Demand for PL1__M90E32FE is intermittent and lumpy (CV=1.05, 56% non-zero days), indicating irregular consumption patterns typical of industrial components. Lead times are short (mean 0.69 days) but highly variable (CV=1.04), making them the primary driver of safety stock. An (r,Q) continuous-review policy with EOQ-derived order quantity (1,865 units) consolidates 104 annual SAP orders into 13, saving ~$3,960/year while maintaining 95% service level. The 44% storage utilisation leaves adequate capacity headroom.",
+  "warnings": [
+    "Lead time CV=1.04 exceeds 0.5 threshold \u2014 classified as unstable; safety stock may underperform in extreme lead-time events",
+    "Demand CV=1.05 indicates high variability \u2014 monitor fill rate closely during first two replenishment cycles",
+    "SAP safety lead time of 3.0 days exceeds recommended 1.0 day \u2014 reduction advised"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) Continuous Review \u2014 EOQ",
+    "selection_rationale": "Intermittent lumpy demand requires a continuous-review trigger to avoid stockouts during irregular consumption spikes. EOQ balances ordering frequency against holding cost optimally, and the high ordering cost ($50) strongly favours larger, less-frequent orders. The (r,Q) model is preferable to periodic review here because demand arrival is irregular and monitoring is feasible.",
+    "boundary_risk": "High demand and lead-time variability (both CV > 1.0) mean the safety stock of 185 units covers the 95th percentile scenario but not tail events. If actual lead times spike above 2.38 days (the historical maximum), service level may dip below target. Recommend reviewing safety stock upward to 220 units if supply disruptions are frequent.",
+    "escalation_flag": "Management review recommended before implementation: combined high-variability demand and unstable supply lead times create elevated stockout risk in tail scenarios. Consider a phased rollout with fill-rate KPI tracking for the first quarter."
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "material_id": "PL3__MD999041",
+  "timestamp": "2026-10-23T12:04:59.551326",
+  "input_parameters": {
+    "unit_cost": 0.449102,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 50.0,
+    "moq": 11076,
+    "service_level_target": 0.95,
+    "sap_safety_stock": 21300,
+    "sap_safety_lead_time_days": 0.0,
+    "max_storage_units": 222685.698
+  },
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "missing_values": 0,
+    "zero_demand_days": 9,
+    "outliers_detected": 0,
+    "outlier_indices": []
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 54878.23277192983,
+    "std_demand": 31752.561306448162,
+    "robust_std_demand": 4493.800630200002,
+    "cv_demand": 0.5786002883585852,
+    "min_demand": 0.0,
+    "max_demand": 118902.312,
+    "median_demand": 72171.671,
+    "q1_demand": 2509.1710000000003,
+    "q3_demand": 74708.532,
+    "non_zero_fraction": 0.9605263157894737,
+    "demand_regime": "erratic",
+    "trend_detected": false,
+    "trend_slope": 6.646264582449525,
+    "trend_p_value": 0.8357425388979245,
+    "annual_demand": 13719558.192982456
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 5.464583333333334,
+    "std_lead_time": 1.3415337723362915,
+    "cv_lead_time": 0.2454960772860922,
+    "min_lead_time": 1.64,
+    "max_lead_time": 7.95,
+    "median_lead_time": 5.859999999999999,
+    "lead_time_stability": "stable",
+    "effective_lead_time": 6.806117105669625
+  },
+  "safety_stock": {
+    "sigma_ltd": 104544.64298332988,
+    "z_score": 1.644853626951472,
+    "safety_stock": 171961,
+    "safety_stock_robust": 122323,
+    "sap_safety_stock": 21300,
+    "recommendation": "increase"
+  },
+  "order_policy": {
+    "eoq_raw": 159553.7241310038,
+    "unconstrained_order_quantity": 159554,
+    "order_quantity": 50724,
+    "moq": 11076,
+    "reorder_point": 471848,
+    "review_period_days": 1,
+    "storage_constraint_active": true,
+    "feasibility": "Feasible"
+  },
+  "cost_analysis": {
+    "optimized_policy": {
+      "num_orders_per_year": 270.4746903434756,
+      "annual_ordering_cost": 13523.734517173778,
+      "annual_holding_cost": 10634.17847352,
+      "total_annual_cost": 24157.912990693778
+    },
+    "sap_baseline": {
+      "num_orders_per_year": 1238.6744486260795,
+      "annual_ordering_cost": 61933.72243130398,
+      "annual_holding_cost": 1446.35993712,
+      "total_annual_cost": 63380.08236842398
+    },
+    "savings": {
+      "absolute": 39222.1693777302,
+      "percentage": 61.88406185674307
+    }
+  },
+  "safety_lead_time": {
+    "current_sap_days": 0.0,
+    "recommended_days": 1.341533772336291,
+    "sigma_eff_days": 1.3415337723362915,
+    "dominant_factor": "transport",
+    "variance_decomposition": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase"
+  },
+  "capacity_gate": {
+    "total_inventory_needed": 222685,
+    "max_storage_units": 222685.698,
+    "capacity_utilization": 0.9999968655373638,
+    "status": "Within Capacity",
+    "within_capacity": true
+  },
+  "narrative": "Material PL3__MD999041 exhibits an erratic demand pattern with a coefficient of variation of 0.58 and a daily mean of 54,878 units. Lead time is stable (CV=0.25) averaging 5.5 days. The optimized policy recommends increasing safety stock to 171,961 units (vs SAP's 21,300) to achieve the 95% service level target, resulting in annual cost savings of $39,222.17 (61.9%)."
+}

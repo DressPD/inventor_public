@@ -1,0 +1,77 @@
+{
+  "material_id": "PL2__MD0B3E34",
+  "data_quality": {
+    "total_rows": 96,
+    "working_days": 96,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 2100.47,
+      "upper_bound": 38821.27
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 22740.64,
+    "std_daily_demand": 8568.42,
+    "robust_std_daily": 8085.17,
+    "cv_wd": 0.3768,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": true,
+    "regime": "smooth",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.0135,
+    "std_lead_time": 0.5862,
+    "cv_lead_time": 0.5784,
+    "stability": "moderate",
+    "effective_lead_time": 1.5996
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 15877.31,
+    "safety_stock": 26116,
+    "safety_stock_robust": 25690
+  },
+  "order_quantity": {
+    "eoq_raw": 595137.93,
+    "order_quantity": 457499
+  },
+  "cost_analysis": {
+    "unit_cost": 0.013376,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.00160512
+  },
+  "policy": {
+    "safety_stock": 26116,
+    "reorder_point": 62493,
+    "order_quantity": 457499,
+    "review_period_days": 21
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.1484,
+    "sigma_eff_days": 0.6982,
+    "dominant_factor": "transport",
+    "dominant_pct": 0.6,
+    "variance_components": {
+      "transport": 0.2062,
+      "supplier": 0.1031,
+      "quality": 0.0344
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "REDUCE",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Demand for PL2__MD0B3E34 is high-volume and smooth (CV=0.377) with a statistically significant upward trend of ~112 units/day. Current SAP policy carries no safety stock, leaving the 95% service level target unmet. An (r,Q) policy is recommended: the unconstrained EOQ of 595,138 units was capped to 457,499 units by the 483,615-unit storage ceiling, yielding 12 annual orders versus the SAP baseline of 63, and introducing a data-driven safety stock of 26,116 units for adequate demand and lead-time buffer coverage.",
+  "warnings": [
+    "EOQ (595,138) exceeds storage capacity (483,615). Order quantity capped to 457,499 units. Slightly increases ordering frequency vs unconstrained optimum.",
+    "Significant upward demand trend detected (p=0.0003, slope=+112 units/day). Mean demand used for EOQ may understate future requirements; recommend re-running analysis in 3 months."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) \u2014 Continuous-review reorder-point / fixed-order-quantity (EOQ-based)",
+    "selection_rationale": "Smooth demand pattern (CV=0.377), 100% non-zero days, and normally-distributed working-day demand make the classical (r,Q) EOQ model the most appropriate and cost-efficient replenishment framework. No intermittent-demand adjustments required.",
+    "boundary_risk": "Storage capacity cap reduces order quantity from unconstrained EOQ of 595,138 to 457,499 units, increasing annual order count from ~9.6 to ~12.4. Annual cost impact is modest (+ordering cost offset) but service level is preserved. Recommend reviewing storage allocation if upward demand trend continues.",
+    "escalation_flag": "none"
+  }
+}

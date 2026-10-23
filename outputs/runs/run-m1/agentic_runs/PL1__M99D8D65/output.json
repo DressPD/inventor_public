@@ -1,0 +1,89 @@
+{
+  "material_id": "PL1__M99D8D65",
+  "analysis_date": "2026-10-20 00:21:56",
+  "input_parameters": {
+    "unit_cost": 6.638728,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 75.0,
+    "moq": 1083,
+    "service_level_target": 0.95,
+    "sap_safety_stock": 0,
+    "sap_safety_lead_time_days": 2.5,
+    "max_storage_units": 30336.954
+  },
+  "data_quality": {
+    "total_rows": 89,
+    "working_days": 89,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": 621.02,
+      "upper_bound": 2582.44
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1768.51,
+    "std_daily_demand": 398.02,
+    "robust_std_daily": 401.77,
+    "cv_wd": 0.225,
+    "non_zero_fraction_wd": 0.989,
+    "trend_detected": true,
+    "regime": "smooth",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.053,
+    "std_lead_time": 0.211,
+    "cv_lead_time": 0.201,
+    "stability": "moderate",
+    "effective_lead_time": 1.158
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 2077.95,
+    "safety_stock": 3418.0,
+    "safety_stock_robust": 3425.0
+  },
+  "order_quantity": {
+    "eoq_raw": 9124.03,
+    "order_quantity": 9125
+  },
+  "cost_analysis": {
+    "unit_cost": 6.638728,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.7966
+  },
+  "policy": {
+    "safety_stock": 3418,
+    "reorder_point": 12727,
+    "order_quantity": 9125,
+    "review_period_days": 6
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.933,
+    "sigma_eff_days": 1.175,
+    "dominant_factor": "transport",
+    "dominant_pct": 78.0,
+    "variance_components": {
+      "transport": 1.1139,
+      "supplier": 0.2228,
+      "quality": 0.1114
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "REDUCE",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M99D8D65 exhibits smooth demand (CV=0.225) with a statistically significant downward trend. Lead times are moderately variable (CV=0.201) with occasional spikes. The current SAP policy carries zero safety stock and uses only the MOQ as order quantity, resulting in ~408 orders/year and substantial ordering cost overrun. The recommended (r,Q) EOQ policy raises safety stock to 3,418 units to achieve the 95% service level and increases order quantity to the EOQ of 9,125 units, reducing orders to ~48/year and cutting total cost by 67.8%.",
+  "warnings": [
+    "Downward demand trend detected (slope=-5.12 units/day, p=0.0015); annual demand estimate may be slightly overstated",
+    "SAP safety stock = 0: no buffer stock in current ERP configuration",
+    "One zero-demand observation on 2025-08-14 retained within winsorisation bounds"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review with EOQ",
+    "selection_rationale": "Smooth demand regime (CV=0.225) with near-normal distribution and moderate lead-time variability is the canonical fit for a continuous-review (r,Q) policy. EOQ minimises total ordering plus holding cost; safety stock is derived from the combined demand-and-lead-time uncertainty formula at z=1.645 for 95% service level.",
+    "boundary_risk": "Storage capacity (30,337 units) is not binding: safety_stock + order_quantity = 12,543, leaving 17,794 units of headroom. No capacity-driven cost degradation.",
+    "escalation_flag": "none"
+  }
+}

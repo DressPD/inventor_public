@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__M9F5AC86",
+  "data_quality": {
+    "total_rows": 136,
+    "working_days": 136,
+    "outliers_detected": 6,
+    "winsorisation": {
+      "lower_bound": 1266.03285,
+      "upper_bound": 4982.34805
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 3797.7653661764707,
+    "std_daily_demand": 790.9600305287784,
+    "robust_std_daily": 758.5015188907934,
+    "cv_wd": 0.20826985194325057,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": true,
+    "regime": "Erratic",
+    "distribution_type": "Normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 3.9533088235294125,
+    "std_lead_time": 1.693506576941404,
+    "cv_lead_time": 0.4283770007700751,
+    "stability": "Volatile",
+    "effective_lead_time": 6.739127142598022
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 6621.025227618839,
+    "safety_stock": 10892,
+    "safety_stock_robust": 10867
+  },
+  "order_quantity": {
+    "eoq_raw": 22246.09802153932,
+    "order_quantity": 22247
+  },
+  "cost_analysis": {
+    "unit_cost": 3.19749,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.3836988
+  },
+  "policy": {
+    "safety_stock": 10892,
+    "reorder_point": 25906,
+    "order_quantity": 22247,
+    "review_period_days": 6
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.7858183190686097,
+    "sigma_eff_days": 1.693506576941404,
+    "dominant_factor": "Lead Time Variability",
+    "dominant_pct": 94.35817861973517,
+    "variance_components": {
+      "transport": 94.35817861973517,
+      "supplier": 0.0,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Maintain current safety lead time",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory Optimization Analysis for Material PL1__M9F5AC86:\n\nDEMAND PROFILE:\nThe material exhibits an Erratic demand pattern with mean daily demand of 3798 units (CV=0.21). \nA significant downward trend was detected (slope=-11.40, p<0.001), suggesting declining demand over the analysis period.\nAll 136 working days had non-zero demand, indicating consistent usage.\n\nLEAD TIME PROFILE:\nLead time is Volatile with mean 4.0 days (CV=0.43, std=1.69 days).\nThis high variability is the dominant contributor to supply chain risk, accounting for 94% of total uncertainty.\n\nSAFETY STOCK RECOMMENDATION:\nThe optimized safety stock of 10,892 units is substantially higher than SAP's 1,441 units.\nThis increase is driven by the volatile lead time and ensures 95% service level protection.\nThe current SAP setting appears to underestimate the true supply chain risk.\n\nORDER QUANTITY OPTIMIZATION:\nThe EOQ calculation yields 22246 units, which exceeds the MOQ of 3,458 units.\nThe recommended order quantity of 22,247 units balances ordering and holding costs optimally.\nThis represents a review period of 5.9 days.\n\nCOST IMPACT:\nCurrent SAP policy: $28,673/year (high ordering frequency due to MOQ)\nOptimized policy: $12,715/year\nAnnual savings: $15,958 (55.7%)\n\nCAPACITY CHECK:\nTotal inventory (safety stock + order quantity) = 33,139 units\nMaximum storage capacity = 36,882 units\nUtilization: 89.9%\nStatus: FEASIBLE\n\nRECOMMENDATIONS:\n1. Increase safety stock from 1,441 to 10,892 units to protect against lead time volatility\n2. Increase order quantity from 3,458 to 22,247 units to reduce ordering costs\n3. Work with supplier to improve lead time reliability (current CV=0.43)\n4. Monitor demand trend and adjust forecasts accordingly\n5. Reorder point should be set at 25,906 units",
+  "warnings": [
+    "Recommended safety stock (10892) is significantly higher than SAP (1441)",
+    "Lead time is highly volatile (CV=0.43). Consider supplier reliability improvements.",
+    "Significant demand trend detected. Consider dynamic forecasting."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with Safety Stock",
+    "selection_rationale": "Erratic demand with moderate variability suggests classical EOQ with robust safety stock",
+    "boundary_risk": "Moderate - demand volatility and lead time variability both contribute to uncertainty",
+    "escalation_flag": "No"
+  }
+}

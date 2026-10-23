@@ -1,0 +1,78 @@
+{
+  "material_id": "PL2__MF75456C",
+  "data_quality": {
+    "total_rows": 129,
+    "working_days": 129,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 1.07,
+      "upper_bound": 5099.49
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 2063.17,
+    "std_daily_demand": 1193.29,
+    "robust_std_daily": 488.25,
+    "cv_wd": 0.5784,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": true,
+    "regime": "structural upward shift detected",
+    "distribution_type": "Normal approximation"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.58,
+    "std_lead_time": 1.08,
+    "cv_lead_time": 0.4183,
+    "stability": "unstable",
+    "effective_lead_time": 2.58
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 2936.57,
+    "safety_stock": 4831,
+    "safety_stock_robust": 3881
+  },
+  "order_quantity": {
+    "eoq_raw": 20057.46,
+    "order_quantity": 20058
+  },
+  "cost_analysis": {
+    "unit_cost": 1.602628,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.1923
+  },
+  "policy": {
+    "safety_stock": 4831,
+    "reorder_point": 10151,
+    "order_quantity": 20058,
+    "review_period_days": 10
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.34,
+    "sigma_eff_days": 1.42,
+    "dominant_factor": "transport variability",
+    "dominant_pct": 57.42,
+    "variance_components": {
+      "transport": 1.1633,
+      "supplier": 0.8626,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Decrease safety lead time from 3.0 to 2.3 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization completed for material PL2__MF75456C.\n\nDATA QUALITY: Analyzed 129 working-day observations spanning 2025-03-03 to 2026-03-09. \n4 outliers detected and winsorised (bounds: 1.1 - 5099.5 units).\n\nDEMAND CHARACTERISTICS: Mean daily demand 2063.2 units with CV=57.84%. \nCRITICAL FINDING: Structural regime shift detected - demand increased from historical ~1,550 units/day (first 100 obs) to recent ~4,057 units/day (last 26 obs).\nThis represents a structural upward shift detected requiring immediate policy adjustment. Non-zero demand on 100.0% of working days.\n\nLEAD TIME: Mean 2.58 days (std=1.08, CV=41.83%), classified as unstable.\nTransport variability dominates (57.4%) over supplier variability.\n\nRECOMMENDED POLICY:\n- Safety stock: 4,831 units (up from SAP's 1,903 to address regime shift and achieve 95% service level)\n- Reorder point: 10,151 units\n- Order quantity: 20,058 units (EOQ-based, respects MOQ 1233)\n- Review period: 10 days\n\nCOST IMPACT: The increased safety stock requirement (due to demand regime shift) increases annual holding cost by $563.10 \nversus the outdated SAP baseline. However, the SAP policy with 1903 units safety stock would result in frequent stockouts \nunder the current demand regime (~4,057 units/day). The optimized policy ensures 95% service level.\n\nCAPACITY: Peak inventory 24,889 units is within storage capacity (34333 units).\n\nRISK: The demand regime shift is substantial and recent (last 26 observations). Monitor closely for stabilization or further changes.",
+  "warnings": [
+    "Significant trend detected in demand data",
+    "CRITICAL: Demand regime shift detected - recent demand 2.6x historical baseline",
+    "Optimized policy increases cost by $563.10 due to required safety stock increase for regime shift"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Classical EOQ with safety stock (Normal approximation)",
+    "selection_rationale": "CV=57.84% suggests moderate-to-high variability suitable for Normal approximation with safety buffer. EOQ balances setup and holding costs.",
+    "boundary_risk": "Demand regime shift increases forecast uncertainty. Recommend quarterly policy review until demand stabilizes.",
+    "escalation_flag": null
+  }
+}

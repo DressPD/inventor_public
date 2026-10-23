@@ -1,0 +1,77 @@
+{
+  "material_id": "PL1__M52FB120",
+  "data_quality": {
+    "total_rows": 106,
+    "working_days": 106,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 65.23840000000001,
+      "upper_bound": 2093.2845
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1514.9764886792454,
+    "std_daily_demand": 501.99362141856045,
+    "robust_std_daily": 500.3618518518518,
+    "cv_wd": 0.3313540673203436,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "smooth",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.5746666666666664,
+    "std_lead_time": 0.9332727871518034,
+    "cv_lead_time": 0.5926795854054637,
+    "stability": "unstable",
+    "effective_lead_time": 2.50793945381847
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1547.8652295153745,
+    "safety_stock": 2547,
+    "safety_stock_robust": 2545
+  },
+  "order_quantity": {
+    "eoq_raw": 31815.360155729406,
+    "order_quantity": 31816
+  },
+  "cost_analysis": {
+    "unit_cost": 0.467716,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.05612592
+  },
+  "policy": {
+    "safety_stock": 2547,
+    "reorder_point": 4933,
+    "order_quantity": 31816,
+    "review_period_days": 22
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.6812142096148774,
+    "sigma_eff_days": 1.0217090767295018,
+    "dominant_factor": "lead_time",
+    "dominant_pct": 91.34427875880445,
+    "variance_components": {
+      "transport": 0.6096986666666667,
+      "supplier": 0.26129942857142857,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "REDUCE",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M52FB120 exhibits smooth demand behavior with CV=0.33 and mean daily demand of 1515 units. Lead time variability is unstable (CV=0.59), driving 91% of buffer requirements. The optimized policy recommends safety stock of 2547 units (87.5% reduction from SAP's 20450) and order quantity of 31816 units, achieving $1005 annual savings while maintaining 95% service level.",
+  "warnings": [
+    "Demand data contains 4 outliers (winsorised at 1st/99th percentiles)",
+    "Lead time is unstable (CV=0.59) - consider supplier consolidation"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Economic Order Quantity (EOQ) with safety stock",
+    "selection_rationale": "Smooth demand pattern (CV=0.33) with normal distribution supports classical EOQ. Unstable lead time (CV=0.59) requires robust safety stock calculation.",
+    "boundary_risk": "Lead time instability (CV=0.59) may cause stockouts if variance increases. Monitor supplier performance closely.",
+    "escalation_flag": "NONE"
+  }
+}

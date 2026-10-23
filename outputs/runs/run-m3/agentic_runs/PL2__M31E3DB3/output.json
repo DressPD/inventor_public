@@ -1,0 +1,74 @@
+{
+  "material_id": "PL2__M31E3DB3",
+  "data_quality": {
+    "total_rows": 96,
+    "working_days": 96,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 8677.06,
+      "upper_bound": 26643.62
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 19659.06,
+    "std_daily_demand": 4647.02,
+    "robust_std_daily": 2737.28,
+    "cv_wd": 0.2364,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "erratic",
+    "distribution_type": "normal approximation"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.75,
+    "std_lead_time": 1.1,
+    "cv_lead_time": 0.4004,
+    "stability": "moderate",
+    "effective_lead_time": 4.65
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 22983.16,
+    "safety_stock": 37804,
+    "safety_stock_robust": 36390
+  },
+  "order_quantity": {
+    "eoq_raw": 293135.56,
+    "order_quantity": 293136
+  },
+  "cost_analysis": {
+    "unit_cost": 0.071495,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.008579
+  },
+  "policy": {
+    "safety_stock": 37804,
+    "reorder_point": 91877,
+    "order_quantity": 293136,
+    "review_period_days": 15
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.92,
+    "sigma_eff_days": 1.17,
+    "dominant_factor": "transport",
+    "dominant_pct": 0.6,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Decrease from 5.0 to 1.92 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory Optimization Analysis for Material PL2__M31E3DB3\n\nDATA QUALITY & COVERAGE:\nAnalyzed 96 working days of demand history. Data shows 100.0% non-zero demand, indicating consistent usage. 2 outliers were detected and winsorized to improve robustness.\n\nDEMAND CHARACTERISTICS:\nDaily demand averages 19,659 units with erratic variability (CV=23.64%). No significant trend detected; demand is relatively stable. The demand distribution is best modeled using normal approximation.\n\nLEAD TIME PROFILE:\nAverage lead time is 2.75 days with moderate variability (CV=40.04%). Effective lead time (95th percentile) is 4.65 days. Lead time variability is dominated by transport factors (60% contribution).\n\nRECOMMENDED POLICY vs SAP BASELINE:\nThe optimized policy recommends a safety stock of 37,804 units (vs SAP's 0), reorder point of 91,877 units, and order quantity of 293,136 units (vs SAP's MOQ of 52,313). Review period is 15 days.\n\nCOST IMPACT:\nAnnual total cost reduces from $7,270.60 (SAP) to $2,839.26 (optimized), delivering $4,431.33 in annual savings (60.9%). The optimized policy balances ordering frequency (reduced from 94 to 17 orders/year) against higher safety buffer requirements.\n\nCAPACITY & CONSTRAINTS:\nMaximum storage capacity is 470,820 units. The recommended policy uses 330,940 units (70.3% utilization), comfortably within constraints.\n\nRISK MITIGATION:\nThe 95% service level target is achieved through a 37,804-unit safety buffer, protecting against combined demand and lead time variability (sigma_LTD = 22,983). The current SAP safety lead time of 5.0 days can be reduced to 1.92 days based on actual variability analysis.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with Safety Stock",
+    "selection_rationale": "Moderate variability suitable for classical inventory model with safety buffers",
+    "boundary_risk": "Low",
+    "escalation_flag": "No"
+  }
+}

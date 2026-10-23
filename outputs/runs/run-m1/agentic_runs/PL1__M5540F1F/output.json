@@ -1,0 +1,80 @@
+{
+  "material_id": "PL1__M5540F1F",
+  "data_quality": {
+    "total_rows": 129,
+    "working_days": 129,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 435.0858
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 117.91736124031007,
+    "std_daily_demand": 112.32229591576831,
+    "robust_std_daily": 159.8257626,
+    "cv_wd": 0.9525509622527993,
+    "non_zero_fraction_wd": 0.6589147286821705,
+    "trend_detected": false,
+    "regime": "intermittent",
+    "distribution_type": "Negative Binomial"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 3.0838235294117644,
+    "std_lead_time": 1.3125849668811806,
+    "cv_lead_time": 0.42563556389089313,
+    "stability": "volatile",
+    "effective_lead_time": 4.3964084962929455
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 250.72339203407165,
+    "safety_stock": 413.0,
+    "safety_stock_robust": 528.0
+  },
+  "order_quantity": {
+    "eoq_raw": 2274.4577361548036,
+    "order_quantity": 1910
+  },
+  "cost_analysis": {
+    "unit_cost": 7.408075,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.888969
+  },
+  "policy": {
+    "safety_stock": 413,
+    "reorder_point": 777,
+    "order_quantity": 1910,
+    "review_period_days": 17
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.159010143456488,
+    "sigma_eff_days": 2.126263591695451,
+    "dominant_factor": "transport",
+    "dominant_pct": 22.865036381739788,
+    "variance_components": {
+      "transport": 0.2286503638173979,
+      "supplier": 0.11432518190869895,
+      "quality": 0.038108393969566313
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Decrease from 4.0 to 2.16 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "\nMaterial PL1__M5540F1F exhibits intermittent demand with mean daily demand of 117.9 units \nand high variability (CV=0.95). Lead time is volatile with mean 3.08 days.\n\nThe recommended policy increases safety stock from 215 to 413 units to achieve \n95% service level, while optimizing order quantity to 1910 units \n(EOQ would be 2274 but constrained by storage capacity).\n\nThis optimization yields annual cost savings of $8561.55 (78.0%) by \nreducing ordering frequency from 142.6 to 16.1 orders per year, \ndespite higher holding costs from increased inventory.\n\nReorder when inventory reaches 777 units. Review cycle: approximately 17 days.\n",
+  "warnings": [
+    "Order quantity constrained by storage capacity; EOQ optimization not fully achieved",
+    "Intermittent demand pattern detected; consider additional safety stock or alternative forecasting methods",
+    "Lead time is volatile (CV > 0.4); recommend supplier performance review and diversification",
+    "High demand variability (CV=0.95); forecast accuracy may be limited",
+    "Safety stock recommendation is 92% higher than current SAP level; phase implementation if capacity limited"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Combined variance (demand + lead time) with Normal approximation",
+    "selection_rationale": "Given intermittent demand (CV=0.95) and volatile lead time (CV=0.43), combined variance approach is appropriate",
+    "boundary_risk": "Medium - intermittent demand pattern suggests potential for stockouts if demand spikes",
+    "escalation_flag": "Yes - multiple warnings detected"
+  }
+}

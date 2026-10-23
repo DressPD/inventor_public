@@ -1,0 +1,110 @@
+{
+  "metadata": {
+    "material_id": "PL1__M0506790",
+    "run_timestamp": "2026-10-22T06:56:21.227699",
+    "model_version": "v2.1_detailed",
+    "data_source": "fallback_arrays"
+  },
+  "input_parameters": {
+    "unit_cost": 10.895676,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 75.0,
+    "moq": 114,
+    "service_level_target": 0.95,
+    "max_storage_units": 4790.456,
+    "sap_safety_stock": 610,
+    "sap_safety_lead_time_days": 3.0
+  },
+  "data_quality": {
+    "total_rows": 221,
+    "working_days": 221,
+    "outliers_detected": 3,
+    "winsorization_bounds": {
+      "lower": 0.0,
+      "upper": 1127.4772000000003
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 431.1523918552037,
+    "std_daily_demand": 330.4819589923741,
+    "robust_std_daily": 440.688024,
+    "cv": 0.7665084671578528,
+    "non_zero_fraction": 0.9638009049773756,
+    "annual_demand": 107788.09796380092,
+    "trend_detected": false,
+    "regime": "lumpy",
+    "distribution_type": "empirical/gamma-proxy"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.533174603174604,
+    "std_lead_time": 1.2482632099320403,
+    "cv_lead_time": 0.4927663526895076,
+    "effective_lead_time": 3.781437813106644,
+    "stability": "unstable",
+    "num_observations": 126
+  },
+  "safety_stock": {
+    "z_score": 1.644853626951472,
+    "sigma_ltd": 752.5419322713618,
+    "sigma_ltd_robust": 884.0858630434182,
+    "safety_stock_normal": 1238,
+    "safety_stock_robust": 1455,
+    "safety_stock_final": 1455,
+    "method_used": "robust"
+  },
+  "eoq_calculation": {
+    "eoq_raw": 3516.5218522678774,
+    "eoq_rounded": 3517,
+    "unconstrained_order_quantity": 3517,
+    "capacity_constraint_active": true,
+    "order_quantity_final": 3335
+  },
+  "recommended_policy": {
+    "safety_stock": 1455,
+    "reorder_point": 3086,
+    "order_quantity": 3335,
+    "review_period_days": 8,
+    "total_inventory_peak": 4790
+  },
+  "cost_analysis": {
+    "recommended": {
+      "annual_ordering_cost": 2424.0201940884763,
+      "annual_holding_cost": 4082.6097972000002,
+      "total_annual_cost": 6506.629991288477,
+      "orders_per_year": 32.320269254513015
+    },
+    "sap_current": {
+      "safety_stock": 610,
+      "order_quantity": 114,
+      "annual_ordering_cost": 70913.22234460586,
+      "annual_holding_cost": 872.0899070400001,
+      "total_annual_cost": 71785.31225164587,
+      "orders_per_year": 945.5096312614115
+    },
+    "savings": {
+      "absolute": 65278.68226035739,
+      "percentage": 90.93598706030662
+    }
+  },
+  "safety_lead_time": {
+    "recommended_days": 3.3746768601683668,
+    "sap_days": 3.0,
+    "comparison_action": "INCREASE",
+    "variance_components": {
+      "transport": 0.9348966247619046,
+      "supplier": 0.4674483123809523,
+      "quality": 0.1558161041269841
+    },
+    "dominant_factor": "transport",
+    "dominant_percentage": 60.0,
+    "disruption_premium": 1.0
+  },
+  "research_insights": {
+    "selected_model": "(r,Q) continuous review policy",
+    "selection_rationale": "The (r,Q) continuous review model was selected based on the demand characteristics: CV=0.767 indicating moderate to high variability, non-zero demand fraction=96.38%, and lumpy regime classification. This model provides responsive replenishment suitable for the observed demand pattern. EOQ-based order quantity (3517 units) optimizes the trade-off between ordering costs ($75.0) and holding costs (12.0% of unit cost $10.90). Safety stock calculation uses the robust (MAD-based) approach to account for demand and lead time variability, targeting 95% service level.",
+    "boundary_risk": "Capacity constraint: 4790 units. Current policy utilizes 100.0% of available storage. Risk: Operating at capacity limit with minimal buffer for demand spikes. MOQ requirement (114 units) is well below the optimal order quantity. Lead time variability (CV=0.493) is unstable, requiring elevated safety stock buffer.",
+    "escalation_flag": "WARNING: Storage capacity constraint is active. Order quantity limited to 3335 units (EOQ was 3517).",
+    "milp_trigger": null
+  },
+  "narrative": "Analysis of material PL1__M0506790 reveals a lumpy demand pattern with CV=0.767, indicating empirical/gamma-proxy modeling is appropriate. The demand exhibits no significant trend over the observation period. Given the demand variability and lead time characteristics (mean=2.53d, stability=unstable), a continuous review (r,Q) policy is recommended with reorder point 3086 and order quantity 3335. The capacity constraint is active, allowing for optimized batch sizing that balances ordering and holding costs."
+}

@@ -1,0 +1,77 @@
+{
+  "material_id": "PL3__M51FD567",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": -2339.0945,
+      "upper_bound": 4212.9895
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1190.1304210526314,
+    "std_daily_demand": 746.1271065269037,
+    "robust_std_daily": 1214.2483320978504,
+    "cv_wd": 0.626928858659859,
+    "non_zero_fraction_wd": 0.9342105263157895,
+    "trend_detected": true,
+    "regime": "smooth",
+    "distribution_type": "non_normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.1285294117647058,
+    "std_lead_time": 0.9024273065908626,
+    "cv_lead_time": 0.7996489034164538,
+    "stability": "unstable",
+    "effective_lead_time": 1.1285294117647058
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1334.821338951537,
+    "safety_stock": 2196.0,
+    "safety_stock_robust": 2761.0
+  },
+  "order_quantity": {
+    "eoq_raw": 8819.954993942463,
+    "order_quantity": 8182
+  },
+  "cost_analysis": {
+    "unit_cost": 4.780924,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.5737108799999999
+  },
+  "policy": {
+    "safety_stock": 2196,
+    "reorder_point": 3539,
+    "order_quantity": 8182,
+    "review_period_days": 0
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.214211109459123,
+    "sigma_eff_days": 1.121575682244078,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 64.73919389591056,
+    "variance_components": {
+      "transport": 628258.71,
+      "supplier": 1153489.3,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.2,
+    "comparison_action": "increase",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__M51FD567 exhibits smooth, high-frequency demand averaging 1,190 units/day with a statistically significant declining trend (-1.62 units/day). Lead times are short but highly variable (CV=0.800), making lead-time variability the dominant buffer driver at 64.7% of total variance. A continuous-review (r,Q) policy with SS=2,196, ROP=3,539, and Q=8,182 achieves 95% service level while reducing total annual inventory costs by 68.9% through fewer, larger replenishment orders. The storage capacity constraint bound the order quantity at 8,182 (down from unconstrained EOQ of 8,820).",
+  "warnings": [
+    "Storage capacity constraint applied: original EOQ total (11,016 units) exceeded max_storage_units (10,378.5). Order quantity reduced from 8,820 to 8,182.",
+    "Statistically significant declining demand trend detected (p=0.031). EOQ should be recalibrated if trend persists."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review fixed-order-quantity policy",
+    "selection_rationale": "Smooth, near-continuous daily demand with short but unstable lead times is optimally served by a continuous-review (r,Q) system. The fixed order quantity aligns with the MOQ constraint (1,153) and allows EOQ optimisation, while the reorder point directly encodes lead-time demand variability into the trigger level.",
+    "boundary_risk": "Storage cap binds at Q=8,182. Any upward revision to safety stock (e.g., adopting robust SS=2,761) would require a proportional reduction in order quantity to maintain the storage feasibility constraint, increasing ordering frequency and cost.",
+    "escalation_flag": "none"
+  }
+}

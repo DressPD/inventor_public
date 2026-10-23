@@ -1,0 +1,130 @@
+{
+  "material_id": "PL1__M5B2BEA9",
+  "analysis_date": "2025-01-15",
+  "data_quality": {
+    "total_rows": 87,
+    "working_days": 87,
+    "non_working_days": 0,
+    "missing_demand": 0,
+    "date_range_start": "2025-03-04",
+    "date_range_end": "2026-03-05",
+    "lead_time_observations": 131,
+    "quality_score": "HIGH"
+  },
+  "demand_statistics": {
+    "mean_daily_demand": 470.5,
+    "std_daily_demand": 299.64,
+    "robust_std_daily": 266.03,
+    "cv_working_days": 0.637,
+    "non_zero_fraction_working_days": 0.897,
+    "min_demand": 0.0,
+    "max_demand": 1267.13,
+    "p50_demand": 401.5,
+    "p95_demand": 1023.28,
+    "annual_demand": 117625.49,
+    "trend_detected": true,
+    "trend_slope_per_day": -5.98205,
+    "regime": "lumpy",
+    "distribution_type": "negative_binomial",
+    "narrative": "Material PL1__M5B2BEA9 exhibits lumpy demand with a coefficient of variation of 0.64, indicating high variability. The demand pattern is best modeled using a negative_binomial distribution. Over the analysis period from 2025-03-04 to 2026-03-05, average daily demand is 470.5 units with standard deviation of 299.6 units. A negative trend is detected, suggesting declining demand. Non-zero demand occurs on 89.7% of working days, suggesting consistent consumption."
+  },
+  "lead_time_statistics": {
+    "mean_lead_time": 1.38,
+    "std_lead_time": 0.82,
+    "cv_lead_time": 0.596,
+    "min_lead_time": 0.03,
+    "max_lead_time": 4.13,
+    "p50_lead_time": 1.11,
+    "p95_lead_time": 3.12,
+    "effective_lead_time": 1.79,
+    "stability": "unstable",
+    "narrative": "Lead time for PL1__M5B2BEA9 is classified as unstable with a mean of 1.38 days and standard deviation of 0.82 days (CV = 0.60). The distribution spans from 0.03 to 4.13 days. High variability indicates supply chain instability, requiring substantial safety buffers to maintain service levels. The effective lead time, incorporating a 0.5-sigma buffer, is 1.79 days. Lead time outliers beyond 3.12 days (95th percentile) are rare but should be monitored for supplier performance management."
+  },
+  "safety_stock": {
+    "recommended": 859,
+    "robust_alternative": 817,
+    "sap_current": 828,
+    "difference_vs_sap": 31,
+    "service_level_target": 0.95,
+    "z_score": 1.645,
+    "sigma_lead_time_demand": 522.03,
+    "methodology": "normal_approximation",
+    "narrative": "The recommended safety stock of 859 units is calculated using a normal approximation of lead time demand variability, targeting a 95% service level (z = 1.645). This represents a 31 unit increase compared to the current SAP parameter of 828 units. The calculation accounts for both demand uncertainty (\u03c3_demand = 299.6 units/day) and lead time variability (\u03c3_lead_time = 0.82 days), yielding a combined lead time demand standard deviation of 522.0 units. The increase is justified by the observed demand variability and ensures adequate buffer protection against stockouts. A robust alternative using IQR-based standard deviation yields 817 units, confirming the recommendation is not sensitive to outliers."
+  },
+  "order_policy": {
+    "recommended_order_quantity": 8589,
+    "eoq_unconstrained": 10513.3,
+    "moq": 589,
+    "reorder_point": 1507,
+    "review_period_days": 19,
+    "orders_per_year": 13.69,
+    "capacity_utilization": 1.0,
+    "capacity_feasible": true,
+    "narrative": "The recommended order quantity is 8589 units, constrained by the maximum storage capacity of 9448 units. The unconstrained Economic Order Quantity (EOQ) is 10513 units, which exceeds available warehouse space after reserving safety stock. At current demand levels, this order quantity results in approximately 13.7 orders per year, or roughly one order every 19 days. The reorder point is set at 1507 units, comprising expected demand during lead time (648 units) plus safety stock (859 units). Warehouse capacity utilization is 100.0%, indicating tight space constraints that limit the ability to realize full EOQ cost savings. The policy is operationally feasible within existing infrastructure."
+  },
+  "cost_analysis": {
+    "sap_current": {
+      "safety_stock": 828,
+      "order_quantity": 589,
+      "orders_per_year": 199.7,
+      "annual_ordering_cost": 14977.78,
+      "annual_holding_cost": 179.18,
+      "total_annual_cost": 15156.96
+    },
+    "optimized": {
+      "safety_stock": 859,
+      "order_quantity": 8589,
+      "orders_per_year": 13.69,
+      "annual_ordering_cost": 1027.12,
+      "annual_holding_cost": 822.65,
+      "total_annual_cost": 1849.77
+    },
+    "savings": {
+      "annual_savings": 13307.19,
+      "savings_percentage": 87.8
+    },
+    "narrative": "The current SAP policy incurs total annual logistics costs of $15,156.96, dominated by ordering costs ($14,977.78). With 200 orders per year at the MOQ of 589 units, the company is experiencing excessive ordering frequency and high transaction costs. The optimized policy reduces total annual costs to $1,849.77, achieving $13,307.19 in annual savings (87.8% reduction). This is accomplished by increasing order quantity to 8589 units, reducing order frequency to 13.7 orders/year, thereby dramatically cutting ordering costs from $14,977.78 to $1,027.12. While holding costs increase from $179.18 to $822.65 due to larger order quantities, the net effect is highly favorable. The savings justify immediate implementation, with payback in the first ordering cycle. Additional benefits include reduced administrative workload and lower risk of ordering errors."
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.9,
+    "sap_current_days": 4.0,
+    "comparison_action": "reduce",
+    "sigma_demand_days": 0.637,
+    "sigma_effective_days": 1.11,
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.3,
+      "quality": 0.2
+    },
+    "dominant_factor": "transport",
+    "disruption_premium": 1.0,
+    "narrative": "The recommended safety lead time is 1.9 days, calculated from effective demand variability over lead time (\u03c3_eff = 1.11 days) and the 95% service level target. This is significantly lower than the current SAP configuration of 4.0 days. Variance decomposition identifies transport as the dominant factor (contributing 50% of variability), suggesting that logistics routing or carrier performance improvements could yield the greatest risk reduction. The recommendation to reduce safety lead time frees up pipeline inventory and accelerates cash conversion without compromising service levels. No external disruption premium is applied (1.0x baseline), but management should consider adding 0.5-1.0 days if geopolitical or seasonal risks are anticipated."
+  },
+  "parameters": {
+    "unit_cost": 1.330251,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 75.0,
+    "moq": 589,
+    "max_storage_units": 9448.219
+  },
+  "recommendations": {
+    "priority": "HIGH",
+    "implementation_timeline": "30 days",
+    "actions": [
+      "Update safety stock parameter from 828 to 859 units in SAP MM module",
+      "Negotiate with supplier to increase order quantity from 589 to 8589 units per shipment",
+      "Adjust reorder point to 1507 units in inventory management system",
+      "Update safety lead time from 4.0 to 1.9 days",
+      "Implement 19-day review cycle for this material",
+      "Monitor actual service level for 90 days post-implementation",
+      "Expected annual savings: $13,307.19 (87.8%)"
+    ],
+    "risks": [
+      "Capacity constraint limits full EOQ realization; monitor for warehouse expansion opportunities",
+      "Tight space utilization requires coordination with warehouse planning",
+      "Supplier may resist larger order quantities; negotiate volume discounts as leverage",
+      "Transport variability is primary risk driver; develop mitigation plans"
+    ],
+    "research_insights": "This analysis reveals that material PL1__M5B2BEA9 is currently managed with an inefficient ordering policy characterized by excessive ordering frequency (~200 orders/year) driven by a low MOQ relative to demand levels. The lumpy demand pattern with CV of 0.64 suggests erratic consumption requiring flexible buffer strategies. The unstable lead time performance (CV = 0.60) indicates significant supply chain volatility requiring careful buffer management. Warehouse capacity is the binding constraint, preventing full EOQ implementation and capping order quantity at 8589 units despite an optimal EOQ of 10513 units. Nevertheless, even within these constraints, an 87.8% cost reduction is achievable. From a working capital perspective, the recommended policy increases average inventory from 1122 to 5153 units, representing an incremental investment of $5,362.24, which is offset by annual savings of $13,307.19, yielding a payback period of less than one month. The primary operational risk is the unstable lead time behavior (CV=0.60); supplier performance improvements in transport would yield compounding benefits. Management should prioritize this material for optimization given the high savings potential and reasonable implementation complexity."
+  }
+}

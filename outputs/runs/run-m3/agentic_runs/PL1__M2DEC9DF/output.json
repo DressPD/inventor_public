@@ -1,0 +1,79 @@
+{
+  "material_id": "PL1__M2DEC9DF",
+  "data_quality": {
+    "total_rows": 94,
+    "working_days": 94,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 929.843
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 230.7018,
+    "std_daily_demand": 231.9006,
+    "robust_std_daily": 331.668,
+    "cv_wd": 1.0052,
+    "non_zero_fraction_wd": 0.6277,
+    "trend_detected": false,
+    "regime": "intermittent",
+    "distribution_type": "compound Poisson (intermittent)"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 4.0415,
+    "std_lead_time": 1.2118,
+    "cv_lead_time": 0.2999,
+    "stability": "moderate",
+    "effective_lead_time": 4.6474
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 543.603,
+    "safety_stock": 895,
+    "safety_stock_robust": 1190
+  },
+  "order_quantity": {
+    "eoq_raw": 1775.49,
+    "order_quantity": 1345
+  },
+  "cost_analysis": {
+    "unit_cost": 30.493258,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 3.6592
+  },
+  "policy": {
+    "safety_stock": 895,
+    "reorder_point": 1828,
+    "order_quantity": 1345,
+    "review_period_days": 6
+  },
+  "safety_lead_time": {
+    "recommended_days": 3.8795,
+    "sigma_eff_days": 1.2118,
+    "dominant_factor": "demand_variability",
+    "dominant_pct": 73.55,
+    "variance_components": {
+      "transport": 0.8811,
+      "supplier": 0.4406,
+      "quality": 0.1469
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M2DEC9DF exhibits intermittent demand with mean=230.70 units/day and CV=1.01. Demand occurs on 62.8% of working days with notable lumpiness; 2 outliers were winsorised. Lead times average 4.04 days with moderate variability (CV=0.30). The (r,Q) continuous-review model is recommended, with safety stock of 895 units (z=1.645) to achieve 95% service level. Order quantity is capped at 1,345 due to the binding 2,241-unit storage constraint.",
+  "warnings": [
+    "Storage constraint is ACTIVE \u2014 order quantity capped at 1345 (below unconstrained EOQ of 1776).",
+    "Lead-time outlier removed: 9327.37 days (data-entry error).",
+    "3 near-zero lead-time values removed as data errors.",
+    "2 demand outliers winsorised at upper bound."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous review model",
+    "selection_rationale": "The (r,Q) continuous-review model suits PL1__M2DEC9DF because demand, while intermittent, occurs frequently enough (62.8% of days) to justify continuous monitoring rather than periodic review. It minimises total inventory cost by balancing ordering frequency against holding costs, and it naturally accommodates the reorder-point calculation needed to cover lead-time demand variability at the 95% service level.",
+    "boundary_risk": "Storage capacity constraint is binding: the recommended policy occupies 100% of available storage (895 SS + 1345 OQ = 2240 units vs. 2240.96 capacity). Any upward revision to safety stock (e.g., using the robust estimate of 1190) would breach the storage limit. Management should consider a capacity expansion to unlock the full EOQ benefit and reduce total annual cost.",
+    "escalation_flag": "WARNING: Storage constraint limits order quantity to 1345 units, below the unconstrained EOQ of 1776. This sub-optimal batch size increases annual ordering cost by ~31%. Escalate to warehouse management for capacity review."
+  }
+}

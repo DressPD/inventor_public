@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__MB2892F9",
+  "data_quality": {
+    "total_rows": 141,
+    "working_days": 141,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 2.769,
+      "upper_bound": 905.359
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 556.06,
+    "std_daily_demand": 181.35,
+    "robust_std_daily": 148.22,
+    "cv_wd": 0.326,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "moderate_variability",
+    "distribution_type": "approximately_normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.94,
+    "std_lead_time": 1.147,
+    "cv_lead_time": 0.39,
+    "stability": "unstable_high_variability",
+    "effective_lead_time": 2.94
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 710.03,
+    "safety_stock": 1168.0,
+    "safety_stock_robust": 1094.0
+  },
+  "order_quantity": {
+    "eoq_raw": 4685.7,
+    "order_quantity": 3511
+  },
+  "cost_analysis": {
+    "unit_cost": 5.491348,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.6589
+  },
+  "policy": {
+    "safety_stock": 1168,
+    "reorder_point": 2803,
+    "order_quantity": 3511,
+    "review_period_days": 6
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.1,
+    "sigma_eff_days": 1.147,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 80.8,
+    "variance_components": {
+      "transport": 0.808,
+      "supplier": 0.152,
+      "quality": 0.04
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase_safety_lead_time_from_3.5_to_2.1_effective_days_given_data",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MB2892F9 exhibits moderate demand variability (CV=32.6%) with a mean of 556 units/day across 141 working days. Lead times average 2.94 days but show high variability (CV=39%), with one extreme outlier at 18.84 days winsorized. Lead time variance accounts for 80.8% of the total demand-during-lead-time uncertainty, making supplier reliability the dominant risk. An (r,Q) policy is recommended with safety stock of 1,168 units and order quantity capped at 3,511 due to the binding storage constraint of 4,679 units.",
+  "warnings": [
+    "Storage capacity constraint is binding: SS(1168) + OQ(3511) = 4679 <= max_storage_units(4679.071). Order quantity reduced from unconstrained EOQ-based value of 4686.",
+    "Lead time outlier 18.84 days winsorized to 6.10 days (99th percentile).",
+    "Three demand observations below 10 units identified as potential outliers (not winsorized as they lie within 1st percentile bound)."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review reorder-point / fixed-order-quantity",
+    "selection_rationale": "Demand is near-continuous (100% non-zero fraction) with moderate variability and no significant trend, making a continuous-review (r,Q) policy appropriate. The fixed MOQ of 426 and binding storage cap naturally suit a fixed-quantity model over a periodic-review approach. EOQ balances ordering and holding costs under the given cost parameters.",
+    "boundary_risk": "Storage capacity is fully consumed by the recommended policy (SS+OQ=4679 vs cap=4679.071). Any upward revision to safety stock (e.g., targeting >95% service level) would require a corresponding reduction in order quantity, increasing ordering frequency and cost. Current policy leaves zero storage headroom.",
+    "escalation_flag": "none \u2014 MOQ(426) + SS(1168) = 1594 which is well below max_storage_units(4679.071); no MOQ-capacity infeasibility exists."
+  }
+}

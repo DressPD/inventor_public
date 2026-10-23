@@ -1,0 +1,79 @@
+{
+  "material_id": "PL1__M3FEC07A",
+  "data_quality": {
+    "total_rows": 136,
+    "working_days": 136,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 7.308,
+      "upper_bound": 1231.481
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 733.997,
+    "std_daily_demand": 245.87,
+    "robust_std_daily": 222.14,
+    "cv_wd": 0.335,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "moderate",
+    "distribution_type": "approximately_normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 4.08,
+    "std_lead_time": 1.524,
+    "cv_lead_time": 0.373,
+    "stability": "moderate",
+    "effective_lead_time": 5.604
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1223.8,
+    "safety_stock": 2015.0,
+    "safety_stock_robust": 1827.0
+  },
+  "order_quantity": {
+    "eoq_raw": 3467.2,
+    "order_quantity": 4569
+  },
+  "cost_analysis": {
+    "unit_cost": 3.032133,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.363856
+  },
+  "policy": {
+    "safety_stock": 2015,
+    "reorder_point": 5012,
+    "order_quantity": 4569,
+    "review_period_days": 6
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.75,
+    "sigma_eff_days": 1.668,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce_from_4.0_to_2.75_days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M3FEC07A exhibits moderate demand variability (CV=0.335) with a mean of 734 units/day across 136 working days, approximating a normal distribution. Lead times average 4.08 days with moderate stability after removing two erroneous observations exceeding 9,000 days. The current SAP safety stock of 182 units is critically insufficient; a safety stock of 2,015 units is required to achieve the 95% service level target. An (r,Q) policy with reorder point 5,012 and order quantity 4,569 (storage-capped) reduces total annual cost by 36.8% versus the SAP baseline.",
+  "warnings": [
+    "SAP safety stock (182) is critically low vs recommended (2015) \u2014 severe stockout risk under current policy",
+    "Order quantity capped at 4569 by max_storage_units constraint (6584.951 - 2015 = 4569)",
+    "2 extreme lead time outliers removed (9201.55, 9327.37 days) \u2014 investigate source data in ERP",
+    "Capacity gate satisfied: 2015 + 4569 = 6584 <= 6584.951"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) fixed-reorder-point policy",
+    "selection_rationale": "With moderate CV (0.335), approximately-normal demand, and stable-to-moderate lead times, a continuous-review (r,Q) policy provides efficient service-level targeting via the z-factor safety stock formula without requiring the complexity of (s,S) or periodic-review models.",
+    "boundary_risk": "Storage capacity is the binding constraint on order quantity (capped at 4,569 vs unconstrained EOQ of 3,467 which was below MOQ=2,192; the binding cap comes from max_storage_units). If demand spikes or safety stock needs increase, the current storage limit will prevent adequate replenishment batch sizes, increasing stockout risk.",
+    "escalation_flag": "none"
+  }
+}

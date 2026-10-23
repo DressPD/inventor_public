@@ -1,0 +1,78 @@
+{
+  "material_id": "PL3__M1F8BAA4",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 993.8019899999999
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 499.6216577631578,
+    "std_daily_demand": 312.80455731467595,
+    "robust_std_daily": 239.1537582,
+    "cv_wd": 0.6260828618101235,
+    "non_zero_fraction_wd": 0.9385964912280702,
+    "trend_detected": false,
+    "regime": "highly_erratic",
+    "distribution_type": "Normal-like"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.1257000000000001,
+    "std_lead_time": 0.8999475349466577,
+    "cv_lead_time": 0.7994559251547104,
+    "stability": "unstable",
+    "effective_lead_time": 1.575673767473329
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 558.8524903838019,
+    "safety_stock": 920,
+    "safety_stock_robust": 850
+  },
+  "order_quantity": {
+    "eoq_raw": 3970.3165071526873,
+    "order_quantity": 3941
+  },
+  "cost_analysis": {
+    "unit_cost": 9.904693,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.18856316
+  },
+  "policy": {
+    "safety_stock": 920,
+    "reorder_point": 1483,
+    "order_quantity": 3941,
+    "review_period_days": 8
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.8413933537607363,
+    "sigma_eff_days": 0.8999475349466577,
+    "dominant_factor": "transport",
+    "dominant_pct": 50.0,
+    "variance_components": {
+      "transport": 0.40495278282828284,
+      "supplier": 0.2429716696969697,
+      "quality": 0.16198111313131314
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Increase from 0.0 to 1.84 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization analysis for material PL3__M1F8BAA4 reveals significant opportunity for cost reduction and service improvement.\n\nDEMAND PROFILE: The material exhibits highly_erratic demand with a mean daily demand of 499.62 units and CV of 0.626. \nThe demand pattern is Normal-like with 93.9% of days having non-zero demand. \nNo significant trend detected.\n\nLEAD TIME CHARACTERISTICS: Lead time is unstable with mean 1.13 days (CV=0.799). \nThe dominant source of lead time variability is transport (50.0% of variance).\n\nOPTIMIZATION RESULTS: The analysis recommends increasing safety stock from 0 to 920 units \nand order quantity from 357 (MOQ) to 3941 units. This change will reduce annual costs from \n$26,452.79 to $5,812.58, achieving savings of $20,640.21 (78.0%).\n\nThe optimized policy balances ordering frequency (31.7 orders/year vs 349.9 currently) \nwith inventory holding costs while maintaining 95% service level.\n\nStorage capacity is fully utilized at 100.0%.",
+  "warnings": [
+    "High demand variability detected - consider demand forecasting improvement",
+    "Unstable lead time - consider supplier performance improvement",
+    "Storage capacity highly utilized (>95%) - monitor closely"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Stochastic EOQ with service level constraint",
+    "selection_rationale": "Demand variability requires probabilistic safety stock",
+    "boundary_risk": "Medium - assumes demand and lead time independence",
+    "escalation_flag": ""
+  }
+}

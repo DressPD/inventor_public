@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__M560A5BF",
+  "data_quality": {
+    "total_rows": 139,
+    "working_days": 139,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 763.179
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 411.53,
+    "std_daily_demand": 200.98,
+    "robust_std_daily": 190.06,
+    "cv_wd": 0.488,
+    "non_zero_fraction_wd": 0.979,
+    "trend_detected": true,
+    "regime": "steady",
+    "distribution_type": "normal-like"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 4.15,
+    "std_lead_time": 1.59,
+    "cv_lead_time": 0.382,
+    "stability": "moderate",
+    "effective_lead_time": 5.74
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 770.57,
+    "safety_stock": 1267.0,
+    "safety_stock_robust": 1211.0
+  },
+  "order_quantity": {
+    "eoq_raw": 26803.0,
+    "order_quantity": 7064
+  },
+  "cost_analysis": {
+    "unit_cost": 0.238686,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.028642
+  },
+  "policy": {
+    "safety_stock": 1267,
+    "reorder_point": 3629,
+    "order_quantity": 7064,
+    "review_period_days": 17
+  },
+  "safety_lead_time": {
+    "recommended_days": 3.08,
+    "sigma_eff_days": 1.872,
+    "dominant_factor": "transport",
+    "dominant_pct": 50.0,
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.4,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce from SAP 4.0 days to recommended 3.08 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M560A5BF shows steady daily demand averaging 411.5 units with CV=48.8% and 97.9% non-zero days, but a statistically significant declining trend (p=0.0004) warrants periodic policy review. Lead times average 4.15 days with moderate variability (CV=38.2%), contributing meaningfully to safety stock requirements. The (r,Q) continuous-review policy with SS=1,267 and OQ=7,064 achieves 95% service level while respecting the 8,331-unit storage cap \u2014 the EOQ of 26,803 is severely constrained by available storage, increasing ordering frequency and cost. The SAP policy of zero safety stock is inadequate given observed demand and lead time volatility.",
+  "warnings": [
+    "Storage capacity constraint binds: EOQ=26803 reduced to OQ=7064 (storage cap=8331, SS=1267, remaining=7064)",
+    "Statistically significant declining demand trend detected (p=0.0004) \u2014 review policy periodically",
+    "Capacity constraint increases ordering frequency ~3.8x vs EOQ optimum, raising annual ordering costs"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) Continuous-Review Fixed-Order-Quantity",
+    "selection_rationale": "With 97.9% non-zero demand days and steady CV=48.8%, continuous review is appropriate. The (r,Q) model provides a clear reorder trigger and fixed batch size compatible with the MOQ=2312 constraint and supplier logistics.",
+    "boundary_risk": "Storage cap reduces order quantity from EOQ 26,803 to 7,064 \u2014 approximately 3.8x more orders per year than optimal. If demand rebounds or the declining trend reverses, stockout risk increases. Recommend escalating storage capacity review to procurement/logistics.",
+    "escalation_flag": "None \u2014 MOQ (2312) + safety_stock (1267) = 3579 < max_storage_units (8331). No MOQ-capacity infeasibility."
+  }
+}

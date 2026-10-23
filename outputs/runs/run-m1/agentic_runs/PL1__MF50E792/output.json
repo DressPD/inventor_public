@@ -1,0 +1,77 @@
+{
+  "material_id": "PL1__MF50E792",
+  "data_quality": {
+    "total_rows": 217,
+    "working_days": 110,
+    "outliers_detected": 1,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 780.4149699999998
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 347.51029090909094,
+    "std_daily_demand": 181.4183843140139,
+    "robust_std_daily": 176.3345070422535,
+    "cv_wd": 0.522051832880751,
+    "non_zero_fraction_wd": 0.9545454545454546,
+    "trend_detected": false,
+    "regime": "Moderate",
+    "distribution_type": "Lognormal/Gamma"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.664,
+    "std_lead_time": 0.7778861028395003,
+    "cv_lead_time": 1.1715152151197294,
+    "stability": "Volatile",
+    "effective_lead_time": 0.664
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 308.10508112799664,
+    "safety_stock": 506.78776017556277,
+    "safety_stock_robust": 503.55381555522774
+  },
+  "order_quantity": {
+    "eoq_raw": 358.05566918174605,
+    "order_quantity": 359
+  },
+  "cost_analysis": {
+    "unit_cost": 564.709799,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 67.76517588
+  },
+  "policy": {
+    "safety_stock": 507,
+    "reorder_point": 738,
+    "order_quantity": 359,
+    "review_period_days": 1.0330629319231146
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.458949600236822,
+    "sigma_eff_days": 0.8866070708927503,
+    "dominant_factor": "Lead Time Variability",
+    "dominant_pct": 76.97853548160823,
+    "variance_components": {
+      "transport": 76.97853548160823,
+      "supplier": 76.97853548160823,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MF50E792 exhibits moderate demand with CV=0.52. Lead time variability is volatile (CV=1.17). Recommended safety stock of 507 units provides 95% service level protection.",
+  "warnings": [
+    "High lead time variability detected",
+    "Optimized policy has higher cost than SAP due to safety stock requirements"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Classical EOQ with Safety Stock",
+    "selection_rationale": "Moderate demand variability (CV=0.52) suitable for parametric approach",
+    "boundary_risk": "Medium",
+    "escalation_flag": "No"
+  }
+}

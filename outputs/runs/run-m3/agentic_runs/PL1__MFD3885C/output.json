@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__MFD3885C",
+  "data_quality": {
+    "total_rows": 163,
+    "working_days": 163,
+    "outliers_detected": 1,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 1563.979
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 163.16,
+    "std_daily_demand": 218.45,
+    "robust_std_daily": 126.83,
+    "cv_wd": 1.339,
+    "non_zero_fraction_wd": 0.544,
+    "trend_detected": false,
+    "regime": "intermittent/lumpy",
+    "distribution_type": "zero_inflated"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.253,
+    "std_lead_time": 0.24,
+    "cv_lead_time": 0.949,
+    "stability": "unstable",
+    "effective_lead_time": 0.493
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 119.94,
+    "safety_stock": 197.0,
+    "safety_stock_robust": 122.0
+  },
+  "order_quantity": {
+    "eoq_raw": 7094.3,
+    "order_quantity": 7094
+  },
+  "cost_analysis": {
+    "unit_cost": 0.696631,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.08359572
+  },
+  "policy": {
+    "safety_stock": 197,
+    "reorder_point": 279,
+    "order_quantity": 7094,
+    "review_period_days": 43
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.0,
+    "sigma_eff_days": 0.24,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.05,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MFD3885C exhibits intermittent/lumpy demand with a CV of 1.34 and only 54.4% of working days showing non-zero consumption, indicating sporadic usage patterns. Lead times are extremely short (mean 0.25 days) but relatively volatile (CV 0.95), producing a modest sigma-over-lead-time of ~120 units. An (r,Q) continuous-review policy with EOQ-derived order quantity of 7,094 units and a data-driven safety stock of 197 units is recommended, replacing the significantly oversized SAP safety stock of 4,546 units. This policy maintains the 95% service level while reducing total annual inventory costs by approximately 69%.",
+  "warnings": [
+    "SAP safety stock (4546) is 23x higher than the statistically optimal value (197); review ERP parameters.",
+    "Lead time CV of 0.95 indicates unstable supply; monitor supplier performance.",
+    "Safety lead time reduced from SAP 5.0 days to recommended 1 day based on observed lead time distribution."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) continuous-review with EOQ order quantity",
+    "selection_rationale": "The intermittent zero-inflated demand pattern and short but variable lead times are best served by a continuous-review (r,Q) policy, which triggers replenishment when stock falls to the reorder point r=279, ordering a fixed EOQ quantity Q=7,094. This balances the low unit holding cost against the fixed ordering cost and avoids over-ordering under lumpy demand.",
+    "boundary_risk": "The storage cap of 9,865.8 units constrains the unconstrained EOQ; however, the computed policy (197+7094=7291) is within capacity at 73.9% utilization. If safety stock were to be set at the SAP level of 4546, the remaining storage for an order would be only 5319 units, below the unconstrained EOQ \u2014 a capacity-binding situation that the optimized policy avoids.",
+    "escalation_flag": "none"
+  }
+}

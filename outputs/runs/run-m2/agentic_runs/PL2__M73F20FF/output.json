@@ -1,0 +1,74 @@
+{
+  "material_id": "PL2__M73F20FF",
+  "data_quality": {
+    "total_rows": 109,
+    "working_days": 109,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 10637.465240000001
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 6595.652591559632,
+    "std_daily_demand": 2639.6177857093435,
+    "robust_std_daily": 2290.512972572275,
+    "cv_wd": 0.40020570353981755,
+    "non_zero_fraction_wd": 0.9724770642201835,
+    "trend_detected": false,
+    "regime": "smooth",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.3679816513761462,
+    "std_lead_time": 1.1445761843866764,
+    "cv_lead_time": 0.4833551745308115,
+    "stability": "moderate",
+    "effective_lead_time": 3.5125578357628227
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 8572.626954267776,
+    "safety_stock": 14101,
+    "safety_stock_robust": 13705
+  },
+  "order_quantity": {
+    "eoq_raw": 29607.905021779872,
+    "order_quantity": 29608
+  },
+  "cost_analysis": {
+    "unit_cost": 1.567477,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.18809724
+  },
+  "policy": {
+    "safety_stock": 14101,
+    "reorder_point": 29720,
+    "order_quantity": 29608,
+    "review_period_days": 5
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.1379233979128704,
+    "sigma_eff_days": 1.1445761843866764,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 77.54916107632778,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "REDUCE",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization analysis for material PL2__M73F20FF shows a smooth demand pattern with normal distribution. The recommended safety stock of 14101 units combined with order quantity of 29608 units provides 95% service level. Lead time variability is moderate (CV=0.483), contributing 77.5% to safety stock requirements. The optimized policy reduces annual costs by $248581.21 compared to current SAP settings. Recommended safety lead time of 2.14 days suggests action: REDUCE from current 3.0 days.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with Variable Lead Time",
+    "selection_rationale": "Selected due to smooth demand regime and moderate lead time. CV of 0.400 indicates normal demand.",
+    "boundary_risk": "Medium - lead time variability contributes significantly to safety stock requirements",
+    "escalation_flag": "None"
+  }
+}

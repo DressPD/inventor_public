@@ -1,0 +1,74 @@
+{
+  "material_id": "PL2__M73F20FF",
+  "data_quality": {
+    "total_rows": 109,
+    "working_days": 109,
+    "outliers_detected": 6,
+    "winsorisation": {
+      "lower_bound": 632.82,
+      "upper_bound": 12992.43
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 6631.44,
+    "std_daily_demand": 2566.22,
+    "robust_std_daily": 2290.51,
+    "cv_wd": 0.387,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "Smooth",
+    "distribution_type": "Normal-like"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.37,
+    "std_lead_time": 1.15,
+    "cv_lead_time": 0.4856,
+    "stability": "Moderate",
+    "effective_lead_time": 2.37
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 8587.12,
+    "safety_stock": 14124.55,
+    "safety_stock_robust": 13817.54
+  },
+  "order_quantity": {
+    "eoq_raw": 29688.11,
+    "order_quantity": 29689
+  },
+  "cost_analysis": {
+    "unit_cost": 1.5675,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.1881
+  },
+  "policy": {
+    "safety_stock": 14125,
+    "reorder_point": 29829,
+    "order_quantity": 29689,
+    "review_period_days": 4.48
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.13,
+    "sigma_eff_days": 1.29,
+    "dominant_factor": "Lead Time",
+    "dominant_pct": 78.85,
+    "variance_components": {
+      "transport": 23257726.1,
+      "supplier": 23257726.1,
+      "quality": 11628863.05
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Decrease safety lead time",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL2__M73F20FF exhibits smooth demand (CV=0.387, non-zero fraction=1.000) \nwith moderate lead time variability (CV_LT=0.486). \n\nThe dominant source of uncertainty is lead time variability (78.9% of total variance).\n\nRecommended policy: Safety stock of 14,125 units (2.1 days coverage) \nwith order quantity of 29,689 units provides 95.0% service level.\n\nThis represents a 16.0% cost increase compared to \ncurrent SAP policy, primarily due to higher safety stock requirements.\n\nStorage capacity utilization is 79.8%, leaving adequate buffer for demand surges.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with Service Level Safety Stock",
+    "selection_rationale": "Smooth demand regime (CV=0.387) with moderate lead time variability justifies classical EOQ with safety stock buffer",
+    "boundary_risk": "Low capacity risk (79.8% utilization) - adequate storage buffer available",
+    "escalation_flag": "Review"
+  }
+}

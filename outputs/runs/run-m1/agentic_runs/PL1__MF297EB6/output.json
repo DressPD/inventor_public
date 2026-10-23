@@ -1,0 +1,91 @@
+{
+  "material_id": "PL1__MF297EB6",
+  "data_quality": {
+    "total_rows": 131,
+    "working_days": 131,
+    "outliers_detected": 1,
+    "winsorisation": {
+      "lower_bound": 476.2066,
+      "upper_bound": 1996.3033999999952
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1225.0713664122136,
+    "std_daily_demand": 281.05485955026694,
+    "robust_std_daily": 261.6482579688659,
+    "cv_wd": 0.22941917283837424,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": true,
+    "regime": "smooth",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.2654729729729732,
+    "std_lead_time": 1.2911758783854486,
+    "cv_lead_time": 0.569936562381957,
+    "stability": "moderate",
+    "effective_lead_time": 3.556648851358422
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1637.3729114942776,
+    "safety_stock": 2694,
+    "safety_stock_robust": 2682
+  },
+  "order_quantity": {
+    "eoq_raw": 10708.394355445236,
+    "order_quantity": 10709
+  },
+  "cost_analysis": {
+    "unit_cost": 3.338587,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.40063044,
+    "recommended_policy": {
+      "annual_ordering_cost": 2144.9330581967506,
+      "annual_holding_cost": 3224.47409634,
+      "total_annual_cost": 5369.407154536751
+    },
+    "sap_current_policy": {
+      "annual_ordering_cost": 2144.9330581967506,
+      "annual_holding_cost": 2635.1467190999997,
+      "total_annual_cost": 4780.079777296751
+    },
+    "cost_savings": -589.3273772399998,
+    "cost_savings_pct": -12.328818862794764
+  },
+  "policy": {
+    "safety_stock": 2694,
+    "reorder_point": 5470,
+    "order_quantity": 10709,
+    "review_period_days": 9
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.1990555602403323,
+    "sigma_eff_days": 1.336553082853895,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 93.32508283273393,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MF297EB6 exhibits smooth demand behavior with a CV of 0.23 and mean daily demand of 1225 units. A statistically significant downward trend was detected (p=0.0015), suggesting decreasing consumption over time. Lead time variability is moderate (CV=0.57), with lead time variance contributing 93.3% to total demand-during-lead-time uncertainty. The recommended safety stock of 2694 units provides 95% service level protection while balancing inventory costs. The EOQ-based order quantity of 10709 units minimizes total ordering and holding costs, though at $5369.41 annually, this represents a 12.3% cost increase over the current SAP policy due to higher safety stock requirements.",
+  "warnings": [
+    "1 outliers detected in demand data",
+    "Unstable lead times detected (CV=0.57)",
+    "Significant demand trend detected - review forecast assumptions",
+    "Recommended policy costs $589.33 more than SAP current policy"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Normal approximation with independent demand-lead time model",
+    "selection_rationale": "Selected based on CV=0.23 (< 0.5 threshold) indicating normal distribution suitability. The smooth demand regime with 100% non-zero demand justifies classical EOQ and safety stock formulas. Independent assumption reasonable given moderate lead time variability (CV=0.57).",
+    "boundary_risk": "Material is near smooth/intermittent boundary with CV=0.23. Downward trend (slope=-2.03) may push demand lower, potentially changing regime classification. Lead time CV of 0.57 approaches unstable threshold (0.6). Monitor for regime shifts.",
+    "escalation_flag": "MEDIUM_RISK"
+  }
+}

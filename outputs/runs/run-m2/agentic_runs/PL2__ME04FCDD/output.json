@@ -1,0 +1,90 @@
+{
+  "material_id": "PL2__ME04FCDD",
+  "analysis_timestamp": "2026-10-22T21:43:39.823248",
+  "input_parameters": {
+    "unit_cost": 1.158477,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 75.0,
+    "minimum_order_quantity": 166,
+    "service_level_target": 0.95,
+    "sap_safety_stock": 160,
+    "sap_safety_lead_time_days": 3.0,
+    "max_storage_units": 2347.211
+  },
+  "data_quality": {
+    "total_rows": 96,
+    "working_days": 96,
+    "outliers_detected": 1,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 522.9485499999998
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 257.53594322916666,
+    "std_daily_demand": 142.12819996864926,
+    "robust_std_daily": 173.63936249073393,
+    "cv_wd": 0.5518771406683898,
+    "non_zero_fraction_wd": 0.9479166666666666,
+    "trend_detected": true,
+    "regime": "erratic",
+    "distribution_type": "empirical/high-variance"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.26925,
+    "std_lead_time": 0.3782645085935746,
+    "cv_lead_time": 1.4048821117681507,
+    "stability": "unstable",
+    "effective_lead_time": 0.6475145085935745
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 122.18420232178067,
+    "safety_stock": 201.0,
+    "safety_stock_robust": 219.0
+  },
+  "order_quantity": {
+    "eoq_raw": 8334.896821976854,
+    "order_quantity": 2146
+  },
+  "cost_analysis": {
+    "unit_cost": 1.158477,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.13901724
+  },
+  "policy": {
+    "safety_stock": 201,
+    "reorder_point": 368,
+    "order_quantity": 2146,
+    "review_period_days": 9
+  },
+  "safety_lead_time": {
+    "recommended_days": 0.7803770061187809,
+    "sigma_eff_days": 0.47454,
+    "dominant_factor": "transport",
+    "dominant_pct": 100.0,
+    "variance_components": {
+      "transport": 0.14308403846153844,
+      "supplier": 0.0,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease from SAP 3.0 days to recommended 0.78 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL2__ME04FCDD exhibits erratic demand (CV=0.55) with a mild declining trend of -0.53%/day across 96 working days. Lead times are highly unstable (CV=1.40) due to one outlier receipt of 2.43 days against a typical range of 0.07-0.32 days. The (r,Q) continuous-review policy is selected because the very short effective lead time (0.65 days) and high demand variance make cycle-stock consolidation the dominant cost lever. The EOQ of 8,335 units is storage-capped to 2,146 units, which still delivers 91.7% cost savings versus the current MOQ-driven SAP policy.",
+  "warnings": [
+    "High demand variability (CV=0.55): robust safety stock of 219 units may be preferred",
+    "Unstable lead time (CV=1.40): supplier SLA review recommended",
+    "Declining demand trend detected: policy reassessment recommended Q1 2027",
+    "EOQ capacity-constrained from 8,335 to 2,146 units due to max_storage_units=2347"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review with EOQ order quantity",
+    "selection_rationale": "High CV and erratic demand favour a continuous-review trigger (r) to avoid stockouts during demand spikes; EOQ minimises ordering+holding cost subject to the storage cap. The MOQ of 166 is satisfied comfortably by the capacity-constrained Q=2,146.",
+    "boundary_risk": "Storage cap binds: unconstrained EOQ (8,335) is 3.5x the available space. The capped Q=2,146 increases order frequency from the theoretical optimum (~8 orders/yr) to ~30 orders/yr, raising annual ordering cost from ~$600 to $2,250. Service level remains intact as SS+Q=2,347 \u2264 max_storage.",
+    "escalation_flag": "none"
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "material_id": "PL1__M5C259FA",
+  "data_quality": {
+    "total_rows": 216,
+    "working_days": 216,
+    "outliers_detected": 6,
+    "winsorisation": {
+      "lower_bound": 385.91495,
+      "upper_bound": 2071.2892
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1396.3943493055556,
+    "std_daily_demand": 291.54521331823355,
+    "robust_std_daily": 219.33506300963663,
+    "cv_wd": 0.20878429754690903,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "smooth",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 4.021428571428571,
+    "std_lead_time": 1.6393217573666934,
+    "cv_lead_time": 0.40764661817289,
+    "stability": "volatile",
+    "effective_lead_time": 5.9559999999999995
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 2362.6206064091853,
+    "safety_stock": 3887,
+    "safety_stock_robust": 3835
+  },
+  "order_quantity": {
+    "eoq_raw": 10780.15681894814,
+    "order_quantity": 10474
+  },
+  "cost_analysis": {
+    "unit_cost": 5.226936,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.62723232,
+    "previous_policy": {
+      "safety_stock": 881,
+      "order_quantity": 10781,
+      "annual_ordering_cost": 3380.5669712341155,
+      "annual_holding_cost": 3933.6874948799996,
+      "total_annual_cost": 7314.254466114115
+    },
+    "optimized_policy": {
+      "safety_stock": 3887,
+      "order_quantity": 10474,
+      "annual_ordering_cost": 3479.653667832251,
+      "annual_holding_cost": 5722.86768768,
+      "total_annual_cost": 9202.52135551225
+    },
+    "cost_savings": -1888.2668893981354,
+    "cost_savings_pct": -25.816259170995533
+  },
+  "policy": {
+    "safety_stock": 3887,
+    "reorder_point": 9503,
+    "order_quantity": 10474,
+    "review_period_days": 7.500746479824164
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.45898263605004,
+    "sigma_eff_days": 1.6393217573666934,
+    "dominant_factor": "transport",
+    "dominant_pct": 40.0,
+    "variance_components": {
+      "transport": 1.0749503296703296,
+      "supplier": 1.0749503296703296,
+      "quality": 0.5374751648351648
+    },
+    "disruption_premium": 1.2,
+    "comparison_action": "MAINTAIN",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization analysis for material PL1__M5C259FA:\n\nDEMAND PROFILE: The material exhibits smooth demand with mean daily demand of 1396.4 units (CV=0.21). \nNo significant trend detected; demand is relatively stationary. \nThe demand distribution is characterized as normal.\n\nLEAD TIME: Average lead time is 4.02 days with volatile stability (CV=0.41). \nEffective lead time for planning is 5.96 days (95th percentile).\n\nBUFFER REQUIREMENTS: To achieve 95.0% service level, the optimized safety stock is 3887 units \n(compared to current SAP safety stock of 881 units). This represents a 341.2% \nincrease to account for actual demand and lead time variability.\n\nORDER POLICY: EOQ calculation yields 10780 units. After applying MOQ constraint (2115 units) and storage capacity constraint \n(14361 units), the recommended order quantity is 10474 units. \nStorage capacity constraint is binding, limiting the order quantity below optimal EOQ.\n\nCOST IMPACT: The optimized policy results in annual costs of $9,202.52, compared to estimated SAP costs of \n$7,314.25. Note: Higher costs reflect increased safety stock needed for target service level.\n\nSAFETY LEAD TIME: Recommended safety lead time is 2.5 days. Current SAP setting is 3.0 days. \nAction: MAINTAIN. Dominant variability factor: transport (40%).",
+  "warnings": [
+    "Detected 6 demand outliers; data winsorised at 1st and 99th percentile",
+    "Storage capacity constraint is binding; order quantity reduced from optimal EOQ",
+    "Volatile lead times increase supply uncertainty; consider supplier reliability improvement",
+    "Recommended safety stock is significantly higher than current SAP setting; validate demand data quality"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Classical EOQ with service-level safety stock",
+    "selection_rationale": "Given smooth demand regime and volatile lead times, classical EOQ provides robust baseline. Safety stock computed using combined demand-lead time variability (sigma_LTD method).",
+    "boundary_risk": "Capacity constraint binding",
+    "escalation_flag": "WARNING: Order quantity capped by storage capacity"
+  }
+}

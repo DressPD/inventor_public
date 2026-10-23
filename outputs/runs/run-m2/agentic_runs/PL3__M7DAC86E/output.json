@@ -1,0 +1,141 @@
+{
+  "metadata": {
+    "analysis_date": "2026-10-22 23:42:39",
+    "material_id": "PL3__M7DAC86E",
+    "version": "1.0"
+  },
+  "input_parameters": {
+    "unit_cost": 2.176152,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 75.0,
+    "minimum_order_quantity": 847,
+    "service_level_target": 0.95,
+    "sap_safety_stock": 0,
+    "sap_safety_lead_time_days": 0.0,
+    "max_storage_units": 14094.484
+  },
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "production_days": 170,
+    "near_zero_days": 58,
+    "non_zero_fraction": 0.9649122807017544,
+    "outliers_detected": 8,
+    "lead_time_observations": 34
+  },
+  "demand_analysis": {
+    "statistics": {
+      "mean_daily_demand": 1167.936805882353,
+      "std_daily_demand": 173.88256037180795,
+      "robust_std_daily": 152.5291467,
+      "median_daily_demand": 1159.915,
+      "cv": 0.14888011020462974,
+      "skewness": 0.46255524258680114,
+      "kurtosis": 0.028374976537322016,
+      "min_demand": 753.693625,
+      "max_demand": 1558.5726249999998,
+      "annual_demand": 291984.2014705882
+    },
+    "trend": {
+      "slope": 0.47567033787043317,
+      "p_value": 0.08002338792220441,
+      "has_trend": false,
+      "direction": "increasing"
+    },
+    "regime": "smooth",
+    "distribution_type": "normal",
+    "outlier_bounds": {
+      "lower": 753.693625,
+      "upper": 1558.5726249999998,
+      "Q1": 1055.52325,
+      "Q3": 1256.743,
+      "IQR": 201.21974999999998
+    }
+  },
+  "lead_time_analysis": {
+    "statistics": {
+      "mean_lead_time": 3.245,
+      "std_lead_time": 1.3021363564961586,
+      "cv_lead_time": 0.4012746861313277,
+      "min_lead_time": 1.46,
+      "max_lead_time": 6.08,
+      "effective_lead_time": 4.547136356496159
+    },
+    "stability": "unstable",
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.3,
+      "quality": 0.2
+    },
+    "dominant_factor": "transport"
+  },
+  "safety_stock": {
+    "z_score": 1.644853626951472,
+    "sigma_ltd": 1552.7347345833978,
+    "sigma_ltd_robust": 1545.4344024659972,
+    "safety_stock": 2555,
+    "safety_stock_robust": 2543,
+    "method": "standard_deviation_of_ltd"
+  },
+  "order_policy": {
+    "eoq_raw": 12950.605373422444,
+    "unconstrained_order_quantity": 12951,
+    "order_quantity": 11539,
+    "reorder_point": 6345,
+    "review_period_days": 10,
+    "policy_type": "(r,Q) continuous review",
+    "capacity_constrained": true,
+    "moq_binding": false
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.1876183601130275,
+    "sigma_effective_days": 1.3021363564961586,
+    "disruption_premium": 1.0,
+    "comparison_vs_sap": "SAP has no safety lead time (0 days), recommended 2.19 days"
+  },
+  "cost_analysis": {
+    "annual_holding_cost_per_unit": 0.26113824,
+    "previous_policy": {
+      "order_quantity": 847,
+      "safety_stock": 0,
+      "annual_orders": 344.72751059101324,
+      "annual_ordering_cost": 25854.56329432599,
+      "average_inventory": 423.5,
+      "annual_holding_cost": 110.59204464000001,
+      "total_annual_cost": 25965.155338965993
+    },
+    "recommended_policy": {
+      "order_quantity": 11539,
+      "safety_stock": 2555,
+      "annual_orders": 25.30411660200955,
+      "annual_ordering_cost": 1897.8087451507163,
+      "average_inventory": 8324.5,
+      "annual_holding_cost": 2173.84527888,
+      "total_annual_cost": 4071.6540240307163
+    },
+    "savings": {
+      "total_savings": 21893.501314935278,
+      "savings_percentage": 84.31877656468178
+    }
+  },
+  "capacity_check": {
+    "max_storage_units": 14094.484,
+    "required_capacity": 14094.0,
+    "available_capacity": 14094.484,
+    "capacity_utilization": 99.99656603249896,
+    "passed": true,
+    "escalation_required": false
+  },
+  "diagnostics": {
+    "warnings": [
+      "Lead time is unstable (CV=0.4013). Consider supplier development or dual sourcing.",
+      "Current SAP policy has no safety stock. Service level at risk."
+    ],
+    "recommendations": [
+      "Significant cost savings opportunity: 84.3% reduction possible.",
+      "Implement (r,Q) policy with r=6345, Q=11539",
+      "Establish safety stock of 2555 units for 95% service level",
+      "Increase safety lead time from 0.0 to 2.2 days"
+    ]
+  }
+}

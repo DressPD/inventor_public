@@ -1,0 +1,80 @@
+{
+  "material_id": "PL1__M0E3F279",
+  "analysis_timestamp": "2026-10-21T20:55:14.329508",
+  "data_quality": {
+    "total_rows": 172,
+    "working_days": 172,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 1076.279
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 385.2537,
+    "std_daily_demand": 237.9352,
+    "robust_std_daily": 244.7002,
+    "cv_wd": 0.6176,
+    "non_zero_fraction_wd": 0.9186,
+    "trend_detected": false,
+    "regime": "regular",
+    "distribution_type": "gamma-like"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.8509,
+    "std_lead_time": 1.0842,
+    "cv_lead_time": 1.2741,
+    "stability": "unstable",
+    "effective_lead_time": 1.9351
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 471.8469,
+    "safety_stock": 777,
+    "safety_stock_robust": 372
+  },
+  "order_quantity": {
+    "eoq_raw": 8784.57,
+    "order_quantity": 6590
+  },
+  "cost_analysis": {
+    "unit_cost": 1.040075,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.124809
+  },
+  "policy": {
+    "safety_stock": 777,
+    "reorder_point": 1523,
+    "order_quantity": 6590,
+    "review_period_days": 18
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.0169,
+    "sigma_eff_days": 1.2248,
+    "dominant_factor": "transport",
+    "dominant_pct": 0.5,
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.3,
+      "quality": 0.2
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "REDUCE",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M0E3F279 exhibits regular, gamma-like demand (CV=0.62, mean=385 units/day) with no discernible trend over the observed horizon. Lead times are highly variable (CV=1.27, mean=0.85 days), necessitating a robust safety stock of 777 units. The (r,Q) policy with reorder point 1,523 and order quantity 6,590 units consolidates orders from ~127 to ~15 per year, cutting total annual cost by 80.7%. Storage capacity is fully utilised and should be reviewed if demand grows.",
+  "warnings": [
+    "HIGH - CAPACITY_CONSTRAINT: Storage capacity limits order quantity to 6590 units (EOQ suggests 8785)",
+    "MEDIUM - HIGH_LEAD_TIME_VARIABILITY: Lead time CV of 1.27 indicates unstable supply; consider supplier performance review",
+    "MEDIUM - HIGH_DEMAND_VARIABILITY: Demand CV of 0.62 suggests high variability; review demand planning accuracy",
+    "MEDIUM - HIGH_CAPACITY_UTILIZATION: Capacity utilization at ~100% leaves minimal buffer for demand spikes"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review reorder-point / fixed-order-quantity policy",
+    "selection_rationale": "Regular demand (91.9% non-zero days) with gamma-like variability and a well-defined mean makes a continuous-review (r,Q) policy appropriate. The EOQ minimises ordering+holding costs, and the reorder point incorporates stochastic lead-time demand variability to meet the 95% service level target.",
+    "boundary_risk": "Storage capacity is binding: the EOQ of 8,785 exceeds available space, capping the order quantity at 6,590. This increases ordering frequency slightly above the unconstrained optimum and leaves no buffer room post-replenishment. If demand spikes immediately after a delivery, a stockout risk above the modelled 5% tail exists until the next order.",
+    "escalation_flag": "No MOQ-capacity infeasibility (MOQ 757 + SS 777 = 1,534 < 7,368 max). Capacity constraint is binding but resolvable within current MOQ parameters. Recommend warehouse capacity review to allow full EOQ deployment."
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "material_id": "PL1__M9962796",
+  "data_quality": {
+    "total_rows": 169,
+    "working_days": 169,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 3045.9307999999983
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 619.5222934911242,
+    "std_daily_demand": 828.9177020959903,
+    "robust_std_daily": 844.5455893254262,
+    "cv_wd": 1.3379949532161042,
+    "non_zero_fraction_wd": 0.5443786982248521,
+    "trend_detected": false,
+    "regime": "erratic",
+    "distribution_type": "empirical"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.3244,
+    "std_lead_time": 0.33121090964318595,
+    "cv_lead_time": 1.0209954058051354,
+    "stability": "unstable",
+    "effective_lead_time": 0.6556109096431859
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 514.7821847018143,
+    "safety_stock": 847,
+    "safety_stock_robust": 861
+  },
+  "order_quantity": {
+    "eoq_raw": 8267.926740433066,
+    "order_quantity": 8268
+  },
+  "cost_analysis": {
+    "unit_cost": 1.888089,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.22657067999999997,
+    "optimized_policy": {
+      "annual_ordering_cost": 936.6265927236396,
+      "annual_holding_cost": 1128.54855708,
+      "total_annual_cost": 2065.1751498036397
+    },
+    "previous_policy": {
+      "annual_ordering_cost": 2432.9339204018383,
+      "annual_holding_cost": 1783.9042489799997,
+      "total_annual_cost": 4216.838169381838
+    },
+    "savings": {
+      "annual_savings": 2151.6630195781986,
+      "savings_percentage": 51.0255061529577
+    }
+  },
+  "policy": {
+    "safety_stock": 847,
+    "reorder_point": 1254,
+    "order_quantity": 8268,
+    "review_period_days": 14
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.3671824386286349,
+    "sigma_eff_days": 0.8309340763201923,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 0.0658204,
+      "supplier": 0.0329102,
+      "quality": 0.010970066666666669
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "\nEXECUTIVE SUMMARY FOR MATERIAL PL1__M9962796:\n\nThis analysis optimizes inventory policy for a erratic demand regime with 54.4% demand occurrence.\nThe material exhibits high boundary risk with CV=1.34 and lead time stability classified as 'unstable'.\n\nKEY FINDINGS:\n- Recommended safety stock: 847 units (vs SAP: 6282 units) - REDUCTION of 5435 units\n- Recommended order quantity: 8268 units (EOQ-based with MOQ=3183)\n- Recommended reorder point: 1254 units\n- Expected cost savings: $2151.66/year (51.0% reduction)\n\nDEMAND CHARACTERISTICS:\n- Mean daily demand: 619.52 units/day\n- Demand variability: 828.92 units (CV=1.34)\n- Regime: erratic with empirical distribution recommended\n- Trend: NO SIGNIFICANT TREND\n\nLEAD TIME CHARACTERISTICS:\n- Mean lead time: 0.32 days (stability: unstable)\n- Effective lead time (with buffer): 0.66 days\n- Recommended safety lead time: 1.37 days (vs SAP: 3.0 days)\n\nPOLICY RECOMMENDATION:\n- ORDER POINT: When inventory drops to 1254 units, order 8268 units\n- REVIEW CYCLE: Every 14 days\n- SERVICE LEVEL: 95% (z-score=1.645)\n\nCOST IMPACT:\n- Annual ordering cost: $936.63 (vs SAP: $2432.93)\n- Annual holding cost: $1128.55 (vs SAP: $1783.90)\n- Total annual cost: $2065.18 (vs SAP: $4216.84)\n\nRISK FACTORS:\n- Primary lead time driver: transport (60.0% of variance)\n- Storage utilization: 43.6% of capacity\n- Escalation priority: LOW\n",
+  "warnings": [
+    "High demand variability (CV=1.34). Consider regime-specific buffering.",
+    "SAP safety stock (6282) is 7.4x higher than optimized (847). Significant over-stocking detected."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "empirical",
+    "selection_rationale": "Highly erratic demand requires empirical or bootstrap methods.",
+    "boundary_risk": "high",
+    "escalation_flag": "low"
+  }
+}

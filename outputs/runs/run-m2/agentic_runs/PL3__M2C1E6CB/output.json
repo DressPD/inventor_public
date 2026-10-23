@@ -1,0 +1,98 @@
+{
+  "material_id": "PL3__M2C1E6CB",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 170,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 4091.94,
+      "upper_bound": 8309.85
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 6236.18,
+    "std_daily_demand": 842.39,
+    "robust_std_daily": 889.9,
+    "cv_wd": 0.1351,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": true,
+    "regime": "Smooth",
+    "distribution_type": "Normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.12,
+    "std_lead_time": 0.91,
+    "cv_lead_time": 0.8118,
+    "stability": "Highly Variable",
+    "effective_lead_time": 1.12
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 5755.55,
+    "safety_stock": 9468,
+    "safety_stock_robust": 9481
+  },
+  "order_quantity": {
+    "eoq_raw": 18422.39,
+    "order_quantity": 2382
+  },
+  "cost_analysis": {
+    "unit_cost": 5.742177,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.6891,
+    "sap_policy": {
+      "safety_stock": 0,
+      "order_quantity": 666,
+      "average_inventory": 333.0,
+      "annual_ordering_cost": 175568.15,
+      "annual_holding_cost": 229.46,
+      "total_annual_cost": 175797.61
+    },
+    "recommended_policy": {
+      "safety_stock": 9468,
+      "order_quantity": 2382,
+      "average_inventory": 10659.0,
+      "annual_ordering_cost": 49088.33,
+      "annual_holding_cost": 7344.7,
+      "total_annual_cost": 56433.03
+    },
+    "cost_difference": 119364.58,
+    "pct_change": 67.9
+  },
+  "policy": {
+    "safety_stock": 9468,
+    "reorder_point": 16473,
+    "order_quantity": 2382,
+    "review_period_days": 0.38
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.52,
+    "sigma_eff_days": 0.92,
+    "dominant_factor": "Lead Time Variability",
+    "dominant_pct": 97.59,
+    "variance_components": {
+      "transport": 97.59,
+      "supplier": 0.0,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Increase from 0 to recommended value",
+    "override_flag": null
+  },
+  "milp_trigger": {
+    "reason": "Storage capacity constraint active",
+    "recommended": true,
+    "priority": "Medium"
+  },
+  "narrative": "Material PL3__M2C1E6CB exhibits smooth demand behavior with CV=0.14 and mean daily demand of 6236 units. Lead time is highly variable (CV=0.81) with lead time variability contributing 98% to buffer requirements. Current SAP policy (SS=0, OQ=666) results in high ordering costs ($175,568/year). Recommended policy (SS=9468, OQ=2382) achieves 95% service level with 68% cost savings ($119,365/year). Storage capacity constraint limits order quantity to 2382 units (vs optimal 18423).",
+  "warnings": [
+    "Order quantity capped by storage constraint: 2382 units (down from 18423)"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with Service Level Constraint",
+    "selection_rationale": "Appropriate for smooth demand with highly variable lead time; normal distribution assumption valid (CV=0.14)",
+    "boundary_risk": "Low",
+    "escalation_flag": "No"
+  }
+}

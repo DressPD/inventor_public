@@ -1,0 +1,74 @@
+{
+  "material_id": "PL2__MFFC2B2F",
+  "data_quality": {
+    "total_rows": 141,
+    "working_days": 141,
+    "outliers_detected": 8,
+    "winsorisation": {
+      "lower_bound": 230.98,
+      "upper_bound": 1274.55
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 725.51,
+    "std_daily_demand": 306.18,
+    "robust_std_daily": 302.68,
+    "cv_wd": 0.422,
+    "non_zero_fraction_wd": 0.9645,
+    "trend_detected": true,
+    "regime": "smooth",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.36,
+    "std_lead_time": 1.07,
+    "cv_lead_time": 0.4517,
+    "stability": "moderate",
+    "effective_lead_time": 4.12
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 905.61,
+    "safety_stock": 1490,
+    "safety_stock_robust": 1486
+  },
+  "order_quantity": {
+    "eoq_raw": 3581.89,
+    "order_quantity": 3582
+  },
+  "cost_analysis": {
+    "unit_cost": 11.780888,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.41
+  },
+  "policy": {
+    "safety_stock": 1490,
+    "reorder_point": 3203,
+    "order_quantity": 3582,
+    "review_period_days": 5
+  },
+  "safety_lead_time": {
+    "recommended_days": 0.0015,
+    "sigma_eff_days": 1.0666,
+    "dominant_factor": "transport",
+    "dominant_pct": 50.0,
+    "variance_components": {
+      "transport": 0.5688,
+      "supplier": 0.3413,
+      "quality": 0.2275
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL2__MFFC2B2F exhibits smooth demand with CV=0.42 and 96.5% non-zero periods. \nA positive trend was detected (Kendall tau=0.118, p=0.038).\nLead time variability is moderate (CV=0.45). \n\nRecommended policy: Safety stock=1490 units, Order quantity=3582 units, Reorder point=3203 units.\nThis yields a 95% service level with projected annual savings of $15,259 (68.0%) vs current SAP parameters.\n\nThe optimized policy increases safety stock from 346 to 1490 units (+1144 units) to achieve target service level,\nwhile significantly increasing order batch size from 419 to 3582 units to reduce ordering frequency and costs.\nStorage capacity is NOT BINDING.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with safety stock",
+    "selection_rationale": "Demand variability is low (CV<0.5) and non-intermittent, classic EOQ applies",
+    "boundary_risk": "Moderate - CV near smooth/erratic boundary, monitor demand patterns",
+    "escalation_flag": "None"
+  }
+}

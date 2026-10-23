@@ -1,0 +1,77 @@
+{
+  "material_id": "PL3__MA5FD7FE",
+  "data_quality": {
+    "total_rows": 215,
+    "working_days": 215,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 1969.291,
+      "upper_bound": 4659.551
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 2013.1,
+    "std_daily_demand": 1198.6,
+    "robust_std_daily": 207.8,
+    "cv_wd": 0.595,
+    "non_zero_fraction_wd": 0.965,
+    "trend_detected": false,
+    "regime": "intermittent_high_volume",
+    "distribution_type": "bimodal_mixed"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.157,
+    "std_lead_time": 0.827,
+    "cv_lead_time": 0.715,
+    "stability": "high_variability",
+    "effective_lead_time": 1.984
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 2111.5,
+    "safety_stock": 3473.0,
+    "safety_stock_robust": 479.0
+  },
+  "order_quantity": {
+    "eoq_raw": 20440.3,
+    "order_quantity": 12760
+  },
+  "cost_analysis": {
+    "unit_cost": 1.048047,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.12577
+  },
+  "policy": {
+    "safety_stock": 3473,
+    "reorder_point": 7483,
+    "order_quantity": 12760,
+    "review_period_days": 7
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.725,
+    "sigma_eff_days": 0.827,
+    "dominant_factor": "transport",
+    "dominant_pct": 0.6,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__MA5FD7FE exhibits a bimodal demand pattern with 170 high-production days (~2,700 units avg) and 45 near-zero days, resulting in a high overall CV of 0.595. Lead times are highly variable (CV=0.715, range 0.38-4.73 days), necessitating a robust safety stock of 3,473 units at the 95% service level. The EOQ-derived order quantity of 20,440 is capped at 12,760 by the storage constraint of 16,233 units; this binding cap is flagged. The recommended (r,Q) policy consolidates orders from ~143 to ~41 per year, cutting total annual costs by 54%.",
+  "warnings": [
+    "Storage capacity constraint is binding: EOQ=20440 capped to 12760 (max_storage_units - safety_stock = 12760)",
+    "High lead time variability (CV=0.715): occasional spikes to 4.73 days; effective_lead_time uses mu+sigma buffer"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review fixed-order-quantity policy",
+    "selection_rationale": "The high non-zero demand fraction (96.5%) and large daily volumes make continuous review appropriate. Fixed order quantity Q simplifies procurement and captures EOQ savings. The bimodal pattern is handled by a generous safety stock rather than periodic review, which would require larger pipeline buffers.",
+    "boundary_risk": "Storage cap binds hard: the unconstrained EOQ (20,440) exceeds available space after safety stock reservation (12,760 units remaining). This reduces average cycle stock and increases ordering frequency vs. the unconstrained optimum, adding ~$200/year in ordering costs. If storage can be expanded, the full EOQ would save an additional ~$200/year.",
+    "escalation_flag": "none \u2014 MOQ (3,668) + safety_stock (3,473) = 7,141 < max_storage_units (16,233); no MOQ-capacity infeasibility."
+  }
+}

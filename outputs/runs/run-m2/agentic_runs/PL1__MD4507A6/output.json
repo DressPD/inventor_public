@@ -1,0 +1,74 @@
+{
+  "material_id": "PL1__MD4507A6",
+  "data_quality": {
+    "total_rows": 95,
+    "working_days": 95,
+    "outliers_detected": 1,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 741.7347400000002
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 330.21193410526314,
+    "std_daily_demand": 214.02063439338204,
+    "robust_std_daily": 216.8695329873981,
+    "cv_wd": 0.648131131218164,
+    "non_zero_fraction_wd": 0.8210526315789474,
+    "trend_detected": false,
+    "regime": "erratic",
+    "distribution_type": "gamma-like"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 4.146230468750001,
+    "std_lead_time": 1.6681168066768852,
+    "cv_lead_time": 0.4023212938232511,
+    "stability": "moderate",
+    "effective_lead_time": 4.146230468750001
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 702.3769407762403,
+    "safety_stock": 1156,
+    "safety_stock_robust": 1162
+  },
+  "order_quantity": {
+    "eoq_raw": 2074.0524238053845,
+    "order_quantity": 915
+  },
+  "cost_analysis": {
+    "unit_cost": 31.984684,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 3.83816208
+  },
+  "policy": {
+    "safety_stock": 1156,
+    "reorder_point": 2526,
+    "order_quantity": 915,
+    "review_period_days": 3
+  },
+  "safety_lead_time": {
+    "recommended_days": 3.500782014836256,
+    "sigma_eff_days": 2.127048928983713,
+    "dominant_factor": "transport",
+    "dominant_pct": 0.5,
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.4,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "MAINTAIN",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MD4507A6 exhibits erratic demand with gamma-like characteristics. Lead time is moderate (CV=0.40). Optimized policy achieves $172489.80 annual savings (91.9% reduction) compared to baseline.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Combined variance EOQ with safety stock",
+    "selection_rationale": "Selected due to erratic demand pattern with CV=0.65 and moderate lead time",
+    "boundary_risk": "Capacity constraint active - storage at 100% utilization",
+    "escalation_flag": "none"
+  }
+}

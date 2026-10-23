@@ -1,0 +1,93 @@
+{
+  "material_id": "PL1__M2E62499",
+  "analysis_date": "2026-10-22 06:53:42",
+  "input_parameters": {
+    "unit_cost": 40.324422,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 75.0,
+    "moq": 104,
+    "service_level_target": 0.95,
+    "max_storage_units": 26980.377
+  },
+  "demand_analysis": {
+    "mean": 1636.77,
+    "std_dev": 853.84,
+    "robust_std_dev": 810.47,
+    "median": 1589.2,
+    "min": 0.0,
+    "max": 4004.13,
+    "cv": 0.5217,
+    "non_zero_fraction": 0.9943,
+    "skewness": 0.2481,
+    "kurtosis": -0.2357,
+    "trend_slope": -2.9415,
+    "trend_direction": "decreasing",
+    "n_outliers": 2,
+    "regime": "Erratic",
+    "distribution_type": "Moderate",
+    "annual_demand": 412466.01
+  },
+  "lead_time_analysis": {
+    "mean": 2.6,
+    "std_dev": 1.19,
+    "median": 2.07,
+    "min": 0.09,
+    "max": 5.14,
+    "cv": 0.456,
+    "stability": "Moderate"
+  },
+  "lead_time_demand": {
+    "sigma_ltd": 2382.02,
+    "robust_sigma_ltd": 2378.83,
+    "variance_decomposition": {
+      "demand_variance_pct": 33.45,
+      "leadtime_variance_pct": 66.55,
+      "dominant_factor": "lead_time_variability"
+    }
+  },
+  "inventory_policy": {
+    "z_score": 1.6449,
+    "safety_stock": 3919,
+    "safety_stock_robust": 3913,
+    "eoq_raw": 3575.73,
+    "unconstrained_order_quantity": 3576,
+    "order_quantity": 3576,
+    "reorder_point": 8181,
+    "review_period_days": 3,
+    "recommended_safety_lead_time_days": 2.39,
+    "sigma_effective_days": 1.46
+  },
+  "sap_current_policy": {
+    "safety_stock": 655,
+    "safety_lead_time_days": 3.0,
+    "order_quantity": 104,
+    "average_inventory": 707.0,
+    "annual_ordering_cost": 297451.45,
+    "annual_holding_cost": 3421.12,
+    "total_annual_cost": 300872.57
+  },
+  "recommended_policy": {
+    "safety_stock": 3919,
+    "order_quantity": 3576,
+    "reorder_point": 8181,
+    "review_period_days": 3,
+    "average_inventory": 5707.0,
+    "annual_ordering_cost": 8650.71,
+    "annual_holding_cost": 27615.78,
+    "total_annual_cost": 36266.49
+  },
+  "cost_savings": {
+    "annual_savings": 264606.08,
+    "percentage_savings": 87.95
+  },
+  "feasibility": {
+    "is_feasible": true,
+    "escalation_required": "NO",
+    "message": "Feasible - all constraints satisfied"
+  },
+  "data_summary": {
+    "n_observations": 174,
+    "date_range_start": "2025-03-03",
+    "date_range_end": "2025-12-12"
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "material_id": "PL1__ME7C926E",
+  "data_quality": {
+    "total_rows": 130,
+    "working_days": 130,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 832.3211399999998
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 342.4096252307692,
+    "std_daily_demand": 183.26950959240287,
+    "robust_std_daily": 177.09953519999993,
+    "cv_wd": 0.5352346899386581,
+    "non_zero_fraction_wd": 0.9307692307692308,
+    "trend_detected": false,
+    "regime": "smooth",
+    "distribution_type": "gamma"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 4.0276162790697665,
+    "std_lead_time": 1.5273279091130576,
+    "cv_lead_time": 0.3792138583434803,
+    "stability": "moderate",
+    "effective_lead_time": 5.554944188182824
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 639.3574115823611,
+    "safety_stock": 1052,
+    "safety_stock_robust": 1041
+  },
+  "order_quantity": {
+    "eoq_raw": 3146.268212360759,
+    "order_quantity": 2314
+  },
+  "cost_analysis": {
+    "unit_cost": 14.41263,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.7295156,
+    "previous_policy": {
+      "safety_stock": 208,
+      "order_quantity": 208,
+      "n_orders_per_year": 411.5500303254438,
+      "annual_ordering_cost": 41155.00303254438,
+      "avg_inventory": 312.0,
+      "annual_holding_cost": 539.6088672,
+      "total_annual_cost": 41694.61189974438
+    },
+    "optimized_policy": {
+      "safety_stock": 1052,
+      "order_quantity": 2314,
+      "n_orders_per_year": 36.99326115284888,
+      "annual_ordering_cost": 3699.326115284888,
+      "avg_inventory": 2209.0,
+      "annual_holding_cost": 3820.4999604,
+      "total_annual_cost": 7519.826075684889
+    },
+    "cost_savings": 34174.78582405949,
+    "savings_percentage": 81.9645135592904
+  },
+  "policy": {
+    "safety_stock": 1052,
+    "reorder_point": 2955,
+    "order_quantity": 2314,
+    "review_period_days": 7
+  },
+  "safety_lead_time": {
+    "recommended_days": 3.072343539674148,
+    "sigma_eff_days": 1.5273279091130576,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 1.3996383251733986,
+      "supplier": 0.6998191625866993,
+      "quality": 0.23327305419556646
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization analysis for material PL1__ME7C926E reveals significant opportunities for cost reduction \nand service level improvement. Based on 130 working-day observations spanning March 2025 to March 2026, the \nanalysis identifies a smooth demand pattern (CV=0.54, 93% non-zero fraction) with moderate lead time variability \n(CV=0.38, mean=4.0 days).\n\nThe current SAP policy maintains a safety stock of 208 units with a minimum order quantity of 208, resulting in \n411 orders per year and a total annual cost of $41,694.61. The optimized policy recommends increasing safety \nstock to 1,052 units (reflecting true demand variability) and order quantity to 2,314 units (EOQ-based), reducing \norder frequency to 37 times per year.\n\nThis optimization achieves $34,174.79 in annual cost savings (82.0% reduction), primarily by dramatically reducing \nordering costs from $41,155 to $3,699 while moderately increasing holding costs from $540 to $3,821. The reorder \npoint is set at 2,955 units with a 7-day review period.\n\nThe current 4-day safety lead time can be reduced to 3.1 days based on empirical lead time distribution. Two \nextreme lead time outliers (9201 and 9327 days) were removed from analysis; transport variability dominates \n(60%) the lead time uncertainty. The policy is capacity-feasible (max storage: 3,366 units).\n\nKey risks: Moderate lead time variability requires ongoing supplier performance monitoring. No demand trend \ndetected, supporting static model assumptions.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Normal Approximation for Lead Time Demand",
+    "selection_rationale": "CV of 0.54 and non-zero fraction of 0.93 indicate smooth demand suitable for Normal approximation. Gamma distribution would be alternative for CV > 0.7.",
+    "boundary_risk": "Demand regime classified as 'smooth'. Close to erratic boundary if CV increases. Monitor for intermittency if non-zero fraction drops below 0.8.",
+    "escalation_flag": "None - standard optimization applicable"
+  }
+}

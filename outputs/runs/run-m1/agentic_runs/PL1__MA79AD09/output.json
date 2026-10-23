@@ -1,0 +1,122 @@
+{
+  "material_id": "PL1__MA79AD09",
+  "data_quality": {
+    "total_rows": 221,
+    "missing_demand": 0,
+    "missing_lead_time": 0,
+    "negative_demand": 0,
+    "zero_demand": 0,
+    "outliers_detected": 6
+  },
+  "inputs": {
+    "unit_cost": 1.31087,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 75.0,
+    "moq": 1171,
+    "service_level_target": 0.95,
+    "sap_safety_stock": 3943,
+    "sap_safety_lead_time_days": 3.0,
+    "max_storage_units": 95135.835
+  },
+  "demand_analysis": {
+    "mean": 5672.68,
+    "std": 2886.75,
+    "robust_std": 3094.43,
+    "cv": 0.5089,
+    "skewness": 0.2237,
+    "winsorization_bounds": {
+      "lower": 157.73,
+      "upper": 12214.3
+    },
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "trend_slope": -3.267858,
+    "trend_p_value": 0.284011,
+    "trend_direction": "decreasing",
+    "regime": "intermittent",
+    "distribution_type": "highly_variable"
+  },
+  "lead_time_analysis": {
+    "mean": 2.38,
+    "std": 1.25,
+    "cv": 0.5224,
+    "min": 0.09,
+    "max": 5.88,
+    "p95": 4.2,
+    "effective_lead_time": 4.43,
+    "stability": "volatile"
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 8353.85,
+    "sigma_ltd_robust": 8529.27,
+    "z_score": 1.6449,
+    "safety_stock": 13741,
+    "safety_stock_robust": 14030,
+    "sap_safety_stock": 3943,
+    "variance_components": {
+      "demand_variance_contribution": 19868264.48,
+      "leadtime_variance_contribution": 49918538.19
+    }
+  },
+  "order_quantity_analysis": {
+    "annual_demand": 1418169.09,
+    "eoq_raw": 36773.86,
+    "eoq_rounded": 36774,
+    "moq": 1171,
+    "unconstrained_order_quantity": 36774,
+    "capacity_constraint": 95135.84,
+    "order_quantity": 36774,
+    "feasible": true,
+    "utilization_pct": 53.1
+  },
+  "cost_analysis": {
+    "annual_holding_cost_per_unit": 0.1573,
+    "optimized_policy": {
+      "safety_stock": 13741,
+      "order_quantity": 36774,
+      "annual_ordering_cost": 2892.33,
+      "annual_holding_cost": 5053.88,
+      "total_annual_cost": 7946.21
+    },
+    "sap_policy": {
+      "safety_stock": 3943,
+      "order_quantity": 1171,
+      "annual_ordering_cost": 90830.64,
+      "annual_holding_cost": 712.35,
+      "total_annual_cost": 91542.99
+    },
+    "savings": {
+      "annual_cost_savings": 83596.79,
+      "savings_percentage": 91.32
+    }
+  },
+  "safety_lead_time_analysis": {
+    "recommended_safety_days": 2.42,
+    "sap_safety_lead_time_days": 3.0,
+    "difference_days": -0.58,
+    "comparison_action": "decrease",
+    "sigma_eff_days": 1.47,
+    "variance_split": {
+      "transport": 0.5,
+      "supplier": 0.3,
+      "quality": 0.2
+    },
+    "disruption_premium": 1.0
+  },
+  "policy": {
+    "safety_stock": 13741,
+    "reorder_point": 27266,
+    "order_quantity": 36774,
+    "review_period_days": 7,
+    "service_level_target": 0.95
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MA79AD09 exhibits intermittent demand with a coefficient of variation of 0.51. \nThe analysis reveals significant variability in both demand (CV=0.51) and lead time (CV=0.52), \nnecessitating a substantial safety stock buffer of 13,741 units to achieve the 95.0% service level target. \n\nThe current SAP policy maintains only 3,943 units of safety stock with a 1,171-unit order quantity, \nresulting in extremely high ordering costs of $90,830.64 per year due to frequent small orders. \nThe optimized policy balances ordering and holding costs through an EOQ-based order quantity of 36,774 units, \nachieving annual cost savings of $83,596.79 (91.3% reduction).\n\nThe decreasing demand trend and highly_variable distribution pattern require continuous monitoring. \nLead time variability (mean=2.38 days, std=1.25 days) contributes significantly to safety stock requirements, \naccounting for 49,918,538 units of variance versus 19,868,264 from demand variability.",
+  "research_insights": {
+    "demand_variability_driver": "Lead time variance contributes 71.5% of total lead time demand variance, significantly exceeding demand variance contribution.",
+    "cost_optimization_lever": "Order quantity optimization from 1171 to 36774 units reduces annual ordering cost by $87,938.31.",
+    "service_level_risk": "Current SAP safety stock of 3943 units is insufficient for the target service level, requiring 9,798 additional units.",
+    "capacity_utilization": "Recommended policy utilizes 53.1% of available storage capacity (50,515 / 95,136 units).",
+    "lead_time_stability": "Lead time classified as volatile with CV of 0.522, requiring robust buffer management."
+  }
+}

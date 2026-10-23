@@ -1,0 +1,97 @@
+{
+  "material_id": "PL1__M9B1EC3D",
+  "parameters": {
+    "unit_cost": 2.763361,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 50.0,
+    "moq": 227,
+    "service_level_target": 0.95,
+    "max_storage_units": 4872.413
+  },
+  "data_quality": {
+    "total_rows": 173,
+    "working_days": 173,
+    "lead_time_observations": 67,
+    "demand_date_range_start": "2025-03-04",
+    "demand_date_range_end": "2026-03-06"
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 525.96,
+    "std_daily_demand": 288.78,
+    "robust_std_daily": 319.14,
+    "cv_wd": 0.549,
+    "non_zero_fraction_wd": 0.9538,
+    "demand_regime": "continuous",
+    "distribution_type": "moderate-variability",
+    "trend_detected": false,
+    "trend_slope_per_day": 1.6597,
+    "annual_demand": 131489.06
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.556,
+    "std_lead_time": 0.681,
+    "cv_lead_time": 1.226,
+    "stability": "unstable",
+    "effective_lead_time": 1.237
+  },
+  "buffer_analysis": {
+    "z_score": 1.645,
+    "sigma_ltd": 418.08,
+    "safety_stock": 688,
+    "safety_stock_robust": 708,
+    "sap_safety_stock": 113
+  },
+  "order_quantity": {
+    "eoq_raw": 6297.02,
+    "unconstrained_order_quantity": 6298,
+    "order_quantity": 4184,
+    "capacity_constrained": true
+  },
+  "recommended_policy": {
+    "selected_model": "(r,Q) continuous review",
+    "safety_stock": 688,
+    "reorder_point": 981,
+    "order_quantity": 4184,
+    "review_period_days": 8,
+    "peak_inventory": 4872,
+    "capacity_utilization_pct": 100.0
+  },
+  "cost_analysis": {
+    "annual_holding_cost_per_unit": 0.3316,
+    "optimized": {
+      "num_orders_per_year": 31.43,
+      "annual_ordering_cost": 1571.33,
+      "annual_holding_cost": 921.86,
+      "total_annual_cost": 2493.19
+    },
+    "sap_previous": {
+      "num_orders_per_year": 579.25,
+      "annual_ordering_cost": 28962.35,
+      "annual_holding_cost": 75.11,
+      "total_annual_cost": 29037.46
+    },
+    "cost_savings": 26544.27,
+    "cost_savings_pct": 91.4
+  },
+  "safety_lead_time": {
+    "variance_demand": 0.1675,
+    "variance_lead_time": 0.4643,
+    "total_variance": 0.6319,
+    "dominant_factor": "lead_time",
+    "dominant_pct": 73.5,
+    "sigma_eff_days": 0.795,
+    "recommended_days": 1.4,
+    "sap_safety_lead_time_days": 3.0,
+    "comparison_action": "reduce",
+    "disruption_premium": 1.0
+  },
+  "narrative": {
+    "selection_rationale": "The demand regime is classified as 'continuous' with 95.4% of days having positive demand. The coefficient of variation is 0.549, indicating moderate-variability. A continuous review (r,Q) policy is appropriate given the regular demand pattern.",
+    "boundary_risk": "CRITICAL: Peak inventory (4872 units) is at 100.0% of maximum storage capacity (4872 units). The policy is capacity-constrained and order quantity has been reduced from EOQ to fit within storage limits. Any increase in demand variability or safety stock requirements may breach capacity.",
+    "escalation_flag": "none"
+  },
+  "warnings": [
+    "Recommended safety stock (688) is significantly higher than SAP (113)",
+    "Order quantity (4184) constrained below 70% of EOQ (6297)"
+  ]
+}

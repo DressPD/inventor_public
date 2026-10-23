@@ -1,0 +1,115 @@
+{
+  "material_id": "PL1__M87A8DFA",
+  "timestamp": "2026-10-22T09:38:00.980875",
+  "input_parameters": {
+    "unit_cost": 4.468523,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 50.0,
+    "minimum_order_quantity": 315,
+    "service_level_target": 0.95,
+    "sap_safety_stock": 133,
+    "sap_safety_lead_time_days": 3.0,
+    "max_storage_units": 9770.952
+  },
+  "data_quality": {
+    "total_rows": 172,
+    "working_days": 172,
+    "date_range_start": "2025-03-04",
+    "date_range_end": "2026-03-06",
+    "lead_time_observations": 58
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1011.91,
+    "std_daily_demand": 634.8,
+    "robust_std_daily": 634.2,
+    "cv_wd": 0.6273,
+    "non_zero_fraction_wd": 0.9186,
+    "annual_demand": 252977.8,
+    "trend_detected": false,
+    "trend_slope": -4.3673,
+    "regime": "intermittent",
+    "distribution_type": "Negative Binomial approximation",
+    "outliers_count": 0
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.7295,
+    "std_lead_time": 0.9459,
+    "cv_lead_time": 1.2966,
+    "stability": "volatile",
+    "effective_lead_time": 1.6754
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1100.03,
+    "z_score": 1.6449,
+    "safety_stock": 1810,
+    "safety_stock_robust": 1809,
+    "reorder_point": 3506
+  },
+  "order_quantity_analysis": {
+    "eoq_raw": 6868.61,
+    "unconstrained_order_quantity": 6869,
+    "order_quantity": 6869,
+    "capacity_cap_binds": false,
+    "review_period_days": 7
+  },
+  "cost_analysis": {
+    "previous_policy": {
+      "safety_stock": 133,
+      "order_quantity": 6869,
+      "orders_per_year": 36.83,
+      "annual_ordering_cost": 1841.45,
+      "avg_inventory": 3567.5,
+      "annual_holding_cost": 1912.97,
+      "total_annual_cost": 3754.42
+    },
+    "optimized_policy": {
+      "safety_stock": 1810,
+      "order_quantity": 6869,
+      "orders_per_year": 36.83,
+      "annual_ordering_cost": 1841.45,
+      "avg_inventory": 5244.5,
+      "annual_holding_cost": 2812.22,
+      "total_annual_cost": 4653.67
+    },
+    "cost_savings": -899.25,
+    "cost_savings_pct": -23.95
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.5558,
+    "sap_days": 3.0,
+    "comparison_action": "reduce",
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.3,
+      "quality": 0.2
+    },
+    "dominant_factor": "transport",
+    "dominant_pct": 50.0,
+    "disruption_premium": 1.0
+  },
+  "capacity_gate": {
+    "total_required": 8679,
+    "max_storage_units": 9770.952,
+    "utilization_pct": 88.82,
+    "capacity_feasible": true,
+    "escalation_flag": false,
+    "boundary_risk": false
+  },
+  "narratives": {
+    "executive_summary": "Material PL1__M87A8DFA exhibits intermittent demand with a coefficient of variation of 0.63, indicating moderate demand variability. \nThe analysis reveals volatile lead times (CV=1.30) averaging 0.73 days with high uncertainty. \nGiven the 95% service level target, the recommended safety stock is 1810 units (vs. current SAP value of 133 units).\nThe optimized order quantity is 6869 units based on EOQ methodology. Current inventory policy has higher risk exposure due to inadequate safety buffer.",
+    "demand_insight": "The demand pattern is classified as intermittent with 91.9% of days having positive demand. \nMean daily demand is 1011.91 units with standard deviation of 634.80 units. \nThe robust analysis (winsorized) shows consistent volatility. No significant trend was detected (slope=-4.3673), \nsuggesting stable baseline demand with intermittent spikes. The Negative Binomial approximation is appropriate for this variability profile.",
+    "lead_time_insight": "Lead time performance is highly volatile with mean 0.73 days and CV of 1.30. \nThis volatile pattern requires substantial buffer protection. The effective lead time (mean + 1 std dev) is 1.68 days, \nwhich should be used for safety stock calculations. Transport variability (50% contribution) is the dominant risk factor, \nfollowed by supplier performance (30%) and quality issues (20%).",
+    "buffer_strategy": "The recommended safety stock of 1810 units is calculated using combined variance methodology, \naccounting for both demand and lead time uncertainty. This represents a 1260.9% increase from \ncurrent SAP levels, necessary to achieve the 95% service level given the volatile lead time profile. \nThe reorder point is set at 3506 units (demand during lead time + safety stock).",
+    "cost_narrative": "While the optimized policy increases holding costs due to higher safety stock requirements, \nit significantly reduces stockout risk. The additional holding cost of $899.25 per year \nis offset by improved service level performance. The EOQ-based order quantity of 6869 units balances ordering frequency \n(approximately 36.8 orders per year) against inventory carrying costs.",
+    "research_insight": "Recent supply chain research (Silver et al., 2017; Chopra & Meindl, 2021) emphasizes that intermittent demand with volatile lead times \nrequires robust buffer strategies beyond traditional normal approximations. The combined variance formula used here accounts for lead time-demand \ninteraction effects, critical for achieving target service levels. Industry best practices suggest periodic review of safety stock policies, \nespecially for materials with CV > 0.5, as demand regime shifts can occur.",
+    "management_action": "RECOMMENDED ACTIONS: (1) Increase safety stock from 133 to 1810 units immediately to meet service level targets. \n(2) Implement lead time performance tracking and work with suppliers to reduce variability (target CV < 0.6). \n(3) Maintain order quantity at 6869 units with review period of 7 days. \n(4) Monitor inventory position weekly due to intermittent demand pattern. \n(5) Consider supplier development initiatives focused on transport reliability (50% of lead time variance).",
+    "diagnostic_notes": "Data quality: 172 observations over 367 calendar days. \nLead time observations: 58 samples. No outliers detected beyond 3-sigma bounds. \nCapacity constraint: 9771 units available, current policy requires 8679 units (88.8% utilization). \nAdequate capacity buffer maintained."
+  },
+  "recommended_policy": {
+    "safety_stock": 1810,
+    "reorder_point": 3506,
+    "order_quantity": 6869,
+    "review_period_days": 7,
+    "service_level_target": 0.95
+  }
+}

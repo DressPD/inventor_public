@@ -1,0 +1,74 @@
+{
+  "material_id": "PL2__M9645ED4",
+  "data_quality": {
+    "total_rows": 97,
+    "working_days": 97,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": -417.525,
+      "upper_bound": 1273.451
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 403.93890721649484,
+    "std_daily_demand": 251.2885735892967,
+    "robust_std_daily": 313.3758339510749,
+    "cv_wd": 0.6220954929073377,
+    "non_zero_fraction_wd": 0.9381443298969072,
+    "trend_detected": true,
+    "regime": "regular",
+    "distribution_type": "high-variance"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.3619999999999994,
+    "std_lead_time": 1.0035237914469193,
+    "cv_lead_time": 0.7368016089918646,
+    "stability": "unstable",
+    "effective_lead_time": 2.3655237914469187
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 500.3232728506407,
+    "safety_stock": 823,
+    "safety_stock_robust": 899
+  },
+  "order_quantity": {
+    "eoq_raw": 6915.962452278641,
+    "order_quantity": 6916
+  },
+  "cost_analysis": {
+    "unit_cost": 2.639128,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.31669536
+  },
+  "policy": {
+    "safety_stock": 823,
+    "reorder_point": 1779,
+    "order_quantity": 6916,
+    "review_period_days": 18
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.0373341990439533,
+    "sigma_eff_days": 1.2386112451962636,
+    "dominant_factor": "transport",
+    "dominant_pct": 0.6,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "DECREASE safety lead time from 3.0 to 2.0 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL2__M9645ED4 exhibits regular demand with high-variance characteristics. Mean daily demand is 403.9 units with CV of 0.62. Lead time is unstable (mean 1.36 days, CV 0.74). Recommended safety stock is 823 units to achieve 95.0% service level. Optimal order quantity is 6916 units (EOQ: 6916, constrained by MOQ: 1878). This policy yields annual cost of $2,450.89, saving $1,879.42 (43.4%) compared to previous policy. Recommended safety lead time is 2.0 days vs current 3.0 days.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with safety stock",
+    "selection_rationale": "Classic EOQ model suitable for regular demand pattern with unstable lead time",
+    "boundary_risk": "None - capacity constraints satisfied",
+    "escalation_flag": ""
+  }
+}

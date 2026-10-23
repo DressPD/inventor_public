@@ -11,7 +11,7 @@
 \usepackage{xcolor}
 \usepackage[margin=1in]{geometry}
 \usepackage{etoolbox}
-\setstretch{2}
+\setstretch{1.85}
 \AtBeginEnvironment{table}{\singlespacing}
 \AtBeginEnvironment{thebibliography}{\singlespacing\footnotesize}
 \newcolumntype{L}{>{\raggedright\arraybackslash}X}
@@ -178,7 +178,7 @@ The evaluation addresses the requirements of Table~\ref{tab:requirements}. The p
 \subsection{Industrial application and data}\label{subsec:data}
 The data come from a large manufacturer, and the evaluation is retrospective. The dataset contains 233{,}078 daily records for 411 plant-material pairs from three plants (A, B and C), with a data cutoff on 10 March 2026 and a post-cutoff horizon observed to 27 August 2026. Of the 411 pairs, 365 are eligible for scoring (234 in Plant A, 65 in Plant B, 66 in Plant C) and are sent to the LLM. For 19 pairs (all in Plant A) the MOQ plus the reference safety stock exceeds the storage limit, so no comparator can satisfy both rules; these are excluded from outcome comparison, leaving a \emph{common-feasible cohort} of 346 pairs (215, 65 and 66). Demand is concentrated (the five largest materials account for 40.3\% of demand). The source working-day flag of Plant C is all zero; we reconstruct it from the same-date majority of Plants A and B and test this repair in Section~\ref{subsec:sensitivity}. Data quality is a known threat to decision support \cite{watts2009data} and inventory records \cite{dehoratius2008inventory, kang2005information, mersereau2013information}.
 
-Each pair is sent as a material-scoped CSV with daily demand, recorded lead times, a working-day flag, the minimum order quantity, unit cost, holding-cost rate, ordering cost, service-level target, the storage limit, and two \emph{ERP planning parameters} (current safety stock and safety lead time), which are withheld in the ablation arm. The CSV also carries supplier and lane context fields that the prompt does not use.
+Each pair is sent as a material-scoped CSV with daily demand, recorded lead times, a working-day flag, the minimum order quantity, unit cost, holding-cost rate, ordering cost, service-level target, the storage limit, and two \emph{ERP planning parameters} (current safety stock and safety lead time), which are withheld in the ablation arm. The CSV also carries supplier and lane context fields that the prompt does not use. A masked version of the panel is released for replication (Section~\ref{subsec:masked}); there the plants are labelled PL1, PL2 and PL3 (corresponding to A, B and C).
 
 \subsection{Reference arms and information content}
 \label{subsec:arms}
@@ -222,7 +222,7 @@ To examine run-to-run variation, the entire cohort is generated three times (run
 \label{sec:results}
 
 \subsection{Completion and policy characteristics}\label{subsec:completion}
-All four runs (three with the full input and one ablation, Section~\ref{subsec:ablation}) return a valid, storage-feasible $(r,Q)$ policy for all 365 pairs after at most three attempts per pair. The validity gate rejects non-positive reorder points and order quantities, negative safety stocks and reorder points below the safety stock. The ERP safety stock is zero for 198 of the 365 pairs (188 of the 346 in the cohort below), so for a majority of pairs the SAP-derived arm holds no safety stock at all.
+All four runs (three with the full input and one ablation, Section~\ref{subsec:ablation}) of the original data return a valid, storage-feasible $(r,Q)$ policy for all 365 pairs after at most three attempts per pair. The validity gate rejects non-positive reorder points and order quantities, negative safety stocks and reorder points below the safety stock. The ERP safety stock is zero for 198 of the 365 pairs (188 of the 346 in the cohort below), so for a majority of pairs the SAP-derived arm holds no safety stock at all.
 
 \subsection{Headline comparison with ERP-derived parameters}\label{subsec:headline}
 Unless stated otherwise, all results use the hard-limit replay on the 346-pair common-feasible cohort with working-day receipts and no shortage penalty (Section~\ref{subsec:capacity} gives the unconstrained simulation). Table~\ref{tab:backtest-results} compares all arms; its last columns give the LLM cost relative to each arm in the three runs (positive: the LLM costs more). In run~1 the LLM policies cost 11.4\% less than SAP-derived policies and 30.5\% less than the SLT-informed OR (mean 2{,}928 versus 3{,}305 and 4{,}211), at a mean fill 0.18 points lower than SAP-derived (98.11\% versus 98.30\%; interval $-0.54$ to $+0.10$). The mean cost difference against SAP-derived is $-377$ (95\% interval $-651$ to $-154$); the LLM is cheaper in 241 of 346 pairs and, in 226, simultaneously no more expensive and no worse in fill. It incurs more stockout days (910 versus 804).
@@ -350,6 +350,35 @@ Aggregate results are very similar across the three runs (Figure~\ref{fig:stabil
 \end{figure}
 
 
+\subsection{Replication on the masked release}
+\label{subsec:masked}
+The raw data cannot be shared, so we publish a masked release of the panel (see Data and Code Availability): all quantities and prices are multiplied by secret per-pair factors, identifiers are replaced by pseudonyms, and dates and plant structure are unchanged. We repeated the generation three times on the masked panel with the unchanged prompt file (runs m1--m3), and scored the output with the same replay as above. Run m1 produced 364 and runs m2 and m3 all 365 of the 365 policies (one pair failed all three attempts in m1); 340, 342 and 342 policies were scorable, and 5, 4 and 4 were rejected by the validity gate. Table~\ref{tab:masked} reports the replication.
+
+\begin{table}[htbp]
+\centering
+\caption{Replication on the masked release: hard-limit replay, working-day receipts, zero shortage penalty. Cost is the mean material-horizon holding-plus-ordering cost in masked currency units; the last rows show the LLM cost relative to each arm (\%). Ratios to the original runs use the same pairs.}
+\label{tab:masked}
+\scriptsize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{l r r r}
+\hline
+\textbf{Quantity} & \textbf{m1} & \textbf{m2} & \textbf{m3} \\
+\hline
+Scored pairs & 340 & 342 & 342 \\
+LLM mean cost & 2{,}892 & 2{,}947 & 2{,}903 \\
+LLM mean fill (\%) & 98.34 & 98.27 & 98.27 \\
+LLM vs ERP-derived & $-12.1$ & $-10.9$ & $-12.2$ \\
+LLM vs history-only code & $+5.1$ & $+6.4$ & $+5.0$ \\
+LLM vs Croston/SBA code & $+7.4$ & $+8.7$ & $+7.2$ \\
+LLM vs empirical-quantile code & $+17.0$ & $+18.1$ & $+16.5$ \\
+LLM vs simulation-tuned code & $-11.2$ & $-10.1$ & $-11.3$ \\
+Cost ratio to original run 1 & 0.991 & 1.004 & 0.991 \\
+\hline
+\end{tabular}
+\end{table}
+
+The masked runs reproduce the original findings: the LLM is about 11--12\% cheaper than the ERP-derived parameters, and 5--6\%, 7--9\% and 16--18\% costlier than history-only, Croston/SBA and empirical-quantile code. Mean costs are within 1\% of the original runs. By plant, the LLM is 13--16\% (PL1) and 21--23\% (PL2) cheaper than the ERP-derived parameters but 37--42\% costlier in PL3, close to the original figures of $-14.1\%$, $-22.7\%$ and $+36.2\%$ in Plants A, B and C (plants PL1, PL2 and PL3 correspond to A, B and C). The sign against the simulation-tuned arm differs by plant (about 48--60\% costlier in PL1 and PL3, about 52\% cheaper in PL2), so its pooled difference depends on the plant mix and is not a stable result.
+
 \subsection{Sensitivity analyses}
 \label{subsec:sensitivity}
 \paragraph{Plant C calendar.} Plant C's working-day flag required reconstruction, so we re-scored all policies under four alternatives (any-plant, strict-all, exclusion of Plant C, calendar-day arrivals). Where Plant C can be scored, the LLM remains 31--35\% more expensive than SAP-derived there, so the Plant C result is not an artefact of the repair.
@@ -423,7 +452,7 @@ This research did not receive any specific grant from funding agencies in the pu
 The author declares no known competing financial interests or personal relationships that could have appeared to influence the work reported in this paper.
 
 \section*{Data and Code Availability}
-The raw operational data and material-level artifacts cannot be publicly released because they contain commercially sensitive material, supplier and planning information. A confidentiality-screened release package containing analysis code, the anonymized variable schema, aggregate evaluation results, manuscript sources and prompt files is available at \texttt{github.com/DressPD/inventor\_public}. A versioned Zenodo archive of the release is available at \texttt{https://doi.org/10.5281/zenodo.22262052}. Supplementary File S1 contains the system prompt used for all runs; the prompt file, the runner code and, for each call, a hash of the input, the UTC time, the session identifier and the raw response are in the release. The model identifier and inference settings are not exposed by the platform and are operator-declared (Anthropic Claude Sonnet 4.6).
+The raw operational data and material-level artifacts cannot be publicly released because they contain commercially sensitive material, supplier and planning information. The company approved the release of a \emph{masked panel} of the same 233{,}078 records in which identifiers are pseudonymized and quantities and prices are multiplied by secret per-pair factors (the factors are not released). The panel, the frozen outputs of the original runs rescaled to it, the three masked re-runs (Section~\ref{subsec:masked}), the analysis code, the aggregate evaluation results, manuscript sources and prompt files are available at \texttt{github.com/DressPD/inventor\_public}. A versioned Zenodo archive of the release is available at \texttt{https://doi.org/10.5281/zenodo.22262051}. Supplementary File S1 contains the system prompt used for all runs; the prompt file and, for each call of the masked runs, a hash of the input, the UTC time and a hashed session identifier are in the release. The runner code hash was re-stamped for 38 records of run m1 after a change that only affected authentication handling (stop on an expired token); prompt, input, model settings and call logic are unchanged, and the original hash is kept in each amended record. The model identifier and inference settings are not exposed by the platform and are operator-declared (Anthropic Claude Sonnet 4.6).
 
 \section*{Acknowledgments}
 The author thanks the industrial collaborators and material-control experts who contributed domain knowledge and access to anonymized operational data, and the enterprise data and IT teams for supporting data access and prototype execution. Any errors or omissions remain the responsibility of the author.

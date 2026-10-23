@@ -1,0 +1,93 @@
+{
+  "material_id": "PL1__MC7BAB87",
+  "data_quality": {
+    "total_rows": 227,
+    "working_days": 227,
+    "outliers_detected": 6,
+    "winsorisation": {
+      "lower_bound": 27.54166000000002,
+      "upper_bound": 890.98498
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 541.3843785022027,
+    "std_daily_demand": 183.53774488765026,
+    "robust_std_daily": 145.5438767999999,
+    "cv_wd": 0.33901559072581094,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "regular",
+    "distribution_type": "approximately_normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.8881428571428571,
+    "std_lead_time": 0.9686585567608027,
+    "cv_lead_time": 1.0906562485645197,
+    "stability": "unstable",
+    "effective_lead_time": 1.8568014139036597
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 552.2054455418069,
+    "safety_stock": 909,
+    "safety_stock_robust": 892
+  },
+  "order_quantity": {
+    "eoq_raw": 1987.4645336303693,
+    "order_quantity": 1798
+  },
+  "cost_analysis": {
+    "unit_cost": 28.553918,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 3.4264701599999996,
+    "previous_policy": {
+      "avg_inventory": 534.0,
+      "annual_orders": 126.72855302017854,
+      "annual_ordering_cost": 6336.427651008927,
+      "annual_holding_cost": 1829.7350654399997,
+      "total_annual_cost": 8166.162716448926
+    },
+    "optimized_policy": {
+      "avg_inventory": 1808.0,
+      "annual_orders": 75.2759146971917,
+      "annual_ordering_cost": 3763.7957348595846,
+      "annual_holding_cost": 6195.058049279999,
+      "total_annual_cost": 9958.853784139585
+    },
+    "savings": -1792.6910676906582,
+    "savings_pct": -21.95267385597986
+  },
+  "policy": {
+    "safety_stock": 909,
+    "reorder_point": 1915,
+    "order_quantity": 1798,
+    "review_period_days": 4
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.679028867650088,
+    "sigma_eff_days": 1.0199877711092105,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MC7BAB87 exhibits regular demand patterns with moderate variability (CV=0.339) across 227 working days. Lead times are highly unstable (CV=1.091), ranging from near-zero to 3.57 days, which is the primary driver of safety stock requirements. A stochastic (r,Q) policy is recommended: set safety stock to 909 units (up from the current SAP value of 0) to achieve the 95% service level target, and order 1,798 units per replenishment cycle \u2014 capped from the unconstrained EOQ of 1,987 due to the 2,707.8-unit storage limit. The safety lead time in SAP can be marginally reduced from 1.8 to 1.68 days.",
+  "warnings": [
+    "Optimized policy increases total annual cost by $1792.69 (22.0%) due to safety stock requirements.",
+    "Storage capacity constraint is binding: EOQ capped from 1987 to 1798 units. Any increase in safety stock would require capacity expansion."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Stochastic EOQ with Safety Stock (r,Q) continuous-review",
+    "selection_rationale": "Regular demand regime (CV=0.339, 100% non-zero days) with unstable lead times (CV=1.091) is the canonical fit for a continuous-review reorder-point model. Safety stock is computed from the joint demand-lead-time variance formula at z=1.645 (95th percentile). EOQ minimises total ordering plus holding cost subject to the storage capacity constraint.",
+    "boundary_risk": "Storage capacity is fully consumed at the recommended policy (909 SS + 1798 OQ = 2707 units vs. 2707.8 limit). A service level increase or demand spike would breach capacity. Recommend reviewing warehouse allocation for this material.",
+    "escalation_flag": "No MOQ-capacity infeasibility (MOQ 1068 < remaining storage 1798). However, zero headroom above capacity \u2014 flag for facility planning review."
+  }
+}

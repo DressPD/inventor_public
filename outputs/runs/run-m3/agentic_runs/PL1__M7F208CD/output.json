@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__M7F208CD",
+  "data_quality": {
+    "total_rows": 213,
+    "working_days": 213,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 5854.396
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 2690.2598,
+    "std_daily_demand": 1372.8213,
+    "robust_std_daily": 1311.1186,
+    "cv_wd": 0.5103,
+    "non_zero_fraction_wd": 0.9718,
+    "trend_detected": true,
+    "regime": "High Variability",
+    "distribution_type": "Approximately Normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.3253,
+    "std_lead_time": 1.2384,
+    "cv_lead_time": 0.5326,
+    "stability": "Moderate Variability",
+    "effective_lead_time": 4.3625
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 3934.7265,
+    "safety_stock": 6473.0,
+    "safety_stock_robust": 6473.0
+  },
+  "order_quantity": {
+    "eoq_raw": 23272.0,
+    "order_quantity": 23272
+  },
+  "cost_analysis": {
+    "unit_cost": 1.552369,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.18628428
+  },
+  "policy": {
+    "safety_stock": 6473,
+    "reorder_point": 12729,
+    "order_quantity": 23272,
+    "review_period_days": 0
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.41,
+    "sigma_eff_days": 1.2384,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 65.0,
+    "variance_components": {
+      "transport": 0.65,
+      "supplier": 0.25,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Reduce SAP safety lead time from 3.0 to 2.41 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M7F208CD exhibits high-variability demand (CV=0.51) with a statistically significant downward trend (-5.30 units/day, p=0.0005) over 213 working days. Lead times average 2.33 days with moderate variability (CV=0.53), making combined lead-time-demand uncertainty the dominant driver of safety stock requirements. The current SAP safety stock of 1,965 units is insufficient for the 95% service level; the optimised (r,Q) policy raises safety stock to 6,473 units, increasing total annual inventory cost by ~18% but securing robust stockout protection. Capacity utilisation reaches 95.1%, requiring monitoring and a quarterly policy review given the declining demand trajectory.",
+  "warnings": [
+    "Safety stock increase exceeds 100% above SAP baseline \u2014 management escalation required",
+    "High capacity utilisation: 95.1% (29,745 of 31,286 max units) \u2014 monitor storage availability",
+    "Statistically significant declining demand trend detected \u2014 quarterly policy recalibration recommended"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) Continuous-Review Reorder-Point / Fixed-Order-Quantity",
+    "selection_rationale": "With 97.2% non-zero demand days and high CV=0.51, demand is near-continuous and highly variable. An (r,Q) policy minimises total inventory cost via EOQ while the reorder point absorbs combined demand and lead-time uncertainty through the closed-form Normal safety stock formula. No simulation or ML is required.",
+    "boundary_risk": "High capacity utilisation (95.1%) leaves minimal buffer for demand spikes or supplier early deliveries. If safety stock is further increased (e.g., to address the declining trend), the MOQ constraint (1,273 units) combined with the current safety stock would consume 98.2% of capacity. Any upward revision of safety stock beyond ~1,500 additional units would breach the storage limit and require a capacity escalation.",
+    "escalation_flag": "Safety stock increase of +229% over SAP baseline (1,965 \u2192 6,473 units) requires formal management approval. Additionally, the declining demand trend (p=0.0005) should be reviewed against business context to confirm whether demand is structurally declining or seasonally suppressed."
+  }
+}

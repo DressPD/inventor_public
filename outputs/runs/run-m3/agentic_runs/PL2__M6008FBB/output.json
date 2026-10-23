@@ -1,0 +1,78 @@
+{
+  "material_id": "PL2__M6008FBB",
+  "data_quality": {
+    "total_rows": 221,
+    "working_days": 221,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 373998.7934
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 168593.32,
+    "std_daily_demand": 103032.1,
+    "robust_std_daily": 102869.57,
+    "cv_wd": 0.6111,
+    "non_zero_fraction_wd": 0.9683,
+    "trend_detected": true,
+    "regime": "erratic",
+    "distribution_type": "normal-like"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.0437,
+    "std_lead_time": 0.8188,
+    "cv_lead_time": 0.7845,
+    "stability": "variable",
+    "effective_lead_time": 1.8624
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 173589.08,
+    "safety_stock": 285529.0,
+    "safety_stock_robust": 285364.0
+  },
+  "order_quantity": {
+    "eoq_raw": 66937.3,
+    "order_quantity": 66938
+  },
+  "cost_analysis": {
+    "unit_cost": 11.758556,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.411
+  },
+  "policy": {
+    "safety_stock": 285529,
+    "reorder_point": 461485,
+    "order_quantity": 66938,
+    "review_period_days": 1
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.35,
+    "sigma_eff_days": 0.8188,
+    "dominant_factor": "transport_uncertainty",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.4,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease from 5.0 to 1.35 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL2__M6008FBB exhibits erratic demand (CV=0.61) with a strong statistically significant upward trend over the ~12-month observation window. Lead times are variable (CV=0.78) but short (mean ~1.04 days), keeping the demand-during-lead-time sigma at 173,589 units. An (r,Q) continuous-review policy with EOQ-based order quantity is recommended because demand is nearly continuous (96.8% non-zero days) and the short, variable lead times make a fixed reorder-point trigger practical and cost-efficient.",
+  "warnings": [
+    "High demand variability (CV=0.611) \u2014 consider dynamic safety stock",
+    "Variable lead times (CV=0.784) \u2014 monitor supplier delivery performance",
+    "Statistically significant upward demand trend \u2014 review policy quarterly"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review with EOQ",
+    "selection_rationale": "Demand is nearly continuous (96.8% active days) with erratic but non-intermittent variability, making a continuous-review reorder-point model appropriate. EOQ balances the relatively low ordering cost against the unit holding cost; the MOQ (24,719) is well below the EOQ (66,938) so it does not bind.",
+    "boundary_risk": "Storage capacity (4,490,135 units) is far above the maximum post-replenishment inventory level (352,467 units), so no capacity risk exists. The growing demand trend is the primary boundary risk \u2014 if mean demand rises materially, the reorder point will need upward revision to avoid stockouts.",
+    "escalation_flag": "none"
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__M26EDEC5",
+  "data_quality": {
+    "total_rows": 131,
+    "working_days": 131,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 461.9468,
+      "upper_bound": 1936.5250999999955
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1188.474227480916,
+    "std_daily_demand": 272.73012260939043,
+    "robust_std_daily": 254.68222222222232,
+    "cv_wd": 0.2294792064506673,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": true,
+    "regime": "moderate_variability",
+    "distribution_type": "non_normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.2631297709923666,
+    "std_lead_time": 1.2970748652667934,
+    "cv_lead_time": 0.5731332254526593,
+    "stability": "unstable",
+    "effective_lead_time": 2.2631297709923666
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1595.2056937978139,
+    "safety_stock": 2623.879871176973,
+    "safety_stock_robust": 2612.7500274517038
+  },
+  "order_quantity": {
+    "eoq_raw": 13784.63340391887,
+    "order_quantity": 13785
+  },
+  "cost_analysis": {
+    "unit_cost": 2.032744,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.24392928
+  },
+  "policy": {
+    "safety_stock": 2624,
+    "reorder_point": 5314,
+    "order_quantity": 13785,
+    "review_period_days": 11.598905286502188
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.133498296561677,
+    "sigma_eff_days": 1.2970748652667934,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 1.009441923664122,
+      "supplier": 0.504720961832061,
+      "quality": 0.16824032061068703
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization analysis for material PL1__M26EDEC5 reveals a high-variability demand pattern \nwith significant lead time uncertainty (CV=0.57, classified as unstable). The analysis identified \n4 demand outliers that were winsorized for robust estimation.\n\nCurrent SAP safety stock of 1186 units is insufficient to achieve the target 95% \nservice level given the observed demand and lead time variability. The recommended safety stock is 2624 units \n(+121.2% increase).\n\nThe optimized policy uses an EOQ-based order quantity of 13785 units with a reorder point of 5314 units. \nThis results in a review period of approximately 11.6 days. The policy complies with the MOQ of 148 units \nand the storage capacity constraint of 17779 units.\n\nWhile the increased safety stock raises annual holding costs by $350.77 (17.8%), \nthis investment is necessary to achieve the desired service level and mitigate stockout risks in the face of unstable lead times.",
+  "warnings": [
+    "Lead time highly unstable (CV=0.57). Consider supplier performance review.",
+    "Demand trend detected. Monitor for regime changes and update forecast regularly.",
+    "Recommended safety stock is 121.2% higher than SAP. Verify service level requirements."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with stochastic lead time",
+    "selection_rationale": "Standard EOQ model with combined uncertainty (demand and lead time variability). Service level achieved through safety stock calculated using normal approximation with z=1.645.",
+    "boundary_risk": "Medium",
+    "escalation_flag": "no"
+  }
+}

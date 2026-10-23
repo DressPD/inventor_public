@@ -1,0 +1,77 @@
+{
+  "material_id": "PL1__M5B2BEA9",
+  "data_quality": {
+    "total_rows": 88,
+    "working_days": 88,
+    "outliers_detected": 1,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 1197.143
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 470.5,
+    "std_daily_demand": 302.1,
+    "robust_std_daily": 255.3,
+    "cv_wd": 0.642,
+    "non_zero_fraction_wd": 0.874,
+    "trend_detected": false,
+    "regime": "variable",
+    "distribution_type": "normal-approximation (high CV)"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.38,
+    "std_lead_time": 0.83,
+    "cv_lead_time": 0.6,
+    "stability": "variable",
+    "effective_lead_time": 2.21
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 522.0,
+    "safety_stock": 859.0,
+    "safety_stock_robust": 779.0
+  },
+  "order_quantity": {
+    "eoq_raw": 9289.0,
+    "order_quantity": 8589
+  },
+  "cost_analysis": {
+    "unit_cost": 1.330251,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.15963
+  },
+  "policy": {
+    "safety_stock": 859,
+    "reorder_point": 1507,
+    "order_quantity": 8589,
+    "review_period_days": 19
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.83,
+    "sigma_eff_days": 1.11,
+    "dominant_factor": "lead_time_variance",
+    "dominant_pct": 54.6,
+    "variance_components": {
+      "transport": 0.546,
+      "supplier": 0.0,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M5B2BEA9 exhibits variable demand (CV=0.64, mean 471 units/day) with 12.6% zero-demand days and no significant trend over the observation window. Lead times are highly variable (CV=0.60, mean 1.38 days) with episodic multi-day deliveries that dominate the uncertainty budget (54.6%). An (r,Q) continuous-review policy with EOQ order quantity is recommended; the current SAP policy orders at MOQ=589 approximately 200 times/year, whereas the optimised policy consolidates to ~14 orders/year at 8,589 units, saving $13,307 (87.8%) annually while holding a 95% service level.",
+  "warnings": [
+    "Order quantity capped at storage limit: max_storage_units (9448) - safety_stock (859) = 8589, binding capacity constraint active.",
+    "Lead time CV=0.60 is high; supplier consistency improvement recommended to reduce required safety stock."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review reorder-point fixed-order-quantity (EOQ-based)",
+    "selection_rationale": "Demand is largely continuous (87.4% non-zero) with high variability, making a continuous-review policy superior to periodic review. The EOQ minimises total ordering and holding cost; the reorder point provides statistical coverage against combined demand and lead-time uncertainty at the 95% service level. MOQ=589 is non-binding as EOQ=8,589 exceeds it significantly.",
+    "boundary_risk": "Storage capacity is the binding constraint: the recommended policy places maximum inventory at exactly 9,448 units (= 859 SS + 8,589 OQ), equal to the storage limit. Any upward revision of safety stock (e.g., for higher service level) would require a proportional reduction in order quantity, increasing ordering frequency and cost. Lead time CV=0.60 is the primary uncertainty driver; improving supplier consistency would release storage headroom.",
+    "escalation_flag": "none"
+  }
+}

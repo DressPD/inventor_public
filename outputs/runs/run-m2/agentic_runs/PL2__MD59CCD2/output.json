@@ -1,0 +1,105 @@
+{
+  "metadata": {
+    "analysis_id": "PL2__MD59CCD2_inventory_optimization_v1",
+    "material_id": "PL2__MD59CCD2",
+    "run_timestamp": "2026-10-22T21:47:17.745497",
+    "parameters": {
+      "unit_cost": 2.102801,
+      "holding_cost_rate": 0.12,
+      "ordering_cost": 50.0,
+      "moq": 2228,
+      "service_level_target": 0.95,
+      "max_storage_units": 8913.155,
+      "sap_safety_stock": 0,
+      "sap_safety_lead_time_days": 4.5
+    }
+  },
+  "data_quality": {
+    "total_rows": 237,
+    "working_days": 237,
+    "start_date": "2025-03-03",
+    "end_date": "2026-03-09",
+    "outlier_detection": {
+      "detection_method": "IQR 1.5x",
+      "lower_bound": -270.799,
+      "upper_bound": 958.297,
+      "outliers_detected": 0,
+      "outliers_winsorized": 0,
+      "percentile_1": 0.0,
+      "percentile_99": 720.657
+    },
+    "lead_time_observations": 38,
+    "data_issues": []
+  },
+  "demand_statistics": {
+    "mean_daily_demand": 343.4923966244726,
+    "std_demand": 194.91618458954022,
+    "robust_std_demand": 227.77909562638993,
+    "cv_demand": 0.567454146016032,
+    "min_demand": 0.0,
+    "max_demand": 952.77,
+    "median_demand": 358.118,
+    "non_zero_fraction": 0.9367088607594937,
+    "trend_detected": true,
+    "trend_slope": -0.7922770233602986,
+    "regime": "Variable",
+    "distribution_type": "Gamma",
+    "narrative": "Material PL2__MD59CCD2 exhibits variable demand patterns with CV=0.57. Mean daily demand is 343.5 units (std=194.9). Non-zero demand occurs in 93.7% of working days. Lead time averages 1.36 days with CV=0.81. A statistically significant trend is detected (slope=-0.7923, p<0.05). The demand distribution is classified as Gamma."
+  },
+  "lead_time_statistics": {
+    "mean_lead_time_days": 1.3597368421052631,
+    "std_lead_time_days": 1.1044932477302207,
+    "cv_lead_time": 0.8122845638426242,
+    "min_lead_time": 0.23,
+    "max_lead_time": 4.65,
+    "median_lead_time": 0.9,
+    "stability": "Variable",
+    "effective_lead_time": 1.3597368421052631
+  },
+  "inventory_policy": {
+    "selected_model": "EOQ with Safety Stock",
+    "selection_rationale": "EOQ model selected for variable demand with variable lead times. Safety stock sized for 95% service level using normal approximation. Order quantity constrained by storage capacity (8913 units).",
+    "safety_stock_units": 728,
+    "robust_safety_stock_units": 762,
+    "safety_stock_coverage_days": 2.1194064472870857,
+    "z_score": 1.645,
+    "sigma_ltd": 442.2584752521735,
+    "eoq": 5834,
+    "unconstrained_order_quantity": 5834,
+    "order_quantity": 5834,
+    "reorder_point": 1196,
+    "review_period_days": 17,
+    "average_inventory": 3645,
+    "capacity_constrained": false,
+    "max_storage_units": 8913.155
+  },
+  "cost_analysis": {
+    "annual_demand": 85873,
+    "optimized_policy": {
+      "safety_stock": 728,
+      "order_quantity": 5834,
+      "annual_ordering_cost": 735.971024649624,
+      "annual_holding_cost": 919.7651573999999,
+      "total_annual_cost": 1655.736182049624
+    },
+    "sap_current_policy": {
+      "safety_stock": 0,
+      "order_quantity": 2228,
+      "annual_ordering_cost": 1927.1341821390965,
+      "annual_holding_cost": 281.10243768,
+      "total_annual_cost": 2208.2366198190966
+    },
+    "cost_savings": 552.5004377694727,
+    "cost_savings_percent": 25.019983493197152
+  },
+  "recommendations": {
+    "reorder_point": 1196,
+    "order_quantity": 5834,
+    "safety_stock": 728,
+    "review_period_days": 17,
+    "safety_lead_time_days": 2.1194064472870857,
+    "boundary_risk": "Variable lead times increase uncertainty. Significant demand trend (slope=-0.79) may impact forecast accuracy. ",
+    "escalation_flag": false,
+    "escalation_message": "No escalation required. All constraints satisfied."
+  }
+}

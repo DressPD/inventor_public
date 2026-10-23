@@ -1,0 +1,77 @@
+{
+  "material_id": "PL2__MACDDEB6",
+  "data_quality": {
+    "total_rows": 144,
+    "working_days": 144,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 1724.322
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 915.4873,
+    "std_daily_demand": 393.5494,
+    "robust_std_daily": 382.8184,
+    "cv_wd": 0.4299,
+    "non_zero_fraction_wd": 0.9645,
+    "trend_detected": true,
+    "regime": "smooth",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.3867,
+    "std_lead_time": 1.1042,
+    "cv_lead_time": 0.4627,
+    "stability": "moderate",
+    "effective_lead_time": 3.4909
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1179.6712,
+    "safety_stock": 1941,
+    "safety_stock_robust": 1927
+  },
+  "order_quantity": {
+    "eoq_raw": 5292.9709,
+    "order_quantity": 5293
+  },
+  "cost_analysis": {
+    "unit_cost": 6.807883,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.8169
+  },
+  "policy": {
+    "safety_stock": 1941,
+    "reorder_point": 5137,
+    "order_quantity": 5293,
+    "review_period_days": 6
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.1202,
+    "sigma_eff_days": 1.1042,
+    "dominant_factor": "transport",
+    "dominant_pct": 50.0,
+    "variance_components": {
+      "transport": 0.6097,
+      "supplier": 0.3658,
+      "quality": 0.2439
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL2__MACDDEB6 exhibits smooth demand with a mean of 915.49 units/day and a CV of 42.99%, with a statistically significant upward trend detected over the observation window. Lead times are moderately variable (CV 0.46), yielding a combined sigma_LTD of 1,179.67 units; the SAP safety stock of 437 is critically insufficient for a 95% service level, requiring an increase to 1,941 units. An (r,Q) continuous-review policy with EOQ-derived order quantity of 5,293 units reduces total annual inventory costs by 40.6% while staying well within storage capacity.",
+  "warnings": [
+    "SAP safety stock of 437 units is insufficient for 95% service level \u2014 optimized safety stock is 1,941 units (+1,504 units).",
+    "Upward demand trend detected \u2014 periodic reforecast of mean demand is recommended."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) Continuous Review \u2014 Economic Order Quantity with Safety Stock",
+    "selection_rationale": "Demand is smooth (CV=0.43, non-zero fraction 96.4%) and approximately normally distributed, making the classical (r,Q) model with normal-approximation safety stock the appropriate choice. Continuous review is preferred over periodic review given the moderate lead time variability, as it responds faster to demand spikes.",
+    "boundary_risk": "Capacity utilisation at 40.8% (7,234 / 17,751 units) \u2014 ample buffer; no binding capacity constraint. If demand trend accelerates, the next EOQ recomputation may push closer to the storage ceiling.",
+    "escalation_flag": "none"
+  }
+}

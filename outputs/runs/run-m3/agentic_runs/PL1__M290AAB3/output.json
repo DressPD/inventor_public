@@ -1,0 +1,77 @@
+{
+  "material_id": "PL1__M290AAB3",
+  "data_quality": {
+    "total_rows": 216,
+    "working_days": 216,
+    "outliers_detected": 6,
+    "winsorisation": {
+      "lower_bound": 172.94599999999997,
+      "upper_bound": 1533.9719499999999
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1007.0692030092592,
+    "std_daily_demand": 254.27981203959936,
+    "robust_std_daily": 184.446071163825,
+    "cv_wd": 0.25249487451287045,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "moderate",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.5921014492753625,
+    "std_lead_time": 0.8422861251618835,
+    "cv_lead_time": 0.5290404864245593,
+    "stability": "erratic",
+    "effective_lead_time": 2.977538837178788
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 906.8926369153285,
+    "safety_stock": 1492,
+    "safety_stock_robust": 1447
+  },
+  "order_quantity": {
+    "eoq_raw": 9157.68963479033,
+    "order_quantity": 9158
+  },
+  "cost_analysis": {
+    "unit_cost": 2.611841,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.31342092
+  },
+  "policy": {
+    "safety_stock": 1492,
+    "reorder_point": 3096,
+    "order_quantity": 9158,
+    "review_period_days": 9.093714684784974
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.5,
+    "sigma_eff_days": 1.4815267863834003,
+    "dominant_factor": "Lead Time Variability",
+    "dominant_pct": 87.48350444628598,
+    "variance_components": {
+      "transport": 0.0,
+      "supplier": 719511.8046464442,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "DECREASE",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M290AAB3 exhibits moderate demand variability (CV=25.2%) with no significant trend, \nbut highly erratic lead time (CV=52.9%). The current safety stock of 669 units is insufficient \nto achieve the 95% service level target given the lead time volatility. \n\nThe recommended safety stock of 1492 units (increase of 823 units or \n123%) is driven primarily by lead time variability, which contributes \n87% of the total demand-during-lead-time variance. The optimized order quantity of 9158 \nunits balances ordering and holding costs while respecting the MOQ of 200 units and storage capacity of \n14728 units.\n\nThe recommended policy saves $62,614.45 annually, \nbut is necessary to protect against stockouts given the supply chain variability.",
+  "warnings": [
+    "High lead time variability (CV=52.90%) requires close supplier monitoring",
+    "Safety stock increase of 123% may require budget approval"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Classical (Q,R) model with stochastic lead time",
+    "selection_rationale": "Moderate demand variability (CV=25.25%) and erratic lead time (CV=52.90%) necessitate robust buffer sizing",
+    "boundary_risk": "Lead time is the dominant source of variance (87%), requiring supplier performance focus",
+    "escalation_flag": "REVIEW_RECOMMENDED"
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "material_id": "PL2__M697940D",
+  "data_quality": {
+    "total_rows": 96,
+    "working_days": 96,
+    "outliers_detected": 8,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 497.69
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 246.22,
+    "std_daily_demand": 142.12,
+    "robust_std_daily": 114.93,
+    "cv_wd": 0.8997,
+    "non_zero_fraction_wd": 0.9479,
+    "trend_detected": false,
+    "regime": "LUMPY",
+    "distribution_type": "right-skewed / mixed (zero-inflated)"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.2391,
+    "std_lead_time": 0.1412,
+    "cv_lead_time": 0.5906,
+    "stability": "STABLE",
+    "effective_lead_time": 0.3803
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 94.47,
+    "safety_stock": 155.0,
+    "safety_stock_robust": 125.0
+  },
+  "order_quantity": {
+    "eoq_raw": 7291.52,
+    "order_quantity": 7292
+  },
+  "cost_analysis": {
+    "unit_cost": 1.003554,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.12043
+  },
+  "policy": {
+    "safety_stock": 155,
+    "reorder_point": 215,
+    "order_quantity": 7292,
+    "review_period_days": 30
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.66,
+    "sigma_eff_days": 1.62,
+    "dominant_factor": "demand_variability",
+    "dominant_pct": 87.3,
+    "variance_components": {
+      "transport": 0.45,
+      "supplier": 0.45,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "REDUCE \u2014 recommended 2.66 days vs SAP 3.00 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Demand for PL2__M697940D is lumpy (CV=0.90) with 94.8% active working days and no detectable trend over the 96-day history. Lead times are very short (mean 0.24 days) and stable. The EOQ of 7,292 units far exceeds the MOQ of 946 units, enabling infrequent large replenishments (~8.4 orders/year) that slash ordering cost by 94%. A z-scaled safety stock of 155 units at 95% service level is sufficient given the short, stable lead time, replacing the overstated SAP safety stock of 788 units.",
+  "warnings": [
+    "Storage utilisation at 96.8% (7,447 / 7,693 units) \u2014 any safety stock increase must be reviewed against capacity ceiling.",
+    "8 demand outliers detected and winsorised at upper bound 497.69 units."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) continuous-review reorder-point with EOQ lot size",
+    "selection_rationale": "With near-daily active demand (94.8%), a stable sub-day lead time, and a high CV requiring explicit safety stock sizing, the continuous-review (r,Q) policy is the appropriate choice. It minimises total cost via EOQ while the reorder point absorbs lead-time demand uncertainty.",
+    "boundary_risk": "The recommended policy (SS=155, OQ=7292) utilises 96.8% of the 7,692-unit storage capacity. Any future increase in safety stock (e.g., due to service level uplift or lead time deterioration) risks breaching the capacity ceiling and would require either a capacity expansion or a reduction in OQ below EOQ optimum.",
+    "escalation_flag": "none"
+  },
+  "current_policy": {
+    "safety_stock": 788,
+    "order_quantity": 788,
+    "reorder_point": 836,
+    "annual_ordering_cost": 2993.51,
+    "annual_holding_cost": 543.31,
+    "total_annual_cost": 3536.82
+  },
+  "recommended_policy": {
+    "safety_stock": 155,
+    "order_quantity": 7292,
+    "reorder_point": 215,
+    "annual_ordering_cost": 171.15,
+    "annual_holding_cost": 727.04,
+    "total_annual_cost": 898.04
+  }
+}

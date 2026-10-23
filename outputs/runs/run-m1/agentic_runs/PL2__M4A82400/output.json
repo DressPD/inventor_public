@@ -1,0 +1,118 @@
+{
+  "material_id": "PL2__M4A82400",
+  "data_quality": {
+    "total_rows": 241,
+    "working_days": 241,
+    "non_working_days": 0,
+    "lead_time_observations": 123
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 66469.66,
+    "std_daily_demand": 66228.87,
+    "robust_std": 92178.44,
+    "cv": 0.9964,
+    "non_zero_fraction": 0.7386,
+    "trend_slope": -33.74205,
+    "regime": "intermittent",
+    "distribution_type": "right-skewed/lognormal-like"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.4421,
+    "std_lead_time": 0.471,
+    "cv_lead_time": 1.0654,
+    "stability": "unstable",
+    "effective_lead_time": 0.9131
+  },
+  "buffer_analysis": {
+    "service_level_target": 0.95,
+    "z_score": 1.6449,
+    "sigma_ltd": 54030.88,
+    "safety_stock": 88873,
+    "safety_stock_robust": 113205
+  },
+  "order_policy": {
+    "eoq_raw": 40688.81,
+    "moq": 28031,
+    "unconstrained_order_quantity": 40689,
+    "order_quantity": 40689,
+    "reorder_point": 149567,
+    "review_period_days": 1
+  },
+  "cost_analysis": {
+    "unit_cost": 8.364352,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 50.0,
+    "annual_demand": 16617413.82,
+    "optimized_policy": {
+      "orders_per_year": 408.4,
+      "annual_ordering_cost": 20420.03,
+      "average_inventory": 109217.5,
+      "annual_holding_cost": 109624.03,
+      "total_annual_cost": 130044.07
+    },
+    "sap_previous_policy": {
+      "safety_stock": 0,
+      "order_quantity": 28031,
+      "orders_per_year": 592.82,
+      "annual_ordering_cost": 29641.14,
+      "average_inventory": 14015.5,
+      "annual_holding_cost": 14067.67,
+      "total_annual_cost": 43708.81
+    },
+    "comparison": {
+      "total_savings": -86335.26,
+      "savings_percentage": -197.52
+    }
+  },
+  "safety_lead_time_analysis": {
+    "sigma_eff_days": 0.471,
+    "recommended_safety_lead_time_days": 0.7747,
+    "sap_safety_lead_time_days": 6.0,
+    "comparison_action": "DECREASE from 6.0 to 0.77 days",
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "disruption_premium": 1.0,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    }
+  },
+  "capacity_gate": {
+    "max_storage_units": 1191946.214,
+    "safety_stock_plus_order": 129562,
+    "capacity_violation": false,
+    "available_capacity": 1103073.21
+  },
+  "narrative": {
+    "executive_summary": "Material PL2__M4A82400 exhibits intermittent demand with CV=1.00. Recommended policy: safety stock=88873, order quantity=40689, reorder point=149567.",
+    "key_findings": [
+      "Demand regime: intermittent (right-skewed/lognormal-like)",
+      "Lead time is unstable (CV=1.0654)",
+      "Service level 95.0% requires safety stock of 88873 units",
+      "EOQ of 40689 units balances ordering and holding costs",
+      "Annual cost comparison: optimized $130,044.07 vs SAP $43,708.81"
+    ],
+    "recommendations": [
+      "Set safety stock to 88873 units",
+      "Order 40689 units when inventory reaches 149567",
+      "Review inventory every 1 day(s)",
+      "Consider reducing safety lead time from 6.0 to 0.77 days"
+    ]
+  },
+  "research_insights": {
+    "demand_variability": "Material shows intermittent demand behavior with 73.9% of days having non-zero demand.",
+    "supply_chain_risk": "Lead time variability is unstable with mean 0.44 days and CV 1.0654.",
+    "optimization_approach": "Combined EOQ model with stochastic demand and lead time, using normal approximation for safety stock calculation."
+  },
+  "diagnostics": {
+    "warnings": [
+      "\u26a0 Optimized policy increases costs by $86,335.26 annually due to higher safety stock requirements"
+    ],
+    "notes": [
+      "Trend slope: -33.742050 (trend is decreasing)",
+      "Robust std (92178.44) vs standard std (66228.87)",
+      "Capacity utilization: 10.87%"
+    ]
+  }
+}

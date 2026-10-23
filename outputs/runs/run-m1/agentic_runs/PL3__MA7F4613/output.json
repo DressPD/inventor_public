@@ -1,0 +1,76 @@
+{
+  "material_id": "PL3__MA7F4613",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 4498.077
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1548.89,
+    "std_daily_demand": 918.49,
+    "robust_std_daily": 434.81,
+    "cv_wd": 0.593,
+    "non_zero_fraction_wd": 0.9474,
+    "trend_detected": false,
+    "regime": "erratic",
+    "distribution_type": "right-skewed"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.14,
+    "std_lead_time": 0.89,
+    "cv_lead_time": 0.7859,
+    "stability": "volatile",
+    "effective_lead_time": 1.14
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1697.71,
+    "safety_stock": 2793,
+    "safety_stock_robust": 2405
+  },
+  "order_quantity": {
+    "eoq_raw": 9525.32,
+    "order_quantity": 8114
+  },
+  "cost_analysis": {
+    "unit_cost": 5.334736,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.6402
+  },
+  "policy": {
+    "safety_stock": 2793,
+    "reorder_point": 4557,
+    "order_quantity": 8114,
+    "review_period_days": 6
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.8,
+    "sigma_eff_days": 1.1,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 66.7,
+    "variance_components": {
+      "transport": 0.0,
+      "supplier": 66.7,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Increase SAP safety lead time from 0.0 to 1.8 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Demand for PL3__MA7F4613 is erratic (CV=0.593) with a right-skewed distribution and a high non-zero fraction (94.7%), indicating a high-runner item with significant day-to-day variability. Lead times are volatile (CV=0.786, mean=1.14 days), making lead-time uncertainty the dominant risk driver (66.7% of total variance). A continuous-review (r,Q) policy was selected: the large EOQ-derived order quantity amortises ordering costs efficiently, while the elevated safety stock of 2,793 units (vs. SAP 777) provides the required 95% service coverage. The storage cap of 10,907 units binds and reduces the order quantity from 9,526 to 8,114 units.",
+  "warnings": [
+    "Storage capacity constraint binds: EOQ 9526 capped to 8114 units. SS+OQ=10907 <= 10907.748 \u2014 feasible."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) continuous-review policy",
+    "selection_rationale": "High-frequency, largely non-zero erratic demand with volatile lead times suits a continuous-review fixed-order-quantity model. The EOQ minimises total ordering and holding costs, and the reorder point absorbs combined demand and lead-time uncertainty at the 95% service level.",
+    "boundary_risk": "Storage cap reduces order quantity by 1,412 units (14.8% below EOQ). This slightly increases ordering frequency and annual ordering cost but remains well within feasibility. Service level is unaffected as safety stock is unchanged.",
+    "escalation_flag": "none"
+  }
+}

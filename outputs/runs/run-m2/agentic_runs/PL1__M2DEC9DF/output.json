@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__M2DEC9DF",
+  "data_quality": {
+    "total_rows": 94,
+    "working_days": 94,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 813.126
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 230.7,
+    "std_daily_demand": 232.8,
+    "robust_std_daily": 213.5,
+    "cv_wd": 1.009,
+    "non_zero_fraction_wd": 0.628,
+    "trend_detected": false,
+    "regime": "intermittent",
+    "distribution_type": "negative_binomial"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 3.89,
+    "std_lead_time": 1.42,
+    "cv_lead_time": 0.365,
+    "stability": "moderate",
+    "effective_lead_time": 5.31
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 547.2,
+    "safety_stock": 926.0,
+    "safety_stock_robust": 850.0
+  },
+  "order_quantity": {
+    "eoq_raw": 1313.7,
+    "order_quantity": 1314
+  },
+  "cost_analysis": {
+    "unit_cost": 30.493258,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 3.659
+  },
+  "policy": {
+    "safety_stock": 926,
+    "reorder_point": 2151,
+    "order_quantity": 1314,
+    "review_period_days": 6
+  },
+  "safety_lead_time": {
+    "recommended_days": 4.01,
+    "sigma_eff_days": 2.37,
+    "dominant_factor": "demand_variability",
+    "dominant_pct": 66.2,
+    "variance_components": {
+      "transport": 0.852,
+      "supplier": 0.426,
+      "quality": 0.142
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "maintain",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M2DEC9DF exhibits intermittent demand with a CV of 1.01 and only 63% non-zero days, indicating a lumpy consumption pattern best modelled by a negative binomial distribution. Lead times average 3.89 days with moderate variability (CV=0.37) after removing one extreme data quality outlier (9327 days). A continuous-review (r,Q) policy with safety stock of 926 units is recommended to achieve 95% service level, with the storage constraint binding at exactly max_storage_units. The cost increase versus the SAP baseline (zero safety stock) is justified by the significant stockout risk reduction.",
+  "warnings": [
+    "Extreme lead time outlier removed: 9327.37 days",
+    "Storage capacity constraint binding: SS(926) + OQ(1314) = 2240 <= 2240.961",
+    "Operating at 100% storage capacity utilization \u2014 escalate for capacity review"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review policy",
+    "selection_rationale": "Continuous-review (r,Q) is appropriate for this material given its intermittent but high-value demand pattern, moderate lead time variability, and the need for a precise reorder trigger. The EOQ formula provides the economically optimal order quantity under holding and ordering cost trade-offs, and the reorder point incorporates safety stock calibrated to 95% service level via the lead-time demand standard deviation.",
+    "boundary_risk": "Storage capacity is fully utilized at the recommended policy (SS+OQ=2240 vs limit 2240.96). Any upward revision of safety stock or order quantity would breach the capacity constraint. Service level may be compromised if demand spikes require larger safety buffers. Recommend negotiating additional storage or a supplier consignment arrangement.",
+    "escalation_flag": "Storage capacity nearly fully consumed by recommended policy. Warehouse management and procurement should assess feasibility of increased storage allocation for this material to provide headroom for demand variability."
+  }
+}

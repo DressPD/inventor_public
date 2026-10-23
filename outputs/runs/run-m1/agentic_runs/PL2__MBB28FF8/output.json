@@ -1,0 +1,83 @@
+{
+  "material_id": "PL2__MBB28FF8",
+  "data_quality": {
+    "total_rows": 189,
+    "working_days": 189,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 4026.0756000000006
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 2247.9828687830686,
+    "std_daily_demand": 938.5388309678572,
+    "robust_std_daily": 917.5585185185184,
+    "cv_wd": 0.4175026616087734,
+    "non_zero_fraction_wd": 0.9788359788359788,
+    "trend_detected": true,
+    "regime": "erratic",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.6741818181818181,
+    "std_lead_time": 0.789215951550536,
+    "cv_lead_time": 1.1706277598511188,
+    "stability": "unstable",
+    "effective_lead_time": 1.4633977697323541
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1934.2810637947123,
+    "safety_stock": 3182,
+    "safety_stock_robust": 1826
+  },
+  "order_quantity": {
+    "eoq_raw": 31343.32780229878,
+    "order_quantity": 21642
+  },
+  "cost_analysis": {
+    "unit_cost": 0.715077,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.08580924
+  },
+  "policy": {
+    "safety_stock": 3182,
+    "reorder_point": 6472,
+    "order_quantity": 21642,
+    "review_period_days": 10
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.4154912140066955,
+    "sigma_eff_days": 0.860451870276851,
+    "dominant_factor": "supply",
+    "dominant_pct": 84.12760849562375,
+    "variance_components": {
+      "transport": 0.0,
+      "supplier": 84.12760849562375,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": {
+    "triggered": true,
+    "reason": "Storage capacity constraint active",
+    "recommended_solver": "MILP",
+    "constraints": [
+      "storage_capacity"
+    ]
+  },
+  "narrative": "Analysis completed for material PL2__MBB28FF8. Demand regime is erratic with CV=0.42. Lead time stability is unstable (CV=1.17). Recommended safety stock is 3182 units with reorder point at 6472 units. Order quantity optimized to 21642 units (constrained by storage capacity). Safety lead time should be reduced from 4.0 to 1.4 days.",
+  "warnings": [
+    "Optimized policy increases total annual cost by $459.63 (17.1%) due to storage capacity constraint"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Classical EOQ with safety stock",
+    "selection_rationale": "Demand regime is erratic with sufficient history (189 observations). Lead time is unstable.",
+    "boundary_risk": "Storage capacity constraint active - order quantity limited by available space",
+    "escalation_flag": "CAPACITY_CONSTRAINED"
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__M7F208CD",
+  "data_quality": {
+    "total_rows": 213,
+    "working_days": 213,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 5502.3074799999995
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 2687.81,
+    "std_daily_demand": 1367.52,
+    "robust_std_daily": 1311.12,
+    "cv_wd": 0.5088,
+    "non_zero_fraction_wd": 0.9718,
+    "trend_detected": true,
+    "regime": "Erratic",
+    "distribution_type": "Non-normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.33,
+    "std_lead_time": 1.24,
+    "cv_lead_time": 0.5326,
+    "stability": "Unstable",
+    "effective_lead_time": 3.56
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 3927.86,
+    "safety_stock": 6460.75,
+    "safety_stock_robust": 6386.78
+  },
+  "order_quantity": {
+    "eoq_raw": 23353.78,
+    "order_quantity": 23354
+  },
+  "cost_analysis": {
+    "unit_cost": 1.552369,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.1863
+  },
+  "policy": {
+    "safety_stock": 6460,
+    "reorder_point": 12710,
+    "order_quantity": 23354,
+    "review_period_days": 9
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.4,
+    "sigma_eff_days": 1.46,
+    "dominant_factor": "LeadTime",
+    "dominant_pct": 71.81,
+    "variance_components": {
+      "transport": 35.91,
+      "supplier": 21.54,
+      "quality": 14.36
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Maintain",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M7F208CD exhibits erratic demand with a coefficient of variation of 0.51.\nAverage daily demand is 2687.81 units with 97.2% non-zero days.\nLead time averages 2.33 days (\u00b11.24) and is classified as unstable.\n\nThe optimized policy recommends:\n- Safety stock: 6460 units (vs SAP: 1965)\n- Reorder point: 12710 units\n- Order quantity: 23354 units (vs SAP: 1273)\n\nThis optimization reduces total annual costs by $34836.07 (86.2%).\nThe primary cost driver is holding cost.\nSafety lead time should be maintaind to 2.40 days.",
+  "warnings": [
+    "3 outliers detected and winsorized",
+    "Demand is Erratic - consider additional buffer or review frequency",
+    "Lead time is unstable - consider supplier performance improvement initiatives"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with robust statistics",
+    "selection_rationale": "High demand variability requires robust safety stock",
+    "boundary_risk": "Low",
+    "escalation_flag": "No"
+  }
+}

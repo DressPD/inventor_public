@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__M66E6B61",
+  "data_quality": {
+    "total_rows": 180,
+    "working_days": 180,
+    "outliers_detected": 1,
+    "winsorisation": {
+      "lower_bound": -968.331,
+      "upper_bound": 4727.969
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1928.6353222222222,
+    "std_daily_demand": 1060.6083000778515,
+    "robust_std_daily": 1055.6523350630096,
+    "cv_wd": 0.5499268253864561,
+    "non_zero_fraction_wd": 0.9888888888888889,
+    "trend_detected": false,
+    "regime": "Moderate",
+    "distribution_type": "Normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.0767777777777778,
+    "std_lead_time": 0.961210628389591,
+    "cv_lead_time": 0.8926731663921493,
+    "stability": "Volatile",
+    "effective_lead_time": 1.0767777777777778
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 2155.9041713250144,
+    "safety_stock": 3546.1467955637577,
+    "safety_stock_robust": 3541.836020844074
+  },
+  "order_quantity": {
+    "eoq_raw": 9068.78196683012,
+    "order_quantity": 9069
+  },
+  "cost_analysis": {
+    "unit_cost": 4.924606,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.59095272
+  },
+  "policy": {
+    "safety_stock": 3547,
+    "reorder_point": 5624,
+    "order_quantity": 9069,
+    "review_period_days": 4.702288657427714
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.8386818672789824,
+    "sigma_eff_days": 1.1178392029245463,
+    "dominant_factor": "Lead Time",
+    "dominant_pct": 73.93983137796829,
+    "variance_components": {
+      "transport": 0.9239258721291125,
+      "supplier": 0.0,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization for PL1__M66E6B61 completed. Demand is moderate with CV=0.55. Lead time is volatile with CV=0.89. Safety stock of 3547 units recommended for 95% service level. EOQ-based order quantity is 9069 units. The optimized policy increases annual cost by $2,096.11 compared to the previous SAP policy (safety stock=0) but provides materially improved service level protection against volatile lead times.",
+  "warnings": [
+    "Lead time variability is high (CV=0.89), contributing 73.9% of total variability",
+    "Optimized policy increases annual cost by $2,096.11 vs SAP policy due to safety stock investment",
+    "Only 1 outlier(s) detected in demand data"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Standard EOQ with Safety Stock \u2014 continuous review (r,Q) policy",
+    "selection_rationale": "Demand CV of 0.55 (moderate) with volatile lead times (CV 0.89) makes a fixed-order-quantity system with a z-score safety buffer the most appropriate and operationally tractable choice. No trend or seasonality detected, ruling out more complex policies.",
+    "boundary_risk": "High lead time variability (CV=0.89) is the dominant risk factor. A sudden spike in lead time could temporarily deplete the safety buffer. Supplier performance monitoring is strongly recommended.",
+    "escalation_flag": "Monitor \u2014 no capacity infeasibility detected (utilization 76.4%). MOQ constraint (107 units) is non-binding given EOQ of 9,069. Regular review of lead time distribution recommended."
+  }
+}

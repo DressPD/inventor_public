@@ -1,0 +1,74 @@
+{
+  "material_id": "PL1__MA79AD09",
+  "data_quality": {
+    "total_rows": 221,
+    "working_days": 221,
+    "outliers_detected": 6,
+    "winsorisation": {
+      "lower_bound": 157.726,
+      "upper_bound": 12214.3036
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 5672.6763610859725,
+    "std_daily_demand": 2886.7533173094976,
+    "robust_std_daily": 3096.7286879169765,
+    "cv_wd": 0.5088873634872517,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "erratic",
+    "distribution_type": "right-skewed"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.3841884816753924,
+    "std_lead_time": 1.2454976794642536,
+    "cv_lead_time": 0.5223990003462438,
+    "stability": "moderate",
+    "effective_lead_time": 3.629686161139646
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 8353.849572227911,
+    "safety_stock": 13741,
+    "safety_stock_robust": 14033
+  },
+  "order_quantity": {
+    "eoq_raw": 36773.85861384687,
+    "order_quantity": 36774
+  },
+  "cost_analysis": {
+    "unit_cost": 1.31087,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.1573044
+  },
+  "policy": {
+    "safety_stock": 13741,
+    "reorder_point": 27266,
+    "order_quantity": 36774,
+    "review_period_days": 7
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.0486613754264194,
+    "sigma_eff_days": 1.2454976794642536,
+    "dominant_factor": "supplier",
+    "dominant_pct": 100.0,
+    "variance_components": {
+      "transport": 0.0,
+      "supplier": 1.5512644695508406,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Decrease from 3.0 to 2.05 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization analysis for material PL1__MA79AD09 reveals an ERRATIC demand pattern with high variability (CV=0.509). The recommended safety stock of 13,741 units is significantly higher than the current SAP setting of 3,943 units, reflecting the need to protect against demand and lead time volatility to achieve the 95% service level target. The optimal order quantity of 36,774 units balances ordering and holding costs via an EOQ-driven (r,Q) policy. Lead time variability is MODERATE (CV=0.522) with a mean of 2.38 days; safety lead time can be reduced from 3.0 to 2.05 days as explicit safety stock now absorbs that risk.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with Safety Stock \u2014 continuous-review (r,Q) policy",
+    "selection_rationale": "Classical EOQ model is appropriate for continuous erratic demand (100% non-zero days). Safety stock computed using the combined demand-lead time sigma formula. Intermittent demand models not warranted given full daily coverage.",
+    "boundary_risk": "CV=0.509 indicates right-skewed demand distribution; normal approximation may underestimate tail risk. Robust safety stock (14,033) should be monitored as a fallback trigger.",
+    "escalation_flag": "RECOMMEND_REVIEW \u2014 safety stock increase of +248% vs SAP (3,943 \u2192 13,741) requires supply chain team sign-off before ERP update."
+  }
+}

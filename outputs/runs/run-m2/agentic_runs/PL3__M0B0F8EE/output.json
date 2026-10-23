@@ -1,0 +1,79 @@
+{
+  "material_id": "PL3__M0B0F8EE",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 0.0
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 3229.46,
+    "std_daily_demand": 1906.68,
+    "robust_std_daily": 836.45,
+    "cv_wd": 0.5904,
+    "non_zero_fraction_wd": 0.9605,
+    "trend_detected": false,
+    "regime": "high-volume",
+    "distribution_type": "empirical"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.122,
+    "std_lead_time": 0.8876,
+    "cv_lead_time": 0.791,
+    "stability": "unstable",
+    "effective_lead_time": 2.0096
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 3506.44,
+    "safety_stock": 5768,
+    "safety_stock_robust": 4935
+  },
+  "order_quantity": {
+    "eoq_raw": 12857.59,
+    "order_quantity": 12858
+  },
+  "cost_analysis": {
+    "unit_cost": 6.104647,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.7326
+  },
+  "policy": {
+    "safety_stock": 5768,
+    "reorder_point": 12258,
+    "order_quantity": 12858,
+    "review_period_days": 4
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.79,
+    "sigma_eff_days": 0.8876,
+    "dominant_factor": "transport",
+    "dominant_pct": 0.6,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "PL3__M0B0F8EE is a high-volume material averaging 3,229 units/day over 228 working days with no statistically significant trend (p=0.064). Lead times are unstable (CV=0.79), driven by transport variability, creating substantial lead-time demand uncertainty (sigma_LTD=3,506). The (s,Q) continuous-review policy with EOQ-based order quantity (12,858) and a z=1.6449 safety stock (5,768) achieves 95% service level within the 18,719-unit storage cap while reducing total annual cost by 88% versus the current MOQ-only SAP policy.",
+  "warnings": [
+    "SAP safety stock is 0 \u2014 no buffer against lead-time or demand variability; 5,768 units recommended.",
+    "Storage capacity near-binding: SS+OQ=18,626 vs cap=18,719 (~94 units headroom); monitor for safety stock revisions.",
+    "Lead time CV=0.79 classified as unstable; transport disruptions are dominant risk (60% of variance).",
+    "9 zero-demand days detected (likely plant shutdowns); these inflate classical std vs. robust std significantly."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(s, Q) Continuous-Review",
+    "selection_rationale": "High-volume, near-continuous demand (96% non-zero days) with unstable lead times makes a continuous-review (s,Q) policy optimal: it monitors inventory continuously and triggers a fixed EOQ replenishment when stock hits the reorder point, providing tight control over service level in the face of lead-time volatility.",
+    "boundary_risk": "Storage cap of 18,719 is nearly fully consumed (SS+OQ=18,626). Any upward revision to safety stock (e.g. if service level target rises or lead-time volatility worsens) would require a compensating reduction in order quantity below EOQ, increasing ordering frequency and cost.",
+    "escalation_flag": "none"
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "material_id": "PL3__M0B0F8EE",
+  "parameters": {
+    "unit_cost": 6.104647,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 75.0,
+    "moq": 524,
+    "service_level_target": 0.95,
+    "max_storage_units": 18719.749,
+    "sap_safety_stock": 0,
+    "sap_safety_lead_time_days": 0.0
+  },
+  "data_summary": {
+    "total_rows": 228,
+    "working_days": 228,
+    "weekend_days": 0,
+    "date_range_start": "2025-03-03",
+    "date_range_end": "2026-03-09",
+    "data_quality_score": 0.95
+  },
+  "outlier_analysis": {
+    "method": "IQR (1.5x fence)",
+    "outlier_count": 0,
+    "outlier_percentage": 0.0,
+    "lower_fence": -6252.81,
+    "upper_fence": 10974.6,
+    "outliers_winsorised": true
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 4200.45,
+    "std_daily_demand": 874.76,
+    "robust_std": 601.7,
+    "cv": 0.2083,
+    "min_demand": 200.19,
+    "max_demand": 6970.31,
+    "median_demand": 4336.88,
+    "non_zero_fraction": 0.9605,
+    "regime": "erratic",
+    "distribution_type": "Normal-like (consistent demand)",
+    "trend_detected": false,
+    "trend_correlation": 0.0,
+    "narrative": "Material PL3__M0B0F8EE exhibits erratic demand with CV=0.208, driven by consistent high-volume working-day consumption averaging 4200 units/day. Demand is concentrated on working days with minimal weekend activity, showing no significant trend. The Normal-like (consistent demand) pattern justifies a robust safety stock buffer to maintain 95% service level."
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.12,
+    "std_lead_time": 0.8876,
+    "cv_lead_time": 0.791,
+    "min_lead_time": 0.48,
+    "max_lead_time": 3.73,
+    "median_lead_time": 0.73,
+    "stability": "unstable",
+    "effective_lead_time": 2.01,
+    "narrative": "Lead time averages 1.12 days with unstable variability (CV=0.791). Conservative effective lead time of 2.01 days accounts for transport delays and supplier variance. The unstable pattern supports a 1.5-day safety lead time buffer to mitigate supply chain disruptions."
+  },
+  "safety_stock": {
+    "z_score": 1.6449,
+    "sigma_demand_lead_time": 3841.61,
+    "safety_stock_units": 6319,
+    "safety_stock_robust": 6222,
+    "safety_stock_days": 1.5,
+    "service_level_target": 0.95,
+    "method": "Normal approximation with lead time demand variance",
+    "narrative": "Safety stock of 6319 units (1.5 days of supply) provides 95% service level protection against demand and lead time variability. This buffer represents 134% of expected lead time demand, addressing the erratic demand regime and unstable lead time."
+  },
+  "eoq_analysis": {
+    "annual_demand": 1050112.42,
+    "eoq_raw": 14663.67,
+    "eoq_rounded": 14664,
+    "unconstrained_order_quantity": 14664,
+    "order_quantity_final": 12400,
+    "moq_constraint_binding": false,
+    "storage_constraint_binding": true,
+    "storage_warning": "Storage constraint binding: reduced order quantity from 14664 to 12400",
+    "narrative": "EOQ analysis yields optimal order quantity of 14664 units, but storage capacity limits order size to 12400 units (peak inventory 18719 at 100% of capacity). This order size balances 85 annual replenishments against holding costs while respecting physical constraints."
+  },
+  "order_policy": {
+    "reorder_point": 11032,
+    "order_quantity": 12400,
+    "review_period_days": 3,
+    "expected_demand_during_lead_time": 4712.98,
+    "policy_type": "(r, Q) - Continuous review",
+    "narrative": "Recommended (r, Q) policy: reorder 12400 units when inventory drops to 11032 units. With 3-day review cycle and 1.1-day average lead time, this policy maintains operational continuity while achieving cost-efficient replenishment."
+  },
+  "cost_comparison": {
+    "previous_policy": {
+      "safety_stock": 0,
+      "order_quantity": 524,
+      "avg_inventory": 262.0,
+      "annual_orders": 2004.03,
+      "holding_cost": 191.93,
+      "ordering_cost": 150302.35,
+      "total_cost": 150494.28
+    },
+    "optimized_policy": {
+      "safety_stock": 6319,
+      "order_quantity": 12400,
+      "avg_inventory": 12519.0,
+      "annual_orders": 84.69,
+      "holding_cost": 9170.89,
+      "ordering_cost": 6351.49,
+      "total_cost": 15522.38
+    },
+    "savings": {
+      "absolute": 134971.9,
+      "percentage": 89.69
+    },
+    "narrative": "Optimization reduces total annual costs from $150,494 to $15,522, achieving $134,972 (89.7%) savings. The dramatic improvement stems from consolidating 2004 small MOQ orders into 85 economical bulk replenishments, despite higher safety stock investment."
+  },
+  "safety_lead_time": {
+    "current_sap_days": 0.0,
+    "recommended_days": 1.5,
+    "recommended_units": 6301,
+    "variance_components": {
+      "transport_variance": 0.4727,
+      "supplier_variance": 0.2363,
+      "quality_variance": 0.0788
+    },
+    "dominant_factor": "transport",
+    "disruption_premium": 1.0,
+    "narrative": "Recommended safety lead time of 1.5 days (6301 units) addresses unstable lead time variability dominated by transport delays (60% of variance). This time buffer complements safety stock protection and mitigates procurement disruption risk."
+  },
+  "research_insights": {
+    "demand_pattern": "Material exhibits strong working-day demand concentration with 96.1% active days and erratic variability (CV=0.208)",
+    "inventory_driver": "High annual demand of 1,050,112 units combined with $75.0 ordering cost drives large optimal order quantities",
+    "cost_lever": "Primary savings from reducing order frequency: 2004 \u2192 85 annual orders saves $143,951 in setup costs",
+    "risk_factor": "Storage constraint binding at 100% capacity; safety stock 6319 units consumes 34% of warehouse space",
+    "recommendation": "Implement (r=11032, Q=12400) policy immediately; monitor storage utilization and consider capacity expansion for future demand growth"
+  },
+  "diagnostics": {
+    "warnings": [
+      "Storage constraint binding: reduced order quantity from 14664 to 12400"
+    ],
+    "capacity_utilization": 100.0,
+    "service_level_achieved": 0.95,
+    "model_assumptions": [
+      "Normal demand distribution during lead time",
+      "Independent demand and lead time distributions",
+      "Continuous inventory review",
+      "No backorder costs modeled",
+      "250 working days per year"
+    ]
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "material_id": "PL3__MCCFF617",
+  "data_quality": {
+    "total_rows": 216,
+    "working_days": 216,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 16.228899999999967
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 2.0694861111111114,
+    "std_daily_demand": 3.719345606331991,
+    "robust_std_daily": 2.638065233506301,
+    "cv_wd": 1.7972314896740558,
+    "non_zero_fraction_wd": 0.2777777777777778,
+    "trend_detected": true,
+    "regime": "Erratic",
+    "distribution_type": "Intermittent with high zero-inflation"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.24,
+    "std_lead_time": 1.0529640702955319,
+    "cv_lead_time": 0.8491645728189773,
+    "stability": "Low",
+    "effective_lead_time": 1.24
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 4.679960713447557,
+    "safety_stock": 7.697850353504613,
+    "safety_stock_robust": 6.016229330448968
+  },
+  "order_quantity": {
+    "eoq_raw": 240.38462748767876,
+    "order_quantity": 455
+  },
+  "cost_analysis": {
+    "unit_cost": 11.281314,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.35375768
+  },
+  "policy": {
+    "safety_stock": 8,
+    "reorder_point": 11,
+    "order_quantity": 455,
+    "review_period_days": 220
+  },
+  "safety_lead_time": {
+    "recommended_days": 3.8656939793158522,
+    "sigma_eff_days": 2.2614119941761177,
+    "dominant_factor": "Demand Variability",
+    "dominant_pct": 78.31957846627292,
+    "variance_components": {
+      "transport": 21.68,
+      "supplier": 23.5,
+      "quality": 54.82
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Implement safety stock policy",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__MCCFF617 exhibits erratic demand patterns with high variability (CV=1.80). \nThe demand shows 27.8% non-zero days, indicating sporadic usage. \nLead time variability is also low, contributing to supply uncertainty.\n\nThe optimized policy recommends a safety stock of 8 units to achieve 95% service level,\nwith reorder point at 11 units. The MOQ constraint of 455 units is active, \ndriving the order quantity. Storage capacity is sufficient with 858.1 units headroom.\n\nThe new policy increases annual costs by $10.83 but provides significantly better service protection\nagainst stockouts given the erratic demand regime.",
+  "warnings": [
+    "Significant demand trend detected (p<0.05)",
+    "High demand variability (CV=1.80)",
+    "High lead time variability (CV=0.85)",
+    "Low non-zero demand fraction (27.8%)"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Classical EOQ with Safety Stock",
+    "selection_rationale": "Selected due to erratic demand regime (CV=1.80) and intermittent pattern. Classical model with robust safety stock calculation provides adequate protection.",
+    "boundary_risk": "High CV (1.80) approaches boundary where advanced methods may be needed. Monitor demand evolution.",
+    "escalation_flag": "Standard"
+  }
+}

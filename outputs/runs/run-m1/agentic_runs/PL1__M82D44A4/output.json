@@ -1,0 +1,72 @@
+{
+  "material_id": "PL1__M82D44A4",
+  "data_quality": {
+    "total_rows": 140,
+    "working_days": 140,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 1.63,
+      "upper_bound": 644.32
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 347.21,
+    "std_daily_demand": 169.29,
+    "robust_std_daily": 166.49,
+    "cv_wd": 0.4876,
+    "non_zero_fraction_wd": 0.9643,
+    "trend_detected": false,
+    "regime": "variable",
+    "distribution_type": "gamma"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 4.09,
+    "std_lead_time": 1.58,
+    "cv_lead_time": 0.3858,
+    "stability": "moderate",
+    "effective_lead_time": 5.67
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 633.25,
+    "safety_stock": 1042,
+    "safety_stock_robust": 1027
+  },
+  "order_quantity": {
+    "eoq_raw": 1731.29,
+    "order_quantity": 1731
+  },
+  "policy": {
+    "safety_stock": 1042,
+    "reorder_point": 2463,
+    "order_quantity": 3162,
+    "review_period_days": 9
+  },
+  "safety_lead_time": {
+    "recommended_days": 3.0,
+    "sigma_eff_days": 1.82,
+    "dominant_factor": "transport",
+    "dominant_pct": 0.6,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "DECREASE",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M82D44A4 exhibits variable demand with CV=0.49 over 140 working days. Lead time analysis shows moderate variability (CV=0.39). The optimized policy implements safety stock of 1042 units and order quantity of 3162 units, yielding annual savings of $1,784.",
+  "warnings": [
+    "Removed 3 lead time outliers > 9000 days",
+    "Order quantity constrained by capacity: 3162 units",
+    "Safety stock increased from 0 to 1042 units"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with capacity constraints",
+    "selection_rationale": "Variable demand with CV=0.49 and moderate lead time justified EOQ-based model with safety stock",
+    "boundary_risk": "Capacity constraint binding - order quantity limited by storage capacity",
+    "escalation_flag": ""
+  }
+}

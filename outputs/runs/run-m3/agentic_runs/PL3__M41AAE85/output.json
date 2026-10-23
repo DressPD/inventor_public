@@ -1,0 +1,85 @@
+{
+  "material_id": "PL3__M41AAE85",
+  "unit_cost": 0.169192,
+  "holding_cost_rate": 0.12,
+  "ordering_cost": 75.0,
+  "moq": 7950,
+  "service_level_target": 0.95,
+  "max_storage_units": 219815.507,
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228
+  },
+  "demand_analysis": {
+    "mean_demand": 27196.59,
+    "median_demand": 36789.72,
+    "std_demand": 16552.41,
+    "robust_std": 2913.08,
+    "cv": 0.6086,
+    "non_zero_fraction": 0.7982,
+    "trend_slope": 8.1059,
+    "trend_detected": true,
+    "demand_regime": "erratic",
+    "outliers_detected": 0,
+    "winsorization_bounds": [
+      0.0,
+      43755.66
+    ]
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.14,
+    "median_lead_time": 0.71,
+    "std_lead_time": 0.91,
+    "min_lead_time": 0.51,
+    "max_lead_time": 4.74,
+    "cv_lead_time": 0.8009,
+    "stability": "volatile",
+    "effective_lead_time": 2.05,
+    "variance_components": {
+      "transport_variance": 0.3335,
+      "supplier_variance": 0.3335,
+      "quality_variance": 0.1667,
+      "total_variance": 0.8337
+    }
+  },
+  "safety_stock_calculation": {
+    "z_score": 1.6449,
+    "sigma_ltd": 30479.95,
+    "safety_stock": 50136,
+    "safety_stock_robust": 41166,
+    "safety_lead_time_days": 1.84
+  },
+  "inventory_policy": {
+    "eoq_raw": 225020.78,
+    "order_quantity": 169679,
+    "reorder_point": 81142,
+    "review_period_days": 6.24,
+    "orders_per_year": 40.39,
+    "moq_constraint_applied": false,
+    "capacity_constraint_applied": true,
+    "max_inventory_level": 219815,
+    "capacity_check_passed": true
+  },
+  "cost_analysis": {
+    "sap_current": {
+      "safety_stock": 15900,
+      "order_quantity": 169679,
+      "avg_inventory": 100739.5,
+      "annual_holding_cost": 2045.32,
+      "annual_ordering_cost": 3029.34,
+      "total_annual_cost": 5074.66
+    },
+    "optimized": {
+      "safety_stock": 50136,
+      "order_quantity": 169679,
+      "avg_inventory": 134975.5,
+      "annual_holding_cost": 2740.41,
+      "annual_ordering_cost": 3029.34,
+      "total_annual_cost": 5769.75
+    },
+    "savings": {
+      "annual_cost_savings": -695.09,
+      "savings_percentage": -13.7
+    }
+  }
+}

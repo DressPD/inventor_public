@@ -1,0 +1,77 @@
+{
+  "material_id": "PL1__M933F308",
+  "data_quality": {
+    "total_rows": 222,
+    "working_days": 222,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 1631.0
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 831.437,
+    "std_daily_demand": 405.344,
+    "robust_std_daily": 379.018,
+    "cv_wd": 0.4875,
+    "non_zero_fraction_wd": 0.8919,
+    "trend_detected": false,
+    "regime": "highly_variable",
+    "distribution_type": "right_skewed"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.3278,
+    "std_lead_time": 1.0803,
+    "cv_lead_time": 0.8137,
+    "stability": "highly_variable",
+    "effective_lead_time": 2.96
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 775.0602,
+    "safety_stock": 1274.7589,
+    "safety_stock_robust": 1200.4761
+  },
+  "order_quantity": {
+    "eoq_raw": 897.2895,
+    "order_quantity": 1013
+  },
+  "cost_analysis": {
+    "unit_cost": 35.937093,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 4.3125
+  },
+  "policy": {
+    "safety_stock": 1275,
+    "reorder_point": 2098,
+    "order_quantity": 1013,
+    "review_period_days": 2
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.533,
+    "sigma_eff_days": 0.9322,
+    "dominant_factor": "demand_variability",
+    "dominant_pct": 0.565,
+    "variance_components": {
+      "transport": 0.435,
+      "supplier": 0.565,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.05,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M933F308 exhibits highly variable daily demand (CV=0.49) with a right-skewed distribution and approximately 89% non-zero days, indicating a predominantly active but spiky consumption pattern. Lead times are moderately variable (CV=0.81) with one extreme outlier (31.97 days) removed; the effective 90th-percentile lead time is 2.96 days. An (r,Q) continuous-review policy is recommended: the EOQ is MOQ-bound at 1,013 units, and a safety stock of 1,275 units (z=1.645, \u03c3_LTD=775) targets the 95% service level \u2014 far exceeding the current SAP safety stock of 79 which is materially undersized for the observed demand and lead-time volatility.",
+  "warnings": [
+    "1 extreme lead-time outlier(s) removed (value: 31.97 days). A 5% disruption premium applied to the disruption_premium field.",
+    "Recommended safety stock (1275) is significantly higher than SAP baseline (79). Review demand volatility drivers."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) Continuous-Review with EOQ Order Quantity",
+    "selection_rationale": "The (r,Q) policy is appropriate for this material because demand is continuous (89% non-zero working days), lead times are short and relatively stable (mean ~1.3 days), and the MOQ constraint (1,013) matches the EOQ-derived quantity. Continuous review allows immediate replenishment triggers when inventory hits the reorder point, reducing stockout exposure for this high-CV material. Periodic review would add unnecessary exposure given the short effective lead time.",
+    "boundary_risk": "Storage capacity (8,265 units) is not binding: post-replenishment stock of 2,288 units (SS 1,275 + OQ 1,013) uses only 27.7% of capacity. No capacity-driven order reduction was applied. Risk: if demand spikes cause multiple overlapping replenishments, peak inventory could approach the limit \u2014 monitor actual inventory levels against the cap.",
+    "escalation_flag": "SAP safety stock (79 units) is critically undersized versus the statistically derived requirement (1,275 units). This 16x gap implies severe stockout risk under the current ERP configuration. Escalate to supply chain management for immediate SAP parameter update. Additionally, one extreme lead-time event (31.97 days) was detected \u2014 investigate supplier reliability and consider dual-sourcing if such disruptions recur."
+  }
+}

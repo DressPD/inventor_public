@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__M941007A",
+  "data_quality": {
+    "total_rows": 134,
+    "working_days": 134,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 563.05645,
+      "upper_bound": 3261.482679999999
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 2146.1295691044775,
+    "std_daily_demand": 561.3590250097122,
+    "robust_std_daily": 477.5022222222223,
+    "cv_wd": 0.261568095929992,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "regular",
+    "distribution_type": "roughly_normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.533507462686567,
+    "std_lead_time": 1.162487129826201,
+    "cv_lead_time": 0.4588449597829419,
+    "stability": "moderate",
+    "effective_lead_time": 3.695994592512768
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 2650.0255564337435,
+    "safety_stock": 4359,
+    "safety_stock_robust": 4290
+  },
+  "order_quantity": {
+    "eoq_raw": 8546.23679245827,
+    "order_quantity": 7123
+  },
+  "cost_analysis": {
+    "unit_cost": 9.549694,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.14596328
+  },
+  "policy": {
+    "safety_stock": 4359,
+    "reorder_point": 12292,
+    "order_quantity": 7123,
+    "review_period_days": 4
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.0310982443706296,
+    "sigma_eff_days": 1.2347929009428487,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 88.63149173448417,
+    "variance_components": {
+      "transport": 0.531788950406905,
+      "supplier": 0.2658944752034525,
+      "quality": 0.08863149173448417
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "DECREASE",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M941007A exhibits regular demand patterns with a CV of 0.26. Lead time is classified as moderate with mean 2.53 days. The optimized policy recommends a safety stock of 4359 units and order quantity of 7123 units, yielding annual cost savings of $62,571.84 (80.7%) compared to the current SAP policy. The capacity constraint is active.",
+  "warnings": [
+    "Capacity constraint active: order quantity capped at 7123 units",
+    "Moderate to high lead time variability (CV=0.46)",
+    "4 demand outliers detected and winsorized"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "analytical_eoq_safety_stock",
+    "selection_rationale": "Regular demand with moderate lead time variability suitable for classical EOQ model with safety stock",
+    "boundary_risk": "Capacity constraint active; consider supplier negotiation for larger order flexibility",
+    "escalation_flag": "None"
+  }
+}

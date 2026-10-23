@@ -1,0 +1,74 @@
+{
+  "material_id": "PL1__MAB0D63B",
+  "data_quality": {
+    "total_rows": 87,
+    "working_days": 87,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": 24897.913,
+      "upper_bound": 75836.689
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 53178.45,
+    "std_daily_demand": 9561.87,
+    "robust_std_daily": 8918.34,
+    "cv_wd": 0.1798,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "smooth",
+    "distribution_type": "normal-like"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.458,
+    "std_lead_time": 1.198,
+    "cv_lead_time": 0.487,
+    "stability": "moderate",
+    "effective_lead_time": 3.656
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 65652.3,
+    "safety_stock": 107911.0,
+    "safety_stock_robust": 100643.0
+  },
+  "order_quantity": {
+    "eoq_raw": 648253.6,
+    "order_quantity": 648254
+  },
+  "cost_analysis": {
+    "unit_cost": 0.039545,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.004745
+  },
+  "policy": {
+    "safety_stock": 107911,
+    "reorder_point": 302813,
+    "order_quantity": 648254,
+    "review_period_days": 13
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.971,
+    "sigma_eff_days": 1.198,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 0.861,
+      "supplier": 0.43,
+      "quality": 0.144
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MAB0D63B exhibits smooth, stationary daily demand averaging 53,178 units with a low coefficient of variation of 0.18, making it well-suited to a classical (r,Q) replenishment policy. Lead times are moderately variable (CV=0.49, mean 2.46 days), driving a meaningful safety stock requirement of 107,911 units to achieve the 95% service level target. The current SAP policy carries zero safety stock and an overly conservative 4.5-day safety lead time, resulting in high ordering frequency and excess operational cost. The optimised policy consolidates orders into large EOQ-driven batches of 648,254 units, reducing total annual inventory cost by 81% from $18,907 to $3,588 while remaining well within the 1,363,206-unit storage constraint.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) \u2014 Continuous-review reorder-point / fixed-order-quantity policy with EOQ",
+    "selection_rationale": "Smooth demand (CV=0.18) with no trend and moderate lead-time variability makes the classical (r,Q) EOQ model the natural fit. The policy minimises total ordering plus holding costs while the reorder point absorbs lead-time demand uncertainty via a statistically derived safety stock. No intermittency or lumpy demand patterns were detected that would require more complex models.",
+    "boundary_risk": "The storage capacity (1,363,206 units) is non-binding: safety_stock + order_quantity = 756,165 units, consuming only 55.5% of available space. No capacity-driven order reduction was required.",
+    "escalation_flag": "none"
+  }
+}

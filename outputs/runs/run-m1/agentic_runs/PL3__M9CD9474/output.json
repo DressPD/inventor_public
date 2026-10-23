@@ -1,0 +1,85 @@
+{
+  "material_id": "PL3__M9CD9474",
+  "analysis_timestamp": "2026-10-21T10:10:46.326559",
+  "input_parameters": {
+    "unit_cost": 1.404362,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 50.0,
+    "moq": 1394,
+    "service_level_target": 0.95,
+    "max_storage_units": 13556.633,
+    "sap_safety_stock": 0,
+    "sap_safety_lead_time_days": 0.0
+  },
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 901.45
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 147.61,
+    "std_daily_demand": 218.14,
+    "robust_std_daily": 152.68,
+    "cv_wd": 1.478,
+    "non_zero_fraction_wd": 0.711,
+    "trend_detected": false,
+    "regime": "highly_variable",
+    "distribution_type": "lognormal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.579,
+    "std_lead_time": 1.313,
+    "cv_lead_time": 0.831,
+    "stability": "volatile",
+    "effective_lead_time": 2.892
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 335.73,
+    "safety_stock": 553.0,
+    "safety_stock_robust": 449.0
+  },
+  "order_quantity": {
+    "eoq_raw": 4772.23,
+    "order_quantity": 4773
+  },
+  "cost_analysis": {
+    "unit_cost": 1.404362,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.168523
+  },
+  "policy": {
+    "safety_stock": 449,
+    "reorder_point": 876,
+    "order_quantity": 4773,
+    "review_period_days": 33
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.31,
+    "sigma_eff_days": 1.31,
+    "dominant_factor": "transport",
+    "dominant_pct": 50.0,
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.3,
+      "quality": 0.2
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "INCREASE",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Demand for PL3__M9CD9474 is highly variable (CV=1.48) with a lognormal profile and 29% intermittency across 228 working days. Lead times are volatile (CV=0.83), making the current zero-safety-stock SAP policy risky. The recommended (r,Q) policy with SS=449 and OQ=4773 reduces orders from ~28 to ~8 per year, delivering 41% cost savings while achieving 95% service level within 38.5% of storage capacity.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) continuous-review policy",
+    "selection_rationale": "The material exhibits continuous demand activity (71% non-zero days) with high variability, making a continuous-review (r,Q) model appropriate. The EOQ naturally exceeds the MOQ, and the storage capacity is non-binding, so no MILP is required. The robust safety stock based on IQR-derived sigma moderates the lognormal tail inflation.",
+    "boundary_risk": "Capacity constraint is non-binding at 38.5% utilisation (5,222 of 13,557 units). No capacity-driven reduction applied.",
+    "escalation_flag": "none"
+  }
+}

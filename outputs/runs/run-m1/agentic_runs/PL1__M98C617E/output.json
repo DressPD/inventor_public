@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__M98C617E",
+  "data_quality": {
+    "total_rows": 134,
+    "working_days": 134,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 297947.794
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 127122.0,
+    "std_daily_demand": 62450.0,
+    "robust_std_daily": 42300.0,
+    "cv_wd": 0.491,
+    "non_zero_fraction_wd": 0.94,
+    "trend_detected": false,
+    "regime": "smooth",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.78,
+    "std_lead_time": 1.23,
+    "cv_lead_time": 0.69,
+    "stability": "unstable",
+    "effective_lead_time": 3.01
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 176819.0,
+    "safety_stock": 290933.0,
+    "safety_stock_robust": 251200.0
+  },
+  "order_quantity": {
+    "eoq_raw": 214350.0,
+    "order_quantity": 436651
+  },
+  "cost_analysis": {
+    "unit_cost": 0.208354,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.025
+  },
+  "policy": {
+    "safety_stock": 290933,
+    "reorder_point": 517304,
+    "order_quantity": 436651,
+    "review_period_days": 4
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.02,
+    "sigma_eff_days": 1.23,
+    "dominant_factor": "lead_time",
+    "dominant_pct": 77.9,
+    "variance_components": {
+      "transport": 0.7,
+      "supplier": 0.2,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M98C617E exhibits smooth, high-volume demand averaging 127,122 units per working day with a CV of 0.49, indicating moderate variability. Lead times are highly unstable (CV=0.69, range 0.05\u20134.84 days), making lead-time variance the dominant risk driver at 77.9% of total sigma_LTD. The recommended (r,Q) policy addresses the zero-safety-stock gap in SAP by introducing a 290,933-unit buffer, sized to achieve the 95% service level target. Order quantities are set at 436,651 units (EOQ-driven, MOQ-compliant, capacity-checked), reducing annual ordering events from 1,304 to 73 and delivering an estimated 81.5% reduction in total annual inventory costs.",
+  "warnings": [
+    "SAP safety stock is 0 \u2014 material is currently exposed to stockout risk at high-volume demand rates.",
+    "Lead time CV=0.69 classified as unstable; safety stock is sized to absorb lead-time variability as the dominant uncertainty source.",
+    "SAP safety lead time (3.30 days) exceeds data-driven recommendation (2.02 days); reduction is advised."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) Continuous Review Policy with Combined Variability Safety Stock",
+    "selection_rationale": "Given smooth, high-volume daily demand and unstable lead times, a continuous-review (r,Q) policy is appropriate. It triggers a fixed replenishment order of Q units whenever inventory falls to the reorder point r, combining demand and lead-time variance in the safety stock formula (sigma_LTD). This avoids over-ordering while ensuring buffer adequacy under lead-time spikes.",
+    "boundary_risk": "Storage capacity of 1,025,865 units is not binding: SS + OQ = 727,584 units, leaving 298,281 units of headroom. No capacity-driven constraint applies.",
+    "escalation_flag": "none"
+  }
+}

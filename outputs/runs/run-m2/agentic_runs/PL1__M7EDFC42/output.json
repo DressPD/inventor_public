@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__M7EDFC42",
+  "data_quality": {
+    "total_rows": 218,
+    "working_days": 218,
+    "outliers_detected": 5,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 3546.569
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 2344.13,
+    "std_daily_demand": 659.34,
+    "robust_std_daily": 488.52,
+    "cv_wd": 0.2813,
+    "non_zero_fraction_wd": 0.9633,
+    "trend_detected": true,
+    "regime": "Moderate continuous demand with statistically significant declining trend",
+    "distribution_type": "Near-normal with left-tail outliers (zero/near-zero demand days)"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.356,
+    "std_lead_time": 0.953,
+    "cv_lead_time": 0.703,
+    "stability": "Unstable \u2014 CV > 0.3 indicates high variability; 95th percentile effective lead time applied",
+    "effective_lead_time": 3.008
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 2363.4,
+    "safety_stock": 3887.8,
+    "safety_stock_robust": 2962.1
+  },
+  "order_quantity": {
+    "eoq_raw": 28118.3,
+    "order_quantity": 18947
+  },
+  "cost_analysis": {
+    "unit_cost": 0.61778,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.07413
+  },
+  "policy": {
+    "safety_stock": 3889,
+    "reorder_point": 10940,
+    "order_quantity": 18947,
+    "review_period_days": 8
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.19,
+    "sigma_eff_days": 0.406,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 89.5,
+    "variance_components": {
+      "transport": 0.671,
+      "supplier": 0.229,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "INCREASE \u2014 recommended safety lead time (2.19 days) exceeds current SAP setting (2.0 days)",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M7EDFC42 exhibits moderate continuous demand averaging 2,344 units/day with a CV of 0.281 and a statistically significant declining trend (p=0.025). Lead times are highly volatile (CV=0.703), driving 89.5% of safety stock requirements; the effective lead time of 3.01 days (95th percentile) is used rather than the mean. The storage capacity of 22,836 units is binding, capping the order quantity at 18,947 units versus an unconstrained EOQ of 28,118. The recommended (r,Q) policy reduces annual total cost from ~$45,164 to ~$2,537, a 94.4% reduction, primarily by eliminating the ~899 annual ordering events triggered under the current SAP MOQ-only configuration.",
+  "warnings": [
+    "Storage capacity constraint is binding: unconstrained EOQ (28,118) exceeds available capacity after safety stock (22,836 - 3,889 = 18,947). Order quantity capped at 18,947 units.",
+    "Lead time CV = 0.703 is operationally high. Root-cause investigation of supplier/transport variability is recommended.",
+    "Statistically significant declining demand trend detected (slope = -1.52 units/day, p = 0.025). Monitor and recalibrate EOQ quarterly."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) \u2014 Continuous-review Reorder-Point / Fixed-Order-Quantity policy",
+    "selection_rationale": "Demand is continuous and moderately variable (CV=0.281), with a definable reorder signal. EOQ minimises the sum of ordering and holding costs under stationary demand assumptions; safety stock is set to the required z-sigma buffer to achieve the 95% service level. The (r,Q) structure is appropriate given non-negligible lead time uncertainty and the absence of integer batch constraints beyond MOQ.",
+    "boundary_risk": "Warehouse capacity of 22,836 units is binding. The optimal unconstrained EOQ would be 28,118 units, delivering lower total cost; the capacity cap reduces order quantity by 33% and increases annual ordering cost vs. the true EOQ optimum. If storage can be expanded or re-allocated, incremental EOQ benefit of ~$400/year is recoverable.",
+    "escalation_flag": "Lead time CV = 0.703 is abnormally high and is the dominant driver of safety stock requirements (89.5%). This level of variability suggests structural supplier or logistics issues. Escalate to procurement and logistics for root-cause analysis; a 50% reduction in lead time CV would reduce safety stock by approximately 1,200 units, saving ~$89/year in holding costs and reducing stockout risk."
+  }
+}

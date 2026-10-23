@@ -1,0 +1,88 @@
+{
+  "material_id": "PL2__MD886B0A",
+  "analysis_date": "2026-10-20",
+  "input_parameters": {
+    "unit_cost": 8.124565,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 75.0,
+    "moq": 374,
+    "service_level_target": 0.95,
+    "max_storage_units": 2663.294
+  },
+  "data_quality": {
+    "total_rows": 141,
+    "working_days": 141,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 638.13
+    },
+    "lead_time_outliers_removed": 1
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 239.10079432624113,
+    "std_daily_demand": 148.0330248228182,
+    "robust_std_daily": 180.4279722,
+    "cv_wd": 0.6191239357441636,
+    "non_zero_fraction_wd": 0.9290780141843972,
+    "trend_detected": false,
+    "regime": "erratic",
+    "distribution_type": "gamma"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 3.0097810218978105,
+    "std_lead_time": 1.2005366605049903,
+    "cv_lead_time": 0.39887840735602575,
+    "stability": "moderate",
+    "effective_lead_time": 3.6100493521503054
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 385.16613474991004,
+    "safety_stock": 634.0,
+    "safety_stock_robust": 699.0
+  },
+  "order_quantity": {
+    "eoq_raw": 3032.602310407485,
+    "order_quantity": 2029
+  },
+  "cost_analysis": {
+    "unit_cost": 8.124565,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.9749478
+  },
+  "policy": {
+    "safety_stock": 634,
+    "reorder_point": 1498,
+    "order_quantity": 2029,
+    "review_period_days": 9
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.651601395915643,
+    "sigma_eff_days": 1.611,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 55.54,
+    "variance_components": {
+      "transport": 0.0,
+      "supplier": 0.5554,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL2__MD886B0A shows erratic demand (CV=0.62) with a mean of 239 units/day and no discernible trend over the observation window Mar-2025 to Mar-2026. Lead times are moderately variable (CV=0.40, mean 3.01 days), with lead-time variability contributing 55.5% of the demand-during-leadtime variance. The recommended (r,Q) continuous-review policy raises safety stock from 156 to 634 units to properly buffer the combined demand and lead-time risk, while consolidating 160 small annual orders into 30 large batches \u2014 reducing total annual inventory cost by 68.7%. The EOQ-optimal batch of 3,033 units is constrained to 2,029 by the 2,663-unit storage limit; this binding capacity constraint should be reviewed if throughput grows.",
+  "warnings": [
+    "Removed 1 extreme lead-time outlier (18.82 days, >3 sigma from mean)",
+    "EOQ of 3,033 units capped to 2,029 due to max_storage_units=2,663 constraint \u2014 capacity constraint is binding; service coverage slightly below unconstrained optimum",
+    "SAP safety lead time (4.5 days) exceeds recommended value (2.65 days) \u2014 recommend reducing in ERP"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) Continuous-Review Policy",
+    "selection_rationale": "Erratic demand (CV=0.62) with moderate lead-time variability calls for a continuous-review trigger rather than a periodic review policy, ensuring replenishment fires precisely when stock hits the ROP regardless of calendar schedule. EOQ provides the cost-minimising fixed batch size given high ordering cost relative to low holding cost rate.",
+    "boundary_risk": "The storage capacity cap of 2,663 units reduces the order quantity from the unconstrained EOQ of 3,033 to 2,029 units, increasing order frequency from ~20 to ~30 per year and adding approximately $750/year in ordering costs vs. the unconstrained solution. If annual demand grows beyond ~60,000 units, the constraint will become increasingly costly and a capacity expansion or second storage location should be evaluated.",
+    "escalation_flag": "none \u2014 MOQ (374) + safety stock (634) = 1,008 units, which is well within max_storage_units (2,663). No MOQ-capacity infeasibility."
+  }
+}

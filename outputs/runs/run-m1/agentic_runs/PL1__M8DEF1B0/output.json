@@ -1,0 +1,96 @@
+{
+  "material_id": "PL1__M8DEF1B0",
+  "data_quality": {
+    "total_rows": 209,
+    "working_days": 209,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 966.9705
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 452.0154,
+    "std_daily_demand": 209.4512,
+    "robust_std_daily": 233.5026,
+    "cv_wd": 0.4633,
+    "non_zero_fraction_wd": 0.9761,
+    "trend_detected": true,
+    "regime": "variable",
+    "distribution_type": "approximately_normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.082139,
+    "std_lead_time": 0.107326,
+    "cv_lead_time": 1.3066,
+    "stability": "highly_variable",
+    "effective_lead_time": 0.189465
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 60.2547,
+    "safety_stock": 99.0,
+    "safety_stock_robust": 99.0
+  },
+  "order_quantity": {
+    "eoq_raw": 73.0514,
+    "order_quantity": 193
+  },
+  "cost_analysis": {
+    "unit_cost": 469.923767,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 56.3909
+  },
+  "policy": {
+    "safety_stock": 99,
+    "reorder_point": 100,
+    "order_quantity": 193,
+    "review_period_days": 1
+  },
+  "safety_lead_time": {
+    "recommended_days": 0.2588,
+    "sigma_eff_days": 0.107326,
+    "dominant_factor": "transport",
+    "dominant_pct": 70.0,
+    "variance_components": {
+      "transport": 0.00806,
+      "supplier": 0.00288,
+      "quality": 0.00058
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M8DEF1B0 exhibits variable daily demand (CV=0.46) with a mean of 452.0 units/day. Lead times are extremely short (mean=0.082 working days, highly_variable with CV=1.31), yielding a low sigma-of-lead-time-demand of 60.3 units. A continuous-review (r,Q) policy is recommended: reorder at 100 units on hand, order 193 units (EOQ 73, floored to MOQ 193, feasible within storage cap), with a safety stock of 99 units targeting 95% service level.",
+  "warnings": [
+    "4 demand outliers detected and winsorised.",
+    "Statistically significant demand trend detected; review policy periodically."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review fixed-order-quantity",
+    "selection_rationale": "Demand is variable but not intermittent (non-zero fraction >97%); lead times are very short and highly variable in relative terms but tiny in absolute magnitude. The (r,Q) model is the natural choice: it triggers a fixed MOQ replenishment whenever inventory drops to the reorder point, balancing ordering and holding costs efficiently without the complexity of a full (s,S) policy. EOQ is below MOQ so MOQ governs order size.",
+    "boundary_risk": "Storage capacity (2619 units) does not bind for the MOQ of 193 + SS of 99 = 292 units, well within the 2619-unit limit. No capacity-driven order reduction required.",
+    "escalation_flag": "none"
+  },
+  "cost_comparison": {
+    "sap_policy": {
+      "order_quantity": 193,
+      "safety_stock": 0,
+      "avg_inventory": 96.5,
+      "annual_ordering_cost": 5855.96,
+      "annual_holding_cost": 5441.22,
+      "total_annual_cost": 11297.18
+    },
+    "optimised_policy": {
+      "order_quantity": 193,
+      "safety_stock": 99,
+      "avg_inventory": 195.5,
+      "annual_ordering_cost": 5855.96,
+      "annual_holding_cost": 11024.42,
+      "total_annual_cost": 16880.38
+    },
+    "annual_savings": -5583.2
+  }
+}

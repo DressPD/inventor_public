@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__M84A42A1",
+  "data_quality": {
+    "total_rows": 220,
+    "working_days": 220,
+    "outliers_detected": 12,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 4580.716
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1893.62,
+    "std_daily_demand": 856.06,
+    "robust_std_daily": 712.45,
+    "cv_wd": 0.452,
+    "non_zero_fraction_wd": 0.909,
+    "trend_detected": false,
+    "regime": "Moderate intermittent demand with occasional zero/near-zero days and high-demand spikes",
+    "distribution_type": "Right-skewed unimodal; consistent with a mixture of zero-demand and moderate-to-high demand days"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.977,
+    "std_lead_time": 0.916,
+    "cv_lead_time": 0.935,
+    "stability": "Unstable \u2014 high CV of 0.935 with observations ranging from 0.11 to 4.94 days indicates frequent supplier delivery variability",
+    "effective_lead_time": 2.49
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1927.34,
+    "safety_stock": 3171.0,
+    "safety_stock_robust": 2876.0
+  },
+  "order_quantity": {
+    "eoq_raw": 11712.6,
+    "order_quantity": 11713
+  },
+  "cost_analysis": {
+    "unit_cost": 2.875755,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.345091
+  },
+  "policy": {
+    "safety_stock": 3171,
+    "reorder_point": 7881,
+    "order_quantity": 11713,
+    "review_period_days": 6
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.32,
+    "sigma_eff_days": 0.916,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 81.0,
+    "variance_components": {
+      "transport": 0.65,
+      "supplier": 0.3,
+      "quality": 0.05
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "REDUCE \u2014 SAP safety lead time of 3.0 days is excessive given a mean lead time of 0.98 days; recommend reducing to 1.32 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M84A42A1 exhibits moderate daily demand averaging 1,894 units with a CV of 0.45, punctuated by intermittent zero-demand days (approx. 9% of working days) and occasional demand spikes. Lead times are highly variable (CV = 0.935, range 0.11\u20134.94 days), making lead-time variability the dominant uncertainty driver at 81% of total sigma_LTD. The current SAP policy holds zero safety stock and orders at the bare MOQ (2,174 units), generating ~218 orders per year with significant stockout risk. The optimized (r,Q) policy increases the batch to the EOQ of 11,713 units, establishes a 3,171-unit safety buffer at 95% service level, reduces annual ordering events by 82%, and cuts total cost by 54% \u2014 all within the 24,563-unit storage capacity.",
+  "warnings": [
+    "Lead time CV = 0.935 indicates highly unstable supplier delivery; monitor supplier KPIs",
+    "12 demand outliers detected and winsorized at 99th percentile",
+    "SAP safety lead time of 3.0 days is significantly higher than recommended 1.32 days \u2014 review with procurement"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) Continuous-Review Reorder-Point / Fixed-Order-Quantity Policy",
+    "selection_rationale": "With near-continuous, moderately variable demand (CV=0.45) and short but highly variable lead times (mean=0.98 days, CV=0.935), a continuous-review (r,Q) policy is optimal. It responds immediately to inventory drawdowns without periodic review lag, and the fixed order quantity at EOQ minimises total ordering-plus-holding cost. The MOQ of 2,174 units is non-binding as EOQ (11,713) substantially exceeds it.",
+    "boundary_risk": "Storage capacity is non-binding: safety_stock (3,171) + order_quantity (11,713) = 14,884 units vs. limit of 24,563 units, leaving 9,679 units of spare capacity. No capacity-driven service degradation expected.",
+    "escalation_flag": "none"
+  }
+}

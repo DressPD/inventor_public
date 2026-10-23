@@ -1,0 +1,76 @@
+{
+  "material_id": "PL2__MD8C553F",
+  "data_quality": {
+    "total_rows": 129,
+    "working_days": 129,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 54754.30903999999
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 20040.877644031007,
+    "std_daily_demand": 15065.669028772796,
+    "robust_std_daily": 19422.62638991846,
+    "cv_wd": 0.7517469691882466,
+    "non_zero_fraction_wd": 0.8294573643410853,
+    "trend_detected": false,
+    "regime": "smooth",
+    "distribution_type": "gamma"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.3638738738738738,
+    "std_lead_time": 0.9027132547554735,
+    "cv_lead_time": 0.6618744387202428,
+    "stability": "unstable",
+    "effective_lead_time": 2.2665871286293475
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 25235.980554010246,
+    "safety_stock": 41510,
+    "safety_stock_robust": 47724
+  },
+  "order_quantity": {
+    "eoq_raw": 108400.88103419906,
+    "order_quantity": 108401
+  },
+  "cost_analysis": {
+    "unit_cost": 0.355312,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.04263744
+  },
+  "policy": {
+    "safety_stock": 41510,
+    "reorder_point": 68844,
+    "order_quantity": 108401,
+    "review_period_days": 6
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.0712665751124617,
+    "sigma_eff_days": 1.259225319482281,
+    "dominant_factor": "transport",
+    "dominant_pct": 50.0,
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.4,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL2__MD8C553F exhibits smooth demand with a CV of 0.75. The mean daily demand is 20041 units with 82.9% non-zero observations. Lead time is unstable (mean: 1.36 days, CV: 0.66). Optimized policy reduces safety stock from 53,268 to 41,510 units (-22.1%), delivering $501.33 in annual savings (7.3% reduction). Recommended safety lead time is 2.07 days vs SAP's 3.40 days. Action: reduce safety lead time.",
+  "warnings": [
+    "Unstable lead time (CV > 0.6)"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Combined variance formula (analytical)",
+    "selection_rationale": "Gamma distribution with CV=0.75; analytical approach sufficient for smooth demand",
+    "boundary_risk": "Low - safety stock provides adequate buffer",
+    "escalation_flag": "No"
+  }
+}

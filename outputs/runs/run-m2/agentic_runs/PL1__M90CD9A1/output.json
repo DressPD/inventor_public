@@ -1,0 +1,94 @@
+{
+  "material_id": "PL1__M90CD9A1",
+  "data_quality": {
+    "total_rows": 87,
+    "working_days": 87,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 8187.613740000001,
+      "upper_bound": 19464.86736
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 16545.873414942525,
+    "std_daily_demand": 2655.1451787874607,
+    "robust_std_daily": 1260.5767234988882,
+    "cv_wd": 0.16047174496026348,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "smooth",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.4823469387755104,
+    "std_lead_time": 1.229685904930339,
+    "cv_lead_time": 0.4953722969670457,
+    "stability": "moderate",
+    "effective_lead_time": 3.0971898912406797
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 20771.832023344065,
+    "safety_stock": 34167,
+    "safety_stock_robust": 33626
+  },
+  "order_quantity": {
+    "eoq_raw": 166043.4490072082,
+    "order_quantity": 166044
+  },
+  "cost_analysis": {
+    "unit_cost": 0.187541,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.02250492,
+    "previous_policy": {
+      "safety_stock": 0,
+      "order_quantity": 60793,
+      "avg_inventory": 30396.5,
+      "annual_ordering_cost": 5103.138955639175,
+      "annual_holding_cost": 684.07080078,
+      "total_annual_cost": 5787.209756419175
+    },
+    "optimized_policy": {
+      "safety_stock": 34167,
+      "order_quantity": 166044,
+      "avg_inventory": 117189.0,
+      "annual_ordering_cost": 1868.3910682118737,
+      "annual_holding_cost": 2637.32906988,
+      "total_annual_cost": 4505.720138091874
+    },
+    "cost_savings": 1281.4896183273013,
+    "cost_savings_pct": 22.143479712410155
+  },
+  "policy": {
+    "safety_stock": 34167,
+    "reorder_point": 75240,
+    "order_quantity": 166044,
+    "review_period_days": 11
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.0226533207357713,
+    "sigma_eff_days": 1.229685904930339,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 0.907276454870608,
+      "supplier": 0.453638227435304,
+      "quality": 0.1512127424784347
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M90CD9A1 exhibits smooth demand variability (CV=0.16) with moderate lead time behavior (mean=2.5d, std=1.2d). The recommended policy maintains a safety stock of 34,167 units to achieve 95% service level, with reorder point at 75,240 units. The order quantity of 166,044 units balances MOQ constraints (60,793) and storage capacity (306,772 units), yielding estimated annual savings of $1281.49.",
+  "warnings": [
+    "2 outliers detected and winsorized at 1st/99th percentile"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Combined variance EOQ",
+    "selection_rationale": "Moderate variability in both demand and lead time requires combined variance approach",
+    "boundary_risk": "low",
+    "escalation_flag": "none"
+  }
+}

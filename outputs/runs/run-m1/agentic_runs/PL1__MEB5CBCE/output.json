@@ -1,0 +1,77 @@
+{
+  "material_id": "PL1__MEB5CBCE",
+  "data_quality": {
+    "total_rows": 87,
+    "working_days": 87,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 2643.13,
+      "upper_bound": 22272.81
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 11261.49,
+    "std_daily_demand": 4443.45,
+    "robust_std_daily": 4054.16,
+    "cv_wd": 0.3946,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": true,
+    "regime": "variable",
+    "distribution_type": "approximately_normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 3.02,
+    "std_lead_time": 1.22,
+    "cv_lead_time": 0.403,
+    "stability": "unstable",
+    "effective_lead_time": 4.24
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 15726.29,
+    "safety_stock": 25868.0,
+    "safety_stock_robust": 25340.0
+  },
+  "order_quantity": {
+    "eoq_raw": 758124.86,
+    "order_quantity": 224197
+  },
+  "cost_analysis": {
+    "unit_cost": 0.006123,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.000735
+  },
+  "policy": {
+    "safety_stock": 25868,
+    "reorder_point": 59877,
+    "order_quantity": 224197,
+    "review_period_days": 20
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.3,
+    "sigma_eff_days": 1.3965,
+    "dominant_factor": "transport",
+    "dominant_pct": 50.0,
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.3,
+      "quality": 0.2
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease by 2.7 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Demand for PL1__MEB5CBCE is variable (CV=0.395) with a confirmed upward trend of ~0.84% per period, and lead times range widely from 1.42 to 5.74 days (CV=0.403, unstable). The current SAP policy holds zero safety stock, which structurally cannot meet the 95% service level target. An (r,Q) continuous review policy with a 25,868-unit safety buffer and 224,197-unit order quantity (capped by storage) reduces total annual costs by 44% while formally protecting service level.",
+  "warnings": [
+    "Storage capacity constraint is binding: unconstrained EOQ=758125 capped to 224197 units (max_storage - safety_stock = 224197)",
+    "Capacity utilization at 99.99% \u2014 upward demand trend may erode buffer margins"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) Continuous Review",
+    "selection_rationale": "Variable demand with unstable lead times and continuous consumption pattern makes continuous review optimal; the reorder point encodes both mean lead-time demand and the safety buffer, enabling prompt reaction to demand spikes without over-ordering.",
+    "boundary_risk": "Storage cap binds at 99.99% utilization. A confirmed upward demand trend means future mean demand will exceed current parameterization, potentially requiring larger safety stock that cannot fit without a capacity expansion.",
+    "escalation_flag": "none \u2014 MOQ+SS=141896 is within max_storage_units=250065; policy is feasible."
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__M1E26DD7",
+  "data_quality": {
+    "total_rows": 136,
+    "working_days": 136,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 2065.35,
+      "upper_bound": 16651.1
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 10035.07,
+    "std_daily_demand": 3001.09,
+    "robust_std_daily": 1662.04,
+    "cv_wd": 0.2991,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": true,
+    "regime": "Moderate Variability",
+    "distribution_type": "Non-Normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.95,
+    "std_lead_time": 1.16,
+    "cv_lead_time": 0.3942,
+    "stability": "Unstable",
+    "effective_lead_time": 2.95
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 12742.19,
+    "safety_stock": 20959.0,
+    "safety_stock_robust": 20959.0
+  },
+  "order_quantity": {
+    "eoq_raw": 55454.07,
+    "order_quantity": 55455
+  },
+  "cost_analysis": {
+    "unit_cost": 0.992579,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.119109
+  },
+  "policy": {
+    "safety_stock": 20959,
+    "reorder_point": 50526,
+    "order_quantity": 55455,
+    "review_period_days": 0
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.09,
+    "sigma_eff_days": 1.16,
+    "dominant_factor": "Lead Time Variability",
+    "dominant_pct": 83.66,
+    "variance_components": {
+      "transport": 0.83,
+      "supplier": 0.13,
+      "quality": 0.04
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Reduce SAP safety lead time from 3.0 to 2.09 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M1E26DD7 exhibits moderate demand variability (CV=29.9%) with a mild decreasing trend over the observation period. Lead times are highly unstable (CV=39.4%), and lead-time variance contributes 83.7% of total demand-during-lead-time uncertainty, making supplier reliability the dominant risk factor. An (r,Q) continuous-review policy with safety stock of 20,959 units and order quantity of 55,455 units is recommended to achieve the 95% service level target while respecting the storage capacity constraint of 94,088 units.",
+  "warnings": [
+    "SAP safety stock is currently 0 \u2014 provides no buffer for a material with 39.4% lead-time CV",
+    "Lead time variability is dominant (83.7% of variance) \u2014 supplier reliability improvement recommended",
+    "SAP safety lead time (3.0 days) is slightly over-conservative vs data-driven recommendation (2.09 days)"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) Continuous-Review Policy",
+    "selection_rationale": "Demand is continuous and non-zero every working day with moderate variability (CV~30%). The (r,Q) model is optimal for materials with stable positive demand where a fixed order quantity minimises total ordering and holding costs; EOQ provides the cost-minimising Q while z-score safety stock ensures the 95% service level against combined demand and lead-time uncertainty.",
+    "boundary_risk": "Storage capacity is not binding (76,414 units post-replenishment vs 94,088 limit), providing 18% headroom. If safety stock or order quantity were to increase materially, the capacity constraint could become active.",
+    "escalation_flag": "none"
+  }
+}

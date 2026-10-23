@@ -1,0 +1,145 @@
+{
+  "material_id": "PL1__M7EDFC42",
+  "analysis_timestamp": "2026-10-19T22:27:28.903520",
+  "data_summary": {
+    "total_observations": 225,
+    "working_days": 225,
+    "data_quality_score": 0.95,
+    "date_range_start": "2025-03-03",
+    "date_range_end": "2026-03-09",
+    "winsorization_applied": true,
+    "winsorization_count": 6,
+    "outliers_detected": 5,
+    "non_zero_demand_fraction": 0.9911
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 2344.4,
+    "std_daily_demand": 658.14,
+    "median_daily_demand": 2488.26,
+    "robust_std_daily_demand": 453.58,
+    "coefficient_of_variation": 0.2807,
+    "regime": "moderately_variable",
+    "distribution_type": "approximately_normal",
+    "trend_detected": false,
+    "trend_slope_per_day": -1.516,
+    "annual_demand_estimate": 586098.79,
+    "percentiles": {
+      "p01": 70.98,
+      "p25": 2118.88,
+      "p50": 2488.26,
+      "p75": 2755.67,
+      "p99": 3518.56
+    }
+  },
+  "lead_time_analysis": {
+    "mean_lead_time_days": 1.36,
+    "std_lead_time_days": 0.95,
+    "median_lead_time_days": 0.93,
+    "min_lead_time_days": 0.1,
+    "max_lead_time_days": 4.99,
+    "coefficient_of_variation": 0.7032,
+    "stability": "unstable",
+    "effective_lead_time_90pct_days": 2.93,
+    "observations_count": 196
+  },
+  "safety_stock_analysis": {
+    "service_level_target": 0.95,
+    "z_score": 1.6449,
+    "sigma_lead_time_demand": 2364.05,
+    "sigma_robust": 2297.88,
+    "safety_stock_standard": 3889,
+    "safety_stock_robust": 3780,
+    "sap_safety_stock": 2610,
+    "recommended_safety_stock": 3889,
+    "variance_demand_component": 587550.47,
+    "variance_lead_time_component": 5001178.49,
+    "dominant_uncertainty_factor": "lead_time_variability"
+  },
+  "order_quantity_analysis": {
+    "eoq_unconstrained": 28117.58,
+    "minimum_order_quantity": 652,
+    "unconstrained_order_qty": 28118,
+    "max_storage_capacity": 22836.276,
+    "recommended_order_quantity": 18947,
+    "capacity_utilization_pct": 100.0,
+    "orders_per_year": 30.93,
+    "constraints_applied": [
+      "storage_capacity"
+    ]
+  },
+  "cost_analysis": {
+    "unit_cost": 0.61778,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 50.0,
+    "annual_holding_cost_per_unit": 0.0741,
+    "optimized_policy": {
+      "annual_ordering_cost": 1546.68,
+      "annual_holding_cost": 990.61,
+      "total_annual_cost": 2537.29
+    },
+    "previous_sap_policy": {
+      "annual_ordering_cost": 44946.23,
+      "annual_holding_cost": 217.66,
+      "total_annual_cost": 45163.88
+    },
+    "cost_savings": {
+      "annual_savings": 42626.59,
+      "savings_percentage": 94.38
+    }
+  },
+  "inventory_policy": {
+    "policy_type": "continuous_review_ROP",
+    "reorder_point": 10759,
+    "order_quantity": 18947,
+    "safety_stock": 3889,
+    "review_period_days": 9,
+    "effective_lead_time_days": 2.93,
+    "cycle_stock": 9473,
+    "max_inventory_level": 22836
+  },
+  "safety_lead_time": {
+    "sap_safety_lead_time_days": 2.0,
+    "recommended_safety_lead_time_days": 1.66,
+    "sigma_effective_days": 1.01,
+    "comparison_action": "decrease",
+    "variance_decomposition": {
+      "transport": 0.5,
+      "supplier": 0.3,
+      "quality": 0.2
+    },
+    "disruption_premium_factor": 1.1
+  },
+  "comparison_previous_vs_optimized": {
+    "safety_stock": {
+      "previous": 2610,
+      "optimized": 3889,
+      "change": 1279,
+      "change_pct": 49.0
+    },
+    "order_quantity": {
+      "previous": 652,
+      "optimized": 18947,
+      "change": 18295,
+      "change_pct": 2805.98
+    },
+    "reorder_point": {
+      "previous": 7298,
+      "optimized": 10759,
+      "change": 3461
+    }
+  },
+  "warnings": [],
+  "narrative": "The analysis reveals a moderately_variable demand pattern with unstable lead times. The optimized policy increases safety stock from 2610 to 3889 units (+49.0%) to account for significant lead time variability (CV=0.70), while dramatically increasing order quantity from 652 to 18947 units to leverage economies of scale. This results in annual cost savings of $42,627 (94.4% reduction), primarily through reduced ordering frequency.",
+  "research_insights": {
+    "selected_model": "Stochastic_EOQ_with_Lead_Time_Uncertainty",
+    "selection_rationale": "Given unstable lead times (CV=0.70) and moderately variable demand (CV=0.28), a stochastic model incorporating both demand and lead time variability is essential. Lead time variance dominates the uncertainty (89.5% of total variance), requiring explicit modeling beyond classical EOQ assumptions.",
+    "boundary_risk": "HIGH",
+    "escalation_flag": true,
+    "model_assumptions_validated": {
+      "continuous_demand": true,
+      "stationary_process": true,
+      "independent_demands": true,
+      "known_lead_time_distribution": true
+    }
+  }
+}

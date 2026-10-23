@@ -1,0 +1,97 @@
+{
+  "material_id": "PL1__ME7C926E",
+  "data_quality": {
+    "total_rows": 130,
+    "working_days": 130,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": -3.3724999999999996,
+      "upper_bound": 11.5375
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 342.4096252307692,
+    "std_daily_demand": 183.26950959240287,
+    "robust_std_daily": 177.09953519999993,
+    "cv_wd": 0.5352346899386581,
+    "non_zero_fraction_wd": 0.9307692307692308,
+    "trend_detected": false,
+    "regime": "lumpy",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 4.0276162790697665,
+    "std_lead_time": 1.5273279091130576,
+    "cv_lead_time": 0.3792138583434803,
+    "stability": "moderate",
+    "effective_lead_time": 5.554944188182824
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 639.3574115823611,
+    "safety_stock": 1052,
+    "safety_stock_robust": 1041
+  },
+  "order_quantity": {
+    "eoq_raw": 3146.268212360759,
+    "order_quantity": 2314
+  },
+  "cost_analysis": {
+    "unit_cost": 14.41263,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.7295156,
+    "previous_policy": {
+      "safety_stock": 208,
+      "order_quantity": 3147,
+      "avg_inventory": 1781.5,
+      "annual_holding_cost": 3081.1320414,
+      "annual_ordering_cost": 2720.1273056146265,
+      "total_annual_cost": 5801.259347014627
+    },
+    "optimized_policy": {
+      "safety_stock": 1052,
+      "order_quantity": 2314,
+      "avg_inventory": 2209.0,
+      "annual_holding_cost": 3820.4999604,
+      "annual_ordering_cost": 3699.326115284888,
+      "total_annual_cost": 7519.826075684889
+    },
+    "cost_savings": {
+      "absolute": -1718.566728670262,
+      "percentage": -29.6240286094889
+    }
+  },
+  "policy": {
+    "safety_stock": 1052,
+    "reorder_point": 2432,
+    "order_quantity": 2314,
+    "review_period_days": 7
+  },
+  "safety_lead_time": {
+    "recommended_days": 0.9336148350845307,
+    "sigma_eff_days": 1.8672296701690614,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 66.90662084990133,
+    "variance_components": {
+      "transport": 40.143972509940795,
+      "supplier": 20.071986254970398,
+      "quality": 6.690662084990134
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__ME7C926E exhibits lumpy demand (CV=0.54, non-zero fraction=0.93) \nwith normal distribution. Lead time is moderate (CV=0.38). \nThe dominant source of uncertainty is lead_time_variability (66.9%).\n\nRecommended policy to achieve 95.0% service level:\n- Safety stock: 1052 units (vs SAP: 208)\n- Reorder point: 2432 units\n- Order quantity: 2314 units (capacity-constrained from EOQ 3147)\n- Review period: 7 days\n\nThe optimized policy trades increased inventory investment for higher service reliability.\nStorage capacity constraint is binding, limiting order quantity below optimal EOQ.",
+  "warnings": [
+    "Order quantity reduced from 3147 to 2314 due to storage capacity constraint",
+    "Optimized policy increases costs by $1,718.57 (29.6%) due to higher safety stock requirement for 95% service level"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "statistical_buffer_optimization",
+    "selection_rationale": "Demand regime is lumpy with moderate lead time. Statistical buffer sizing appropriate for 95.0% service level.",
+    "boundary_risk": "Capacity constraint binds; consider expanding storage or negotiating lower MOQ",
+    "escalation_flag": "capacity_constrained"
+  }
+}

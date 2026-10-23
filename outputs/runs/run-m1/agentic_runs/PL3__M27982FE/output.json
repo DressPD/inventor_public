@@ -1,0 +1,165 @@
+{
+  "analysis_metadata": {
+    "material_id": "PL3__M27982FE",
+    "timestamp": "2026-10-20T22:06:08.217777",
+    "data_period": {
+      "start_date": "2025-03-03",
+      "end_date": "2026-03-09",
+      "total_days": 228,
+      "working_days": 228,
+      "non_working_days": 0
+    },
+    "data_quality": {
+      "total_rows": 228,
+      "working_days": 228,
+      "missing_values": 0,
+      "zero_demand_days": 74,
+      "outliers_detected": 21
+    }
+  },
+  "demand_analysis": {
+    "raw_statistics": {
+      "mean_daily": 173.1469,
+      "std_daily": 270.9517,
+      "median_daily": 38.072,
+      "min_daily": 0.0,
+      "max_daily": 1240.045,
+      "cv": 1.5649,
+      "non_zero_days": 154,
+      "zero_days": 74,
+      "non_zero_fraction": 0.6754
+    },
+    "winsorized_statistics": {
+      "p1_threshold": 0.0,
+      "p99_threshold": 1079.0296,
+      "mean_winsorized": 171.7201,
+      "std_winsorized": 265.7162
+    },
+    "trend_analysis": {
+      "slope": 2.605059,
+      "slope_percentage": 1.5045,
+      "r_squared": 0.4022,
+      "trend_detected": true,
+      "direction": "increasing"
+    },
+    "regime_classification": {
+      "regime": "lumpy",
+      "distribution_type": "empirical"
+    }
+  },
+  "lead_time_analysis": {
+    "raw_statistics": {
+      "mean_days": 3.002,
+      "std_days": 1.1575,
+      "median_days": 2.39,
+      "min_days": 1.46,
+      "max_days": 4.99,
+      "cv": 0.3856,
+      "sample_size": 30
+    },
+    "stability_assessment": {
+      "stability": "moderate",
+      "effective_lead_time_days": 3.5808
+    }
+  },
+  "safety_stock_calculation": {
+    "methodology": {
+      "approach": "combined_variability",
+      "service_level_target": 0.95,
+      "z_score": 1.6449
+    },
+    "variability_components": {
+      "sigma_demand": 270.9517,
+      "sigma_lead_time": 1.1575,
+      "sigma_ltd": 510.4503
+    },
+    "results": {
+      "safety_stock_units": 840,
+      "safety_stock_robust_units": 161,
+      "days_of_coverage": 4.85
+    }
+  },
+  "order_quantity_calculation": {
+    "eoq": {
+      "annual_demand_units": 45191.3533,
+      "ordering_cost": 75.0,
+      "holding_cost_rate": 0.12,
+      "unit_cost": 2.174831,
+      "eoq_raw": 5096.4753,
+      "eoq_rounded": 5097
+    },
+    "constraints": {
+      "moq": 696,
+      "max_storage_units": 31180.617,
+      "remaining_storage_after_safety_stock": 30340.617
+    },
+    "final_order_quantity": {
+      "unconstrained_quantity": 5097,
+      "constrained_quantity": 5097,
+      "binding_constraint": "none",
+      "infeasible": false
+    }
+  },
+  "recommended_policy": {
+    "reorder_point_units": 1360,
+    "order_quantity_units": 5097,
+    "safety_stock_units": 840,
+    "review_period_days": 30,
+    "service_level_target": 0.95
+  },
+  "safety_lead_time_analysis": {
+    "recommended_days": 4.8514,
+    "sigma_effective_days": 1.1575,
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.4,
+      "quality": 0.1
+    },
+    "dominant_factor": "transport",
+    "dominant_percentage": 50.0,
+    "disruption_premium": 1.0,
+    "comparison_vs_sap": {
+      "sap_safety_lead_time_days": 0.0,
+      "recommended_safety_lead_time_days": 4.8514,
+      "action": "increase"
+    }
+  },
+  "cost_analysis": {
+    "unit_costs": {
+      "unit_cost": 2.174831,
+      "holding_cost_rate": 0.12,
+      "annual_holding_cost_per_unit": 0.261,
+      "ordering_cost": 75.0
+    },
+    "previous_policy": {
+      "safety_stock": 0,
+      "order_quantity": 696,
+      "num_orders_per_year": 64.9301,
+      "annual_ordering_cost": 4869.76,
+      "average_inventory": 348.0,
+      "annual_holding_cost": 90.82,
+      "total_annual_cost": 4960.58
+    },
+    "optimized_policy": {
+      "safety_stock": 840,
+      "order_quantity": 5097,
+      "num_orders_per_year": 8.8663,
+      "annual_ordering_cost": 664.97,
+      "average_inventory": 3388.5,
+      "annual_holding_cost": 884.33,
+      "total_annual_cost": 1549.3
+    },
+    "savings": {
+      "annual_savings": 3411.28,
+      "savings_percentage": 68.77
+    }
+  },
+  "capacity_analysis": {
+    "max_storage_units": 31180.617,
+    "safety_stock_units": 840,
+    "order_quantity_units": 5097,
+    "total_required_units": 5937,
+    "capacity_utilization_pct": 19.04,
+    "capacity_check_passed": true
+  }
+}

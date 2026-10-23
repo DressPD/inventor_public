@@ -1,0 +1,79 @@
+{
+  "material_id": "PL2__M8FC7AE2",
+  "data_quality": {
+    "total_rows": 129,
+    "working_days": 129,
+    "outliers_detected": 14,
+    "winsorisation": {
+      "lower_bound": -65989.59,
+      "upper_bound": 191369.82
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 77309.3,
+    "std_daily_demand": 66716.01,
+    "robust_std_daily": 47694.48,
+    "cv_wd": 0.86,
+    "non_zero_fraction_wd": 0.97,
+    "trend_detected": true,
+    "regime": "highly_variable",
+    "distribution_type": "heavy_tailed"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.36,
+    "std_lead_time": 0.92,
+    "cv_lead_time": 0.68,
+    "stability": "unstable",
+    "effective_lead_time": 2.28
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 90202.2,
+    "safety_stock": 148370.0,
+    "safety_stock_robust": 163207.0
+  },
+  "order_quantity": {
+    "eoq_raw": 260288.02,
+    "order_quantity": 260289
+  },
+  "cost_analysis": {
+    "unit_cost": 0.237729,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.028527
+  },
+  "policy": {
+    "safety_stock": 148370,
+    "reorder_point": 324459,
+    "order_quantity": 260289,
+    "review_period_days": 4
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.92,
+    "sigma_eff_days": 1.17,
+    "dominant_factor": "transport",
+    "dominant_pct": 0.6,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Demand for PL2__M8FC7AE2 is highly variable (CV=0.86) with a statistically significant upward trend of +1,100 units/day across the 129-day observation window. Lead times are unstable (CV=0.68, range 0.05\u20133.52 days), materially amplifying buffer requirements. A fixed (r,Q) policy is selected as the appropriate replenishment model given continuous-review suitability and the high ordering-cost asymmetry; the EOQ of 260,289 units reduces annual orders from ~948 to ~74, yielding a 76.8% total cost reduction while maintaining the 95% service level target.",
+  "warnings": [
+    "Recommended safety stock >50% higher than SAP (90,978) \u2014 review demand variability with planners",
+    "Lead time is unstable (CV=0.68) \u2014 initiate supplier SLA negotiation",
+    "Demand is highly variable (CV=0.86) \u2014 consider demand management initiatives",
+    "Linear upward trend detected (+1,100 units/day) \u2014 refresh EOQ quarterly"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) \u2014 Fixed Reorder Point with Economic Order Quantity",
+    "selection_rationale": "The material exhibits continuous, high-volume demand with significant variability. A fixed reorder-point policy provides immediate trigger-based replenishment that responds to real-time stock depletion, while the EOQ balances the high ordering cost against holding cost. The MOQ of 20,379 is well below the EOQ of 260,289 so no MOQ-driven distortion occurs.",
+    "boundary_risk": "Capacity is non-binding: safety_stock (148,370) + order_quantity (260,289) = 408,659, which is well within max_storage_units (1,528,435). No capacity-driven service degradation is expected.",
+    "escalation_flag": "none"
+  }
+}

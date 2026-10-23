@@ -1,0 +1,100 @@
+{
+  "material_id": "PL1__MCE82DD5",
+  "parameters": {
+    "unit_cost": 4.173252,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 50.0,
+    "moq": 347,
+    "service_level_target": 0.95,
+    "sap_safety_stock": 0,
+    "sap_safety_lead_time_days": 3.5,
+    "max_storage_units": 6709.093
+  },
+  "data_summary": {
+    "total_rows": 171,
+    "working_days": 171
+  },
+  "demand_analysis": {
+    "mean_demand": 617.889543859649,
+    "std_demand": 328.38045726921797,
+    "robust_std": 356.9463281999999,
+    "cv": 0.5314549510224568,
+    "non_zero_fraction": 0.9707602339181286,
+    "trend_detected": false,
+    "trend_slope": 2.144938080495356,
+    "regime": "variable",
+    "distribution_type": "empirical",
+    "winsorised_lower_bound": 0.0,
+    "winsorised_upper_bound": 1327.6405
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.7810204081632652,
+    "std_lead_time": 1.0076483449471993,
+    "cv_lead_time": 1.2901690332483087,
+    "stability": "unstable",
+    "effective_lead_time": 1.7886687531104646
+  },
+  "buffer_safety_stock": {
+    "z_score": 1.644853626951472,
+    "sigma_ltd": 686.9281231760631,
+    "safety_stock": 1130,
+    "safety_stock_robust": 1149
+  },
+  "eoq_order_quantity": {
+    "annual_demand": 154472.38596491228,
+    "eoq_raw": 5553.892881550123,
+    "unconstrained_order_quantity": 5554,
+    "order_quantity": 5554,
+    "capacity_warning": false,
+    "escalation_flag": false
+  },
+  "inventory_policy": {
+    "reorder_point": 2236,
+    "order_quantity": 5554,
+    "review_period_days": 9
+  },
+  "cost_analysis": {
+    "annual_holding_cost_per_unit": 0.5007902399999999,
+    "previous_policy": {
+      "safety_stock": 0,
+      "order_quantity": 5554,
+      "average_inventory": 2777.0,
+      "annual_orders": 27.812817062461697,
+      "annual_holding_cost": 1390.69449648,
+      "annual_ordering_cost": 1390.6408531230848,
+      "total_annual_cost": 2781.335349603085
+    },
+    "optimized_policy": {
+      "safety_stock": 1130,
+      "order_quantity": 5554,
+      "average_inventory": 3907.0,
+      "annual_orders": 27.812817062461697,
+      "annual_holding_cost": 1956.5874676799997,
+      "annual_ordering_cost": 1390.6408531230848,
+      "total_annual_cost": 3347.2283208030844
+    },
+    "savings": {
+      "total_savings": -565.8929711999995,
+      "savings_percentage": -20.346089200669603
+    }
+  },
+  "safety_lead_time": {
+    "sigma_eff_days": 1.0076483449471993,
+    "z_lt": 1.644853626951472,
+    "recommended_safety_lead_time_days": 1.6574340348780487,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "dominant_factor": "transport",
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce"
+  },
+  "narrative": "The material PL1__MCE82DD5 exhibits variable demand behavior with a coefficient of variation of 0.53, characterized as empirical. Historical demand data shows 97.1% of working days with non-zero demand and no significant trend. Lead time analysis reveals unstable variability (CV=1.29), with a mean lead time of 0.78 days. The recommended (r,Q) policy with safety stock of 1130 units and order quantity of 5554 units is designed to achieve a 95% service level while respecting storage capacity constraints (6709 units). This optimized policy increases total annual cost by $565.89 compared to the baseline, primarily due to the addition of safety stock to mitigate stockout risk.",
+  "final_capacity_check": {
+    "passed": true,
+    "total_inventory": 6684,
+    "capacity_utilization_percent": 99.62598521141382
+  }
+}

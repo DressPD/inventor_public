@@ -1,0 +1,77 @@
+{
+  "material_id": "PL2__M50DAE8D",
+  "data_quality": {
+    "total_rows": 141,
+    "working_days": 141,
+    "outliers_detected": 26,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 2888.294
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1574.8,
+    "std_daily_demand": 557.3,
+    "robust_std_daily": 489.1,
+    "cv_wd": 0.354,
+    "non_zero_fraction_wd": 0.957,
+    "trend_detected": false,
+    "regime": "Moderate volatility",
+    "distribution_type": "Right-skewed unimodal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.37,
+    "std_lead_time": 1.003,
+    "cv_lead_time": 0.423,
+    "stability": "Moderate variability",
+    "effective_lead_time": 3.33
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1940.5,
+    "safety_stock": 3193.0,
+    "safety_stock_robust": 2953.0
+  },
+  "order_quantity": {
+    "eoq_raw": 5663.4,
+    "order_quantity": 5663
+  },
+  "cost_analysis": {
+    "unit_cost": 5.530162,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.6636
+  },
+  "policy": {
+    "safety_stock": 3193,
+    "reorder_point": 8010,
+    "order_quantity": 5663,
+    "review_period_days": 3
+  },
+  "safety_lead_time": {
+    "recommended_days": 3.33,
+    "sigma_eff_days": 2.03,
+    "dominant_factor": "demand_variability",
+    "dominant_pct": 87.9,
+    "variance_components": {
+      "transport": 0.879,
+      "supplier": 0.121,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Reduce SAP safety lead time from 3.8 to 3.33 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL2__M50DAE8D exhibits moderate demand volatility (CV \u2248 35%) with a slight right skew and no detectable trend over the observation window. Lead times are variable (CV \u2248 42%), making the combined lead-time demand standard deviation the primary driver of buffer requirements. The current SAP safety stock of 1,466 units is materially understated for a 95% service level \u2014 the analytics-derived optimum is 3,193 units. Adopting an (r,Q) continuous-review policy with Q=5,663 reduces total annual inventory cost by approximately 30% while simultaneously improving service reliability.",
+  "warnings": [
+    "SAP safety stock (1,466) is 54% below the analytically derived optimum (3,193) \u2014 service level risk at current ERP settings.",
+    "26 demand observations winsorised at the 99th percentile (2,888 units)."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) Continuous-Review with EOQ",
+    "selection_rationale": "Moderate CV (35.4%) and high-volume regular demand favour a fixed-quantity reorder-point policy. EOQ balances ordering vs. holding costs efficiently; MOQ of 2,111 is comfortably below the economic order quantity of 5,663, so the EOQ drives the decision.",
+    "boundary_risk": "Storage headroom is ample \u2014 policy requires 8,856 units peak stock vs. 31,669 unit capacity, leaving ~22,813 units of buffer. No capacity binding detected.",
+    "escalation_flag": "none"
+  }
+}

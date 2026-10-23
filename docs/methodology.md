@@ -54,4 +54,6 @@ Storage limits: in the unconstrained replay the peak on-hand stock exceeds the l
 
 ## Repeated runs
 
+Three masked re-runs (run-m1..m3, 364/365/365 policies produced; 340/342/342 scorable) on the masked release reproduce the aggregate pattern within 1% of cost; see `outputs/masked_replication_evidence.json`. The runner-hash re-stamp of 38 run-m1 records (authentication handling only) is documented in each record (`runner_hash_amendment`, `runner_code_sha256_original`).
+
 Three full runs with the same prompt file give nearly identical aggregate results (cost spread below one percentage point). Exact policy equality between runs 2 and 3 holds for only 36 of 365 pairs; median absolute differences are 81 units for reorder point, 6 for order quantity and 3 for safety stock. None of these results establishes prospective operating performance.

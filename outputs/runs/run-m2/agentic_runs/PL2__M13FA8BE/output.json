@@ -1,0 +1,78 @@
+{
+  "material_id": "PL2__M13FA8BE",
+  "analysis_timestamp": "2026-10-22T21:44:04.758899",
+  "data_quality": {
+    "total_rows": 218,
+    "working_days": 218,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 3098.872479999999
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1344.2731350458714,
+    "std_daily_demand": 734.1357100532447,
+    "robust_std_daily": 276.6528910303928,
+    "cv_wd": 0.5461209414321839,
+    "non_zero_fraction_wd": 0.981651376146789,
+    "trend_detected": true,
+    "regime": "medium_volume",
+    "distribution_type": "moderate_variability"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.27999999999999997,
+    "std_lead_time": 0.38323187063012737,
+    "cv_lead_time": 1.3686852522504551,
+    "stability": "unstable",
+    "effective_lead_time": 0.6632318706301273
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 645.2176789050728,
+    "safety_stock": 1062.0,
+    "safety_stock_robust": 241.0
+  },
+  "order_quantity": {
+    "eoq_raw": 26231.54189484372,
+    "order_quantity": 26232
+  },
+  "cost_analysis": {
+    "unit_cost": 0.41026,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.0492312
+  },
+  "policy": {
+    "safety_stock": 1062,
+    "reorder_point": 1954,
+    "order_quantity": 26232,
+    "review_period_days": 20
+  },
+  "safety_lead_time": {
+    "recommended_days": 0.6632318706301273,
+    "sigma_eff_days": 0.4799751345793693,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 63.750817753963865,
+    "variance_components": {
+      "transport": 0.0,
+      "supplier": 0.38323187063012737,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL2__M13FA8BE shows a statistically significant upward demand trend across 218 working days, with daily demand rising from ~1,100 to ~2,700 units. Lead times are extremely short (mean 0.28 days) but highly variable (CV 1.37), making lead-time uncertainty the dominant buffer driver at 63.8% of total variance. The (r,Q) policy is selected because fixed-batch ordering aligns with the MOQ constraint and the continuous-review trigger is straightforward given short, observable lead times. The current SAP safety stock of 17,491 units is 16x the analytically derived requirement, representing a significant overstock that can be safely reduced to 1,062 units while maintaining 95% service level.",
+  "warnings": [
+    "Upward demand trend detected \u2014 reorder point and safety stock should be reviewed quarterly.",
+    "Lead time estimate based on only 10 observations \u2014 monitor with additional delivery data."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review reorder-point / fixed-order-quantity",
+    "selection_rationale": "The material has a MOQ of 17,491 which makes fixed-batch ordering natural. Lead times are short and directly observable, enabling a continuous-review trigger without requiring periodic-review overhead. The (r,Q) model minimises total ordering and holding costs via EOQ while using the reorder point to absorb lead-time and demand uncertainty at the 95% service level.",
+    "boundary_risk": "EOQ of 26,232 comfortably exceeds MOQ of 17,491 so no MOQ binding constraint. Total inventory at replenishment (27,294 units) is 59% below the 66,698-unit storage cap \u2014 no capacity binding. However, the upward demand trend means ROP will underestimate true demand-during-lead-time if not refreshed; this creates a progressive service degradation risk without quarterly recalibration.",
+    "escalation_flag": "none"
+  }
+}

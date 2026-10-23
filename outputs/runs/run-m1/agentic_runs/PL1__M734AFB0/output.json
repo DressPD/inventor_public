@@ -1,0 +1,77 @@
+{
+  "material_id": "PL1__M734AFB0",
+  "data_quality": {
+    "total_rows": 209,
+    "working_days": 209,
+    "outliers_detected": 1,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 1179.63
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 270.24,
+    "std_daily_demand": 352.71,
+    "robust_std_daily": 337.24,
+    "cv_wd": 1.305,
+    "non_zero_fraction_wd": 0.5837,
+    "trend_detected": false,
+    "regime": "intermittent",
+    "distribution_type": "Zero-inflated"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 5.7,
+    "std_lead_time": 1.38,
+    "cv_lead_time": 0.242,
+    "stability": "moderate",
+    "effective_lead_time": 7.08
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 920.65,
+    "safety_stock": 1515.0,
+    "safety_stock_robust": 1460.0
+  },
+  "order_quantity": {
+    "eoq_raw": 6086.58,
+    "order_quantity": 6087
+  },
+  "cost_analysis": {
+    "unit_cost": 3.03939,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.364727
+  },
+  "policy": {
+    "safety_stock": 1515,
+    "reorder_point": 3055,
+    "order_quantity": 6087,
+    "review_period_days": 23
+  },
+  "safety_lead_time": {
+    "recommended_days": 5.61,
+    "sigma_eff_days": 3.41,
+    "dominant_factor": "supplier_variability",
+    "dominant_pct": 83.59,
+    "variance_components": {
+      "transport": 139055.79,
+      "supplier": 708548.33,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "INCREASE",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Demand for PL1__M734AFB0 is intermittent and zero-inflated (CV=1.31), with only 58.4% of working days carrying non-zero demand. Lead times are moderately variable (CV=0.24, mean=5.7 days), and supplier-side demand variability dominates total uncertainty (83.6%). The current SAP safety stock of 167 units is critically insufficient at the 95% service level \u2014 the statistically correct buffer is 1,515 units. A continuous-review (s,Q) policy with EOQ-sized orders consolidates 60 annual orders into 11, cutting total annual costs by 55.9% while remaining within storage capacity.",
+  "warnings": [
+    "High demand variability (CV=1.31) - consider demand forecasting improvements",
+    "Intermittent demand pattern detected - standard models may underperform"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Continuous-review (s,Q) \u2014 reorder-point / fixed-order-quantity",
+    "selection_rationale": "With intermittent but non-negligible demand and a moderate number of replenishment events per year, the (s,Q) model balances simplicity and performance. EOQ provides the optimal batch size, while the reorder point absorbs lead-time and demand uncertainty at the target service level.",
+    "boundary_risk": "Peak inventory (safety stock + order quantity = 7,602 units) reaches 90.1% of max storage (8,436 units), leaving a thin buffer of ~834 units. Any demand spike or double-order scenario could breach capacity; monitoring of on-hand levels near the reorder point is recommended.",
+    "escalation_flag": "none \u2014 MOQ (1,123) + safety stock (1,515) = 2,638 units, which is well within max_storage_units (8,436). No infeasibility conflict exists."
+  }
+}

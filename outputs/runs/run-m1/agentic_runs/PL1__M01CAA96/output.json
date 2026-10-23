@@ -1,0 +1,76 @@
+{
+  "material_id": "PL1__M01CAA96",
+  "data_quality": {
+    "total_rows": 221,
+    "working_days": 221,
+    "outliers_detected": 6,
+    "winsorisation": {
+      "lower_bound": 63.52160000000001,
+      "upper_bound": 1724.9608000000003
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 886.8369330316742,
+    "std_daily_demand": 362.10012830526597,
+    "robust_std_daily": 365.8923365999999,
+    "cv_wd": 0.4083051966131109,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "smooth",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.0638755980861245,
+    "std_lead_time": 0.9458094843062248,
+    "cv_lead_time": 0.8890226319766178,
+    "stability": "unstable",
+    "effective_lead_time": 2.009685082392349
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 918.1729105069818,
+    "safety_stock": 1511,
+    "safety_stock_robust": 1513
+  },
+  "order_quantity": {
+    "eoq_raw": 5648.398245690549,
+    "order_quantity": 5083
+  },
+  "cost_analysis": {
+    "unit_cost": 5.790978,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.6949173599999999
+  },
+  "policy": {
+    "safety_stock": 1511,
+    "reorder_point": 3294,
+    "order_quantity": 5083,
+    "review_period_days": 6
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.7038081565171275,
+    "sigma_eff_days": 1.0353345426968008,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 83.45376247522991,
+    "variance_components": {
+      "transport": 0.8429114781647762,
+      "supplier": 0.15708852183522382,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization for PL1__M01CAA96 reveals a smooth demand pattern with normal characteristics (CV=0.41). Lead time is unstable (CV=0.89). Recommended safety stock of 1511 units provides 95% service level. EOQ calculation suggests order quantity of 5083 units (review period: 6 days). The dominant uncertainty driver is lead_time_variability (83.5%). Capacity constraint binding - order quantity reduced. Recommended to reduce safety lead time from 3.0 to 1.70 days.",
+  "warnings": [
+    "Capacity constraint binding: reduced order quantity from 5649 to 5083"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Normal approximation with lead time variance",
+    "selection_rationale": "CV=0.41 indicates normal distribution. Using classical newsvendor with LTD variance.",
+    "boundary_risk": "low",
+    "escalation_flag": "none"
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "material_id": "PL3__M8AFB2B0",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 19733.85969
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 12258.813508771931,
+    "std_daily_demand": 7469.058437673386,
+    "robust_std_daily": 12155.267605633804,
+    "cv_wd": 0.6092806968903489,
+    "non_zero_fraction_wd": 0.8026315789473685,
+    "trend_detected": true,
+    "regime": "erratic",
+    "distribution_type": "high_variance"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 5.587666666666666,
+    "std_lead_time": 1.0872502505608508,
+    "cv_lead_time": 0.19458037055912142,
+    "stability": "moderate",
+    "effective_lead_time": 6.131291791947092
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 22121.58283881115,
+    "safety_stock": 36387,
+    "safety_stock_robust": 52099
+  },
+  "order_quantity": {
+    "eoq_raw": 454811.7436786355,
+    "order_quantity": 217566
+  },
+  "cost_analysis": {
+    "unit_cost": 0.024693,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.00296316
+  },
+  "policy": {
+    "safety_stock": 36387,
+    "reorder_point": 111550,
+    "order_quantity": 217566,
+    "review_period_days": 18
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.1930290288831646,
+    "sigma_eff_days": 1.0872502505608508,
+    "dominant_factor": "transport",
+    "dominant_pct": 70.0,
+    "variance_components": {
+      "transport": 0.8274791751412428,
+      "supplier": 0.23642262146892656,
+      "quality": 0.11821131073446328
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__M8AFB2B0 exhibits an ERRATIC demand pattern with high variability (CV=0.61) and a slight upward trend. The demand is concentrated on 80.3% of working days, with mean daily demand of 12,259 units. Lead time analysis (filtered for genuine replenishment cycles >= 0.5 days) shows MODERATE stability (CV=0.19) with mean of 5.6 days. The primary variance source is transport (70%). The recommended policy reduces safety stock by 50% from SAP levels while maintaining 95% service level, but storage capacity forces a smaller order quantity than the unconstrained EOQ. Critical: capacity utilisation is at 100% \u2014 a safety lead time of 1.2 days (vs current 0.0) must be implemented immediately.",
+  "warnings": [
+    "High demand variability (CV=0.61). Consider demand segmentation or dynamic safety stock.",
+    "Demand regime classified as ERRATIC. Recommend enhanced monitoring and possibly buffer optimization.",
+    "High capacity utilization (100.0%). Limited flexibility for demand surges.",
+    "SAP safety stock (73,058) is significantly higher than calculated (36,387). Review needed.",
+    "Significant zero-demand days (19.7%). May indicate data quality issues or true intermittent demand."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Trend-Adjusted EOQ with (r,Q) continuous review",
+    "selection_rationale": "Upward demand trend detected; continuous review policy suits high-volume erratic flow material with moderate lead-time variability",
+    "boundary_risk": "HIGH - Storage capacity fully saturated post-replenishment; zero headroom for demand surges or early deliveries",
+    "escalation_flag": "CAPACITY_ALERT"
+  }
+}

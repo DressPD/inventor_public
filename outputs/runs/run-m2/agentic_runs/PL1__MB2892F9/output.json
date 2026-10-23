@@ -1,0 +1,94 @@
+{
+  "material_id": "PL1__MB2892F9",
+  "data_quality": {
+    "total_rows": 137,
+    "working_days": 137,
+    "outliers_detected": 7,
+    "winsorisation": {
+      "lower_bound": 182.73,
+      "upper_bound": 913.66
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 559.25,
+    "std_daily_demand": 174.97,
+    "robust_std_daily": 131.36,
+    "cv_wd": 0.313,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "regular",
+    "distribution_type": "gamma-like"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.92,
+    "std_lead_time": 1.12,
+    "cv_lead_time": 0.385,
+    "stability": "moderate",
+    "effective_lead_time": 4.04
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 695.16,
+    "safety_stock": 1144,
+    "safety_stock_robust": 1097
+  },
+  "order_quantity": {
+    "eoq_raw": 4606.21,
+    "order_quantity": 3535
+  },
+  "cost_analysis": {
+    "unit_cost": 5.491348,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.66,
+    "previous_policy": {
+      "safety_stock": 0,
+      "order_quantity": 426,
+      "annual_ordering_cost": 16410.02,
+      "annual_holding_cost": 140.36,
+      "total_annual_cost": 16550.38
+    },
+    "optimized_policy": {
+      "safety_stock": 1144,
+      "order_quantity": 3535,
+      "annual_ordering_cost": 1977.56,
+      "annual_holding_cost": 1918.57,
+      "total_annual_cost": 3896.13
+    },
+    "savings": {
+      "annual_cost_savings": 12654.25,
+      "savings_percentage": 76.5
+    }
+  },
+  "policy": {
+    "safety_stock": 1144,
+    "reorder_point": 3404,
+    "order_quantity": 3535,
+    "review_period_days": 7
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.05,
+    "sigma_eff_days": 1.24,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 81.5,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease_moderately",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MB2892F9 exhibits regular demand with a coefficient of variation of 0.31. \nThe demand pattern follows a gamma-like distribution with mean daily demand of 559.3 units.\nLead time shows moderate variability (CV=0.38) with mean 2.92 days.\n\nThe analysis reveals that lead time variability is the dominant source of uncertainty (82%), \ndriving safety stock requirements. \n\nCurrent SAP policy (safety stock=0, order qty=426) results in excessive ordering frequency \n(328 orders/year) and high ordering costs ($16410).\n\nRecommended policy increases safety stock to 1144 units and order quantity to 3535 units, \nachieving 95% service level while reducing total annual costs by 76.5% ($12654 savings).\n\nThe order quantity is constrained by maximum storage capacity (4679 units), \nlimiting it below the optimal EOQ of 4606 units. Despite this constraint, significant cost \nreductions are achievable through better inventory management.",
+  "warnings": [
+    "Order quantity constrained by capacity from 4607 to 3535"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with safety stock",
+    "selection_rationale": "Regular demand pattern (CV=0.31) with moderate lead time variability (CV=0.38) suits classic reorder point model",
+    "boundary_risk": "Order quantity constrained by storage capacity; optimal EOQ not achievable",
+    "escalation_flag": "capacity_constraint_active"
+  }
+}

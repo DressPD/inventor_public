@@ -1,0 +1,41 @@
+{
+  "material_id": "PL1__M1F91DC7",
+  "data_quality": {
+    "total_rows": 132,
+    "working_days": 132,
+    "outliers_detected": 8,
+    "winsorisation": {
+      "lower_bound": 211.09,
+      "upper_bound": 2639.08
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1625.65,
+    "std_daily_demand": 615.28,
+    "cv_wd": 0.378,
+    "regime": "SMOOTH",
+    "trend_detected": true
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.59,
+    "std_lead_time": 1.04,
+    "cv_lead_time": 0.659,
+    "stability": "UNSTABLE",
+    "effective_lead_time": 2.11
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1865.99,
+    "safety_stock": 3070,
+    "safety_stock_robust": 3030
+  },
+  "policy": {
+    "safety_stock": 3070,
+    "reorder_point": 6496,
+    "order_quantity": 7846,
+    "review_period_days": 5
+  },
+  "cost_analysis": {
+    "annual_savings": 120124.1,
+    "savings_percentage": 91.74
+  }
+}

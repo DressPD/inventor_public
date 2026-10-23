@@ -1,0 +1,77 @@
+{
+  "material_id": "PL1__MA79AD09",
+  "data_quality": {
+    "total_rows": 221,
+    "working_days": 221,
+    "outliers_detected": 6,
+    "winsorisation": {
+      "lower_bound": 157.726,
+      "upper_bound": 12214.3036
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 5681.664809954751,
+    "std_daily_demand": 2913.2060756609985,
+    "robust_std_daily": 3096.7286879169765,
+    "cv_wd": 0.512738109885824,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "erratic",
+    "distribution_type": "approximately_normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.3841884816753924,
+    "std_lead_time": 1.2454976794642536,
+    "cv_lead_time": 0.5223990003462438,
+    "stability": "moderate",
+    "effective_lead_time": 3.629686161139646
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 8385.160429599504,
+    "safety_stock": 13793,
+    "safety_stock_robust": 14048
+  },
+  "order_quantity": {
+    "eoq_raw": 36802.98147349594,
+    "order_quantity": 36803
+  },
+  "cost_analysis": {
+    "unit_cost": 1.31087,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.15730439999999998
+  },
+  "policy": {
+    "safety_stock": 13793,
+    "reorder_point": 27340,
+    "order_quantity": 36803,
+    "review_period_days": 7
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.4758280732978128,
+    "sigma_eff_days": 1.2454976794642536,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 0.7122202392502595,
+    "variance_components": {
+      "transport": 0.0,
+      "supplier": 0.0,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease_significantly",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Analysis for material PL1__MA79AD09 reveals an erratic demand pattern (CV=0.51) with moderate lead time variability (CV=0.52). Lead time variability dominates buffer requirements (71.2%). Recommended safety stock of 13793 units (vs SAP's 3943) provides 95% service level. Order quantity of 36803 units optimizes ordering and holding costs. Total annual cost: $7958.97 (savings of $83727.95 vs current policy).",
+  "warnings": [
+    "Lead time observations (191) < demand observations (221)",
+    "Storage constraint does not bind; available capacity: 81343 units"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "analytical_ltdvariance",
+    "selection_rationale": "Used lead-time demand variance formula for safety stock with erratic demand pattern",
+    "boundary_risk": "moderate",
+    "escalation_flag": "none"
+  }
+}

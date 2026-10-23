@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__MEB5CBCE",
+  "data_quality": {
+    "total_rows": 87,
+    "working_days": 87,
+    "outliers_detected": 1,
+    "winsorisation": {
+      "lower_bound": 522.734000000004,
+      "upper_bound": 22398.962
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 11275.225977011492,
+    "std_daily_demand": 4491.385344677999,
+    "robust_std_daily": 4054.1564121571528,
+    "cv_wd": 0.3983410491138062,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": true,
+    "regime": "Erratic",
+    "distribution_type": "Gamma"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 3.019885057471264,
+    "std_lead_time": 1.2165386412705341,
+    "cv_lead_time": 0.40284269702940845,
+    "stability": "Moderate",
+    "effective_lead_time": 3.019885057471264
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 15781.886366130788,
+    "safety_stock": 25959.0,
+    "safety_stock_robust": 25365.0
+  },
+  "order_quantity": {
+    "eoq_raw": 773610.1837501132,
+    "order_quantity": 224106
+  },
+  "cost_analysis": {
+    "unit_cost": 0.006123,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.00073476
+  },
+  "policy": {
+    "safety_stock": 25959,
+    "reorder_point": 60009,
+    "order_quantity": 224106,
+    "review_period_days": 19.87596527616553
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.3022947018882403,
+    "sigma_eff_days": 1.3996957930872256,
+    "dominant_factor": "Lead Time Variability",
+    "dominant_pct": 75.54130821762814,
+    "variance_components": {
+      "transport": 188149178.1670368,
+      "supplier": 60918759.106428035,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MEB5CBCE exhibits erratic demand with mean daily demand of 11275 units and CV of 0.40.\nLead time averages 3.02 days with moderate variability (CV=0.40).\n\nThe optimized policy recommends:\n- Safety stock: 25,959 units (vs SAP: 0)\n- Order quantity: 224,106 units (constrained by storage capacity)\n- Reorder point: 60,009 units\n- Review period: 19.9 days\n\nThis policy achieves 95% service level while reducing annual costs by $855.08 (44.1%) compared to current SAP settings.\n\nKey insight: Lead Time Variability is the primary driver of inventory uncertainty (75.5% of variance).",
+  "warnings": [
+    "Storage capacity constraint active: reduced order quantity from 773,611 to 224,106 units",
+    "Significant demand trend detected (slope=-94.95, p=0.0000). Monitor for demand shifts.",
+    "Lead time variability is moderate to high (CV=0.40). Consider supplier performance improvements."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Stochastic Inventory Model with Gamma Demand",
+    "selection_rationale": "Erratic demand pattern with moderate-to-high variability best modeled using Gamma distribution. Standard normal approximation used for safety stock with robustness checks.",
+    "boundary_risk": "Medium - demand variability near boundary between smooth and erratic regimes",
+    "escalation_flag": "Monitor"
+  }
+}

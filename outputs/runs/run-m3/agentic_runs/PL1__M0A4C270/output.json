@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__M0A4C270",
+  "data_quality": {
+    "total_rows": 214,
+    "working_days": 214,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 1572.848
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 332.74,
+    "std_daily_demand": 418.6,
+    "robust_std_daily": 405.29,
+    "cv_wd": 1.258,
+    "non_zero_fraction_wd": 0.6262,
+    "trend_detected": false,
+    "regime": "intermittent",
+    "distribution_type": "non_normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.7685,
+    "std_lead_time": 0.8965,
+    "cv_lead_time": 1.1664,
+    "stability": "variable",
+    "effective_lead_time": 1.66
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 472.91,
+    "safety_stock": 778.0,
+    "safety_stock_robust": 764.0
+  },
+  "order_quantity": {
+    "eoq_raw": 2189.33,
+    "order_quantity": 2190
+  },
+  "cost_analysis": {
+    "unit_cost": 15.040846,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.804902
+  },
+  "policy": {
+    "safety_stock": 778,
+    "reorder_point": 1034,
+    "order_quantity": 2190,
+    "review_period_days": 7
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.34,
+    "sigma_eff_days": 1.42,
+    "dominant_factor": "demand_variability",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 0.0,
+      "supplier": 0.0,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase safety lead time from 2.5 to 2.34 days (marginal adjustment)",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M0A4C270 exhibits intermittent demand with high variability (CV=1.26) and very short but unpredictable lead times (mean 0.77 days, CV=1.17). The current SAP safety stock of 396 units provides only approximately 75% service level, far below the 95% target. A continuous-review (r,Q) policy with safety stock raised to 778 units and a reorder point of 1,034 units is recommended to close this service level gap at a modest incremental annual cost of ~$690.",
+  "warnings": [
+    "Recommended safety stock is 96% higher than SAP baseline \u2014 ERP update required",
+    "High demand variability (CV=1.26) \u2014 monitor and improve forecast accuracy",
+    "High lead time variability (CV=1.17) \u2014 consider supplier reliability improvement programs"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review policy",
+    "selection_rationale": "Continuous review is appropriate given moderately high daily demand, short variable lead times, and the need to tightly control stockout exposure. The fixed-order-quantity EOQ minimises total ordering and holding costs while the reorder point provides the service level buffer. This model maps directly to SAP MRP reorder point logic.",
+    "boundary_risk": "Storage capacity does not bind: peak inventory (778 SS + 2190 OQ = 2,968 units) is 21% below the 3,764-unit maximum. No capacity-driven order quantity reduction was required.",
+    "escalation_flag": "none"
+  }
+}

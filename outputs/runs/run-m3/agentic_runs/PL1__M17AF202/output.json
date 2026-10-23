@@ -1,0 +1,77 @@
+{
+  "material_id": "PL1__M17AF202",
+  "data_quality": {
+    "total_rows": 206,
+    "working_days": 206,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 9746.594
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 4641.12,
+    "std_daily_demand": 2367.45,
+    "robust_std_daily": 2180.33,
+    "cv_wd": 0.51,
+    "non_zero_fraction_wd": 0.88,
+    "trend_detected": true,
+    "regime": "erratic",
+    "distribution_type": "Gamma"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.57,
+    "std_lead_time": 1.2,
+    "cv_lead_time": 0.47,
+    "stability": "moderate",
+    "effective_lead_time": 3.28
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 6933.12,
+    "safety_stock": 11407.0,
+    "safety_stock_robust": 10503.0
+  },
+  "order_quantity": {
+    "eoq_raw": 30479.8,
+    "order_quantity": 30579
+  },
+  "cost_analysis": {
+    "unit_cost": 1.551239,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.186149
+  },
+  "policy": {
+    "safety_stock": 11407,
+    "reorder_point": 26644,
+    "order_quantity": 30579,
+    "review_period_days": 7
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.46,
+    "sigma_eff_days": 1.2,
+    "dominant_factor": "lead_time",
+    "dominant_pct": 69.0,
+    "variance_components": {
+      "transport": 0.414,
+      "supplier": 0.276,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M17AF202 shows erratic daily demand (mean 4,641 units, CV 0.51) with a statistically significant declining trend of approximately 9 units per day. Lead times are moderately unstable (CV 0.47, mean 2.57 days), requiring an effective lead time of 3.28 days for planning purposes. A continuous-review (r,Q) policy is recommended: the EOQ-derived order quantity of 30,579 units minimises total replenishment and holding costs, while the safety stock of 11,407 units (z=1.645 at 95% service level) substantially exceeds the current SAP setting of 3,393 units and provides adequate buffer against combined demand and lead-time variability within the 53,952-unit storage constraint.",
+  "warnings": [
+    "Declining demand trend detected (slope=-9.15 units/day, p<0.05); monitor for structural demand shift",
+    "Recommended safety stock (11,407) is 236% higher than current SAP safety stock (3,393); review with demand planner before implementation"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) Continuous Review",
+    "selection_rationale": "Erratic demand pattern with continuous daily consumption and moderate lead-time variability is best served by a continuous-review fixed-order-quantity model. The (r,Q) policy triggers a replenishment of fixed size Q whenever on-hand inventory falls to reorder point r, balancing ordering frequency against holding costs via the EOQ formula while the safety stock provides service-level protection against the combined stochastic variance of demand and lead time.",
+    "boundary_risk": "Storage capacity is not binding: maximum stock position (safety_stock 11,407 + order_quantity 30,579 = 41,986 units) represents 77.8% of the 53,952-unit storage limit, leaving adequate headroom. No capacity-driven order reduction was required.",
+    "escalation_flag": "none"
+  }
+}

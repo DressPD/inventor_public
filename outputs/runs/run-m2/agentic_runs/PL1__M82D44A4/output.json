@@ -1,0 +1,93 @@
+{
+  "material_id": "PL1__M82D44A4",
+  "analysis_date": "2026-10-22 09:24:09",
+  "data_summary": {
+    "total_rows": 140,
+    "working_days": 140,
+    "date_range_start": "2025-03-03",
+    "date_range_end": "2026-03-09",
+    "lead_time_observations": 132
+  },
+  "demand_analysis": {
+    "mean_demand_per_day": 347.23,
+    "std_demand": 169.33,
+    "robust_std_demand": 160.41,
+    "cv_demand": 0.488,
+    "non_zero_fraction": 0.979,
+    "demand_outliers_detected": 0,
+    "trend_slope": -1.2356,
+    "r_squared": 0.0872,
+    "trend_significant": false,
+    "demand_regime": "smooth",
+    "annual_demand": 87502.0
+  },
+  "lead_time_analysis": {
+    "mean_lead_time_days": 4.04,
+    "std_lead_time_days": 1.58,
+    "cv_lead_time": 0.392,
+    "erroneous_values_removed": 2,
+    "clean_observations": 130
+  },
+  "safety_stock_analysis": {
+    "service_level_target": 0.95,
+    "z_score": 1.645,
+    "sigma_ltd": 645.82,
+    "safety_stock_raw": 1062.37,
+    "safety_stock_recommended": 1063,
+    "sap_safety_stock": 0,
+    "recommended_safety_lead_time_days": 3.06,
+    "sap_safety_lead_time_days": 4.0
+  },
+  "order_policy": {
+    "eoq_raw": 5309.23,
+    "moq": 1561,
+    "unconstrained_order_quantity": 5310,
+    "max_storage_units": 4204.326,
+    "available_capacity_after_safety_stock": 3141.33,
+    "order_quantity_recommended": 3141,
+    "reorder_point": 2465
+  },
+  "cost_analysis": {
+    "unit_cost": 5.173721,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 100.0,
+    "recommended_policy": {
+      "order_quantity": 3141,
+      "safety_stock": 1063,
+      "reorder_point": 2465,
+      "orders_per_year": 27.86,
+      "average_inventory": 2633.5,
+      "annual_ordering_cost": 2785.8,
+      "annual_holding_cost": 1635.0,
+      "total_annual_cost": 4420.8
+    },
+    "previous_sap_policy": {
+      "order_quantity": 4204,
+      "safety_stock": 0,
+      "orders_per_year": 20.81,
+      "average_inventory": 2102.0,
+      "annual_ordering_cost": 2081.4,
+      "annual_holding_cost": 1305.02,
+      "total_annual_cost": 3386.42
+    },
+    "comparison": {
+      "cost_savings": -1034.38,
+      "savings_percentage": -30.55,
+      "additional_safety_buffer": 1063
+    }
+  },
+  "feasibility_checks": {
+    "moq_plus_safety_stock": 2624,
+    "exceeds_max_storage": false,
+    "capacity_violation": false,
+    "final_capacity_check": "4204 <= 4204.326",
+    "escalation_required": false
+  },
+  "recommendations": {
+    "implement_safety_stock": true,
+    "adjust_order_quantity": true,
+    "escalation_needed": false,
+    "primary_concern": "Storage constraint limits order quantity below EOQ",
+    "service_level_achieved": "95% (target met)"
+  }
+}

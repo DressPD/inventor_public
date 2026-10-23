@@ -1,0 +1,77 @@
+{
+  "material_id": "PL1__M5A95F46",
+  "data_quality": {
+    "total_rows": 82,
+    "working_days": 82,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": -43.90262499999997,
+      "upper_bound": 427.73837499999996
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 175.19523170731708,
+    "std_daily_demand": 102.35966685624254,
+    "robust_std_daily": 81.8276592,
+    "cv_wd": 0.5842605752378331,
+    "non_zero_fraction_wd": 0.8536585365853658,
+    "trend_detected": true,
+    "regime": "intermittent_medium_variance",
+    "distribution_type": "normal_approximation"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.7652439024390243,
+    "std_lead_time": 1.1310644234086016,
+    "cv_lead_time": 0.40902881022935095,
+    "stability": "volatile",
+    "effective_lead_time": 2.7652439024390243
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 261.22611020656683,
+    "safety_stock": 429.67871482769635,
+    "safety_stock_robust": 395.38688684878224
+  },
+  "order_quantity": {
+    "eoq_raw": 2903.456690645863,
+    "order_quantity": 1872
+  },
+  "cost_analysis": {
+    "unit_cost": 9.48188,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.1378256
+  },
+  "policy": {
+    "safety_stock": 430,
+    "reorder_point": 915,
+    "order_quantity": 1872,
+    "review_period_days": 11
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.0,
+    "sigma_eff_days": 1.8604354191594137,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 57.54214948584395,
+    "variance_components": {
+      "transport": 0.5754214948584395,
+      "supplier": 0.4245785051415603,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M5A95F46 exhibits intermittent_medium_variance demand with normal_approximation characteristics. The analysis recommends a safety stock of 430 units and order quantity of 1872 units, constrained by storage capacity of 2302 units. Lead time variability (40.90%) is the dominant uncertainty factor (57.5%). The recommended policy achieves a 95% service level but increases annual costs by $698.81 due to higher safety stock requirements compared to SAP's current policy.",
+  "warnings": [
+    "Storage constraint is binding: recommended capacity utilization is 100.0%",
+    "Lead time is volatile (CV=40.90%), requiring higher safety buffers"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "classical_EOQ_with_safety_stock",
+    "selection_rationale": "Normal approximation suitable for intermittent_medium_variance demand with CV=0.58",
+    "boundary_risk": "medium",
+    "escalation_flag": "review_required"
+  }
+}

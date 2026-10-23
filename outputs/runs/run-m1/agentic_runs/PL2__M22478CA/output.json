@@ -1,0 +1,76 @@
+{
+  "material_id": "PL2__M22478CA",
+  "data_quality": {
+    "total_rows": 237,
+    "working_days": 237,
+    "outliers_detected": 6,
+    "winsorisation": {
+      "lower_bound": 6.832439999999997,
+      "upper_bound": 1040.20652
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 491.9766366244726,
+    "std_daily_demand": 225.2775595959046,
+    "robust_std_daily": 193.83617494440324,
+    "cv_wd": 0.45790296291622423,
+    "non_zero_fraction_wd": 0.9873417721518988,
+    "trend_detected": true,
+    "regime": "smooth",
+    "distribution_type": "empirical"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 3.68775,
+    "std_lead_time": 1.2964781188241967,
+    "cv_lead_time": 0.3515634516505177,
+    "stability": "moderate",
+    "effective_lead_time": 4.984228118824197
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 770.7069495713289,
+    "safety_stock": 1268,
+    "safety_stock_robust": 712
+  },
+  "order_quantity": {
+    "eoq_raw": 826.7777973619034,
+    "order_quantity": 827
+  },
+  "cost_analysis": {
+    "unit_cost": 299.88561,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 35.9862732
+  },
+  "policy": {
+    "safety_stock": 1268,
+    "reorder_point": 3083,
+    "order_quantity": 827,
+    "review_period_days": 1.6809741325811207
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.2964781188241967,
+    "sigma_eff_days": 0.8275998350749526,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 68.49214870160888,
+    "variance_components": {
+      "transport": 0.0,
+      "supplier": 0.0,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "DECREASE",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization for PL2__M22478CA: smooth demand (CV=0.458), moderate lead time (CV=0.352, mean=3.69 days). Recommended safety stock: 1268.0 units for 95% service level. Dominant variability: lead time variability (68.5%). Policy: Order 827 units at ROP=3083. Review cycle: 1.7 days.",
+  "warnings": [
+    "Statistically significant trend detected in demand."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with stochastic lead time demand",
+    "selection_rationale": "Regime=smooth, CV=0.458. Standard (Q,R) policy.",
+    "boundary_risk": "Low",
+    "escalation_flag": "NO"
+  }
+}

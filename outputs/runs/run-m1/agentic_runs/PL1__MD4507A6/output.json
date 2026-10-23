@@ -1,0 +1,77 @@
+{
+  "material_id": "PL1__MD4507A6",
+  "data_quality": {
+    "total_rows": 95,
+    "working_days": 95,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 788.0
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 362.4053,
+    "std_daily_demand": 196.8921,
+    "robust_std_daily": 150.4221,
+    "cv_wd": 0.5434,
+    "non_zero_fraction_wd": 0.7895,
+    "trend_detected": false,
+    "regime": "erratic",
+    "distribution_type": "gamma_approximation"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 4.2987,
+    "std_lead_time": 1.4826,
+    "cv_lead_time": 0.3449,
+    "stability": "moderate",
+    "effective_lead_time": 5.04
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 224.0712,
+    "safety_stock": 368.6051,
+    "safety_stock_robust": 281.4309
+  },
+  "order_quantity": {
+    "eoq_raw": 1854.7843,
+    "order_quantity": 1702
+  },
+  "cost_analysis": {
+    "unit_cost": 31.9847,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 3.8382
+  },
+  "policy": {
+    "safety_stock": 369,
+    "reorder_point": 2217,
+    "order_quantity": 1702,
+    "review_period_days": 5
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.44,
+    "sigma_eff_days": 1.4826,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 1.32,
+      "supplier": 0.66,
+      "quality": 0.22
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MD4507A6 exhibits erratic working-day demand (CV=0.54) with 79% non-zero days, suggesting irregular but recurring consumption. Lead times average 4.3 working days with moderate variability (CV_LT=0.34); one extreme outlier (9327 days) was removed as a clear data-entry error. An (r,Q) continuous-review policy is recommended: reorder point 2217 units, order quantity 1702 units, providing \u226595% service level while respecting the 2071-unit storage cap.",
+  "warnings": [
+    "Order quantity capped at 1702 (from unconstrained 1855) due to storage limit 2071. This may reduce service level.",
+    "1 lead-time outlier(s) removed (e.g. 9327.37 days \u2014 data entry error)."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review",
+    "selection_rationale": "The (r,Q) policy is appropriate because demand is continuous with moderate intermittency and lead times are relatively stable. EOQ minimises annual holding and ordering costs, and a fixed reorder point with z-score safety stock guarantees the target service level without Monte Carlo simulation.",
+    "boundary_risk": "Storage cap (2071 units) constrains the order quantity from unconstrained 1855 to 1702. At peak inflow (SS=369 + OQ=1702=2071), utilisation is 100.0% of capacity. Reduced OQ increases order frequency and ordering costs by ~9%; service level risk is low if replenishment is triggered accurately at ROP=2217.",
+    "escalation_flag": "none"
+  }
+}

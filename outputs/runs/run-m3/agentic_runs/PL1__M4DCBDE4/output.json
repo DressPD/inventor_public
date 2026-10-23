@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__M4DCBDE4",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "outliers_detected": 5,
+    "winsorisation": {
+      "lower_bound": 7.501,
+      "upper_bound": 2220.423
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1494.0,
+    "std_daily_demand": 493.5,
+    "robust_std_daily": 420.3,
+    "cv_wd": 0.417,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "steady",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 5.65,
+    "std_lead_time": 1.01,
+    "cv_lead_time": 0.178,
+    "stability": "moderate",
+    "effective_lead_time": 6.66
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 2224.5,
+    "safety_stock": 3660.0,
+    "safety_stock_robust": 3180.0
+  },
+  "order_quantity": {
+    "eoq_raw": 15214.0,
+    "order_quantity": 15214
+  },
+  "cost_analysis": {
+    "unit_cost": 2.78347,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.334
+  },
+  "policy": {
+    "safety_stock": 3660,
+    "reorder_point": 12058,
+    "order_quantity": 15214,
+    "review_period_days": 0
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.1,
+    "sigma_eff_days": 1.01,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 60.2,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M4DCBDE4 exhibits steady daily demand averaging 1,494 units with moderate variability (CV=0.417) and no detectable trend across 228 working days. Lead times average 5.65 days with a CV of 0.178, contributing 60% of total demand-over-lead-time uncertainty. The recommended (r,Q) policy sets safety stock at 3,660 units and an EOQ-driven order quantity of 15,214 units, reducing total annual costs by 60% versus the current SAP configuration while maintaining 95% service level and respecting the 20,229-unit storage constraint.",
+  "warnings": [
+    "MOQ (2520) is below EOQ (15214); order quantity set to EOQ.",
+    "SAP safety stock is 0 \u2014 material is currently unprotected against lead-time and demand variability.",
+    "Peak inventory (18,874 units) utilises 93.3% of storage capacity; monitor for demand spikes."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review",
+    "selection_rationale": "Steady demand with no trend and fully continuous non-zero demand supports a classic (r,Q) model. EOQ minimises total ordering and holding costs; safety stock set by the z-score method covers combined demand and lead-time variance at the 95% service level.",
+    "boundary_risk": "Peak inventory reaches 93.3% of storage capacity (18,874 / 20,229 units). A demand spike or early delivery coinciding with high stock could briefly breach capacity. Recommend monitoring and triggering a review if average inventory exceeds 17,000 units.",
+    "escalation_flag": "none"
+  }
+}

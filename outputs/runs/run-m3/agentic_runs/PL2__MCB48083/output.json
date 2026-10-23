@@ -1,0 +1,74 @@
+{
+  "material_id": "PL2__MCB48083",
+  "data_quality": {
+    "total_rows": 132,
+    "working_days": 132,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 54148.35783,
+      "upper_bound": 156420.99279
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 116513.1661381818,
+    "std_daily_demand": 22936.072953231476,
+    "robust_std_daily": 19191.22498146775,
+    "cv_wd": 0.19685391542814867,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "stable low-variability",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.5578787878787879,
+    "std_lead_time": 0.9284403981848947,
+    "cv_lead_time": 0.595964464892074,
+    "stability": "unstable",
+    "effective_lead_time": 1.5578787878787879
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 111899.45686872478,
+    "safety_stock": 184059,
+    "safety_stock_robust": 182243
+  },
+  "order_quantity": {
+    "eoq_raw": 589556.0931589778,
+    "order_quantity": 589557
+  },
+  "cost_analysis": {
+    "unit_cost": 0.104755,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.0125706
+  },
+  "policy": {
+    "safety_stock": 184059,
+    "reorder_point": 365573,
+    "order_quantity": 589557,
+    "review_period_days": 6
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.5271485563626928,
+    "sigma_eff_days": 0.9284403981848947,
+    "dominant_factor": "transport",
+    "dominant_pct": 70.0,
+    "variance_components": {
+      "transport": 0.603401101087208,
+      "supplier": 0.17240031459634517,
+      "quality": 0.08620015729817258
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL2__MCB48083 exhibits stable low-variability demand (CV=0.197) over 132 working days, with a mean daily demand of 116,513 units. Lead times are volatile (CV=0.596, mean=1.56 days), driven primarily by transport variability, which necessitates a substantial safety stock of 184,059 units to achieve the 95% service level. The classical EOQ (r,Q) model is selected as the optimal replenishment policy: it consolidates 2,563 annual MOQ orders into 49 large replenishments of 589,557 units each, reducing total annual inventory cost by 94.9% from $192,008 to $9,725 while keeping total stock within the 843,693-unit storage cap.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with safety stock \u2014 (r, Q) continuous-review policy",
+    "selection_rationale": "Demand is stable and low-variability (CV=0.197) with 100% non-zero days, making continuous-review EOQ the textbook-optimal choice. The normal approximation for safety stock is appropriate given the near-normal demand distribution confirmed by histogram inspection.",
+    "boundary_risk": "Lead time variability (CV=0.596) is classified as unstable. The safety stock formula explicitly accounts for both demand and lead time variance via sigma_ltd. Total inventory post-replenishment (773,616 units) is 91.7% of the storage cap \u2014 feasible but approaching the ceiling; any upward revision to safety stock should be reviewed against capacity.",
+    "escalation_flag": "none"
+  }
+}

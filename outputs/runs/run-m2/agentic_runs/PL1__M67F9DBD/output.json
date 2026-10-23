@@ -1,0 +1,79 @@
+{
+  "material_id": "PL1__M67F9DBD",
+  "data_quality": {
+    "total_rows": 133,
+    "working_days": 133,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 580.568,
+      "upper_bound": 20645.536
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 7799.29,
+    "std_daily_demand": 2568.16,
+    "robust_std_daily": 1112.68,
+    "cv_wd": 0.3293,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "moderate",
+    "distribution_type": "right-skewed"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.4778,
+    "std_lead_time": 1.0116,
+    "cv_lead_time": 0.6845,
+    "stability": "unstable",
+    "effective_lead_time": 2.4894
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 8484.94,
+    "safety_stock": 13957,
+    "safety_stock_robust": 13167
+  },
+  "order_quantity": {
+    "eoq_raw": 22893.33,
+    "order_quantity": 22894
+  },
+  "cost_analysis": {
+    "unit_cost": 3.100244,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.372
+  },
+  "policy": {
+    "safety_stock": 13957,
+    "reorder_point": 25483,
+    "order_quantity": 22894,
+    "review_period_days": 3
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.7895,
+    "sigma_eff_days": 1.0879,
+    "dominant_factor": "transport",
+    "dominant_pct": 71.44,
+    "variance_components": {
+      "transport": 1.0233,
+      "supplier": 0.4093,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M67F9DBD shows moderate demand variability (CV=0.33) with a right-skewed distribution across 133 working days of history, and no statistically significant trend. Lead times are unstable (CV=0.68), dominated by transport variance, which drives a large combined sigma-LTD of 8,485 units. A continuous-review (r,Q) policy is adopted: the EOQ (22,894 units) far exceeds the MOQ of 2,803 and fits within the 50,775-unit storage constraint, while the analytically derived safety stock of 13,957 units corrects the severe under-provisioning of the current SAP setting of 177.",
+  "warnings": [
+    "CRITICAL: SAP safety stock (177) is only 1.3% of the recommended level (13,957). Immediate escalation required.",
+    "Lead time CV=0.685 classified as UNSTABLE. Safety stock formula absorbs this variance.",
+    "Safety lead time can be reduced from 2.5 to 1.79 days ONLY AFTER safety stock is corrected in SAP.",
+    "Capacity check passed: SS(13957) + OQ(22894) = 36851 <= max_storage(50775)."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) continuous-review with EOQ order sizing",
+    "selection_rationale": "Demand is continuous (non-zero fraction = 1.0) with moderate CV; a continuous-review policy efficiently tracks stock against a fixed reorder point and orders a fixed economic quantity, minimising combined ordering and holding costs. The EOQ of 22,894 units comfortably exceeds the MOQ of 2,803, so no MOQ override is needed.",
+    "boundary_risk": "Storage utilisation at 72.6% (36,851 of 50,775 units); no binding capacity constraint. If demand or safety stock grows, the remaining 13,924-unit buffer provides headroom.",
+    "escalation_flag": "Current SAP safety stock is 78x below the recommended value, creating an imminent stockout risk. This must be escalated immediately to procurement and supply chain management for emergency SAP master data correction."
+  }
+}

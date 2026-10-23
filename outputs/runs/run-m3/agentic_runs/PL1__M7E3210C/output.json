@@ -1,0 +1,92 @@
+{
+  "material_id": "PL1__M7E3210C",
+  "data_quality": {
+    "total_rows": 217,
+    "working_days": 217,
+    "outliers_detected": 6,
+    "winsorisation": {
+      "lower_bound": 1352.75792,
+      "upper_bound": 5349.16608
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 4136.948949308756,
+    "std_daily_demand": 712.6208262008793,
+    "robust_std_daily": 540.6924271273213,
+    "cv_wd": 0.17225758280627354,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "smooth",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.45625,
+    "std_lead_time": 0.9117723423902626,
+    "cv_lead_time": 1.9984051340060551,
+    "stability": "unstable",
+    "effective_lead_time": 1.3680223423902627
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 3802.5446782966924,
+    "safety_stock": 6255,
+    "safety_stock_robust": 6234
+  },
+  "order_quantity": {
+    "eoq_raw": 103006.42630276224,
+    "order_quantity": 103007
+  },
+  "cost_analysis": {
+    "unit_cost": 0.084478,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.01013736,
+    "sap_policy": {
+      "order_quantity": 18330,
+      "safety_stock": 54990,
+      "orders_per_year": 58.680126940549734,
+      "annual_ordering_cost": 2934.0063470274868,
+      "annual_holding_cost": 650.3623308,
+      "total_annual_cost": 3584.368677827487
+    },
+    "optimized_policy": {
+      "order_quantity": 103007,
+      "safety_stock": 6255,
+      "orders_per_year": 10.442074100015306,
+      "annual_ordering_cost": 522.1037050007653,
+      "annual_holding_cost": 585.5187075599999,
+      "total_annual_cost": 1107.6224125607653
+    },
+    "cost_savings": 2476.746265266722,
+    "savings_percent": 69.09853555488317
+  },
+  "policy": {
+    "safety_stock": 6255,
+    "reorder_point": 11915,
+    "order_quantity": 103007,
+    "review_period_days": 25
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.5119838500896052,
+    "sigma_eff_days": 0.9117723423902626,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 98.39759885305232,
+    "variance_components": {
+      "transport": 0.41566440217391315,
+      "supplier": 0.33253152173913053,
+      "quality": 0.08313288043478263
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "DECREASE safety lead time from 3.0 to 1.51 days - current setting is conservative",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M7E3210C exhibits smooth demand with CV=0.17 and unstable lead times (CV=2.00). The analysis recommends an (r,Q) policy with safety stock of 6255 units and order quantity of 103007 units. This optimization reduces annual costs by $2476.75 (69.1%) compared to the current SAP policy. The lead_time_variability is the primary driver of safety stock requirements.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) policy",
+    "selection_rationale": "The (r,Q) reorder point policy is optimal for this material due to smooth demand patterns, variable lead times, and the presence of MOQ constraints. This model balances ordering and holding costs while maintaining the 95.0% service level target.",
+    "boundary_risk": "No binding storage constraints detected. The policy operates within capacity limits.",
+    "escalation_flag": "none"
+  }
+}

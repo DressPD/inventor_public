@@ -1,0 +1,77 @@
+{
+  "material_id": "PL3__MADF6785",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 1023.83291
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 445.4855554385965,
+    "std_daily_demand": 301.0959783090389,
+    "robust_std_daily": 294.3561453,
+    "cv_wd": 0.6758826961574526,
+    "non_zero_fraction_wd": 0.9517543859649122,
+    "trend_detected": true,
+    "regime": "erratic",
+    "distribution_type": "approximately-normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.2538709677419357,
+    "std_lead_time": 0.760735071797249,
+    "cv_lead_time": 0.6067092159947186,
+    "stability": "unstable",
+    "effective_lead_time": 2.014606039539185
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 478.04314727939254,
+    "safety_stock": 787,
+    "safety_stock_robust": 778
+  },
+  "order_quantity": {
+    "eoq_raw": 14249.421559844395,
+    "order_quantity": 5955
+  },
+  "cost_analysis": {
+    "unit_cost": 0.457086,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.054850319999999994
+  },
+  "policy": {
+    "safety_stock": 787,
+    "reorder_point": 1346,
+    "order_quantity": 5955,
+    "review_period_days": 14
+  },
+  "safety_lead_time": {
+    "recommended_days": 0.0017076537331233513,
+    "sigma_eff_days": 0.760735071797249,
+    "dominant_factor": "transport",
+    "dominant_pct": 0.6,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Recommend implementing safety lead time buffer",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__MADF6785 exhibits erratic demand with a coefficient of variation of 0.68. The demand pattern shows a significant trend with 95.2% of working days having non-zero demand. Lead time is unstable with mean 1.25 days and CV 0.61. The optimized policy recommends a safety stock of 787 units and order quantity of 5955 units, resulting in 27.1% cost savings ($424.11 annually) compared to the current SAP configuration. The reorder point is set at 1346 units with a review period of 14 working days. This configuration utilizes 99.99% of available storage capacity.",
+  "warnings": [
+    "High capacity utilization (100.0%) - limited buffer for demand spikes",
+    "Significant trend detected in demand - consider forecasting model update"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with safety stock (normal approximation)",
+    "selection_rationale": "Demand pattern classified as erratic with approximately-normal distribution. Lead time shows unstable behavior. Standard EOQ model with safety stock provides robust solution under these conditions.",
+    "boundary_risk": "High capacity utilization (99.99%) leaves minimal buffer for demand volatility. Consider capacity expansion or more frequent reviews.",
+    "escalation_flag": "capacity_constraint"
+  }
+}

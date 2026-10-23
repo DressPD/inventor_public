@@ -1,0 +1,91 @@
+{
+  "material_id": "PL2__MD985488",
+  "analysis_timestamp": "2025-03-12T00:00:00Z",
+  "data_quality": {
+    "total_rows": 230,
+    "working_days": 230,
+    "demand_winsorization": {
+      "lower_bound": 3.98,
+      "upper_bound": 1029.68,
+      "outliers_detected": 6
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 545.55,
+    "std_daily_demand": 244.15,
+    "robust_std_daily": 219.31,
+    "cv_wd": 0.448,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detection": {
+      "slope": 1.2016,
+      "t_stat": 5.23,
+      "trend_significant": true
+    },
+    "regime": "growing",
+    "distribution_type": "low-variability normal-like"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.95,
+    "std_lead_time": 0.8,
+    "cv_lead_time": 0.844,
+    "stability": "unstable",
+    "effective_lead_time": 1.75
+  },
+  "safety_stock_analysis": {
+    "service_level_target": 0.95,
+    "z_score": 1.645,
+    "sigma_ltd": 497.4,
+    "safety_stock": 819,
+    "safety_stock_robust": 800
+  },
+  "order_quantity_analysis": {
+    "annual_demand": 136388.31,
+    "eoq_raw": 954.84,
+    "moq": 194,
+    "unconstrained_order_quantity": 955,
+    "order_quantity": 955,
+    "capacity_constraint": {
+      "max_storage_units": 3386.79,
+      "feasibility": "feasible",
+      "message": "Policy is feasible within storage constraints",
+      "capacity_utilization": 0.524
+    }
+  },
+  "cost_analysis": {
+    "unit_cost": 124.66,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 50.0,
+    "annual_holding_cost_per_unit": 14.96,
+    "optimized_policy": {
+      "annual_ordering_cost": 7140.75,
+      "annual_holding_cost": 19394.82,
+      "total_annual_cost": 26535.57
+    },
+    "previous_policy": {
+      "annual_ordering_cost": 35151.63,
+      "annual_holding_cost": 1451.06,
+      "total_annual_cost": 36602.68
+    },
+    "savings": {
+      "absolute": 10067.12,
+      "percentage": 27.5
+    }
+  },
+  "recommended_policy": {
+    "safety_stock": 819,
+    "order_quantity": 955,
+    "reorder_point": 1337,
+    "review_period_days": 2
+  },
+  "safety_lead_time_analysis": {
+    "sap_safety_lead_time_days": 2.2,
+    "recommended_safety_lead_time_days": 1.3,
+    "variance_breakdown": {
+      "transport": 0.2565,
+      "supplier": 0.3206,
+      "quality": 0.0641
+    },
+    "dominant_factor": "supplier",
+    "comparison_action": "Decrease SAP safety lead time from 2.2 to 1.3 days"
+  }
+}

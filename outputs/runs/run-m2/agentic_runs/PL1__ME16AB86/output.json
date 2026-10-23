@@ -1,0 +1,77 @@
+{
+  "material_id": "PL1__ME16AB86",
+  "data_quality": {
+    "total_rows": 179,
+    "working_days": 179,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": -296.782,
+      "upper_bound": 494.637
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 102.089,
+    "std_daily_demand": 137.982,
+    "robust_std_daily": 0.0,
+    "cv_wd": 1.352,
+    "non_zero_fraction_wd": 0.486,
+    "trend_detected": false,
+    "regime": "intermittent",
+    "distribution_type": "compound_poisson"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.769,
+    "std_lead_time": 1.036,
+    "cv_lead_time": 0.374,
+    "stability": "moderate",
+    "effective_lead_time": 3.805
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 252.798,
+    "safety_stock": 416.0,
+    "safety_stock_robust": 175.0
+  },
+  "order_quantity": {
+    "eoq_raw": 815.98,
+    "order_quantity": 816
+  },
+  "cost_analysis": {
+    "unit_cost": 31.943544,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 3.833
+  },
+  "policy": {
+    "safety_stock": 416,
+    "reorder_point": 699,
+    "order_quantity": 816,
+    "review_period_days": 8
+  },
+  "safety_lead_time": {
+    "recommended_days": 4.07,
+    "sigma_eff_days": 2.48,
+    "dominant_factor": "demand",
+    "dominant_pct": 82.5,
+    "variance_components": {
+      "transport": 0.0,
+      "supplier": 11193.06,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "maintain",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__ME16AB86 shows intermittent demand with only 48.6% non-zero working days and a high CV of 1.35, classifying it as compound-Poisson. Lead times are moderately variable (CV 0.37), clustering bimodally around 2 and 4 working days. Demand variance dominates buffer sizing (82.5% of sigma_LTD), requiring a safety stock of 416 units \u2014 far above the current SAP setting of 69. The EOQ of 816 units reduces annual ordering events from ~116 to ~31, cutting total inventory cost by 27.2% while remaining well within the 1,891-unit storage cap.",
+  "warnings": [
+    "Low demand frequency (48.6%) \u2014 intermittent regime; periodic review policy recommended",
+    "Safety stock increase of +503% vs. current SAP \u2014 phase implementation to manage working capital"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review with EOQ order quantity",
+    "selection_rationale": "Despite intermittent demand, the (r,Q) policy is appropriate here because demand volumes on active days are substantial (mean 210 units on non-zero days) and lead times are short enough that a fixed reorder point provides adequate protection. The EOQ balances the high ordering cost against holding cost efficiently.",
+    "boundary_risk": "Storage cap is non-binding (65.1% utilisation at peak). No capacity-driven service degradation expected.",
+    "escalation_flag": "none"
+  }
+}

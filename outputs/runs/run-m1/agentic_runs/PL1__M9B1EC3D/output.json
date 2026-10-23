@@ -1,0 +1,115 @@
+{
+  "material_id": "PL1__M9B1EC3D",
+  "analysis_metadata": {
+    "total_rows": 173,
+    "working_days": 173,
+    "date_range_start": "2025-03-04",
+    "date_range_end": "2026-03-06",
+    "lead_time_observations": 67
+  },
+  "outlier_detection": {
+    "method": "IQR",
+    "outliers_detected": 0,
+    "lower_bound": -979.49,
+    "upper_bound": 2034.16,
+    "Q1": 312.07,
+    "Q3": 742.59,
+    "IQR": 430.52
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 525.96,
+    "std_daily_demand": 288.78,
+    "robust_std_daily": 319.14,
+    "cv_wd": 0.549,
+    "non_zero_fraction_wd": 0.954,
+    "trend_detected": false,
+    "regime": "lumpy",
+    "distribution_type": "approximately_normal",
+    "skewness": 0.199,
+    "annual_demand": 136748.63
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.556,
+    "std_lead_time": 0.681,
+    "cv_lead_time": 1.226,
+    "stability": "unstable",
+    "effective_lead_time": 1.237,
+    "min_lead_time": 0.04,
+    "max_lead_time": 3.06,
+    "median_lead_time": 0.26
+  },
+  "buffer_calculation": {
+    "service_level_target": 0.95,
+    "z_score": 1.645,
+    "sigma_ltd": 418.08,
+    "safety_stock": 688,
+    "safety_stock_robust": 708,
+    "reorder_point": 981
+  },
+  "order_quantity_calculation": {
+    "eoq_raw": 6421.73,
+    "unconstrained_order_quantity": 6422,
+    "order_quantity": 4184,
+    "moq": 227,
+    "capacity_constrained": true
+  },
+  "recommended_policy": {
+    "safety_stock": 688,
+    "reorder_point": 981,
+    "order_quantity": 4184,
+    "review_period_days": 8
+  },
+  "safety_lead_time_analysis": {
+    "current_sap_safety_lead_time_days": 3.0,
+    "recommended_safety_lead_time_days": 1.307,
+    "sigma_effective_days": 0.795,
+    "comparison_action": "decrease",
+    "variance_components": {
+      "transport_variance": 0.232159,
+      "supplier_variance": 0.139296,
+      "quality_variance": 0.092864
+    },
+    "dominant_factor": "transport",
+    "dominant_percentage": 50.0,
+    "disruption_premium": 1.0
+  },
+  "cost_analysis": {
+    "unit_cost": 2.763361,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 50.0,
+    "annual_holding_cost_per_unit": 0.3316,
+    "previous_policy": {
+      "safety_stock": 113,
+      "order_quantity": 4184,
+      "avg_inventory": 2205.0,
+      "annual_holding_cost": 731.19,
+      "annual_ordering_cost": 1634.19,
+      "total_annual_cost": 2365.37
+    },
+    "optimized_policy": {
+      "safety_stock": 688,
+      "order_quantity": 4184,
+      "avg_inventory": 2780.0,
+      "annual_holding_cost": 921.86,
+      "annual_ordering_cost": 1634.19,
+      "total_annual_cost": 2556.04
+    },
+    "annual_savings": -190.67,
+    "savings_percentage": -8.06
+  },
+  "capacity_analysis": {
+    "max_storage_units": 4872.413,
+    "total_inventory_required": 4872.0,
+    "capacity_utilization_percentage": 99.99,
+    "available_buffer": 0.41
+  },
+  "diagnostics": {
+    "warnings": [
+      "High capacity utilization (100.0%) - limited buffer for demand spikes",
+      "Unstable lead time variability (CV=1.226) increases supply risk",
+      "Optimized policy increases costs by $190.67 due to capacity constraints"
+    ],
+    "escalation_flag": false,
+    "narrative": "The demand analysis reveals a lumpy pattern with CV=0.55 and 95.4% non-zero days, exhibiting approximately_normal distribution. Lead time shows unstable behavior (CV=1.23) with mean 0.56 days. The recommended safety stock of 688 units ensures 95% service level, while the order quantity of 4184 units balances ordering and holding costs within the storage capacity constraint of 4872 units."
+  }
+}

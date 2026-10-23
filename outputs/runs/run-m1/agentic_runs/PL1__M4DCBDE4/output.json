@@ -1,0 +1,74 @@
+{
+  "material_id": "PL1__M4DCBDE4",
+  "data_quality": {
+    "total_rows": 237,
+    "working_days": 237,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 144.4,
+      "upper_bound": 2949.94
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1546.05,
+    "std_daily_demand": 469.18,
+    "robust_std_daily": 478.23,
+    "cv_wd": 0.303,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "smooth",
+    "distribution_type": "gamma"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 5.43,
+    "std_lead_time": 1.26,
+    "cv_lead_time": 0.231,
+    "stability": "moderate",
+    "effective_lead_time": 6.32
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 2228.73,
+    "safety_stock": 3666,
+    "safety_stock_robust": 3684
+  },
+  "order_quantity": {
+    "eoq_raw": 15212.95,
+    "order_quantity": 15213
+  },
+  "cost_analysis": {
+    "unit_cost": 2.78347,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.334
+  },
+  "policy": {
+    "safety_stock": 3666,
+    "reorder_point": 12063,
+    "order_quantity": 15213,
+    "review_period_days": 10
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.37,
+    "sigma_eff_days": 1.44,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 0.9468,
+      "supplier": 0.4734,
+      "quality": 0.1578
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease_significantly",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization completed for material PL1__M4DCBDE4. \n\nDEMAND PROFILE: The material exhibits smooth demand with mean daily consumption of 1546 units (CV=0.30). \nThe demand follows a gamma distribution pattern with 100% non-zero days.\n\nLEAD TIME: Average lead time is 5.4 days with moderate variability (CV=0.23). \nEffective lead time for planning is 6.3 days.\n\nRECOMMENDED POLICY:\n- Safety stock: 3666 units (vs SAP: 0)\n- Reorder point: 12063 units\n- Order quantity: 15213 units (EOQ-based, constrained by MOQ=2520 and storage=20229)\n- Review period: 10 days\n\nCOST IMPACT: The optimized policy generates annual savings of $9452.82 (60.0%) \ncompared to the current SAP configuration, primarily through better balance of ordering and holding costs.\n\nSAFETY LEAD TIME: Recommended 2.4 days (current: 5.0 days). \nThe dominant variance contributor is transport (60%).",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Stochastic inventory model with lead time variability",
+    "selection_rationale": "Selected due to smooth demand pattern with moderate lead time variability",
+    "boundary_risk": "Medium - demand CV is moderate",
+    "escalation_flag": "no"
+  }
+}

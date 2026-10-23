@@ -1,0 +1,128 @@
+{
+  "material_id": "PL1__ME993828",
+  "analysis_metadata": {
+    "analysis_date": "2026-10-20 11:48:51",
+    "data_period": {
+      "start_date": "2025-03-14",
+      "end_date": "2026-03-09",
+      "total_observations": 126,
+      "working_days": 126
+    }
+  },
+  "input_parameters": {
+    "unit_cost": 12.203529,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 100.0,
+    "moq": 98,
+    "service_level_target": 0.95,
+    "max_storage_units": 4572.755
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 286.9,
+    "std_daily_demand": 136.49,
+    "robust_std": 133.46,
+    "cv_demand": 0.476,
+    "median_demand": 283.96,
+    "min_demand": 0.0,
+    "max_demand": 628.47,
+    "annual_demand": 71726.14,
+    "non_zero_fraction": 0.968,
+    "regime": "smooth",
+    "distribution_type": "normal",
+    "trend": {
+      "slope": 0.8671,
+      "p_value": 0.009,
+      "significant": true,
+      "r_squared": 0.0538
+    },
+    "outliers_detected": 0,
+    "zero_demand_days": 4
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 4.28,
+    "std_lead_time": 1.33,
+    "cv_lead_time": 0.31,
+    "min_lead_time": 0.21,
+    "max_lead_time": 6.23,
+    "effective_lead_time": 5.61,
+    "stability": "unstable",
+    "total_observations": 79,
+    "valid_observations": 78,
+    "anomalous_observations": 1
+  },
+  "safety_stock_calculation": {
+    "method": "combined_variance_formula",
+    "z_score": 1.6449,
+    "sigma_ltd": 474.0,
+    "sigma_ltd_robust": 470.29,
+    "safety_stock_raw": 779.67,
+    "safety_stock": 780,
+    "safety_stock_robust": 774,
+    "variance_components": {
+      "demand_variance": 79811.92,
+      "leadtime_variance": 144867.17
+    }
+  },
+  "order_quantity_calculation": {
+    "eoq_raw": 3129.83,
+    "moq": 98,
+    "unconstrained_order_quantity": 3130,
+    "order_quantity": 3130,
+    "capacity_constrained": false,
+    "total_inventory_peak": 3910,
+    "capacity_utilization_pct": 85.5
+  },
+  "recommended_policy": {
+    "policy_type": "continuous_review_Q_R",
+    "order_quantity_Q": 3130,
+    "reorder_point_R": 2010,
+    "safety_stock": 780,
+    "review_period_days": 11,
+    "recommended_safety_lead_time_days": 2.72
+  },
+  "current_sap_policy": {
+    "sap_safety_stock": 0,
+    "sap_safety_lead_time_days": 5.0
+  },
+  "cost_analysis": {
+    "previous_policy": {
+      "safety_stock": 0,
+      "order_quantity": 3130,
+      "orders_per_year": 22.92,
+      "annual_ordering_cost": 2291.57,
+      "annual_holding_cost": 2291.82,
+      "total_annual_cost": 4583.39
+    },
+    "optimized_policy": {
+      "safety_stock": 780,
+      "order_quantity": 3130,
+      "orders_per_year": 22.92,
+      "annual_ordering_cost": 2291.57,
+      "annual_holding_cost": 3434.07,
+      "total_annual_cost": 5725.64
+    },
+    "cost_impact": {
+      "annual_cost_change": -1142.25,
+      "percentage_change": -24.9,
+      "interpretation": "Additional cost for improved service level (95%)"
+    }
+  },
+  "recommendations": {
+    "implement_safety_stock": true,
+    "safety_stock_units": 780,
+    "order_quantity_units": 3130,
+    "reorder_point_units": 2010,
+    "key_benefits": [
+      "Achieve 95% service level target",
+      "Protect against demand and lead time variability",
+      "Optimal order quantity balances ordering and holding costs",
+      "Expected order frequency: every 11 days"
+    ],
+    "implementation_notes": [
+      "Current SAP has zero safety stock - high stockout risk",
+      "Recommended safety stock: 780 units",
+      "Investment in safety stock: $9,518.75",
+      "Additional annual holding cost: $1,142.25"
+    ]
+  }
+}

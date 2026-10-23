@@ -1,0 +1,84 @@
+{
+  "material_id": "PL2__MA43799B",
+  "data_quality": {
+    "total_rows": 141,
+    "working_days": 141,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 21.85440000000001,
+      "upper_bound": 3450.5645999999997
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1908.1683617021276,
+    "std_daily_demand": 799.6302486485308,
+    "robust_std_daily": 738.0200148257968,
+    "cv_wd": 0.4190564442307613,
+    "non_zero_fraction_wd": 0.9858156028368794,
+    "trend_detected": false,
+    "regime": "moderate",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.04,
+    "std_lead_time": 1.3125738074485565,
+    "cv_lead_time": 0.6434185330630179,
+    "stability": "variable",
+    "effective_lead_time": 2.6962869037242783
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 2752.721151544154,
+    "safety_stock": 4528,
+    "safety_stock_robust": 4470
+  },
+  "order_quantity": {
+    "eoq_raw": 54766.75454254709,
+    "order_quantity": 27525
+  },
+  "cost_analysis": {
+    "unit_cost": 0.13837,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.0166044,
+    "previous_annual_ordering_cost": 2136.559169473425,
+    "previous_annual_holding_cost": 96.762141,
+    "previous_total_annual_cost": 2233.321310473425,
+    "optimized_annual_ordering_cost": 904.6901769377936,
+    "optimized_annual_holding_cost": 303.70277819999995,
+    "optimized_total_annual_cost": 1208.3929551377935,
+    "annual_savings": 1024.9283553356315,
+    "savings_percentage": 45.892561474656986
+  },
+  "policy": {
+    "safety_stock": 4528,
+    "reorder_point": 8421,
+    "order_quantity": 27525,
+    "review_period_days": 15
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.1631684627004104,
+    "sigma_eff_days": 1.44259867566857,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 1.0337100000000001,
+      "supplier": 0.5168550000000001,
+      "quality": 0.17228500000000002
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "\nInventory Optimization Analysis for Material PL2__MA43799B\n\nEXECUTIVE SUMMARY:\nThis material exhibits moderate demand variability (CV=0.42) with a mean daily demand of 1908 units. \nLead time is highly variable (CV=0.64, mean=2.04 days), requiring robust buffering strategy.\n\nCURRENT SAP POLICY:\n- Safety Stock: 0 units (CRITICALLY LOW - no buffer!)\n- Safety Lead Time: 3.5 days\n- Implied Order Quantity: 11655 units (MOQ)\n- Annual Cost: $2233.32\n\nOPTIMIZED POLICY RECOMMENDATION:\n- Safety Stock: 4528 units (provides 95% service level)\n- Reorder Point: 8421 units\n- Order Quantity: 27525 units (capacity-constrained from EOQ of 54767)\n- Review Period: 15 days\n- Annual Cost: $1208.39\n\nKEY FINDINGS:\n1. DEMAND PATTERN: MODERATE regime with normal distribution\n   - Mean: 1908 units/day\n   - Std Dev: 800 units\n   - Annual forecast: 498032 units\n\n2. LEAD TIME RISK: VARIABLE lead times with high variability\n   - Mean: 2.04 days\n   - Std Dev: 1.31 days\n   - Dominant risk factor: Transport variability (60%)\n\n3. BUFFER STRATEGY:\n   - Current SAP safety stock of 0 units is INADEQUATE\n   - Recommended: 4528 units to achieve 95% service level\n   - This represents 626.54 USD in safety stock investment\n\n4. CAPACITY CONSTRAINT:\n   - Maximum storage: 32053 units\n   - EOQ calculation suggests 54767 units, but constrained to 27525 units\n   - Current utilization: 100.0% of capacity\n\n5. COST OPTIMIZATION:\n   - Previous annual cost: $2233.32\n   - Optimized annual cost: $1208.39\n   - SAVINGS: $1024.93 (45.9% reduction)\n   - Payback period: Immediate (reduced holding and ordering costs)\n\n6. SAFETY LEAD TIME ANALYSIS:\n   - SAP setting: 3.5 days (appears EXCESSIVE)\n   - Statistical recommendation: 1.16 days\n   - Action: REDUCE safety lead time to 1.16 days\n   - Root cause: Transport variability dominates lead time risk\n\nRISK ASSESSMENT:\n- Service Level: 95% target achievable with recommended policy\n- Stockout Risk: LOW (with proper safety stock implementation)\n- Obsolescence Risk: MEDIUM (moderate demand variability)\n- Capacity Risk: HIGH (operating at capacity limit)\n\nMANAGEMENT ACTIONS REQUIRED:\n1. IMMEDIATE: Increase safety stock from 0 to 4528 units\n2. IMMEDIATE: Set reorder point to 8421 units\n3. OPTIMIZE: Adjust order quantity to 27525 units per order\n4. REVIEW: Reduce safety lead time from 3.5 to 1.16 days\n5. MONITOR: Track transport lead time variability closely (primary risk driver)\n6. STRATEGIC: Consider capacity expansion if demand growth continues\n\nCONFIDENCE LEVEL: HIGH\n- Based on 141 working days of demand history\n- 25 lead time observations\n- Statistical methods appropriate for normal demand distribution\n",
+  "warnings": [
+    "Capacity constraint binds: OQ reduced from 54767 to 27525"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Analytical EOQ with stochastic lead time",
+    "selection_rationale": "Normal distribution appropriate for CV=0.42. Lead time variability (CV=0.64) requires stochastic modeling.",
+    "boundary_risk": "Capacity constraint binding at upper limit. Consider alternative sourcing or capacity expansion.",
+    "escalation_flag": "CAPACITY_CRITICAL"
+  }
+}

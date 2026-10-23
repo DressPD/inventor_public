@@ -1,0 +1,86 @@
+{
+  "material_id": "PL2__MFFC2B2F",
+  "timestamp": "2026-10-20T22:12:30.353878",
+  "parameters": {
+    "unit_cost": 11.780888,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 50.0,
+    "moq": 419,
+    "service_level_target": 0.95,
+    "max_storage_units": 13225.291
+  },
+  "data_quality": {
+    "total_rows": 141,
+    "working_days": 141,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 1363.361
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 723.84,
+    "std_daily_demand": 311.17,
+    "robust_std_daily": 302.46,
+    "cv_wd": 0.4299,
+    "non_zero_fraction_wd": 0.9645,
+    "trend_detected": true,
+    "regime": "moderate",
+    "distribution_type": "right-skewed"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.36,
+    "std_lead_time": 1.07,
+    "cv_lead_time": 0.4517,
+    "stability": "unstable",
+    "effective_lead_time": 3.43
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 908.1,
+    "safety_stock": 1494.0,
+    "safety_stock_robust": 1483.0
+  },
+  "order_quantity": {
+    "eoq_raw": 3577.77,
+    "order_quantity": 3578
+  },
+  "cost_analysis": {
+    "unit_cost": 11.780888,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.4137
+  },
+  "policy": {
+    "safety_stock": 1494,
+    "reorder_point": 3204,
+    "order_quantity": 3578,
+    "review_period_days": 5
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.06,
+    "sigma_eff_days": 1.25,
+    "dominant_factor": "transport",
+    "dominant_pct": 0.7228,
+    "variance_components": {
+      "transport": 0.7228,
+      "supplier": 0.1663,
+      "quality": 0.1109
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease recommended: SAP=3.7d vs recommended=2.06d",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL2__MFFC2B2F exhibits moderate demand variability (CV=43%) with a right-skewed distribution and a slight upward trend of +1.72 units/day over the observation period. Lead times are highly unstable (CV=45%, range 0.19\u20134.49 days), with transport variability accounting for 72% of lead-time variance. The combined sigma of lead-time demand (908 units) is far larger than the current SAP safety stock of 346 units, making a significant safety stock increase to 1,494 units necessary to achieve the 95% service level target. A continuous-review (r,Q) policy with EOQ-derived order quantity of 3,578 units is recommended.",
+  "warnings": [
+    "Optimized policy has HIGHER annual cost than SAP by $1622.94 (29.26%) \u2014 higher safety stock drives holding cost increase",
+    "Safety lead time differs significantly from SAP: recommended 2.06d vs SAP 3.7d (-1.64 days)"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review with EOQ",
+    "selection_rationale": "Moderate right-skewed demand with unstable lead times suits a continuous-review reorder-point policy. EOQ balances ordering frequency against holding cost at the given cost parameters. The high sigma_LTD drives a large safety stock, making order quantity optimization the key cost lever.",
+    "boundary_risk": "Storage capacity is non-binding at 38.4% utilization (5,072 / 13,225 units); no capacity constraint modifies the recommended policy.",
+    "escalation_flag": "none"
+  }
+}

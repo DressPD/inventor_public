@@ -1,0 +1,90 @@
+{
+  "material_id": "PL1__MBE7F697",
+  "analysis_timestamp": "2025-03-04T00:00:00Z",
+  "data_quality": {
+    "total_rows": 93,
+    "working_days": 93,
+    "outliers_detected": 0,
+    "outliers_replaced": 0,
+    "data_quality_flag": "good"
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 266.1635,
+    "std_daily_demand": 242.7568,
+    "robust_std_daily": 333.5035,
+    "cv_wd": 0.9121,
+    "non_zero_fraction_wd": 0.6774,
+    "trend_detected": true,
+    "trend_slope": -4.13407,
+    "regime": "intermittent",
+    "distribution_type": "intermittent_moderate"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.7734,
+    "std_lead_time": 1.3023,
+    "cv_lead_time": 0.4696,
+    "stability": "moderate",
+    "effective_lead_time": 3.4245
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 532.5236,
+    "z_score": 1.6449,
+    "safety_stock": 876,
+    "safety_stock_robust": 1077,
+    "safety_stock_value": 245531.74
+  },
+  "eoq_analysis": {
+    "annual_demand": 69202.51,
+    "eoq_raw": 555.54,
+    "unconstrained_order_quantity": 556,
+    "order_quantity": 556,
+    "order_quantity_value": 155839.78,
+    "escalation_flag": false
+  },
+  "policy_parameters": {
+    "reorder_point": 1788,
+    "review_period_days": 3,
+    "service_level_target": 0.95,
+    "capacity_check_passed": true
+  },
+  "safety_lead_time_analysis": {
+    "recommended_days": 3.29,
+    "sap_safety_lead_time_days": 3.5,
+    "delta_days": -0.21,
+    "comparison_action": "maintain",
+    "sigma_eff_days": 2.0,
+    "dominant_factor": "transport",
+    "dominant_pct": 50.0,
+    "disruption_premium": 1.0
+  },
+  "cost_analysis": {
+    "previous_policy": {
+      "safety_stock": 0,
+      "order_quantity": 556,
+      "orders_per_year": 125,
+      "annual_ordering_cost": 9375.0,
+      "annual_holding_cost": 9350.39,
+      "total_annual_cost": 18725.39
+    },
+    "optimized_policy": {
+      "safety_stock": 876,
+      "order_quantity": 556,
+      "orders_per_year": 124.46,
+      "annual_ordering_cost": 9334.87,
+      "annual_holding_cost": 38814.2,
+      "total_annual_cost": 48149.07
+    },
+    "cost_savings": -29423.68,
+    "savings_pct": -157.13
+  },
+  "input_parameters": {
+    "unit_cost": 280.287375,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 75.0,
+    "minimum_order_quantity": 43,
+    "service_level_target": 0.95,
+    "sap_safety_stock": 0,
+    "sap_safety_lead_time_days": 3.5,
+    "max_storage_units": 7835.145
+  }
+}

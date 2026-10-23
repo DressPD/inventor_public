@@ -1,0 +1,78 @@
+{
+  "material_id": "PL2__MB026D35",
+  "data_quality": {
+    "total_rows": 141,
+    "working_days": 141,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": 13.635200000000005,
+      "upper_bound": 2152.8527999999997
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1185.669609929078,
+    "std_daily_demand": 498.0669744653362,
+    "robust_std_daily": 454.8450704225351,
+    "cv_wd": 0.42007231213012924,
+    "non_zero_fraction_wd": 0.9858156028368794,
+    "trend_detected": true,
+    "regime": "moderate",
+    "distribution_type": "right-skewed"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.7890000000000001,
+    "std_lead_time": 1.0295038979343734,
+    "cv_lead_time": 0.5754633303154686,
+    "stability": "unstable",
+    "effective_lead_time": 2.8185038979343737
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1389.754898129014,
+    "safety_stock": 2286,
+    "safety_stock_robust": 2244
+  },
+  "order_quantity": {
+    "eoq_raw": 36558.857678675864,
+    "order_quantity": 20439
+  },
+  "cost_analysis": {
+    "unit_cost": 0.184815,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.0221778
+  },
+  "policy": {
+    "safety_stock": 2286,
+    "reorder_point": 4408,
+    "order_quantity": 20439,
+    "review_period_days": 18
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.928024452053502,
+    "sigma_eff_days": 1.1721266080288113,
+    "dominant_factor": "transport",
+    "dominant_pct": 0.6,
+    "variance_components": {
+      "transport": 0.6359269655172411,
+      "supplier": 0.3179634827586206,
+      "quality": 0.10598782758620687
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Decrease from 3.0 to 1.9 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "EXECUTIVE SUMMARY - Material PL2__MB026D35\n\nDemand Profile:\n- Average daily demand: 1186 units with moderate variability (CV=0.42)\n- Distribution: right-skewed with 98.6% non-zero demand days\n- Strong upward trend detected: 96.3% annual growth\n- Historical period: 141 working days\n\nLead Time Profile:\n- Mean: 1.79 days, Std: 1.03 days\n- Stability: unstable (CV=0.58)\n- Dominant uncertainty: transport logistics\n\nInventory Policy Optimization:\nCurrent SAP Policy:\n- Safety stock: 757 units\n- Order quantity: 9090 units (MOQ)\n- Avg inventory: 5302 units\n- Annual cost: $1748.05\n\nRecommended Optimized Policy:\n- Safety stock: 2286 units (3x increase for 95% service level with unstable lead times)\n- Order quantity: 20439 units (capacity-constrained from EOQ of 36559)\n- Reorder point: 4408 units\n- Avg inventory: 12506 units\n- Annual cost: $1002.47\n\nKey Benefits:\n- Annual cost savings: $745.57 (42.7%)\n- Improved service level from variable to 95% target\n- Better balance between ordering frequency and holding costs\n\nCritical Considerations:\n- Storage capacity is binding constraint (utilizing 100% of 22725 units)\n- High lead time variability requires increased safety buffer\n- Upward demand trend suggests periodic policy review",
+  "warnings": [
+    "Order quantity constrained by storage capacity from 36559 to 20439",
+    "Strong upward trend detected (96.3% annual) - demand forecast may need revision",
+    "Lead time variability is high (CV > 0.5) - consider supplier performance review"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with capacity constraint",
+    "selection_rationale": "Classic EOQ model adapted for MOQ=9090 and storage capacity=22725. Safety stock based on service level 95% with lead time demand variability.",
+    "boundary_risk": "Capacity constraint is binding - order quantity reduced from optimal 36559 to 20439. Consider capacity expansion if demand trend continues.",
+    "escalation_flag": "WARNING: Capacity constraint limits order quantity optimization"
+  }
+}

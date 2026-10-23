@@ -1,0 +1,77 @@
+{
+  "material_id": "PL2__M1136593",
+  "data_quality": {
+    "total_rows": 178,
+    "working_days": 178,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": 836.16282,
+      "upper_bound": 23953.627009999993
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 14324.241734044943,
+    "std_daily_demand": 6247.507643238606,
+    "robust_std_daily": 8653.686434395848,
+    "cv_wd": 0.4361492747214625,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "moderate",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.388342857142857,
+    "std_lead_time": 0.9326221205313723,
+    "cv_lead_time": 0.6717520212915301,
+    "stability": "variable",
+    "effective_lead_time": 2.3209649776742296
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 15253.018613457816,
+    "safety_stock": 25088.9829883044,
+    "safety_stock_robust": 27643.01301575514
+  },
+  "order_quantity": {
+    "eoq_raw": 43400.438276604225,
+    "order_quantity": 43401
+  },
+  "cost_analysis": {
+    "unit_cost": 2.376476,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.28517711999999995
+  },
+  "policy": {
+    "safety_stock": 25089,
+    "reorder_point": 44976,
+    "order_quantity": 43401,
+    "review_period_days": 3.0298986016723854
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.5340268775312005,
+    "sigma_eff_days": 1.5340268775312005,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 76.70843223887438,
+    "variance_components": {
+      "transport": 76.70843223887438,
+      "supplier": 0.0,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL2__M1136593 exhibits moderate demand variability (CV=43.61%) with a mean daily demand of 14324 units.\nLead time is variable (CV=67.18%, mean=1.39 days), requiring a safety stock of 25,089 units \nto achieve the target 95% service level. The recommended EOQ-based order quantity is 43,401 units, \nresulting in a 3.0-day review period. Lead time variability contributes 76.7% of total uncertainty,\nsuggesting supplier lead time management as a key improvement opportunity. The optimized policy increases holding costs by \n$7154.81 compared to SAP's zero-safety-stock approach, but provides \nsignificant stockout protection worth the investment given demand-supply uncertainty.",
+  "warnings": [
+    "High lead time variability detected - consider supplier consolidation",
+    "Safety stock exceeds 50% of order quantity - review service level target"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Normal_EOQ_ROP",
+    "selection_rationale": "Stable demand pattern with normal distribution",
+    "boundary_risk": "low",
+    "escalation_flag": "yes - high variability detected"
+  }
+}

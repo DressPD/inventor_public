@@ -1,0 +1,117 @@
+{
+  "material_id": "PL1__M3FEC07A",
+  "parameters": {
+    "unit_cost": 3.032133,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 100.0,
+    "moq": 2192,
+    "service_level_target": 0.95,
+    "sap_safety_stock": 182,
+    "sap_safety_lead_time_days": 4.0,
+    "max_storage_units": 6584.951
+  },
+  "data_quality": {
+    "total_rows": 137,
+    "working_days": 137,
+    "calendar_days": 0,
+    "missing_demand": 0,
+    "missing_lead_time": 0,
+    "demand_outliers_detected": 7,
+    "lead_time_outliers_removed": 2
+  },
+  "demand_outliers": {
+    "method": "IQR",
+    "lower_bound": 253.97000000000008,
+    "upper_bound": 1204.0739999999998,
+    "count": 7,
+    "percentage": 5.109489051094891
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 739.2379416058394,
+    "std_daily_demand": 232.39175877253828,
+    "robust_std_daily": 176.07561156412154,
+    "cv_wd": 0.3143666547576223,
+    "non_zero_fraction_wd": 1.0,
+    "skewness": -0.1404270851635879,
+    "trend_slope": 0.07627730692403885,
+    "trend_p_value": 0.8798967085036427,
+    "trend_detected": false,
+    "regime": "normal",
+    "distribution_type": "empirical"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 4.103407407407408,
+    "std_lead_time": 1.518533838723295,
+    "cv_lead_time": 0.3700665539527128,
+    "stability": "moderate",
+    "effective_lead_time": 5.621941246130703,
+    "outliers_removed": 2,
+    "threshold_applied": 30.0
+  },
+  "safety_stock": {
+    "z_score": 1.644853626951472,
+    "sigma_ltd": 1217.2692435246706,
+    "safety_stock": 2003,
+    "safety_stock_robust": 1938,
+    "sap_safety_stock": 182
+  },
+  "order_quantity": {
+    "annual_demand": 184809.48540145985,
+    "eoq_raw": 10078.882452268746,
+    "unconstrained_order_quantity": 10079,
+    "order_quantity": 4581
+  },
+  "policy": {
+    "reorder_point": 6159,
+    "order_quantity": 4581,
+    "review_period_days": 7
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.7095470717437777,
+    "sap_days": 4.0,
+    "sigma_eff_days": 1.6466541758941762,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "comparison_action": "reduce"
+  },
+  "cost_analysis": {
+    "annual_holding_cost_per_unit": 0.36385596,
+    "sap": {
+      "order_quantity": 2192,
+      "safety_stock": 182,
+      "annual_orders": 84.31089662475358,
+      "avg_inventory": 1278.0,
+      "annual_ordering_cost": 8431.089662475359,
+      "annual_holding_cost": 465.00791688,
+      "total_cost": 8896.097579355359
+    },
+    "optimized": {
+      "order_quantity": 4581,
+      "safety_stock": 2003,
+      "annual_orders": 40.342607596913304,
+      "avg_inventory": 4293.5,
+      "annual_ordering_cost": 4034.2607596913303,
+      "annual_holding_cost": 1562.2155642599998,
+      "total_cost": 5596.47632395133
+    },
+    "savings": 3299.6212554040285,
+    "savings_pct": 37.09065942645753
+  },
+  "capacity": {
+    "total_inventory": 6584,
+    "max_storage_units": 6584.951,
+    "utilization_pct": 99.98555797909506,
+    "feasible": true
+  },
+  "narrative": "The demand data for material PL1__M3FEC07A shows a stable pattern with mean daily demand of 739 units \nand moderate variability (CV=0.31). Lead time analysis revealed 2 extreme outliers (over 9000 days) \nwhich were removed, resulting in a mean lead time of 4.1 days with moderate stability (CV=0.37). \nThe optimized policy significantly increases safety stock from 182 to 2003 units to achieve the 95% \nservice level target, while reducing ordering frequency from 84 to 40 orders per year, yielding \nannual cost savings of $3,300 (37% reduction). The recommended policy uses the maximum available \nstorage capacity (100% utilization) while maintaining service level targets.",
+  "warnings": [
+    "Lead time outliers removed: 2 extreme values",
+    "Demand outliers detected and winsorised: 7 values"
+  ]
+}

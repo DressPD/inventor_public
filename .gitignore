@@ -25,3 +25,6 @@ outputs/*
 !outputs/capacity_trajectory_evidence.json
 !outputs/plantc_calendar_sensitivity.json
 !outputs/synthetic_demo_summary.json
+!outputs/masked_replication_evidence.json
+!outputs/runs/
+!data/masked_release/

@@ -1,0 +1,107 @@
+{
+  "metadata": {
+    "material_id": "PL1__MCF49247",
+    "analysis_date": "2026-10-20",
+    "service_level_target": 0.95,
+    "unit_cost": 0.295552,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 50.0,
+    "moq": 1050,
+    "max_storage_units": 8457.701
+  },
+  "data_quality": {
+    "total_observations": 140,
+    "working_days": 140,
+    "outliers_detected": 0,
+    "outlier_percentage": 0.0,
+    "winsorization_applied": true,
+    "winsorization_percentiles": [
+      1,
+      99
+    ]
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 699.6885514285715,
+    "std_daily_demand": 342.27904052327244,
+    "robust_std_daily": 308.98421820000004,
+    "cv_wd": 0.4891877104812317,
+    "non_zero_fraction_wd": 0.9571428571428572,
+    "trend_detected": true,
+    "trend_slope": -2.5649541982462654,
+    "trend_p_value": 0.00026149297926032365,
+    "regime": "normal",
+    "distribution_type": "gamma",
+    "annual_demand": 174922.13785714286
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.6574647887323946,
+    "std_lead_time": 1.1842197169563466,
+    "cv_lead_time": 0.714476545750345,
+    "stability": "unstable",
+    "effective_lead_time": 2.8416845056887414
+  },
+  "buffer_analysis": {
+    "z_score": 1.644853626951472,
+    "sigma_ltd": 938.4738977787706,
+    "sigma_ltd_robust": 919.1263769002503,
+    "safety_stock": 1544,
+    "safety_stock_robust": 1512,
+    "selected_safety_stock": 1544
+  },
+  "order_quantity": {
+    "eoq_raw": 22208.27435523088,
+    "unconstrained_order_quantity": 22209,
+    "max_order_given_safety": 6913,
+    "final_order_quantity": 6913,
+    "capacity_violation": false,
+    "escalation_flag": false
+  },
+  "cost_analysis": {
+    "annual_holding_cost_per_unit": 0.035466239999999996,
+    "previous_policy": {
+      "safety_stock": 0,
+      "order_quantity": 1050,
+      "orders_per_year": 167,
+      "average_inventory": 525.0,
+      "annual_holding_cost": 18.619775999999998,
+      "annual_ordering_cost": 8350.0,
+      "total_annual_cost": 8368.619776
+    },
+    "optimized_policy": {
+      "safety_stock": 1544,
+      "order_quantity": 6913,
+      "orders_per_year": 26,
+      "average_inventory": 5000.5,
+      "annual_holding_cost": 177.34893311999997,
+      "annual_ordering_cost": 1300.0,
+      "total_annual_cost": 1477.3489331199999
+    },
+    "annual_savings": 6891.27084288,
+    "savings_percentage": 82.34656403727621
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.206696103355667,
+    "sigma_eff_days": 1.3412737651097266,
+    "sap_safety_lead_time_days": 4.0,
+    "comparison_action": "DECREASE",
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0
+  },
+  "inventory_policy": {
+    "safety_stock": 1544,
+    "reorder_point": 2704,
+    "order_quantity": 6913,
+    "review_period_days": 10
+  },
+  "narrative": "Material PL1__MCF49247 exhibits normal demand with a coefficient of variation of 0.49 and 96% non-zero demand days. Lead time variability is unstable (CV=0.71), requiring a safety stock of 1544 units to achieve 95% service level. The optimized policy balances ordering and holding costs while respecting the MOQ constraint of 1050 units and storage capacity of 8458 units, generating annual savings of $6891.27 (82.3%) compared to the previous SAP policy.",
+  "research_insights": {
+    "selected_model": "Combined variance approach with normal approximation",
+    "selection_rationale": "Given the normal demand regime and unstable lead time variability, we applied the classical combined variance formula: sigma_ltd = sqrt(L*sigma_D^2 + D^2*sigma_L^2). This approach accounts for both demand and lead time uncertainty, appropriate for the gamma distribution and service level target of 95%.",
+    "boundary_risk": "ACCEPTABLE: All constraints satisfied",
+    "escalation_flag": false
+  }
+}

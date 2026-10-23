@@ -1,0 +1,79 @@
+{
+  "material_id": "PL1__M8DEF1B0",
+  "data_quality": {
+    "total_rows": 216,
+    "working_days": 216,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 968.93
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 458.55,
+    "std_daily_demand": 228.18,
+    "robust_std_daily": 243.78,
+    "cv_wd": 0.4976,
+    "non_zero_fraction_wd": 0.9769,
+    "trend_detected": true,
+    "regime": "Smooth",
+    "distribution_type": "Normal (approximate)"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.0885,
+    "std_lead_time": 0.0961,
+    "cv_lead_time": 1.0864,
+    "stability": "Volatile",
+    "effective_lead_time": 0.2466
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 80.93,
+    "safety_stock": 133.11,
+    "safety_stock_robust": 139.58
+  },
+  "order_quantity": {
+    "eoq_raw": 450.88,
+    "order_quantity": 451
+  },
+  "cost_analysis": {
+    "unit_cost": 469.923767,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 56.39
+  },
+  "policy": {
+    "safety_stock": 134,
+    "reorder_point": 174,
+    "order_quantity": 451,
+    "review_period_days": 1
+  },
+  "safety_lead_time": {
+    "recommended_days": 0.29,
+    "sigma_eff_days": 0.0961,
+    "dominant_factor": "lead_time_volatility",
+    "dominant_pct": 100.0,
+    "variance_components": {
+      "transport": 0.0961,
+      "supplier": 0.0,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Reduce SAP safety lead time from 1.8 to 0.29 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M8DEF1B0 exhibits smooth, high-frequency demand (CV=0.498, 97.7% non-zero days) with a pronounced upward trend of +47% over the observation period. Lead times are extremely short on average (~2 hours) but highly volatile (CV=1.09), with occasional spikes to 1 day driving a safety stock requirement of 134 units for a 95% service level. An (r,Q) continuous-review policy with EOQ=451 is recommended, reducing total annual cost by 6.3% versus the current SAP policy, while the current zero safety stock setting creates unacceptable stockout risk.",
+  "warnings": [
+    "Upward demand trend of +46.67% detected \u2014 policy should be reviewed quarterly.",
+    "Lead time CV=1.09 is high; occasional spikes to 1.01 days drive safety stock.",
+    "SAP safety lead time of 1.8 days is over-conservative; recommend reducing to 0.29 days.",
+    "SAP safety stock of 0 provides no buffer \u2014 immediate correction advised."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) Continuous-Review Policy",
+    "selection_rationale": "Smooth demand (CV<0.5) with near-daily non-zero activity is best served by a continuous-review (r,Q) model. The EOQ formula minimises total ordering plus holding cost, and the reorder point with safety stock provides the required 95% service level against lead-time variability.",
+    "boundary_risk": "Storage capacity at 2,619 units is non-binding (utilisation 22.3%). No capacity-driven constraint applies. However, the upward demand trend means that if demand continues to grow, the safety stock and EOQ should be recalculated within 6 months.",
+    "escalation_flag": "none"
+  }
+}

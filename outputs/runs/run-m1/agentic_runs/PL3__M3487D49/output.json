@@ -1,0 +1,77 @@
+{
+  "material_id": "PL3__M3487D49",
+  "data_quality": {
+    "total_rows": 221,
+    "working_days": 221,
+    "outliers_detected": 25,
+    "winsorisation": {
+      "lower_bound": 11.453,
+      "upper_bound": 778.78
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 471.72,
+    "std_daily_demand": 53.07,
+    "robust_std_daily": 51.85,
+    "cv_wd": 0.1125,
+    "non_zero_fraction_wd": 0.854,
+    "trend_detected": false,
+    "regime": "stable",
+    "distribution_type": "near-constant"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.11,
+    "std_lead_time": 0.87,
+    "cv_lead_time": 0.7877,
+    "stability": "unstable",
+    "effective_lead_time": 1.98
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 416.12,
+    "safety_stock": 685.0,
+    "safety_stock_robust": 678.0
+  },
+  "order_quantity": {
+    "eoq_raw": 3360.0,
+    "order_quantity": 1736
+  },
+  "cost_analysis": {
+    "unit_cost": 13.062485,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.5675
+  },
+  "policy": {
+    "safety_stock": 685,
+    "reorder_point": 1621,
+    "order_quantity": 1736,
+    "review_period_days": 4
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.45,
+    "sigma_eff_days": 0.87,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase from 0.0 to 1.45 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Demand for PL3__M3487D49 is highly stable (CV~11%) at ~472 units/working day with no trend. Lead times are highly variable (CV~79%), ranging from <1 to ~4 days, making a safety buffer critical. The (r,Q) policy with SS=685 and OQ=1,736 (capped by 2,421-unit storage limit) achieves a 95% service level and reduces annual costs by ~69% vs. the current SAP policy of SS=0/OQ=366.",
+  "warnings": [
+    "CAPACITY CONSTRAINT BINDING: unconstrained EOQ=3360 reduced to 1736 to satisfy max_storage_units=2421.089 with SS=685. Consider capacity expansion for further cost savings.",
+    "SAP safety stock is 0 \u2014 no buffer against lead time variability. Stockout risk is high under current policy."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review reorder-point fixed-quantity policy",
+    "selection_rationale": "Demand is stable and near-constant (CV~11%), making a fixed EOQ-based order quantity highly efficient. High lead-time variability (CV~79%) requires a reorder-point trigger rather than a periodic review to prevent stockouts during long replenishment cycles.",
+    "boundary_risk": "Storage capacity is fully saturated (SS+OQ=2421 units = 100% of limit). Any demand spike or safety stock increase would breach the cap. Service level could degrade if a prolonged lead-time outlier coincides with elevated demand. Capacity expansion is recommended to unlock the full EOQ benefit.",
+    "escalation_flag": "none \u2014 MOQ (366) + SS (685) = 1051 < 2421 max_storage_units; both MOQ and capacity constraints are simultaneously satisfiable under the recommended policy."
+  }
+}

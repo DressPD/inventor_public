@@ -1,0 +1,140 @@
+{
+  "material_id": "PL1__MD9F9B81",
+  "analysis_timestamp": "2026-10-22T13:46:14.842414",
+  "parameters": {
+    "unit_cost": 0.16558,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 75.0,
+    "moq": 2628,
+    "service_level_target": 0.95,
+    "sap_safety_stock": 0,
+    "sap_safety_lead_time_days": 3.0,
+    "max_storage_units": 28696.677
+  },
+  "data_quality": {
+    "total_rows": 141,
+    "working_days": 141,
+    "holiday_count": 0,
+    "lead_time_observations": 21
+  },
+  "demand_analysis": {
+    "working_day_stats": {
+      "mean_daily_demand": 348.9512269503546,
+      "std_daily_demand": 733.5697516911138,
+      "robust_std_daily": 71.03854707190511,
+      "cv": 2.1022128453369184,
+      "non_zero_fraction": 0.3900709219858156,
+      "winsorization": {
+        "lower_bound": 0.0,
+        "upper_bound": 2943.3659999999995
+      }
+    },
+    "trend_detection": {
+      "has_trend": true,
+      "slope": -1.6063672246243417,
+      "r_value": -0.0894471535710142
+    },
+    "classification": {
+      "regime": "intermittent",
+      "distribution_type": "gamma-like"
+    }
+  },
+  "lead_time_analysis": {
+    "observations": [
+      2.05,
+      1.86,
+      4.89,
+      3.74,
+      4.03,
+      0.95,
+      1.86,
+      2.9,
+      1.7,
+      1.83,
+      3.82,
+      1.74,
+      1.7,
+      1.66,
+      2.95,
+      1.76,
+      3.73,
+      3.71,
+      1.7,
+      1.78,
+      1.66
+    ],
+    "mean_lead_time": 2.477142857142857,
+    "std_lead_time": 1.0841916014115902,
+    "cv_lead_time": 0.4376782704660399,
+    "stability": "moderate",
+    "effective_lead_time": 3.5613344585544473
+  },
+  "buffer_safety_stock": {
+    "service_level": 0.95,
+    "z_score": 1.644853626951472,
+    "sigma_ltd": 1214.967095060045,
+    "sigma_ltd_robust": 394.5052863057676,
+    "safety_stock": 1999,
+    "safety_stock_robust": 649
+  },
+  "eoq_order_quantity": {
+    "annual_demand": 90727.3190070922,
+    "eoq_raw": 26170.98727026241,
+    "unconstrained_order_quantity": 26171,
+    "capacity_constraint_applied": false,
+    "order_quantity": 26171
+  },
+  "cost_analysis": {
+    "annual_holding_cost_per_unit": 0.0198696,
+    "recommended_policy": {
+      "num_orders_per_year": 3.4667119715368995,
+      "annual_ordering_cost": 260.00339786526746,
+      "annual_holding_cost": 299.7229812,
+      "total_annual_cost": 559.7263790652675
+    },
+    "sap_current_policy": {
+      "num_orders_per_year": 34.52333295551453,
+      "annual_ordering_cost": 2589.24997166359,
+      "annual_holding_cost": 26.108654400000002,
+      "total_annual_cost": 2615.35862606359
+    },
+    "savings": {
+      "absolute": 2055.6322469983224,
+      "percentage": 78.5984846021779
+    }
+  },
+  "policy_recommendation": {
+    "safety_stock": 1999,
+    "reorder_point": 2864,
+    "order_quantity": 26171,
+    "review_period_days": 75
+  },
+  "safety_lead_time": {
+    "current_sap_days": 3.0,
+    "recommended_days": 5.726998155018747,
+    "sigma_effective_days": 3.4817676546897447,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "dominant_factor": "transport",
+    "dominant_pct": 0.6,
+    "disruption_premium": 1.0,
+    "comparison_action": "increase"
+  },
+  "capacity_validation": {
+    "required_units": 28170,
+    "max_storage_units": 28696.677,
+    "feasible": true,
+    "utilization_pct": 98.16
+  },
+  "diagnostics": {
+    "warnings": [
+      "Trend detected: slope = -1.6064, mean = 348.95",
+      "Intermittent demand pattern detected - consider alternative forecasting methods"
+    ],
+    "escalation_flag": true
+  },
+  "narrative": "Material PL1__MD9F9B81 exhibits intermittent demand with CV=2.10 and moderate lead time variability (CV=0.44). Recommended safety stock of 1999 units and order quantity of 26171 units provide 95% service level while reducing total annual costs by $2055.63 (78.6%) compared to current SAP policy. Safety lead time should be increased from 3.0 to 5.7 days to account for transport variability."
+}

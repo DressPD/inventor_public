@@ -1,0 +1,74 @@
+{
+  "material_id": "PL1__MFAD355D",
+  "data_quality": {
+    "total_rows": 225,
+    "working_days": 225,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 2294.7517999999995
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 614.7390195555555,
+    "std_daily_demand": 648.745637855385,
+    "robust_std_daily": 372.3223728,
+    "cv_wd": 1.0553187893041434,
+    "non_zero_fraction_wd": 0.9511111111111111,
+    "trend_detected": true,
+    "regime": "erratic",
+    "distribution_type": "gamma"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.3119594594594595,
+    "std_lead_time": 0.953603733202601,
+    "cv_lead_time": 0.7268545733840703,
+    "stability": "unstable",
+    "effective_lead_time": 2.2655631926620603
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 946.4757947874896,
+    "safety_stock": 1557,
+    "safety_stock_robust": 1193
+  },
+  "order_quantity": {
+    "eoq_raw": 2742.21834672153,
+    "order_quantity": 2743
+  },
+  "cost_analysis": {
+    "unit_cost": 17.031209,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 2.04374508
+  },
+  "policy": {
+    "safety_stock": 1557,
+    "reorder_point": 2950,
+    "order_quantity": 2743,
+    "review_period_days": 5
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.6,
+    "sigma_eff_days": 0.953603733202601,
+    "dominant_factor": "transport",
+    "dominant_pct": 78.26086956521738,
+    "variance_components": {
+      "transport": 0.32736962879205744,
+      "supplier": 0.08184240719801436,
+      "quality": 0.009093600799779373
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "\nINVENTORY OPTIMIZATION ANALYSIS FOR PL1__MFAD355D\n\nDEMAND PATTERN: This material exhibits a erratic demand pattern with CV=1.06 and 95.1% working days with demand. \nTrend analysis detected an upward trend in the historical data. \nThe distribution is best modeled as gamma.\n\nLEAD TIME: Lead time stability is unstable (CV=0.73). Mean lead time is 1.31 days with \nstandard deviation of 0.95 days, yielding an effective lead time of 2.27 days for planning purposes.\n\nBUFFER STRATEGY: To achieve 95% service level, the recommended safety stock is 1557 units, \nwhich accounts for both demand and lead time variability. This represents 2.5 days of average demand.\n\nORDER POLICY: The Economic Order Quantity analysis yields an optimal order quantity of 2743 units (vs MOQ of 167), \nresulting in approximately 56 orders per year (review every 5 days). The reorder point \nis set at 2950 units.\n\nCOST IMPACT: The optimized policy reduces total annual costs from $46,184.05 to $8,786.51, \ndelivering savings of $37,397.55 (81.0%). This is achieved by significantly reducing ordering frequency \n(from 920 to 56 annual orders) at the cost of higher average inventory.\n\nSAFETY LEAD TIME: Analysis recommends 1.6 days of safety lead time (vs current SAP 2.0 days), \ndriven primarily by transport variability (78% of total variance).\n\nIMPLEMENTATION: This material is suitable for continuous review (s,Q) policy with parameters (s=2950, Q=2743). \nNo MILP optimization is required for this regime.\n",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Continuous Review (s,Q) with Normal Approximation",
+    "selection_rationale": "The erratic demand pattern with CV=1.06 and unstable lead time justifies using parametric safety stock with normal approximation. No intermittency requires special handling.",
+    "boundary_risk": "Medium",
+    "escalation_flag": "None"
+  }
+}

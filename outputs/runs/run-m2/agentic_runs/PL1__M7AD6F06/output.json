@@ -1,0 +1,214 @@
+{
+  "material_id": "PL1__M7AD6F06",
+  "timestamp": "2026-10-22T09:24:36.152798",
+  "analysis_version": "1.0",
+  "input_parameters": {
+    "unit_cost": 54.36045,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 50.0,
+    "moq": 25,
+    "service_level_target": 0.95,
+    "sap_safety_stock": 0,
+    "sap_safety_lead_time_days": 2.0,
+    "max_storage_units": 7281.308
+  },
+  "data_quality": {
+    "total_rows": 217,
+    "working_days": 217,
+    "non_working_days": 0,
+    "missing_values": 0,
+    "data_completeness_pct": 100.0,
+    "date_range_start": "2025-03-03",
+    "date_range_end": "2026-03-09"
+  },
+  "demand_analysis": {
+    "descriptive_stats": {
+      "mean_daily_demand": 757.39,
+      "std_daily_demand": 286.85,
+      "robust_std_daily": 279.18,
+      "min_demand": 194.59,
+      "max_demand": 1748.14,
+      "median_demand": 715.58,
+      "cv_wd": 0.3787,
+      "non_zero_fraction_wd": 1.0
+    },
+    "pattern_detection": {
+      "trend_detected": false,
+      "trend_slope_per_day": -2.2229,
+      "trend_interpretation": "No significant trend",
+      "outliers_detected": true,
+      "winsorisation_bounds": {
+        "lower_1pct": 238.53,
+        "upper_99pct": 1471.45
+      }
+    },
+    "regime_classification": {
+      "regime": "regular",
+      "distribution_type": "Slightly skewed",
+      "interpretation": "Regular demand pattern with slightly skewed"
+    },
+    "annual_projection": {
+      "annual_demand": 189347.43,
+      "annual_demand_value": 10293011.74
+    }
+  },
+  "lead_time_analysis": {
+    "descriptive_stats": {
+      "mean_lead_time": 0.87,
+      "std_lead_time": 0.78,
+      "cv_lead_time": 0.8968,
+      "min_lead_time": 0.2,
+      "max_lead_time": 2.78,
+      "median_lead_time": 0.76
+    },
+    "stability_assessment": {
+      "stability": "unstable",
+      "effective_lead_time": 1.65,
+      "interpretation": "Lead time is unstable with high variability"
+    },
+    "observations": {
+      "sample_size": 15,
+      "observations": [
+        1.0,
+        0.35,
+        2.78,
+        0.81,
+        0.23,
+        0.2,
+        0.88,
+        0.4,
+        0.95,
+        0.82,
+        2.54,
+        0.73,
+        0.76,
+        0.31,
+        0.28
+      ]
+    }
+  },
+  "safety_stock_analysis": {
+    "calculation_method": "Standard deviation of lead time demand",
+    "parameters": {
+      "service_level_target": 0.95,
+      "z_score": 1.645,
+      "sigma_ltd": 648.24,
+      "sigma_ltd_robust": 645.32
+    },
+    "results": {
+      "safety_stock": 1067,
+      "safety_stock_robust": 1062,
+      "safety_stock_value": 58002.6,
+      "coverage_days": 1.41
+    },
+    "comparison_with_sap": {
+      "sap_safety_stock": 0,
+      "recommended_safety_stock": 1067,
+      "difference": 1067,
+      "difference_pct": 106700.0
+    }
+  },
+  "order_quantity_analysis": {
+    "eoq_calculation": {
+      "eoq_raw": 1703.72,
+      "eoq_formula": "sqrt(2 * D * S / (h * C))",
+      "assumptions": {
+        "annual_demand_D": 189347.43,
+        "ordering_cost_S": 50.0,
+        "holding_cost_rate_h": 0.12,
+        "unit_cost_C": 54.36045
+      }
+    },
+    "constraints": {
+      "moq": 25,
+      "max_storage_units": 7281.308,
+      "available_capacity_after_safety_stock": 6214.31
+    },
+    "results": {
+      "unconstrained_order_quantity": 1704,
+      "final_order_quantity": 1704,
+      "storage_cap_binding": false,
+      "order_quantity_value": 92630.21
+    }
+  },
+  "policy_parameters": {
+    "policy_type": "(r,Q) continuous review",
+    "reorder_point": 2316,
+    "order_quantity": 1704,
+    "safety_stock": 1067,
+    "review_period_days": 3,
+    "cycle_service_level": 0.95,
+    "interpretation": "Order 1704 units when inventory reaches 2316 units"
+  },
+  "cost_analysis": {
+    "optimized_policy": {
+      "annual_holding_cost": 12518.12,
+      "annual_ordering_cost": 5555.97,
+      "total_annual_cost": 18074.09,
+      "annual_orders": 111.12,
+      "avg_inventory": 1919.0
+    },
+    "previous_policy_sap": {
+      "annual_holding_cost": 81.54,
+      "annual_ordering_cost": 378694.87,
+      "total_annual_cost": 378776.41,
+      "annual_orders": 7573.9,
+      "avg_inventory": 12.5
+    },
+    "comparison": {
+      "cost_savings": 360702.32,
+      "cost_savings_pct": 95.2,
+      "holding_cost_change": 12436.58,
+      "ordering_cost_change": -373138.9
+    }
+  },
+  "safety_lead_time_analysis": {
+    "current_sap": {
+      "safety_lead_time_days": 2.0,
+      "interpretation": "Days of buffer in lead time planning"
+    },
+    "recommended": {
+      "safety_lead_time_days": 1.41,
+      "calculation_basis": "Safety stock divided by mean daily demand",
+      "sigma_eff_days": 0.86
+    },
+    "variance_decomposition": {
+      "transport_variance_pct": 60.0,
+      "supplier_variance_pct": 30.0,
+      "quality_variance_pct": 10.0,
+      "dominant_factor": "transport",
+      "dominant_factor_pct": 60.0
+    },
+    "risk_assessment": {
+      "disruption_premium": 1.0,
+      "action": "decrease",
+      "rationale": "Recommended safety lead time (1.41 days) is lower than SAP (2.0 days)"
+    }
+  },
+  "capacity_validation": {
+    "max_storage_units": 7281.308,
+    "required_capacity": 2771,
+    "utilization_pct": 38.06,
+    "capacity_sufficient": true,
+    "available_buffer": 4510.31
+  },
+  "warnings_and_diagnostics": {
+    "warnings": [
+      "Lead time is unstable (CV=0.897). Work with supplier to improve reliability."
+    ],
+    "recommendations": [
+      "Implement (r,Q) continuous review policy with reorder point 2316 and order quantity 1704",
+      "Increase safety stock from 0 to 1067 units (+1067 units)",
+      "Expected annual cost savings: $360702.32 (95.2%)",
+      "Lead time variability is unstable - consider supplier development initiatives"
+    ]
+  },
+  "executive_summary": {
+    "material_id": "PL1__M7AD6F06",
+    "current_state": "SAP safety stock: 0, Order qty: 25, Annual cost: $378776.41",
+    "recommended_state": "Safety stock: 1067, Order qty: 1704, Annual cost: $18074.09",
+    "key_insight": "Demand pattern is regular with slightly skewed. Lead time is unstable.",
+    "cost_impact": "Annual savings of $360702.32 (95.2%)",
+    "implementation_priority": "High"
+  }
+}

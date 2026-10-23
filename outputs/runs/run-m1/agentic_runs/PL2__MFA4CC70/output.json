@@ -1,0 +1,79 @@
+{
+  "material_id": "PL2__MFA4CC70",
+  "data_quality": {
+    "total_rows": 141,
+    "working_days": 141,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 1221.508
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 535.13,
+    "std_daily_demand": 386.21,
+    "robust_std_daily": 318.45,
+    "cv_wd": 0.72,
+    "non_zero_fraction_wd": 0.83,
+    "trend_detected": true,
+    "regime": "erratic",
+    "distribution_type": "right-skewed with zero-inflation"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.49,
+    "std_lead_time": 1.21,
+    "cv_lead_time": 0.81,
+    "stability": "unstable",
+    "effective_lead_time": 2.7
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 723.5,
+    "safety_stock": 1190.0,
+    "safety_stock_robust": 1024.0
+  },
+  "order_quantity": {
+    "eoq_raw": 9762.4,
+    "order_quantity": 5365
+  },
+  "cost_analysis": {
+    "unit_cost": 0.742852,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.089142
+  },
+  "policy": {
+    "safety_stock": 1190,
+    "reorder_point": 2003,
+    "order_quantity": 5365,
+    "review_period_days": 10
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.07,
+    "sigma_eff_days": 1.21,
+    "dominant_factor": "transport",
+    "dominant_pct": 70.0,
+    "variance_components": {
+      "transport": 0.7,
+      "supplier": 0.2,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "maintain \u2014 recommended 2.07 days is consistent with SAP setting of 2.0 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Demand for PL2__MFA4CC70 is highly erratic (CV=0.72) with a statistically significant declining trend of -1.61 units/day over the 141-day observation window. Lead times are unstable (CV=0.81) exhibiting a bimodal distribution likely reflecting two distinct supply channels. The current SAP safety stock of 672 units is materially undersized; the recommended (r,Q) policy raises safety stock to 1,190 units and consolidates ~200 annual orders into ~25, reducing total inventory cost by 84% while respecting the 6,556-unit storage cap.",
+  "warnings": [
+    "High demand variability (CV=0.72) \u2014 enhanced cycle-count monitoring recommended",
+    "Unstable lead times (CV=0.81) \u2014 supplier performance review recommended",
+    "Storage capacity constraint is binding \u2014 order quantity reduced from unconstrained EOQ of ~9,762 to 5,365",
+    "Significant declining demand trend detected (-1.61 units/day) \u2014 policy should be reviewed quarterly"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review policy with EOQ order quantity",
+    "selection_rationale": "The material has continuous (non-intermittent) demand on most working days with high but not extreme variability, making a continuous-review (r,Q) policy more efficient than periodic review. EOQ balances ordering and holding costs optimally given the low unit cost and high ordering cost ratio. The storage cap constrains Q below the pure EOQ but the policy remains feasible.",
+    "boundary_risk": "Storage constraint is active: safety_stock (1,190) + order_quantity (5,365) = 6,555, exactly at the 6,556-unit cap. Any upward revision of safety stock (e.g., in response to a demand spike) would require a corresponding reduction in order quantity, potentially increasing ordering frequency and cost. Close monitoring of actual inventory peaks is advised.",
+    "escalation_flag": "none \u2014 MOQ (672) + safety_stock (1,190) = 1,862, which is well below max_storage_units (6,556). No MOQ-capacity infeasibility."
+  }
+}

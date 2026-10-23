@@ -1,0 +1,100 @@
+{
+  "material_id": "PL1__M890BCAD",
+  "unit_cost": 11.046954,
+  "holding_cost_rate": 0.12,
+  "ordering_cost": 75.0,
+  "moq": 617,
+  "service_level_target": 0.95,
+  "max_storage_units": 9718.444,
+  "data_quality": {
+    "total_rows": 85,
+    "working_days": 85,
+    "non_working_days": 0,
+    "missing_demand": 0,
+    "completeness_percentage": 100.0
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 491.1944,
+    "std_daily_demand": 168.1484,
+    "robust_std_daily": 159.6983,
+    "cv_wd": 0.3423,
+    "non_zero_fraction_wd": 1.0,
+    "skewness": 0.2776,
+    "kurtosis": 3.6972,
+    "distribution_type": "normal",
+    "trend_detected": true,
+    "regime": "erratic",
+    "outliers_detected": true,
+    "outlier_count": 2,
+    "winsorised_mean": 491.1944,
+    "winsorised_std": 168.1484
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.1459,
+    "std_lead_time": 0.551,
+    "cv_lead_time": 0.4808,
+    "min_lead_time": 0.08,
+    "max_lead_time": 4.1,
+    "median_lead_time": 0.98,
+    "stability": "moderate",
+    "effective_lead_time": 1.6969
+  },
+  "safety_stock": {
+    "z_score": 1.6449,
+    "sigma_ltd": 325.0261,
+    "safety_stock": 535,
+    "safety_stock_robust": 527,
+    "demand_variance_contribution": 32398.5635,
+    "leadtime_variance_contribution": 73243.3911,
+    "dominant_factor": "lead_time_variability"
+  },
+  "order_quantity": {
+    "annual_demand": 128201.7507,
+    "eoq_raw": 3808.7346,
+    "unconstrained_order_quantity": 3809,
+    "order_quantity": 3809,
+    "capacity_constraint_binding": false
+  },
+  "policy": {
+    "reorder_point": 1369,
+    "order_quantity": 3809,
+    "safety_stock": 535,
+    "review_period_days": 8
+  },
+  "safety_lead_time": {
+    "sap_safety_lead_time_days": 2.5,
+    "recommended_safety_lt_days": 1.0892,
+    "sigma_eff_days": 0.6617,
+    "comparison_action": "DECREASE safety lead time from 2.5 to 1.09 days",
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.3,
+      "quality": 0.2
+    },
+    "disruption_premium": 1.0
+  },
+  "cost_analysis": {
+    "previous_policy": {
+      "safety_stock": 0,
+      "order_quantity": 617,
+      "num_orders_per_year": 207.7824,
+      "avg_inventory": 308.5,
+      "annual_ordering_cost": 15583.68,
+      "annual_holding_cost": 408.96,
+      "annual_total_cost": 15992.64
+    },
+    "new_policy": {
+      "safety_stock": 535,
+      "order_quantity": 3809,
+      "num_orders_per_year": 33.6576,
+      "avg_inventory": 2439.5,
+      "annual_ordering_cost": 2524.32,
+      "annual_holding_cost": 3233.89,
+      "annual_total_cost": 5758.2
+    },
+    "savings": {
+      "annual_savings": 10234.44,
+      "savings_percentage": 63.99
+    }
+  }
+}

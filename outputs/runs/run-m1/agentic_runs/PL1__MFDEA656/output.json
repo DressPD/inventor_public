@@ -1,0 +1,77 @@
+{
+  "material_id": "PL1__MFDEA656",
+  "data_quality": {
+    "total_rows": 133,
+    "working_days": 133,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 99.93,
+      "upper_bound": 10485.71
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 4184.902682105263,
+    "std_daily_demand": 1458.7263083591545,
+    "robust_std_daily": 564.5989621942177,
+    "cv_wd": 0.3485687527685412,
+    "non_zero_fraction_wd": 0.9849624060150376,
+    "trend_detected": false,
+    "regime": "smooth",
+    "distribution_type": "moderate_variability"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.5006927710843372,
+    "std_lead_time": 1.0191272122435475,
+    "cv_lead_time": 0.6791044988556647,
+    "stability": "unstable",
+    "effective_lead_time": 2.519819983327885
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 4624.184358525785,
+    "safety_stock": 7607.0,
+    "safety_stock_robust": 7107.0
+  },
+  "order_quantity": {
+    "eoq_raw": 7719.45985371149,
+    "order_quantity": 7720
+  },
+  "cost_analysis": {
+    "unit_cost": 14.630875,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.7557049999999998
+  },
+  "policy": {
+    "safety_stock": 7607,
+    "reorder_point": 18153,
+    "order_quantity": 7720,
+    "review_period_days": 2
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.8177244676507536,
+    "sigma_eff_days": 1.0191272122435475,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 67.91,
+    "variance_components": {
+      "transport": 0.6231721648411829,
+      "supplier": 0.31158608242059144,
+      "quality": 0.10386202747353049
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MFDEA656 exhibits smooth daily demand averaging 4,185 units with no detectable trend over the analysis period. However, lead times are highly unstable (CV=68%), with a bimodal distribution spanning 0.7 to 5.2 days, which drives significant buffer requirements. An (r,Q) continuous-review policy with EOQ-based order quantity of 7,720 units is recommended, anchored by a safety stock of 7,607 units \u2014 80x higher than the current SAP setting of 95 \u2014 to achieve the 95% service level target. Capacity utilisation remains at 34% post-replenishment, well within the 45,030 unit storage limit.",
+  "warnings": [
+    "Current SAP safety stock (95) is critically insufficient; recommended safety stock is 7607 units",
+    "Lead time CV of 67.9% classifies as unstable; bimodal distribution detected in lead times"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) Continuous Review with Fixed Order Quantity",
+    "selection_rationale": "The smooth demand regime (CV=34.9%) with high-volume daily throughput and no trend makes a continuous-review (r,Q) policy optimal. Fixed EOQ-based replenishment minimises total ordering and holding costs, while the reorder point directly absorbs the unstable lead-time risk via the sigma_ltd buffer.",
+    "boundary_risk": "Storage capacity is not binding (34% utilisation post-replenishment). MOQ of 1,645 is fully satisfied by the EOQ of 7,720. No capacity-driven constraints apply.",
+    "escalation_flag": "None. However, the 80x gap between current and recommended safety stock warrants urgent SAP master data review and supply chain risk assessment for the bimodal lead-time behaviour."
+  }
+}

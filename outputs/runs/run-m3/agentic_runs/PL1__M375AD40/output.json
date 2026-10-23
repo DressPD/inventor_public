@@ -1,0 +1,77 @@
+{
+  "material_id": "PL1__M375AD40",
+  "data_quality": {
+    "total_rows": 133,
+    "working_days": 133,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 1775.05
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 943.59,
+    "std_daily_demand": 357.87,
+    "robust_std_daily": 227.35,
+    "cv_wd": 0.3793,
+    "non_zero_fraction_wd": 0.9474,
+    "trend_detected": true,
+    "regime": "Intermittent",
+    "distribution_type": "Normal approximation"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.71,
+    "std_lead_time": 1.14,
+    "cv_lead_time": 0.42,
+    "stability": "Moderate \u2014 bimodal distribution suggests dual supplier lanes (~2d and ~4d clusters)",
+    "effective_lead_time": 2.71
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1225.42,
+    "safety_stock": 2016.0,
+    "safety_stock_robust": 2016.0
+  },
+  "order_quantity": {
+    "eoq_raw": 5970.89,
+    "order_quantity": 5971
+  },
+  "cost_analysis": {
+    "unit_cost": 8.590476,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.030857
+  },
+  "policy": {
+    "safety_stock": 2016,
+    "reorder_point": 4568,
+    "order_quantity": 5971,
+    "review_period_days": 0
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.14,
+    "sigma_eff_days": 1.14,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 0.65,
+    "variance_components": {
+      "transport": 0.65,
+      "supplier": 0.3,
+      "quality": 0.05
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Reduce SAP safety lead time from 3.0 to 2.14 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M375AD40 shows intermittent but high-volume daily demand averaging 944 units/day with a CV of 0.38, indicating moderate variability. Lead times cluster bimodally around 2 and 4 working days (mean 2.71d, \u03c3 1.14d), likely reflecting dual supplier lanes. The current SAP policy carries zero safety stock, creating unacceptable stockout exposure for a 95% service level target. An (r,Q) continuous-review policy with SS=2,016 and Q=5,971 (EOQ-driven) achieves the target at an incremental annual cost of ~$2,078 \u2014 well within the cost of a single major stockout event for a high-velocity material.",
+  "warnings": [
+    "SAP safety stock is 0 \u2014 current ERP policy provides no buffer; effective service level is well below 95%.",
+    "Intermittent demand detected (94.7% non-zero days); review zero-demand days for planned shutdowns to avoid over-ordering."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) continuous-review reorder-point / fixed-order-quantity",
+    "selection_rationale": "Demand is near-continuous (94.7% non-zero) with moderate CV (0.38), making classical EOQ appropriate. EOQ of 5,971 exceeds the MOQ of 643, so EOQ is the binding quantity driver. Continuous review is justified by the high daily throughput and the cost sensitivity of stockouts.",
+    "boundary_risk": "Storage capacity is non-binding: SS + Q = 7,987 units vs. limit of 17,466 (46% utilisation). No capacity-driven reduction was required.",
+    "escalation_flag": "none"
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "material_id": "PL1__M9B1EC3D",
+  "data_quality": {
+    "total_rows": 173,
+    "working_days": 165,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 1136.49
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 525.36,
+    "std_daily_demand": 287.44,
+    "robust_std_daily": 319.14,
+    "cv_wd": 0.547,
+    "non_zero_fraction_wd": 0.954,
+    "trend_detected": true,
+    "regime": "moderate",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.556,
+    "std_lead_time": 0.681,
+    "cv_lead_time": 1.226,
+    "stability": "variable",
+    "effective_lead_time": 1.237
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 417.22,
+    "safety_stock": 687,
+    "safety_stock_robust": 708
+  },
+  "order_quantity": {
+    "eoq_raw": 6418.1,
+    "order_quantity": 4185
+  },
+  "cost_analysis": {
+    "unit_cost": 2.763361,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.33
+  },
+  "policy": {
+    "safety_stock": 687,
+    "reorder_point": 979,
+    "order_quantity": 4185,
+    "review_period_days": 8
+  },
+  "safety_lead_time": {
+    "recommended_days": 0.89,
+    "sigma_eff_days": 0.79,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 73.6,
+    "variance_components": {
+      "transport": 0.1857,
+      "supplier": 0.1857,
+      "quality": 0.0929
+    },
+    "disruption_premium": 1.12,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M9B1EC3D exhibits moderate demand patterns with CV=0.55 and variable lead times (CV=1.23).\nThe analysis reveals significant optimization potential. Current SAP policy uses conservative safety stock (113 units) \nwith frequent small orders (MOQ=227), resulting in excessive ordering costs ($30,087/year).\n\nThe optimized EOQ-based policy recommends:\n- Increased safety stock to 687 units (accommodating higher demand variability and service level target of 95.0%)\n- Larger order quantities of 4185 units (constrained by storage capacity of 4872 units)\n- Reorder point at 979 units\n- Review period of 8 days\n\nThis optimization reduces total annual costs by $27,608 (91.5%), primarily by reducing ordering \nfrequency from ~602 to ~33 orders per year. The dominant \nuncertainty driver is lead time variability (74%), suggesting focused risk mitigation efforts.",
+  "warnings": [
+    "Storage capacity constraint active: Reduced order quantity from 6419 to 4185 units",
+    "Significant demand trend detected (slope=1.67, p=0.0001). Consider dynamic forecasting.",
+    "High lead time variability (CV=1.23). Consider supplier reliability initiatives.",
+    "Recommended safety stock (687) is 6.1x current SAP value. Verify service level requirements."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ_with_service_level",
+    "selection_rationale": "Classic EOQ model selected for moderate demand with variable lead times. Service level achieved through safety stock buffer.",
+    "boundary_risk": "medium",
+    "escalation_flag": "none"
+  }
+}

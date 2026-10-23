@@ -1,0 +1,78 @@
+{
+  "material_id": "PL3__M6B53B18",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 281.07997
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 142.83659322033898,
+    "std_daily_demand": 59.20819623470791,
+    "robust_std_daily": 48.50555967383248,
+    "cv_wd": 0.41451700085967225,
+    "non_zero_fraction_wd": 0.7763157894736842,
+    "trend_detected": false,
+    "regime": "smooth",
+    "distribution_type": "right-skewed"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.7622916666666667,
+    "std_lead_time": 0.9163113834382063,
+    "cv_lead_time": 1.2020482756226811,
+    "stability": "unstable",
+    "effective_lead_time": 1.678603050104873
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 140.72172557701973,
+    "safety_stock": 232,
+    "safety_stock_robust": 227
+  },
+  "order_quantity": {
+    "eoq_raw": 1389.126731567,
+    "order_quantity": 1066
+  },
+  "cost_analysis": {
+    "unit_cost": 15.42107,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.8505284
+  },
+  "policy": {
+    "safety_stock": 232,
+    "reorder_point": 341,
+    "order_quantity": 1066,
+    "review_period_days": 8
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.6242336418799768,
+    "sigma_eff_days": 0.985193796662058,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 0.8650532190054969,
+    "variance_components": {
+      "transport": 0.4,
+      "supplier": 0.4,
+      "quality": 0.2
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Increase from 0.0 to 1.62 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__M6B53B18 exhibits smooth demand with CV=0.41 and right-skewed distribution.\nLead time is unstable (CV=1.20), with lead_time_variability being the primary driver of variability (86.5%).\nTo achieve 95.0% service level, recommended safety stock is 232 units (up from 0).\nOrder quantity is capacity-constrained at 1066 units (vs unconstrained EOQ of 1390).\nAnnual cost increases by $529.54 to provide adequate buffer against demand and lead time uncertainty.\nRecommended safety lead time is 1.62 days (current: 0.0).",
+  "warnings": [
+    "Order quantity reduced from 1390 to 1066 due to capacity constraint.",
+    "Lead time CV=1.20 is very high (unstable). Consider supplier performance review.",
+    "Optimized policy increases cost by $529.54 to achieve 95.0% service level (previous had 0 safety stock)."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Combined Variance (Normal Approximation)",
+    "selection_rationale": "Regime is smooth, CV=0.41, lead time unstable. Using classical safety stock formula.",
+    "boundary_risk": "Low",
+    "escalation_flag": "Review"
+  }
+}

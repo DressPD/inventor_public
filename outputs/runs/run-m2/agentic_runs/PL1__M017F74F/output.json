@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__M017F74F",
+  "data_quality": {
+    "total_rows": 139,
+    "working_days": 139,
+    "outliers_detected": 7,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 856.408
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 453.19,
+    "std_daily_demand": 219.87,
+    "robust_std_daily": 185.42,
+    "cv_wd": 0.485,
+    "non_zero_fraction_wd": 0.935,
+    "trend_detected": true,
+    "regime": "Moderate",
+    "distribution_type": "Near-Normal with low-demand tail"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.672,
+    "std_lead_time": 1.051,
+    "cv_lead_time": 0.629,
+    "stability": "Unstable \u2014 high CV (0.63); bimodal distribution with short (~1 day) and medium (~3 day) clusters",
+    "effective_lead_time": 2.723
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 554.78,
+    "safety_stock": 912.61,
+    "safety_stock_robust": 769.54
+  },
+  "order_quantity": {
+    "eoq_raw": 17161.3,
+    "order_quantity": 6012
+  },
+  "cost_analysis": {
+    "unit_cost": 0.320781,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.038494
+  },
+  "policy": {
+    "safety_stock": 913,
+    "reorder_point": 2148,
+    "order_quantity": 6012,
+    "review_period_days": 14
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.01,
+    "sigma_eff_days": 1.051,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 73.5,
+    "variance_components": {
+      "transport": 73.5,
+      "supplier": 26.5,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "DECREASE",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M017F74F shows moderate demand variability (CV=0.49) across 139 working days with a mild declining trend, and a bimodal lead time distribution (short ~1 day and medium ~3 day clusters) resulting in an unstable CV of 0.63. Lead time variance dominates the safety buffer at 73.5%, driving a required safety stock of 913 units to achieve the 95% service level target. The unconstrained EOQ of 17,161 units exceeds the storage limit of 6,925 units, so an (r,Q) policy with a storage-capped order quantity of 6,012 units and reorder point of 2,148 units is recommended. The SAP safety lead time of 4.0 days overstates actual variability; a reduction to 2.01 days is advised.",
+  "warnings": [
+    "Storage capacity constraint active: EOQ (17161) capped to 6012 units (max_storage_units 6925 minus safety_stock 913).",
+    "Current SAP safety stock is 0 \u2014 material is fully exposed to stockout risk under current policy.",
+    "Declining demand trend detected (slope ~-1.59 units/day); EOQ and safety stock should be reviewed quarterly."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) \u2014 Continuous Review Reorder Point / Fixed Order Quantity",
+    "selection_rationale": "Demand is moderately variable but largely continuous (93.5% non-zero days), making a continuous review (r,Q) policy appropriate. The bimodal lead time distribution requires explicit safety stock rather than relying on safety lead time alone. EOQ provides the cost-optimal order quantity subject to the storage cap and MOQ constraints.",
+    "boundary_risk": "Storage capacity binds hard: the economically optimal EOQ of 17,161 units is ~2.5\u00d7 the storage limit. Capping to 6,012 units increases ordering frequency from ~7 orders/year to ~18 orders/year, raising annual ordering costs by roughly 2.5\u00d7 versus unconstrained EOQ. If storage capacity can be expanded, significant cost savings are achievable.",
+    "escalation_flag": "None \u2014 MOQ (1483) + safety_stock (913) = 2396, which is below max_storage_units (6925). Policy is feasible. No MOQ-capacity conflict."
+  }
+}

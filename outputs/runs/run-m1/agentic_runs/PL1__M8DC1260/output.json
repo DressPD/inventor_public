@@ -1,0 +1,74 @@
+{
+  "material_id": "PL1__M8DC1260",
+  "data_quality": {
+    "total_rows": 237,
+    "working_days": 237,
+    "outliers_detected": 1,
+    "winsorisation": {
+      "lower_bound": 0.7919999999999998,
+      "upper_bound": 921.1809999999994
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 499.4004008438818,
+    "std_daily_demand": 220.07942007692068,
+    "robust_std_daily": 166.2214814814815,
+    "cv_wd": 0.44068731163417707,
+    "non_zero_fraction_wd": 0.9873417721518988,
+    "trend_detected": true,
+    "regime": "smooth",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.745163043478261,
+    "std_lead_time": 1.132652950162581,
+    "cv_lead_time": 0.4125995185799428,
+    "stability": "unstable",
+    "effective_lead_time": 3.8778159936408416
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 672.9923833985863,
+    "safety_stock": 1107,
+    "safety_stock_robust": 1035
+  },
+  "order_quantity": {
+    "eoq_raw": 2860.1612697755645,
+    "order_quantity": 2731
+  },
+  "cost_analysis": {
+    "unit_cost": 12.718228,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.52618736
+  },
+  "policy": {
+    "safety_stock": 1107,
+    "reorder_point": 2478,
+    "order_quantity": 2731,
+    "review_period_days": 6
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.21665821278758,
+    "sigma_eff_days": 1.3476008074109882,
+    "dominant_factor": "transport",
+    "dominant_pct": 50.0,
+    "variance_components": {
+      "transport": 226459.3740562549,
+      "supplier": 181167.4992450039,
+      "quality": 45291.87481125098
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "maintain current safety lead time",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization completed for material PL1__M8DC1260. The analysis shows a smooth demand pattern with normal distribution (CV=0.44). Lead time exhibits unstable behavior (CV=0.41). The recommended safety stock of 1107 units provides 95% service level protection against demand and lead time variability. The optimized order quantity of 2731 units balances ordering costs ($2285.79/year) and holding costs ($3773.50/year), yielding total annual costs of $6059.29 compared to the previous policy baseline of $28838.82, representing a 79.0% cost reduction ($22779.53 annual savings). The reorder point is set at 2478 units with a review period of 6 days. The capacity constraint is satisfied (3838 \u2264 3839).",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with stochastic lead time demand",
+    "selection_rationale": "Given the smooth demand pattern with CV=0.44 and unstable lead time variability (CV=0.41), the classical EOQ model with safety stock based on lead time demand uncertainty is appropriate. The normal distribution assumption is justified by the coefficient of variation.",
+    "boundary_risk": "The order quantity is constrained by storage capacity (available: 2732 units after safety stock). The EOQ recommendation of 2860 was reduced to 2731 to fit capacity, which may increase total costs slightly but is operationally necessary.",
+    "escalation_flag": "none"
+  }
+}

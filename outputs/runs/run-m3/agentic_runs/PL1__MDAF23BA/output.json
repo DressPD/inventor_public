@@ -1,0 +1,76 @@
+{
+  "material_id": "PL1__MDAF23BA",
+  "data_quality": {
+    "total_rows": 87,
+    "working_days": 87,
+    "outliers_detected": 8,
+    "winsorisation": {
+      "lower_bound": 1721.3519999999999,
+      "upper_bound": 3265.352
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 2447.3055977011495,
+    "std_daily_demand": 332.1707408750443,
+    "robust_std_daily": 286.1418,
+    "cv_wd": 0.1357291632017944,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "smooth",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.2305555555555552,
+    "std_lead_time": 0.7939511929155507,
+    "cv_lead_time": 0.6451973576740369,
+    "stability": "variable",
+    "effective_lead_time": 2.536605267901636
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1977.671712352406,
+    "safety_stock": 3252.9804889821835,
+    "safety_stock_robust": 3238.3836504455717
+  },
+  "order_quantity": {
+    "eoq_raw": 154464.25579042724,
+    "order_quantity": 65541
+  },
+  "cost_analysis": {
+    "unit_cost": 0.032054,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.0038464799999999998
+  },
+  "policy": {
+    "safety_stock": 3253,
+    "reorder_point": 9461,
+    "order_quantity": 65541,
+    "review_period_days": 26.780881007081927
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.3292169163735297,
+    "sigma_eff_days": 0.8081016584974557,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 96.52851276655662,
+    "variance_components": {
+      "transport": 135776.30190113827,
+      "supplier": 3775409.0999377593,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "For material PL1__MDAF23BA, demand is classified as smooth with a normal distribution. The analysis recommends a safety stock of 3253 units (vs. SAP's 8345) and an order quantity of 65541 units. Lead time is variable with mean 1.23 days. The recommended policy achieves 43.0% cost savings ($632.17/year) compared to current SAP settings.",
+  "warnings": [
+    "Order quantity reduced from 154465 to 65541 due to storage capacity constraint (68794 units)"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with service level constraint",
+    "selection_rationale": "Smooth demand pattern (CV=0.136) with variable lead time supports classical EOQ approach with normal distribution assumption.",
+    "boundary_risk": "Capacity constraint binding: order quantity reduced from EOQ optimal to fit storage limit.",
+    "escalation_flag": ""
+  }
+}

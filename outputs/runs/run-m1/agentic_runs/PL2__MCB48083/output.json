@@ -1,0 +1,77 @@
+{
+  "material_id": "PL2__MCB48083",
+  "data_quality": {
+    "total_rows": 131,
+    "working_days": 131,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 23122.838,
+      "upper_bound": 157652.073
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 116278.45,
+    "std_daily_demand": 23145.12,
+    "robust_std_daily": 19872.34,
+    "cv_wd": 0.199,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "Stable",
+    "distribution_type": "Normal (approximate)"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.563,
+    "std_lead_time": 0.936,
+    "cv_lead_time": 0.599,
+    "stability": "Moderately stable with occasional spikes",
+    "effective_lead_time": 1.563
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 111886.2,
+    "safety_stock": 184159.0,
+    "safety_stock_robust": 176421.0
+  },
+  "order_quantity": {
+    "eoq_raw": 775470.3,
+    "order_quantity": 591311
+  },
+  "cost_analysis": {
+    "unit_cost": 0.104755,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.012571
+  },
+  "policy": {
+    "safety_stock": 184159,
+    "reorder_point": 365306,
+    "order_quantity": 591311,
+    "review_period_days": 5
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.5,
+    "sigma_eff_days": 0.94,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 72.4,
+    "variance_components": {
+      "transport": 0.65,
+      "supplier": 0.3,
+      "quality": 0.05
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Reduce SAP safety lead time from 3.0 to 1.5 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL2__MCB48083 exhibits stable, high-volume daily demand (~116K units/day, CV=0.20) with no detectable trend across the 131-day observation window. Lead times average 1.56 working days but show moderate variability (CV=0.60), occasionally spiking to ~4.8 days. The current SAP policy carries zero safety stock, which is insufficient to maintain the 95% service-level target given this lead-time variability. An (r,Q) continuous-review policy with a safety stock of 184,159 units and an EOQ-derived order quantity of 591,311 units is recommended, reducing total annual inventory cost by over 95% while satisfying the storage capacity constraint.",
+  "warnings": [
+    "Order quantity capped from unconstrained EOQ 775,470 to 591,311 due to storage capacity constraint of 843,693 units with safety stock of 184,159 units.",
+    "Two low-demand outliers detected (values ~23K and ~57K); winsorisation applied at 1st/99th percentile."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) Continuous Review with EOQ",
+    "selection_rationale": "Stable, continuously-positive, high-volume demand with moderate lead-time variability is textbook territory for a continuous-review (r,Q) policy. The EOQ minimises the sum of ordering and holding costs; the reorder point r = mean_LTD + safety_stock ensures the 95% service level is met even under lead-time spikes.",
+    "boundary_risk": "Storage capacity of 843,693 units binds the unconstrained EOQ (775,470 + 184,159 = 959,629 > 843,693). The order quantity was reduced to 591,311 units to respect this hard limit. This increases ordering frequency slightly (~25 orders/year vs ~19 unconstrained) but remains economically sound. Service level is unaffected as safety stock is preserved.",
+    "escalation_flag": "none"
+  }
+}

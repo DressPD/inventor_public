@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__MC5C4052",
+  "data_quality": {
+    "total_rows": 90,
+    "working_days": 90,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 1524.107
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 932.92,
+    "std_daily_demand": 554.67,
+    "robust_std_daily": 476.48,
+    "cv_wd": 0.594,
+    "non_zero_fraction_wd": 0.8,
+    "trend_detected": false,
+    "regime": "intermittent",
+    "distribution_type": "compound/zero-inflated"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.851,
+    "std_lead_time": 0.736,
+    "cv_lead_time": 0.865,
+    "stability": "unstable",
+    "effective_lead_time": 2.063
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 901.7,
+    "safety_stock": 1484.0,
+    "safety_stock_robust": 1277.0
+  },
+  "order_quantity": {
+    "eoq_raw": 1541.4,
+    "order_quantity": 16526
+  },
+  "cost_analysis": {
+    "unit_cost": 37.154038,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 4.458
+  },
+  "policy": {
+    "safety_stock": 1484,
+    "reorder_point": 2235,
+    "order_quantity": 16526,
+    "review_period_days": 18
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.063,
+    "sigma_eff_days": 0.736,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 0.325,
+      "supplier": 0.162,
+      "quality": 0.054
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease from 2.5 to 2.1 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Demand for PL1__MC5C4052 is intermittent with ~20% zero-demand working days and a moderate CV of 0.59, indicating irregular but substantial consumption patterns. Lead times are highly variable (CV 0.87), which is the primary driver of safety stock requirements. The EOQ of 1,541 units is overridden by the storage capacity cap of 18,010 units, resulting in a large batch size of 16,526 units that reduces annual orders from ~63 to ~5. A safety stock of 1,484 units is required to achieve the 95% service level, and the current SAP configuration with zero safety stock must be corrected immediately.",
+  "warnings": [
+    "Current SAP safety stock is 0 \u2014 no buffer protection in place, high stockout risk",
+    "Storage capacity constraint binds: order quantity reduced from unconstrained 1541 to 16526 (storage-limited)",
+    "Lead time CV of 0.87 indicates high supplier unreliability"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) fixed-reorder-point, fixed-order-quantity",
+    "selection_rationale": "The (r,Q) policy is appropriate for this material given continuous review feasibility, moderate-to-high demand variability (CV 0.59), and high lead time variability. The EOQ-derived order quantity ensures cost-efficient replenishment while the reorder point accounts for stochastic demand during lead time. MOQ of 1,338 is satisfied by the capacity-capped quantity of 16,526.",
+    "boundary_risk": "Storage capacity cap of 18,010 units reduces order quantity from the unconstrained value. With safety stock of 1,484 units, maximum post-replenishment stock of 18,010 units meets the capacity constraint exactly. If safety stock were to increase (e.g., due to worse supplier performance), the order quantity would need to decrease further, potentially below MOQ.",
+    "escalation_flag": "none \u2014 MOQ (1,338) plus safety stock (1,484) = 2,822 units, which is well below max_storage_units (18,010). No infeasibility conflict."
+  }
+}

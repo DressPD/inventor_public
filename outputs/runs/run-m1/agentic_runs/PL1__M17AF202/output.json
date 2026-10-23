@@ -1,0 +1,87 @@
+{
+  "material_id": "PL1__M17AF202",
+  "input_parameters": {
+    "unit_cost": 1.551239,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 75.0,
+    "moq": 1045,
+    "service_level_target": 0.95,
+    "sap_safety_stock": 3393,
+    "sap_safety_lead_time_days": 3.0,
+    "max_storage_units": 53952.423
+  },
+  "data_quality": {
+    "total_rows": 213,
+    "working_days": 213,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": -1408.37,
+      "upper_bound": 10808.81
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 4645.698840375587,
+    "std_daily_demand": 2370.668445082624,
+    "robust_std_daily": 2364.7781346000006,
+    "cv_wd": 0.5102931822612429,
+    "non_zero_fraction_wd": 0.971830985915493,
+    "trend_detected": false,
+    "regime": "erratic",
+    "distribution_type": "gamma-like"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.6847417840375587,
+    "std_lead_time": 1.2637349383200438,
+    "cv_lead_time": 0.47071004959721835,
+    "stability": "volatile",
+    "effective_lead_time": 3.316609253197581
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 7039.621833354532,
+    "safety_stock": 11580,
+    "safety_stock_robust": 11571
+  },
+  "order_quantity": {
+    "eoq_raw": 31198.078719779158,
+    "order_quantity": 31199
+  },
+  "cost_analysis": {
+    "unit_cost": 1.551239,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.18614868
+  },
+  "policy": {
+    "safety_stock": 11580,
+    "reorder_point": 26988,
+    "order_quantity": 31199,
+    "review_period_days": 7
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.4924447112942527,
+    "sigma_eff_days": 1.515298790393698,
+    "dominant_factor": "transport",
+    "dominant_pct": 50.0,
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.4,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M17AF202 shows erratic working-day demand (CV=0.51, mean 4,646 units/day) with no detectable trend and 97% non-zero days. Lead times are volatile (CV=0.47, mean 2.68 days), amplifying buffer requirements significantly. The combined lead-time demand sigma of 7,040 units requires a safety stock of 11,580 units at 95% service level \u2014 3.4x the current SAP setting. A continuous-review (r,Q) policy with ROP=26,988 and OQ=31,199 is recommended; the incremental holding cost of $1,524/year is a cost-effective hedge against the high stockout risk inherent in the current underestimated safety stock.",
+  "warnings": [
+    "Current SAP safety stock (3,393) is 241% below the model-recommended level (11,580) for 95% service level.",
+    "Lead time CV=0.47 classified as volatile; this is the primary driver of elevated safety stock requirements."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review policy",
+    "selection_rationale": "With 97.2% non-zero demand days and an erratic but continuously active pattern, a continuous-review reorder-point model is more appropriate than periodic-review. The EOQ batch (31,199) far exceeds the MOQ (1,045), making a fixed-quantity trigger straightforward to implement in SAP.",
+    "boundary_risk": "Storage capacity is not binding: SS+OQ=42,779 units vs. max 53,952 units, leaving 11,173 units of headroom. No capacity-driven service degradation is anticipated.",
+    "escalation_flag": "No MOQ-capacity infeasibility. However, the gap between current SAP safety stock (3,393) and recommended (11,580) is operationally significant and warrants urgent escalation to supply chain management for SAP master data correction."
+  }
+}

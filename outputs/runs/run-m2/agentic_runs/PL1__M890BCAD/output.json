@@ -1,0 +1,77 @@
+{
+  "material_id": "PL1__M890BCAD",
+  "data_quality": {
+    "total_rows": 85,
+    "working_days": 85,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 119.61196000000001,
+      "upper_bound": 1054.1253599999989
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 494.2410743529412,
+    "std_daily_demand": 174.00421621692786,
+    "robust_std_daily": 159.6960711638251,
+    "cv_wd": 0.35206344686089397,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": true,
+    "regime": "Erratic",
+    "distribution_type": "Normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.1458823529411766,
+    "std_lead_time": 0.5509735786287389,
+    "cv_lead_time": 0.48082909839263654,
+    "stability": "Volatile",
+    "effective_lead_time": 1.6968559315699154
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 329.9230313761344,
+    "safety_stock": 543,
+    "safety_stock_robust": 529
+  },
+  "order_quantity": {
+    "eoq_raw": 3754.079121217416,
+    "order_quantity": 3755
+  },
+  "cost_analysis": {
+    "unit_cost": 11.046954,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.32563448
+  },
+  "policy": {
+    "safety_stock": 543,
+    "reorder_point": 1382,
+    "order_quantity": 3755,
+    "review_period_days": 7.597506955317369
+  },
+  "safety_lead_time": {
+    "recommended_days": 0.9062708891619131,
+    "sigma_eff_days": 0.9062708891619131,
+    "dominant_factor": "Lead Time Variability",
+    "dominant_pct": 0.681261660054142,
+    "variance_components": {
+      "transport": 0.0,
+      "supplier": 0.681261660054142,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "DECREASE",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M890BCAD exhibits erratic demand patterns with an average daily consumption of 494 units and a coefficient of variation of 35.2%. The demand distribution is best characterized as Normal, with a slight declining trend over the observation period. Lead time performance shows volatile characteristics (CV=48.1%), with a mean of 1.15 days and standard deviation of 0.55 days. The effective lead time (mean + 1\u03c3) is 1.70 days. The primary driver of inventory uncertainty is lead time variability, accounting for 68.1% of the total variance in lead time demand. This indicates that improving supplier reliability and reducing lead time fluctuations would yield the greatest risk reduction. The optimized policy recommends a safety stock of 543 units to achieve the target 95% service level, combined with an order quantity of 3755 units based on economic order quantity principles. This represents a reorder point of 1382 units, triggering replenishment when on-hand inventory reaches this threshold. Compared to the current SAP configuration (zero safety stock, MOQ-based ordering), the recommended policy delivers substantial cost savings of $9,852 annually (63.4% reduction) through optimized order frequency and improved service level protection.",
+  "warnings": [
+    "High lead time volatility (CV=48.08%). Consider supplier performance review.",
+    "4 extreme lead time observations detected (>3 sigma). Review supplier reliability."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Normal approximation with IID demand",
+    "selection_rationale": "The Normal distribution was selected based on empirical demand characteristics (CV=35.21%). Lead time demand variance incorporates both demand and lead time uncertainty using the standard propagation formula: \u03c3\u00b2(LTD) = L\u00b7\u03c3\u00b2(D) + D\u00b2\u00b7\u03c3\u00b2(L). The 95% service level is achieved using z=1.645 from the standard normal distribution.",
+    "boundary_risk": "Low",
+    "escalation_flag": "High-Impact"
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "material_id": "PL1__MC328F79",
+  "analysis_timestamp": "2026-10-22T10:50:46.642599",
+  "data_quality": {
+    "total_rows": 120,
+    "working_days": 120,
+    "non_zero_fraction": 1.0,
+    "data_completeness": 1.0,
+    "outliers_detected": 4,
+    "winsorization_applied": true,
+    "p1_threshold": 163.35,
+    "p99_threshold": 795.28
+  },
+  "demand_analysis": {
+    "mean_daily": 448.26,
+    "std_dev": 152.42,
+    "robust_std": 142.71,
+    "coefficient_of_variation": 0.34,
+    "median": 446.76,
+    "min": 139.19,
+    "max": 844.13,
+    "skewness": 0.2043,
+    "kurtosis": -0.2745,
+    "trend_slope": -0.040834,
+    "trend_pvalue": 0.9195,
+    "demand_regime": "seasonal",
+    "distribution_type": "normal",
+    "annual_demand": 116547.05
+  },
+  "lead_time_analysis": {
+    "mean_days": 1.031,
+    "std_dev_days": 0.504,
+    "coefficient_of_variation": 0.4884,
+    "min_days": 0.1,
+    "max_days": 2.73,
+    "stability_classification": "moderate",
+    "observations_count": 22
+  },
+  "safety_stock_calculation": {
+    "service_level_target": 0.95,
+    "z_score": 1.6449,
+    "sigma_ltd_standard": 273.78,
+    "sigma_ltd_robust": 268.32,
+    "safety_stock_standard": 450.32,
+    "safety_stock_robust": 441.35,
+    "safety_stock_final": 451,
+    "method": "z_score_lead_time_demand"
+  },
+  "eoq_analysis": {
+    "eoq_raw": 6795.27,
+    "eoq_ceiling": 6796,
+    "moq_constraint": 2451,
+    "unconstrained_order_quantity": 6796,
+    "storage_capacity_limit": 6319.76,
+    "available_capacity": 5868.76,
+    "order_quantity_final": 5868,
+    "capacity_constrained": true
+  },
+  "inventory_policy": {
+    "order_quantity": 5868,
+    "reorder_point": 914,
+    "safety_stock": 451,
+    "review_period_days": 13.09,
+    "orders_per_year": 19.86,
+    "policy_type": "continuous_review_ROP"
+  },
+  "cost_analysis": {
+    "optimized": {
+      "order_quantity": 5868,
+      "safety_stock": 451,
+      "annual_ordering_cost": 993.07,
+      "annual_holding_cost": 854.37,
+      "total_annual_cost": 1847.44,
+      "orders_per_year": 19.86
+    },
+    "previous_sap": {
+      "order_quantity": 2451,
+      "safety_stock": 0,
+      "annual_ordering_cost": 2377.54,
+      "annual_holding_cost": 309.31,
+      "total_annual_cost": 2686.86,
+      "orders_per_year": 47.55
+    },
+    "savings": {
+      "absolute_savings": 839.41,
+      "percentage_savings": 31.24
+    }
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.01,
+    "sigma_eff_days": 0.504,
+    "dominant_factor": "supplier",
+    "dominant_pct": 0.5,
+    "variance_components": {
+      "transport": 0.3,
+      "supplier": 0.5,
+      "quality": 0.2
+    },
+    "sap_safety_lead_time_days": 3.0
+  },
+  "capacity_gate": {
+    "status": "pass",
+    "max_storage_units": 6319.76,
+    "safety_stock": 451,
+    "order_quantity": 5868,
+    "total_inventory_peak": 6319,
+    "utilization_pct": 99.99,
+    "escalation_required": false
+  },
+  "diagnostics": {
+    "demand_variability": "moderate",
+    "lead_time_variability": "moderate",
+    "primary_risk": "lead_time_variability",
+    "seasonality_detected": false,
+    "trend_significant": false
+  },
+  "recommendations": {
+    "adopt_optimized_policy": true,
+    "increase_safety_stock": true,
+    "reduce_order_frequency": true,
+    "expected_annual_savings": 839.41,
+    "action_items": [
+      "Update reorder point to 914 units",
+      "Set order quantity to 5868 units (constrained by storage capacity)",
+      "Implement safety stock of 451 units",
+      "Review inventory every 13.1 days",
+      "Monitor supplier lead time variability"
+    ]
+  },
+  "narrative": {
+    "executive_summary": "Material PL1__MC328F79 exhibits seasonal demand patterns with moderate variability (CV=0.34). The optimized inventory policy recommends an order quantity of 5868 units with a reorder point of 914 units, delivering annual cost savings of $839.41 (31.2%) compared to the current SAP policy.",
+    "demand_insights": "Daily demand averages 448 units with standard deviation of 152. The demand distribution is approximately normal with slight positive skewness (0.20), indicating occasional higher-than-average demand days. No significant trend detected (p=0.920).",
+    "lead_time_insights": "Supplier lead time averages 1.03 days with moderate variability (CV=0.49). The dominant source of variability is supplier-related factors (50%), suggesting supplier performance is the key risk driver.",
+    "optimization_approach": "Applied classical EOQ model with z-score safety stock calculation incorporating both demand and lead time variability. Storage capacity constraint actively binds, reducing optimal order quantity from 6796 to 5868 units.",
+    "cost_benefit": "The optimized policy reduces total annual costs from $2686.86 to $1847.44. While holding costs increase due to safety stock implementation, significant ordering cost reduction (from $2378 to $993) drives net savings.",
+    "risk_assessment": "Primary inventory risk stems from demand variability rather than lead time uncertainty. The 95% service level target requires 451 units of safety stock. Storage capacity utilization will peak at 100.0%.",
+    "implementation_notes": "The storage capacity constraint is actively binding this optimization. Monitor actual consumption patterns during first cycle to validate demand forecasts. Consider negotiating with supplier to reduce lead time variability, which would enable safety stock reduction."
+  },
+  "research_insights": {
+    "demand_pattern_analysis": "The material exhibits seasonal demand with all 120 working days showing positive consumption, indicating steady production usage rather than project-based demand. The coefficient of variation of 0.34 places this in the moderate variability category, suitable for continuous review ROP policy.",
+    "lead_time_modeling": "With CV of 0.49, lead time shows moderate behavior. The observed range of 0.10 to 2.73 days suggests some transportation or supplier scheduling variability. The supplier component accounts for 50% of lead time variance.",
+    "safety_stock_methodology": "Used combined demand-lead time variability formula: \u03c3_LTD = \u221a(LT\u00b7\u03c3\u00b2_D + D\u00b2\u00b7\u03c3\u00b2_LT). This captures both sources of uncertainty. Standard approach yielded 450 units; robust approach 441 units\u2014close agreement validates normal distribution assumption.",
+    "capacity_optimization": "Storage capacity of 6320 units limits the otherwise optimal order quantity of 6796 units. The constraint reduces order quantity to 5868 units, increasing order frequency to 19.9 times per year. This represents a trade-off between theoretical cost optimality and operational reality.",
+    "cost_structure_analysis": "Unit cost of $2.10 with 12% annual holding rate and $50 fixed order cost creates economic incentives for larger, less frequent orders. Current SAP policy of ordering MOQ (2451 units) 47.6 times per year is suboptimal.",
+    "moq_impact": "Minimum order quantity of 2451 units is below the unconstrained EOQ of 6795 units, so MOQ constraint is non-binding. However, storage capacity constraint dominates the optimization."
+  }
+}

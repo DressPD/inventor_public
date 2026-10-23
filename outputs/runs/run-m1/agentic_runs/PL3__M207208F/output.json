@@ -1,0 +1,78 @@
+{
+  "material_id": "PL3__M207208F",
+  "data_quality": {
+    "total_rows": 221,
+    "working_days": 221,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 90.431,
+      "upper_bound": 52616.228
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 38826.2041,
+    "std_daily_demand": 13598.7812,
+    "robust_std_daily": 3048.1741,
+    "cv_wd": 0.3503,
+    "non_zero_fraction_wd": 0.9638,
+    "trend_detected": true,
+    "regime": "moderately_variable",
+    "distribution_type": "left_skewed"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.0763,
+    "std_lead_time": 0.8488,
+    "cv_lead_time": 0.7886,
+    "stability": "unstable",
+    "effective_lead_time": 1.9251
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 46093.1234,
+    "safety_stock": 75824.0,
+    "safety_stock_robust": 52612.0
+  },
+  "order_quantity": {
+    "eoq_raw": 398736.4821,
+    "order_quantity": 180317
+  },
+  "cost_analysis": {
+    "unit_cost": 0.228462,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.027415
+  },
+  "policy": {
+    "safety_stock": 75824,
+    "reorder_point": 117764,
+    "order_quantity": 180317,
+    "review_period_days": 5
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.3963,
+    "sigma_eff_days": 0.8488,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 0.4325,
+      "supplier": 0.2163,
+      "quality": 0.0721
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__M207208F exhibits a downward trend in working-day demand (mean 38,826 units/day, CV=0.35), classified as 'moderately_variable'. Lead times are unstable (mean 1.08 days, CV=0.79), supporting a continuous-review (r,Q) replenishment model. The recommended safety stock of 75,824 units is above the current SAP value of 37,040, and the storage-capped order quantity of 180,317 units ensures compliance with the 256,141-unit capacity limit.",
+  "warnings": [
+    "Capacity constraint binds: unconstrained OQ=398737 reduced to 180317 due to max_storage_units=256141. This may reduce fill-rate slightly below the 95% target.",
+    "6 zero-demand days detected in working-day series (possible shutdown days).",
+    "4 demand outliers winsorised at [90.4, 52616.2]."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review reorder-point/fixed-order-quantity",
+    "selection_rationale": "Demand is nearly continuous with a moderate CV; lead times are stable and short (<5 days). A continuous-review (r,Q) policy responds to each consumption event, minimising both stockout exposure and excess inventory. EOQ provides the cost-optimal Q baseline, then capped to the storage constraint. No intermittency or seasonality triggers a more complex (s,S) or periodic-review model.",
+    "boundary_risk": "Capacity cap reduces OQ from 398737 to 180317; order cycle shortens to ~5 working days, increasing ordering frequency and annual ordering cost by ~37.1 orders/year. Service level may dip marginally; monitor fill-rate vs 95% target.",
+    "escalation_flag": "none"
+  }
+}

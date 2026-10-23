@@ -1,0 +1,77 @@
+{
+  "material_id": "PL3__MA5FD7FE",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 3386.568539999998
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 2006.8228228947369,
+    "std_daily_demand": 1186.9235305222965,
+    "robust_std_daily": 1186.9235305222965,
+    "cv_wd": 0.5914441060672319,
+    "non_zero_fraction_wd": 0.9649122807017544,
+    "trend_detected": false,
+    "regime": "moderate_variability",
+    "distribution_type": "continuous"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.1613533834586467,
+    "std_lead_time": 0.8301056723118898,
+    "cv_lead_time": 0.714774403842298,
+    "stability": "variable",
+    "effective_lead_time": 1.1613533834586467
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 2100.295130700132,
+    "safety_stock": 3454.9854900017176,
+    "safety_stock_robust": 3454.9854900017176
+  },
+  "order_quantity": {
+    "eoq_raw": 20052.742800361448,
+    "order_quantity": 12778
+  },
+  "cost_analysis": {
+    "unit_cost": 1.048047,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.12576563999999998
+  },
+  "policy": {
+    "safety_stock": 3455,
+    "reorder_point": 5786,
+    "order_quantity": 12778,
+    "review_period_days": 6
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.7216195922159594,
+    "sigma_eff_days": 1.0465772597057503,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 62.91065036767171,
+    "variance_components": {
+      "transport": 2775139.5443109684,
+      "supplier": 1636100.0917317178,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "introduce_safety_lead_time",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__MA5FD7FE exhibits a bimodal demand pattern with 170 production days (mean demand 2690 units) and 58 non-production days. Overall working-day demand averages 2007 units/day (CV=0.59). Lead time is variable (mean=1.16 days, CV=0.71). The recommended policy sets safety stock at 3455 units and order quantity at 12778 units (constrained by storage capacity), yielding 39.6 orders/year. This reduces total annual cost from $7124.32 to $3216.90, saving $3907.42 (54.8%). Safety lead time of 1.72 days is recommended to buffer against lead_time_variability.",
+  "warnings": [
+    "High lead time variability detected (CV=0.71)",
+    "Storage utilization above 95% - limited flexibility"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ_with_safety_stock",
+    "selection_rationale": "EOQ model selected due to continuous demand pattern (non-zero fraction 96.49%). Capacity constraint applied: unconstrained EOQ 20053 adjusted to 12778 to fit max storage. Z-score method for safety stock appropriate given demand variability.",
+    "boundary_risk": "Storage utilization at 100.0% of maximum capacity. Any increase in safety stock requirements may trigger capacity constraints.",
+    "escalation_flag": "none"
+  }
+}

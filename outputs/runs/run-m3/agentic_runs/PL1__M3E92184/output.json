@@ -1,0 +1,77 @@
+{
+  "material_id": "PL1__M3E92184",
+  "data_quality": {
+    "total_rows": 131,
+    "working_days": 131,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 4669.914
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1567.19,
+    "std_daily_demand": 1207.45,
+    "robust_std_daily": 1089.32,
+    "cv_wd": 0.77,
+    "non_zero_fraction_wd": 0.757,
+    "trend_detected": false,
+    "regime": "erratic",
+    "distribution_type": "Gamma-like"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.36,
+    "std_lead_time": 0.94,
+    "cv_lead_time": 0.59,
+    "stability": "moderate",
+    "effective_lead_time": 2.16
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 2062.38,
+    "safety_stock": 3392.0,
+    "safety_stock_robust": 3061.0
+  },
+  "order_quantity": {
+    "eoq_raw": 10283.5,
+    "order_quantity": 10991
+  },
+  "cost_analysis": {
+    "unit_cost": 2.596991,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.3116
+  },
+  "policy": {
+    "safety_stock": 3392,
+    "reorder_point": 5525,
+    "order_quantity": 10991,
+    "review_period_days": 5
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.16,
+    "sigma_eff_days": 1.32,
+    "dominant_factor": "demand_variance",
+    "dominant_pct": 63.2,
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.3,
+      "quality": 0.2
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M3E92184 shows erratic demand (CV=0.77) with 75.7% active working days and a Gamma-like distribution driven by high day-to-day variability. Lead times are short (mean 1.36 days) but moderately variable (CV=0.59). The (r,Q) continuous-review policy was selected because erratic but not intermittent demand benefits from a fixed reorder point that triggers replenishment deterministically, while EOQ consolidates the previously excessive ordering frequency from ~751 to ~45 orders/year. Safety stock is reduced from SAP's 4,125 to 3,392 units, correctly calibrated to the 95% service level.",
+  "warnings": [
+    "Lead time CV=0.59 classified as moderate; monitor for further volatility.",
+    "Demand has 24.3% zero-demand days \u2014 erratic pattern requires regular review of reorder point."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review fixed-order-quantity",
+    "selection_rationale": "Erratic but non-intermittent demand (75.7% active days, CV=0.77) with short lead times suits a continuous-review (r,Q) policy. The EOQ significantly exceeds MOQ, making batch consolidation the primary lever. Fixed order quantity simplifies procurement and aligns with supplier MOQ constraints.",
+    "boundary_risk": "Storage utilization at 63.8% (14,383/22,553 units) \u2014 capacity is not binding. If demand surges or safety stock is raised, the remaining 8,170 units of headroom provides adequate buffer.",
+    "escalation_flag": "none"
+  }
+}

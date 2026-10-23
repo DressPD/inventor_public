@@ -1,0 +1,77 @@
+{
+  "material_id": "PL1__M4AA1B3D",
+  "data_quality": {
+    "total_rows": 209,
+    "working_days": 209,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 835.656,
+      "upper_bound": 2154.212
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1621.42,
+    "std_daily_demand": 262.87,
+    "robust_std_daily": 195.31,
+    "cv_wd": 0.162,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "Smooth",
+    "distribution_type": "Normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.248,
+    "std_lead_time": 0.937,
+    "cv_lead_time": 0.751,
+    "stability": "Variable",
+    "effective_lead_time": 2.981
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1549.7,
+    "safety_stock": 2549.0,
+    "safety_stock_robust": 2298.0
+  },
+  "order_quantity": {
+    "eoq_raw": 29051.4,
+    "order_quantity": 23486
+  },
+  "cost_analysis": {
+    "unit_cost": 0.405709,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.048685
+  },
+  "policy": {
+    "safety_stock": 2549,
+    "reorder_point": 4575,
+    "order_quantity": 23486,
+    "review_period_days": 14
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.572,
+    "sigma_eff_days": 0.578,
+    "dominant_factor": "transport",
+    "dominant_pct": 78.3,
+    "variance_components": {
+      "transport": 0.783,
+      "supplier": 0.157,
+      "quality": 0.06
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Reduce from SAP 3.0 days to recommended 1.57 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M4AA1B3D exhibits smooth, normally distributed daily demand (mean 1,621 units, CV 0.162) with no statistically significant trend over the observation period. The primary risk driver is lead time variability \u2014 a bimodal distribution with CV 0.751 reflecting a mix of short next-day deliveries and occasional 3\u20135 day replenishment cycles. The (r,Q) fixed reorder-point policy is selected because demand is continuous and smooth, enabling reliable trigger-based replenishment; the storage cap of 26,035 units constrains the order quantity below the unconstrained EOQ of 29,051, yielding a feasible order quantity of 23,486. Safety stock is increased from SAP's 1,972 to 2,549 units to close the service gap created by the high lead-time variance.",
+  "warnings": [
+    "Storage capacity constraint is binding: unconstrained EOQ 29051 exceeds available space (26035 - 2549 = 23486). Order quantity capped at 23486 units.",
+    "Lead time CV of 0.751 is high; bimodal distribution suggests two distinct delivery modes \u2014 recommend investigating supplier split or transport routing."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) \u2014 Fixed Reorder Point with Economic Order Quantity",
+    "selection_rationale": "Demand is smooth (CV 0.162), continuous (100% non-zero), and normally distributed, making it well-suited to a continuous-review (r,Q) policy. The deterministic reorder trigger combined with a fixed batch size minimises ordering frequency while maintaining the 95% service level. The MOQ of 986 is well below the EOQ, so it does not constrain the policy.",
+    "boundary_risk": "Storage capacity cap of 26,035 units reduces order quantity from EOQ 29,051 to 23,486, increasing annual ordering frequency from ~14.0 to ~17.3 orders/year and raising annual ordering cost by ~$164. If the cap is not released, the service level is preserved but cost optimality is partially sacrificed.",
+    "escalation_flag": "None \u2014 MOQ (986) + safety stock (2,549) = 3,535 units, well within the 26,035-unit storage limit. No MOQ-capacity infeasibility."
+  }
+}

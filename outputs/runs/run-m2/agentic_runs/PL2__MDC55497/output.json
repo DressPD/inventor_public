@@ -1,0 +1,77 @@
+{
+  "material_id": "PL2__MDC55497",
+  "data_quality": {
+    "total_rows": 227,
+    "working_days": 227,
+    "outliers_detected": 5,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 1103.651
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 637.4,
+    "std_daily_demand": 265.3,
+    "robust_std_daily": 220.1,
+    "cv_wd": 0.416,
+    "non_zero_fraction_wd": 0.956,
+    "trend_detected": true,
+    "regime": "moderate-variability",
+    "distribution_type": "normal-like"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.248,
+    "std_lead_time": 0.892,
+    "cv_lead_time": 0.715,
+    "stability": "unstable",
+    "effective_lead_time": 2.14
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 630.2,
+    "safety_stock": 1037.0,
+    "safety_stock_robust": 895.0
+  },
+  "order_quantity": {
+    "eoq_raw": 2784.6,
+    "order_quantity": 2785
+  },
+  "cost_analysis": {
+    "unit_cost": 25.806171,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 3.0967
+  },
+  "policy": {
+    "safety_stock": 1037,
+    "reorder_point": 2374,
+    "order_quantity": 2785,
+    "review_period_days": 5
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.62,
+    "sigma_eff_days": 0.99,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 78.3,
+    "variance_components": {
+      "transport": 78.3,
+      "supplier": 21.7,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce_safety_lead_time_from_3_to_1.62_days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL2__MDC55497 shows moderate daily demand variability (CV=0.416) across 227 working days from March 2025 to March 2026, with a visible upward trend in later months. Lead times are highly unstable (CV=0.715), ranging from near-zero to 3.67 days, making lead time variability the dominant risk driver at 78.3% of total variance. The current SAP policy carries zero safety stock, leaving the material fully exposed to stockout risk. An (r,Q) policy with EOQ-optimised order quantity of 2,785 units and a safety stock of 1,037 units delivers the mandated 95% service level while remaining well within the 9,934-unit storage constraint.",
+  "warnings": [
+    "Current SAP safety stock is 0 \u2014 high stockout risk",
+    "Lead time CV=0.715 classified as unstable; monitor supplier performance"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review with EOQ order quantity",
+    "selection_rationale": "The material has continuous, moderately variable demand with no intermittency issues, making a continuous-review (r,Q) policy appropriate. EOQ balances ordering and holding costs optimally given the known cost parameters, and the Normal safety stock formula is justified by the near-normal demand distribution.",
+    "boundary_risk": "Storage capacity of 9,934 units is not binding: safety_stock (1,037) + order_quantity (2,785) = 3,822 units, leaving 6,113 units of headroom. No capacity-driven service degradation expected.",
+    "escalation_flag": "none"
+  }
+}

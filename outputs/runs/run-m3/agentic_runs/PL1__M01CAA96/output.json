@@ -1,0 +1,104 @@
+{
+  "material_id": "PL1__M01CAA96",
+  "unit_cost": 5.790978,
+  "holding_cost_rate": 0.12,
+  "ordering_cost": 50.0,
+  "moq": 68,
+  "service_level_target": 0.95,
+  "sap_safety_stock": 214,
+  "sap_safety_lead_time_days": 3.0,
+  "max_storage_units": 6594.68,
+  "data_quality": {
+    "total_rows": 221,
+    "working_days": 221,
+    "complete_cases": 221,
+    "missing_count": 0
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 886.84,
+    "std_daily_demand": 362.1,
+    "robust_std_daily": 365.89,
+    "cv_wd": 0.4083,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "trend_slope_per_day": -0.145917,
+    "demand_regime": "smooth",
+    "distribution_type": "Normal-like",
+    "winsorised_lower_bound": 63.52,
+    "winsorised_upper_bound": 1724.96
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.06,
+    "std_lead_time": 0.95,
+    "cv_lead_time": 0.889,
+    "stability": "volatile",
+    "effective_lead_time": 2.01
+  },
+  "safety_stock": {
+    "sigma_ltd": 918.17,
+    "z_score": 1.645,
+    "safety_stock": 1511,
+    "safety_stock_robust": 1513,
+    "sap_safety_stock": 214,
+    "variance_demand_component": 139491.65,
+    "variance_lead_time_component": 703549.85
+  },
+  "order_quantity": {
+    "annual_demand": 230577.6,
+    "eoq_raw": 5760.26,
+    "unconstrained_order_quantity": 5761,
+    "order_quantity": 5083,
+    "capacity_feasible": true,
+    "available_capacity": 5083.68
+  },
+  "inventory_policy": {
+    "reorder_point": 3294,
+    "order_quantity": 5083,
+    "review_period_days": 6,
+    "safety_stock": 1511,
+    "selected_model": "(r,Q) continuous review",
+    "selection_rationale": "Continuous review (r,Q) is optimal for this smooth demand pattern with volatile lead times. The material's high variability (CV=0.41) requires real-time monitoring to prevent stockouts. Fixed order quantity 5083 units balances economies of scale against the 5084-unit capacity constraint while maintaining 95% service level through elevated safety stock."
+  },
+  "safety_lead_time": {
+    "current_sap_days": 3.0,
+    "recommended_days": 1.7,
+    "sigma_eff_days": 1.04,
+    "comparison_action": "reduce",
+    "variance_components": {
+      "transport": 351774.92,
+      "supplier": 211064.95,
+      "quality": 140709.97,
+      "dominant_factor": "transport"
+    },
+    "disruption_premium": 1.0
+  },
+  "cost_analysis": {
+    "previous_policy": {
+      "order_quantity": 5761,
+      "number_of_orders_per_year": 40.02,
+      "annual_ordering_cost": 2001.19,
+      "annual_holding_cost": 2150.42,
+      "total_annual_cost": 4151.62
+    },
+    "optimized_policy": {
+      "order_quantity": 5083,
+      "number_of_orders_per_year": 45.36,
+      "annual_ordering_cost": 2268.13,
+      "annual_holding_cost": 2816.15,
+      "total_annual_cost": 5084.28
+    },
+    "savings": {
+      "annual_savings": -932.66,
+      "savings_percentage": -22.47
+    }
+  },
+  "risk_assessment": {
+    "boundary_risk": "high",
+    "escalation_flag": true,
+    "risk_issues": [
+      "Recommended safety stock significantly exceeds current level",
+      "Volatile lead times"
+    ]
+  },
+  "narrative": "Material PL1__M01CAA96 exhibits smooth demand with CV 0.41 and volatile lead times (CV 0.89). The current SAP safety stock of 214 units is critically insufficient for the target 95% service level, requiring an increase to 1511 units. Despite capacity constraints limiting order quantity to 5083 units (vs EOQ 5760), the optimized (r,Q) policy balances risk mitigation with operational efficiency."
+}

@@ -1,0 +1,92 @@
+{
+  "material_id": "PL2__M449F822",
+  "data_quality": {
+    "total_rows": 95,
+    "working_days": 95,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": -693.8507500000001,
+      "upper_bound": 1838.23925
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 583.3830210526316,
+    "std_daily_demand": 367.2738749864656,
+    "robust_std_daily": 470.7877692,
+    "cv_wd": 0.6295587319695595,
+    "non_zero_fraction_wd": 0.8842105263157894,
+    "trend_detected": true,
+    "regime": "erratic",
+    "distribution_type": "gamma"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 5.77404255319149,
+    "std_lead_time": 0.9286962801468285,
+    "cv_lead_time": 0.16083987459245683,
+    "stability": "moderate",
+    "effective_lead_time": 10.274042553191489
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1035.564027210321,
+    "safety_stock": 1703.3512460973693,
+    "safety_stock_robust": 2063.1585720760263
+  },
+  "order_quantity": {
+    "eoq_raw": 9929.454131500714,
+    "order_quantity": 9930
+  },
+  "cost_analysis": {
+    "unit_cost": 2.465425,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.29585100000000003,
+    "sap_policy": {
+      "safety_stock": 0,
+      "order_quantity": 9930,
+      "average_inventory": 4965.0,
+      "annual_holding_cost": 1468.9002150000001,
+      "annual_ordering_cost": 1468.7387236974614,
+      "total_annual_cost": 2937.6389386974615
+    },
+    "optimized_policy": {
+      "safety_stock": 1704,
+      "order_quantity": 9930,
+      "average_inventory": 6669.0,
+      "annual_holding_cost": 1973.0303190000002,
+      "annual_ordering_cost": 1468.7387236974614,
+      "total_annual_cost": 3441.7690426974614
+    },
+    "cost_savings": -504.13010399999985,
+    "savings_percentage": -17.16106419203203
+  },
+  "policy": {
+    "safety_stock": 1704,
+    "reorder_point": 5073,
+    "order_quantity": 9930,
+    "review_period_days": 18
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.5275694447358512,
+    "sigma_eff_days": 1.7751014168046801,
+    "dominant_factor": "demand",
+    "dominant_pct": 72.62834415823072,
+    "variance_components": {
+      "transport": 27.371655841769293,
+      "supplier": 72.62834415823072,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization analysis for material PL2__M449F822 reveals an erratic demand pattern (CV=0.63) with 88% non-zero demand days. The recommended policy includes a safety stock of 1704 units and reorder point of 5073 units to achieve 95% service level. The MOQ constraint of 1385 units is active, driving the order quantity to 9930 units (vs EOQ of 9929). Lead time variability is moderate (CV=0.16), with demand variance contributing 72.6% to total uncertainty. The optimized policy increases total annual costs by $504.13 compared to the previous SAP policy, but provides significantly improved service level protection against demand and lead time variability.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Normal Approximation with MOQ Constraint",
+    "selection_rationale": "Demand regime is erratic with CV=0.63. Normal approximation is appropriate for this erratic pattern with sufficient non-zero observations (88%). MOQ constraint is binding.",
+    "boundary_risk": "Capacity utilization: 88.0%. Monitor capacity closely.",
+    "escalation_flag": "green"
+  }
+}

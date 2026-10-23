@@ -1,0 +1,89 @@
+{
+  "material_id": "PL2__M0E12B99",
+  "optimization_timestamp": "2025-03-01T00:00:00Z",
+  "input_parameters": {
+    "unit_cost": 343.705753,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 100.0,
+    "moq": 205,
+    "service_level_target": 0.95,
+    "sap_safety_stock": 822,
+    "sap_safety_lead_time_days": 3.8,
+    "max_storage_units": 2189.238
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 155.47,
+    "std_daily_demand": 103.89,
+    "robust_std_daily": 110.28,
+    "cv_wd": 0.6682,
+    "non_zero_fraction_wd": 0.8903,
+    "trend_detected": false,
+    "trend_slope": 0.0834,
+    "regime": "continuous",
+    "distribution_type": "gamma-like"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 3.83,
+    "std_lead_time": 1.22,
+    "cv_lead_time": 0.3196,
+    "stability": "moderate",
+    "effective_lead_time": 4.44
+  },
+  "safety_stock": {
+    "z_score": 1.6449,
+    "sigma_ltd": 278.25,
+    "safety_stock": 458,
+    "safety_stock_robust": 473
+  },
+  "order_quantity": {
+    "annual_demand": 38866.45,
+    "eoq_raw": 434.13,
+    "unconstrained_order_quantity": 435,
+    "order_quantity": 435,
+    "storage_constrained": false,
+    "feasibility_warning": false
+  },
+  "policy": {
+    "reorder_point": 1053,
+    "review_period_days": 3.0,
+    "policy_type": "(r,Q) continuous review"
+  },
+  "safety_lead_time": {
+    "sigma_eff_days": 1.79,
+    "recommended_days": 0.77,
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.4,
+      "quality": 0.1
+    },
+    "dominant_factor": "transport",
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce"
+  },
+  "cost_analysis": {
+    "annual_demand_units": 38866.45,
+    "n_orders_per_year": 89.35,
+    "annual_ordering_cost": 8934.82,
+    "average_inventory": 675.5,
+    "annual_holding_cost": 27860.79,
+    "total_annual_cost": 36795.6,
+    "sap_avg_inventory": 1039.5,
+    "sap_annual_holding": 42873.86,
+    "sap_n_orders": 89.35,
+    "sap_annual_ordering": 8934.82,
+    "sap_total": 51808.67,
+    "cost_savings": 15013.07,
+    "savings_percentage": 28.98
+  },
+  "outlier_analysis": {
+    "outlier_count": 0,
+    "outlier_percentage": 0.0,
+    "lower_bound": -365.48,
+    "upper_bound": 675.87
+  },
+  "data_quality": {
+    "total_rows": 237,
+    "working_days": 237,
+    "lead_time_observations": 90
+  }
+}

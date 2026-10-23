@@ -1,0 +1,88 @@
+{
+  "material_id": "PL1__MF333474",
+  "analysis_timestamp": "2025-03-03T00:00:00Z",
+  "demand_statistics": {
+    "mean_daily_demand": 873.0626,
+    "std_daily_demand": 1053.4807,
+    "robust_std_demand": 987.9229,
+    "cv_demand": 1.2066,
+    "non_zero_demand_fraction": 0.9511,
+    "trend_slope_per_day": -3.300327,
+    "demand_regime": "Erratic",
+    "distribution_type": "right_skewed",
+    "outlier_count": 3,
+    "total_observations": 225
+  },
+  "lead_time_statistics": {
+    "mean_lead_time_days": 1.4885,
+    "std_lead_time_days": 0.8826,
+    "cv_lead_time": 0.5929,
+    "lead_time_stability": "Unstable",
+    "effective_lead_time_days": 3.19
+  },
+  "safety_stock_calculation": {
+    "service_level_target": 0.95,
+    "z_score": 1.6449,
+    "sigma_ltd": 1498.5962,
+    "safety_stock_units": 2465,
+    "safety_stock_robust_units": 2354,
+    "safety_lead_time_days": 2.8234,
+    "variance_decomposition": {
+      "total_variance": 2245790.54,
+      "demand_variance_contribution": 1652019.89,
+      "lead_time_variance_contribution": 593770.65,
+      "transport_variance": 237508.26,
+      "supplier_variance": 237508.26,
+      "quality_variance": 118754.13
+    }
+  },
+  "order_quantity_calculation": {
+    "annual_demand": 226996.2656,
+    "eoq_raw": 2009.3955,
+    "moq": 43,
+    "unconstrained_order_quantity": 2010,
+    "order_quantity_final": 2010,
+    "max_storage_units": 26860.034,
+    "storage_utilization_pct": 16.66,
+    "capacity_escalation_needed": false
+  },
+  "reorder_policy": {
+    "reorder_point": 3765,
+    "safety_stock": 2465,
+    "order_quantity": 2010,
+    "review_period_days": 2.3022
+  },
+  "cost_analysis": {
+    "unit_cost": 46.8497,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 50.0,
+    "sap_policy": {
+      "safety_stock": 722,
+      "safety_lead_time_days": 2.5,
+      "annual_ordering_cost": 14836.36,
+      "annual_holding_cost": 4059.06,
+      "total_annual_cost": 18895.41
+    },
+    "optimized_policy": {
+      "safety_stock": 2465,
+      "order_quantity": 2010,
+      "avg_inventory_units": 3470.0,
+      "annual_ordering_cost": 5646.67,
+      "annual_holding_cost": 19508.21,
+      "total_annual_cost": 25154.88
+    },
+    "annual_savings": -6259.47,
+    "savings_percentage": -33.13
+  },
+  "diagnostics": {
+    "demand_observations": 225,
+    "lead_time_observations": 55,
+    "min_demand": 0.0,
+    "max_demand": 5980.936,
+    "p25_demand": 130.02,
+    "p50_demand": 357.556,
+    "p75_demand": 1462.728,
+    "min_lead_time": 0.25,
+    "max_lead_time": 3.21
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "material_id": "PL3__M9A40673",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "missing_demand": 0,
+    "missing_lead_time": 0,
+    "quality_score": 1.0,
+    "data_completeness": 1.0
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 238.0,
+    "std_daily_demand": 83.5,
+    "robust_std_daily": 67.05,
+    "cv": 0.351,
+    "non_zero_fraction": 0.776,
+    "regime": "moderate",
+    "distribution_type": "Left-skewed",
+    "skewness": -0.85,
+    "has_trend": false,
+    "trend_direction": "decreasing",
+    "outlier_count": 0,
+    "annual_demand": 59498.94
+  },
+  "lead_time_analysis": {
+    "mean_lead_time_days": 1.42,
+    "std_lead_time_days": 1.19,
+    "cv_lead_time": 0.834,
+    "stability": "unstable",
+    "effective_lead_time_days": 2.61,
+    "observations": 12
+  },
+  "buffer_analysis": {
+    "service_level_target": 0.95,
+    "z_score": 1.645,
+    "sigma_ltd": 299.68,
+    "safety_stock": 493,
+    "safety_stock_robust": 484,
+    "safety_stock_days": 2.1
+  },
+  "order_quantity": {
+    "eoq_raw": 9768.63,
+    "moq": 769,
+    "unconstrained_order_quantity": 9769,
+    "order_quantity": 2984,
+    "capacity_binds": true,
+    "max_storage_units": 3477.743
+  },
+  "cost_analysis": {
+    "unit_cost": 0.779385,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 75.0,
+    "sap_policy": {
+      "order_quantity": 769,
+      "safety_stock": 0,
+      "annual_ordering_cost": 5802.89,
+      "annual_holding_cost": 35.96,
+      "total_annual_cost": 5838.85
+    },
+    "optimized_policy": {
+      "order_quantity": 2984,
+      "safety_stock": 493,
+      "annual_ordering_cost": 1495.45,
+      "annual_holding_cost": 185.65,
+      "total_annual_cost": 1681.1
+    },
+    "annual_savings": 4157.75,
+    "savings_percentage": 71.2
+  },
+  "policy": {
+    "reorder_point": 1115,
+    "safety_stock": 493,
+    "order_quantity": 2984,
+    "review_period_days": 13,
+    "effective_lead_time_days": 2.61
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.0,
+    "current_sap_days": 0.0,
+    "comparison_action": "increase from 0.0 to 2.0 days",
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "dominant_factor": "transport",
+    "dominant_pct": 0.6,
+    "disruption_premium": 1.0
+  },
+  "milp_trigger": {
+    "multi_echelon": false,
+    "complex_constraints": true,
+    "recommendation": "Standard EOQ model with capacity constraint is sufficient"
+  },
+  "narrative": {
+    "executive_summary": "Material PL3__M9A40673 shows moderate demand variability (CV=0.351) with unstable lead time (CV=0.834). The optimized policy recommends a safety stock of 493 units and order quantity of 2984 units, resulting in annual savings of $4,157.75 (71.2%) compared to the current SAP policy.",
+    "key_findings": [
+      "Mean daily demand: 238 units with moderate variability (CV=0.351)",
+      "Lead time is unstable with mean 1.42 days and CV 0.834",
+      "Recommended safety stock: 493 units to achieve 95% service level",
+      "Storage capacity constraint is binding: order quantity reduced from 9769 to 2984",
+      "Annual cost savings: $4,157.75 (71.2%)"
+    ],
+    "recommendations": [
+      "Set reorder point to 1115 units",
+      "Order 2984 units when inventory reaches reorder point",
+      "Maintain safety stock of 493 units",
+      "Increase safety lead time from 0.0 to 2.0 days",
+      "Review policy every 13 days"
+    ],
+    "risks": [
+      "Lead time variability is high (unstable, CV=0.834), increasing stockout risk",
+      "Storage capacity constraint limits order quantity optimization",
+      "Transport variance dominates (60%) - focus on carrier reliability"
+    ]
+  },
+  "warnings": [
+    "Storage capacity constraint is binding: order quantity reduced from 9769 to 2984"
+  ],
+  "errors": [],
+  "research_insights": {
+    "demand_pattern": "moderate demand with Left-skewed distribution",
+    "lead_time_pattern": "unstable lead time requiring conservative buffering",
+    "optimization_approach": "EOQ with capacity constraint and service level safety stock",
+    "critical_factors": [
+      "Lead time instability",
+      "Storage capacity constraint",
+      "High variability"
+    ]
+  }
+}

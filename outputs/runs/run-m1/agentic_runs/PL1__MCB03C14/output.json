@@ -1,0 +1,74 @@
+{
+  "material_id": "PL1__MCB03C14",
+  "data_quality": {
+    "total_rows": 87,
+    "working_days": 87,
+    "outliers_detected": 1,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 5134.176980000001
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1349.1189422988507,
+    "std_daily_demand": 1263.8003931084136,
+    "robust_std_daily": 1569.0370644922164,
+    "cv_wd": 0.9367598018859202,
+    "non_zero_fraction_wd": 0.6666666666666666,
+    "trend_detected": false,
+    "regime": "lumpy",
+    "distribution_type": "gamma"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.818360655737705,
+    "std_lead_time": 1.0689970484522255,
+    "cv_lead_time": 0.5878905513485914,
+    "stability": "unstable",
+    "effective_lead_time": 2.3528591799638177
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 2232.537328430875,
+    "safety_stock": 3673,
+    "safety_stock_robust": 4212
+  },
+  "order_quantity": {
+    "eoq_raw": 75744.44392907599,
+    "order_quantity": 44561
+  },
+  "cost_analysis": {
+    "unit_cost": 0.073485,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.008818199999999998
+  },
+  "policy": {
+    "safety_stock": 3673,
+    "reorder_point": 6848,
+    "order_quantity": 44561,
+    "review_period_days": 34
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.7583436723470616,
+    "sigma_eff_days": 1.0689970484522255,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 0.685652813759742,
+      "supplier": 0.342826406879871,
+      "quality": 0.114275468959957
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MCB03C14 exhibits lumpy demand with gamma distribution characteristics. The demand coefficient of variation is 0.94, and 66.7% of working days have positive demand. Lead time analysis reveals unstable variability (CV=0.59), with transport factors contributing the largest variance component. The recommended safety stock of 3673 units provides 95% service level protection while the optimized order quantity of 44561 units maximizes efficiency under the storage capacity constraint of 48234 units. This policy reduces total annual costs by $2,916.34 (78.5%) compared to the current SAP policy.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with service-level safety stock",
+    "selection_rationale": "EOQ model selected based on lumpy demand regime and unstable lead time. Storage capacity constraint actively limits order quantity from unconstrained 75745 to 44561 units.",
+    "boundary_risk": "Storage constraint binding: 48234 / 48234 units used (100.0%).",
+    "escalation_flag": ""
+  }
+}

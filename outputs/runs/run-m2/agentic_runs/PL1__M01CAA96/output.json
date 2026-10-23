@@ -1,0 +1,77 @@
+{
+  "material_id": "PL1__M01CAA96",
+  "data_quality": {
+    "total_rows": 221,
+    "working_days": 221,
+    "outliers_detected": 1,
+    "winsorisation": {
+      "lower_bound": 63.52,
+      "upper_bound": 1724.96
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 888.56,
+    "std_daily_demand": 369.47,
+    "robust_std_daily": 362.71,
+    "cv_wd": 0.4158,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "variable",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.06,
+    "std_lead_time": 0.95,
+    "cv_lead_time": 0.889,
+    "stability": "variable",
+    "effective_lead_time": 2.01
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 922.78,
+    "safety_stock": 1518,
+    "safety_stock_robust": 1514
+  },
+  "order_quantity": {
+    "eoq_raw": 5776.94,
+    "order_quantity": 5076
+  },
+  "cost_analysis": {
+    "unit_cost": 5.79,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.69
+  },
+  "policy": {
+    "safety_stock": 1518,
+    "reorder_point": 3304,
+    "order_quantity": 5076,
+    "review_period_days": 6
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.71,
+    "sigma_eff_days": 1.04,
+    "dominant_factor": "supplier_lead_time_variability",
+    "dominant_pct": 0.829,
+    "variance_components": {
+      "transport": 0.171,
+      "supplier": 0.829,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "DECREASE",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M01CAA96 exhibits continuous, variable demand averaging 888.56 units/day (CV=0.42, normal distribution, no trend) over 221 working days, with a highly variable lead time (CV=0.89, mean 1.06 days) dominated 83% by supplier-side variance. An (r,Q) continuous-review policy is recommended: replenish 5,076 units (EOQ capped by storage) whenever stock falls to 3,304 units, maintaining a safety stock of 1,518 units to achieve the 95% service level target. The SAP safety stock of 214 units is critically underprovisioned and should be increased immediately; the SAP safety lead time of 3.0 days is overstated and may be reduced to 1.71 days.",
+  "warnings": [
+    "Storage capacity constraint active: EOQ of 5777 capped to 5076 to satisfy max_storage_units=6594.68 with safety_stock=1518.",
+    "SAP safety stock (214) is significantly below the recommended level (1518) \u2014 stockout risk is high under current ERP settings."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) continuous-review reorder-point policy with EOQ-derived order quantity",
+    "selection_rationale": "Demand is continuous, non-intermittent, and approximately normal (CV=0.42); lead times are stochastic but observed. The (r,Q) model is optimal for this profile: it minimises total inventory cost while providing a probabilistic service-level guarantee via a normally-approximated safety stock. MOQ of 68 is non-binding. Croston/intermittent models are not applicable.",
+    "boundary_risk": "Storage capacity (6,594.68 units) caps the order quantity from the unconstrained EOQ of 5,777 to 5,076 units, increasing annual ordering frequency and cost slightly. If safety stock is increased beyond 1,518, further order quantity reductions would be needed, potentially causing more frequent orders and degraded cycle service.",
+    "escalation_flag": "none"
+  }
+}

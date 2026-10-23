@@ -1,0 +1,77 @@
+{
+  "material_id": "PL1__MDE7516E",
+  "data_quality": {
+    "total_rows": 94,
+    "working_days": 94,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 1468.81968,
+      "upper_bound": 39282.41511999999
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 31601.63634893617,
+    "std_daily_demand": 6334.765146862814,
+    "robust_std_daily": 3265.5094444444476,
+    "cv_wd": 0.2004568711859146,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": true,
+    "regime": "smooth",
+    "distribution_type": "empirical"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.818484848484849,
+    "std_lead_time": 1.1309169083593427,
+    "cv_lead_time": 0.40124995135854535,
+    "stability": "moderate",
+    "effective_lead_time": 3.9494017568441917
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 37287.629119062716,
+    "safety_stock": 61333,
+    "safety_stock_robust": 59473
+  },
+  "order_quantity": {
+    "eoq_raw": 1052697.16543723,
+    "order_quantity": 707317
+  },
+  "cost_analysis": {
+    "unit_cost": 0.009268,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.00111216
+  },
+  "policy": {
+    "safety_stock": 61333,
+    "reorder_point": 150402,
+    "order_quantity": 707317,
+    "review_period_days": 23
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.9408074733755465,
+    "sigma_eff_days": 1.1799271628640826,
+    "dominant_factor": "transport",
+    "dominant_pct": 0.7189389693202427,
+    "variance_components": {
+      "transport": 0.7189389693202427,
+      "supplier": 0.28106103067975724,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease_significantly",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MDE7516E exhibits smooth demand pattern with CV=0.200. A declining trend was detected. Lead time variability is moderate (CV=0.401). Recommended safety stock of 61333 units significantly exceeds SAP's 31399 to achieve 95.0% service level. Order quantity of 707317 units optimizes cost while respecting capacity constraint. Annual cost savings of $6,413.25 (82.8%) expected vs current policy.",
+  "warnings": [
+    "Recommended safety stock (61333) is significantly higher than SAP safety stock (31399)",
+    "Demand trend detected. Consider dynamic forecasting methods."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "analytical_buffer_formula",
+    "selection_rationale": "Smooth demand regime with CV=0.200 and moderate lead time allows analytical safety stock calculation",
+    "boundary_risk": "moderate",
+    "escalation_flag": "capacity_constraint"
+  }
+}

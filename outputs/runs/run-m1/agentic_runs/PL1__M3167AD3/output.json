@@ -1,0 +1,93 @@
+{
+  "material_id": "PL1__M3167AD3",
+  "data_quality": {
+    "total_rows": 95,
+    "working_days": 95,
+    "outliers_detected": 1,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 969.0992400000006
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 385.1386972631579,
+    "std_daily_demand": 272.816994558022,
+    "robust_std_daily": 332.40548554484803,
+    "cv_wd": 0.7083603815890028,
+    "non_zero_fraction_wd": 0.9789473684210527,
+    "trend_detected": true,
+    "regime": "variable",
+    "distribution_type": "normal_approx"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.0051694915254237,
+    "std_lead_time": 0.9903903513010245,
+    "cv_lead_time": 0.9852968674944852,
+    "stability": "unstable",
+    "effective_lead_time": 1.9955598428264483
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 469.3703801701537,
+    "safety_stock": 773,
+    "safety_stock_robust": 834
+  },
+  "order_quantity": {
+    "eoq_raw": 3919.6375374505665,
+    "order_quantity": 3563
+  },
+  "cost_analysis": {
+    "unit_cost": 5.222568,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.62670816,
+    "previous_policy": {
+      "safety_stock": 0,
+      "order_quantity": 123,
+      "annual_ordering_cost": 39140.111510483526,
+      "annual_holding_cost": 38.542551839999994,
+      "total_annual_cost": 39178.65406232353
+    },
+    "optimized_policy": {
+      "safety_stock": 773,
+      "order_quantity": 3563,
+      "annual_ordering_cost": 1351.174211560335,
+      "annual_holding_cost": 1600.9259947199998,
+      "total_annual_cost": 2952.1002062803345
+    },
+    "annual_savings": 36226.55385604319,
+    "savings_percentage": 92.46502903957783
+  },
+  "policy": {
+    "safety_stock": 773,
+    "reorder_point": 1542,
+    "order_quantity": 3563,
+    "review_period_days": 10,
+    "policy_type": "(r,Q) continuous review"
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.007069155847053,
+    "sigma_eff_days": 0.9903903513010245,
+    "dominant_factor": "transport",
+    "dominant_pct": 50.0,
+    "variance_components": {
+      "transport": 0.49043652397508336,
+      "supplier": 0.3923492191800667,
+      "quality": 0.09808730479501668
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Consider reducing safety lead time from 3.0 to 2.0 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization analysis for material PL1__M3167AD3 reveals significant opportunity for cost reduction.\n\nKEY FINDINGS:\n- Current policy uses minimal safety stock (0 units) with small order quantities (123 units), resulting in excessive ordering frequency\n- Demand pattern is variable with normal_approx characteristics (CV=0.708)\n- Lead time variability is unstable (CV=0.985), requiring buffer protection\n- Trend detected in historical demand, suggesting growing requirements\n\nRECOMMENDATIONS:\n1. Increase safety stock from 0 to 773 units to achieve 95% service level\n2. Optimize order quantity from 123 to 3563 units (EOQ-based with storage constraint)\n3. Set reorder point at 1542 units for continuous review policy\n4. Consider reducing safety lead time from 3.0 to 2.0 days\n\nFINANCIAL IMPACT:\n- Annual cost reduction: $36,226.55 (92.5% savings)\n- Previous total cost: $39,178.65\n- Optimized total cost: $2,952.10\n\nThe optimized policy balances inventory holding costs against ordering frequency, while maintaining required service levels and respecting storage constraints.",
+  "warnings": [
+    "Storage capacity constraint is binding. Optimal order quantity 3920 reduced to 3563"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with safety stock (continuous review)",
+    "selection_rationale": "Demand pattern is variable and normal_approx, with unstable lead times. Continuous review (r,Q) policy is appropriate for high-value items with variable demand.",
+    "boundary_risk": "Storage constraint is binding, limiting order quantity optimization. Lead time variability is high (CV=0.99), requiring robust buffer.",
+    "escalation_flag": "high_savings_potential"
+  }
+}

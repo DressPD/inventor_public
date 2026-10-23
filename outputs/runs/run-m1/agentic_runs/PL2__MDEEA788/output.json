@@ -1,0 +1,77 @@
+{
+  "material_id": "PL2__MDEEA788",
+  "data_quality": {
+    "total_rows": 220,
+    "working_days": 220,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 875.89
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 350.18,
+    "std_daily_demand": 218.94,
+    "robust_std_daily": 183.42,
+    "cv_wd": 0.625,
+    "non_zero_fraction_wd": 0.918,
+    "trend_detected": false,
+    "regime": "erratic",
+    "distribution_type": "gamma_approx"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.538,
+    "std_lead_time": 1.371,
+    "cv_lead_time": 0.891,
+    "stability": "unstable",
+    "effective_lead_time": 2.909
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 582.4,
+    "safety_stock": 958,
+    "safety_stock_robust": 862
+  },
+  "order_quantity": {
+    "eoq_raw": 3048.7,
+    "order_quantity": 3049
+  },
+  "cost_analysis": {
+    "unit_cost": 7.476714,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.8972
+  },
+  "policy": {
+    "safety_stock": 958,
+    "reorder_point": 1534,
+    "order_quantity": 3049,
+    "review_period_days": 9
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.53,
+    "sigma_eff_days": 1.371,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 1.127,
+      "supplier": 0.564,
+      "quality": 0.188
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce_slt_from_4.5_to_2.53_days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL2__MDEEA788 exhibits erratic daily demand (mean 350 units, CV 0.625) across 220 working days with 91.8% active demand days and no statistically significant trend. Lead times are highly unstable (CV 0.891, mean 1.54 days) and represent the dominant driver of safety stock requirements, with sigma_LTD of 582 units. An (r,Q) policy is recommended: a reorder point of 1,534 units and order quantity of 3,049 units (EOQ-based) achieves the 95% service level target, utilises only 52% of available storage, and requires a modest $860/year additional holding cost investment over the current zero-safety-stock SAP baseline.",
+  "warnings": [
+    "SAP safety lead time of 4.5 days exceeds statistical optimum of 2.53 days \u2014 recommend reducing to avoid excess pipeline inventory",
+    "Lead time CV of 0.891 classified as unstable \u2014 safety stock is dominated by lead time variance rather than demand variance"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review policy",
+    "selection_rationale": "Erratic but frequent demand (92% active days) with unstable lead times favours a continuous-review (r,Q) model: reorder when on-hand inventory hits the reorder point r, replenish a fixed EOQ quantity Q. This avoids the overhead of periodic review while providing tight stockout protection calibrated to lead-time demand variance.",
+    "boundary_risk": "Storage utilisation at 52.1% (4,007 / 7,688 units) \u2014 capacity constraint does not bind. No service-level or cost penalty from the storage ceiling.",
+    "escalation_flag": "none"
+  }
+}

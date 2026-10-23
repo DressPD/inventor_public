@@ -1,0 +1,79 @@
+{
+  "material_id": "PL1__MC328F79",
+  "data_quality": {
+    "total_rows": 120,
+    "working_days": 120,
+    "outliers_detected": 1,
+    "winsorisation": {
+      "lower_bound": 65.95,
+      "upper_bound": 835.99
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 448.26,
+    "std_daily_demand": 152.42,
+    "robust_std_daily": 146.45,
+    "cv_wd": 0.34,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "Stable",
+    "distribution_type": "Normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.03,
+    "std_lead_time": 0.5,
+    "cv_lead_time": 0.4884,
+    "stability": "Moderate \u2014 1 outlier detected (2.73 days); otherwise consistent short lead times",
+    "effective_lead_time": 1.03
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 273.78,
+    "safety_stock": 451.0,
+    "safety_stock_robust": 332.0
+  },
+  "order_quantity": {
+    "eoq_raw": 6689.91,
+    "order_quantity": 5868
+  },
+  "cost_analysis": {
+    "unit_cost": 2.103325,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.252399
+  },
+  "policy": {
+    "safety_stock": 451,
+    "reorder_point": 914,
+    "order_quantity": 5868,
+    "review_period_days": 14
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.0,
+    "sigma_eff_days": 0.5,
+    "dominant_factor": "Transport",
+    "dominant_pct": 40.0,
+    "variance_components": {
+      "transport": 0.1015,
+      "supplier": 0.0888,
+      "quality": 0.0634
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Decrease from 3.0 to 2.0 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MC328F79 exhibits stable, normally distributed daily demand averaging 448 units with a CV of 0.34 and no statistically significant trend. Lead times are short (mean 1.03 days) but moderately variable (CV 0.49), with one outlier at 2.73 days. The (r,Q) policy was selected because the high ordering cost relative to holding cost favours large, infrequent replenishments; the EOQ of 6,690 units is capped to 5,868 by the 6,320-unit storage constraint. Establishing a safety stock of 451 units raises the reorder point to 914 and delivers 30.5% annual cost savings versus the current SAP policy.",
+  "warnings": [
+    "Order quantity reduced from 6690 to 5868 due to storage capacity constraint (max_storage_units=6319.762)",
+    "Storage utilisation at 99.99% \u2014 any safety stock increase would violate capacity",
+    "1 demand outlier detected and winsorised at upper bound 835.99",
+    "1 lead time outlier detected (2.73 days) \u2014 included in statistics but flagged"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) continuous-review policy with EOQ-derived order quantity",
+    "selection_rationale": "Stable, normally distributed demand with 100% non-zero fraction and no trend makes the classical (r,Q) model optimal. The high ordering cost (50 USD) relative to low unit holding cost drives a large batch size, well-suited to the EOQ framework. Continuous review is preferred over periodic review given the short mean lead time of 1.03 days.",
+    "boundary_risk": "Storage cap reduces EOQ by ~12.3% (6690 \u2192 5868 units), slightly increasing order frequency. The post-replenishment inventory (451+5868=6319) leaves only ~0.76 units of headroom \u2014 any upward revision of safety stock must be accompanied by a storage capacity review.",
+    "escalation_flag": "None \u2014 MOQ (2451) + safety_stock (451) = 2902 < max_storage_units (6319.762). Policy is feasible."
+  }
+}

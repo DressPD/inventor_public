@@ -1,0 +1,78 @@
+{
+  "material_id": "PL3__MF09094A",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 942.6473599999995
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 405.57416701754386,
+    "std_daily_demand": 273.8149542403283,
+    "robust_std_daily": 389.1636397331357,
+    "cv_wd": 0.6751291786009732,
+    "non_zero_fraction_wd": 0.9517543859649122,
+    "trend_detected": false,
+    "regime": "seasonal",
+    "distribution_type": "bimodal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.3025,
+    "std_lead_time": 0.8405052492840686,
+    "cv_lead_time": 0.6453015349589778,
+    "stability": "unstable",
+    "effective_lead_time": 2.1430052492840685
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 462.44842821727593,
+    "safety_stock": 760.6599744311937,
+    "safety_stock_robust": 920.9205616321467
+  },
+  "order_quantity": {
+    "eoq_raw": 14996.83820640289,
+    "order_quantity": 7297
+  },
+  "cost_analysis": {
+    "unit_cost": 0.37569,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.0450828
+  },
+  "policy": {
+    "safety_stock": 761,
+    "reorder_point": 1290,
+    "order_quantity": 7297,
+    "review_period_days": 18
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.8763522479652446,
+    "sigma_eff_days": 1.140231468927043,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 54.33689461834826,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization for material PL3__MF09094A shows: DEMAND PROFILE: Seasonal demand regime with mean daily demand of 405.57 units (CV=0.68). Distribution is bimodal. Trend not detected. LEAD TIME: Mean 1.30 days (std=0.84, CV=0.65), classified as unstable. Dominant uncertainty driver is lead time variability contributing 54.3% of total variance. BUFFER SIZING: For 95% service level, safety stock of 761 units recommended (equivalent to 1.88 days of supply). This protects against demand and lead-time variability. ORDER POLICY: EOQ analysis suggests 14996 units, but constrained to 7297 units by storage capacity (8058 units) and MOQ (3864 units). Recommended order quantity is 7297 units with reorder point at 1290 units, resulting in ~18 day review cycle. COST IMPACT: Optimized policy reduces total annual cost from $1399.13 to $893.55, saving $505.57 (36.1%). Current SAP safety stock (0) provides insufficient buffer; increasing to 761 units will improve service level to target 95%. RECOMMENDATION: Implement reorder point policy with Safety Stock=761, ROP=1290, Q=7297.",
+  "warnings": [
+    "High demand variability (CV=0.68) - consider demand forecasting improvements",
+    "High lead time variability (CV=0.65) - consider supplier performance improvements",
+    "Storage utilization >95% - limited buffer for demand spikes"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Continuous Review (R, Q) with stochastic lead time",
+    "selection_rationale": "Selected due to seasonal demand regime and unstable lead time variability",
+    "boundary_risk": "Storage capacity is at maximum utilization - any increase in safety stock would require order quantity reduction",
+    "escalation_flag": "no"
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "material_id": "PL1__MB382F9E",
+  "data_quality": {
+    "total_rows": 132,
+    "working_days": 132,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": -241.19399999999996,
+      "upper_bound": 571.99
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 190.94519696969698,
+    "std_daily_demand": 130.86188907303162,
+    "robust_std_daily": 130.86188907303162,
+    "cv_wd": 0.6853374222018238,
+    "non_zero_fraction_wd": 0.7803030303030303,
+    "trend_detected": true,
+    "regime": "Intermittent-Erratic",
+    "distribution_type": "Zero-Inflated"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.905681818181818,
+    "std_lead_time": 1.2378787526993327,
+    "cv_lead_time": 0.4260200635023124,
+    "stability": "Variable",
+    "effective_lead_time": 4.94181117428548
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 325.00565931097316,
+    "safety_stock": 534.5867374974086,
+    "safety_stock_robust": 534.5867374974086
+  },
+  "order_quantity": {
+    "eoq_raw": 2415.4165923924875,
+    "order_quantity": 2364
+  },
+  "cost_analysis": {
+    "unit_cost": 10.309443,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.23713316
+  },
+  "policy": {
+    "safety_stock": 535,
+    "reorder_point": 1090,
+    "order_quantity": 2364,
+    "review_period_days": 13
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.702088685491008,
+    "sigma_eff_days": 1.702088685491008,
+    "dominant_factor": "Lead Time Variability",
+    "dominant_pct": 52.892226340109296,
+    "variance_components": {
+      "transport": 0.0,
+      "supplier": 52.892226340109296,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization for PL1__MB382F9E: Intermittent-Erratic demand pattern with Zero-Inflated distribution. Calculated safety stock of 535 units (vs SAP 100) to maintain 95.0% service level. Order quantity of 2364 units optimized within capacity constraint of 2899 units. Estimated annual cost savings of $11,658.35 (76.2%) compared to current SAP policy. Trend detected - recommend forecast-based approach. Lead time variability is the dominant factor (52.9% of variance).",
+  "warnings": [
+    "Calculated safety stock (535) is significantly higher than SAP (100)",
+    "Significant trend detected in demand data - consider forecast-based inventory policy"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with Safety Stock",
+    "selection_rationale": "Classical EOQ model appropriate for Intermittent-Erratic demand with CV=0.69. Safety stock calculated using Normal approximation with z-score=1.645 for 95.0% service level.",
+    "boundary_risk": "Storage capacity constraint active (max=2899). ",
+    "escalation_flag": "LOW"
+  }
+}

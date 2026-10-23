@@ -1,0 +1,113 @@
+{
+  "material_id": "PL1__MDE7516E",
+  "analysis_timestamp": "2026-10-22T14:00:31.628795",
+  "input_parameters": {
+    "unit_cost": 0.009268,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 75.0,
+    "minimum_order_quantity": 80381,
+    "service_level_target": 0.95,
+    "max_storage_units": 768650.702,
+    "sap_safety_stock": 31399,
+    "sap_safety_lead_time_days": 5.0
+  },
+  "data_quality": {
+    "total_rows": 94,
+    "working_days": 94,
+    "demand_observations": 94,
+    "lead_time_observations": 66,
+    "outliers_detected": 2,
+    "non_zero_demand_fraction": 0.9893617021276596
+  },
+  "demand_profile": {
+    "mean_daily_demand": 31601.63634893617,
+    "std_daily_demand": 6334.765146862814,
+    "robust_std_demand": 3263.3197253999992,
+    "coefficient_of_variation": 0.2004568711859146,
+    "annual_demand": 8216425.450723404,
+    "regime": "erratic/lumpy",
+    "distribution_type": "normal",
+    "trend_detected": true,
+    "trend_slope": -82.15428588982407,
+    "trend_percentage": -24.437034805330363,
+    "winsorization_bounds": {
+      "lower": 1468.81968,
+      "upper": 39282.41511999999
+    }
+  },
+  "lead_time_profile": {
+    "mean_lead_time_days": 2.818484848484849,
+    "std_lead_time_days": 1.1309169083593427,
+    "coefficient_of_variation": 0.40124995135854535,
+    "stability": "moderate",
+    "effective_lead_time_days": 3.9494017568441917,
+    "observations": 66
+  },
+  "safety_stock_analysis": {
+    "z_score": 1.644853626951472,
+    "sigma_lead_time_demand": 37287.629119062716,
+    "sigma_lead_time_demand_robust": 36156.30469726354,
+    "recommended_safety_stock": 61333,
+    "robust_safety_stock": 59472,
+    "current_sap_safety_stock": 31399,
+    "safety_stock_change_units": 29934,
+    "safety_stock_change_pct": 95.33424631357687
+  },
+  "order_quantity_analysis": {
+    "eoq_raw": 1052697.16543723,
+    "order_quantity": 707317,
+    "minimum_order_quantity": 80381,
+    "constraint_applied": "capacity",
+    "orders_per_year": 11.616326838918624,
+    "review_period_days": 22
+  },
+  "inventory_policy": {
+    "reorder_point": 150402,
+    "safety_stock": 61333,
+    "order_quantity": 707317,
+    "maximum_inventory": 768650,
+    "capacity_utilization_pct": 144.93332239225614,
+    "capacity_check_passed": false
+  },
+  "safety_lead_time_analysis": {
+    "recommended_safety_lead_time_days": 1.9408172198040214,
+    "current_sap_safety_lead_time_days": 5.0,
+    "variance_decomposition": {
+      "transport_variance": 0.8353368657986899,
+      "supplier_variance": 0.41766843289934497,
+      "quality_variance": 0.13922281096644834,
+      "dominant_factor": "transport"
+    }
+  },
+  "cost_analysis": {
+    "previous_policy": {
+      "safety_stock": 31399,
+      "estimated_orders_per_year": 261.67793403367637,
+      "annual_ordering_cost": 19625.84505252573,
+      "annual_holding_cost": 34.92071184,
+      "total_annual_cost": 19660.76576436573
+    },
+    "optimized_policy": {
+      "safety_stock": 61333,
+      "order_quantity": 707317,
+      "orders_per_year": 11.616326838918624,
+      "annual_ordering_cost": 871.2245129188968,
+      "annual_holding_cost": 461.53694664,
+      "total_annual_cost": 1332.7614595588968
+    },
+    "savings": {
+      "annual_cost_reduction": 18328.004304806833,
+      "savings_percentage": 93.22121286865404
+    }
+  },
+  "recommendations": {
+    "summary": "The inventory optimization analysis for material PL1__MDE7516E reveals a demand pattern \ncharacterized as erratic/lumpy with a coefficient of variation of 20.05%. Lead time exhibits moderate \nbehavior (CV=40.12%, mean=2.8 days). The optimized policy recommends a safety stock \nof 61,333 units (vs. SAP's 31,399) and an order quantity of 707,317 units, \nadjusted for the capacity constraint of 768,651 units. This optimization is projected to \nreduce annual inventory costs by $18,328.00 \n(93.2%), while maintaining the target service level of 95%.",
+    "action_items": [
+      "Update safety stock from 31,399 to 61,333 units",
+      "Implement order quantity of 707,317 units (capacity-constrained from EOQ of 1,052,697)",
+      "Set reorder point to 150,402 units",
+      "Review inventory every 22 days",
+      "Focus variance reduction efforts on transport (dominant factor)"
+    ]
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "material_id": "PL1__MF333474",
+  "analysis_timestamp": "2025-01-15T00:00:00Z",
+  "input_parameters": {
+    "unit_cost": 46.849679,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 50.0,
+    "moq": 43,
+    "service_level_target": 0.95,
+    "max_storage_units": 26860.034,
+    "sap_safety_stock": 722,
+    "sap_safety_lead_time_days": 2.5
+  },
+  "demand_analysis": {
+    "total_observations": 225,
+    "working_days": 225,
+    "mean_daily_demand": 862.605690311111,
+    "std_daily_demand": 1010.2949034141748,
+    "robust_std_daily": 481.9191299999999,
+    "cv_wd": 1.2066497328257775,
+    "non_zero_fraction_wd": 0.9511111111111111,
+    "annual_demand": 225140.08517119996,
+    "demand_regime": "highly erratic",
+    "distribution_type": "heavy_tailed",
+    "trend_detected": false,
+    "trend_slope_per_day": -3.300326999578592,
+    "outliers_detected": {
+      "lower_bound": 0.0,
+      "upper_bound": 4646.926079999994,
+      "values_capped_low": 0,
+      "values_capped_high": 4
+    }
+  },
+  "lead_time_analysis": {
+    "observations": 55,
+    "mean_lead_time": 1.4885454545454544,
+    "std_lead_time": 0.8826001531288278,
+    "cv_lead_time": 0.5929279152569382,
+    "stability": "unstable",
+    "effective_lead_time": 2.3711456076742823,
+    "min_observed": 0.25,
+    "max_observed": 3.21
+  },
+  "safety_stock_calculation": {
+    "z_score": 1.644853626951472,
+    "sigma_ltd": 1448.787236258563,
+    "safety_stock_recommended": 1583,
+    "safety_stock_robust": 1583,
+    "sap_safety_stock": 722,
+    "difference_vs_sap": 861,
+    "percent_change_vs_sap": 119.25207756232687
+  },
+  "order_policy": {
+    "eoq_raw": 2001.1630723625524,
+    "unconstrained_order_quantity": 2002,
+    "order_quantity": 2002,
+    "reorder_point": 2868,
+    "review_period_days": 3,
+    "replenishment_model": "(r,Q) - Continuous Review",
+    "replenishment_justification": "The (r,Q) continuous review policy is recommended for material PL1__MF333474 due to the highly erratic demand pattern (CV=120.7%). This policy triggers orders when inventory drops to the reorder point r=2868 units, ordering a fixed quantity Q=2002 units. Continuous review is essential for materials with unpredictable, high-variability demand to prevent stockouts between periodic reviews. The EOQ-based order quantity balances ordering and holding costs, while the safety stock buffer protects against demand and lead time variability.",
+    "storage_constraint_active": false,
+    "feasibility_check": {
+      "moq_plus_safety_stock": 1626,
+      "max_storage": 26860.034,
+      "feasible": true,
+      "final_inventory_check": true
+    }
+  },
+  "cost_analysis": {
+    "current_sap_policy": {
+      "safety_stock": 722,
+      "order_quantity": 2002,
+      "orders_per_year": 112.45758500059938,
+      "annual_ordering_cost": 5622.879250029969,
+      "average_inventory": 1723.0,
+      "annual_holding_cost": 9686.63963004,
+      "total_annual_cost": 15309.518880069969
+    },
+    "recommended_policy": {
+      "safety_stock": 1583,
+      "order_quantity": 2002,
+      "orders_per_year": 112.45758500059938,
+      "annual_ordering_cost": 5622.879250029969,
+      "average_inventory": 2584.0,
+      "annual_holding_cost": 14527.14846432,
+      "total_annual_cost": 20150.02771434997
+    },
+    "impact": {
+      "annual_savings": -4840.508834280001,
+      "savings_percentage": -31.617641757386682
+    }
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.4517480630218769,
+    "sap_current_days": 2.5,
+    "difference_days": -1.0482519369781231,
+    "comparison_action": "reduce",
+    "variance_decomposition": {
+      "transport_variance": 0.7789830303030303,
+      "supplier_variance": 0.07789830303030304,
+      "total_variance": 0.8568813333333334
+    }
+  },
+  "narrative": {
+    "executive_summary": "Material PL1__MF333474 exhibits highly erratic demand (CV=120.7%) with an average daily demand of 862.6 units across 225 working days. Lead time variability is unstable (CV=59.3%, mean=1.49 days). The recommended safety stock of 1583 units (vs. current SAP 722 units) reflects the high demand and lead time variability required to achieve the 95% service level target. This increase in safety stock adds $4,840.51 in annual holding costs but significantly reduces stockout risk and potential lost sales or production disruptions.",
+    "key_findings": [
+      "Demand regime: highly erratic (CV=120.7%)",
+      "Safety stock must increase by 861 units (+119%) for target service level",
+      "Lead time is unstable (CV=59.3%), driving significant safety stock requirement",
+      "Recommended (r,Q) continuous review policy with ROP=2868, Q=2002",
+      "Annual cost increase of $4,840.51 is justified by risk mitigation"
+    ],
+    "risks_and_warnings": [
+      "High demand variability (CV=120.7%) creates significant forecast error",
+      "Current SAP safety stock of 722 units provides only ~35% service level",
+      "Unstable lead times require continuous monitoring and supplier performance management",
+      "4 demand outliers detected; verify data quality and investigate root causes"
+    ],
+    "recommendations": [
+      "Increase safety stock from 722 to 1583 units",
+      "Implement (r,Q) continuous review policy with ROP=2868",
+      "Reduce safety lead time from 2.5 to 1.5 days",
+      "Engage supplier to reduce lead time variability (target CV<20%)",
+      "Investigate demand drivers for highly erratic pattern; consider demand segmentation",
+      "Monitor inventory levels closely given high variability"
+    ],
+    "research_insights": "For materials with coefficient of variation exceeding 1.0, classical EOQ models remain valid but safety stock calculations must account for both demand and supply uncertainty. The combined standard deviation approach (\u03c3_LTD=1448.8) properly aggregates variability from both sources. Literature (Silver et al., 2016) recommends continuous review policies for high-CV items to minimize stockout risk between reviews. The cost-service tradeoff here (31% cost increase for 95% vs. ~80% service level) is typical for highly erratic demand; management must decide if the incremental cost justifies the reduced stockout risk based on downstream impact of shortages.",
+    "management_conclusion": "The analysis recommends increasing safety stock by 861 units (from 722 to 1583) to achieve the target 95% service level for material PL1__MF333474. This change will increase annual inventory costs by $4,840.51 (+32%), but is necessary given the highly erratic demand pattern and unstable lead times. The current SAP policy provides only ~35% service level, creating significant stockout risk. Implementation of the recommended (r,Q) continuous review policy with reorder point of 2868 units will provide robust protection against demand and supply variability. Parallel efforts to reduce lead time variability and understand demand drivers are essential for long-term inventory optimization."
+  },
+  "diagnostics": {
+    "data_quality": "PASS",
+    "demand_stationarity": "STATIONARY",
+    "lead_time_reliability": "unstable",
+    "policy_feasibility": "FEASIBLE",
+    "cost_impact": "INCREASE"
+  }
+}

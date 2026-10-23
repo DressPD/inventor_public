@@ -1,0 +1,131 @@
+{
+  "material_id": "PL3__M0E6A927",
+  "analysis_timestamp": "2026-10-22T21:56:41.155658",
+  "input_parameters": {
+    "unit_cost": 0.191677,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 75.0,
+    "moq": 1690,
+    "service_level_target": 0.95,
+    "max_storage_units": 7071.257,
+    "sap_safety_stock": 0,
+    "sap_safety_lead_time_days": 0.0
+  },
+  "demand_statistics": {
+    "total_observations": 228,
+    "working_days": 228,
+    "mean_daily_demand": 306.55,
+    "std_daily_demand": 205.71,
+    "robust_std_daily": 328.4,
+    "cv_wd": 0.6711,
+    "non_zero_fraction": 0.8377,
+    "regime": "moderate",
+    "distribution_type": "gamma-like",
+    "trend_detected": false,
+    "trend_slope": -0.4011,
+    "trend_p_value": 0.052456,
+    "outliers_detected": true,
+    "outliers_count": 3,
+    "winsorization_applied": true,
+    "demand_percentile_1": 0.0,
+    "demand_percentile_99": 712.0
+  },
+  "lead_time_statistics": {
+    "observations_count": 4,
+    "mean_lead_time_days": 2.7,
+    "std_lead_time_days": 1.58,
+    "cv_lead_time": 0.5855,
+    "stability": "unstable",
+    "effective_lead_time_days": 3.49,
+    "min_lead_time": 0.46,
+    "max_lead_time": 4.18
+  },
+  "safety_stock_calculation": {
+    "service_level_target": 0.95,
+    "z_score": 1.6449,
+    "sigma_ltd": 590.84,
+    "safety_stock_raw": 971.85,
+    "safety_stock_final": 972,
+    "safety_stock_robust": 1193,
+    "method": "Standard deviation of demand under lead time demand variability"
+  },
+  "eoq_and_order_quantity": {
+    "annual_demand": 76636.79,
+    "eoq_raw": 22355.72,
+    "unconstrained_order_quantity": 22356,
+    "storage_constraint_applied": true,
+    "remaining_storage_after_safety_stock": 6099,
+    "order_quantity_final": 6099,
+    "moq_feasible": true,
+    "total_inventory_required": 7071
+  },
+  "cost_analysis": {
+    "annual_holding_cost_per_unit": 0.023,
+    "previous_policy": {
+      "safety_stock": 0,
+      "order_quantity": 1690,
+      "avg_inventory": 845.0,
+      "annual_holding_cost": 19.44,
+      "annual_ordering_cost": 3401.04,
+      "number_of_orders_per_year": 45.35,
+      "total_annual_cost": 3420.48
+    },
+    "optimized_policy": {
+      "safety_stock": 972,
+      "order_quantity": 6099,
+      "avg_inventory": 4021.5,
+      "annual_holding_cost": 92.5,
+      "annual_ordering_cost": 942.41,
+      "number_of_orders_per_year": 12.57,
+      "total_annual_cost": 1034.91
+    },
+    "savings": {
+      "annual_savings": 2385.57,
+      "savings_percentage": 69.74
+    }
+  },
+  "recommended_policy": {
+    "safety_stock": 972,
+    "reorder_point": 2042,
+    "order_quantity": 6099,
+    "review_period_days": 20,
+    "policy_type": "(r,Q) fixed-reorder-point / fixed-order-quantity"
+  },
+  "safety_lead_time_analysis": {
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "dominant_factor": "transport",
+    "sigma_eff_days": 1.58,
+    "recommended_safety_lead_time_days": 0.79,
+    "current_sap_safety_lead_time_days": 0.0,
+    "recommendation_action": "Increase from 0.0 to 0.79 days",
+    "disruption_premium": 1.0
+  },
+  "warnings_and_diagnostics": {
+    "warnings": [
+      "Storage utilization very high: 100.0%"
+    ],
+    "insights": [
+      "Order quantity (6099) significantly below EOQ (22356) due to storage constraints",
+      "High demand variability (CV=0.67) requires careful monitoring",
+      "Unstable lead times (CV=0.59) increase risk",
+      "Recommended safety stock (972) targets 95% service level"
+    ],
+    "selected_model": "(r,Q) fixed-reorder-point / fixed-order-quantity",
+    "selection_rationale": "Fixed-order quantity model suitable for moderate demand pattern",
+    "boundary_risk": "High - storage capacity is constraining optimal order quantity",
+    "escalation_flag": false
+  },
+  "capacity_assessment": {
+    "max_storage_units": 7071.257,
+    "safety_stock": 972,
+    "order_quantity": 6099,
+    "total_required": 7071,
+    "utilization_percentage": 100.0,
+    "capacity_feasible": true,
+    "buffer_units": 0.26
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "material_id": "PL3__M9A920CD",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 610.1153199999997
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 260.835719122807,
+    "std_daily_demand": 173.6693733492968,
+    "robust_std_daily": 142.7499171,
+    "cv_wd": 0.6658189834327466,
+    "non_zero_fraction_wd": 0.7807017543859649,
+    "trend_detected": true,
+    "regime": "erratic",
+    "distribution_type": "Gamma-like"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.534848484848485,
+    "std_lead_time": 1.2176286410789448,
+    "cv_lead_time": 0.7933217207424517,
+    "stability": "volatile",
+    "effective_lead_time": 2.7524771259274297
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 383.6183856593631,
+    "safety_stock": 631,
+    "safety_stock_robust": 598
+  },
+  "order_quantity": {
+    "eoq_raw": 10384.712290438669,
+    "order_quantity": 3605
+  },
+  "cost_analysis": {
+    "unit_cost": 0.755837,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.09070044
+  },
+  "policy": {
+    "safety_stock": 631,
+    "reorder_point": 1032,
+    "order_quantity": 3605,
+    "review_period_days": 14
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.4191472016258317,
+    "sigma_eff_days": 1.4707279622188072,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Increase safety lead time from 0.0 to 2.42 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization analysis for material PL3__M9A920CD reveals a erratic demand pattern with Gamma-like \ndistribution characteristics (CV=0.67). The demand shows downward trend \nwith 78.1% non-zero working days.\n\nLead time analysis indicates volatile behavior (CV=0.79), requiring conservative buffering. \nThe recommended safety stock of 631 units (vs current 0) provides 95% service level \nprotection against demand and lead time variability.\n\nStorage constraints are binding: EOQ of 10385 units must be reduced to 3605 units to maintain \ntotal inventory within 4236 unit capacity. This constraint increases ordering frequency to \n18.1 orders/year.\n\nThe optimized policy requires increased holding costs ($220.72 vs $163.49) \nto achieve target service levels, representing a service-cost tradeoff. The dominant lead time variance component is \ntransport (60%), suggesting focused improvement initiatives.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Safety Stock with EOQ (storage-constrained)",
+    "selection_rationale": "Erratic demand (erratic) with volatile lead times (volatile) requires robust safety buffering. Storage constraint forces sub-optimal order quantity.",
+    "boundary_risk": "Storage capacity is fully utilized at 100.0%. No buffer for demand surges.",
+    "escalation_flag": "Storage capacity constraint prevents optimal EOQ implementation. Consider capacity expansion or consignment arrangements."
+  }
+}

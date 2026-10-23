@@ -1,0 +1,88 @@
+{
+  "material_id": "PL1__MC5C4052",
+  "data_quality": {
+    "total_rows": 91,
+    "working_days": 91,
+    "outliers_detected": 1,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 1507.3795999999998
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 673.3165120879121,
+    "std_daily_demand": 509.6513130835859,
+    "robust_std_daily": 685.8537251999999,
+    "cv_wd": 0.7569268002995935,
+    "non_zero_fraction_wd": 0.8241758241758241,
+    "trend_detected": false,
+    "regime": "Erratic",
+    "distribution_type": "Normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.8270588235294118,
+    "std_lead_time": 0.7203017137446845,
+    "cv_lead_time": 0.8709195685390921,
+    "stability": "Volatile",
+    "effective_lead_time": 1.5473605372740964
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 670.8503967179296,
+    "safety_stock": 1103.4507081833203,
+    "safety_stock_robust": 1025.9518012241626
+  },
+  "order_quantity": {
+    "eoq_raw": 1981.5392217745155,
+    "order_quantity": 1982
+  },
+  "cost_analysis": {
+    "unit_cost": 37.154038,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 4.45848456,
+    "optimized": {
+      "annual_ordering_cost": 4416.304065157849,
+      "annual_holding_cost": 9340.525153199998,
+      "total_annual_cost": 13756.829218357849
+    },
+    "sap_policy": {
+      "annual_ordering_cost": 6541.939205637412,
+      "annual_holding_cost": 2982.7261706399995,
+      "total_annual_cost": 9524.665376277411
+    },
+    "savings": {
+      "annual_savings": -4232.1638420804375,
+      "savings_percentage": -44.43372732674964
+    }
+  },
+  "policy": {
+    "safety_stock": 1104,
+    "reorder_point": 1661,
+    "order_quantity": 1982,
+    "review_period_days": 3
+  },
+  "safety_lead_time": {
+    "recommended_days": 0.6057301054606173,
+    "sigma_eff_days": 0.996337360920594,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 52.26561491040758,
+    "variance_components": {
+      "demand": 214823.9482732468,
+      "lead_time": 235216.3065033567,
+      "total": 450040.2547766035
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MC5C4052 exhibits erratic demand patterns with CV=0.76. Lead time variability is volatile (CV=0.87). Recommended policy: Safety Stock=1104 units, ROP=1661 units, Order Quantity=1982 units. This maintains 95% service level while balancing ordering and holding costs.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Continuous Review (Q,r) with stochastic lead time",
+    "selection_rationale": "Erratic demand with volatile lead time requires robust buffer calculation accounting for both demand and supply variability.",
+    "boundary_risk": "High lead time variability (CV=0.87) creates supply risk. Monitor supplier performance closely.",
+    "escalation_flag": "high_variability"
+  }
+}

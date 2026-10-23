@@ -1,0 +1,76 @@
+{
+  "material_id": "PL1__MD9C45C2",
+  "data_quality": {
+    "total_rows": 134,
+    "working_days": 134,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 12.003,
+      "upper_bound": 5324.54
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1672.24,
+    "std_daily_demand": 947.46,
+    "robust_std_daily": 914.7,
+    "cv_wd": 0.5666,
+    "non_zero_fraction_wd": 0.9851,
+    "trend_detected": true,
+    "regime": "erratic",
+    "distribution_type": "gamma"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.49,
+    "std_lead_time": 1.22,
+    "cv_lead_time": 0.4877,
+    "stability": "variable",
+    "effective_lead_time": 3.71
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 2524.8,
+    "safety_stock": 4152.0,
+    "safety_stock_robust": 4102.0
+  },
+  "order_quantity": {
+    "eoq_raw": 20400.08,
+    "order_quantity": 20401
+  },
+  "cost_analysis": {
+    "unit_cost": 0.870614,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.104474
+  },
+  "policy": {
+    "safety_stock": 4152,
+    "reorder_point": 8321,
+    "order_quantity": 20401,
+    "review_period_days": 13
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.1,
+    "sigma_eff_days": 3.71,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 62.0,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce_from_3.0_to_2.1_days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MD9C45C2 exhibits erratic demand (CV=0.567) across 134 working days with a mild decreasing trend. Lead times are variable (CV=0.488, range 0.28\u20135.74 days), creating significant combined demand-lead time uncertainty (sigma_LTD=2,525 units). The EOQ-based (r,Q) policy is selected: ordering 20,401 units whenever stock falls to 8,321 units consolidates 647 SAP micro-orders into 21 annual replenishments, cutting total cost by 92% while raising safety stock to the statistically correct 4,152 units for a 95% service level.",
+  "warnings": [
+    "Capacity utilization is 99.24% \u2014 near-full storage; monitor actual receipts carefully to avoid overflow."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) \u2014 continuous-review reorder-point / fixed-order-quantity",
+    "selection_rationale": "With erratic but mostly continuous demand (non-zero fraction 98.5%) and variable lead times, a continuous-review (r,Q) policy provides the tightest service-level control. The EOQ minimises total replenishment and holding cost. MOQ=672 is non-binding since EOQ>>MOQ.",
+    "boundary_risk": "Storage utilisation reaches 99.24% (24,553 of 24,741 units). If actual demand falls short in a cycle, a second receipt could breach capacity. Recommend monitoring on-hand stock before each order and deferring if projected post-receipt stock exceeds 24,740 units.",
+    "escalation_flag": "none"
+  }
+}

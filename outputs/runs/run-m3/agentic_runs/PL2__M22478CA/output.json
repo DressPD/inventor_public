@@ -1,0 +1,76 @@
+{
+  "material_id": "PL2__M22478CA",
+  "data_quality": {
+    "total_rows": 237,
+    "working_days": 237,
+    "outliers_detected": 6,
+    "winsorisation": {
+      "lower_bound": 6.832439999999997,
+      "upper_bound": 1040.20652
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 494.27615611814355,
+    "std_daily_demand": 233.02319099557326,
+    "robust_std_daily": 193.69259259259255,
+    "cv_wd": 0.47144331789267063,
+    "non_zero_fraction_wd": 0.9873417721518988,
+    "trend_detected": true,
+    "regime": "smooth",
+    "distribution_type": "moderate_skew"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 3.68775,
+    "std_lead_time": 1.2964781188241967,
+    "cv_lead_time": 0.3515634516505177,
+    "stability": "moderate",
+    "effective_lead_time": 4.984228118824197
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 781.5958723722738,
+    "safety_stock": 1286,
+    "safety_stock_robust": 1219
+  },
+  "order_quantity": {
+    "eoq_raw": 845.1193894346146,
+    "order_quantity": 846
+  },
+  "cost_analysis": {
+    "unit_cost": 299.88561,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 35.9862732
+  },
+  "policy": {
+    "safety_stock": 1286,
+    "reorder_point": 3109,
+    "order_quantity": 846,
+    "review_period_days": 2
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.6017844156184946,
+    "sigma_eff_days": 1.581293903615804,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 67.22103416706983,
+    "variance_components": {
+      "transport": 287453.5947130767,
+      "supplier": 82129.5984894505,
+      "quality": 41064.79924472525
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "REDUCE",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL2__M22478CA exhibits a smooth demand pattern (CV=0.47) with a statistically significant positive trend of +1.17 units/day across 237 working days. Lead time averages 3.69 days with moderate variability (CV=0.35), and lead time variance is the dominant buffer driver at 67.2% of total sigma_LTD. A (r,Q) continuous review policy is selected as appropriate for smooth, high-frequency demand: safety stock is set at 1,286 units to meet the 95% service level (vs SAP's under-specified 944 units), with a reorder point of 3,109 and EOQ-derived order quantity of 846 units. The SAP safety lead time of 3.80 days is overstated versus the data-driven recommendation of 2.60 days and should be reduced.",
+  "warnings": [
+    "Optimised policy increases annual holding cost by $12,307.31 (19.12%) vs SAP baseline due to higher safety stock required for 95% service level coverage given actual demand and lead time variability."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous review with normal approximation",
+    "selection_rationale": "Smooth demand with CV=0.47 and non-zero fraction of 98.7% justifies a normal approximation safety stock model. Continuous review is appropriate for a moderate-to-high volume material where stockout cost is significant and demand is near-daily.",
+    "boundary_risk": "Peak post-replenishment inventory of 2,132 units is well below the 6,465-unit storage cap \u2014 no capacity constraint binds. If demand trend continues at +1.17 units/day, annual mean demand will grow ~300 units/day within 12 months; safety stock and ROP should be reviewed quarterly.",
+    "escalation_flag": "none"
+  }
+}

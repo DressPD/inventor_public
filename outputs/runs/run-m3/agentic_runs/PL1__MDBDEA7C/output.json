@@ -1,0 +1,77 @@
+{
+  "material_id": "PL1__MDBDEA7C",
+  "data_quality": {
+    "total_rows": 178,
+    "working_days": 178,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 1127.55
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 473.37,
+    "std_daily_demand": 269.62,
+    "robust_std_daily": 242.52,
+    "cv_wd": 0.57,
+    "non_zero_fraction_wd": 0.927,
+    "trend_detected": false,
+    "regime": "Moderate",
+    "distribution_type": "Normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.77,
+    "std_lead_time": 1.19,
+    "cv_lead_time": 0.43,
+    "stability": "Unstable",
+    "effective_lead_time": 2.77
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 720.42,
+    "safety_stock": 1185.0,
+    "safety_stock_robust": 1185.0
+  },
+  "order_quantity": {
+    "eoq_raw": 1410.95,
+    "order_quantity": 1411
+  },
+  "cost_analysis": {
+    "unit_cost": 49.537623,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 5.944514760000001
+  },
+  "policy": {
+    "safety_stock": 1185,
+    "reorder_point": 2497,
+    "order_quantity": 1411,
+    "review_period_days": 0
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.5,
+    "sigma_eff_days": 1.19,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 0.65,
+    "variance_components": {
+      "transport": 0.65,
+      "supplier": 0.3,
+      "quality": 0.05
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Reduce SAP safety lead time from 3.0 to 2.5 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MDBDEA7C exhibits moderate demand variability (CV=0.57) with no statistically significant trend over the observation window (May 2025\u2013March 2026). Lead times are highly unstable (CV=0.43, range 0.04\u20136.72 days), which is the primary driver of the large combined uncertainty (\u03c3_LTD=720.42). The current SAP safety stock of 192 units is critically understated, covering only ~27% of the statistically required buffer; raising it to 1,185 units is essential to achieve the 95% service level. An (r,Q) continuous-review policy with EOQ-based order quantity of 1,411 units is recommended, well within the 4,143-unit storage cap.",
+  "warnings": [
+    "SAP safety stock (192) is 517% below the statistically required level (1185) for 95% service level.",
+    "Lead time variability is high (CV=0.43); supplier performance stabilisation is strongly advised."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) Continuous-Review with EOQ",
+    "selection_rationale": "Moderate-to-high demand variability and unstable lead times favour a continuous-review fixed-reorder-point policy. The EOQ order quantity (1,411) is well above MOQ (358), making the MOQ non-binding and the EOQ cost-optimal. Continuous review minimises exposure during the uncertain lead time window.",
+    "boundary_risk": "Storage utilisation at recommended policy is 62.7% (2,596 of 4,144 units), providing adequate headroom. No capacity constraint binds.",
+    "escalation_flag": "none"
+  }
+}

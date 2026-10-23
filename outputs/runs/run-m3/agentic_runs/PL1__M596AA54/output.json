@@ -1,0 +1,93 @@
+{
+  "material_id": "PL1__M596AA54",
+  "timestamp": "2026-10-22T07:13:42.719039",
+  "input_parameters": {
+    "unit_cost": 1.007526,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 50.0,
+    "moq": 2536,
+    "service_level_target": 0.95,
+    "max_storage_units": 28814.189
+  },
+  "data_quality": {
+    "total_rows": 93,
+    "working_days": 93,
+    "demand_observations": 93,
+    "lead_time_observations": 43,
+    "date_range_start": "2025-03-04",
+    "date_range_end": "2026-03-05",
+    "outliers_detected": 1,
+    "outliers_percentage": 1.08,
+    "winsorisation": {
+      "lower_bound": 195.49,
+      "upper_bound": 1392.23
+    },
+    "data_source": "fallback"
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 693.97,
+    "std_daily_demand": 251.23,
+    "robust_std_daily": 246.76,
+    "cv_wd": 0.362,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": true,
+    "regime": "moderate",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.07,
+    "std_lead_time": 0.86,
+    "cv_lead_time": 0.811,
+    "stability": "high variability",
+    "effective_lead_time": 1.93
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 653.36,
+    "safety_stock": 1075.0,
+    "safety_stock_robust": 1072.0
+  },
+  "order_quantity": {
+    "eoq_raw": 11979.0,
+    "order_quantity": 11980
+  },
+  "cost_analysis": {
+    "unit_cost": 1.007526,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.12090312
+  },
+  "policy": {
+    "safety_stock": 1075,
+    "reorder_point": 2415,
+    "order_quantity": 11980,
+    "review_period_days": 18
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.55,
+    "sigma_eff_days": 1.55,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 81.1,
+    "variance_components": {
+      "transport": 0.74,
+      "supplier": 0.21,
+      "quality": 0.05
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce SAP safety lead time from 3.0 to 1.55 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M596AA54 shows moderate daily demand variability (CV=0.362) with a statistically significant downward trend over the observation window. Lead times are highly variable (CV=0.811), ranging from 0.36 to 3.59 working days, making lead-time uncertainty the dominant driver of the safety stock requirement. The current SAP safety stock of 396 units is under-buffered by 679 units relative to the 95% service-level requirement; increasing it to 1,075 units eliminates this gap. Simultaneously, consolidating orders from ~68/year to ~15/year via the EOQ-aligned quantity of 11,980 units cuts total annual inventory costs by 56.4% while remaining well within the 28,814-unit storage limit.",
+  "warnings": [
+    "Decreasing demand trend detected (slope=-4.69 units/day, R\u00b2=0.252); revisit mean demand estimate quarterly.",
+    "SAP safety stock (396) is significantly below the statistically required level (1,075) for 95% service level.",
+    "Data loaded from fallback lists; CSV endpoint was unavailable."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous review",
+    "selection_rationale": "All demand observations are non-zero (100% fill rate), demand is approximately normally distributed, and the EOQ substantially exceeds the MOQ, making a continuous-review fixed-reorder-point / fixed-order-quantity policy the most cost-efficient choice. Periodic review would add unnecessary cycle-stock overhead given the predictable replenishment trigger.",
+    "boundary_risk": "Storage capacity is not binding at 45.3% utilisation (13,055 of 28,814 units). No capacity-driven order reduction was required. If safety stock were to rise above ~16,834 units, a cap would activate, but this is implausible under current demand levels.",
+    "escalation_flag": "none"
+  }
+}

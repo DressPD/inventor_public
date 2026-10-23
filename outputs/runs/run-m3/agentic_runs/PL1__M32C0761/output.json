@@ -1,0 +1,74 @@
+{
+  "material_id": "PL1__M32C0761",
+  "data_quality": {
+    "total_rows": 131,
+    "working_days": 131,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": 282.8344,
+      "upper_bound": 1567.9281999999998
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 891.6981068702289,
+    "std_daily_demand": 297.94748243188127,
+    "robust_std_daily": 291.7504758,
+    "cv_wd": 0.33413492765802444,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": true,
+    "regime": "lumpy",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.6820325203252033,
+    "std_lead_time": 1.106954883311808,
+    "cv_lead_time": 0.4127298513060486,
+    "stability": "moderate",
+    "effective_lead_time": 3.7889874036370115
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1101.0892870483679,
+    "safety_stock": 1812,
+    "safety_stock_robust": 1804
+  },
+  "order_quantity": {
+    "eoq_raw": 6749.962959633413,
+    "order_quantity": 6750
+  },
+  "cost_analysis": {
+    "unit_cost": 6.360605,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.7632726
+  },
+  "policy": {
+    "safety_stock": 1812,
+    "reorder_point": 4204,
+    "order_quantity": 6750,
+    "review_period_days": 8
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.0,
+    "sigma_eff_days": 1.106954883311808,
+    "dominant_factor": "transport_variability",
+    "dominant_pct": 50.0,
+    "variance_components": {
+      "transport": 0.6126745568439291,
+      "supplier": 0.6126745568439291,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M32C0761 exhibits lumpy demand (CV=0.33) with moderate lead time (mean=2.68 days, CV=0.41). The optimized (r,Q) policy recommends a safety stock of 1812 units and order quantity of 6750 units, yielding a reorder point of 4204 units. This policy achieves a 95.0% service level while reducing total annual costs by $20,878.06 (76.2%) compared to the current SAP policy.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review with normal approximation",
+    "selection_rationale": "Demand pattern is lumpy with CV=0.33. Non-zero fraction=1.00 indicates regular demand suitable for continuous review.",
+    "boundary_risk": "Distribution characteristics are stable within regime.",
+    "escalation_flag": "none"
+  }
+}

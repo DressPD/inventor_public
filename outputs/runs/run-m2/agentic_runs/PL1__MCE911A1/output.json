@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__MCE911A1",
+  "data_quality": {
+    "total_rows": 97,
+    "working_days": 97,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 494.454
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 296.74,
+    "std_daily_demand": 108.52,
+    "robust_std_daily": 101.21,
+    "cv_wd": 0.366,
+    "non_zero_fraction_wd": 0.979,
+    "trend_detected": false,
+    "regime": "variable",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.79,
+    "std_lead_time": 1.85,
+    "cv_lead_time": 1.035,
+    "stability": "unstable",
+    "effective_lead_time": 2.72
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 568.27,
+    "safety_stock": 935.0,
+    "safety_stock_robust": 873.0
+  },
+  "order_quantity": {
+    "eoq_raw": 2968.4,
+    "order_quantity": 2969
+  },
+  "cost_analysis": {
+    "unit_cost": 7.017608,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.842
+  },
+  "policy": {
+    "safety_stock": 935,
+    "reorder_point": 1466,
+    "order_quantity": 2969,
+    "review_period_days": 11
+  },
+  "safety_lead_time": {
+    "recommended_days": 3.15,
+    "sigma_eff_days": 1.85,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 93.5,
+    "variance_components": {
+      "transport": 0.4,
+      "supplier": 0.4,
+      "quality": 0.2
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MCE911A1 exhibits variable demand (CV=36.6%, mean 296.7 units/day) with no discernible trend over the 97-day observation window. Lead times are highly unstable (CV=103.5%, mean 1.79 days), making lead-time variability the dominant source of uncertainty, accounting for 93.5% of total demand-during-lead-time variance. A continuous-review (r,Q) policy with safety stock of 935 units and order quantity of 2,969 units was selected to achieve the 95% service level while reducing total annual costs by 79.7% versus the current SAP configuration.",
+  "warnings": [
+    "Lead time CV > 100%: highly unstable supply chain; safety stock is sensitive to lead-time variability.",
+    "Storage constraint applied: unconstrained EOQ (2969) + safety stock (935) = 3904 <= 5067.782 \u2014 policy is feasible.",
+    "SAP safety stock is 0 \u2014 current policy has significant stockout risk."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) Continuous-Review Fixed-Order-Quantity",
+    "selection_rationale": "Variable demand (CV=36.6%) and highly unstable lead times (CV=103.5%) require a responsive replenishment trigger. The (r,Q) policy monitors inventory continuously and fires a fixed EOQ-sized order when stock hits the reorder point, providing the best balance of service-level protection and cost efficiency for this material profile.",
+    "boundary_risk": "Storage capacity is not binding (77% utilised at 3,904 / 5,067.8 units). No capacity-driven order reduction was required. If demand grows >30%, capacity will become a constraint and order quantity will need to be split.",
+    "escalation_flag": "none"
+  }
+}

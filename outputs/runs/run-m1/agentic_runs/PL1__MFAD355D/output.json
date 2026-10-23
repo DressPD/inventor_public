@@ -1,0 +1,85 @@
+{
+  "material_id": "PL1__MFAD355D",
+  "data_quality": {
+    "total_rows": 225,
+    "working_days": 225,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 2294.7517999999995
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 615.8650666666667,
+    "std_daily_demand": 651.8458764301985,
+    "robust_std_daily": 744.6345441067457,
+    "cv_wd": 1.0584232029237763,
+    "non_zero_fraction_wd": 0.9511111111111111,
+    "trend_detected": false,
+    "regime": "lumpy",
+    "distribution_type": "continuous"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.3119594594594592,
+    "std_lead_time": 0.7725073154899708,
+    "cv_lead_time": 0.5888195019442535,
+    "stability": "volatile",
+    "effective_lead_time": 1.3119594594594592
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 885.3267223242984,
+    "safety_stock": 1456.2328702521809,
+    "safety_stock_robust": 1606.411503676139
+  },
+  "order_quantity": {
+    "eoq_raw": 2744.728724454225,
+    "order_quantity": 2745
+  },
+  "cost_analysis": {
+    "unit_cost": 17.031209,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 2.04374508,
+    "current_sap_annual_ordering_cost": 2804.485731633273,
+    "current_sap_annual_holding_cost": 2805.0401223,
+    "current_sap_total_annual_cost": 5609.5258539332735,
+    "optimized_annual_ordering_cost": 2804.485731633273,
+    "optimized_annual_holding_cost": 5781.208886212173,
+    "optimized_total_annual_cost": 8585.694617845445,
+    "cost_saving_vs_sap": -2976.168763912172
+  },
+  "policy": {
+    "safety_stock": 1456,
+    "reorder_point": 2264,
+    "order_quantity": 2745,
+    "review_period_days": 4.457145158203485
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.3645323449403537,
+    "sigma_eff_days": 1.4375335933828444,
+    "dominant_factor": "demand_variability",
+    "dominant_pct": 71.12186137785886,
+    "variance_components": {
+      "transport": 0.0,
+      "supplier": 226347.8338964744,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MFAD355D exhibits lumpy demand with continuous distribution (CV=1.06).\nMean daily demand is 616 units with 652 units standard deviation.\nLead time averaging 1.31 days is volatile (CV=0.59).\n\nThe combined demand-lead time variability (sigma_ltd) is 885 units, with demand variability \ncontributing 71% of total variance.\n\nRecommended policy: safety stock of 1456 units, reorder point at 2264 units, \norder quantity of 2745 units (EOQ=2745, constrained by MOQ=167).\nThis yields a review period of 4.5 days.\n\nThe optimized policy increases total annual cost by $2,976 compared to SAP current settings, \nprimarily due to higher safety stock holdings (SAP=0, recommended=1456), \nbut provides 95% service level protection against demand and lead time variability.\n\nSafety lead time should be increased from 2.0 to 2.36 days.",
+  "warnings": [
+    "Optimized policy increases cost by $2,976 vs SAP current due to safety stock buffer",
+    "High demand variability (CV>1.0) - consider demand segmentation or VMI",
+    "Volatile lead time - consider supplier performance improvement"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with safety stock (Q,R model)",
+    "selection_rationale": "Continuous review appropriate for lumpy demand with volatile lead time",
+    "boundary_risk": "High CV indicates potential for stockout risk - monitor service level",
+    "escalation_flag": "None"
+  }
+}

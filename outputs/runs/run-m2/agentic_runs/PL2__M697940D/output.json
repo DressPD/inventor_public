@@ -1,0 +1,76 @@
+{
+  "material_id": "PL2__M697940D",
+  "data_quality": {
+    "total_rows": 96,
+    "working_days": 96,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 514.3460999999999
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 253.431271875,
+    "std_daily_demand": 139.8955781410178,
+    "robust_std_daily": 170.78354336545593,
+    "cv_wd": 0.5520059821584234,
+    "non_zero_fraction_wd": 0.9479166666666666,
+    "trend_detected": true,
+    "regime": "smooth",
+    "distribution_type": "gamma"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.2353125,
+    "std_lead_time": 0.25460892687641823,
+    "cv_lead_time": 1.0820034077085503,
+    "stability": "unstable",
+    "effective_lead_time": 0.48992142687641826
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 93.64205581550863,
+    "safety_stock": 155,
+    "safety_stock_robust": 173
+  },
+  "order_quantity": {
+    "eoq_raw": 7397.002736782632,
+    "order_quantity": 7398
+  },
+  "cost_analysis": {
+    "unit_cost": 1.003554,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.12042648
+  },
+  "policy": {
+    "safety_stock": 155,
+    "reorder_point": 280,
+    "order_quantity": 7398,
+    "review_period_days": 30
+  },
+  "safety_lead_time": {
+    "recommended_days": 0.6077682284580198,
+    "sigma_eff_days": 0.36949684670996613,
+    "dominant_factor": "transport",
+    "dominant_pct": 50.0,
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.4,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization analysis for material PL2__M697940D reveals a smooth demand pattern with CV=0.55. \nThe demand shows a significant trend over the observation period. \nLead time is unstable (CV=1.08). \n\nThe optimized policy recommends a safety stock of 155 units (vs SAP's 788) and an order quantity of 7398 units (vs SAP's MOQ of 946). \nThis results in a reorder point of 280 units with a 30-day review cycle.\n\nThe recommended safety lead time is 0.61 days, compared to SAP's 3.0 days, suggesting the need to decrease the buffer.\n\nAnnual cost savings from the optimized policy are $2725.07 (75.0% reduction), \nprimarily by reducing ordering frequency from 69.7 to 8.9 orders per year while maintaining the 95% service level target.",
+  "warnings": [
+    "Lead time instability increases supply risk"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "gamma",
+    "selection_rationale": "Selected gamma distribution based on CV=0.55 and regime=smooth",
+    "boundary_risk": "Medium",
+    "escalation_flag": "No"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "schema_version": 2,
+  "recorded_at_utc": "2026-10-22T11:01:20.366506+00:00",
+  "material_id": "PL1__MC9C6CAA",
+  "generation_run_id": "run-m2",
+  "input_cutoff": "2026-03-10",
+  "input_row_count": 373,
+  "input_date_min": "2025-03-02",
+  "input_date_max": "2026-03-09",
+  "input_sha256": "3eb3d00980a2af4c62045189c244a0e77069bdd8145b6369b579e2569f04ab2b",
+  "system_prompt_sha256": "1951f54feba6aa50c63d76cce04fe06b2aa9730eb88e2f572c4a9e9e9ffeb169",
+  "runner_code_sha256": "a0728aadf2fc34222af1dac497564c354d2d57f08b814cd3b3c87b22b24d4580",
+  "session_identifier": "sha256:74a6b80206aaa239",
+  "application_version": null,
+  "model_runtime_identifier": null,
+  "inference_generation_settings": null,
+  "ablation": null
+}

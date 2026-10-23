@@ -1,0 +1,76 @@
+{
+  "material_id": "PL3__M0A903F5",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 182,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 28.85076,
+      "upper_bound": 20572.11767
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 16105.096867362636,
+    "std_daily_demand": 4919.409759225745,
+    "robust_std_daily": 926.8860266864342,
+    "cv_wd": 0.3054567010518916,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "lumpy",
+    "distribution_type": "gamma-like"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 5.634074074074074,
+    "std_lead_time": 0.7258271634659805,
+    "cv_lead_time": 0.1288281186798677,
+    "stability": "stable",
+    "effective_lead_time": 5.9969876558070645
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 16522.491717979425,
+    "safety_stock": 27178,
+    "safety_stock_robust": 19566
+  },
+  "order_quantity": {
+    "eoq_raw": 463573.00669752416,
+    "order_quantity": 280828
+  },
+  "cost_analysis": {
+    "unit_cost": 0.032475,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.0038969999999999994
+  },
+  "policy": {
+    "safety_stock": 27178,
+    "reorder_point": 117916,
+    "order_quantity": 280828,
+    "review_period_days": 18
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.6874832018967312,
+    "sigma_eff_days": 1.025916941329465,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 50.05437367627358,
+    "variance_components": {
+      "transport": 49.94562632372643,
+      "supplier": 50.05437367627358,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "INCREASE",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__M0A903F5 exhibits lumpy demand with a mean daily consumption of 16,105 units \nand coefficient of variation of 30.55%. Lead time analysis shows stable supplier performance \nwith mean lead time of 5.63 days.\n\nThe recommended inventory policy achieves a 95% service level with:\n- Safety stock: 27,178 units (vs. SAP 68,113 units)\n- Order quantity: 280,828 units (vs. SAP 116,765 units)\n- Reorder point: 117,916 units\n\nThis optimization reduces total annual inventory costs by $1,934.90 (47.4%), \nfrom $4,079.07 to $2,144.17.\n\nThe dominant source of variability is lead time variability (50.1%), \nsuggesting management focus should prioritize supplier reliability.",
+  "warnings": [
+    "Storage capacity constraint is binding. Order quantity reduced from EOQ."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Analytical EOQ with lead-time-demand variability",
+    "selection_rationale": "Classical inventory model appropriate for lumpy demand pattern with stable lead times.",
+    "boundary_risk": "Storage capacity constraint is active",
+    "escalation_flag": "Capacity management review required"
+  }
+}

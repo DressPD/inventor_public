@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__MA536107",
+  "data_quality": {
+    "total_rows": 152,
+    "working_days": 152,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 930.45
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 513.63,
+    "std_daily_demand": 240.97,
+    "robust_std_daily": 185.23,
+    "cv_wd": 0.469,
+    "non_zero_fraction_wd": 0.928,
+    "trend_detected": false,
+    "regime": "moderate",
+    "distribution_type": "normal-approximation"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.52,
+    "std_lead_time": 1.174,
+    "cv_lead_time": 0.466,
+    "stability": "moderate",
+    "effective_lead_time": 4.19
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 713.0,
+    "safety_stock": 1173.0,
+    "safety_stock_robust": 985.0
+  },
+  "order_quantity": {
+    "eoq_raw": 3247.8,
+    "order_quantity": 3351
+  },
+  "cost_analysis": {
+    "unit_cost": 14.299736,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.716
+  },
+  "policy": {
+    "safety_stock": 1173,
+    "reorder_point": 2466,
+    "order_quantity": 3351,
+    "review_period_days": 7
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.5,
+    "sigma_eff_days": 1.174,
+    "dominant_factor": "supplier",
+    "dominant_pct": 70.0,
+    "variance_components": {
+      "transport": 0.2,
+      "supplier": 0.7,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MA536107 exhibits moderate demand variability (CV=0.469) with a mean of 513.63 units/day over 152 working days, showing no statistically significant trend. Lead times average 2.52 days with moderate variability (CV=0.466), indicating a supplier whose replenishment times span roughly 0.6 to 4.6 days. The current SAP policy holds zero safety stock against MOQ=752 orders, resulting in ~170 orders/year and near-zero stockout protection. An (r,Q) policy with EOQ-derived Q=3,351 and z-based safety stock of 1,173 units reduces total annual cost by 42.3% while elevating service level to the 95% target.",
+  "warnings": [
+    "SAP safety stock is 0 \u2014 current policy provides no stockout buffer",
+    "Storage capacity binds: safety_stock(1173) + order_quantity(3351) = 4524 <= 5847 \u2014 feasible",
+    "3 demand outliers winsorised at upper bound 930.45"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review policy",
+    "selection_rationale": "Demand is moderately variable but continuous (92.8% non-zero days) with no trend, making a continuous-review (r,Q) policy optimal. EOQ minimises total ordering and holding costs; the reorder point with statistical safety stock ensures 95% cycle-service level against combined demand and lead time uncertainty.",
+    "boundary_risk": "Storage utilisation post-replenishment reaches 77.4% (4,524 / 5,847 units). Capacity constraint does not bind the optimal policy; however, if safety stock were increased further (e.g., for 99% SL), the remaining storage headroom of 1,323 units would limit order quantity below EOQ.",
+    "escalation_flag": "none"
+  }
+}

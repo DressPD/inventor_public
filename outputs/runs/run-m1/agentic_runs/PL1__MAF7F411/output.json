@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__MAF7F411",
+  "data_quality": {
+    "total_rows": 216,
+    "working_days": 216,
+    "outliers_detected": 6,
+    "winsorisation": {
+      "lower_bound": 696.4397500000005,
+      "upper_bound": 2502.1317499999996
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1571.9125949074075,
+    "std_daily_demand": 363.679015835028,
+    "robust_std_daily": 338.047626,
+    "cv_wd": 0.23136083839092228,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": true,
+    "regime": "smooth",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.341276595744681,
+    "std_lead_time": 0.8965301311316044,
+    "cv_lead_time": 0.6684155482738801,
+    "stability": "volatile",
+    "effective_lead_time": 2.2378067268762853
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1470.8616482081702,
+    "safety_stock": 2419.352116799029,
+    "safety_stock_robust": 2405.8251723540834
+  },
+  "order_quantity": {
+    "eoq_raw": 6744.7667104196735,
+    "order_quantity": 5666
+  },
+  "cost_analysis": {
+    "unit_cost": 7.198687,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.8638424399999999
+  },
+  "policy": {
+    "safety_stock": 2420,
+    "reorder_point": 5938,
+    "order_quantity": 5666,
+    "review_period_days": 3.6045261157372126
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.5395258030504861,
+    "sigma_eff_days": 0.9357146529478697,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 91.80005037317004,
+    "variance_components": {
+      "transport": 91.80005037317004,
+      "supplier": 8.199949626829973,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce_buffer",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MAF7F411 exhibits smooth demand (CV=23.14%) with volatile lead times (CV=66.84%), requiring safety stock of 2420 units to meet 95% service level. The optimized policy uses order quantity 5666 units (storage-constrained from EOQ 6745), increasing costs by $2179 (37.4%) to achieve 95% service level. Lead time variability dominates (92% of buffer variance), making supplier performance critical to inventory efficiency.",
+  "warnings": [
+    "High storage utilization (100.0%): limited flexibility for demand spikes",
+    "Lead time is volatile (CV=0.67): high variability increases safety stock requirements",
+    "Significant declining demand trend detected (slope=-1.96 units/day): review forecast assumptions"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "normal_approximation_eoq",
+    "selection_rationale": "Material exhibits smooth demand with CV=23.14%; normal approximation suitable for continuous, non-intermittent demand patterns",
+    "boundary_risk": "Lead time CV of 66.84% is volatile; recommend supplier performance improvement initiatives",
+    "escalation_flag": "none"
+  }
+}

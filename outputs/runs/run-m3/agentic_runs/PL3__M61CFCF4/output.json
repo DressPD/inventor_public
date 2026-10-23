@@ -1,0 +1,117 @@
+{
+  "material_id": "PL3__M61CFCF4",
+  "parameters": {
+    "unit_cost": 0.038958,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 75.0,
+    "moq": 31069,
+    "service_level_target": 0.95,
+    "sap_safety_stock": 0,
+    "sap_safety_lead_time_days": 0.0,
+    "max_storage_units": 64326.038
+  },
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "outliers_detected": 0,
+    "outliers_pct": 0.0
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 3901.78,
+    "std_daily_demand": 2322.92,
+    "robust_std_daily": 794.6,
+    "cv_wd": 0.5953,
+    "non_zero_fraction_wd": 0.9605,
+    "trend_detected": false,
+    "trend_slope": 0.0,
+    "trend_pvalue": 1.0,
+    "regime": "erratic",
+    "distribution_type": "negative_binomial"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.3248,
+    "std_lead_time": 0.7634,
+    "cv_lead_time": 0.5763,
+    "stability": "unstable",
+    "effective_lead_time": 2.0881
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 4002.54,
+    "robust_sigma_ltd": 3115.84,
+    "z_score": 1.6449,
+    "safety_stock": 6584,
+    "safety_stock_robust": 5126,
+    "demand_variance_contribution": 7148306.7,
+    "lead_time_variance_contribution": 8871991.88,
+    "dominant_factor": "lead_time_variability"
+  },
+  "order_quantity_analysis": {
+    "annual_demand": 975443.89,
+    "eoq_raw": 176912.22,
+    "unconstrained_oq": 176913,
+    "order_quantity": 57742,
+    "moq_binding": false,
+    "capacity_constrained": true
+  },
+  "cost_analysis": {
+    "annual_holding_cost_per_unit": 0.004675,
+    "sap_policy": {
+      "safety_stock": 0,
+      "order_quantity": 31069,
+      "num_orders": 31.4,
+      "annual_ordering_cost": 2354.7,
+      "annual_holding_cost": 72.62,
+      "total_annual_cost": 2427.33
+    },
+    "optimized_policy": {
+      "safety_stock": 6584,
+      "order_quantity": 57742,
+      "num_orders": 16.89,
+      "annual_ordering_cost": 1266.99,
+      "annual_holding_cost": 165.75,
+      "total_annual_cost": 1432.74
+    },
+    "cost_savings": 994.59,
+    "cost_savings_pct": 40.97
+  },
+  "recommended_policy": {
+    "safety_stock": 6584,
+    "reorder_point": 14732,
+    "order_quantity": 57742,
+    "review_period_days": 15
+  },
+  "safety_lead_time_analysis": {
+    "recommended_safety_lead_time_days": 1.69,
+    "sigma_eff_days": 1.69,
+    "dominant_factor": "lead_time_variability",
+    "disruption_premium": 1.0,
+    "comparison_action": "INCREASE from 0.0 to 1.69 days"
+  },
+  "capacity_gate": {
+    "safety_stock": 6584,
+    "order_quantity": 57742,
+    "total_required": 64326,
+    "max_storage_units": 64326.038,
+    "available_space": 57742.038,
+    "capacity_ok": true,
+    "utilization_pct": 100.0
+  },
+  "narrative": "Material PL3__M61CFCF4 exhibits erratic demand with high variability (CV=0.60) and unstable lead times (CV=0.58). The optimized policy recommends a safety stock of 6584 units and reorder point of 14732 units to achieve 95% service level. Compared to the current SAP policy with zero safety stock, the optimized approach increases annual costs by $994.59 but provides substantial risk mitigation against stockouts. Capacity utilization is at 100.0%, which constrains the order quantity below the optimal EOQ and limits flexibility for demand spikes.",
+  "research_insights": {
+    "demand_pattern": "Erratic demand with CV of 0.60, indicating high variability and frequent near-zero demand days",
+    "seasonality": "No clear seasonality detected in the working day demand pattern",
+    "lead_time_risk": "Lead time coefficient of variation is 0.58 (unstable), suggesting significant supply chain variability",
+    "cost_drivers": "Annual demand of 975444 units with ordering cost $75.00 and holding cost rate 12.0%",
+    "optimization_lever": "Safety stock is the primary lever; capacity constraint prevents full EOQ optimization",
+    "service_level_trade_off": "Achieving 95% service level requires 6584 units safety stock, adding $93.13 in annual holding costs",
+    "supplier_performance": "Mean lead time of 1.32 days with std dev 0.76 days; high variability suggests need for supplier development",
+    "capacity_constraint_impact": "Maximum storage capacity of 64326 units limits order quantity to 57742 units (vs optimal EOQ of 176912)",
+    "moq_impact": "MOQ of 31069 units is binding; actual order quantity 57742 is constrained by capacity rather than MOQ"
+  },
+  "warnings": [
+    "Order quantity (57742) is below optimal EOQ (176912) due to capacity constraint",
+    "High demand variability (CV=0.60); consider more frequent review periods",
+    "Unstable lead times (CV=0.58); recommend supplier performance improvement",
+    "High capacity utilization (100.0%); limited flexibility for demand spikes"
+  ]
+}

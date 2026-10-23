@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__MBDEC0A8",
+  "data_quality": {
+    "total_rows": 126,
+    "working_days": 126,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 3340.18
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 837.07,
+    "std_daily_demand": 957.21,
+    "robust_std_daily": 1013.33,
+    "cv_wd": 1.143,
+    "non_zero_fraction_wd": 0.619,
+    "trend_detected": false,
+    "regime": "intermittent/lumpy",
+    "distribution_type": "compound-Poisson-like"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 5.87,
+    "std_lead_time": 1.57,
+    "cv_lead_time": 0.267,
+    "stability": "unstable",
+    "effective_lead_time": 6.65
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 2662.69,
+    "safety_stock": 4380.0,
+    "safety_stock_robust": 4553.0
+  },
+  "order_quantity": {
+    "eoq_raw": 12689.1,
+    "order_quantity": 9905
+  },
+  "cost_analysis": {
+    "unit_cost": 2.166507,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.25998
+  },
+  "policy": {
+    "safety_stock": 4380,
+    "reorder_point": 9949,
+    "order_quantity": 9905,
+    "review_period_days": 12
+  },
+  "safety_lead_time": {
+    "recommended_days": 5.23,
+    "sigma_eff_days": 5.23,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase from 3.0 to 5.23 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MBDEC0A8 exhibits highly intermittent and lumpy demand (CV=1.14) with 38% zero-demand working days, indicating a compound-Poisson-like process with irregular large orders. Lead times are unstable (CV=0.27) with observed spikes to 13.6 days, generating substantial lead-time demand variance. The (r,Q) policy is recommended: a reorder point of 9,949 units and order quantity of 9,905 units (capacity-constrained from EOQ of 12,689). The current SAP safety stock of 297 units is critically insufficient and must be raised to 4,380 units to achieve the 95% service level target.",
+  "warnings": [
+    "Storage capacity constraint is binding: EOQ of 12689 reduced to 9905 to satisfy safety_stock + order_quantity <= max_storage_units (14285.93).",
+    "Increasing order frequency slightly above pure EOQ optimum; capacity review recommended.",
+    "3 demand observations winsorised at upper bound 3340.18 units."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review fixed-order-quantity policy",
+    "selection_rationale": "Given intermittent/lumpy demand and unstable lead times, a continuous-review (r,Q) policy provides responsive replenishment triggered by inventory position crossing the reorder point, avoiding the inefficiency of fixed-interval reviews when demand timing is unpredictable. EOQ minimises total order+holding cost given annual demand of 209,266 units.",
+    "boundary_risk": "Storage cap of 14,286 units binds at current safety stock level (4,380 + 9,905 = 14,285 <= 14,286). Any increase in safety stock would require a corresponding reduction in order quantity below MOQ or a facility capacity upgrade. Service level may be marginally degraded if a larger order is blocked.",
+    "escalation_flag": "None under current parameters. If safety stock requirements increase (e.g. higher service level or more variable lead times), MOQ + safety_stock may approach or exceed max_storage_units, requiring escalation to facilities and procurement."
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "material_id": "PL2__M058116F",
+  "data_quality": {
+    "total_rows": 80,
+    "working_days": 80,
+    "outliers_detected": 1,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 23320.921749999965
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 12459.229359374998,
+    "std_daily_demand": 5142.763099743039,
+    "robust_std_daily": 3095.045774647887,
+    "cv_wd": 0.4127673511262031,
+    "non_zero_fraction_wd": 0.975,
+    "trend_detected": true,
+    "regime": "smooth",
+    "distribution_type": "normal-like"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.6927999999999996,
+    "std_lead_time": 0.954850217979506,
+    "cv_lead_time": 0.5640655824548122,
+    "stability": "volatile",
+    "effective_lead_time": 2.1702251089897526
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 13649.271607798262,
+    "safety_stock": 22452,
+    "safety_stock_robust": 20659
+  },
+  "order_quantity": {
+    "eoq_raw": 139061.07075185515,
+    "order_quantity": 139062
+  },
+  "cost_analysis": {
+    "unit_cost": 0.20134,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.0241608,
+    "recommended": {
+      "annual_orders": 22.398695113285797,
+      "annual_ordering_cost": 1679.9021334964348,
+      "annual_holding_cost": 2222.3828664,
+      "total_annual_cost": 3902.284999896435
+    },
+    "previous_sap": {
+      "annual_orders": 117.08041421755185,
+      "annual_ordering_cost": 8781.03106631639,
+      "annual_holding_cost": 321.3869616,
+      "total_annual_cost": 9102.418027916388
+    },
+    "savings": {
+      "annual_cost_savings": 5200.133028019954,
+      "savings_percent": 57.1291387856673
+    }
+  },
+  "policy": {
+    "safety_stock": 22452,
+    "reorder_point": 49492,
+    "order_quantity": 139062,
+    "review_period_days": 12
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.224149290160363,
+    "sigma_eff_days": 0.954850217979506,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "EXECUTIVE SUMMARY for PL2__M058116F:\nThis analysis optimizes inventory policy for material PL2__M058116F, a smooth demand item with volatile lead times.\n\nKEY FINDINGS:\n\u2022 Mean daily demand: 12,459 units\n\u2022 Demand variability (CV): 41.3% \u2192 smooth regime\n\u2022 Lead time: 1.69 \u00b1 0.95 days (volatile)\n\u2022 Recommended safety stock: 22,452 units (vs SAP: 0)\n\u2022 Recommended order quantity: 139,062 units (EOQ-optimized)\n\u2022 Reorder point: 49,492 units\n\u2022 Review cycle: 12 days\n\nCOST IMPACT:\n\u2022 Current (SAP) annual cost: $9,102.42\n\u2022 Recommended annual cost: $3,902.28\n\u2022 Annual savings: $5,200.13 (57.1%)\n\nThe recommended policy reduces ordering frequency from 117 to 22 orders/year while maintaining 95% service level.\nSafety stock increase from 0 to 22,452 units is driven by lead time variability (56.4%).\n\nRECOMMENDATION: Implement (Q,r) continuous review with Q=139,062, r=49,492.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(Q, r) continuous review model",
+    "selection_rationale": "Demand regime is smooth with CV=0.413. Lead time is volatile (CV=0.564). EOQ-based continuous review is optimal for steady, high-volume flow.",
+    "boundary_risk": "Medium",
+    "escalation_flag": "No"
+  }
+}

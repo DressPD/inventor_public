@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__MCF49247",
+  "data_quality": {
+    "total_rows": 140,
+    "working_days": 140,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 1310.5006
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 699.6885514285715,
+    "std_daily_demand": 342.27904052327244,
+    "robust_std_daily": 341.216085989622,
+    "cv_wd": 0.4891877104812317,
+    "non_zero_fraction_wd": 0.9571428571428572,
+    "trend_detected": true,
+    "regime": "smooth",
+    "distribution_type": "moderately-skewed"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.6574647887323946,
+    "std_lead_time": 1.1842197169563466,
+    "cv_lead_time": 0.714476545750345,
+    "stability": "unstable",
+    "effective_lead_time": 2.8416845056887414
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 938.4738977787706,
+    "safety_stock": 1544.0,
+    "safety_stock_robust": 1543.0
+  },
+  "order_quantity": {
+    "eoq_raw": 22648.084860108895,
+    "order_quantity": 6913
+  },
+  "cost_analysis": {
+    "unit_cost": 0.295552,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.03546624
+  },
+  "policy": {
+    "safety_stock": 1544,
+    "reorder_point": 2704,
+    "order_quantity": 6913,
+    "review_period_days": 10
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.9478680965430923,
+    "sigma_eff_days": 1.1842197169563466,
+    "dominant_factor": "transport",
+    "dominant_pct": 48.3,
+    "variance_components": {
+      "transport": 0.6868,
+      "supplier": 0.561,
+      "quality": 0.1402
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce from 4.0 to 1.95 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MCF49247 exhibits smooth, moderately-skewed demand (CV=0.49) with a statistically significant declining trend over the observation period. Lead times are highly unstable (CV=0.71, range 0.38\u20135.02 days), making safety stock essential to maintain the 95% service level. A continuous-review (r,Q) policy is recommended: the storage constraint of 8,457.7 units caps the order quantity at 6,913, well below the unconstrained EOQ of 22,648, but still consolidates ordering from ~173 to ~26 orders per year yielding 82.8% cost reduction.",
+  "warnings": [
+    "High capacity utilization: ~100% (SS+OQ = 8,457 vs cap 8,457.7)",
+    "Unstable lead time: CV = 0.714 \u2014 active supplier monitoring required",
+    "Significant declining demand trend detected (slope = -2.56/day, p < 0.001) \u2014 review policy quarterly"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) continuous-review",
+    "selection_rationale": "Smooth demand with high but stable average volume suits a continuous-review fixed-order-quantity policy; the EOQ minimises combined ordering and holding costs while the reorder point absorbs lead-time and demand uncertainty at the target service level.",
+    "boundary_risk": "Storage capacity is fully utilised at ~100%. The capacity-constrained OQ (6,913) is 69% below the unconstrained EOQ (22,648), increasing order frequency and annual ordering cost versus the true economic optimum. Any upward revision to safety stock would require a formal capacity extension request.",
+    "escalation_flag": "No MOQ-capacity infeasibility (MOQ 1,050 + SS 1,544 = 2,594 < 8,457.7). No escalation required, but near-full capacity utilisation should be flagged to the warehouse manager."
+  }
+}

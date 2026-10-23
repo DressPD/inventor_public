@@ -1,0 +1,77 @@
+{
+  "material_id": "PL3__M82622E9",
+  "data_quality": {
+    "total_rows": 222,
+    "working_days": 222,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 46296.725
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 21960.564,
+    "std_daily_demand": 12871.45,
+    "robust_std_daily": 1464.86,
+    "cv_wd": 0.586,
+    "non_zero_fraction_wd": 0.955,
+    "trend_detected": false,
+    "regime": "Lumpy",
+    "distribution_type": "Lognormal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 5.031,
+    "std_lead_time": 1.847,
+    "cv_lead_time": 0.367,
+    "stability": "Variable",
+    "effective_lead_time": 6.878
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 49902.0,
+    "safety_stock": 82090.0,
+    "safety_stock_robust": 11816.0
+  },
+  "order_quantity": {
+    "eoq_raw": 499965.0,
+    "order_quantity": 363574
+  },
+  "cost_analysis": {
+    "unit_cost": 0.018547,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.002226
+  },
+  "policy": {
+    "safety_stock": 82090,
+    "reorder_point": 192540,
+    "order_quantity": 363574,
+    "review_period_days": 17
+  },
+  "safety_lead_time": {
+    "recommended_days": 3.74,
+    "sigma_eff_days": 2.27,
+    "dominant_factor": "lead_time_variance",
+    "dominant_pct": 67.2,
+    "variance_components": {
+      "transport": 0.672,
+      "supplier": 0.328,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "REDUCE \u2014 recommended 3.74 days vs SAP 0.0 days; SAP safety stock of 105,459 implies ~4.8 days, reduce to 3.74",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__M82622E9 exhibits lumpy demand with a high CV of 0.586, driven by intermittent near-zero days interspersed with high-volume working-day draws averaging ~21,961 units/day. Lead times are variable (mean 5.03 days, \u03c3 1.85 days), making lead-time variance the dominant contributor to safety stock requirements. An (r,Q) policy with SS=82,090 and OQ=363,574 was selected to exploit economies of scale in ordering while respecting the 445,664-unit storage cap; the storage constraint binds and caps the EOQ from 499,965 to 363,574 units.",
+  "warnings": [
+    "Storage capacity constraint is binding: EOQ of 499,965 capped to 363,574 (floor(445,664.86 - 82,090))",
+    "4 outlier values winsorized at upper bound 46,296.725 (99th percentile)"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) \u2014 Continuous-review fixed-order-quantity with EOQ-derived batch size",
+    "selection_rationale": "High-volume material with known MOQ and lumpy but predominantly positive demand pattern suits a continuous-review (r,Q) model; the EOQ minimises total ordering + holding cost and the MOQ (67,494) is well below the unconstrained EOQ (499,965), so MOQ does not bind \u2014 only storage capacity does.",
+    "boundary_risk": "Storage cap binds at 445,664 units: unconstrained EOQ 499,965 was reduced to 363,574. During peak demand weeks the reduced OQ increases replenishment frequency slightly, marginally raising stock-out exposure versus the unconstrained optimum. Annual savings remain substantial at 75.2%.",
+    "escalation_flag": "None \u2014 MOQ (67,494) + SS (82,090) = 149,584 \u2264 max_storage_units (445,664). Policy is fully feasible. No MOQ-capacity conflict."
+  }
+}

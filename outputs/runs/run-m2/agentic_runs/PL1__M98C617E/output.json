@@ -1,0 +1,104 @@
+{
+  "material_id": "PL1__M98C617E",
+  "analysis_metadata": {
+    "total_rows": 134,
+    "working_days": 134,
+    "analysis_date": "2026-03-09",
+    "escalation_flag": "REVIEW REQUIRED",
+    "feasibility": "FEASIBLE"
+  },
+  "input_parameters": {
+    "unit_cost": 0.208354,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 75.0,
+    "moq": 24370,
+    "service_level_target": 0.95,
+    "sap_safety_stock": 0,
+    "sap_safety_lead_time_days": 3.3,
+    "max_storage_units": 1025865.03
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 126064.86718656718,
+    "std_daily_demand": 55546.09173850409,
+    "robust_std_daily": 30649.37467199998,
+    "cv_wd": 0.44061516089411146,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "trend_slope": -275.8944168805099,
+    "trend_pct_of_mean": -0.21885115420159484,
+    "regime": "smooth",
+    "distribution_type": "normal-approximation",
+    "annual_demand": 32776865.468507465,
+    "outliers_detected": 18,
+    "outliers_winsorised": 18
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.780736842105263,
+    "std_lead_time": 1.2276506209147922,
+    "cv_lead_time": 0.6894059761595157,
+    "stability": "volatile",
+    "effective_lead_time": 3.008387463020055,
+    "min_lead_time": 0.05,
+    "max_lead_time": 4.84,
+    "observations": 95
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 171598.3821702936,
+    "sigma_ltd_robust": 160076.7682814585,
+    "z_score": 1.644853626951472,
+    "safety_stock": 282255,
+    "safety_stock_robust": 263303
+  },
+  "eoq_analysis": {
+    "eoq_raw": 443442.99064907763,
+    "unconstrained_order_quantity": 443443,
+    "order_quantity": 443443,
+    "capacity_constrained": false
+  },
+  "cost_analysis": {
+    "annual_holding_cost_per_unit": 0.02500248,
+    "new_policy": {
+      "num_orders_per_year": 73.91449514031672,
+      "annual_ordering_cost": 5543.587135523754,
+      "annual_holding_cost": 12600.66236172,
+      "total_annual_cost": 18144.249497243756
+    },
+    "previous_sap_policy": {
+      "safety_stock": 0,
+      "num_orders_per_year": 73.91449514031672,
+      "annual_ordering_cost": 5543.587135523754,
+      "annual_holding_cost": 5543.58736932,
+      "total_annual_cost": 11087.174504843755
+    },
+    "cost_difference": -7057.074992400001,
+    "cost_change_interpretation": "New policy increases costs"
+  },
+  "recommended_policy": {
+    "safety_stock": 282255,
+    "reorder_point": 506744,
+    "order_quantity": 443443,
+    "review_period_days": 4,
+    "max_inventory_level": 725698,
+    "storage_utilization_pct": 70.74010506040935
+  },
+  "safety_lead_time_analysis": {
+    "sigma_eff_days": 1.36119115499753,
+    "recommended_days": 2.2389602082719504,
+    "sap_current_days": 3.3,
+    "variance_components": {
+      "transport": 1.5071260470324748,
+      "supplier": 0.0,
+      "quality": 0.0
+    },
+    "dominant_factor": "transport",
+    "dominant_pct": 99.99999993364854,
+    "disruption_premium": 1.0,
+    "comparison_action": "DECREASE from 3.3 to 2.24 days"
+  },
+  "research_insights": {
+    "narrative": "Material PL1__M98C617E exhibits lumpy demand characteristics with high variability (CV=0.44). \nOver the analysis period of 134 working days, the material showed a mean daily demand of 126,065 units \nwith significant fluctuations (55,546 std dev). The demand pattern is classified as 'smooth' \nwith 100.0% of days having non-zero demand.\n\nLead time analysis reveals volatile variability (CV=0.69) with an average of 1.78 days. \nThe combination of high demand variability and volatile lead times necessitates substantial safety stock buffer of 282,255 units \nto maintain the target 95% service level.\n\nThe optimized inventory policy recommends an order quantity of 443,443 units (above MOQ of 24,370) \nwith a reorder point of 506,744 units. This policy balances ordering costs ($5,543.59/year) \nwith holding costs ($12,600.66/year) for a total annual cost of $18,144.25.\n\nCompared to the previous SAP policy with zero safety stock, the new policy increases annual costs by $7,057.07 \nbut provides substantially better service level protection against stockouts due to demand and lead time variability.",
+    "selected_model": "Normal approximation with lead time variability",
+    "selection_rationale": "Given the demand CV of 0.44 and distribution characteristics, we employ a normal approximation \nwith adjustments for lead time variability. The safety stock calculation uses the standard formula: \nSS = z * sqrt(LT * \u03c3_D\u00b2 + D\u00b2 * \u03c3_LT\u00b2), which accounts for both demand uncertainty during lead time \nand lead time variability itself. This approach is appropriate for the smooth demand pattern observed.",
+    "boundary_risk": "Key risks include: (1) Demand volatility exceeding historical patterns - the smooth pattern with CV=0.44 \nsuggests future outliers are likely; (2) Lead time variability (CV=0.69) indicates volatile \ntransport reliability that could deteriorate; (3) Storage capacity utilization at 70.7% \nleaves limited buffer for demand spikes."
+  }
+}

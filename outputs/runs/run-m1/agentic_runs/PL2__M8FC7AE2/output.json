@@ -1,0 +1,97 @@
+{
+  "material_id": "PL2__M8FC7AE2",
+  "data_quality": {
+    "total_rows": 127,
+    "working_days": 127,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 250141.803
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 77309.48,
+    "std_daily_demand": 66475.82,
+    "robust_std_daily": 52341.15,
+    "cv_wd": 0.86,
+    "non_zero_fraction_wd": 0.969,
+    "trend_detected": true,
+    "regime": "erratic",
+    "distribution_type": "right-skewed"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.357,
+    "std_lead_time": 0.923,
+    "cv_lead_time": 0.68,
+    "stability": "unstable",
+    "effective_lead_time": 2.28
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 105322.4,
+    "safety_stock": 173249.0,
+    "safety_stock_robust": 131417.0
+  },
+  "order_quantity": {
+    "eoq_raw": 260288.6,
+    "order_quantity": 260289
+  },
+  "cost_analysis": {
+    "unit_cost": 0.237729,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.028527
+  },
+  "policy": {
+    "safety_stock": 173249,
+    "reorder_point": 349338,
+    "order_quantity": 260289,
+    "review_period_days": 4
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.24,
+    "sigma_eff_days": 1.362,
+    "dominant_factor": "supplier_variability",
+    "dominant_pct": 50.0,
+    "variance_components": {
+      "transport": 0.4,
+      "supplier": 0.5,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL2__M8FC7AE2 exhibits erratic demand with a high coefficient of variation (0.86) and a statistically significant upward trend over the observation window (Mar 2025 \u2013 Mar 2026). Lead times are unstable (CV=0.68) with a bimodal distribution suggesting two supplier delivery modes. The (r,Q) continuous-review policy is recommended because demand is mostly non-zero and the EOQ (260,289 units) substantially exceeds the MOQ, enabling large infrequent orders that reduce total annual cost by 75% versus the current SAP baseline. The safety stock must be raised from 90,978 to 173,249 units to reliably achieve the 95% service level given actual demand and lead-time variability.",
+  "warnings": [
+    "Upward demand trend detected (p<0.05): policy should be reviewed quarterly as mean demand estimate will become stale.",
+    "SAP safety stock (90,978) is below the statistically required level (173,249) for 95% service level given CV=0.86 and unstable lead times.",
+    "Safety lead time should be reduced from 3.0 to 2.24 days based on actual lead-time performance data.",
+    "Lead time distribution appears bimodal (cluster near 0.8 days and cluster near 2.9 days), suggesting two distinct delivery modes."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review with EOQ order quantity",
+    "selection_rationale": "Demand is erratic but predominantly non-zero (96.9% non-zero days), making continuous-review appropriate over periodic review. The EOQ of 260,289 units far exceeds the MOQ (20,379), enabling a significant reduction in ordering frequency from ~91 orders/year (SAP) to ~74 orders/year, drastically cutting total costs. The (r,Q) structure also responds well to the unstable lead-time environment by triggering replenishment at a fixed inventory level rather than at calendar intervals.",
+    "boundary_risk": "Capacity constraint is non-binding: safety_stock (173,249) + order_quantity (260,289) = 433,538 units, which is 28% of the 1,528,435-unit storage limit. No capacity-driven service or cost degradation is expected. However, if the upward demand trend continues, the EOQ will grow and the safety stock calculation should be refreshed to maintain the capacity buffer.",
+    "escalation_flag": "none"
+  },
+  "sap_comparison": {
+    "sap_safety_stock": 90978,
+    "sap_order_quantity": 20379,
+    "sap_avg_inventory": 101167.5,
+    "sap_annual_orders": 90.6,
+    "sap_annual_ordering_cost": 4530.0,
+    "sap_annual_holding_cost": 45775.76,
+    "sap_total_cost": 50305.76,
+    "opt_safety_stock": 173249,
+    "opt_order_quantity": 260289,
+    "opt_avg_inventory": 303393.5,
+    "opt_annual_orders": 7.42,
+    "opt_annual_ordering_cost": 371.0,
+    "opt_annual_holding_cost": 11996.72,
+    "opt_total_cost": 12367.72,
+    "cost_savings": 37938.04,
+    "savings_pct": 75.41
+  }
+}

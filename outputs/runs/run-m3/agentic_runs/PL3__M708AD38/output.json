@@ -1,0 +1,84 @@
+{
+  "material_id": "PL3__M708AD38",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 170,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 1975.68228,
+      "upper_bound": 4356.09694
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 3906.977308470589,
+    "std_daily_demand": 388.8943152610636,
+    "robust_std_daily": 221.22386953298744,
+    "cv_wd": 0.09953841155358507,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": true,
+    "regime": "stable",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.0326754385964911,
+    "std_lead_time": 0.8042636054548771,
+    "cv_lead_time": 0.7788154684379358,
+    "stability": "unstable",
+    "effective_lead_time": 1.8369390440513682
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 3166.9939439989616,
+    "safety_stock": 5210,
+    "safety_stock_robust": 5182
+  },
+  "order_quantity": {
+    "eoq_raw": 11474.438073896506,
+    "order_quantity": 3551
+  },
+  "cost_analysis": {
+    "unit_cost": 6.182111,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.7418533199999999,
+    "annual_ordering_cost": 13753.088244405059,
+    "annual_holding_cost": 5182.21636686,
+    "total_annual_cost": 18935.30461126506,
+    "previous_total_cost": 59147.888833682366,
+    "cost_savings": 40212.58422241731,
+    "cost_savings_percent": 67.98650808229328
+  },
+  "policy": {
+    "safety_stock": 5210,
+    "reorder_point": 12387,
+    "order_quantity": 3551,
+    "review_period_days": 1
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.3335117121628453,
+    "sigma_eff_days": 0.8105995233534391,
+    "dominant_factor": "transport",
+    "dominant_pct": 50.0,
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.4,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "INCREASE",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__M708AD38 exhibits stable demand with mean daily consumption of 3907 units and CV of 10.0%. A significant demand trend was detected. Lead time averages 1.03 days with unstable variability (CV=77.9%). To achieve 95% service level, a safety stock of 5210 units is required. The economic order quantity calculation yields 11474 units, which is constrained by storage capacity to 3551 units. The recommended reorder point is 12387 units with a review period of 1 days. Optimized policy reduces annual costs by $40212.58 (68.0%) compared to SAP baseline.",
+  "warnings": [
+    "Capacity constraint active: order quantity reduced from 11475 to 3551",
+    "Significant demand trend detected (p=0.0159)",
+    "Lead time highly variable (CV=77.88%)"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Deterministic EOQ with stochastic lead time",
+    "selection_rationale": "Demand is stable (CV=9.95%), lead time is unstable (CV=77.88%). EOQ is appropriate for stable demand patterns.",
+    "boundary_risk": "Capacity constraint limits optimal order quantity; may increase total costs",
+    "escalation_flag": "WARNING"
+  }
+}

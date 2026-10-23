@@ -1,0 +1,109 @@
+{
+  "material_id": "PL3__M7544772",
+  "unit_cost": 5.631379,
+  "holding_cost_rate": 0.12,
+  "ordering_cost": 75.0,
+  "moq": 225,
+  "service_level_target": 0.95,
+  "sap_safety_stock": 225,
+  "sap_safety_lead_time_days": 0.0,
+  "max_storage_units": 10644.431,
+  "data_summary": {
+    "total_rows": 228,
+    "working_days": 228,
+    "date_range_start": "2025-03-03",
+    "date_range_end": "2026-03-09"
+  },
+  "demand_statistics": {
+    "mean_daily_demand": 1920.7673,
+    "std_daily_demand": 1183.3988,
+    "robust_std_daily": 385.0883,
+    "cv_wd": 0.6161,
+    "non_zero_fraction_wd": 0.7851,
+    "outliers_detected": 0,
+    "outliers_winsorized": 0,
+    "trend_detected": false,
+    "trend_slope": null,
+    "trend_p_value": null,
+    "regime": "regular",
+    "distribution_type": "high-variability",
+    "q1": 37.11,
+    "q3": 2778.07,
+    "iqr": 2740.97,
+    "upper_bound": 6889.52
+  },
+  "lead_time_analysis": {
+    "observations": 106,
+    "mean_lead_time": 1.106,
+    "std_lead_time": 0.8934,
+    "cv_lead_time": 0.8077,
+    "min_lead_time": 0.5,
+    "max_lead_time": 3.73,
+    "stability": "unstable",
+    "effective_lead_time": 1.5527
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 2119.809,
+    "z_score": 1.6449,
+    "safety_stock": 3487,
+    "safety_stock_robust": 2901
+  },
+  "order_quantity_analysis": {
+    "annual_demand": 480191.83,
+    "eoq_raw": 10324.17,
+    "unconstrained_order_quantity": 10325,
+    "order_quantity": 7157,
+    "capacity_constrained": true,
+    "infeasible": false
+  },
+  "policy": {
+    "reorder_point": 6470,
+    "safety_stock": 3487,
+    "order_quantity": 7157,
+    "review_period_days": 4
+  },
+  "safety_lead_time_recommendation": {
+    "recommended_days": 1.8154,
+    "sigma_eff_days": 1.1036,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "dominant_factor": "transport",
+    "dominant_pct": 0.6,
+    "disruption_premium": 1.0,
+    "comparison_action": "increase from 0.0 to 1.82 days"
+  },
+  "cost_analysis": {
+    "annual_holding_cost_per_unit": 0.6758,
+    "optimized_policy": {
+      "orders_per_year": 67.09,
+      "annual_ordering_cost": 5032.05,
+      "avg_inventory": 7065.5,
+      "annual_holding_cost": 4774.62,
+      "total_annual_cost": 9806.67
+    },
+    "sap_policy": {
+      "orders_per_year": 2134.19,
+      "annual_ordering_cost": 160063.94,
+      "avg_inventory": 337.5,
+      "annual_holding_cost": 228.07,
+      "total_annual_cost": 160292.01
+    },
+    "cost_savings": 150485.34,
+    "cost_savings_pct": 93.88
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__M7544772 exhibits regular demand with a coefficient of variation of 0.62 and high demand stability (78.5% non-zero days). The current SAP policy (safety stock 225, order quantity 225) results in excessive ordering costs ($160,064/year) due to severe under-batching relative to actual daily consumption. The optimized (r,Q) policy increases safety stock to 3,487 units to meet the 95% service level target and sets a storage-capacity-constrained order quantity of 7,157 units, yielding annual cost savings of $150,485 (93.9% reduction). Lead time instability (CV=0.81) is the dominant driver of safety stock and warrants supplier SLA review.",
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review policy",
+    "selection_rationale": "Regular demand regime with 78.5% non-zero days and stable mean warrants a continuous-review (r,Q) model; EOQ minimises ordering vs holding cost trade-off with capacity cap applied.",
+    "boundary_risk": "EOQ of 10,325 units exceeds available storage headroom above safety stock; order quantity capped at 7,157 units, increasing order frequency from 46 to 67/year and slightly raising ordering costs.",
+    "escalation_flag": "none"
+  },
+  "warnings": [
+    "High lead time variability (CV=0.81); consider supplier diversification or SLA enforcement",
+    "Order quantity is storage-capacity-constrained (EOQ 10,325 capped to 7,157); annual ordering cost increases modestly but remains far below SAP baseline"
+  ]
+}

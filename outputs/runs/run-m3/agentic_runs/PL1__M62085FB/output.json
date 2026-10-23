@@ -1,0 +1,76 @@
+{
+  "material_id": "PL1__M62085FB",
+  "data_quality": {
+    "total_rows": 216,
+    "working_days": 216,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 1042.61
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 508.9,
+    "std_daily_demand": 242.35,
+    "robust_std_daily": 217.64,
+    "cv_wd": 0.476,
+    "non_zero_fraction_wd": 0.963,
+    "trend_detected": true,
+    "regime": "Moderate",
+    "distribution_type": "Normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.95,
+    "std_lead_time": 1.27,
+    "cv_lead_time": 0.651,
+    "stability": "Volatile",
+    "effective_lead_time": 3.21
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 727.46,
+    "safety_stock": 1197,
+    "safety_stock_robust": 1172
+  },
+  "order_quantity": {
+    "eoq_raw": 2277.24,
+    "order_quantity": 2278
+  },
+  "cost_analysis": {
+    "unit_cost": 30.91,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 3.71
+  },
+  "policy": {
+    "safety_stock": 1197,
+    "reorder_point": 2188,
+    "order_quantity": 2278,
+    "review_period_days": 5
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.27,
+    "sigma_eff_days": 1.43,
+    "dominant_factor": "Lead_Time",
+    "dominant_pct": 78.4,
+    "variance_components": {
+      "transport": 0.8011,
+      "supplier": 0.4807,
+      "quality": 0.3204
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Review",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M62085FB exhibits moderate demand variability (CV=0.48) with volatile lead times (CV=0.65). \nThe analysis reveals that lead time variability is the dominant driver of safety stock requirements (78.4% contribution).\n\nCurrent SAP policy uses an undersized order quantity (45 units) resulting in excessive ordering frequency \n(2850 orders/year vs 56 recommended). This drives annual costs to $215,430.\n\nThe optimized policy increases safety stock to 1197 units (from 434) to achieve 95% service level, \nand raises order quantity to 2278 units (EOQ-based). This reduces total annual costs by $202,542 (94.0%), \nprimarily through reduced ordering frequency.\n\nStorage constraint (3995 units) is satisfied with 3475 units maximum inventory. \nReorder point is set at 2188 units with a 5-day review cycle.",
+  "warnings": [
+    "High lead time variability detected (CV > 0.5)"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Classical EOQ with Safety Stock",
+    "selection_rationale": "Standard variability levels support classical inventory optimization",
+    "boundary_risk": "Low",
+    "escalation_flag": "None"
+  }
+}

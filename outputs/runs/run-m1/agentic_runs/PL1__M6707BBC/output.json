@@ -1,0 +1,74 @@
+{
+  "material_id": "PL1__M6707BBC",
+  "data_quality": {
+    "total_rows": 132,
+    "working_days": 132,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 10551.11
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 4377.23,
+    "std_daily_demand": 2339.71,
+    "robust_std_daily": 2246.54,
+    "cv_wd": 0.5345,
+    "non_zero_fraction_wd": 0.9318,
+    "trend_detected": false,
+    "regime": "erratic",
+    "distribution_type": "gamma-like"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.33,
+    "std_lead_time": 1.17,
+    "cv_lead_time": 0.5039,
+    "stability": "moderate",
+    "effective_lead_time": 3.5
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 6253.05,
+    "safety_stock": 10286.0,
+    "safety_stock_robust": 10154.0
+  },
+  "order_quantity": {
+    "eoq_raw": 16151.12,
+    "order_quantity": 16152
+  },
+  "cost_analysis": {
+    "unit_cost": 3.495849,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.4195
+  },
+  "policy": {
+    "safety_stock": 10286,
+    "reorder_point": 20476,
+    "order_quantity": 16152,
+    "review_period_days": 4
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.35,
+    "sigma_eff_days": 1.17,
+    "dominant_factor": "transport",
+    "dominant_pct": 58.0,
+    "variance_components": {
+      "transport": 1.3757,
+      "supplier": 0.4127,
+      "quality": 0.1376
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce from SAP 2.8 days to 2.35 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Demand for PL1__M6707BBC is erratic (CV=53.45%, gamma-like distribution) with moderate lead time variability (CV=50.39%), making the current SAP safety stock of 1,033 units insufficient for a 95% service level. The combined lead-time demand sigma of 6,253 units drives a recommended safety stock of 10,286 units. An (r,Q) continuous review policy with EOQ-aligned order quantity of 16,152 units reduces annual orders from ~368 to ~68, yielding net savings of $8,358.65/year (43%) while remaining well within the 69,325-unit storage cap.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) Continuous Review Policy",
+    "selection_rationale": "Erratic gamma-like demand with moderate lead time variability is best served by a continuous review trigger at a pre-computed reorder point, avoiding stockout exposure between periodic review intervals. The EOQ formula provides the cost-minimising order quantity above the MOQ constraint.",
+    "boundary_risk": "Capacity utilisation is only 38.1% (26,438 / 69,325 units). No capacity constraint binds. Ample headroom exists for safety stock increases if service level target is raised.",
+    "escalation_flag": "none"
+  }
+}

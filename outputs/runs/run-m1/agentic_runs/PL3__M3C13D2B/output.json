@@ -1,0 +1,94 @@
+{
+  "material_id": "PL3__M3C13D2B",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 171,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 334.6942,
+      "upper_bound": 514.357
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 498.17637076023397,
+    "std_daily_demand": 30.48922168203571,
+    "robust_std_daily": 5.365925925925946,
+    "cv_wd": 0.06120166164346199,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": true,
+    "regime": "smooth",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.1324489795918367,
+    "std_lead_time": 0.9099870410592973,
+    "cv_lead_time": 0.8035567671995958,
+    "stability": "unstable",
+    "effective_lead_time": 2.042436020651134
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 454.4936407329467,
+    "safety_stock": 748,
+    "safety_stock_robust": 13
+  },
+  "order_quantity": {
+    "eoq_raw": 3259.2595733196313,
+    "order_quantity": 1451
+  },
+  "cost_analysis": {
+    "unit_cost": 14.655318,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.7586381599999998,
+    "previous_policy": {
+      "safety_stock": 0,
+      "order_quantity": 347,
+      "reorder_point": 565,
+      "annual_ordering_cost": 26918.752022346936,
+      "annual_holding_cost": 305.12372075999997,
+      "total_annual_cost": 27223.875743106935
+    },
+    "optimized_policy": {
+      "safety_stock": 748,
+      "order_quantity": 1451,
+      "reorder_point": 1313,
+      "annual_ordering_cost": 6437.496176260776,
+      "annual_holding_cost": 2591.35332876,
+      "total_annual_cost": 9028.849505020777
+    },
+    "annual_savings": 18195.02623808616,
+    "savings_percentage": 66.8348122426805
+  },
+  "policy": {
+    "safety_stock": 748,
+    "reorder_point": 1313,
+    "order_quantity": 1451,
+    "review_period_days": 3
+  },
+  "safety_lead_time": {
+    "recommended_days": 0.0030045493379805685,
+    "sigma_eff_days": 0.9099870410592973,
+    "dominant_factor": "transport",
+    "dominant_pct": 0.6,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__M3C13D2B exhibits smooth demand with CV=0.06 and unstable lead time (CV=0.80). Current SAP policy (no safety stock, MOQ=347) requires 359 orders/year at $27,224 annual cost. Recommended policy: Safety stock=748 units, Order quantity=1451 units, Reorder point=1313 units. This reduces ordering frequency to 86 orders/year, achieving $18,195 (66.8%) annual savings through optimized batch sizes, despite higher holding costs. The policy meets the 95% service level target and respects the 2200 unit storage capacity constraint.",
+  "warnings": [
+    "Unstable lead time (CV=0.80) - supplier reliability concerns"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "classical_eoq",
+    "selection_rationale": "Stable demand and lead time suitable for classical EOQ model",
+    "boundary_risk": "Storage capacity constrains order quantity from EOQ of 3259 to 1451 units; partial EOQ savings are lost but policy remains feasible.",
+    "escalation_flag": "none"
+  }
+}

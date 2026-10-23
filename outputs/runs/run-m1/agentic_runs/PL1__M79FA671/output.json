@@ -1,0 +1,77 @@
+{
+  "material_id": "PL1__M79FA671",
+  "data_quality": {
+    "total_rows": 214,
+    "working_days": 214,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 97.791,
+      "upper_bound": 1786.323
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 696.05,
+    "std_daily_demand": 257.97,
+    "robust_std_daily": 191.09,
+    "cv_wd": 0.3707,
+    "non_zero_fraction_wd": 0.9907,
+    "trend_detected": true,
+    "regime": "moderate",
+    "distribution_type": "normal-like"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.054,
+    "std_lead_time": 0.781,
+    "cv_lead_time": 0.7409,
+    "stability": "unstable",
+    "effective_lead_time": 1.835
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 604.37,
+    "safety_stock": 994,
+    "safety_stock_robust": 820
+  },
+  "order_quantity": {
+    "eoq_raw": 1895.2,
+    "order_quantity": 2134
+  },
+  "cost_analysis": {
+    "unit_cost": 31.847896,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 3.8217
+  },
+  "policy": {
+    "safety_stock": 994,
+    "reorder_point": 2271,
+    "order_quantity": 2134,
+    "review_period_days": 4
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.43,
+    "sigma_eff_days": 0.868,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 80.79,
+    "variance_components": {
+      "transport": 0.75,
+      "supplier": 0.2,
+      "quality": 0.05
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce from SAP 2.0 days to 1.43 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M79FA671 exhibits moderate demand variability (CV=0.37) with a statistically significant downward trend over the observation window, suggesting seasonal or structural demand reduction. Lead times are highly unstable (CV=0.74, range 0.22\u20132.87 days), making them the dominant risk factor at 81% of total lead-time demand variance. The recommended (r,Q) policy with safety stock of 994 units and order quantity of 2,134 units is calibrated to deliver 95% service level while respecting the MOQ of 1,408 and the storage capacity of 12,706 units. Reducing the recommended safety lead time from SAP's 2.0 days to 1.43 days aligns ERP parameters with data-driven reality.",
+  "warnings": [
+    "Significant downward demand trend detected; annual demand projection may be overstated \u2014 review policy in Q1 2027.",
+    "Lead time is highly unstable (CV=0.74); safety stock is lead-time-driven and sensitive to supplier performance."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review reorder-point / fixed-order-quantity",
+    "selection_rationale": "Demand is near-continuous (99% non-zero days) with moderate variability, making a continuous-review (r,Q) policy appropriate. The MOQ constraint (1,408 units) rules out base-stock and makes a fixed-quantity model natural. EOQ (1,895) exceeds MOQ, confirming order quantity is set by economics rather than constraint.",
+    "boundary_risk": "Storage capacity of 12,706 units is non-binding: SS+OQ=3,128 units, leaving 9,578 units of headroom. No capacity-driven service degradation anticipated.",
+    "escalation_flag": "none"
+  }
+}

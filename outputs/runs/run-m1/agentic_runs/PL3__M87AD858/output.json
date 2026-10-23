@@ -1,0 +1,92 @@
+{
+  "material_id": "PL3__M87AD858",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "outliers_detected": 50,
+    "winsorisation": {
+      "lower_bound": 26.71927,
+      "upper_bound": 18394.21015
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 11385.270365175438,
+    "std_daily_demand": 6916.776420639938,
+    "robust_std_daily": 11679.516123054114,
+    "cv_wd": 0.6075197337251249,
+    "non_zero_fraction_wd": 0.7982456140350878,
+    "trend_detected": false,
+    "regime": "Intermittent",
+    "distribution_type": "Poisson-like"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.4565591397849462,
+    "std_lead_time": 0.9757767191850807,
+    "cv_lead_time": 0.6699190527403847,
+    "stability": "Unstable",
+    "effective_lead_time": 2.432335858970027
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 13896.222161752945,
+    "safety_stock": 22858.0,
+    "safety_stock_robust": 29521.0
+  },
+  "order_quantity": {
+    "eoq_raw": 275184.07079173485,
+    "order_quantity": 114956
+  },
+  "cost_analysis": {
+    "unit_cost": 0.048863,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.005863559999999999
+  },
+  "policy": {
+    "safety_stock": 22858,
+    "reorder_point": 50551,
+    "order_quantity": 114956,
+    "review_period_days": 11
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.0076817911954588,
+    "sigma_eff_days": 1.2205438883786064,
+    "dominant_factor": "transport",
+    "dominant_pct": 45.0,
+    "variance_components": {
+      "transport": 0.4284630925666199,
+      "supplier": 0.3332490719962599,
+      "quality": 0.19042804114071998
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "INCREASE from 0 to recommended value",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__M87AD858 exhibits intermittent demand behavior with high variability (CV=0.61). The demand profile shows 79.8% of working days have non-zero demand, with a mean daily demand of 11385 units. Lead time is unstable (CV=0.67) with an effective lead time of 2.43 days. The current SAP policy with zero safety stock exposes the material to stockout risk. The optimized policy recommends a safety stock of 22,858 units to achieve 95% service level and an order quantity of 114,956 units (constrained by maximum storage capacity of 137815 units). This optimization reduces total annual cost by 60.7% (from $6,106.59 to $2,402.34), primarily through reduced ordering frequency (from 80 to 26 orders per year).",
+  "warnings": [
+    "Storage capacity constraint is binding - order quantity significantly reduced from EOQ",
+    "Lead time is unstable (CV=0.67) - consider supplier performance improvement",
+    "Intermittent demand pattern - monitor for regime shifts"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Square-root EOQ with stochastic lead time demand",
+    "selection_rationale": "For intermittent demand with CV=0.61, the classical EOQ model is appropriate as demand occurs frequently enough (79.8% of days) to justify continuous review. Lead time variability (CV=0.67) is incorporated through safety stock based on lead time demand standard deviation. The MOQ constraint of 37,014 units was considered but the EOQ-based quantity of 275,184 units was higher. Storage capacity constraint of 137815 units is the binding constraint, reducing the order quantity from 275,185 to 114,956 units.",
+    "boundary_risk": "HIGH RISK: Order quantity is heavily constrained by storage capacity (114,956 units vs unconstrained 275,185 units). This represents a 58.2% reduction from optimal, increasing ordering costs. Lead time instability (CV=0.67) with transport as the dominant variance component (45.0%) suggests vulnerability to logistics disruptions. Intermittent demand pattern increases forecast uncertainty.",
+    "escalation_flag": "YES - Capacity constraint is binding; consider increasing storage allocation or reducing MOQ"
+  },
+  "sap_policy": {
+    "safety_stock": 0,
+    "order_quantity": 37014,
+    "annual_ordering_cost": 5998.075650319366,
+    "annual_holding_cost": 108.51690491999999,
+    "total_annual_cost": 6106.592555239366
+  },
+  "optimized_policy": {
+    "safety_stock": 22858,
+    "order_quantity": 114956,
+    "annual_ordering_cost": 1931.2847708768663,
+    "annual_holding_cost": 471.05495615999996,
+    "total_annual_cost": 2402.3397270368664
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "material_id": "PL1__ME83C4D0",
+  "analysis_timestamp": "2026-10-22T14:16:54.755171",
+  "input_parameters": {
+    "unit_cost": 3.648793,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 50.0,
+    "minimum_order_quantity": 656,
+    "service_level_target": 0.95,
+    "sap_safety_stock": 82,
+    "sap_safety_lead_time_days": 4.0,
+    "max_storage_units": 5685.82
+  },
+  "data_quality": {
+    "total_records": 88,
+    "working_days": 88,
+    "date_range_start": "2025-03-04T00:00:00",
+    "date_range_end": "2026-03-05T00:00:00",
+    "outliers_winsorized": 2,
+    "winsorization_bounds": {
+      "lower_percentile_1": 57.14,
+      "upper_percentile_99": 662.6
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 406.17,
+    "std_daily_demand": 143.75,
+    "robust_std_daily": 118.06,
+    "coefficient_of_variation": 0.354,
+    "non_zero_fraction": 1.0,
+    "trend_detection": {
+      "linear_slope": 1.4716,
+      "slope_to_mean_ratio": 0.0036,
+      "trend_significant": false
+    },
+    "demand_regime": "smooth",
+    "distribution_type": "normal",
+    "annual_demand": 101541.52
+  },
+  "lead_time_analysis": {
+    "mean_lead_time_days": 2.92,
+    "std_lead_time_days": 1.06,
+    "coefficient_of_variation": 0.363,
+    "stability_classification": "moderate",
+    "effective_lead_time_95pct": 3.98,
+    "variance_decomposition": {
+      "transport_variance": 0.6722,
+      "supplier_variance": 0.3361,
+      "quality_variance": 0.112,
+      "dominant_factor": "transport"
+    }
+  },
+  "safety_stock_analysis": {
+    "service_level_target": 0.95,
+    "z_score": 1.645,
+    "sigma_lead_time_demand": 495.11,
+    "safety_stock_units": 815,
+    "safety_stock_robust_units": 782,
+    "safety_stock_days_coverage": 2.01,
+    "comparison_to_sap": {
+      "sap_safety_stock": 82,
+      "recommended_safety_stock": 815,
+      "difference_units": 733,
+      "difference_percent": 893.9
+    }
+  },
+  "safety_lead_time_analysis": {
+    "sigma_effective_days": 1.22,
+    "recommended_safety_lead_time_days": 2.1,
+    "sap_safety_lead_time_days": 4.0,
+    "comparison_action": "REDUCE",
+    "difference_days": -1.9
+  },
+  "eoq_analysis": {
+    "eoq_raw": 4815.67,
+    "eoq_rounded": 4816,
+    "minimum_order_quantity": 656,
+    "unconstrained_order_quantity": 4816,
+    "capacity_constraint_binds": false,
+    "max_order_capacity": 4870,
+    "final_order_quantity": 4816
+  },
+  "recommended_policy": {
+    "order_quantity": 4816,
+    "reorder_point": 2001,
+    "safety_stock": 815,
+    "review_period_days": 12,
+    "expected_orders_per_year": 21.1,
+    "average_inventory_level": 3223.0,
+    "max_inventory_level": 5631,
+    "storage_utilization_pct": 99.0
+  },
+  "cost_analysis": {
+    "unit_cost": 3.648793,
+    "annual_holding_cost_per_unit": 0.4379,
+    "previous_policy": {
+      "assumed_order_quantity": 656,
+      "safety_stock": 82,
+      "orders_per_year": 154.8,
+      "annual_ordering_cost": 7739.44,
+      "annual_holding_cost": 179.52,
+      "total_annual_cost": 7918.97
+    },
+    "optimized_policy": {
+      "order_quantity": 4816,
+      "safety_stock": 815,
+      "orders_per_year": 21.1,
+      "annual_ordering_cost": 1054.21,
+      "annual_holding_cost": 1411.21,
+      "total_annual_cost": 2465.42
+    },
+    "savings": {
+      "annual_savings": 5453.55,
+      "savings_percent": 68.9,
+      "roi_on_implementation": "IMMEDIATE"
+    }
+  },
+  "warnings": [
+    {
+      "type": "SAFETY_STOCK_INCREASE",
+      "severity": "MEDIUM",
+      "message": "Recommended safety stock (815) is 9.9x current SAP value",
+      "impact": "Significant increase in holding costs, but necessary for target service level"
+    }
+  ],
+  "escalations": [],
+  "narrative": {
+    "executive_summary": "Material PL1__ME83C4D0 exhibits smooth demand patterns (CV=0.35) with mean daily consumption of 406 units. Current SAP safety stock of 82 units is significantly under-buffered for the target 95% service level, which requires 815 units. Lead time variability (CV=0.36) is moderate, dominated by transport factors. The optimized EOQ-based policy recommends ordering 4816 units every 12 days, delivering annual savings of $5,453.55 (68.9% cost reduction) while improving service level compliance.",
+    "key_findings": [
+      "Demand is stable with smooth consumption pattern and no significant trend (slope ratio 0.0036)",
+      "Safety stock must increase from 82 to 815 units (+733 units, 894%) to achieve 95% service level",
+      "Current ordering policy is highly suboptimal: 155 orders/year vs recommended 21 orders/year",
+      "Lead time safety buffer can be reduced from 4.0 to 2.1 days, reflecting actual supply chain performance",
+      "Storage utilization will be 99.0%, well within 5686 unit capacity"
+    ],
+    "risk_assessment": {
+      "demand_risk": "LOW - Smooth, stable demand with high fill rate and low variability",
+      "supply_risk": "MEDIUM - Lead time CV of 0.36 indicates moderate supplier performance variability",
+      "inventory_risk": "LOW - Adequate storage capacity and manageable working capital requirements",
+      "service_level_risk": "HIGH under current policy - Safety stock is critically insufficient for 95% target"
+    },
+    "recommendations": [
+      "IMMEDIATE: Increase safety stock from 82 to 815 units to meet service level target",
+      "IMMEDIATE: Adjust ordering policy to 4816 units per order (replaces current inefficient small-batch ordering)",
+      "SHORT-TERM: Reduce safety lead time parameter from 4.0 to 2.1 days in SAP master data",
+      "MEDIUM-TERM: Investigate transport variability (dominant lead time factor) to further stabilize supply chain",
+      "ONGOING: Monitor demand patterns monthly; stable consumption supports annual policy review cycle"
+    ],
+    "implementation_notes": "The optimized policy balances ordering frequency (every ~12 days) with economic batch sizing. The MOQ of 656 units is below the EOQ, allowing optimal ordering. Reorder point of 2001 units provides buffer for 4.9 days of coverage at average demand. Implementation requires SAP parameter updates and coordination with procurement to adjust PO patterns."
+  },
+  "research_insights": {
+    "model_selection_rationale": "Normal approximation is appropriate for this material due to smooth demand regime (CV=0.35 < 0.5) and high non-zero fill rate (100%). The deterministic EOQ model is valid given stable consumption patterns and absence of significant trend. Lead time variability is incorporated through variance propagation in safety stock calculation.",
+    "assumption_validation": [
+      "Independence assumption: Demand autocorrelation not tested but smooth pattern suggests IID is reasonable",
+      "Normality: Low CV and symmetric distribution support Normal approximation for safety stock",
+      "Stationarity: Trend test (slope/mean = 0.0036) confirms demand is stationary",
+      "Lead time distribution: Moderate CV suggests mild right-skew but Normal provides conservative buffer"
+    ],
+    "sensitivity_analysis": "Safety stock is most sensitive to service level target (current z=1.64). A 1% reduction in service level (94% vs 95%) would decrease SS to ~770 units, saving ~$20/year. EOQ is relatively insensitive to demand variation due to square-root relationship. Lead time reduction efforts would have linear impact on safety stock (10% LT reduction \u2192 ~10% SS reduction).",
+    "comparative_benchmarks": "The recommended safety stock of 2.0 days coverage is industry-standard for 95% service level with moderate variability. Order frequency of 12 days aligns with typical replenishment cycles for B-class materials. The 69% cost reduction opportunity indicates current policy likely evolved ad-hoc rather than through systematic optimization.",
+    "alternative_approaches_considered": "Monte Carlo simulation was considered but deemed unnecessary given demand normality and stable patterns. Periodic review (s,S) policy was evaluated but continuous review (Q,r) is superior here due to smooth demand and ERP system capability. Dynamic safety stock adjustments could provide marginal improvements but add complexity not justified by current demand stability.",
+    "data_quality_assessment": "88 observations provide adequate statistical power for parameter estimation. Winsorization removed 2 outliers (2.3% of data), indicating data quality is good. Lead time observations show bimodal pattern (~2 days and ~4 days clusters) suggesting two transportation modes or lanes; variance decomposition assumes 60% transport factor based on this pattern. No missing data or anomalies detected.",
+    "future_refinements": "Consider separate policies for the two lead time modes if lane/mode can be specified at order time. Implement exception monitoring for demand spikes >2\u03c3 above mean. Evaluate vendor-managed inventory (VMI) if supplier relationship matures. Review policy semi-annually for first year to validate assumptions, then move to annual review if stability continues."
+  }
+}

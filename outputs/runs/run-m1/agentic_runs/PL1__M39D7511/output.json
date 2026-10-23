@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__M39D7511",
+  "data_quality": {
+    "total_rows": 152,
+    "working_days": 152,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 1002.211
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 477.0,
+    "std_daily_demand": 266.4,
+    "robust_std_daily": 198.5,
+    "cv_wd": 0.558,
+    "non_zero_fraction_wd": 0.856,
+    "trend_detected": false,
+    "regime": "high-variability",
+    "distribution_type": "moderate-skew"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.41,
+    "std_lead_time": 0.874,
+    "cv_lead_time": 0.619,
+    "stability": "unstable",
+    "effective_lead_time": 2.284
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 524.6,
+    "safety_stock": 863.0,
+    "safety_stock_robust": 644.0
+  },
+  "order_quantity": {
+    "eoq_raw": 3065.7,
+    "order_quantity": 3066
+  },
+  "cost_analysis": {
+    "unit_cost": 10.575222,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.269
+  },
+  "policy": {
+    "safety_stock": 863,
+    "reorder_point": 1956,
+    "order_quantity": 3066,
+    "review_period_days": 7
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.81,
+    "sigma_eff_days": 0.874,
+    "dominant_factor": "transport",
+    "dominant_pct": 63.5,
+    "variance_components": {
+      "transport": 0.635,
+      "supplier": 0.365,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M39D7511 exhibits high-variability demand (CV=0.558) with a silent zero-demand period in early observations, followed by active consumption averaging 477 units/day. Lead times are unstable (CV=0.619, mean 1.41 days), with transport variability contributing 63.5% of total buffer requirement. The recommended (r,Q) continuous-review policy sets safety stock at 863 units (z=1.645 * sigma_LTD=524.6) and an EOQ order quantity of 3,066 units, reducing annual orders from ~1,074 to ~39 while holding costs remain manageable at ~$3,035/year against $1,950 in ordering costs.",
+  "warnings": [
+    "Zero-demand period detected in first 22 working days \u2014 may indicate ramp-up or data gap; excluded from active demand statistics",
+    "Lead time CV=0.619 classified as unstable \u2014 monitor supplier/transport reliability closely",
+    "Safety lead time reduced from SAP value of 3.0 days to empirically-derived 1.81 days"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review with EOQ order quantity",
+    "selection_rationale": "High-variability but mostly continuous demand (85.6% non-zero days) suits a continuous-review reorder-point system. EOQ balances the large fixed ordering cost ($50) against relatively low unit holding cost ($1.27/unit/year), yielding large infrequent orders. Safety stock is calibrated analytically using the combined demand-and-lead-time variance formula at z=1.645 for 95% service level.",
+    "boundary_risk": "Storage capacity of 7,218 units is not binding: peak inventory (SS 863 + OQ 3,066 = 3,929 units) uses only 54% of available space, leaving comfortable headroom. No capacity-driven order quantity reduction was required.",
+    "escalation_flag": "none"
+  }
+}

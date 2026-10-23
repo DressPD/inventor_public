@@ -1,0 +1,77 @@
+{
+  "material_id": "PL1__M71A33FE",
+  "data_quality": {
+    "total_rows": 134,
+    "working_days": 134,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 41038.64748000001,
+      "upper_bound": 283040.5649199999
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 171259.4716328358,
+    "std_daily_demand": 50463.20442312398,
+    "robust_std_daily": 40020.5633802817,
+    "cv_wd": 0.29465934900997676,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "Smooth",
+    "distribution_type": "Normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.8635294117647059,
+    "std_lead_time": 1.2920661342648285,
+    "cv_lead_time": 0.6933435695234244,
+    "stability": "Unstable",
+    "effective_lead_time": 3.1555955460295344
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 231753.63108837922,
+    "safety_stock": 381201,
+    "safety_stock_robust": 374901
+  },
+  "order_quantity": {
+    "eoq_raw": 359318.05664322566,
+    "order_quantity": 359319
+  },
+  "cost_analysis": {
+    "unit_cost": 0.414521,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.04974251999999999
+  },
+  "policy": {
+    "safety_stock": 381201,
+    "reorder_point": 700349,
+    "order_quantity": 359319,
+    "review_period_days": 3
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.2,
+    "sigma_eff_days": 1.2920661342648285,
+    "dominant_factor": "Supplier",
+    "dominant_pct": 70.0,
+    "variance_components": {
+      "transport": 0.5008304685942173,
+      "supplier": 1.1686044267198403,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "DECREASE from 4.0 to 2.2 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M71A33FE exhibits smooth demand with a normal distribution pattern.\nWith mean daily demand of 171,259 units and CV of 29.5%, the demand is relatively stable.\nHowever, lead time variability is unstable (CV=69.3%), which is the primary driver of safety stock.\n\nThe optimized policy recommends:\n- Safety stock: 381,201 units (vs. current 0)\n- Order quantity: 359,319 units (vs. MOQ 10,337)\n- Reorder point: 700,349 units\n\nThis represents a shift from frequent small orders (MOQ-based) to optimized larger orders that balance\nordering and holding costs. The supplier lead time variability contributes 70% to buffer requirements.\nAnnual cost savings of $274,064.66 (88.2%) can be achieved.",
+  "warnings": [
+    "Lead time is unstable (CV=69.33%)",
+    "Safety lead time adjustment recommended: DECREASE from 4.0 to 2.2 days"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Combined Variance (Silver-Meal)",
+    "selection_rationale": "Normal demand distribution with unstable lead time requires combined variance approach",
+    "boundary_risk": "Lead time instability (CV=69.3%) increases buffer uncertainty",
+    "escalation_flag": "No"
+  }
+}

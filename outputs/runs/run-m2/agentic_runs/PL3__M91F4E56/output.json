@@ -1,0 +1,77 @@
+{
+  "material_id": "PL3__M91F4E56",
+  "data_quality": {
+    "total_rows": 135,
+    "working_days": 135,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 733.477
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 152.7244,
+    "std_daily_demand": 184.0782,
+    "robust_std_daily": 178.2587,
+    "cv_wd": 1.2053,
+    "non_zero_fraction_wd": 0.6815,
+    "trend_detected": true,
+    "regime": "lumpy",
+    "distribution_type": "high_variability"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.6243,
+    "std_lead_time": 0.5891,
+    "cv_lead_time": 0.9435,
+    "stability": "variable",
+    "effective_lead_time": 1.5933
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 171.0268,
+    "safety_stock": 282,
+    "safety_stock_robust": 275
+  },
+  "order_quantity": {
+    "eoq_raw": 1187.889,
+    "order_quantity": 1188
+  },
+  "cost_analysis": {
+    "unit_cost": 22.548388,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 2.7058
+  },
+  "policy": {
+    "safety_stock": 282,
+    "reorder_point": 378,
+    "order_quantity": 1188,
+    "review_period_days": 8
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.8465,
+    "sigma_eff_days": 1.1196,
+    "dominant_factor": "demand_variability",
+    "dominant_pct": 72.3,
+    "variance_components": {
+      "transport": 0.72,
+      "supplier": 0.22,
+      "quality": 0.06
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase_from_0_to_1.85_days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__M91F4E56 exhibits lumpy demand with a strong statistically significant upward trend of +3.0 units/day over the observation window, combined with variable but short lead times (mean 0.62 days, CV 0.94). Demand variability dominates the lead-time-demand uncertainty (72% of variance), requiring a meaningful safety stock of 282 units to achieve the 95% service level target. The (r,Q) policy with EOQ-based order quantity of 1,188 units reduces annual costs by 84% versus the current SAP configuration by shifting from near-daily MOQ ordering to economically sized replenishments every ~8 working days.",
+  "warnings": [
+    "Strong upward demand trend detected (+3.0 units/day, p\u22480) \u2014 quarterly parameter recalibration recommended",
+    "Lead time CV of 0.94 indicates variable supplier performance \u2014 single outlier at 3.1 days drives effective lead time to 1.59 days"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review reorder-point / fixed-order-quantity",
+    "selection_rationale": "With 68% non-zero demand days, short but variable lead times, and a well-defined cost structure (known ordering and holding costs), the classical (r,Q) policy with EOQ-derived order quantity and safety-stock-augmented reorder point is optimal. The material is not sparse enough to warrant intermittent-demand methods, and the upward trend is best handled by periodic recalibration rather than a trend-tracking model.",
+    "boundary_risk": "No capacity constraint binds: maximum stock position (SS=282 + Q=1,188 = 1,470 units) is well within the storage limit of 8,427 units. Service risk arises from the demand trend \u2014 if mean demand grows beyond ~500 units/day without policy update, the current safety stock will erode.",
+    "escalation_flag": "none"
+  }
+}

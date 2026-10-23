@@ -1,0 +1,89 @@
+{
+  "material_id": "PL1__MCE82DD5",
+  "timestamp": "2026-10-20T13:22:50.454838",
+  "input_parameters": {
+    "unit_cost": 4.173252,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 50.0,
+    "moq": 347,
+    "service_level_target": 0.95,
+    "sap_safety_stock": 0,
+    "sap_safety_lead_time_days": 3.5,
+    "max_storage_units": 6709.093
+  },
+  "data_quality": {
+    "total_rows": 171,
+    "working_days": 171,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 1327.6405
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 617.889543859649,
+    "std_daily_demand": 328.38045726921797,
+    "robust_std_daily": 345.0429948109711,
+    "cv_wd": 0.5314549510224568,
+    "non_zero_fraction_wd": 0.9707602339181286,
+    "trend_detected": true,
+    "regime": "high-volume",
+    "distribution_type": "right-skewed"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.7810204081632652,
+    "std_lead_time": 1.0076483449471993,
+    "cv_lead_time": 1.2901690332483087,
+    "stability": "volatile",
+    "effective_lead_time": 1.7886687531104646
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 686.9281231760631,
+    "safety_stock": 1130.0,
+    "safety_stock_robust": 1141.0
+  },
+  "order_quantity": {
+    "eoq_raw": 5553.892881550123,
+    "order_quantity": 5554
+  },
+  "cost_analysis": {
+    "unit_cost": 4.173252,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.5007902399999999
+  },
+  "policy": {
+    "safety_stock": 1130,
+    "reorder_point": 2236,
+    "order_quantity": 5554,
+    "review_period_days": 9
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.828805829827531,
+    "sigma_eff_days": 1.1117328817140428,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MCE82DD5 exhibits high-volume, near-continuous demand (mean 618 units/day, CV 0.53) with a statistically significant upward trend over the observation window. Lead times are highly volatile (CV 1.29), with most deliveries same-day but occasional multi-day delays driving safety stock requirements. An (r,Q) policy with EOQ-derived order quantity of 5,554 units and a safety stock of 1,130 units is recommended to achieve the 95% service level while reducing annual ordering frequency from ~445 to ~28 cycles, yielding an estimated 85% reduction in total inventory costs.",
+  "warnings": [
+    "Volatile lead times detected (CV = 1.29) \u2014 monitor supplier delivery performance closely.",
+    "Significant upward demand trend detected (slope +2.14 units/day, p < 0.001) \u2014 review mean demand parameters quarterly.",
+    "SAP safety lead time (3.5 days) exceeds empirically recommended value (1.83 days) \u2014 recommend reduction."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) \u2014 Continuous-Review Reorder-Point / Fixed-Order-Quantity",
+    "selection_rationale": "Demand is near-continuous (97% non-zero days) and high-volume, making continuous-review appropriate. The EOQ formula provides the cost-minimising order quantity, and the reorder point incorporates both average lead-time demand and a safety stock buffer against lead-time volatility. The MOQ (347) is well below the EOQ (5,554), so the EOQ dominates and no MOQ tension exists.",
+    "boundary_risk": "Storage capacity (6,709 units) is not binding: SS (1,130) + OQ (5,554) = 6,684 < 6,709. Margin is only 25 units; any upward revision to safety stock (e.g., due to demand trend acceleration) could require a corresponding reduction in order quantity.",
+    "escalation_flag": "none"
+  }
+}

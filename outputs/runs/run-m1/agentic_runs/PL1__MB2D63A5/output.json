@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__MB2D63A5",
+  "data_quality": {
+    "total_rows": 132,
+    "working_days": 132,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 329.29286,
+      "upper_bound": 1315.55706
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 890.5328863636364,
+    "std_daily_demand": 227.1780550802061,
+    "robust_std_daily": 214.16129629629629,
+    "cv_wd": 0.25510349876898447,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "smooth",
+    "distribution_type": "left-skewed"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.7916666666666667,
+    "std_lead_time": 1.021726109299475,
+    "cv_lead_time": 0.5702657354229628,
+    "stability": "volatile",
+    "effective_lead_time": 2.302529721316404
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 959.3490354570343,
+    "safety_stock": 1578,
+    "safety_stock_robust": 1570
+  },
+  "order_quantity": {
+    "eoq_raw": 94887.17449518175,
+    "order_quantity": 13683
+  },
+  "cost_analysis": {
+    "unit_cost": 0.020606,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.00247272
+  },
+  "policy": {
+    "safety_stock": 1578,
+    "reorder_point": 3629,
+    "order_quantity": 13683,
+    "review_period_days": 16
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.771972741448704,
+    "sigma_eff_days": 1.021726109299475,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 89.95299353650648,
+    "variance_components": {
+      "transport": 0.0,
+      "supplier": 827882.890393547,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MB2D63A5 exhibits smooth demand patterns (CV=0.26) with mean daily demand of 891 units. \nHowever, lead time is highly volatile (CV=0.57, ranging from 0.8 to 3.1 days), \ncontributing 90% of the total demand-during-lead-time variance. This volatility necessitates a safety stock of 1578 units \n(48% higher than the current SAP setting of 1064 units) to maintain the target 95% service level.\n\nThe capacity constraint of 15261 units limits the order quantity to 13683 units (versus an unconstrained \nEOQ of 94888 units). Despite this limitation, the optimized policy achieves 36.8% cost reduction \n($486.40 annually) by reducing order frequency from 26.2 to 16.3 orders per year, \ncutting ordering costs by $494.07.\n\nThe recommended safety lead time buffer of 1.8 days is lower than SAP's 3.0 days, \nbut the higher safety stock provides better coverage given the demand-lead time dynamics. Management should prioritize supplier \nlead time stabilization to reduce safety stock requirements by up to 45%.",
+  "warnings": [
+    "Order quantity capped at 13683 due to storage capacity constraint (unconstrained EOQ would be 94888)",
+    "Lead time is highly volatile (CV=0.57), which drives 90% of safety stock requirement",
+    "Recommended safety stock is 48.3% higher than current SAP setting due to lead time volatility"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with service-level safety stock and capacity constraint",
+    "selection_rationale": "Model selected based on: (1) smooth demand regime with low CV=0.26, (2) volatile lead times requiring \nstochastic modeling, (3) hard storage capacity constraint of 15261 units, (4) target service level of 95%. \nThe hybrid approach balances EOQ cost optimization with service-level protection while respecting physical capacity limits.",
+    "boundary_risk": "Primary risk: Lead time CV of 0.57 is near the boundary between 'moderate' and 'volatile' regimes. \nIf lead time variability increases beyond current levels, the constrained order quantity may force more frequent orders, \neroding cost savings. Secondary risk: Storage capacity utilization at 100.0% \nleaves minimal buffer for demand surges or promotional stock.",
+    "escalation_flag": "review_recommended"
+  }
+}

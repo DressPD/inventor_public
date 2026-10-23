@@ -1,0 +1,89 @@
+{
+  "material_id": "PL1__M7E573E7",
+  "data_quality": {
+    "total_rows": 191,
+    "working_days": 191,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 364.98519999999996,
+      "upper_bound": 1318.6843999999992
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 887.5820115183246,
+    "std_daily_demand": 198.31111315218257,
+    "robust_std_daily": 172.46849518161608,
+    "cv_wd": 0.2234284951459816,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "erratic",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.2244502617801047,
+    "std_lead_time": 1.2776082038375807,
+    "cv_lead_time": 0.5743478403581752,
+    "stability": "unstable",
+    "effective_lead_time": 3.5020584656176856
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1162.79079530855,
+    "safety_stock": 1913,
+    "safety_stock_robust": 1913
+  },
+  "order_quantity": {
+    "eoq_raw": 3538.017282485964,
+    "order_quantity": 2686
+  },
+  "cost_analysis": {
+    "unit_cost": 14.772274,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.7726728799999998
+  },
+  "cost_comparison": {
+    "previous_policy": {
+      "avg_inventory": 1343.0,
+      "annual_holding_cost": 2380.69967784,
+      "annual_ordering_cost": 4130.5938734099245,
+      "total_annual_cost": 6511.293551249924
+    },
+    "optimized_policy": {
+      "avg_inventory": 3256.0,
+      "annual_holding_cost": 5771.822897279999,
+      "annual_ordering_cost": 4130.5938734099245,
+      "total_annual_cost": 9902.416770689924
+    },
+    "annual_savings": -3391.12321944
+  },
+  "policy": {
+    "safety_stock": 1913,
+    "reorder_point": 5022,
+    "order_quantity": 2686,
+    "review_period_days": 4
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.155293792770275,
+    "sigma_eff_days": 1.310065751917893,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 95.10628044917856,
+    "variance_components": {
+      "transport": 38.04251217967143,
+      "supplier": 38.04251217967143,
+      "quality": 19.021256089835713
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M7E573E7 exhibits erratic demand behavior with CV=0.22. \nLead time is unstable (CV=0.57). \nThe dominant uncertainty driver is lead_time_variability (95.1%).\nOptimized safety stock is 1913 units (recommended safety lead time: 2.16 days vs SAP: 3.00 days).\nOrder quantity is 2686 units (constrained by capacity; EOQ would be 3539 units).\nTotal annual cost increases from $6511.29 to $9902.42 due to higher safety stock requirements to achieve 95% service level.\nAction: decrease safety lead time.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Classical EOQ with Safety Stock (Periodic Review)",
+    "selection_rationale": "Material has erratic demand and unstable lead time. Classical model is appropriate with robust safety stock calculation.",
+    "boundary_risk": "None",
+    "escalation_flag": "no"
+  }
+}

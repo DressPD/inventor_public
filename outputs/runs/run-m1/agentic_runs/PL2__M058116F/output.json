@@ -1,0 +1,128 @@
+{
+  "material_id": "PL2__M058116F",
+  "analysis_date": "2026-10-20",
+  "input_parameters": {
+    "unit_cost": 0.20134,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 75.0,
+    "moq": 26604,
+    "service_level_target": 0.95,
+    "sap_safety_stock": 0,
+    "sap_safety_lead_time_days": 5.0,
+    "max_storage_units": 212834.604
+  },
+  "data_quality": {
+    "total_rows": 80,
+    "working_days": 80,
+    "outliers_detected_iqr": 11,
+    "values_winsorized": 1,
+    "winsorization_bounds": {
+      "lower": 0.0,
+      "upper": 23320.921749999965
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 12515.156175,
+    "std_demand": 5284.745543807645,
+    "robust_std": 3125.9043736100825,
+    "cv_wd": 0.4222676465168158,
+    "non_zero_fraction_wd": 0.975,
+    "trend_slope": 83.50255274261596,
+    "trend_detected": false,
+    "regime": "smooth",
+    "distribution_type": "normal",
+    "skewness": -0.7020658715087059,
+    "kurtosis": 1.2698173383326914,
+    "annual_demand": 3128789.04375
+  },
+  "lead_time_analysis": {
+    "observations_count": 50,
+    "mean_lead_time": 1.6927999999999996,
+    "std_lead_time": 0.954850217979506,
+    "cv_lead_time": 0.5640655824548122,
+    "stability": "moderate",
+    "effective_lead_time": 2.6476502179795056,
+    "min_lead_time": 0.07,
+    "max_lead_time": 3.97,
+    "median_lead_time": 1.0750000000000002
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 13787.033956695555,
+    "sigma_ltd_robust": 12623.220672592986,
+    "z_score": 1.644853626951472,
+    "safety_stock": 22678,
+    "safety_stock_robust": 20764,
+    "service_level_target": 0.95
+  },
+  "order_quantity_analysis": {
+    "eoq_raw": 139372.82899062432,
+    "unconstrained_order_quantity": 139373,
+    "max_allowed_order_qty": 190156,
+    "order_quantity": 139373,
+    "capacity_constraint_binds": false,
+    "moq_constraint_binds": false
+  },
+  "recommended_policy": {
+    "safety_stock": 22678,
+    "reorder_point": 55814,
+    "order_quantity": 139373,
+    "review_period_days": 12
+  },
+  "cost_analysis": {
+    "annual_holding_cost_per_unit": 0.0241608,
+    "previous_policy": {
+      "safety_stock": 0,
+      "order_quantity": 26604,
+      "annual_orders": 117.605963154037,
+      "annual_ordering_cost": 8820.447236552774,
+      "average_inventory": 13302.0,
+      "annual_holding_cost": 321.3869616,
+      "total_annual_cost": 9141.834198152774
+    },
+    "optimized_policy": {
+      "safety_stock": 22678,
+      "order_quantity": 139373,
+      "annual_orders": 22.449032766389475,
+      "annual_ordering_cost": 1683.6774574792107,
+      "average_inventory": 92364.5,
+      "annual_holding_cost": 2231.6002116,
+      "total_annual_cost": 3915.2776690792107
+    },
+    "savings": {
+      "annual_cost_savings": 5226.556529073563,
+      "percentage_savings": 57.17185868596979
+    }
+  },
+  "safety_lead_time_analysis": {
+    "current_sap_safety_lead_time_days": 5.0,
+    "recommended_safety_lead_time_days": 1.8120429088452825,
+    "sigma_eff_days": 1.1016270004074125,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "dominant_factor": "transport",
+    "comparison_action": "decrease"
+  },
+  "capacity_analysis": {
+    "max_storage_units": 212834.604,
+    "safety_stock": 22678,
+    "order_quantity": 139373,
+    "total_inventory": 162051,
+    "capacity_utilization_percent": 76.13940447390782,
+    "available_capacity": 50783.60399999999,
+    "constraint_satisfied": true
+  },
+  "narrative": "This analysis examines material PL2__M058116F, which exhibits smooth demand patterns \nwith a coefficient of variation of 0.422 and no significant trend detected. The demand follows \na normal distribution with 97.5% of working days showing positive demand. \nLead time variability is moderate (CV=0.564), requiring careful buffer management. \nThe optimized inventory policy balances a 95% service level target with \ncost efficiency, yielding 57.2% annual cost savings ($5226.56) \ncompared to the current SAP baseline while maintaining robust stock availability.",
+  "plots_generated": [
+    "demand_timeseries.png",
+    "demand_histogram.png",
+    "leadtime_timeseries.png",
+    "leadtime_histogram.png"
+  ],
+  "reports_generated": [
+    "inventory_optimization_report.html",
+    "inventory_optimization_output.json"
+  ]
+}

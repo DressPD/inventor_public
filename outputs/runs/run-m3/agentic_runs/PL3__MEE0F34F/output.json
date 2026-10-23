@@ -1,0 +1,76 @@
+{
+  "material_id": "PL3__MEE0F34F",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 4010.6
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 2302.52,
+    "std_daily_demand": 315.08,
+    "robust_std_daily": 242.44,
+    "cv_wd": 0.1368,
+    "non_zero_fraction_wd": 0.7456,
+    "trend_detected": false,
+    "regime": "intermittent-high",
+    "distribution_type": "Normal (Low Variability)"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.1436,
+    "std_lead_time": 1.3701,
+    "cv_lead_time": 0.6392,
+    "stability": "Highly Variable",
+    "effective_lead_time": 3.5137
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 3188.25,
+    "safety_stock": 5245.0,
+    "safety_stock_robust": 5223.0
+  },
+  "order_quantity": {
+    "eoq_raw": 51566.34,
+    "order_quantity": 14386
+  },
+  "cost_analysis": {
+    "unit_cost": 0.360794,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.0433
+  },
+  "policy": {
+    "safety_stock": 5245,
+    "reorder_point": 13336,
+    "order_quantity": 14386,
+    "review_period_days": 7
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.05,
+    "sigma_eff_days": 1.3701,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 1.1263,
+      "supplier": 0.5632,
+      "quality": 0.1877
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Increase from 0.0 to 1.05 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__MEE0F34F exhibits intermittent-high demand across 228 working days, with 74.6% of days showing active consumption averaging 2,303 units and near-zero values on the remainder. On-cycle demand variability is low (CV=0.14), supporting a classical (r,Q) policy, but lead times are highly variable (CV=0.64, range 1.09\u20135.62 days), making them the primary driver of the 5,245-unit safety stock. The EOQ of ~51,567 units is hard-capped by the 19,632-unit storage limit, yielding a constrained order quantity of 14,386 units that still reduces total annual cost by 84% versus the SAP baseline.",
+  "warnings": [
+    "EOQ (51,567 units) exceeds available storage headroom; order quantity capped at 14,386 units due to max_storage_units=19,631.696 constraint."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review policy with EOQ-derived order quantity",
+    "selection_rationale": "Active-day demand is near-normal with low CV (0.14); classical EOQ and ROP calculations are appropriate. Intermittent zeros are structural (schedule gaps) and do not require Croston-type methods.",
+    "boundary_risk": "Storage capacity binds strongly: the unconstrained EOQ (51,567) is ~3.6x the storage limit. The capped OQ (14,386) increases replenishment frequency and ordering cost relative to the economic optimum, but total cost remains 84% below the SAP baseline. If storage can be expanded, a larger OQ would further reduce costs.",
+    "escalation_flag": "none"
+  }
+}

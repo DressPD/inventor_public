@@ -1,0 +1,74 @@
+{
+  "material_id": "PL2__MDD08FE8",
+  "data_quality": {
+    "total_rows": 129,
+    "working_days": 129,
+    "outliers_detected": 28,
+    "winsorisation": {
+      "lower_bound": 1.59572,
+      "upper_bound": 7633.62672
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 3088.433355658915,
+    "std_daily_demand": 1786.2866291940734,
+    "robust_std_daily": 777.3553493999999,
+    "cv_wd": 0.578379528870543,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": true,
+    "regime": "erratic",
+    "distribution_type": "Negative Binomial"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.064523809523809,
+    "std_lead_time": 1.2978906006816864,
+    "cv_lead_time": 0.6286634209275843,
+    "stability": "volatile",
+    "effective_lead_time": 3.3624144102054956
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 4759.7462184961705,
+    "safety_stock": 7830,
+    "safety_stock_robust": 6845
+  },
+  "order_quantity": {
+    "eoq_raw": 26056.208759819012,
+    "order_quantity": 26057
+  },
+  "cost_analysis": {
+    "unit_cost": 0.947708,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.11372496
+  },
+  "policy": {
+    "safety_stock": 7830,
+    "reorder_point": 14207,
+    "order_quantity": 26057,
+    "review_period_days": 9
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.535265974139654,
+    "sigma_eff_days": 1.5411523158739755,
+    "dominant_factor": "transport",
+    "dominant_pct": 0.35461332643839927,
+    "variance_components": {
+      "transport": 0.35461332643839927,
+      "supplier": 0.28369066115071945,
+      "quality": 0.07092266528767986
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization completed for material PL2__MDD08FE8. \n\nDEMAND PROFILE: Demand exhibits an erratic pattern with CV=0.58, suggesting high variability. \nA statistically significant upward trend was detected (p<0.001), with demand increasing by approximately \n30.4 units per period. The distribution is best modeled as Negative Binomial. Mean daily demand \nis 3088 units with considerable volatility (std=1786).\n\nLEAD TIME PROFILE: Lead time is highly volatile (CV=0.63), averaging 2.06 days with \nstd=1.30 days. This volatility is the dominant contributor to safety stock requirements, \naccounting for 70.9% of total variance.\n\nRECOMMENDED POLICY: Safety stock of 7830 units is required to achieve 95% \nservice level. EOQ analysis suggests optimal order quantity of 26057 units, resulting in \napproximately 30 orders per year. Reorder point is 14207 units.\n\nCOST IMPACT: The optimized policy reduces total annual costs from $40394.46 to \n$3853.71, achieving savings of $36540.75 (90.5%). \nThis is primarily driven by balancing ordering frequency against holding costs.\n\nSAFETY LEAD TIME: Recommended safety lead time is 2.54 days, which is \n0.96 days lower than the current SAP \nsetting of 3.5 days. Action: decrease.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Combined EOQ with Safety Stock (Negative Binomial demand, volatile lead time)",
+    "selection_rationale": "Erratic demand pattern (CV=0.58) with significant trend and volatile lead time (CV=0.63) requires robust buffer management. Negative Binomial distribution accommodates overdispersion.",
+    "boundary_risk": "High lead time volatility and demand trend create elevated stockout risk. Continuous monitoring recommended.",
+    "escalation_flag": "FEASIBLE"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "material_id": "PL1__M32C0761",
+  "data_quality": {
+    "total_rows": 131,
+    "working_days": 131,
+    "outliers_detected": 1,
+    "winsorisation": {
+      "lower_bound": 134.25,
+      "upper_bound": 1648.47
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 891.7,
+    "std_daily_demand": 297.95,
+    "robust_std_daily": 280.62,
+    "cv_wd": 0.3341,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": true,
+    "regime": "erratic",
+    "distribution_type": "lognormal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.68,
+    "std_lead_time": 1.11,
+    "cv_lead_time": 0.4127,
+    "stability": "unstable",
+    "effective_lead_time": 3.79
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1101.09,
+    "safety_stock": 1812,
+    "safety_stock_robust": 1791
+  },
+  "order_quantity": {
+    "eoq_raw": 6618.88,
+    "order_quantity": 6619
+  },
+  "cost_analysis": {
+    "unit_cost": 6.360605,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.7633
+  },
+  "policy": {
+    "safety_stock": 1812,
+    "reorder_point": 4204,
+    "order_quantity": 6619,
+    "review_period_days": 8
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.03,
+    "sigma_eff_days": 1.23,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 80.36,
+    "variance_components": {
+      "transport": 0.7352,
+      "supplier": 0.3676,
+      "quality": 0.1225
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M32C0761 exhibits erratic demand with unstable lead times. Recommended safety stock of 1812 units achieves 95% service level. Optimized EOQ of 6619 units balances ordering and holding costs, yielding annual savings of $19933.15 (75.6%) versus current policy.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Economic Order Quantity with stochastic lead time demand",
+    "selection_rationale": "CV=0.33 indicates erratic demand; lead time CV=0.41 shows unstable supply. Normal approximation suitable for safety stock given sufficient history.",
+    "boundary_risk": "Lead time variability (lead_time_variability) dominates uncertainty. Monitor supplier performance closely.",
+    "escalation_flag": "none"
+  }
+}

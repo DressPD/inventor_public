@@ -1,0 +1,74 @@
+{
+  "material_id": "PL3__M40D8812",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 170,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 1562.93519,
+      "upper_bound": 3010.23772
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 2237.790582352941,
+    "std_daily_demand": 374.2573017038822,
+    "robust_std_daily": 401.00426241660466,
+    "cv_wd": 0.16724411330320582,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": true,
+    "regime": "stable",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.1179807692307693,
+    "std_lead_time": 0.8794199100926495,
+    "cv_lead_time": 0.7866145235197003,
+    "stability": "volatile",
+    "effective_lead_time": 2.5644977979600014
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 2007.3492489753498,
+    "safety_stock": 3302,
+    "safety_stock_robust": 3312
+  },
+  "order_quantity": {
+    "eoq_raw": 8445.570332329435,
+    "order_quantity": 8446
+  },
+  "cost_analysis": {
+    "unit_cost": 9.804185,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.1765022
+  },
+  "policy": {
+    "safety_stock": 3302,
+    "reorder_point": 5804,
+    "order_quantity": 8446,
+    "review_period_days": 4
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.5,
+    "sigma_eff_days": 1.446517028729232,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 96.11376536762162,
+    "variance_components": {
+      "transport": 96.11376536762162,
+      "supplier": 0.0,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "ADD_BUFFER",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__M40D8812 exhibits stable demand with mean daily demand of 2237.8 units (CV=0.17). Lead time variability dominates uncertainty (96.1% of variance). Optimized policy reduces annual costs from $119,070 to $13,821, saving $105,249 (88.4%). Recommend implementing safety stock of 3302 units, order quantity of 8446 units, and reorder point of 5804 units.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ_with_safety_stock",
+    "selection_rationale": "High-volume stable demand (2238 units/day) with moderate CV (0.17) suits EOQ optimization. Lead time variability (0.79) requires safety stock buffer.",
+    "boundary_risk": "Low - demand pattern is consistent",
+    "escalation_flag": "None"
+  }
+}

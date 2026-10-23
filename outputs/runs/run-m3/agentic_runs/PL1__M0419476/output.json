@@ -1,0 +1,114 @@
+{
+  "material_id": "PL1__M0419476",
+  "analysis_timestamp": "2025-03-04T00:00:00Z",
+  "data_quality": {
+    "total_rows": 173,
+    "working_days": 173,
+    "outliers_detected": 4,
+    "outlier_percentage": 2.31,
+    "completeness_score": 1.0,
+    "quality_flag": "good"
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 576.38,
+    "std_daily_demand": 205.31,
+    "robust_std": 178.01,
+    "coefficient_of_variation": 0.356,
+    "non_zero_fraction": 1.0,
+    "median_demand": 620.83,
+    "min_demand": 24.83,
+    "max_demand": 909.43,
+    "trend_detected": true,
+    "trend_slope": 1.0484,
+    "trend_p_value": 0.0007,
+    "demand_regime": "erratic",
+    "annual_demand_forecast": 144094.51,
+    "narrative": "The material exhibits erratic demand with mean daily consumption of 576.4 units and CV of 0.36. A significant upward trend was detected in the demand pattern. Total annual forecast is 144,095 units across 250 working days."
+  },
+  "lead_time_analysis": {
+    "mean_lead_time_days": 0.771,
+    "std_lead_time_days": 0.96,
+    "cv_lead_time": 1.245,
+    "median_lead_time_days": 0.305,
+    "min_lead_time_days": 0.04,
+    "max_lead_time_days": 4.46,
+    "p95_lead_time_days": 2.989,
+    "stability_label": "highly_variable",
+    "effective_lead_time_days": 2.989,
+    "observations_count": 58,
+    "narrative": "Lead time is highly variable with mean 0.77 days and CV 1.25. Due to high variability, effective lead time of 2.99 days (95th percentile) is used for safety calculations."
+  },
+  "inventory_policy": {
+    "eoq_raw": 5184.58,
+    "moq": 236,
+    "unconstrained_order_quantity": 5185,
+    "order_quantity": 4281,
+    "capacity_constraint_active": true,
+    "reorder_point": 1403,
+    "safety_stock": 958,
+    "safety_stock_robust": 946,
+    "review_period_days": 8,
+    "max_inventory_level": 5239,
+    "service_level_target": 0.95,
+    "z_score": 1.645,
+    "sigma_ltd": 581.92,
+    "narrative": "Optimal order quantity is 4,281 units (capacity-constrained from EOQ 5,185) with reorder point at 1,403 units. Safety stock of 958 units ensures 95% service level given erratic demand and highly variable lead times."
+  },
+  "cost_analysis": {
+    "unit_cost": 4.467246,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 50.0,
+    "optimized_policy": {
+      "annual_ordering_cost": 1682.95,
+      "annual_holding_cost": 1661.01,
+      "total_annual_cost": 3343.97,
+      "order_quantity": 4281,
+      "safety_stock": 958
+    },
+    "previous_policy": {
+      "annual_ordering_cost": 1389.53,
+      "annual_holding_cost": 1565.05,
+      "total_annual_cost": 2954.59,
+      "order_quantity": 5185,
+      "safety_stock": 327
+    },
+    "savings": {
+      "annual_cost_savings": -389.38,
+      "percentage_savings": -13.18
+    }
+  },
+  "safety_lead_time": {
+    "sap_safety_lead_time_days": 3.0,
+    "recommended_days": 3.35,
+    "sigma_eff_days": 0.96,
+    "dominant_factor": "supplier",
+    "dominant_percentage": 50.0,
+    "variance_components": {
+      "transport": 0.3686,
+      "supplier": 0.4607,
+      "quality": 0.0921
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase"
+  },
+  "capacity_constraints": {
+    "max_storage_units": 5239.707,
+    "total_required": 5239,
+    "utilization_pct": 99.99,
+    "constraint_active": true,
+    "headroom_units": 0.71
+  },
+  "diagnostics": {
+    "demand_winsorized": true,
+    "outliers_detected": true,
+    "capacity_gate_passed": true,
+    "moq_binding": false,
+    "service_level_achieved": 0.95
+  },
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review reorder-point / fixed-order-quantity",
+    "selection_rationale": "Demand is erratic but fully continuous (non-zero fraction=100%) with highly variable lead times (CV=1.25). The (r,Q) policy reacts dynamically to inventory position, providing better service-level protection than periodic review under this lead-time uncertainty profile.",
+    "boundary_risk": "Capacity cap reduces EOQ by ~17%; more frequent orders increase ordering cost. Storage expansion to >=5,500 units would restore unconstrained EOQ and save ~$293/year.",
+    "escalation_flag": "none"
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "material_id": "PL3__MC6DA11C",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 2328.219
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1012.59874122807,
+    "std_daily_demand": 634.8842619797116,
+    "robust_std_daily": 318.8538864000001,
+    "cv_wd": 0.6269850397105274,
+    "non_zero_fraction_wd": 0.7894736842105263,
+    "trend_detected": false,
+    "regime": "erratic",
+    "distribution_type": "moderate"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.4954999999999998,
+    "std_lead_time": 0.780032708058467,
+    "cv_lead_time": 0.521586565067514,
+    "stability": "unstable",
+    "effective_lead_time": 2.275532708058467
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1107.5568726331462,
+    "safety_stock": 1822.0,
+    "safety_stock_robust": 1449.0
+  },
+  "order_quantity": {
+    "eoq_raw": 19194.115470274515,
+    "order_quantity": 19195
+  },
+  "cost_analysis": {
+    "unit_cost": 0.858917,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.10306904
+  },
+  "policy": {
+    "safety_stock": 1822,
+    "reorder_point": 4127,
+    "order_quantity": 19195,
+    "review_period_days": 19
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.4309715596156742,
+    "sigma_eff_days": 0.780032708058467,
+    "dominant_factor": "demand_variability",
+    "dominant_pct": 0.6269850397105274,
+    "variance_components": {
+      "transport": 0.0,
+      "supplier": 0.521586565067514,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__MC6DA11C shows erratic demand (CV=0.627) over 228 working days with no measurable trend, and unstable supplier lead times ranging from 0.8 to 3.43 days (CV=0.52). The current SAP policy carries zero safety stock, leaving the material unprotected against combined demand and lead-time variability. An (r,Q) continuous-review policy with safety stock of 1,822 units and order quantity of 19,195 units achieves the 95% service level target while reducing total annual inventory costs by 39.3% through fewer, larger replenishment orders.",
+  "warnings": [
+    "CRITICAL: SAP safety stock is 0 \u2014 stockout risk is high given erratic demand and unstable lead times.",
+    "SAP safety lead time is 0.0 days; recommended value is 1.43 days \u2014 immediate update required.",
+    "No storage capacity constraint is binding; peak inventory of 21,017 units is within the 45,440-unit limit."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review policy",
+    "selection_rationale": "The material has continuous (non-intermittent) albeit erratic demand with a non-zero fraction of 79%. A continuous-review (r,Q) policy is appropriate because it triggers replenishment as soon as stock falls to the reorder point, providing responsive protection against the observed lead-time instability without requiring fixed-interval reviews.",
+    "boundary_risk": "Storage capacity is not binding. Peak inventory (safety stock + order quantity = 21,017) is well below the 45,440-unit storage limit, so no capacity-driven order reduction is required.",
+    "escalation_flag": "none"
+  }
+}

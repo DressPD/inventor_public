@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__MC705553",
+  "data_quality": {
+    "total_rows": 138,
+    "working_days": 138,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": -121.861875,
+      "upper_bound": 759.141125
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 333.24180434782613,
+    "std_daily_demand": 164.99060239943765,
+    "robust_std_daily": 157.7619834,
+    "cv_wd": 0.49510775733054857,
+    "non_zero_fraction_wd": 0.9565217391304348,
+    "trend_detected": true,
+    "regime": "smooth",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.658220338983051,
+    "std_lead_time": 1.882825496022316,
+    "cv_lead_time": 1.1354495248665266,
+    "stability": "volatile",
+    "effective_lead_time": 3.541045835005367
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 662.4319197092236,
+    "safety_stock": 1090,
+    "safety_stock_robust": 1085
+  },
+  "order_quantity": {
+    "eoq_raw": 5128.83067313076,
+    "order_quantity": 3023
+  },
+  "cost_analysis": {
+    "unit_cost": 2.639256,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.31671072
+  },
+  "policy": {
+    "safety_stock": 1090,
+    "reorder_point": 1643,
+    "order_quantity": 3023,
+    "review_period_days": 10
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.882825496022316,
+    "sigma_eff_days": 1.882825496022316,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 2.127019109083008,
+      "supplier": 1.063509554541504,
+      "quality": 0.3545031848471681
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MC705553 exhibits smooth demand with CV=0.50. Lead time is volatile (CV=1.14). Recommended policy: Safety stock=1090, ROP=1643, Q=3023. Expected cost savings: $6208.36 (73.8%) vs SAP policy.",
+  "warnings": [
+    "Order quantity constrained by storage capacity. EOQ=5129 reduced to 3023.",
+    "1 lead time outliers detected (>7.31 days).",
+    "Significant demand trend detected. Consider time-series forecasting."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) continuous review policy",
+    "selection_rationale": "Suitable for smooth demand with volatile lead times. EOQ-based order quantity adjusted for capacity constraints.",
+    "boundary_risk": "Capacity constraint limits order quantity below optimal EOQ, increasing ordering frequency and costs.",
+    "escalation_flag": "review_capacity"
+  }
+}

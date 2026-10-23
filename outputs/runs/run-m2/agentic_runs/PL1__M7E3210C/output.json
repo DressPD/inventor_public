@@ -1,0 +1,74 @@
+{
+  "material_id": "PL1__M7E3210C",
+  "data_quality": {
+    "total_rows": 217,
+    "working_days": 217,
+    "outliers_detected": 10,
+    "winsorisation": {
+      "lower_bound": 1352.76,
+      "upper_bound": 5349.17
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 4137.3,
+    "std_daily_demand": 715.83,
+    "robust_std_daily": 540.68,
+    "cv_wd": 0.173,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": true,
+    "regime": "Stable",
+    "distribution_type": "Normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.4562,
+    "std_lead_time": 0.9118,
+    "cv_lead_time": 1.9984,
+    "stability": "Volatile",
+    "effective_lead_time": 1.368
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 3803.14,
+    "safety_stock": 6256,
+    "safety_stock_robust": 6234
+  },
+  "order_quantity": {
+    "eoq_raw": 101010.41,
+    "order_quantity": 101011
+  },
+  "cost_analysis": {
+    "unit_cost": 0.084478,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.010137
+  },
+  "policy": {
+    "safety_stock": 6256,
+    "reorder_point": 11916,
+    "order_quantity": 101011,
+    "review_period_days": 25
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.5121,
+    "sigma_eff_days": 0.9192,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 98.38,
+    "variance_components": {
+      "transport": 0.0,
+      "supplier": 0.0,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "REDUCE",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M7E3210C exhibits Stable demand with Normal characteristics. The demand has a coefficient of variation of 17.30%, classified as Stable. Lead time is Volatile with CV of 199.84%. The dominant source of uncertainty is lead time variability (98.4%). Recommended safety stock of 6,256 units provides 95% service level, significantly lower than SAP's 54,990 units. Optimal order quantity of 101,011 units balances ordering and holding costs, yielding annual savings of $2,384.36 (68.7%) compared to current SAP policy.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Classical EOQ with Normal Safety Stock",
+    "selection_rationale": "Stable demand with low variability (CV < 25%) allows classical models",
+    "boundary_risk": "LOW",
+    "escalation_flag": ""
+  }
+}

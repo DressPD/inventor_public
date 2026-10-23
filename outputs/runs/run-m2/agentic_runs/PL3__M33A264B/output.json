@@ -1,0 +1,89 @@
+{
+  "material_id": "PL3__M33A264B",
+  "data_quality": {
+    "total_rows": 216,
+    "working_days": 216,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 20.8506
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 2.6588,
+    "std_daily_demand": 4.7785,
+    "robust_std_daily": 3.3895,
+    "cv_wd": 1.7972,
+    "non_zero_fraction_wd": 0.2778,
+    "trend_detected": true,
+    "regime": "intermittent",
+    "distribution_type": "stuttering-Poisson-like"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.3233,
+    "std_lead_time": 1.2734,
+    "cv_lead_time": 0.9622,
+    "stability": "moderate",
+    "effective_lead_time": 1.3233
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 6.4559,
+    "safety_stock": 11,
+    "safety_stock_robust": 9
+  },
+  "order_quantity": {
+    "eoq_raw": 284.35,
+    "order_quantity": 526
+  },
+  "cost_analysis": {
+    "unit_cost": 10.276031,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.2331,
+    "previous_policy": {
+      "safety_stock": 0,
+      "order_quantity": 526,
+      "annual_ordering_cost": 94.78,
+      "annual_holding_cost": 324.31,
+      "total_annual_cost": 419.09
+    },
+    "optimized_policy": {
+      "safety_stock": 11,
+      "order_quantity": 526,
+      "annual_ordering_cost": 94.78,
+      "annual_holding_cost": 337.88,
+      "total_annual_cost": 432.65
+    },
+    "annual_savings": -13.56
+  },
+  "policy": {
+    "safety_stock": 11,
+    "reorder_point": 15,
+    "order_quantity": 526,
+    "review_period_days": 198
+  },
+  "safety_lead_time": {
+    "recommended_days": 3.9939,
+    "sigma_eff_days": 2.4281,
+    "dominant_factor": "demand",
+    "dominant_pct": 0.725,
+    "variance_components": {
+      "transport": 0.275,
+      "supplier": 0.0,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__M33A264B exhibits intermittent demand with mean daily demand of 2.66 units and CV of 1.80. Lead time averages 1.32 days with moderate variability (CV=0.96). The recommended safety stock is 11 units to achieve 95% service level, with reorder point at 15 units. Order quantity is set to 526 units, constrained by MOQ of 526; storage capacity of 1,499.79 units is not binding. Demand variability is the dominant factor in safety stock requirement.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Continuous-review (r,Q) model with Normal approximation safety stock",
+    "selection_rationale": "Intermittent demand with CV=1.80 and a binding MOQ of 526 units makes a fixed-order-quantity (r,Q) policy optimal. The Normal approximation for sigma_LTD is conservative for stuttering-Poisson demand, providing a buffer against distribution misspecification. EOQ falls below MOQ so the MOQ governs the order cycle.",
+    "boundary_risk": "Moderate \u2014 MOQ of 526 units results in a long ~198-day replenishment cycle relative to low daily demand. Any demand surge or lead-time extension during this cycle could erode the 11-unit safety stock rapidly. Storage capacity is non-binding (537 of 1,500 units used post-replenishment).",
+    "escalation_flag": "none"
+  }
+}

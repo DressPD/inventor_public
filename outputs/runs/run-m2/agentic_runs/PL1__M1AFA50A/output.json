@@ -1,0 +1,74 @@
+{
+  "material_id": "PL1__M1AFA50A",
+  "data_quality": {
+    "total_rows": 131,
+    "working_days": 131,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 4.938400000000001,
+      "upper_bound": 940.153
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 545.8669618320611,
+    "std_daily_demand": 216.76602126480861,
+    "robust_std_daily": 216.2636686306998,
+    "cv_wd": 0.3971041232048366,
+    "non_zero_fraction_wd": 0.9923664122137404,
+    "trend_detected": true,
+    "regime": "smooth",
+    "distribution_type": "skewed"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 4.238783783783785,
+    "std_lead_time": 1.337367023426954,
+    "cv_lead_time": 0.31550725199602947,
+    "stability": "moderate",
+    "effective_lead_time": 6.818166854109956
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 855.6317077955325,
+    "safety_stock": 1407.3889179021637,
+    "safety_stock_robust": 1406.5023442413099
+  },
+  "order_quantity": {
+    "eoq_raw": 5869.5289280367215,
+    "order_quantity": 5870
+  },
+  "cost_analysis": {
+    "unit_cost": 6.601902,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.7922282399999999
+  },
+  "policy": {
+    "safety_stock": 1408,
+    "reorder_point": 3722,
+    "order_quantity": 5870,
+    "review_period_days": 11
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.57938307032617,
+    "sigma_eff_days": 1.5674729698310121,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 72.79492445201808,
+    "variance_components": {
+      "transport": 0.0,
+      "supplier": 72.79492445201808,
+      "quality": 27.205075547981917
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization analysis for material PL1__M1AFA50A reveals significant opportunities for cost reduction. \n\nThe current SAP policy uses a safety stock of 759 units with an assumed order quantity at MOQ (911 units), resulting in 150 orders per year and total annual costs of $15,942.04.\n\nThe optimized policy recommends:\n- Safety stock: 1408 units (increase from 759)\n- Order quantity: 5870 units (increase from 911)\n- Reorder point: 3722 units\n- Review period: 10.8 days\n\nThis results in 23 orders per year and total annual costs of $5,765.46, achieving annual savings of $10,176.58 (63.8% reduction).\n\nKey findings:\n- Demand is smooth with CV=0.40\n- Lead time is moderate with mean=4.2 days (CV=0.32)\n- Trend detected: Yes (slope=1.293 units/day)\n- Variance is dominated by lead time variability (73%)\n- Service level target: 95%\n\nThe higher safety stock provides better protection against stockouts given the moderate lead time variability, while the larger order quantity reduces ordering frequency and costs. The policy meets capacity constraints (7278 < 9954 units).",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Classical EOQ with safety stock",
+    "selection_rationale": "Demand regime is smooth (CV=0.40) with 99% non-zero periods. Lead time is moderate. Classical model appropriate for this demand pattern.",
+    "boundary_risk": "Lead time CV=0.32 indicates moderate conditions. Monitor for sustained changes in demand trend (current slope=1.293).",
+    "escalation_flag": "Monitor trend"
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "material_id": "PL1__M601EBFE",
+  "data_quality": {
+    "total_rows": 93,
+    "working_days": 93,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 1823.3854999999996,
+      "upper_bound": 6262.9335
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 3989.4047795698925,
+    "std_daily_demand": 940.982036525153,
+    "robust_std_daily": 815.8451279999996,
+    "cv_wd": 0.2358702835430509,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": true,
+    "regime": "intermittent",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.5936263736263734,
+    "std_lead_time": 1.2337562486465798,
+    "cv_lead_time": 0.4756877325092737,
+    "stability": "moderate",
+    "effective_lead_time": 3.8273826222729532
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 5149.9651713973,
+    "safety_stock": 8471,
+    "safety_stock_robust": 8380
+  },
+  "order_quantity": {
+    "eoq_raw": 105534.43051242214,
+    "order_quantity": 105535
+  },
+  "cost_analysis": {
+    "unit_cost": 0.074624,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.008954879999999998,
+    "previous_policy": {
+      "annual_ordering_cost": 5347.154165196618,
+      "annual_holding_cost": 41.756605439999994,
+      "annual_total_cost": 5388.9107706366185
+    },
+    "recommended_policy": {
+      "annual_ordering_cost": 472.5215307208382,
+      "annual_holding_cost": 548.3834188799999,
+      "annual_total_cost": 1020.9049496008381
+    },
+    "annual_savings": 4368.00582103578
+  },
+  "policy": {
+    "safety_stock": 8471,
+    "reorder_point": 23740,
+    "order_quantity": 105535,
+    "review_period_days": 27
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.1233590871066936,
+    "sigma_eff_days": 1.290910663608452,
+    "dominant_factor": "transport",
+    "dominant_pct": 100.0,
+    "variance_components": {
+      "transport": 24225622.074223522,
+      "supplier": 0.0,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "DECREASE",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization analysis for PL1__M601EBFE reveals intermittent demand with mean daily demand of 3989.40 units (CV=0.24). Lead time shows moderate behavior (mean=2.59 days, CV=0.48). Recommended safety stock of 8471 units with order quantity of 105535 achieves 95% service level while reducing annual costs by $4368.01 (81.1%). The (r,Q) continuous review model is appropriate for this demand pattern.",
+  "warnings": [
+    "Significant demand trend detected (slope=-15.99, p=0.0000). Consider dynamic forecasting.",
+    "Lead time variability is moderate (CV=0.48). Consider supplier performance improvement."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous review",
+    "selection_rationale": "Material shows intermittent demand pattern with CV=0.24. The (r,Q) continuous review model is appropriate for materials with moderate to high demand frequency and benefits from EOQ optimization. Trend analysis shows declining pattern (p=0.0000).",
+    "boundary_risk": "Lead time variability (CV=0.48) indicates moderate supplier performance. Safety stock buffer of 8471 units protects against 95% of demand-supply variations.",
+    "escalation_flag": "NONE"
+  }
+}

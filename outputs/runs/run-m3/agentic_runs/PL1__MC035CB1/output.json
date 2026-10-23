@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__MC035CB1",
+  "data_quality": {
+    "total_rows": 221,
+    "working_days": 221,
+    "outliers_detected": 7,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 4032.15
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1649.36,
+    "std_daily_demand": 872.31,
+    "robust_std_daily": 757.71,
+    "cv_wd": 0.5289,
+    "non_zero_fraction_wd": 0.9321,
+    "trend_detected": true,
+    "regime": "moderate",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.35,
+    "std_lead_time": 1.23,
+    "cv_lead_time": 0.5225,
+    "stability": "variable",
+    "effective_lead_time": 3.57
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 2423.2,
+    "safety_stock": 3986.16,
+    "safety_stock_robust": 3834.53
+  },
+  "order_quantity": {
+    "eoq_raw": 17321.82,
+    "order_quantity": 17322
+  },
+  "cost_analysis": {
+    "unit_cost": 1.7316,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.2078
+  },
+  "policy": {
+    "safety_stock": 1482,
+    "reorder_point": 5352,
+    "order_quantity": 17322,
+    "review_period_days": 11
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.02,
+    "sigma_eff_days": 1.23,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 69.6,
+    "variance_components": {
+      "transport": 69.6,
+      "supplier": 15.2,
+      "quality": 15.2
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization analysis for material PL1__MC035CB1 reveals a moderate demand pattern with \nmoderate variability (CV=0.53). The mean daily demand is 1649 units with \nsignificant variability (std=872). Lead time analysis shows variable performance \nwith mean 2.35 days (CV=0.52).\n\nThe optimized policy recommends an order quantity of 17322 units (EOQ-based: 17322, \nadjusted for MOQ constraint of 427 units) and a safety stock of 1482 units to achieve \n95% service level. The reorder point is set at 5351 units.\n\nCRITICAL: Storage capacity constraint is binding. The original calculated safety stock of 3986 units \nexceeded available capacity (18805 units) when combined with order quantity. Safety stock \nwas adjusted to 1482 units to comply with storage limitations.\n\nLead time variability is the dominant factor (69.6% of total variance), suggesting focus on \nsupplier reliability improvements. The recommended safety lead time of 2.02 days \nis lower than SAP's current 3.00 days, suggesting potential for buffer optimization.\n\nThe optimized policy yields modest annual savings of $4.25 (0.11%) compared \nto current SAP settings, primarily through minor reductions in safety stock holdings while maintaining service level.",
+  "warnings": [
+    "Storage capacity exceeded: 21308 > 18805",
+    "Safety stock reduced from 3986 to 1482 units to meet capacity constraint",
+    "Significant trend detected in demand data (p-value: 0.0092)"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with safety stock (normal approximation)",
+    "selection_rationale": "Normal distribution assumed based on demand pattern (CV=0.53, moderate regime). Combined demand-lead time variability calculated using standard propagation of uncertainty formula.",
+    "boundary_risk": "Capacity constraint binding - may require strategic review of storage allocation or order quantity flexibility",
+    "escalation_flag": "YES - Capacity Constraint"
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "material_id": "PL2__M790A183",
+  "data_quality": {
+    "total_rows": 136,
+    "working_days": 136,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 1317.8966500000008
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 599.1279654411765,
+    "std_daily_demand": 372.8294161725329,
+    "robust_std_daily": 472.4386442999999,
+    "cv_wd": 0.6222867862594172,
+    "non_zero_fraction_wd": 0.9264705882352942,
+    "trend_detected": false,
+    "regime": "erratic",
+    "distribution_type": "Gamma-like"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 5.400131578947368,
+    "std_lead_time": 1.6034508564726289,
+    "cv_lead_time": 0.2969281087008596,
+    "stability": "moderate",
+    "effective_lead_time": 6.2018570071836825
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1293.6456383299976,
+    "safety_stock": 2128,
+    "safety_stock_robust": 1936
+  },
+  "order_quantity": {
+    "eoq_raw": 10148.244288405625,
+    "order_quantity": 6633
+  },
+  "cost_analysis": {
+    "unit_cost": 2.423966,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.29087592,
+    "previous_policy": {
+      "annual_ordering_cost": 4958.026857341745,
+      "annual_holding_cost": 439.36807716000004,
+      "total_annual_cost": 5397.394934501745
+    },
+    "optimized_policy": {
+      "annual_ordering_cost": 2258.133444298117,
+      "annual_holding_cost": 1583.67394644,
+      "total_annual_cost": 3841.8073907381167
+    },
+    "cost_savings": 1555.5875437636287
+  },
+  "policy": {
+    "safety_stock": 2128,
+    "reorder_point": 5364,
+    "order_quantity": 6633,
+    "review_period_days": 12
+  },
+  "safety_lead_time": {
+    "recommended_days": 3.551591384371735,
+    "sigma_eff_days": 2.1592142462877746,
+    "dominant_factor": "transport",
+    "dominant_pct": 0.551467386926139,
+    "variance_components": {
+      "transport": 0.551467386926139,
+      "supplier": 0.44853261307386105,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "DECREASE from 4.0 to 3.55 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL2__M790A183 exhibits a erratic demand regime with CV=0.62 and 92.6% non-zero days.\nLead time is moderate (mean=5.40 days, CV=0.30).\nRecommended safety stock: 2128 units (z=1.64 for 95% service level).\nOptimal order quantity: 6633 units (EOQ=10148, constrained by MOQ=3021 and capacity=8761).\nReorder point: 5364 units (mean demand during lead time + safety stock).\nReview period: 12 days.\nEstimated annual cost savings: $1,555.59 vs current policy.\nSafety lead time recommendation: DECREASE from 4.0 to 3.55 days.\nDominant uncertainty factor: transport (55.1% of variance).",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with stochastic lead time and demand",
+    "selection_rationale": "Material exhibits erratic demand with moderate lead time. Standard EOQ with safety stock appropriate for Gamma-like distribution.",
+    "boundary_risk": "Capacity constraint active: 8761/8761 units used.",
+    "escalation_flag": ""
+  }
+}

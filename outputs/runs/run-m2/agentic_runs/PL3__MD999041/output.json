@@ -1,0 +1,77 @@
+{
+  "material_id": "PL3__MD999041",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 78273.81244
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 54878.23277192983,
+    "std_daily_demand": 31752.561306448162,
+    "robust_std_daily": 31431.005964772983,
+    "cv_wd": 0.5786002883585852,
+    "non_zero_fraction_wd": 0.9605263157894737,
+    "trend_detected": false,
+    "regime": "bimodal_intermittent",
+    "distribution_type": "mixed"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 5.464583333333334,
+    "std_lead_time": 1.3415337723362915,
+    "cv_lead_time": 0.2454960772860922,
+    "stability": "moderate",
+    "effective_lead_time": 6.996499999999999
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 104544.64298332988,
+    "safety_stock": 171961,
+    "safety_stock_robust": 171086
+  },
+  "order_quantity": {
+    "eoq_raw": 160190.66767806746,
+    "order_quantity": 50724
+  },
+  "cost_analysis": {
+    "unit_cost": 0.449102,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.05389224
+  },
+  "policy": {
+    "safety_stock": 171961,
+    "reorder_point": 471848,
+    "order_quantity": 50724,
+    "review_period_days": 0.9243009010659193
+  },
+  "safety_lead_time": {
+    "recommended_days": 3.1335010497633573,
+    "sigma_eff_days": 1.9050293295305307,
+    "dominant_factor": "demand_variability",
+    "dominant_pct": 50.40934006914411,
+    "variance_components": {
+      "transport": 0.0,
+      "supplier": 0.0,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "SAP has no safety lead time; recommended to implement buffer",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__MD999041 exhibits a bimodal demand pattern with 25% of days showing very low demand (<10k units) and 75% showing high demand (60k-80k units). The mean daily demand is 54878 units with a coefficient of variation of 0.58, indicating substantial variability. Lead time averages 5.46 days with moderate stability (CV=0.25). The (r,Q) policy recommends a safety stock of 171,961 units to achieve a 95% service level, which is 707% higher than the current SAP safety stock of 21,300. This large increase is necessary due to the bimodal demand pattern and combined demand-lead time variability. The EOQ calculation yields 160191 units, well above the MOQ of 11076. However, storage capacity constraints limit the order quantity to 50,724 units. The reorder point is 471,848 units. The optimized policy results in higher annual costs ($24,266.10) compared to the current SAP policy ($9,780.94) due to the substantially increased safety stock driven by high demand variability. The capacity constraint forces more frequent orders, increasing ordering costs. Given the bimodal demand pattern, consider investigating the root cause of the low-demand days and potentially implementing a two-tier inventory strategy.",
+  "warnings": [
+    "Storage capacity constraint is binding: order quantity reduced from 160191 to 50724",
+    "Optimized policy has higher annual cost due to storage constraints and high safety stock requirements"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous review with safety stock",
+    "selection_rationale": "Standard model appropriate for continuous demand with known lead time distribution and service level target",
+    "boundary_risk": "Capacity constraint is binding; bimodal demand pattern may violate normality assumptions underlying the safety stock formula",
+    "escalation_flag": "REVIEW_RECOMMENDED - Bimodal demand pattern suggests need for advanced forecasting or demand-regime segmentation analysis"
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "material_id": "PL2__MACDDEB6",
+  "data_quality": {
+    "total_rows": 141,
+    "working_days": 141,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 1647.8793999999998
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 915.4873177304964,
+    "std_daily_demand": 393.549379193725,
+    "robust_std_daily": 382.8183839881393,
+    "cv_wd": 0.4298796625269899,
+    "non_zero_fraction_wd": 0.9645390070921985,
+    "trend_detected": true,
+    "regime": "smooth",
+    "distribution_type": "approximately_normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.386695652173913,
+    "std_lead_time": 1.1042483525474411,
+    "cv_lead_time": 0.4626682717344545,
+    "stability": "variable",
+    "effective_lead_time": 3.4909440047213542
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1179.671212401843,
+    "safety_stock": 1940.3864723294116,
+    "safety_stock_robust": 1926.4741210415762
+  },
+  "order_quantity": {
+    "eoq_raw": 5397.792374708351,
+    "order_quantity": 5398
+  },
+  "cost_analysis": {
+    "unit_cost": 6.807883,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.81694596
+  },
+  "policy": {
+    "safety_stock": 1941,
+    "reorder_point": 4126,
+    "order_quantity": 5398,
+    "review_period_days": 6
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.1201822924338933,
+    "sigma_eff_days": 2.1201822924338933,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 73.43721895618222,
+    "variance_components": {
+      "transport": 0.0,
+      "supplier": 73.43721895618222,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease_significantly",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization analysis for material PL2__MACDDEB6 reveals significant opportunities for cost reduction.\n\nDEMAND PROFILE: The material exhibits smooth demand with CV=0.43, indicating moderate predictability. \nA statistically significant upward trend (slope=2.16, p=0.0075) suggests growing demand over time.\nNon-zero demand occurs in 96.5% of periods, supporting continuous inventory management.\n\nLEAD TIME ANALYSIS: Mean lead time is 2.39 days with high variability (CV=0.46, variable).\nLead time variability contributes 73.4% to total uncertainty, making it the dominant risk factor.\n\nOPTIMIZATION RESULTS:\n- Increase safety stock from 437 to 1941 units (+1504 units)\n- Increase order quantity from 1260 to 5398 units (EOQ-driven efficiency)\n- Reduce reorder point frequency to every 5.9 days\n\nCOST IMPACT: The optimized policy reduces total annual costs by $4,321.79 (41.9%), \nprimarily through improved ordering efficiency. While holding costs increase due to higher safety stock needed for \nvariable lead times, this is more than offset by reduced ordering frequency.\n\nRISK MITIGATION: The 95% service level target is maintained through appropriately sized \nsafety buffers that account for both demand and lead time uncertainty.",
+  "warnings": [
+    "Upward trend detected (slope=2.16). Consider dynamic forecasting.",
+    "Lead time variability is high (CV=0.46). Monitor supplier performance."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ_with_safety_stock",
+    "selection_rationale": "Continuous review (Q,r) model selected based on smooth demand regime with CV=0.43. EOQ provides cost optimization while safety stock addresses variable lead time.",
+    "boundary_risk": "moderate_intermittency_boundary",
+    "escalation_flag": "none"
+  }
+}

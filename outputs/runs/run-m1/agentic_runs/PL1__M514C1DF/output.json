@@ -1,0 +1,74 @@
+{
+  "material_id": "PL1__M514C1DF",
+  "data_quality": {
+    "total_rows": 93,
+    "working_days": 93,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 19.802,
+      "upper_bound": 1798.723
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 988.45,
+    "std_daily_demand": 315.07,
+    "robust_std_daily": 296.03,
+    "cv_wd": 0.3188,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "moderate",
+    "distribution_type": "normal_approx"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.0934,
+    "std_lead_time": 0.8663,
+    "cv_lead_time": 0.7924,
+    "stability": "unstable",
+    "effective_lead_time": 1.5265
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 917.53,
+    "safety_stock": 1510.0,
+    "safety_stock_robust": 1498.0
+  },
+  "order_quantity": {
+    "eoq_raw": 4974.86,
+    "order_quantity": 4975
+  },
+  "cost_analysis": {
+    "unit_cost": 8.320536,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.99847
+  },
+  "policy": {
+    "safety_stock": 1510,
+    "reorder_point": 2591,
+    "order_quantity": 4975,
+    "review_period_days": 6
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.0,
+    "sigma_eff_days": 0.876,
+    "dominant_factor": "transport",
+    "dominant_pct": 0.6,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease from 3.0 to 1.0 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M514C1DF exhibits moderate, continuously positive demand (mean 988 units/day, CV 0.32) with no detectable trend across the 93-day working-day history. Lead times are highly unstable (CV 0.79, range 0.03\u20133.82 days), making lead-time variance the dominant driver of safety stock. An (r,Q) continuous-review policy is recommended: reorder at 2,591 units and replenish 4,975 units each cycle, yielding a 6-day review cadence well within the 9,895-unit storage limit.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) \u2014 continuous-review reorder-point / fixed-order-quantity",
+    "selection_rationale": "Demand is continuous and moderately variable with normal approximation; EOQ drives an economically optimal batch size well above MOQ=132. Continuous review is appropriate given the short but volatile lead time, allowing timely response to stock drawdowns.",
+    "boundary_risk": "No capacity constraint binds (SS + OQ = 6,485 vs. limit 9,895). Risk is on the service side: if lead-time CV worsens further, the 95% target may require re-evaluation of safety stock upward.",
+    "escalation_flag": "none"
+  }
+}

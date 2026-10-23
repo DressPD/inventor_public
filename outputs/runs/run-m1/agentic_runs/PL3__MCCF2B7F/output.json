@@ -1,0 +1,78 @@
+{
+  "material_id": "PL3__MCCF2B7F",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "outliers_detected": 10,
+    "winsorisation": {
+      "lower_bound": 1999.30325,
+      "upper_bound": 2704.16125
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 2306.037752941176,
+    "std_daily_demand": 293.46416214455365,
+    "robust_std_daily": 121.85044620000018,
+    "cv_wd": 0.12725904498756033,
+    "non_zero_fraction_wd": 0.7456140350877193,
+    "trend_detected": false,
+    "regime": "smooth",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.0882882882882883,
+    "std_lead_time": 0.8347061256120722,
+    "cv_lead_time": 0.7669899001899009,
+    "stability": "unstable",
+    "effective_lead_time": 1.9229944139003605
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1949.0575940601072,
+    "safety_stock": 3206,
+    "safety_stock_robust": 3174
+  },
+  "order_quantity": {
+    "eoq_raw": 10800.860163532916,
+    "order_quantity": 10180
+  },
+  "cost_analysis": {
+    "unit_cost": 6.177315,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.7412778
+  },
+  "policy": {
+    "safety_stock": 3206,
+    "reorder_point": 5716,
+    "order_quantity": 10180,
+    "review_period_days": 5
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.4749172935831745,
+    "sigma_eff_days": 0.8347061256120722,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 97.53279773048239,
+    "variance_components": {
+      "transport": 0.41804058968058994,
+      "supplier": 0.20902029484029497,
+      "quality": 0.06967343161343166
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "IMPLEMENT",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__MCCF2B7F exhibits a smooth demand pattern with CV=0.13. Lead time stability is unstable (CV=0.77), with mean=1.09 days. Dominant variability factor is lead_time_variability (97.5%). The recommended policy (Q=10180, ROP=5716, SS=3206) achieves 95.0% service level while reducing total annual costs by $26,261.59 (71.6%) compared to current SAP settings. Storage utilization is 100.0%. 3 warnings require attention. Recommended safety lead time is 1.47 days vs SAP 0.00 days - action: IMPLEMENT.",
+  "warnings": [
+    "Lead time is UNSTABLE (CV=0.77). Consider supplier consolidation or near-shoring.",
+    "Safety stock is 2.6x MOQ - consider reviewing service level or supplier lead time.",
+    "10 outliers detected and handled via winsorization."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Analytical EOQ with Normal Approximation",
+    "selection_rationale": "Smooth demand pattern with stable characteristics supports classical EOQ model.",
+    "boundary_risk": "HIGH - High variability in demand and/or lead time may require advanced methods",
+    "escalation_flag": "YES"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "material_id": "PL1__M39D7511",
+  "data_quality": {
+    "total_rows": 153,
+    "working_days": 153,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 973.1045199999994
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 476.9947124183006,
+    "std_daily_demand": 266.3590116830516,
+    "robust_std_daily": 256.86360266864347,
+    "cv_wd": 0.5584108266790766,
+    "non_zero_fraction_wd": 0.8562091503267973,
+    "trend_detected": false,
+    "regime": "erratic",
+    "distribution_type": "gamma-like"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.4148717948717948,
+    "std_lead_time": 0.8764964844459373,
+    "cv_lead_time": 0.6194882728052112,
+    "stability": "unstable",
+    "effective_lead_time": 2.291368279317732
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 524.5717034975517,
+    "safety_stock": 863,
+    "safety_stock_robust": 852
+  },
+  "order_quantity": {
+    "eoq_raw": 3065.430097855799,
+    "order_quantity": 3066
+  },
+  "cost_analysis": {
+    "unit_cost": 10.575222,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.2690266399999999
+  },
+  "policy": {
+    "safety_stock": 863,
+    "reorder_point": 1956,
+    "order_quantity": 3066,
+    "review_period_days": 7
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.5,
+    "sigma_eff_days": 0.8764964844459373,
+    "dominant_factor": "supplier",
+    "dominant_pct": 40.0,
+    "variance_components": {
+      "transport": 0.4,
+      "supplier": 0.4,
+      "quality": 0.2
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M39D7511 exhibits erratic demand behavior with a coefficient of variation of 0.56, \nindicating gamma-like distribution characteristics. The demand pattern shows 85.6% \nnon-zero working days with mean daily demand of 476.99 units.\n\nLead time analysis reveals unstable behavior (CV=0.62) with mean lead time of 1.41 days \nand standard deviation of 0.88 days. The effective lead time (mean + 1 std) is 2.29 days.\n\nThe optimized inventory policy recommends:\n- Safety stock: 863 units (vs SAP: 0)\n- Reorder point: 1956 units\n- Order quantity: 3066 units (EOQ-based with MOQ=111)\n- Review period: 7 days\n\nThis policy achieves 95% service level target. The recommended safety lead time is \n1.5 days (action: decrease from current 3.0 days), \ndriven primarily by supplier variability.\n\nCost impact: The optimized policy requires higher safety stock to achieve 95% service level, increasing total annual \ncost by $1095.17 compared to the previous policy with zero safety stock. However, this investment \nensures robust protection against demand and lead time variability.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with Safety Stock",
+    "selection_rationale": "Material exhibits erratic demand with CV=0.56 and unstable lead times. EOQ model appropriate given sufficient non-zero demand fraction (85.62%).",
+    "boundary_risk": "Medium - demand variability and lead time instability require robust safety stock",
+    "escalation_flag": "None"
+  }
+}

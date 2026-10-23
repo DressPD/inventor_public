@@ -1,0 +1,112 @@
+{
+  "material_id": "PL1__M127A408",
+  "parameters": {
+    "unit_cost": 10.060092,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 50.0,
+    "moq": 657,
+    "service_level_target": 0.95,
+    "sap_safety_stock": 76,
+    "sap_safety_lead_time_days": 2.5,
+    "max_storage_units": 41277.007
+  },
+  "data_quality": {
+    "source": "provided_arrays",
+    "total_rows": 130,
+    "working_days": 130,
+    "date_range_start": "2025-03-03",
+    "date_range_end": "2026-03-09",
+    "missing_values": 0,
+    "outliers_detected": 8
+  },
+  "demand_analysis": {
+    "mean_daily": 1911.01,
+    "std_daily": 811.94,
+    "robust_std_daily": 575.04,
+    "cv": 0.4249,
+    "regime": "moderate",
+    "non_zero_fraction": 0.9846,
+    "annual_demand": 496863.31,
+    "trend_detected": true,
+    "median_daily": 1706.57,
+    "narrative": "Material PL1__M127A408 exhibits moderate demand with CV=0.42, averaging 1911 units/day. Demand shows a significant trend and 8 outliers were detected. The non-zero demand fraction is 98.46%, indicating consistent activity."
+  },
+  "lead_time_analysis": {
+    "mean_days": 1.5411,
+    "std_days": 1.0589,
+    "cv": 0.6871,
+    "stability": "unstable",
+    "effective_lead_time_days": 2.6,
+    "narrative": "Lead time averages 1.54 days with high variability (CV=0.69, unstable). Effective lead time including safety buffer is 2.60 days. Lead time variability contributes 80% of total supply uncertainty."
+  },
+  "safety_stock": {
+    "recommended": 3719,
+    "sap_current": 76,
+    "service_level": 0.95,
+    "z_score": 1.6449,
+    "sigma_ltd": 2260.7,
+    "robust_sigma_ltd": 2145.79,
+    "dominant_factor": "lead_time_variability",
+    "demand_variance_contribution_pct": 19.88,
+    "leadtime_variance_contribution_pct": 80.12,
+    "narrative": "Recommended safety stock of 3719 units (vs. SAP's 76) provides 95% service level. The dominant uncertainty driver is lead time variability, accounting for 80% of variance. Current SAP setting severely underestimates required buffer."
+  },
+  "eoq_analysis": {
+    "eoq_raw": 6415.45,
+    "order_quantity": 6416,
+    "moq_binding": true,
+    "review_period_days": 4,
+    "reorder_point": 8688,
+    "capacity_feasible": true,
+    "capacity_utilization_pct": 24.55,
+    "narrative": "EOQ calculation yields 6415 units; MOQ constraint is binding, setting order quantity to 6416 units. Reorder at 8688 units with a 4-day review cycle. Storage capacity utilization is 24.6%."
+  },
+  "cost_analysis": {
+    "previous_policy": {
+      "order_quantity": 657,
+      "safety_stock": 76,
+      "annual_ordering_cost": 37813.04,
+      "annual_holding_cost": 488.32,
+      "total_annual_cost": 38301.35,
+      "avg_inventory": 404.5
+    },
+    "optimized_policy": {
+      "order_quantity": 6416,
+      "safety_stock": 3719,
+      "annual_ordering_cost": 3872.06,
+      "annual_holding_cost": 8362.35,
+      "total_annual_cost": 12234.42,
+      "avg_inventory": 6927.0
+    },
+    "savings": {
+      "total_annual_savings": 26066.94,
+      "savings_percentage": 68.06,
+      "ordering_cost_delta": 33940.97,
+      "holding_cost_delta": -7874.03
+    },
+    "narrative": "The optimized policy reduces total annual costs by $26,067 (68.1% savings). While holding costs increase by $7,874, ordering costs drop by $33,941 through consolidation into larger, less frequent orders."
+  },
+  "safety_lead_time": {
+    "sap_current_days": 2.5,
+    "recommended_days": 1.95,
+    "comparison_action": "reduce",
+    "effective_std_lead_time_days": 1.0589,
+    "narrative": "Current SAP safety lead time of 2.5 days should be reduced to 1.9 days to align with calculated safety stock buffer. This reflects the true supply chain variability captured in lead time standard deviation of 1.06 days."
+  },
+  "recommendations": {
+    "priority": "high",
+    "implementation_ease": "medium",
+    "key_actions": [
+      "Increase safety stock from 76 to 3719 units",
+      "Adjust order quantity to 6416 units per replenishment",
+      "Set reorder point at 8688 units",
+      "Reduce safety lead time to 1.9 days"
+    ],
+    "risks": [
+      "Higher inventory carrying cost",
+      "Lead time variability remains primary risk driver",
+      "Adequate storage headroom available"
+    ],
+    "executive_summary": "Optimization of material PL1__M127A408 delivers 68% cost reduction ($26,067 annually) through right-sizing order quantities and safety buffers. Current SAP safety stock of 76 units is critically insufficient for the 95% service target; recommend 3719 units. Implementation priority: high."
+  }
+}

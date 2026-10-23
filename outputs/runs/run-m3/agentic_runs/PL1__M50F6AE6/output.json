@@ -1,0 +1,119 @@
+{
+  "material_id": "PL1__M50F6AE6",
+  "analysis_timestamp": "2024-01-15T00:00:00Z",
+  "input_parameters": {
+    "unit_cost": 0.046031,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 50.0,
+    "moq": 34758,
+    "service_level_target": 0.95,
+    "max_storage_units": 57332.521,
+    "sap_safety_stock": 6517,
+    "sap_safety_lead_time_days": 3.0
+  },
+  "data_quality": {
+    "total_rows": 219,
+    "working_days": 219,
+    "date_range_start": "2025-03-03",
+    "date_range_end": "2026-03-09",
+    "missing_values": 0,
+    "outliers_detected": 10,
+    "outlier_bounds": {
+      "lower": 2519.4725000000003,
+      "upper": 4635.416499999999
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 3545.673698630137,
+    "std_demand": 449.52986394158245,
+    "robust_std_demand": 376.83837239999997,
+    "cv_demand": 0.12678263770161854,
+    "non_zero_fraction": 1.0,
+    "trend_slope": -3.026912176242759,
+    "trend_p_value": 4.2269446704547717e-11,
+    "regime": "smooth",
+    "distribution_type": "Normal",
+    "annual_demand": 886418.4246575342
+  },
+  "lead_time_analysis": {
+    "mean_lead_time_days": 1.4132283464566926,
+    "std_lead_time_days": 0.9215798046468674,
+    "cv_lead_time": 0.6521096233014942,
+    "stability_classification": "highly variable",
+    "effective_lead_time_days": 1.8740182487801262,
+    "lead_time_observations": 127
+  },
+  "safety_stock_calculation": {
+    "z_score": 1.644853626951472,
+    "sigma_ltd": 3311.0315428285203,
+    "sigma_ltd_robust": 3298.186977129218,
+    "recommended_safety_stock": 5447,
+    "robust_safety_stock": 5426,
+    "sap_baseline_safety_stock": 6517,
+    "delta_vs_sap": -1070,
+    "delta_vs_sap_pct": -16.418597514193646
+  },
+  "order_quantity_calculation": {
+    "eoq_raw": 126678.6887427088,
+    "eoq_rounded": 126679,
+    "moq_constraint": 34758,
+    "unconstrained_order_quantity": 126679,
+    "capacity_constrained_order_quantity": 51885,
+    "constraint_type": "capacity"
+  },
+  "recommended_policy": {
+    "safety_stock": 5447,
+    "reorder_point": 12092,
+    "order_quantity": 51885,
+    "review_period_days": 15,
+    "average_inventory": 31389.5,
+    "peak_inventory": 57332
+  },
+  "cost_analysis": {
+    "recommended": {
+      "annual_ordering_cost": 854.2145366267073,
+      "annual_holding_cost": 173.38680894,
+      "total_annual_cost": 1027.6013455667073,
+      "num_orders_per_year": 17.084290732534146
+    },
+    "sap_baseline": {
+      "annual_ordering_cost": 349.86794364398764,
+      "annual_holding_cost": 385.86774618,
+      "total_annual_cost": 735.7356898239876,
+      "num_orders_per_year": 6.997358872879753
+    },
+    "savings": {
+      "annual_cost_savings": -291.8656557427197,
+      "savings_percentage": -39.66990588869538,
+      "ordering_cost_delta": 504.34659298271964,
+      "holding_cost_delta": -212.48093723999997
+    }
+  },
+  "safety_lead_time_analysis": {
+    "recommended_safety_lead_time_days": 1.515863884198629,
+    "sap_safety_lead_time_days": 3.0,
+    "delta_days": -1.484136115801371,
+    "dominant_factor": "transport_variability",
+    "disruption_premium": 1.0
+  },
+  "capacity_analysis": {
+    "max_storage_units": 57332.521,
+    "peak_inventory": 57332,
+    "capacity_utilization_pct": 99.99909126619427,
+    "remaining_capacity": 0.5210000000006403,
+    "capacity_check_passed": true
+  },
+  "decision_support": {
+    "narrative": "The analysis of material PL1__M50F6AE6 reveals smooth demand (CV=0.13) with smooth consumption patterns and highly variable lead times (CV=0.65). Capacity constraints force a reduction from the optimal EOQ of 126,679 units to 51,885 units, utilizing 100% of available storage. The recommended safety stock of 5,447 units (16% below SAP baseline) balances service level requirements with storage limitations, though increased order frequency raises total costs by $291.87 annually.",
+    "selected_model": "Normal approximation with capacity constraints",
+    "selection_rationale": "Normal distribution selected based on low CV (0.13) and continuous demand pattern. Capacity constraint (57,333 units) is the binding constraint, requiring order quantity reduction from optimal EOQ. Lead time variability (CV=0.65) necessitates robust safety stock buffering.",
+    "boundary_risk": "CRITICAL: Operating at 100% capacity utilization leaves zero buffer for demand spikes or supply disruptions. Lead time variability (0.65) combined with high order frequency (17.1 orders/year) increases exposure to stockout risk. Consider capacity expansion or supplier consolidation.",
+    "warnings": [
+      "High capacity utilization (100.0%) limits flexibility",
+      "Highly variable lead times (CV=0.65) increase supply risk",
+      "Capacity constraints increase annual costs by $291.87 vs SAP baseline",
+      "Statistically significant demand trend detected (slope=-3.03, p=0.0000)"
+    ],
+    "escalation_required": false
+  }
+}

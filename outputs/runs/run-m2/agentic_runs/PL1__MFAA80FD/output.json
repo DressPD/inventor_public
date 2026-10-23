@@ -1,0 +1,89 @@
+{
+  "material_id": "PL1__MFAA80FD",
+  "inputs": {
+    "unit_cost": 2.5155,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 75.0,
+    "moq": 132,
+    "service_level_target": 0.95,
+    "sap_safety_stock": 132,
+    "sap_safety_lead_time_days": 6.0,
+    "max_storage_units": 1625.701
+  },
+  "data_quality": {
+    "total_rows": 194,
+    "working_days": 194,
+    "outliers_detected": 4
+  },
+  "demand_diagnostics": {
+    "mean_daily_demand": 69.1189,
+    "std_daily_demand": 29.3331,
+    "robust_std": 12.3152,
+    "cv": 0.4244,
+    "non_zero_fraction": 0.9948,
+    "trend_slope": -0.110841,
+    "regime": "erratic",
+    "distribution_type": "right_skewed",
+    "skewness": 1.8708
+  },
+  "lead_time_diagnostics": {
+    "mean_lead_time": 2.5657,
+    "std_lead_time": 1.1527,
+    "cv_lead_time": 0.4493,
+    "stability": "moderate",
+    "effective_lead_time": 3.7184
+  },
+  "safety_stock": {
+    "z_score": 1.6449,
+    "sigma_ltd": 92.4978,
+    "sigma_ltd_robust": 82.0815,
+    "safety_stock": 153,
+    "safety_stock_robust": 136,
+    "sap_current": 132
+  },
+  "order_quantity": {
+    "annual_demand": 17279.7178,
+    "eoq_raw": 2930.2938,
+    "unconstrained_order_quantity": 2931,
+    "order_quantity": 1472,
+    "feasibility": "FEASIBLE"
+  },
+  "reorder_policy": {
+    "reorder_point": 331,
+    "review_period_days": 22
+  },
+  "cost_analysis": {
+    "optimized": {
+      "num_orders_per_year": 11.7389,
+      "annual_ordering_cost": 880.42,
+      "avg_inventory": 889.0,
+      "annual_holding_cost": 268.35,
+      "total_annual_cost": 1148.77
+    },
+    "sap_baseline": {
+      "num_orders_per_year": 130.907,
+      "annual_ordering_cost": 9818.02,
+      "avg_inventory": 198.0,
+      "annual_holding_cost": 59.77,
+      "total_annual_cost": 9877.79
+    },
+    "savings": {
+      "annual_cost_savings": 8729.02,
+      "savings_percentage": 88.37
+    }
+  },
+  "safety_lead_time": {
+    "recommended_days": 2,
+    "sap_current_days": 6.0,
+    "comparison_action": "DECREASE",
+    "variance_components": {
+      "transport_variance": 0.5315,
+      "supplier_variance": 0.3986,
+      "quality_variance": 0.3986
+    },
+    "disruption_premium": 1.0
+  },
+  "warnings": [
+    "Storage capacity constraint is binding (reduced order from 2931 to 1472)"
+  ]
+}

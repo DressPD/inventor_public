@@ -1,0 +1,76 @@
+{
+  "material_id": "PL1__ME1021F3",
+  "data_quality": {
+    "total_rows": 131,
+    "working_days": 131,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 1966.3145
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 634.0,
+    "std_daily_demand": 489.0,
+    "robust_std_daily": 528.0,
+    "cv_wd": 0.771,
+    "non_zero_fraction_wd": 0.7863,
+    "trend_detected": false,
+    "regime": "erratic",
+    "distribution_type": "normal-approximation"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.2154,
+    "std_lead_time": 1.0849,
+    "cv_lead_time": 0.4898,
+    "stability": "stable",
+    "effective_lead_time": 2.7578
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 601.0,
+    "safety_stock": 990,
+    "safety_stock_robust": 1009
+  },
+  "order_quantity": {
+    "eoq_raw": 14752.0,
+    "order_quantity": 12087
+  },
+  "cost_analysis": {
+    "unit_cost": 1.516054,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.181927
+  },
+  "policy": {
+    "safety_stock": 990,
+    "reorder_point": 2742,
+    "order_quantity": 12087,
+    "review_period_days": 20
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.57,
+    "sigma_eff_days": 0.9481,
+    "dominant_factor": "demand_variability",
+    "dominant_pct": 0.6612,
+    "variance_components": {
+      "transport": 0.6612,
+      "supplier": 0.3388,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "REDUCE",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__ME1021F3 exhibits an erratic demand pattern (CV=0.77) with a mean of 634 units/day and high intermittency (21% zero-demand days). Lead times are stable (mean=2.22 wd, \u03c3=1.08 wd), and demand variability drives 66% of the combined lead-time-demand variance. A continuous-review (r,Q) policy is recommended with safety stock 990 units (vs SAP's 685), a reorder point of 2742 units, and order quantity 12087 units; storage capacity constrains the EOQ from 14752 to 12087, yielding estimated annual total cost of \u20ac5,940.",
+  "warnings": [
+    "Capacity constraint binds: unconstrained OQ=14752 capped to 12087 (storage=13077, SS=990)."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) Continuous-Review with EOQ Order Quantity",
+    "selection_rationale": "The (r,Q) continuous-review policy is appropriate because demand is erratic but not intermittent enough for Croston-class models (non-zero fraction=79%). Continuous review suits materials where stockouts are costly and lead times are variable. EOQ-based sizing balances ordering and holding costs given the low unit cost (\u20ac1.5161), moderate ordering cost (\u20ac50), and 12% holding rate.",
+    "boundary_risk": "Storage cap of 13077 units reduced order quantity from 14752 to 12087. This limits replenishment cycle length and increases ordering frequency, raising ordering costs slightly but remaining within feasible bounds.",
+    "escalation_flag": "none"
+  }
+}

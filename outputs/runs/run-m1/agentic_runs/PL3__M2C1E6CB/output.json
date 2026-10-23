@@ -1,0 +1,76 @@
+{
+  "material_id": "PL3__M2C1E6CB",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 8263.79
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 4650.56,
+    "std_daily_demand": 2799.13,
+    "robust_std_daily": 1285.44,
+    "cv_wd": 0.602,
+    "non_zero_fraction_wd": 0.9342,
+    "trend_detected": false,
+    "regime": "erratic",
+    "distribution_type": "bimodal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.12,
+    "std_lead_time": 0.91,
+    "cv_lead_time": 0.808,
+    "stability": "unstable",
+    "effective_lead_time": 2.03
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 5157.65,
+    "safety_stock": 8484.0,
+    "safety_stock_robust": 7293.0
+  },
+  "order_quantity": {
+    "eoq_raw": 15908.87,
+    "order_quantity": 3366
+  },
+  "cost_analysis": {
+    "unit_cost": 5.742177,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.6890612
+  },
+  "policy": {
+    "safety_stock": 8484,
+    "reorder_point": 13708,
+    "order_quantity": 3366,
+    "review_period_days": 1
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.82,
+    "sigma_eff_days": 1.109,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 66.9,
+    "variance_components": {
+      "transport": 0.669,
+      "supplier": 0.331,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__M2C1E6CB exhibits an erratic, bimodal demand pattern with a mean of 4,651 units/day and CV of 0.60 \u2014 driven by near-zero demand on non-production days alternating with 5,000\u20138,000 unit active days. Lead times are highly unstable (CV=0.808, range 0.5\u20133.73 days), making lead-time variability the dominant risk factor at 66.9% of total buffer variance. A continuous-review (r,Q) policy is recommended, with a storage-capacity-capped order quantity of 3,366 units and a safety stock of 8,484 units, delivering a 75% total cost reduction versus the current SAP baseline while achieving 95% service level.",
+  "warnings": [
+    "EOQ (15,909) exceeds available storage after safety stock; order quantity capped at 3,366 units (remaining capacity). Storage utilisation is at 100% \u2014 demand growth requires capacity review."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) Continuous-Review Reorder-Point Policy",
+    "selection_rationale": "The material has high daily throughput (~4,651 units/day), frequent deliveries, and unstable lead times. A continuous-review (r,Q) policy with a fixed reorder point and fixed order quantity is optimal here because it responds immediately to inventory depletion without waiting for a periodic review cycle, minimising stockout exposure under high lead-time variability. EOQ provides the cost-minimising order size, subject to the storage capacity constraint.",
+    "boundary_risk": "Storage capacity binds hard at 11,850 units. With safety stock consuming 8,484 units, only 3,366 units are available for cycle stock \u2014 well below the unconstrained EOQ of 15,909. This forces more frequent orders (346/year vs EOQ-optimal ~73/year), increasing ordering costs. Any upward drift in demand mean or safety stock requirement will immediately breach capacity. A storage expansion or demand rationalisation review is recommended within 6 months.",
+    "escalation_flag": "none \u2014 MOQ (666) is satisfied by the capacity-capped OQ (3,366). No MOQ-capacity infeasibility exists. However, the 100% storage utilisation warrants proactive capacity planning escalation."
+  }
+}

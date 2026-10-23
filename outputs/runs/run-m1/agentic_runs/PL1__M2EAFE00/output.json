@@ -1,0 +1,145 @@
+{
+  "metadata": {
+    "material_id": "PL1__M2EAFE00",
+    "analysis_timestamp": "2026-10-19T19:13:39.817838",
+    "service_level_target": 0.95,
+    "unit_cost": 3.264287,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 100.0,
+    "moq": 614,
+    "max_storage_units": 3218.528,
+    "currency": "USD"
+  },
+  "data_quality": {
+    "total_rows": 124,
+    "working_days": 124,
+    "non_working_days": 0,
+    "date_range_start": "2025-03-14",
+    "date_range_end": "2026-03-09",
+    "demand_outliers_winsorized": 2,
+    "lead_time_observations": 45
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 189.5076,
+    "std_daily_demand": 217.8364,
+    "robust_std_daily": 260.22,
+    "cv_wd": 1.1495,
+    "non_zero_fraction_wd": 0.6129,
+    "annual_demand": 47376.9,
+    "trend_detected": false,
+    "trend_slope": 1.067172,
+    "trend_p_value": 0.050458,
+    "regime": "lumpy",
+    "distribution_type": "compound_poisson",
+    "intermittency_flag": true,
+    "lumpy_flag": true
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 4.6278,
+    "std_lead_time": 1.5508,
+    "cv_lead_time": 0.3351,
+    "min_lead_time": 0.94,
+    "max_lead_time": 9.3,
+    "median_lead_time": 5.08,
+    "stability": "moderate",
+    "effective_lead_time": 6.1786,
+    "observations_count": 45
+  },
+  "buffer_analysis": {
+    "method": "normal_approximation",
+    "z_score": 1.6449,
+    "sigma_ltd": 553.1448,
+    "safety_stock": 910,
+    "safety_stock_robust": 1040,
+    "safety_stock_days": 4.8,
+    "sap_safety_stock": 0,
+    "delta_safety_stock": 910
+  },
+  "eoq_analysis": {
+    "eoq_raw": 4918.28,
+    "eoq_rounded": 4919,
+    "unconstrained_order_quantity": 4919,
+    "order_quantity": 2308,
+    "moq": 614,
+    "moq_binding": false,
+    "capacity_binding": true,
+    "remaining_storage": 2308
+  },
+  "recommended_policy": {
+    "safety_stock": 910,
+    "reorder_point": 2081,
+    "order_quantity": 2308,
+    "review_period_days": 13,
+    "max_inventory_level": 3218,
+    "avg_inventory": 2064.0,
+    "policy_type": "continuous_review_ROP"
+  },
+  "current_sap_policy": {
+    "safety_stock": 0,
+    "safety_lead_time_days": 4.0,
+    "order_quantity": 614,
+    "avg_inventory": 307.0
+  },
+  "cost_comparison": {
+    "optimized_policy": {
+      "annual_holding_cost": 808.5,
+      "annual_ordering_cost": 2052.73,
+      "total_annual_cost": 2861.22,
+      "avg_inventory": 2064.0,
+      "num_orders_per_year": 20.53
+    },
+    "sap_policy": {
+      "annual_holding_cost": 120.26,
+      "annual_ordering_cost": 7716.11,
+      "total_annual_cost": 7836.36,
+      "avg_inventory": 307.0,
+      "num_orders_per_year": 77.16
+    },
+    "savings": {
+      "absolute": 4975.14,
+      "percentage": 63.49
+    }
+  },
+  "safety_lead_time_analysis": {
+    "current_sap_days": 4.0,
+    "recommended_days": 2.6,
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.3,
+      "quality": 0.2
+    },
+    "dominant_factor": "transport",
+    "sigma_eff_days": 1.5508,
+    "disruption_premium": 1.0,
+    "comparison_action": "REDUCE",
+    "z_score": 1.6449
+  },
+  "capacity_constraints": {
+    "max_storage_units": 3218.528,
+    "required_storage": 3218,
+    "utilization_pct": 99.98,
+    "feasible": true,
+    "safety_stock": 910,
+    "order_quantity": 2308
+  },
+  "warnings": [
+    "Capacity binding: order quantity reduced from 4919 to 2308 due to storage limit"
+  ],
+  "escalation_flag": false,
+  "narrative": {
+    "executive_summary": "Material PL1__M2EAFE00 exhibits lumpy demand patterns with high variability (CV=1.15). The optimized inventory policy recommends a safety stock of 910 units and order quantity of 2308 units, constrained by warehouse capacity of 3219 units. This optimization is projected to reduce total annual costs by 63.5% ($4975.14), primarily through better balancing of ordering and holding costs.",
+    "demand_insight": "The material shows lumpy demand with 61.3% of working days having positive demand. The coefficient of variation of 1.15 indicates significant demand volatility, characteristic of a compound_poisson distribution. No statistically significant trend was detected (p=0.0505).",
+    "lead_time_insight": "Lead time demonstrates moderate variability with a mean of 4.63 days and standard deviation of 1.55 days (CV=0.34). The effective lead time of 6.18 days includes a buffer for variability. Transport factors contribute 50% to lead time variance.",
+    "buffer_rationale": "Safety stock of 910 units is calculated using normal approximation to achieve 95% service level, covering demand variability during the 6.18-day effective lead time. The robust estimate suggests 1040 units, confirming the buffer is appropriately sized for this lumpy demand pattern.",
+    "cost_impact": "The optimized policy reduces total annual costs from $7836.36 to $2861.22, saving $4975.14 annually. While holding costs increase from $120.26 to $808.50 due to higher safety stock, ordering costs decrease dramatically from $7716.11 to $2052.73 through larger, less frequent orders.",
+    "capacity_note": "Warehouse capacity of 3219 units is a binding constraint, limiting the order quantity to 2308 units (vs. unconstrained EOQ of 4919 units). The policy utilizes 100.0% of available storage.",
+    "recommendation": "Implement the recommended policy with reorder point of 2081 units and order quantity of 2308 units. Consider reducing the safety lead time from 4.0 to 2.6 days based on observed lead time stability. Review policy quarterly given the lumpy demand pattern and monitor service levels closely during the first 3 months post-implementation."
+  },
+  "research_insights": {
+    "demand_pattern_analysis": "This material exhibits compound Poisson demand characteristics typical of lumpy, low-frequency high-volume orders. Research suggests using periodic review policies for such patterns, but continuous review with appropriately sized buffers can achieve target service levels if lead times are relatively stable.",
+    "buffer_methodology": "The normal approximation method is appropriate here despite lumpiness because the service level target (95%) and lead time (~4.6 days) allow the Central Limit Theorem to provide reasonable estimates. For even higher service levels (>99%), distribution-free methods or bootstrapping would be more conservative.",
+    "cost_optimization_note": "The EOQ model assumes constant demand, which is violated by this material's lumpy pattern. However, using average daily demand (189.51 units) in the EOQ formula provides a practical starting point. The capacity constraint binding at 2308 units vs. EOQ of 4919 units increases total costs slightly but is unavoidable given physical limitations.",
+    "lead_time_variability": "With CV of 0.34, lead time shows moderate variability. The dominant transport component (50%) suggests opportunities for supplier consolidation or alternative logistics providers to reduce variability and potentially lower safety stock requirements.",
+    "implementation_considerations": "Given the lumpy demand and 13-day review period, implement demand forecasting alerts for unusually large orders. The current policy may struggle during demand spikes exceeding 2-3 standard deviations. Consider dynamic safety stock adjustments if demand regime shifts are detected."
+  }
+}

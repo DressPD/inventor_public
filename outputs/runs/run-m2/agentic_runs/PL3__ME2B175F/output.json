@@ -1,0 +1,78 @@
+{
+  "material_id": "PL3__ME2B175F",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 514.624
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 211.1254298245614,
+    "std_daily_demand": 143.27126304531058,
+    "robust_std_daily": 221.8087472201631,
+    "cv_wd": 0.6786073243965187,
+    "non_zero_fraction_wd": 0.9517543859649122,
+    "trend_detected": true,
+    "regime": "Erratic",
+    "distribution_type": "Gamma/Lognormal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.2705405405405408,
+    "std_lead_time": 0.9712790706244181,
+    "cv_lead_time": 0.7644612978749938,
+    "stability": "Highly Variable",
+    "effective_lead_time": 2.241819611164959
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 261.01772455263176,
+    "safety_stock": 430.0,
+    "safety_stock_robust": 532.0
+  },
+  "order_quantity": {
+    "eoq_raw": 6472.45542933577,
+    "order_quantity": 4697
+  },
+  "cost_analysis": {
+    "unit_cost": 1.049932,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.12599184
+  },
+  "policy": {
+    "safety_stock": 430,
+    "reorder_point": 904,
+    "order_quantity": 4697,
+    "review_period_days": 22
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.04,
+    "sigma_eff_days": 1.27,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 76.4,
+    "variance_components": {
+      "transport": 0.94,
+      "supplier": 0.0,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Increase SAP safety lead time from 0.0 to 2.04 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__ME2B175F exhibits erratic demand (CV\u00b2=0.461) with a statistically significant declining trend (Mann-Kendall \u03c4=\u22120.197) across 228 working days. Lead times are short on average (1.27 days) but highly variable (CV=0.76, max=4.73 days), necessitating a conservative effective lead time of 2.24 days. The (r,Q) continuous-review policy with SS=430, ROP=904, and OQ=4,697 is recommended; the EOQ is storage-capped from 6,472 to 4,697 units but still delivers a 45.8% annual cost reduction versus the current SAP zero-buffer baseline.",
+  "warnings": [
+    "Storage capacity cap binds: EOQ reduced from 6472 to 4697 units (floor(5127.799 - 430))",
+    "Capacity utilization at ~100%; any safety stock increase requires storage expansion or MOQ waiver",
+    "Statistically significant declining demand trend detected (z=\u22124.43); policy should be reviewed if trend continues"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) Continuous Review",
+    "selection_rationale": "Erratic, predominantly continuous demand with highly variable lead times is best managed by a continuous-review (r,Q) policy. The fixed order quantity exploits the MOQ efficiently while the reorder point provides immediate response to inventory depletion, avoiding the exposure of periodic-review lag during lead-time spikes.",
+    "boundary_risk": "Storage cap of 5127.8 units fully binds the policy (SS+OQ=5127). If safety stock needs to increase (e.g., for robust variant at 532), the order quantity would need to fall to 4595, still above MOQ=1609 but reducing cycle stock and increasing order frequency.",
+    "escalation_flag": "none \u2014 MOQ(1609) + SS(430) = 2039 < max_storage(5127.8); policy is feasible"
+  }
+}

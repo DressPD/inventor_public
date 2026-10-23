@@ -1,0 +1,78 @@
+{
+  "material_id": "PL2__M4BBB8ED",
+  "data_quality": {
+    "total_rows": 129,
+    "working_days": 129,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 1487.424
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 772.85,
+    "std_daily_demand": 270.61,
+    "robust_std_daily": 222.14,
+    "cv_wd": 0.35,
+    "non_zero_fraction_wd": 0.938,
+    "trend_detected": true,
+    "regime": "smooth",
+    "distribution_type": "approximately normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.67,
+    "std_lead_time": 1.12,
+    "cv_lead_time": 0.67,
+    "stability": "unstable",
+    "effective_lead_time": 1.67
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 868.5,
+    "safety_stock": 1428.0,
+    "safety_stock_robust": 1174.0
+  },
+  "order_quantity": {
+    "eoq_raw": 9188.4,
+    "order_quantity": 6449
+  },
+  "cost_analysis": {
+    "unit_cost": 0.675463,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.081056
+  },
+  "policy": {
+    "safety_stock": 1428,
+    "reorder_point": 2721,
+    "order_quantity": 6449,
+    "review_period_days": 9
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.85,
+    "sigma_eff_days": 1.12,
+    "dominant_factor": "transport_and_supplier",
+    "dominant_pct": 0.4,
+    "variance_components": {
+      "transport": 0.4,
+      "supplier": 0.4,
+      "quality": 0.2
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce SAP safety lead time from 3.0 to 1.85 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL2__M4BBB8ED exhibits smooth, approximately normal working-day demand (CV=0.35, 93.8% non-zero) with a statistically significant upward trend (p=0.0002). Lead times are highly variable (CV=0.67) due to a bimodal pattern of short (~1 day) and extended (~3-5 day) replenishments, driven equally by transport and supplier factors. A continuous-review (r,Q) policy is recommended: it introduces a 1,428-unit safety stock to cover lead-time and demand variability at 95% service level, and uses a storage-capped order quantity of 6,449 units to reduce ordering frequency and total annual cost by ~85% versus the current SAP baseline.",
+  "warnings": [
+    "Storage capacity constraint is binding: unconstrained EOQ of 9,188 units capped to 6,449 units (max_storage_units - safety_stock).",
+    "Unstable lead time (CV=0.67): consider supplier SLA consolidation and lead-time monitoring.",
+    "Significant upward demand trend detected (p=0.0002): recalibrate policy quarterly."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) Continuous-Review Fixed-Order-Quantity Policy",
+    "selection_rationale": "Smooth demand (CV=0.35), high non-zero fraction (93.8%), and approximately normal distribution make the classic EOQ-based (r,Q) model the most parsimonious fit. Continuous review is appropriate given frequent daily demand events, and the fixed order quantity minimises total inventory cost subject to the storage cap.",
+    "boundary_risk": "The warehouse capacity of 7,877 units binds the order quantity. If the detected demand trend continues, the effective cycle service level will erode over time. A warehouse capacity review or demand segmentation is advised within 2 quarters.",
+    "escalation_flag": "Lead time instability (CV=0.67) combined with a confirmed demand trend requires quarterly policy recalibration and formal supplier SLA negotiation to reduce lead-time variance."
+  }
+}

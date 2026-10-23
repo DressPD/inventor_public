@@ -1,0 +1,79 @@
+{
+  "material_id": "PL3__MCD18380",
+  "data_quality": {
+    "total_rows": 220,
+    "working_days": 220,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 11806.178
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 6758.32,
+    "std_daily_demand": 821.45,
+    "robust_std_daily": 610.2,
+    "cv_wd": 0.1215,
+    "non_zero_fraction_wd": 0.9136,
+    "trend_detected": false,
+    "regime": "bimodal_high_volume",
+    "distribution_type": "approximately_normal_core_days"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.1196,
+    "std_lead_time": 0.8812,
+    "cv_lead_time": 0.7871,
+    "stability": "variable",
+    "effective_lead_time": 2.0008
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 5994.1,
+    "safety_stock": 9862.0,
+    "safety_stock_robust": 7320.0
+  },
+  "order_quantity": {
+    "eoq_raw": 15477.3,
+    "order_quantity": 4177
+  },
+  "cost_analysis": {
+    "unit_cost": 5.878235,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.7054
+  },
+  "policy": {
+    "safety_stock": 9862,
+    "reorder_point": 17406,
+    "order_quantity": 4177,
+    "review_period_days": 1
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.57,
+    "sigma_eff_days": 0.88,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Increase safety lead time from 0.0 to 1.57 days \u2014 current ERP setting provides zero buffer against lead-time variability",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__MCD18380 exhibits a bimodal demand structure with 170 core high-volume days averaging 6,758 units and 58 low-demand boundary days averaging ~110 units. Lead times are highly variable (CV=78.7%, range 0.5\u20133.72 days), which is the primary driver of a large safety stock requirement of 9,862 units. An (r,Q) continuous-review policy is recommended with reorder point 17,406 and order quantity 4,177 (capacity-constrained from EOQ 15,477). This policy achieves 95% service level while reducing annual costs by 79.5% through order consolidation.",
+  "warnings": [
+    "Storage capacity constraint is binding: EOQ 15,477 reduced to 4,177 to satisfy max_storage_units=14,039.85 with safety_stock=9,862",
+    "Lead time CV=78.7% classified as 'variable' \u2014 supplier performance is primary risk factor",
+    "Current SAP safety stock of 607 units is critically insufficient (covers <0.09 days of core demand)",
+    "Bimodal demand detected: low-demand days (~50-265 units) should be separately modelled"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review with EOQ order quantity",
+    "selection_rationale": "High daily demand volume and relatively low demand CV on core days make EOQ-based batch ordering efficient. Continuous review is appropriate given short lead times (mean 1.12 days) and high stockout cost implied by the high daily throughput. The (r,Q) model cleanly separates safety stock sizing from order quantity optimisation.",
+    "boundary_risk": "Storage capacity cap reduces order quantity from unconstrained EOQ 15,477 to 4,177 units, increasing annual orders from ~109 to ~404. This raises ordering cost from ~$5,450 to ~$20,200/year. Management should evaluate storage expansion to unlock the full EOQ benefit.",
+    "escalation_flag": "No MOQ-capacity infeasibility: MOQ=607 + safety_stock=9,862 = 10,469 < max_storage=14,040. Policy is feasible. Recommend supplier SLA review to reduce lead-time variability."
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "material_id": "PL1__M9B56DBE",
+  "data_quality": {
+    "total_rows": 221,
+    "working_days": 221,
+    "outliers_detected": 6,
+    "winsorisation": {
+      "lower_bound": 532.6334,
+      "upper_bound": 9298.4994
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 4927.516773755656,
+    "std_daily_demand": 1836.7135484737935,
+    "robust_std_daily": 1656.775389177168,
+    "cv_wd": 0.3727462802879282,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "smooth",
+    "distribution_type": "normal-like"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 5.527055555555556,
+    "std_lead_time": 1.4117126558172741,
+    "cv_lead_time": 0.2554185753385963,
+    "stability": "moderate",
+    "effective_lead_time": 6.93876821137283
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 8187.481798531889,
+    "safety_stock": 13468,
+    "safety_stock_robust": 13114
+  },
+  "order_quantity": {
+    "eoq_raw": 31250.93763415353,
+    "order_quantity": 31251
+  },
+  "cost_analysis": {
+    "unit_cost": 2.102281,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.25227372
+  },
+  "policy": {
+    "safety_stock": 13468,
+    "reorder_point": 40703,
+    "order_quantity": 31251,
+    "review_period_days": 7
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.73322255780673,
+    "sigma_eff_days": 1.4117126558172741,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 0.7218519663797895,
+    "variance_components": {
+      "transport": 1.195759573556797,
+      "supplier": 0.5978797867783985,
+      "quality": 0.19929326225946617
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "DECREASE: Recommended safety lead time lower than SAP",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization for PL1__M9B56DBE: Demand regime is smooth with 0.37 CV. Lead time is moderate (CV=0.26). The dominant driver of safety stock is lead_time_variability (72.2%). Recommended policy: maintain 13468 units safety stock, reorder at 40703 units with order quantity 31251. This provides 95% service level. Compared to SAP baseline (0 safety stock), the optimized policy increases annual costs by $3397.62 but significantly improves service reliability.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Classical EOQ with stochastic lead time demand",
+    "selection_rationale": "The material shows smooth demand and moderate lead times. Classical inventory models are appropriate given the normal-like demand distribution.",
+    "boundary_risk": "LOW: Classical models perform well",
+    "escalation_flag": ""
+  }
+}

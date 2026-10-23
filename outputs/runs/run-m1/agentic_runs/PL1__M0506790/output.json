@@ -1,0 +1,74 @@
+{
+  "material_id": "PL1__M0506790",
+  "data_quality": {
+    "total_rows": 221,
+    "working_days": 221,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": -799.0885000000001,
+      "upper_bound": 1570.6915
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 432.17126244343893,
+    "std_daily_demand": 332.8496708765957,
+    "robust_std_daily": 440.688024,
+    "cv_wd": 0.7701800184369222,
+    "non_zero_fraction_wd": 0.9638009049773756,
+    "trend_detected": false,
+    "regime": "high variability",
+    "distribution_type": "moderate asymmetry"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.533174603174604,
+    "std_lead_time": 1.2482632099320403,
+    "cv_lead_time": 0.4927663526895076,
+    "stability": "moderate",
+    "effective_lead_time": 3.781437813106644
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 756.0876209414679,
+    "safety_stock": 1244.0,
+    "safety_stock_robust": 1456.0
+  },
+  "order_quantity": {
+    "eoq_raw": 3597.2954831489933,
+    "order_quantity": 3546
+  },
+  "cost_analysis": {
+    "unit_cost": 10.895676,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.30748112
+  },
+  "policy": {
+    "safety_stock": 1244,
+    "reorder_point": 2879,
+    "order_quantity": 3546,
+    "review_period_days": 9
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.878488479235267,
+    "sigma_eff_days": 1.2482632099320403,
+    "dominant_factor": "transport",
+    "dominant_pct": 0.5,
+    "variance_components": {
+      "transport": 0.7790805206349205,
+      "supplier": 0.4674483123809523,
+      "quality": 0.3116322082539682
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "maintain current level",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization for material PL1__M0506790 reveals HIGH VARIABILITY demand (CV=0.770) with moderate lead time stability (CV=0.493). Current SAP safety stock of 610 units is INSUFFICIENT - analysis recommends 1244 units (+103.9%) to achieve 95% service level. The optimized policy increases total annual cost by $829.43 (+15.1%) primarily due to higher safety stock requirements driven by demand variability. EOQ is 3597 units but capacity constraints limit order quantity to 3546 units. The transport component dominates lead time variance (50%). Recommended action: maintain current safety lead time buffer.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with safety stock (Normal approximation)",
+    "selection_rationale": "High variability demand with moderate lead time stability; normal approximation appropriate for aggregate demand during lead time via CLT",
+    "boundary_risk": "Capacity constraint is binding; order quantity reduced from EOQ optimum of 3,597 to 3,546 to satisfy max_storage_units=4,790.456",
+    "escalation_flag": "none"
+  }
+}

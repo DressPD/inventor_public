@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__M9ECABAB",
+  "data_quality": {
+    "total_rows": 209,
+    "working_days": 209,
+    "outliers_detected": 9,
+    "winsorisation": {
+      "lower_bound": 11.777,
+      "upper_bound": 2375.015
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1218.3,
+    "std_daily_demand": 399.8,
+    "robust_std_daily": 363.2,
+    "cv_wd": 0.328,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": true,
+    "regime": "smooth",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.19,
+    "std_lead_time": 1.28,
+    "cv_lead_time": 0.586,
+    "stability": "moderate",
+    "effective_lead_time": 4.3
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1668.0,
+    "safety_stock": 2744.0,
+    "safety_stock_robust": 2595.0
+  },
+  "order_quantity": {
+    "eoq_raw": 5784.0,
+    "order_quantity": 5784
+  },
+  "cost_analysis": {
+    "unit_cost": 7.643612,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.917
+  },
+  "policy": {
+    "safety_stock": 2744,
+    "reorder_point": 7983,
+    "order_quantity": 5784,
+    "review_period_days": 5
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.25,
+    "sigma_eff_days": 1.37,
+    "dominant_factor": "transport",
+    "dominant_pct": 55.0,
+    "variance_components": {
+      "transport": 0.55,
+      "supplier": 0.38,
+      "quality": 0.07
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase from 3.0 to recommended 2.25 days (SAP value is higher than needed; safety stock approach preferred)",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Demand for PL1__M9ECABAB is smooth and approximately normally distributed with a mean of 1,218 units/day and a CV of 0.328, but exhibits a significant declining trend of approximately -30% over the observation period. Lead times are moderately variable (CV=0.586) with a structural shift from ~4-day to ~1-day lead times mid-period, requiring use of the 95th-percentile effective lead time of 4.30 days. The (r,Q) continuous-review policy is selected with safety stock of 2,744 units to achieve the 95% service level target, an EOQ-based order quantity of 5,784 units, and a reorder point of 7,983 units \u2014 all within the 9,304-unit storage constraint.",
+  "warnings": [
+    "Declining demand trend detected (-29.8%): EOQ and safety stock may be over-sized if trend continues",
+    "High lead time CV (0.586): elevated safety stock required; supplier engagement recommended",
+    "Safety stock represents 49% of average cycle inventory"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review policy with EOQ",
+    "selection_rationale": "Smooth, near-normal demand with stable positive non-zero fraction and moderate CV qualifies for classical continuous-review (r,Q). The EOQ balances ordering and holding costs optimally. Fixed order quantity simplifies SAP parameter maintenance.",
+    "boundary_risk": "Storage capacity (9,304 units) is respected: SS(2,744) + OQ(5,784) = 8,528 units, leaving an 8.3% buffer. No capacity constraint binds in the recommended policy.",
+    "escalation_flag": "none"
+  }
+}

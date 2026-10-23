@@ -1,0 +1,74 @@
+{
+  "material_id": "PL1__MA536107",
+  "data_quality": {
+    "total_rows": 150,
+    "working_days": 150,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": -119.46437500000008,
+      "upper_bound": 1122.2126250000001
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 514.1294399999999,
+    "std_daily_demand": 241.29832690457272,
+    "robust_std_daily": 230.11063750926616,
+    "cv_wd": 0.46933380610255027,
+    "non_zero_fraction_wd": 0.98,
+    "trend_detected": false,
+    "regime": "Smooth",
+    "distribution_type": "Normal (continuous review)"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.5167741935483874,
+    "std_lead_time": 1.1717834431274654,
+    "cv_lead_time": 0.46558942241670626,
+    "stability": "Moderate",
+    "effective_lead_time": 2.5167741935483874
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 713.7807190305451,
+    "safety_stock": 1174.0,
+    "safety_stock_robust": 1158.6700908272292
+  },
+  "order_quantity": {
+    "eoq_raw": 3365.3288112881783,
+    "order_quantity": 3365
+  },
+  "cost_analysis": {
+    "unit_cost": 14.299736,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.7159683199999998
+  },
+  "policy": {
+    "safety_stock": 1174,
+    "reorder_point": 2468,
+    "order_quantity": 3365,
+    "review_period_days": 7
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.1717834431274654,
+    "sigma_eff_days": 1.1717834431274654,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 0.8238458625525947,
+      "supplier": 0.41192293127629737,
+      "quality": 0.13730764375876578
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "DECREASE from 3.0 to 1.2 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MA536107 exhibits smooth demand with a CV of 0.47 and 98.0% non-zero demand days.\nMean daily demand is 514.1 units with standard deviation 241.3 units.\nLead time averages 2.52 days with moderate stability (CV=0.47).\n\nThe optimized inventory policy recommends:\n- Safety Stock: 1174 units (vs SAP: 0)\n- Reorder Point: 2468 units\n- Order Quantity: 3365 units (EOQ-based, respecting MOQ and capacity)\n\nThis policy achieves 95.0% service level and reduces total annual cost by $5,777.46 (42.6%) \ncompared to the SAP baseline, primarily by optimizing order frequency and balancing holding vs ordering costs.\n\nSafety lead time can be reduced from 3.0 to 1.2 days given the relatively stable lead time variance.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Normal approximation (Q,r) model",
+    "selection_rationale": "Low variability and consistent demand patterns support continuous review with normal distribution assumptions",
+    "boundary_risk": "Low risk; demand is predictable",
+    "escalation_flag": "NO"
+  }
+}

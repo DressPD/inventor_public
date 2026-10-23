@@ -1,0 +1,92 @@
+{
+  "material_id": "PL1__MFD8090A",
+  "data_quality": {
+    "total_rows": 233,
+    "working_days": 233,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 658.8617600000001
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 75.17751622317597,
+    "std_daily_demand": 155.35540496638723,
+    "robust_std_daily": 25.49592290585619,
+    "cv_wd": 2.0665142022674825,
+    "non_zero_fraction_wd": 0.39914163090128757,
+    "trend_detected": false,
+    "regime": "intermittent/lumpy",
+    "distribution_type": "intermittent"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.4366666666666667,
+    "std_lead_time": 0.4314510400960925,
+    "cv_lead_time": 0.9880558170139522,
+    "stability": "unstable",
+    "effective_lead_time": 0.8681177067627592
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 107.66214804436534,
+    "safety_stock": 178,
+    "safety_stock_robust": 61
+  },
+  "order_quantity": {
+    "eoq_raw": 746.317592446567,
+    "order_quantity": 747
+  },
+  "cost_analysis": {
+    "unit_cost": 28.118968,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 3.3742761599999995,
+    "previous_policy": {
+      "safety_stock": 0,
+      "order_quantity": 112,
+      "annual_holding_cost": 188.95946495999996,
+      "annual_ordering_cost": 8390.347792765177,
+      "total_annual_cost": 8579.307257725177
+    },
+    "optimized_policy": {
+      "safety_stock": 178,
+      "order_quantity": 747,
+      "annual_holding_cost": 1860.9133022399997,
+      "annual_ordering_cost": 1257.9905659835338,
+      "total_annual_cost": 3118.903868223533
+    },
+    "savings": {
+      "absolute": 5460.403389501644,
+      "percentage": 63.646203888838016
+    }
+  },
+  "policy": {
+    "safety_stock": 178,
+    "reorder_point": 244,
+    "order_quantity": 747,
+    "review_period_days": 10
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.3677291954096984,
+    "sigma_eff_days": 1.432105680703174,
+    "dominant_factor": "demand_variability",
+    "dominant_pct": 90.92361507841635,
+    "variance_components": {
+      "transport": 10539.081808824643,
+      "supplier": 1052.0563127021976,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "DECREASE",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory Optimization Analysis for Material PL1__MFD8090A:\n\nDEMAND PROFILE: The material exhibits a intermittent/lumpy demand pattern with CV=2.07. \nMean daily demand is 75.18 units with 39.9% non-zero days.\nNo significant trend detected.\n\nLEAD TIME: Average lead time is 0.44 days with 98.81% variability (unstable stability).\nEffective lead time (mean + 1\u03c3) is 0.87 days.\n\nBUFFER STRATEGY: At 95% service level, the required safety stock is 178 units.\nThe dominant risk factor is demand variability (91% of variance).\nDemand variability drives buffer requirements.\n\nORDER POLICY: EOQ analysis recommends an order quantity of 747 units (vs MOQ 112).\nReorder point is 244 units. Expected review cycle is 10 days.\n\nCOST IMPACT: The optimized policy reduces total annual cost from $8579.31 to $3118.90,\nsaving $5460.40 annually (63.6% reduction).\nThis is achieved primarily by reducing ordering frequency from 168 to 25 orders per year.\n\nSAFETY LEAD TIME: Current SAP safety lead time is 3.0 days. \nRecommended safety lead time is 2.37 days.\nAction: DECREASE safety lead time parameter.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Analytical approximation (Normal with IQR-based robust standard deviation)",
+    "selection_rationale": "Intermittent demand with high CV. Used robust statistics to limit outlier influence.",
+    "boundary_risk": "High CV may underestimate tail risk. Consider periodic review of service level achievement.",
+    "escalation_flag": "YES"
+  }
+}

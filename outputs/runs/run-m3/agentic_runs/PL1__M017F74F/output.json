@@ -1,0 +1,77 @@
+{
+  "material_id": "PL1__M017F74F",
+  "data_quality": {
+    "total_rows": 140,
+    "working_days": 140,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 842.9685899999998
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 453.34413700000005,
+    "std_daily_demand": 220.37727476589436,
+    "robust_std_daily": 203.73851851851853,
+    "cv_wd": 0.48611475649434577,
+    "non_zero_fraction_wd": 0.9785714285714285,
+    "trend_detected": true,
+    "regime": "trending",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.674794520547945,
+    "std_lead_time": 1.049158537947119,
+    "cv_lead_time": 0.6264401543443456,
+    "stability": "volatile",
+    "effective_lead_time": 2.723953058495064
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 554.5828032616924,
+    "safety_stock": 913,
+    "safety_stock_robust": 895
+  },
+  "order_quantity": {
+    "eoq_raw": 17158.88503981484,
+    "order_quantity": 6012
+  },
+  "cost_analysis": {
+    "unit_cost": 0.320781,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.038493719999999995
+  },
+  "policy": {
+    "safety_stock": 913,
+    "reorder_point": 2148,
+    "order_quantity": 6012,
+    "review_period_days": 14
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.7063935743904004,
+    "sigma_eff_days": 1.049158537947119,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 0.6604401826484019,
+      "supplier": 0.33022009132420094,
+      "quality": 0.11007336377473365
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M017F74F exhibits trending demand with normal distribution characteristics.\nMean daily demand is 453.3 units with 48.6% coefficient of variation.\nLead time averages 1.67 days with volatile stability (CV=62.64%).\n\nThe optimized inventory policy recommends:\n- Safety stock of 913 units (vs. SAP baseline of 0)\n- Reorder point at 2148 units\n- Order quantity of 6012 units (constrained by storage capacity, EOQ would be 17159)\n- Review period of 14 days\n\nThis policy achieves 95% service level while reducing total annual costs by\n$2756.28 (71.6%) compared to the SAP baseline policy.\n\nStorage constraint is active: the facility is operating at 100.0% capacity.\nSafety lead time can be reduced from 4.0 to 1.7 days,\nwith transport being the dominant source of lead time variability.",
+  "warnings": [
+    "Order quantity is constrained by storage capacity",
+    "High lead time variability detected (CV > 0.5)"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "trend-adjusted moving average",
+    "selection_rationale": "Linear trend detected in demand time series",
+    "boundary_risk": "medium - trend may change direction",
+    "escalation_flag": "monitor_trend"
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "material_id": "PL3__M05EDAA4",
+  "data_quality": {
+    "total_rows": 209,
+    "working_days": 209,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 609.016
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 440.03,
+    "std_daily_demand": 259.72,
+    "robust_std_daily": 42.15,
+    "cv_wd": 0.5903,
+    "non_zero_fraction_wd": 0.75,
+    "trend_detected": false,
+    "regime": "erratic",
+    "distribution_type": "gamma-like"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.13,
+    "std_lead_time": 0.91,
+    "cv_lead_time": 0.8062,
+    "stability": "unstable",
+    "effective_lead_time": 2.03
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 484.76,
+    "safety_stock": 798.0,
+    "safety_stock_robust": 165.0
+  },
+  "order_quantity": {
+    "eoq_raw": 3807.4,
+    "order_quantity": 1818
+  },
+  "cost_analysis": {
+    "unit_cost": 13.849878,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.66198536
+  },
+  "policy": {
+    "safety_stock": 798,
+    "reorder_point": 1693,
+    "order_quantity": 1818,
+    "review_period_days": 5
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.81,
+    "sigma_eff_days": 1.1,
+    "dominant_factor": "transport",
+    "dominant_pct": 0.6,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__M05EDAA4 exhibits erratic demand with a 75% activity rate and a CV of ~59%, driven by frequent zero-demand gaps and periodic demand spikes. Lead times are highly unstable (CV ~81%), ranging from 0.5 to 3.7 days, making buffer stock essential. A (r,Q) continuous review policy with a 798-unit safety stock and 1,818-unit order quantity achieves the 95% service level target while cutting total annual costs by 68%. The order quantity is constrained by the 2,616-unit storage ceiling, preventing full realization of the EOQ; capacity expansion should be evaluated.",
+  "warnings": [
+    "Storage capacity constraint is binding: EOQ 3807 reduced to 1818 units.",
+    "Lead time is highly unstable (CV=80.62%); safety stock formula based on combined variance.",
+    "2 demand outliers detected and winsorized at 99th percentile."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous review",
+    "selection_rationale": "Erratic but largely continuous demand with highly variable lead times favours a continuous-review reorder-point system. The (r,Q) model reacts immediately when inventory drops to the reorder point, minimising stock-out exposure during long lead-time realisations, and the fixed order quantity enables bulk purchase efficiency.",
+    "boundary_risk": "Storage cap (2,616 units) forces order quantity to 1,818, well below the unconstrained EOQ of 3,807. This increases ordering frequency and adds ~$3,462/year in avoidable ordering costs. If safety stock needs to be raised due to increased demand volatility, the available order window shrinks further, potentially pushing below MOQ.",
+    "escalation_flag": "No MOQ-capacity infeasibility detected (MOQ 411 + SS 798 = 1,209 < 2,616). Capacity expansion ROI analysis is recommended to unlock full EOQ savings."
+  }
+}

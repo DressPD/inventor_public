@@ -1,0 +1,90 @@
+{
+  "material_id": "PL1__MAD2E6AB",
+  "analysis_timestamp": "2026-10-22T10:51:24.122787",
+  "demand_analysis": {
+    "mean_daily_demand": 581.28,
+    "std_daily_demand": 209.57,
+    "robust_std": 169.92,
+    "cv": 0.3605,
+    "non_zero_fraction": 0.9897,
+    "trend_slope": -0.600983,
+    "has_trend": false,
+    "regime": "smooth",
+    "distribution_type": "near-continuous",
+    "annual_demand": 145319.0,
+    "data_quality": {
+      "total_rows": 97,
+      "working_days": 97,
+      "winsorized_at": [
+        101.56,
+        966.84
+      ]
+    }
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.5,
+    "std_lead_time": 1.54,
+    "cv_lead_time": 1.03,
+    "stability": "unstable",
+    "effective_lead_time": 3.04
+  },
+  "safety_stock": {
+    "z_score": 1.6449,
+    "sigma_ltd": 931.0,
+    "safety_stock": 1532,
+    "safety_stock_robust": 1512,
+    "service_level_target": 0.95
+  },
+  "order_policy": {
+    "eoq_raw": 7001.5,
+    "unconstrained_order_quantity": 7002,
+    "order_quantity": 7002,
+    "reorder_point": 2402,
+    "review_period_days": 13,
+    "moq": 987,
+    "capacity_constrained": false,
+    "capacity_check_passed": true,
+    "max_storage_units": 10743.931,
+    "warnings": []
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.64,
+    "sigma_eff_days": 1.6,
+    "sap_safety_lead_time_days": 3.5,
+    "comparison_action": "decrease",
+    "variance_components": {
+      "transport": 0.9242,
+      "supplier": 0.0758,
+      "quality": 0
+    },
+    "dominant_factor": "transport",
+    "disruption_premium": 1.0
+  },
+  "cost_analysis": {
+    "unit_cost": 2.470354,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 50.0,
+    "annual_holding_cost_per_unit": 0.3,
+    "previous_policy": {
+      "safety_stock": 0,
+      "order_quantity": 987,
+      "avg_inventory": 493.5,
+      "num_orders_per_year": 147.23,
+      "annual_ordering_cost": 7361.65,
+      "annual_holding_cost": 146.29,
+      "total_annual_cost": 7507.95
+    },
+    "recommended_policy": {
+      "safety_stock": 1532,
+      "order_quantity": 7002,
+      "avg_inventory": 5033.0,
+      "num_orders_per_year": 20.75,
+      "annual_ordering_cost": 1037.7,
+      "annual_holding_cost": 1492.0,
+      "total_annual_cost": 2529.69
+    },
+    "cost_savings": 4978.25,
+    "cost_savings_pct": 66.31
+  },
+  "narrative": "Material PL1__MAD2E6AB exhibits smooth, near-continuous demand with a coefficient of variation of 0.36, averaging 581 units per working day with no significant trend. Lead time is highly unstable (CV=1.03), dominated by transport variability (92.4% of variance), requiring a safety stock of 1532 units to maintain 95% service level. The recommended EOQ-based policy (order 7002 units at reorder point 2402) reduces total annual costs by $4978 (66.3%) compared to the current MOQ-driven approach."
+}

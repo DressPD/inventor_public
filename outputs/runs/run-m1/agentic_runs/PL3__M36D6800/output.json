@@ -1,0 +1,76 @@
+{
+  "material_id": "PL3__M36D6800",
+  "data_quality": {
+    "total_rows": 141,
+    "working_days": 141,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 3958.0159999999996
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1650.7399574468088,
+    "std_daily_demand": 1586.8640636787245,
+    "robust_std_daily": 2294.9792438843588,
+    "cv_wd": 0.9613046903723825,
+    "non_zero_fraction_wd": 0.8226950354609929,
+    "trend_detected": false,
+    "regime": "erratic",
+    "distribution_type": "Normal approximation"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.5878160919540227,
+    "std_lead_time": 1.112764653952881,
+    "cv_lead_time": 0.7008145714051011,
+    "stability": "variable",
+    "effective_lead_time": 2.700580745906904
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 2715.2322409161748,
+    "safety_stock": 4467,
+    "safety_stock_robust": 5636
+  },
+  "order_quantity": {
+    "eoq_raw": 36450.249123681846,
+    "order_quantity": 28317
+  },
+  "cost_analysis": {
+    "unit_cost": 0.258843,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.031061159999999997
+  },
+  "policy": {
+    "safety_stock": 4467,
+    "reorder_point": 7089,
+    "order_quantity": 28317,
+    "review_period_days": 18
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.112764653952881,
+    "sigma_eff_days": 1.112764653952881,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 0.742947105052125,
+      "supplier": 0.3714735525260625,
+      "quality": 0.1238245175086875
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__M36D6800 exhibits a erratic demand pattern with clear ramp-up from low initial demand \nto stable production levels (~3000 units/day). The demand became stable around observation 50, with CV=0.96. \nLead time is variable (CV=0.70). The optimized policy recommends a safety stock of 4467 units \nand order quantity of 28317 units (constrained by storage capacity), yielding a 85.3% cost reduction \ncompared to the SAP baseline. The 95% service level target requires significant buffer \ndue to demand variability and lead time uncertainty.",
+  "warnings": [
+    "Variable lead time (CV=0.70) increases supply chain risk"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Economic Order Quantity (EOQ) with safety stock",
+    "selection_rationale": "EOQ model selected due to erratic demand regime after ramp-up phase. \nNormal approximation used for LTD calculations given sufficient data points (n=141). \nStorage capacity constraint limits order quantity below unconstrained EOQ.",
+    "boundary_risk": "Storage capacity is at 100.0% utilization. \nAny demand increase or extended lead times could breach storage limits. Lead time variability (CV=0.70) \nposes moderate risk to service level.",
+    "escalation_flag": null
+  }
+}

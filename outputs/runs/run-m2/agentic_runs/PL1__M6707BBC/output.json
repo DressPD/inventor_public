@@ -1,0 +1,77 @@
+{
+  "material_id": "PL1__M6707BBC",
+  "data_quality": {
+    "total_rows": 129,
+    "working_days": 129,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 10662.135
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 4372.3,
+    "std_daily_demand": 2326.1,
+    "robust_std_daily": 2021.4,
+    "cv_wd": 0.532,
+    "non_zero_fraction_wd": 0.932,
+    "trend_detected": false,
+    "regime": "erratic",
+    "distribution_type": "gamma-like"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.33,
+    "std_lead_time": 1.17,
+    "cv_lead_time": 0.504,
+    "stability": "unstable",
+    "effective_lead_time": 2.92
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 6240.1,
+    "safety_stock": 10259.0,
+    "safety_stock_robust": 9821.0
+  },
+  "order_quantity": {
+    "eoq_raw": 16143.2,
+    "order_quantity": 16143
+  },
+  "cost_analysis": {
+    "unit_cost": 3.495849,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.4195
+  },
+  "policy": {
+    "safety_stock": 10259,
+    "reorder_point": 20438,
+    "order_quantity": 16143,
+    "review_period_days": 4
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.35,
+    "sigma_eff_days": 1.17,
+    "dominant_factor": "transport",
+    "dominant_pct": 40.0,
+    "variance_components": {
+      "transport": 0.4,
+      "supplier": 0.4,
+      "quality": 0.2
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M6707BBC exhibits erratic demand (CV=0.53) with a gamma-like distribution combined with unstable lead times (CV=0.50), creating compounded uncertainty during the replenishment cycle. The current SAP safety stock of 1,033 units provides less than 10% of the statistically required buffer for a 95% service level, creating significant stockout risk. The optimized (r,Q) policy raises safety stock to 10,259 units, sets a reorder point of 20,438 units, and uses an EOQ-derived order batch of 16,143 units, all within the 69,325-unit storage capacity. This delivers a 43% annual cost reduction while dramatically improving service reliability.",
+  "warnings": [
+    "Lead time is unstable (CV=0.50); consider operational measures to reduce supplier lead-time variability.",
+    "SAP safety stock (1,033 units) is critically insufficient; statistical requirement at 95% SL is ~10x higher at 10,259 units."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) Continuous Review",
+    "selection_rationale": "With 93.2% non-zero demand days and a gamma-like distribution, continuous review is appropriate. EOQ-derived order quantities efficiently balance fixed ordering costs against holding costs at this demand scale. The MOQ of 2,975 is non-binding as the EOQ (16,143) exceeds it.",
+    "boundary_risk": "Order quantity is driven by EOQ (16,143), well above MOQ (2,975). Storage capacity (69,325) is not binding: safety_stock + order_quantity = 26,402 units. No capacity constraint violation.",
+    "escalation_flag": "none"
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "material_id": "PL3__MCBEE8AD",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 3466.743049999999
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 2118.5349480263158,
+    "std_daily_demand": 1247.832548627927,
+    "robust_std_daily": 378.2920616999998,
+    "cv_wd": 0.5890072994974388,
+    "non_zero_fraction_wd": 0.9473684210526315,
+    "trend_detected": false,
+    "regime": "erratic",
+    "distribution_type": "gamma"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.1328070175438598,
+    "std_lead_time": 0.88601966821372,
+    "cv_lead_time": 0.7821452855533845,
+    "stability": "unstable",
+    "effective_lead_time": 2.01882668575758
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 2299.401205529349,
+    "safety_stock": 3783,
+    "safety_stock_robust": 3158
+  },
+  "order_quantity": {
+    "eoq_raw": 9155.577003725413,
+    "order_quantity": 9156
+  },
+  "cost_analysis": {
+    "unit_cost": 7.897947,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.94775364,
+    "previous_policy": {
+      "order_quantity": 714,
+      "safety_stock": 1428,
+      "annual_orders": 741.7839453873655,
+      "annual_ordering_cost": 55633.795904052415,
+      "annual_holding_cost": 1691.7402474,
+      "total_annual_cost": 57325.53615145241
+    },
+    "optimized_policy": {
+      "order_quantity": 9156,
+      "safety_stock": 3158,
+      "annual_orders": 57.845537025620246,
+      "annual_ordering_cost": 4338.415276921519,
+      "annual_holding_cost": 7331.82215904,
+      "total_annual_cost": 11670.237435961519
+    },
+    "annual_savings": 45655.29871549089,
+    "savings_percentage": 79.64216609308443
+  },
+  "policy": {
+    "safety_stock": 3158,
+    "reorder_point": 5558,
+    "order_quantity": 9156,
+    "review_period_days": 5
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.4905225170956702,
+    "sigma_eff_days": 0.9061733473866396,
+    "dominant_factor": "transport",
+    "dominant_pct": 0.5,
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.4,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "This inventory optimization analysis for material PL3__MCBEE8AD reveals an **erratic demand pattern** \nwith high variability (CV = 0.59) and **unstable lead times** (CV = 0.78). \nThe current SAP policy uses very small order quantities (MOQ = 714) resulting in 742 \norders per year, incurring excessive ordering costs of $55634.\n\nThe optimized (r,Q) policy recommends:\n- **Order Quantity**: 9156 units (vs. 714 current)\n- **Reorder Point**: 5558 units\n- **Safety Stock**: 3158 units (vs. 1428 SAP)\n\nThis reduces annual orders to 58, cutting total inventory costs by **79.6%** \n($45,655 annually). The higher safety stock (3158 units) accommodates \nboth demand variability and lead time uncertainty to maintain the 95% service level.\n\n**Key Recommendation**: Increase safety lead time from 0.0 to 1.5 days \nto buffer against transport variability (dominant factor at 50%).",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with safety stock (Normal approximation, robust std for erratic regime)",
+    "selection_rationale": "Erratic demand pattern (CV=0.59) with unstable lead times warrants robust safety stock calculation using MAD-based standard deviation to reduce outlier sensitivity.",
+    "boundary_risk": "MEDIUM - Erratic demand and unstable lead times require close monitoring",
+    "escalation_flag": ""
+  }
+}

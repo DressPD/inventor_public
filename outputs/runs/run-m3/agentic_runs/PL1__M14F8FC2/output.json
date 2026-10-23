@@ -1,0 +1,77 @@
+{
+  "material_id": "PL1__M14F8FC2",
+  "data_quality": {
+    "total_rows": 217,
+    "working_days": 217,
+    "outliers_detected": 9,
+    "winsorisation": {
+      "lower_bound": 336.173,
+      "upper_bound": 1502.435
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 796.8471,
+    "std_daily_demand": 247.9848,
+    "robust_std_daily": 228.1156,
+    "cv_wd": 0.3112,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": true,
+    "regime": "moderate",
+    "distribution_type": "approximately_normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.5953,
+    "std_lead_time": 1.1756,
+    "cv_lead_time": 0.453,
+    "stability": "volatile",
+    "effective_lead_time": 3.7709
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1018.4169,
+    "safety_stock": 1676.0,
+    "safety_stock_robust": 1656.0
+  },
+  "order_quantity": {
+    "eoq_raw": 10158.51,
+    "order_quantity": 9720
+  },
+  "cost_analysis": {
+    "unit_cost": 2.413042,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.289565
+  },
+  "policy": {
+    "safety_stock": 1676,
+    "reorder_point": 3744,
+    "order_quantity": 9720,
+    "review_period_days": 0
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.9337,
+    "sigma_eff_days": 1.2781,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 84.61,
+    "variance_components": {
+      "transport": 0.877573,
+      "supplier": 0.0,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce_safety_lead_time_from_2.5_to_1.93_days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M14F8FC2 exhibits moderate demand volatility (CV=0.31) with a statistically significant declining trend of -1.05 units/day over the observed 217 working days. Lead times are highly volatile (CV=0.453, range 0.31\u20136.43 days), and lead time variability accounts for 84.6% of total buffer variance. The current SAP zero-safety-stock policy exposes the material to unacceptable stockout risk; a safety stock of 1,676 units is required to achieve the 95% service level target. The storage cap of 11,396 units is binding and constrains the order quantity to 9,720 units.",
+  "warnings": [
+    "Storage capacity constraint is binding: safety_stock (1676) + order_quantity (9720) = 11396 units, which meets the max_storage_units limit of 11396.268.",
+    "Declining demand trend detected (-1.05 units/day, significant). EOQ and safety stock should be recalculated periodically."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review policy",
+    "selection_rationale": "The material has continuous, non-intermittent demand (non-zero fraction = 100%) with moderate CV and volatile lead times. A continuous-review (r,Q) policy with a fixed reorder point and EOQ-derived order quantity is optimal \u2014 it responds immediately to inventory drops, which is critical given the wide lead-time range (0.31\u20136.43 days). A periodic-review policy would accumulate unnecessary exposure during the review interval.",
+    "boundary_risk": "The storage capacity constraint is binding. The capped order quantity of 9,720 units (vs. unconstrained EOQ of 10,159) results in slightly more frequent replenishments and marginally higher ordering costs. If safety stock needs to be increased in future (e.g., due to worsening lead-time volatility), available storage headroom is effectively zero.",
+    "escalation_flag": "none"
+  }
+}

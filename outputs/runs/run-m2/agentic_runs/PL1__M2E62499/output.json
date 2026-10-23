@@ -1,0 +1,94 @@
+{
+  "material_id": "PL1__M2E62499",
+  "data_quality": {
+    "total_rows": 221,
+    "working_days": 221,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": -457.645,
+      "upper_bound": 3465.659
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1558.4337674208145,
+    "std_daily_demand": 823.8715558037231,
+    "robust_std_daily": 754.6167131999999,
+    "cv_wd": 0.5286535578391751,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": true,
+    "regime": "Moderate",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.603505747126437,
+    "std_lead_time": 1.1837859620682951,
+    "cv_lead_time": 0.4546892064190268,
+    "stability": "Volatile",
+    "effective_lead_time": 3.787291709194732
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 2273.9054124586505,
+    "safety_stock": 3741,
+    "safety_stock_robust": 3636
+  },
+  "order_quantity": {
+    "eoq_raw": 3475.242463468637,
+    "order_quantity": 3476
+  },
+  "cost_analysis": {
+    "unit_cost": 40.324422,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 4.83893064
+  },
+  "policy": {
+    "safety_stock": 3741,
+    "reorder_point": 7799,
+    "order_quantity": 3476,
+    "review_period_days": 2.230444483856847
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.0,
+    "sigma_eff_days": 1.1837859620682951,
+    "dominant_factor": "supplier",
+    "dominant_pct": 65.8230921008048,
+    "variance_components": {
+      "transport": 0.0,
+      "supplier": 65.8230921008048,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M2E62499 exhibits a moderate demand regime (CV=0.53) with an upward trend over the observation window. Mean daily demand is 1558.43 units with lead time averaging 2.60 days (CV: 0.45, volatile stability). The recommended safety stock of 3741 units (vs SAP: 655) and order quantity of 3476 units yield a 95% service level while reducing total annual costs by 26.9% ($12,862.26 savings). Lead time variability is the dominant uncertainty driver (65.8%), suggesting supplier performance focus. 3 outliers were detected and winsorised to ensure robust parameter estimation.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with safety stock (r,Q) \u2014 normal approximation",
+    "selection_rationale": "Standard EOQ model appropriate for moderate demand with volatile lead time variability; continuous-review (r,Q) policy is optimal given daily demand visibility and well-observed lead times.",
+    "boundary_risk": "Medium \u2014 holding costs rise significantly with the corrected safety stock, but storage capacity is not binding (policy uses 7,217 units vs. 26,980 limit). Service risk under current SAP is high.",
+    "escalation_flag": "none"
+  },
+  "previous_policy": {
+    "safety_stock": 655,
+    "safety_lead_time_days": 3.0
+  },
+  "cost_comparison": {
+    "previous": {
+      "annual_ordering_cost": 44611.6536475424,
+      "annual_holding_cost": 3169.4995692,
+      "total_annual_cost": 47781.1532167424
+    },
+    "optimized": {
+      "annual_ordering_cost": 8406.396185023093,
+      "annual_holding_cost": 26512.50097656,
+      "total_annual_cost": 34918.897161583096
+    },
+    "savings": {
+      "absolute": 12862.256055159305,
+      "percentage": 26.919099245709294
+    }
+  }
+}

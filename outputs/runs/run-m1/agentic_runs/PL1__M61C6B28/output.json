@@ -1,0 +1,94 @@
+{
+  "material_id": "PL1__M61C6B28",
+  "data_quality": {
+    "total_rows": 131,
+    "working_days": 131,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 142.23080000000002,
+      "upper_bound": 764.2583
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 479.33007786259543,
+    "std_daily_demand": 142.277096581183,
+    "robust_std_daily": 112.71793921423274,
+    "cv_wd": 0.29682488780094474,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "smooth",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 4.0572580645161285,
+    "std_lead_time": 1.5836825057405495,
+    "cv_lead_time": 0.39033319561086893,
+    "stability": "moderate",
+    "effective_lead_time": 5.640940570256678
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 811.4019165722875,
+    "safety_stock": 1335,
+    "safety_stock_robust": 1304
+  },
+  "order_quantity": {
+    "eoq_raw": 3343.020489564292,
+    "order_quantity": 1809
+  },
+  "cost_analysis": {
+    "unit_cost": 18.657174,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 2.2388608800000003,
+    "previous_policy": {
+      "safety_stock": 152,
+      "avg_inventory": 1824.0,
+      "annual_holding_cost": 4083.68224512,
+      "num_orders": 37.411827249443,
+      "annual_ordering_cost": 3741.1827249443,
+      "total_annual_cost": 7824.8649700643
+    },
+    "optimized_policy": {
+      "safety_stock": 1335,
+      "avg_inventory": 2239.5,
+      "annual_holding_cost": 5013.92894076,
+      "num_orders": 69.15707591052372,
+      "annual_ordering_cost": 6915.707591052372,
+      "total_annual_cost": 11929.636531812372
+    },
+    "cost_savings": -4104.771561748072,
+    "cost_savings_pct": -52.45804978682388
+  },
+  "policy": {
+    "safety_stock": 1335,
+    "reorder_point": 3280,
+    "order_quantity": 1809,
+    "review_period_days": 4
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.7851371354640726,
+    "sigma_eff_days": 1.6927832281889135,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 87.52528702662948,
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.3,
+      "quality": 0.2
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M61C6B28 exhibits smooth demand with CV=0.297 and mean daily demand of 479.33 units. \nLead time is moderate (CV=0.390, mean=4.06 days). \nRecommended safety stock is 1335 units (vs SAP 152), driven primarily by lead time variability (87.5% of variance).\nStorage capacity constraint is binding, reducing order quantity from EOQ 3344 to 1809.\nThis increases total annual cost to $11929.64 vs $7824.86 for previous policy, driven by higher safety stock requirements for 95% service level.",
+  "warnings": [
+    "1 lead time outlier(s) removed (> 30 days), including extreme value 9327.37"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "z-score_analytical",
+    "selection_rationale": "Demand regime is smooth with CV=0.297. Normal approximation suitable for service level 95.0%.",
+    "boundary_risk": "Capacity constraint active: order quantity reduced from 3344 to 1809 due to max storage limit.",
+    "escalation_flag": "capacity_binding"
+  }
+}

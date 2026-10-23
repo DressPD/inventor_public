@@ -1,0 +1,74 @@
+{
+  "material_id": "PL1__M665CA02",
+  "data_quality": {
+    "total_rows": 70,
+    "working_days": 70,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 154.15704,
+      "upper_bound": 3368.43417
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 2846.673545857143,
+    "std_daily_demand": 599.0893458346743,
+    "robust_std_daily": 268.52628810000004,
+    "cv_wd": 0.21045242321745977,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "smooth",
+    "distribution_type": "right-skewed"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.1260869565217393,
+    "std_lead_time": 0.25829403840716075,
+    "cv_lead_time": 0.22937308429979522,
+    "stability": "moderate",
+    "effective_lead_time": 1.3843809949289
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 972.0064763649239,
+    "safety_stock": 1599,
+    "safety_stock_robust": 1298
+  },
+  "order_quantity": {
+    "eoq_raw": 29037.55820208531,
+    "order_quantity": 24308
+  },
+  "cost_analysis": {
+    "unit_cost": 1.097238,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.13166856
+  },
+  "policy": {
+    "safety_stock": 1599,
+    "reorder_point": 4805,
+    "order_quantity": 24308,
+    "review_period_days": 9
+  },
+  "safety_lead_time": {
+    "recommended_days": 0.00014924643765782972,
+    "sigma_eff_days": 0.25829403840716075,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 0.0400294861660079,
+      "supplier": 0.02001474308300395,
+      "quality": 0.006671581027667984
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M665CA02 exhibits smooth demand behavior with CV of 0.210 and 100.0% non-zero demand days.\nMean daily demand is 2847 units with standard deviation 599.\nLead time is moderately stable (CV=0.229) with mean 1.13 days.\n\nThe classical EOQ model recommends 29037 units, but this is constrained by storage capacity to 24308 units.\nWith 95% service level target, safety stock is 1599 units, yielding a reorder point of 4805 units.\nReview period is approximately 9 days.\n\nThe capacity constraint forces a trade-off: ordering more frequently (increasing ordering costs) \nto maintain service level within storage limits. Total annual cost is $4094.45.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with safety stock",
+    "selection_rationale": "Smooth demand regime (CV=0.210) with moderate lead time variability (CV=0.229). Classical EOQ with safety stock appropriate.",
+    "boundary_risk": "Capacity constraint active - order quantity reduced from EOQ optimum.",
+    "escalation_flag": "none"
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__MD4507A6",
+  "data_quality": {
+    "total_rows": 95,
+    "working_days": 95,
+    "outliers_detected": 1,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 735.994
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 330.13,
+    "std_daily_demand": 207.97,
+    "robust_std_daily": 198.32,
+    "cv_wd": 0.932,
+    "non_zero_fraction_wd": 0.768,
+    "trend_detected": false,
+    "regime": "continuous",
+    "distribution_type": "high-variability"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 4.32,
+    "std_lead_time": 1.524,
+    "cv_lead_time": 0.353,
+    "stability": "moderate",
+    "effective_lead_time": 4.32
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 665.2,
+    "safety_stock": 1095.0,
+    "safety_stock_robust": 983.0
+  },
+  "order_quantity": {
+    "eoq_raw": 1011.4,
+    "order_quantity": 976
+  },
+  "cost_analysis": {
+    "unit_cost": 31.984684,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 3.838
+  },
+  "policy": {
+    "safety_stock": 1095,
+    "reorder_point": 2445,
+    "order_quantity": 976,
+    "review_period_days": 3
+  },
+  "safety_lead_time": {
+    "recommended_days": 3.32,
+    "sigma_eff_days": 1.524,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 57.7,
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.3,
+      "quality": 0.2
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MD4507A6 exhibits a continuous demand pattern with high variability (CV=0.932) and a mean of 330 units/day across 95 working-day observations. Lead times average 4.32 days with moderate stability (CV=0.353) after removal of one extreme outlier (9,327 days). A (r,Q) fixed-order-quantity continuous-review policy was selected because it directly addresses high-volume, variable-demand materials with a clear EOQ-driven replenishment cadence. The storage capacity constraint is nearly fully binding, reducing the unconstrained EOQ of 1,011 to 976 units to stay within the 2,071.8-unit warehouse limit.",
+  "warnings": [
+    "Lead time outlier removed: 9327.37 days (index 15) \u2014 likely ERP data entry error.",
+    "Storage capacity is 99.96% utilised by the recommended policy (1095 + 976 = 2071 <= 2071.8). Any increase in safety stock or order quantity will breach the capacity limit.",
+    "Winsorisation applied to demand at [0.0, 735.994] \u2014 upper bound clips the highest observed demand values."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review reorder-point with fixed order quantity",
+    "selection_rationale": "The material has continuous, high-volume demand (~330 units/day) with no significant trend, making a fixed-batch EOQ-based policy optimal. The (r,Q) structure allows immediate triggering of replenishment when inventory hits the reorder point, providing robust protection against both demand and lead time variability at the targeted 95% service level.",
+    "boundary_risk": "The storage cap of 2,071.8 units is nearly fully consumed by the recommended policy with only 0.8 units of slack. The unconstrained EOQ (1,011) was reduced to 976 to comply with the storage limit. This increases ordering frequency slightly (from ~82 to ~85 orders/year) and marginally raises annual ordering cost. Any future increase in safety stock \u2014 e.g., due to supplier instability \u2014 will require either a storage capacity review or an explicit trade-off against service level.",
+    "escalation_flag": "none"
+  }
+}

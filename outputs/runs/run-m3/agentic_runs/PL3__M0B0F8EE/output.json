@@ -1,0 +1,78 @@
+{
+  "material_id": "PL3__M0B0F8EE",
+  "data_quality": {
+    "total_rows": 209,
+    "working_days": 209,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 6970.313
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 3357.48,
+    "std_daily_demand": 1816.72,
+    "robust_std_daily": 492.31,
+    "cv_wd": 0.541,
+    "non_zero_fraction_wd": 0.961,
+    "trend_detected": false,
+    "regime": "Erratic",
+    "distribution_type": "Normal approximation (high-volume continuous)"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.117,
+    "std_lead_time": 0.887,
+    "cv_lead_time": 0.794,
+    "stability": "Volatile",
+    "effective_lead_time": 1.117
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 3547.2,
+    "safety_stock": 5834.7,
+    "safety_stock_robust": 810.5
+  },
+  "order_quantity": {
+    "eoq_raw": 13108.4,
+    "order_quantity": 12884
+  },
+  "cost_analysis": {
+    "unit_cost": 6.104647,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.7326
+  },
+  "policy": {
+    "safety_stock": 5835,
+    "reorder_point": 9602,
+    "order_quantity": 12884,
+    "review_period_days": 4
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.74,
+    "sigma_eff_days": 0.887,
+    "dominant_factor": "transport",
+    "dominant_pct": 70.5,
+    "variance_components": {
+      "transport": 0.626,
+      "supplier": 0.197,
+      "quality": 0.177
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Increase from 0.0 to 1.74 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__M0B0F8EE exhibits high-volume near-continuous demand (~3,357 units/day) with moderate variability (CV=0.54) classified as Erratic. Lead times are short (mean 1.12 days) but highly volatile (CV=0.79), dominated by transport variability. The current SAP configuration carries zero safety stock and no reorder point, creating significant stockout exposure. An (r,Q) continuous-review policy with safety stock of 5,835 units and order quantity of 12,884 units (near-EOQ) is recommended, satisfying the 95% service level target and the 18,719-unit storage capacity constraint exactly.",
+  "warnings": [
+    "Storage capacity is binding: safety_stock (5835) + order_quantity (12884) = 18719 <= max_storage_units (18719.749). No headroom for emergency orders.",
+    "Six zero-demand days detected \u2014 likely shutdowns/holidays, excluded from demand statistics.",
+    "Lead time CV=0.79 is high; bimodal distribution suggests two distinct supplier delivery modes."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) Continuous-Review Policy",
+    "selection_rationale": "High-volume near-continuous demand with erratic variability suits a continuous-review (r,Q) model: trigger a fixed replenishment order Q whenever inventory drops to reorder point r. EOQ provides the cost-minimising Q; normal-approximation safety stock calibrates r to 95% service level. The policy is simple to implement in SAP and handles the observed demand/lead-time variability without requiring demand forecasting.",
+    "boundary_risk": "The storage capacity constraint is binding: safety_stock + order_quantity = 18,719 units, leaving only 0.749 units of headroom. Any demand surge, return, or rounding may breach the limit. The order quantity was reduced from unconstrained EOQ (13,108) to 12,884 to respect this constraint, reducing cycle-stock efficiency marginally. If capacity can be expanded even slightly, the EOQ recommendation of 13,108 would reduce annual ordering cost further.",
+    "escalation_flag": "No MOQ-capacity infeasibility. MOQ (524) + safety_stock (5,835) = 6,359 < 18,719. Capacity constraint is met. Flag for monitoring: storage ceiling leaves no buffer for emergency receipts."
+  }
+}

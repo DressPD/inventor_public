@@ -1,0 +1,76 @@
+{
+  "material_id": "PL3__M86D611C",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "outliers_detected": 28,
+    "winsorisation": {
+      "lower_bound": 47.6,
+      "upper_bound": 714.07
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 302.54,
+    "std_daily_demand": 196.17,
+    "robust_std_daily": 35.29,
+    "cv_wd": 0.241,
+    "non_zero_fraction_wd": 0.7456,
+    "trend_detected": true,
+    "regime": "trending",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.77,
+    "std_lead_time": 1.16,
+    "cv_lead_time": 0.6539,
+    "stability": "variable",
+    "effective_lead_time": 2.92
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 436.16,
+    "safety_stock": 718.0,
+    "safety_stock_robust": 581.0
+  },
+  "order_quantity": {
+    "eoq_raw": 42323.99,
+    "order_quantity": 5922
+  },
+  "cost_analysis": {
+    "unit_cost": 0.053201,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.006384
+  },
+  "policy": {
+    "safety_stock": 718,
+    "reorder_point": 1253,
+    "order_quantity": 5922,
+    "review_period_days": 20
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.16,
+    "sigma_eff_days": 1.16,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 64.25,
+    "variance_components": {
+      "transport": 122230.82,
+      "supplier": 68004.38,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "INCREASE",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Demand for PL3__M86D611C shows a statistically significant downward trend (slope -0.91 units/day, p<0.001), declining from ~475 to ~240 units/day over the observation window. Lead times are highly variable (CV=0.65, range 0.69-4.76 days), contributing 64% of total sigma_LTD variance. An (r,Q) fixed-reorder-point policy was selected with storage-capped order quantity of 5,922 units, reducing total annual costs by 45.4% while establishing a proper 718-unit safety buffer for 95% service level.",
+  "warnings": [
+    "Storage capacity binds: EOQ of 42,324 units reduced to 5,922 units (max_storage - safety_stock). Capacity utilization at 99.99%. Demand downtrend may cause overstock risk \u2014 quarterly policy review recommended."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) Fixed Reorder Point with EOQ-derived order quantity",
+    "selection_rationale": "Demand is mostly continuous (74.6% non-zero working days) with moderate CV (0.241), making a fixed reorder point model appropriate. The (r,Q) policy triggers replenishment when stock hits the ROP of 1,253 units and orders a fixed quantity of 5,922 units, balancing ordering and holding costs while respecting the storage ceiling.",
+    "boundary_risk": "Storage capacity hard-caps order quantity at 5,922 units (vs. unconstrained EOQ of 42,324). At 99.99% capacity utilization, any increase in safety stock or MOQ would breach the storage limit. The downward demand trend also poses overstock risk if the policy is not refreshed quarterly.",
+    "escalation_flag": "none"
+  }
+}

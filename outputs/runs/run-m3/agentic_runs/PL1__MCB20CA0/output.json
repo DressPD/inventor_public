@@ -1,0 +1,140 @@
+{
+  "material_id": "PL1__MCB20CA0",
+  "analysis_timestamp": "2026-10-22T13:50:03.032684",
+  "data_summary": {
+    "total_rows": 137,
+    "working_days": 137,
+    "date_range_start": "2025-03-03",
+    "date_range_end": "2026-03-09"
+  },
+  "demand_analysis": {
+    "raw_statistics": {
+      "mean": 373.5197518248175,
+      "std": 124.84776150392484,
+      "min": 3.716,
+      "max": 626.09,
+      "median": 386.43,
+      "p25": 310.258,
+      "p75": 431.018,
+      "p90": 535.056,
+      "p95": 594.1353999999999
+    },
+    "outlier_detection": {
+      "method": "IQR",
+      "lower_bound": 129.118,
+      "upper_bound": 612.1579999999999,
+      "outliers_replaced": 7
+    },
+    "winsorised_statistics": {
+      "mean_daily_demand": 376.18440145985403,
+      "std_daily_demand": 117.88030347750187,
+      "robust_std_daily": 89.51816160118607,
+      "cv": 0.3133577655533969,
+      "min": 129.118,
+      "max": 612.1579999999999,
+      "median": 386.43,
+      "p25": 310.258,
+      "p75": 431.018,
+      "p90": 535.056,
+      "p95": 594.1353999999999
+    },
+    "demand_pattern": {
+      "non_zero_fraction": 1.0,
+      "regime": "regular",
+      "distribution_type": "gamma",
+      "trend_detected": false,
+      "trend_slope": 0.045344269792971494
+    }
+  },
+  "lead_time_analysis": {
+    "raw_observations": 190,
+    "clean_observations": 188,
+    "outliers_removed": 2,
+    "clean_statistics": {
+      "mean_lead_time": 4.01968085106383,
+      "std_lead_time": 1.5719230717781887,
+      "cv_lead_time": 0.3910566858466315,
+      "min": 0.01,
+      "max": 8.06,
+      "median": 4.65,
+      "p25": 2.9575,
+      "p75": 5.1475,
+      "p90": 5.434000000000001,
+      "p95": 5.989,
+      "effective_lead_time": 5.591603922842019
+    },
+    "stability": "moderate"
+  },
+  "safety_stock_calculation": {
+    "service_level_target": 0.95,
+    "z_score": 1.644853626951472,
+    "sigma_ltd": 636.8133086706196,
+    "safety_stock": 1048,
+    "sigma_ltd_robust": 617.9695488927775,
+    "safety_stock_robust": 1017
+  },
+  "order_quantity_calculation": {
+    "annual_demand": 94046.10036496351,
+    "eoq_raw": 3538.3809769577706,
+    "moq": 222,
+    "unconstrained_order_quantity": 3539,
+    "max_storage_units": 3059.854,
+    "available_capacity": 2011.8539999999998,
+    "order_quantity": 2011,
+    "storage_warning": false,
+    "escalation_needed": false
+  },
+  "recommended_policy": {
+    "safety_stock": 1048,
+    "reorder_point": 3152,
+    "order_quantity": 2011,
+    "review_period_days": 6
+  },
+  "safety_lead_time_analysis": {
+    "recommended_safety_lead_time_days": 2.7858677710533444,
+    "sap_safety_lead_time_days": 4.0,
+    "sigma_effective_days": 1.6928222068734011,
+    "variance_components": {
+      "transport": 1.2354710717942883,
+      "supplier": 0.741282643076573,
+      "quality": 0.49418842871771534
+    },
+    "dominant_factor": "transport",
+    "dominant_pct": 50.0,
+    "disruption_premium": 1.0,
+    "comparison_action": "REDUCE"
+  },
+  "cost_analysis": {
+    "unit_cost": 12.519309,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 100.0,
+    "annual_holding_cost_per_unit": 1.5023170799999999,
+    "previous_policy": {
+      "safety_stock": 0,
+      "order_quantity": 3539,
+      "average_inventory": 1769.5,
+      "annual_holding_cost": 2658.35007306,
+      "number_of_orders": 26.574201855033486,
+      "annual_ordering_cost": 2657.4201855033484,
+      "total_annual_cost": 5315.770258563349
+    },
+    "recommended_policy": {
+      "safety_stock": 1048,
+      "order_quantity": 2011,
+      "average_inventory": 2053.5,
+      "annual_holding_cost": 3085.0081237799996,
+      "number_of_orders": 46.76583807307981,
+      "annual_ordering_cost": 4676.583807307981,
+      "total_annual_cost": 7761.591931087981
+    },
+    "savings": {
+      "absolute": -2445.821672524632,
+      "percentage": -46.01067302682198
+    }
+  },
+  "capacity_constraints": {
+    "max_storage_units": 3059.854,
+    "safety_stock_plus_order_qty": 3059.0,
+    "capacity_check_passed": true
+  }
+}

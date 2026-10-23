@@ -1,0 +1,78 @@
+{
+  "material_id": "PL2__M0EBA17C",
+  "data_quality": {
+    "total_rows": 130,
+    "working_days": 130,
+    "outliers_detected": 5,
+    "winsorisation": {
+      "lower_bound": 6586.318,
+      "upper_bound": 77119.356
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 36263.4506,
+    "std_daily_demand": 9521.8273,
+    "robust_std_daily": 6176.4481,
+    "cv_wd": 0.2625,
+    "non_zero_fraction_wd": 0.9923,
+    "trend_detected": false,
+    "regime": "moderate_variability",
+    "distribution_type": "right_skewed"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.6527,
+    "std_lead_time": 0.9242,
+    "cv_lead_time": 0.5593,
+    "stability": "unstable",
+    "effective_lead_time": 2.938
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 34969.6421,
+    "safety_stock": 57505.2018,
+    "safety_stock_robust": 37592.3841
+  },
+  "order_quantity": {
+    "eoq_raw": 395726.4812,
+    "order_quantity": 377144
+  },
+  "cost_analysis": {
+    "unit_cost": 0.088811,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.010657
+  },
+  "policy": {
+    "safety_stock": 57505,
+    "reorder_point": 164205,
+    "order_quantity": 377144,
+    "review_period_days": 11
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.5203,
+    "sigma_eff_days": 0.9242,
+    "dominant_factor": "transport",
+    "dominant_pct": 50.0,
+    "variance_components": {
+      "transport": 0.427042,
+      "supplier": 0.29933,
+      "quality": 0.128284
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL2__M0EBA17C exhibits moderate demand variability (CV=0.263) with a working-day mean of 36,263 units and an effective lead time of 2.94 days. Lead times are unstable (CV=0.559), dominated by transport variance; combined demand-during-lead-time sigma of 34,970 units drives a safety stock of 57,505 units at 95% service level. An (r,Q) continuous-review policy with ROP=164,205 and Q=377,144 (storage-capped from EOQ=395,727) reduces total annual inventory cost from $26,777 (SAP baseline) to $21,794.",
+  "warnings": [
+    "Order quantity capped by storage capacity: unconstrained=395727, capped=377144. May reduce cycle service level slightly.",
+    "Moderate-to-high demand variability (CV=0.263); safety stock should be reviewed quarterly.",
+    "5 demand outlier(s) winsorised at [6586, 77119] units."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review policy",
+    "selection_rationale": "Demand is continuous with moderate variability (CV=0.263) and near-daily non-zero consumption (99.2% of working days), making a fixed-order-quantity (r,Q) model appropriate. Lead times are unstable and short (mean=1.65 wd), so a continuous review trigger at the ROP provides timely replenishment without complex periodic-review overhead.",
+    "boundary_risk": "Storage cap of 434,649 units constrains the order quantity from the unconstrained EOQ of 395,727 to 377,144 units (SS=57,505 + OQ=377,144 = 434,649 <= 434,649). This cap may increase order frequency and annual ordering cost slightly; cycle service level is maintained because safety stock is unchanged.",
+    "escalation_flag": "none"
+  }
+}

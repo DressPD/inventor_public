@@ -1,0 +1,74 @@
+{
+  "material_id": "PL2__MEF4A06B",
+  "data_quality": {
+    "total_rows": 189,
+    "working_days": 189,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 109.23264000000002,
+      "upper_bound": 3815.95756
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 2163.6361925925926,
+    "std_daily_demand": 851.2831303250881,
+    "robust_std_daily": 797.4588584136395,
+    "cv_wd": 0.3934502173884566,
+    "non_zero_fraction_wd": 0.9894179894179894,
+    "trend_detected": true,
+    "regime": "moderate_variability",
+    "distribution_type": "normal_approx"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.7308928571428572,
+    "std_lead_time": 0.8051635108602346,
+    "cv_lead_time": 1.1016163354061357,
+    "stability": "unstable",
+    "effective_lead_time": 2.055386832507943
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1887.9913963276742,
+    "safety_stock": 3106,
+    "safety_stock_robust": 3078
+  },
+  "order_quantity": {
+    "eoq_raw": 25949.19492601726,
+    "order_quantity": 20078
+  },
+  "cost_analysis": {
+    "unit_cost": 1.004122,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.12049463999999999
+  },
+  "policy": {
+    "safety_stock": 3106,
+    "reorder_point": 4687,
+    "order_quantity": 20078,
+    "review_period_days": 10
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.4355463319728503,
+    "sigma_eff_days": 0.8726011345120711,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 0.8514058369250795,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization analysis for material PL2__MEF4A06B reveals moderate demand variability (CV=39.35%) with a significant upward trend detected (35.1% over the historical period). \nThe mean daily demand is 2164 units with standard deviation 851 units.\n\nLead time is highly unstable (CV=1.10, mean=0.73 days), contributing 85.1% of the total variance in lead-time demand. \nThis instability necessitates a safety stock of 3106 units to achieve the target 95% service level.\n\nThe Economic Order Quantity calculation suggests 25949 units, but after applying the MOQ constraint (662) and capacity limit (23184 units), \nthe recommended order quantity is 20078 units, yielding a review period of approximately 10 days.\n\nThe recommended safety lead time of 1.44 days is lower than the current SAP setting of 3.0 days, \nsuggesting an opportunity to reduce safety buffers while maintaining service levels. However, given the lead time instability, \ncaution is advised when reducing buffers.\n\nThe optimized policy recommends: Safety Stock = 3106 units, Reorder Point = 4687 units, Order Quantity = 20078 units.\n\nNote: The capacity constraint is active, reducing the order quantity from the unconstrained 25950 units. \nThis results in higher annual ordering costs but ensures compliance with storage limitations.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with safety stock (stochastic lead time and demand)",
+    "selection_rationale": "Given moderate demand variability (CV=39.35%) and unstable lead times (CV=1.10), a classic stochastic inventory model with safety stock is appropriate. The demand is approximately normal, and both demand and lead time variability contribute to buffer requirements.",
+    "boundary_risk": "High lead time instability (CV=1.10) suggests potential boundary conditions where simple parametric models may underestimate tail risk. The detected upward trend (35.1%) may also invalidate stationary demand assumptions over longer planning horizons.",
+    "escalation_flag": "YELLOW - High lead time variability and upward demand trend warrant close monitoring and potential supplier engagement to improve delivery consistency."
+  }
+}

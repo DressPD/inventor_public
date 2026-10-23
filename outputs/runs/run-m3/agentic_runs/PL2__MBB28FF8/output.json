@@ -1,0 +1,77 @@
+{
+  "material_id": "PL2__MBB28FF8",
+  "data_quality": {
+    "total_rows": 189,
+    "working_days": 189,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 4026.0756000000006
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 2249.7707354497356,
+    "std_daily_demand": 942.1184988167561,
+    "robust_std_daily": 938.5388309678572,
+    "cv_wd": 0.4187620027106557,
+    "non_zero_fraction_wd": 0.9788359788359788,
+    "trend_detected": true,
+    "regime": "Erratic",
+    "distribution_type": "Normal-like"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.6741818181818181,
+    "std_lead_time": 0.789215951550536,
+    "cv_lead_time": 1.1706277598511188,
+    "stability": "Volatile",
+    "effective_lead_time": 0.6741818181818181
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1936.7474237337512,
+    "safety_stock": 3185.66602441738,
+    "safety_stock_robust": 3183.7381215672426
+  },
+  "order_quantity": {
+    "eoq_raw": 31355.789319294036,
+    "order_quantity": 21638
+  },
+  "cost_analysis": {
+    "unit_cost": 0.715077,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.08580924
+  },
+  "policy": {
+    "safety_stock": 3186,
+    "reorder_point": 4703,
+    "order_quantity": 21638,
+    "review_period_days": 10
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.4161442985269828,
+    "sigma_eff_days": 0.8608643508497722,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 84.0470088269873,
+    "variance_components": {
+      "transport": 0.0,
+      "supplier": 84.0470088269873,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "DECREASE_SIGNIFICANTLY",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory Optimization Analysis for Material PL2__MBB28FF8\n\nEXECUTIVE SUMMARY:\nThis material exhibits erratic demand patterns with a coefficient of variation of 41.88%.\nA statistically significant upward trend was detected in demand (p-value: 0.0003).\nLead time is volatile with mean 0.67 days and CV 1.17.\n\nKEY FINDINGS:\n- The current SAP policy (zero safety stock, MOQ-based ordering) incurs excessive ordering costs.\n- The optimized policy achieves 92.7% cost reduction ($39,803.64 annual savings).\n- Lead time variability dominates uncertainty (84.0% of total variance).\n- Capacity constraint is binding: optimal EOQ of 31,356 units reduced to 21,638 units.\n\nRECOMMENDED POLICY:\n- Safety Stock: 3,186 units (1.4 days coverage)\n- Reorder Point: 4,703 units\n- Order Quantity: 21,638 units\n- Review Period: 10 days\n\nRISK FACTORS:\n- High lead time variability requires close supplier monitoring.\n- Upward demand trend suggests periodic policy review.\n- Storage capacity limits order size optimization.",
+  "warnings": [
+    "Capacity constraint binding: order quantity reduced from 31356 to 21638",
+    "Capacity constraint binding: order quantity reduced from 21638 to 21638"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with capacity constraint",
+    "selection_rationale": "Standard EOQ model applied with MOQ=983 and capacity=24824 constraints. Demand regime is Erratic with CV=0.42. Lead time is volatile.",
+    "boundary_risk": "Capacity constraint is binding, limiting order quantity optimization. Upward trend detected in demand data.",
+    "escalation_flag": "CAPACITY_BINDING"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "material_id": "PL1__M4789470",
+  "data_quality": {
+    "total_rows": 129,
+    "working_days": 129,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 441.63784000000004,
+      "upper_bound": 12617.31208
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 5658.780519379844,
+    "std_daily_demand": 2687.6360419199395,
+    "robust_std_daily": 2863.7820057,
+    "cv_wd": 0.4749496879611232,
+    "non_zero_fraction_wd": 0.9844961240310077,
+    "trend_detected": true,
+    "regime": "regular",
+    "distribution_type": "right-skewed"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.428837209302326,
+    "std_lead_time": 1.1001031166690973,
+    "cv_lead_time": 0.45293406756770566,
+    "stability": "moderate",
+    "effective_lead_time": 3.528940325971423
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 7503.204072293237,
+    "safety_stock": 12342,
+    "safety_stock_robust": 12600
+  },
+  "order_quantity": {
+    "eoq_raw": 139099.3873348707,
+    "order_quantity": 139100
+  },
+  "cost_analysis": {
+    "unit_cost": 0.091395,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.0109674
+  },
+  "policy": {
+    "safety_stock": 12342,
+    "reorder_point": 32312,
+    "order_quantity": 139100,
+    "review_period_days": 25
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.1810352880327972,
+    "sigma_eff_days": 1.3259401114068172,
+    "dominant_factor": "transport",
+    "dominant_pct": 0.6,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization analysis for material PL1__M4789470 reveals a regular demand pattern \nwith CV=0.47 and right-skewed distribution. Lead time shows moderate behavior \n(mean=2.43 days, CV=0.45).\n\nThe optimized policy recommends safety stock of 12342 units and order quantity of \n139100 units, yielding a reorder point of 32312 units with a 25-day \nreview period. This policy achieves 95% service level while reducing \ntotal annual costs by $14492.78 (89.7%) compared to the current SAP policy.\n\nCapacity utilization is 44.3%, which is within acceptable limits.\nThe dominant source of lead time variability is transport (60%).",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Classical EOQ with stochastic lead time",
+    "selection_rationale": "Demand regime is regular with CV=0.47. Classical inventory theory applies with safety stock calculated using lead-time demand variability.",
+    "boundary_risk": "Low",
+    "escalation_flag": "No"
+  }
+}

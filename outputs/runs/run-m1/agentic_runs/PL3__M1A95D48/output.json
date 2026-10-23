@@ -1,0 +1,77 @@
+{
+  "material_id": "PL3__M1A95D48",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 518.67993
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 174.80288596491226,
+    "std_daily_demand": 153.2228690164001,
+    "robust_std_daily": 207.89584877687176,
+    "cv_wd": 0.8765465636943554,
+    "non_zero_fraction_wd": 0.8947368421052632,
+    "trend_detected": true,
+    "regime": "high_variability",
+    "distribution_type": "gamma"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.7749999999999999,
+    "std_lead_time": 0.9154838274365485,
+    "cv_lead_time": 1.181269454756837,
+    "stability": "unstable",
+    "effective_lead_time": 1.6904838274365486
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 209.29456888393105,
+    "safety_stock": 345,
+    "safety_stock_robust": 400
+  },
+  "order_quantity": {
+    "eoq_raw": 1855.0458489687862,
+    "order_quantity": 1856
+  },
+  "cost_analysis": {
+    "unit_cost": 11.048379,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.32580548
+  },
+  "policy": {
+    "safety_stock": 345,
+    "reorder_point": 481,
+    "order_quantity": 1856,
+    "review_period_days": 11
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.9736516253470264,
+    "sigma_eff_days": 1.1973175827654368,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 58.4632067206577,
+    "variance_components": {
+      "transport": 40.92424470446039,
+      "supplier": 11.692641344131541,
+      "quality": 5.8463206720657706
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "introduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization analysis for material PL3__M1A95D48:\n\nDEMAND CHARACTERISTICS:\n- Average daily demand: 174.80 units (regime: high_variability)\n- Demand variability (CV): 87.65%\n- Distribution type: gamma\n- Trend: detected\n\nLEAD TIME CHARACTERISTICS:\n- Mean lead time: 0.77 days\n- Lead time variability (CV): 118.13%\n- Stability: unstable\n\nRECOMMENDED POLICY:\n- Safety stock: 345 units (vs SAP: 0)\n- Reorder point: 481 units\n- Order quantity: 1856 units (EOQ: 1855)\n- Review period: 11 days\n\nCOST IMPACT:\n- Current total annual cost: $2459.43\n- Optimized total annual cost: $2916.83\n- Annual impact: $-457.40 (-18.6%)\n\nThe optimization introduces safety stock to achieve 95% service level, accounting for demand and lead time variability. Note that the increased cost reflects the introduction of safety stock from zero, which is necessary to meet the target service level.",
+  "warnings": [
+    "Trend detected in demand data (slope=-1.09)",
+    "3 outliers detected and winsorised"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Normal approximation (EOQ + safety stock)",
+    "selection_rationale": "Regime classified as 'high_variability' with CV=0.88. Normal approximation appropriate for service level 95%.",
+    "boundary_risk": "moderate",
+    "escalation_flag": "none"
+  }
+}

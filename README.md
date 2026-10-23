@@ -1,6 +1,6 @@
 # InventOR
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22262052.svg)](https://doi.org/10.5281/zenodo.22262052)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22262051.svg)](https://doi.org/10.5281/zenodo.22262051)
 
 This repository contains a confidentiality-screened research release.
 
@@ -21,6 +21,35 @@ the 365-material study outputs.
 The synthetic benchmark is methodological and software replication, not a
 numerical reproduction of the confidential study.
 
+## Replication on the masked release
+
+The company approved the release of a masked version of the study panel
+(`data/masked_release/masked_inventory_panel.csv`, 233,078 daily records, 411
+plant-material pairs). Plants are labelled PL1, PL2 and PL3 (corresponding to
+Plants A, B and C of the manuscript), material identifiers are pseudonymized,
+and quantities and prices are multiplied by secret per-pair factors; the
+factors, the salt and the source data are not released. Dates and plant
+structure are unchanged.
+
+- `outputs/runs/mf-01`, `mf-02`, `mf-03`, `mf-noerp` hold the frozen policies of
+  the original runs, rescaled to the masked panel (`output.json` only).
+- `outputs/runs/run-m1`, `run-m2`, `run-m3` hold three fresh LLM generations on
+  the masked panel with the unchanged prompt (policy, metadata and prompt per
+  material; session identifiers are replaced by a hash prefix and the raw
+  platform responses are not released). Run m1 produced 364 and
+  runs m2 and m3 produced 365 of the 365 policies; 38 records of run m1 carry a
+  `runner_hash_amendment` (authentication handling only; the original hash is in
+  `runner_code_sha256_original`).
+- `outputs/masked_replication_evidence.json` is the scored replication
+  (`python3 scripts/build_masked_replication_evidence.py`, offline).
+
+Scoring needs only the standard-library simulator, no network or credentials.
+The three masked runs reproduce the original pattern: the LLM is 11--12% cheaper
+than the ERP-derived parameters and 5--6%, 7--9% and 16--18% costlier than the
+history-only, Croston/SBA and empirical-quantile code arms, with mean cost within
+1% of the original runs. The LLM generation itself still needs the private
+enterprise deployment and cannot be rerun publicly.
+
 ## Release Contents
 
 - deterministic synthetic inventory data generated from a fixed seed;
@@ -29,8 +58,9 @@ numerical reproduction of the confidential study.
 - manuscript source, figures, references, highlights, and compiled PDF; and
 - prompt specifications documenting the intended LLM interaction.
 
-No operational row, material identifier, material-level study artifact, credential,
-private inference adapter, or private runtime metadata is included.
+No operational row, original material identifier, credential,
+private inference adapter, or private runtime metadata is included. The masked
+panel and masked-run outputs use pseudonymized identifiers and scaled quantities.
 
 ## Quick Start
 

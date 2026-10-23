@@ -1,0 +1,8 @@
+{
+ "reorder_policy": {
+  "model": "(r,Q)",
+  "reorder_point": 2932,
+  "order_quantity": 5378,
+  "safety_stock": 1214
+ }
+}

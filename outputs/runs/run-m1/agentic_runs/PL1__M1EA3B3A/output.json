@@ -1,0 +1,79 @@
+{
+  "material_id": "PL1__M1EA3B3A",
+  "data_quality": {
+    "total_rows": 217,
+    "working_days": 217,
+    "outliers_detected": 25,
+    "winsorisation": {
+      "lower_bound": 8038.547,
+      "upper_bound": 20193.51
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 15768.263175115208,
+    "std_daily_demand": 2750.321272613882,
+    "robust_std_daily": 1435.7146034099337,
+    "cv_wd": 0.1744213197148003,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "SMOOTH",
+    "distribution_type": "Normal (symmetric, continuous, low-CV)"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.6856521739130437,
+    "std_lead_time": 1.1073745771446446,
+    "cv_lead_time": 0.656941327684468,
+    "stability": "UNSTABLE",
+    "effective_lead_time": 2.7930267510576883
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 17822.746619873495,
+    "safety_stock": 0.0,
+    "safety_stock_robust": 28884.593021314893
+  },
+  "order_quantity": {
+    "eoq_raw": 911876.6963720197,
+    "order_quantity": 423286
+  },
+  "cost_analysis": {
+    "unit_cost": 0.005926,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.0007111200000000001
+  },
+  "policy": {
+    "safety_stock": 0,
+    "reorder_point": 26580,
+    "order_quantity": 423286,
+    "review_period_days": 27
+  },
+  "safety_lead_time": {
+    "recommended_days": 0.0,
+    "sigma_eff_days": 1.1073745771446446,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 190590178.25,
+      "supplier": 95295089.12,
+      "quality": 31765029.71
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "DECREASE from SAP 2.5 days to 0.0 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M1EA3B3A exhibits smooth, high-volume demand averaging 15,768 units per working day with no significant trend, but with an unstable supplier (lead time CV = 65.7%) that theoretically demands a safety stock of ~29,316 units. The unconstrained EOQ of 911,877 units far exceeds the warehouse capacity of 423,287 units, triggering a hard storage cap that forces safety stock to zero \u2014 an escalation-level conflict. An (r,Q) continuous-review policy is recommended; however, storage expansion or MOQ renegotiation is a prerequisite before the optimized policy can be fully implemented.",
+  "warnings": [
+    "CRITICAL: EOQ (911,877) exceeds max_storage_units (423,287) by 215%. Order quantity capped to 423,286.",
+    "ESCALATION: safety_stock (29,316) + order_quantity (423,286) = 452,602 > max_storage_units (423,287). Safety stock forced to 0 due to capacity constraint.",
+    "LEAD TIME INSTABILITY: CV = 65.7% (>50%). Supplier delivery unreliable. Consider supplier SLA improvement.",
+    "DATA QUALITY: 25 outliers detected (11.5% of working days). Demand data contains anomalous observations."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) Continuous Review Policy",
+    "selection_rationale": "Smooth, non-intermittent demand with 100% non-zero fraction and stable mean justifies a continuous-review (r,Q) policy. The EOQ framework minimises total ordering + holding cost. Given high daily volumes and volatile lead times, continuous monitoring of stock position against the reorder point is preferable to periodic review.",
+    "boundary_risk": "Storage capacity is the binding constraint. The EOQ exceeds capacity by 215%, eliminating the ability to hold any safety stock. Until capacity is expanded, the material is exposed to stockout risk during lead time variability events \u2014 particularly the observed spikes to 5+ days.",
+    "escalation_flag": "MOQ (48,571) is feasible within capacity, but full EOQ implementation requires ~2.15x current storage. Management must decide between (a) expanding storage, (b) accepting frequent small orders at higher transaction cost, or (c) renegotiating supplier lead time SLAs to reduce safety stock requirements."
+  }
+}

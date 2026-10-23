@@ -1,0 +1,158 @@
+{
+  "material_id": "PL1__M99E1076",
+  "analysis_metadata": {
+    "total_working_days": 85,
+    "date_range": "2025-03-04 to 2026-03-05",
+    "data_quality_score": "Good",
+    "outliers_detected": 1,
+    "winsorization_applied": true
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 151.22,
+    "std_daily_demand": 213.035,
+    "robust_std_daily": 161.242,
+    "cv_working_days": 1.409,
+    "non_zero_fraction_working_days": 0.541,
+    "annual_demand": 37805.11,
+    "regime": "lumpy",
+    "distribution_type": "intermittent/compound-Poisson",
+    "trend_detected": true,
+    "trend_test_statistic": -0.1714,
+    "trend_test_pvalue": 0.0297
+  },
+  "lead_time_analysis": {
+    "mean_lead_time_days": 1.25,
+    "std_lead_time_days": 0.96,
+    "cv_lead_time": 0.771,
+    "stability": "unstable",
+    "effective_lead_time_days": 2.21,
+    "min_lead_time_days": 0.08,
+    "max_lead_time_days": 4.83
+  },
+  "buffer_analysis": {
+    "service_level_target": 0.95,
+    "z_score": 1.645,
+    "sigma_ltd": 279.23,
+    "safety_stock": 460,
+    "safety_stock_robust": 382,
+    "buffer_calculation_method": "Combined variance (demand + lead time)"
+  },
+  "order_quantity": {
+    "eoq_raw": 5010.09,
+    "moq": 795,
+    "unconstrained_order_quantity": 5011,
+    "order_quantity": 3571,
+    "capacity_constrained": true,
+    "max_storage_units": 4031.24
+  },
+  "cost_analysis": {
+    "unit_cost": 1.255098,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 50.0,
+    "annual_holding_cost_per_unit": 0.1506,
+    "previous_policy": {
+      "safety_stock": 1590,
+      "order_quantity": 795,
+      "annual_ordering_cost": 2377.68,
+      "annual_holding_cost": 299.34,
+      "total_annual_cost": 2677.02
+    },
+    "recommended_policy": {
+      "safety_stock": 460,
+      "order_quantity": 3571,
+      "annual_ordering_cost": 529.34,
+      "annual_holding_cost": 338.2,
+      "total_annual_cost": 867.53
+    },
+    "savings": {
+      "annual_savings": 1809.49,
+      "savings_percentage": 67.6
+    }
+  },
+  "recommended_policy": {
+    "safety_stock": 460,
+    "reorder_point": 795,
+    "order_quantity": 3571,
+    "review_period_days": 24
+  },
+  "safety_lead_time": {
+    "sap_safety_lead_time_days": 2.0,
+    "recommended_safety_lead_time_days": 3.04,
+    "sigma_effective_days": 1.85,
+    "variance_decomposition": {
+      "transport_variance_component": 0.5,
+      "supplier_variance_component": 0.4,
+      "quality_variance_component": 0.1
+    },
+    "dominant_factor": "transport",
+    "dominant_percentage": 50.0,
+    "disruption_premium": 1.0,
+    "comparison_vs_sap": "increase"
+  },
+  "milp_optimization_trigger": null,
+  "narrative": "Material PL1__M99E1076 exhibits lumpy demand (CV=1.41, active on 54% of days) with unstable lead times (mean=1.25d, CV=0.77). Recommended policy reduces safety stock from 1590 to 460 units and optimizes order quantity to 3571, yielding $1,809/year savings (67.6% reduction).",
+  "warnings": [],
+  "research_insights": {
+    "demand_classification": {
+      "regime": "lumpy",
+      "cv": 1.409,
+      "non_zero_fraction": 0.541,
+      "distribution_type": "intermittent/compound-Poisson",
+      "trend_detected": true,
+      "interpretation": "lumpy demand with CV=1.41, active on 54% of days"
+    },
+    "lead_time_characteristics": {
+      "mean_days": 1.25,
+      "std_days": 0.96,
+      "cv": 0.771,
+      "stability": "unstable",
+      "effective_lead_time": 2.21,
+      "interpretation": "unstable lead time, mean=1.25d"
+    },
+    "safety_stock_methodology": {
+      "approach": "Combined variance (demand+LT)",
+      "service_level": 0.95,
+      "z_score": 1.645,
+      "sigma_ltd": 279.23,
+      "safety_stock_standard": 460,
+      "safety_stock_robust": 382,
+      "interpretation": "SS=460 at 95% SL"
+    },
+    "order_quantity_optimization": {
+      "eoq_unconstrained": 5010.09,
+      "moq": 795,
+      "storage_capacity": 4031.24,
+      "order_quantity_recommended": 3571,
+      "capacity_constrained": true,
+      "interpretation": "EOQ=5010, OQ=3571"
+    },
+    "cost_savings_analysis": {
+      "previous_total_cost": 2677.02,
+      "recommended_total_cost": 867.53,
+      "annual_savings": 1809.49,
+      "savings_percentage": 67.6,
+      "payback_analysis": "Immediate",
+      "interpretation": "$1,809/yr (67.6%)"
+    },
+    "risk_assessment": {
+      "stockout_risk": "95% SL",
+      "demand_variability_risk": "High",
+      "lead_time_risk": "High",
+      "overall_risk_level": "High",
+      "mitigation_strategies": [
+        "Monitor weekly",
+        "Backup supplier"
+      ]
+    },
+    "implementation_recommendations": {
+      "priority": "High",
+      "implementation_complexity": "Low",
+      "monitoring_frequency": "Weekly",
+      "review_period": "Quarterly",
+      "success_metrics": [
+        "95% SL",
+        "$1,809 savings"
+      ]
+    }
+  }
+}

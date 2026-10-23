@@ -1,0 +1,91 @@
+{
+  "material_id": "PL1__M601EBFE",
+  "analysis_metadata": {
+    "total_observations": 93,
+    "working_days": 93,
+    "date_range_start": "2025-03-04",
+    "date_range_end": "2026-03-05",
+    "service_level_target": 0.95,
+    "unit_cost": 0.074624,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 50.0,
+    "moq": 9326,
+    "max_storage_units": 9351708.151
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 3984.54,
+    "std_daily_demand": 952.78,
+    "robust_std": 815.85,
+    "cv": 0.2391,
+    "non_zero_fraction": 1.0,
+    "outliers_detected": 2,
+    "trend_detected": false,
+    "trend_slope": -16.1299,
+    "demand_regime": "moderate variability",
+    "distribution_type": "normal-like",
+    "annual_demand": 1035980.61
+  },
+  "lead_time_analysis": {
+    "mean_lead_time_days": 2.59,
+    "std_lead_time_days": 1.2203,
+    "cv_lead_time": 0.4705,
+    "stability": "moderate",
+    "effective_lead_time_days": 3.81,
+    "variance_decomposition": {
+      "transport_variance": 0.8934,
+      "supplier_variance": 0.4467,
+      "quality_variance": 0.1489,
+      "dominant_factor": "transport",
+      "dominant_pct": 60.0
+    }
+  },
+  "safety_stock_analysis": {
+    "z_score": 1.6449,
+    "sigma_ltd": 5098.6,
+    "safety_stock": 8387,
+    "safety_stock_robust": 8285,
+    "sap_safety_stock": 0
+  },
+  "order_policy": {
+    "eoq_raw": 107558.8,
+    "unconstrained_order_quantity": 107559,
+    "order_quantity": 107559,
+    "reorder_point": 18722,
+    "review_period_days": 27,
+    "moq_feasibility": true,
+    "escalation_flag": false
+  },
+  "cost_analysis": {
+    "previous_policy": {
+      "safety_stock": 0,
+      "average_inventory": 53779.5,
+      "annual_ordering_cost": 481.59,
+      "annual_holding_cost": 481.59,
+      "total_annual_cost": 963.18
+    },
+    "optimized_policy": {
+      "safety_stock": 8387,
+      "average_inventory": 62166.5,
+      "annual_ordering_cost": 481.59,
+      "annual_holding_cost": 556.69,
+      "total_annual_cost": 1038.28
+    },
+    "impact": {
+      "annual_cost_savings": -75.1,
+      "cost_reduction_pct": -7.8,
+      "additional_holding_cost": 75.1
+    }
+  },
+  "safety_lead_time": {
+    "sap_safety_lead_time_days": 5.0,
+    "recommended_safety_lead_time_days": 2.01,
+    "comparison_action": "decrease",
+    "disruption_premium": 1.0
+  },
+  "recommendations": {
+    "implement_safety_stock": true,
+    "adjust_safety_lead_time": true,
+    "moq_constraint_active": false,
+    "storage_utilization_pct": 1.24
+  }
+}

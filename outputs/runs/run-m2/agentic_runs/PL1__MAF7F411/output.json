@@ -1,0 +1,76 @@
+{
+  "material_id": "PL1__MAF7F411",
+  "data_quality": {
+    "total_rows": 216,
+    "working_days": 216,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 627.5781,
+      "upper_bound": 2286.1653
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1569.029297222222,
+    "std_daily_demand": 363.2860194417797,
+    "robust_std_daily": 363.2860194417797,
+    "cv_wd": 0.2315,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "continuous-moderate",
+    "distribution_type": "approximately normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.3333723404255318,
+    "std_lead_time": 0.8645058536502586,
+    "cv_lead_time": 0.648,
+    "stability": "moderate \u2014 occasional spikes to ~4.7 WD observed",
+    "effective_lead_time": 1.3333723404255318
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1419.8204343143673,
+    "safety_stock": 2335.3967910018014,
+    "safety_stock_robust": 2335.3967910018014
+  },
+  "order_quantity": {
+    "eoq_raw": 6872.028184526677,
+    "order_quantity": 5752
+  },
+  "cost_analysis": {
+    "unit_cost": 7.198687,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.86384244
+  },
+  "policy": {
+    "safety_stock": 2335,
+    "reorder_point": 4427,
+    "order_quantity": 5752,
+    "review_period_days": 0
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.3333723404255318,
+    "sigma_eff_days": 0.8645058536502586,
+    "dominant_factor": "transport",
+    "dominant_pct": 0.6,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce SAP safety lead time from 3.0 to 1.33 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MAF7F411 exhibits continuous daily demand averaging 1,569 units/day with moderate variability (CV=0.23) across 216 working days. Lead times average 1.33 working days with occasional spikes. The current SAP policy of ordering at MOQ=132 generates ~3,090 orders/year, driving excessive ordering costs. The recommended (r,Q) policy consolidates replenishments into ~71 orders/year at 5,752 units each, buffered by a 2,335-unit safety stock calibrated to the 95% service level, while respecting the 8,087-unit storage ceiling.",
+  "warnings": [
+    "Storage capacity constraint binds: order quantity reduced from unconstrained EOQ 6,872 to 5,752 units to satisfy safety_stock + order_quantity <= 8,086.99"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) continuous-review fixed-order-quantity policy",
+    "selection_rationale": "Demand is continuous and near-normally distributed with moderate CV (0.23), lead times are short and observable \u2014 ideal conditions for the classical (r,Q) reorder-point model. The EOQ minimises combined ordering and holding costs; the reorder point provides the service-level guarantee.",
+    "boundary_risk": "Storage cap of 8,087 units reduces the order quantity below the unconstrained EOQ (6,872 units). This slightly increases ordering frequency (~71 vs. ~59 orders/year) and marginally raises annual ordering cost, but the policy remains near-optimal and fully feasible.",
+    "escalation_flag": "none"
+  }
+}

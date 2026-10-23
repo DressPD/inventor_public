@@ -1,0 +1,92 @@
+{
+  "material_id": "PL3__MC1AFD53",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "outliers_detected": 1,
+    "winsorisation": {
+      "lower_bound": 127.69303000000001,
+      "upper_bound": 406.74797000000007
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 324.9309411764706,
+    "std_daily_demand": 74.3116981061861,
+    "robust_std_daily": 28.29838619999998,
+    "cv_wd": 0.22869997494583713,
+    "non_zero_fraction_wd": 0.7456140350877193,
+    "trend_detected": true,
+    "regime": "regular",
+    "distribution_type": "intermittent"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.584285714285714,
+    "std_lead_time": 1.3432519176556996,
+    "cv_lead_time": 0.8478596414418303,
+    "stability": "volatile",
+    "effective_lead_time": 2.927537631941414
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 446.3739540608344,
+    "safety_stock": 735,
+    "safety_stock_robust": 721
+  },
+  "order_quantity": {
+    "eoq_raw": 28399.75406567868,
+    "order_quantity": 4340
+  },
+  "cost_analysis": {
+    "unit_cost": 0.125896,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.015107520000000001,
+    "previous_policy": {
+      "safety_stock": 0,
+      "order_quantity": 2290,
+      "num_orders": 36,
+      "annual_ordering_cost": 2700.0,
+      "annual_holding_cost": 17.298110400000002,
+      "total_annual_cost": 2717.2981104
+    },
+    "optimized_policy": {
+      "safety_stock": 735,
+      "order_quantity": 4340,
+      "num_orders": 19,
+      "annual_ordering_cost": 1425.0,
+      "annual_holding_cost": 43.8873456,
+      "total_annual_cost": 1468.8873456000001
+    },
+    "cost_savings": 1248.4107648,
+    "cost_savings_pct": 45.94309178010018
+  },
+  "policy": {
+    "safety_stock": 735,
+    "reorder_point": 1250,
+    "order_quantity": 4340,
+    "review_period_days": 14
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.26201911501195,
+    "sigma_eff_days": 1.373750226570168,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization analysis for material PL3__MC1AFD53 reveals a REGULAR demand regime with CV=0.229 and a VOLATILE lead time profile (CV=0.848). The analysis identified a declining demand trend (slope=-0.73, p<0.0001) over 170 working days.\n\nCurrent SAP policy operates with zero safety stock and 2290 MOQ, resulting in 36 orders/year at a total annual cost of $2717.30.\n\nOPTIMIZED POLICY recommends:\n- Safety stock: 735 units (vs 0 SAP)\n- Order quantity: 4340 units (capacity-constrained from EOQ 28399)\n- Reorder point: 1250 units\n- Review cycle: 14 days\n\nThis policy achieves 95.0% service level while reducing total annual costs by $1248.41 (45.9%), despite higher holding costs from safety stock introduction. The storage constraint of 5075 units is satisfied with 0.3 units headroom.\n\nLead time volatility drives the need for 2.3 days safety lead time (increase from 0.0 SAP days), primarily attributable to transport variability (60.0%).",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Analytical (Q,r) policy with capacity constraints",
+    "selection_rationale": "Regular demand (CV=0.229) with volatile lead time (CV=0.848) suits analytical approach. Capacity constraint 5075 units enforced.",
+    "boundary_risk": "Storage capacity binding; EOQ constrained from 28400 to 4340 units. Monitor for capacity upgrades.",
+    "escalation_flag": ""
+  }
+}

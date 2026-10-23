@@ -1,0 +1,97 @@
+{
+  "material_id": "PL2__MC1D0052",
+  "data_quality": {
+    "total_rows": 96,
+    "working_days": 96,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 2693.83
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1194.71,
+    "std_daily_demand": 663.55,
+    "robust_std_daily": 561.23,
+    "cv_wd": 0.5557,
+    "non_zero_fraction_wd": 0.9479,
+    "trend_detected": true,
+    "regime": "erratic",
+    "distribution_type": "empirical"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.2388,
+    "std_lead_time": 0.2274,
+    "cv_lead_time": 0.9521,
+    "stability": "unstable",
+    "effective_lead_time": 0.4662
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 464.02,
+    "safety_stock": 763.0,
+    "safety_stock_robust": 645.0
+  },
+  "order_quantity": {
+    "eoq_raw": 7664.8,
+    "order_quantity": 10807
+  },
+  "cost_analysis": {
+    "unit_cost": 2.131351,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.255762
+  },
+  "policy": {
+    "safety_stock": 763,
+    "reorder_point": 1053,
+    "order_quantity": 10807,
+    "review_period_days": 10
+  },
+  "safety_lead_time": {
+    "recommended_days": 0.6387,
+    "sigma_eff_days": 0.3885,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 50.3,
+    "variance_components": {
+      "transport": 0.02063,
+      "supplier": 0.02063,
+      "quality": 0.01031
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL2__MC1D0052 exhibits erratic demand with a CV of 0.556 and an upward trend over the analysis period from March 2025 to March 2026, suggesting growing consumption. Lead times are very short (mean 0.24 days) but highly variable (CV 0.95), making lead-time variance the dominant contributor to safety stock requirements. An EOQ-based (r,Q) policy is recommended, as it optimally balances ordering and holding costs given the relatively high order frequency driven by active daily demand. The SAP safety stock of 2,819 units is over-engineered by approximately 3.7x compared to the statistically derived requirement of 763 units.",
+  "warnings": [
+    "SAP safety stock (2819) is 3.69x higher than statistically recommended (763 units) \u2014 overstocking risk.",
+    "SAP safety lead time (3.0 days) exceeds recommended (0.64 days) \u2014 recommend reduction.",
+    "Order quantity constrained by capacity: unconstrained EOQ would be 10807, capacity allows up to 23420 \u2014 no binding constraint applied.",
+    "Upward demand trend detected \u2014 safety stock may need periodic revision upwards."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) Continuous Review Policy with EOQ",
+    "selection_rationale": "The (r,Q) policy is optimal for PL2__MC1D0052 given its near-continuous demand pattern (94.8% non-zero days), erratic but not intermittent character, and the need to respond quickly to a short lead time. EOQ minimises total inventory cost by balancing the ordering cost of $50 per order against holding costs, yielding a natural order cycle of ~10 days.",
+    "boundary_risk": "Storage capacity is not binding: safety_stock (763) + order_quantity (10807) = 11570 units, which is 47.8% of max_storage_units (24183). No capacity-driven service degradation is expected. However, if demand grows in line with the detected trend, the reorder point and safety stock should be reviewed quarterly.",
+    "escalation_flag": "none"
+  },
+  "cost_comparison": {
+    "sap_policy": {
+      "safety_stock": 2819,
+      "order_quantity": 2819,
+      "annual_ordering_cost": 5634.67,
+      "annual_holding_cost": 734.06,
+      "total_annual_cost": 6368.73
+    },
+    "optimized_policy": {
+      "safety_stock": 763,
+      "order_quantity": 10807,
+      "annual_ordering_cost": 5520.76,
+      "annual_holding_cost": 1427.94,
+      "total_annual_cost": 2948.7
+    },
+    "annual_savings": 3420.03,
+    "savings_pct": 53.6
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "material_id": "PL1__MB5A55F8",
+  "data_quality": {
+    "total_rows": 217,
+    "working_days": 217,
+    "outliers_detected": 6,
+    "winsorisation": {
+      "lower_bound": 26232.04796,
+      "upper_bound": 140846.59524
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 113858.19897511523,
+    "std_daily_demand": 19209.900914164857,
+    "robust_std_daily": 11838.540243599984,
+    "cv_wd": 0.16871776549322864,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "smooth",
+    "distribution_type": "normal-approximation"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.4476666666666667,
+    "std_lead_time": 0.7999756281203773,
+    "cv_lead_time": 0.5525965655908661,
+    "stability": "unstable",
+    "effective_lead_time": 2.247642294787044
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 93970.60247488364,
+    "safety_stock": 154568,
+    "safety_stock_robust": 151641
+  },
+  "order_quantity": {
+    "eoq_raw": 1433991.1196049268,
+    "order_quantity": 1433992
+  },
+  "cost_analysis": {
+    "unit_cost": 0.017303,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.0020763599999999998,
+    "previous_policy": {
+      "safety_stock": 175449,
+      "order_quantity": 212171,
+      "average_inventory": 281534.5,
+      "annual_ordering_cost": 10061.88984726193,
+      "annual_holding_cost": 584.56697442,
+      "total_annual_cost": 10646.45682168193
+    },
+    "optimized_policy": {
+      "safety_stock": 154568,
+      "order_quantity": 1433992,
+      "average_inventory": 871564.0,
+      "annual_ordering_cost": 1488.7399865434468,
+      "annual_holding_cost": 1809.6806270399998,
+      "total_annual_cost": 3298.4206135834465
+    },
+    "cost_savings": 7348.036208098483,
+    "cost_savings_pct": 69.01860714011367
+  },
+  "policy": {
+    "safety_stock": 154568,
+    "reorder_point": 319397,
+    "order_quantity": 1433992,
+    "review_period_days": 13
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.3575482608308451,
+    "sigma_eff_days": 0.7999756281203773,
+    "dominant_factor": "transport",
+    "dominant_pct": 50.0,
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.4,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase_buffer",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization analysis for material PL1__MB5A55F8 reveals a smooth demand regime with CV of 16.87%. The mean daily demand is 113,858 units with unstable lead time variability (CV=55.26%). The optimized policy recommends a safety stock of 154,568 units (vs. SAP's 175,449) and order quantity of 1,433,992 units, resulting in a reorder point of 319,397 units. This policy achieves 95.0% service level with total annual cost of $3,298.42, representing savings of $7,348.04 (69.0%) compared to the previous SAP policy. The recommended safety lead time is 1.36 days versus SAP's 4 days. The dominant variance component is transport at 50%. Capacity utilization is 72.3% of the maximum 2,196,381 storage units.",
+  "warnings": [
+    "Unstable lead times (CV=55.26%) - supplier reliability concern",
+    "Detected 6 outliers, winsorized at 26,232 - 140,847",
+    "Recommended SLT (1.36 days) is below SAP SLT (4 days)"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Economic Order Quantity (EOQ) with Safety Stock \u2014 (r, Q) continuous-review policy",
+    "selection_rationale": "EOQ model selected because demand is smooth (CV=16.87%) and continuous \u2014 high daily volumes with 100% non-zero fraction suit a continuous-review (r,Q) framework. Normal approximation for safety stock is appropriate given the smooth regime. MOQ of 212,171 is dominated by the EOQ of 1,433,992, so the economic quantity governs.",
+    "boundary_risk": "Low \u2014 capacity utilisation at 72.3% leaves adequate headroom. The EOQ order quantity plus safety stock (1,588,560 units) is comfortably within the 2,196,381-unit storage limit. No capacity-driven reduction required.",
+    "escalation_flag": "none"
+  }
+}

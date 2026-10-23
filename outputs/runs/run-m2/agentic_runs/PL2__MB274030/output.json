@@ -1,0 +1,77 @@
+{
+  "material_id": "PL2__MB274030",
+  "data_quality": {
+    "total_rows": 237,
+    "working_days": 237,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 955.5950399999992
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 403.1633971308017,
+    "std_daily_demand": 262.62893095595746,
+    "robust_std_daily": 322.44622619999996,
+    "cv_wd": 0.6514205724651897,
+    "non_zero_fraction_wd": 0.9451476793248945,
+    "trend_detected": false,
+    "regime": "erratic",
+    "distribution_type": "gamma-like"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.7381944444444445,
+    "std_lead_time": 0.7510572666228013,
+    "cv_lead_time": 1.0174247073723741,
+    "stability": "unstable",
+    "effective_lead_time": 1.4892517110672459
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 377.6285256389127,
+    "safety_stock": 622,
+    "safety_stock_robust": 676
+  },
+  "order_quantity": {
+    "eoq_raw": 2386.0228947379096,
+    "order_quantity": 2387
+  },
+  "cost_analysis": {
+    "unit_cost": 23.015226,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 2.7618271199999995
+  },
+  "policy": {
+    "safety_stock": 622,
+    "reorder_point": 920,
+    "order_quantity": 2387,
+    "review_period_days": 6
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.5427987868606021,
+    "sigma_eff_days": 0.9366637158194089,
+    "dominant_factor": "transport",
+    "dominant_pct": 40.0,
+    "variance_components": {
+      "transport": 0.4,
+      "supplier": 0.4,
+      "quality": 0.2
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL2__MB274030 shows erratic, high-volume demand averaging 403 units per working day with a CV of 0.65, served by a supplier whose lead time averages only 0.74 days but is highly unstable (CV > 1.0). The combined demand-lead-time uncertainty drives a required safety stock of 622 units \u2014 3.4x the current SAP level of 181 \u2014 to reliably achieve the 95% service level target. An (r,Q) continuous-review policy with EOQ-derived order quantity of 2,387 units is recommended, respecting both the MOQ of 82 and the storage capacity of 3,379 units.",
+  "warnings": [
+    "Current SAP safety stock of 181 units is critically below the model-recommended 622 units; the 95% service level target cannot be met under the current policy.",
+    "Lead time CV of 1.017 classified as unstable; transport and supplier variability each account for 40% of lead time variance and should be addressed operationally."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) continuous-review policy",
+    "selection_rationale": "Demand is near-continuous (94.5% non-zero days) with high daily volume, making a continuous-review reorder-point model appropriate. The EOQ provides the cost-minimising order quantity given the ordering and holding cost structure, and the reorder point is set to cover mean demand during lead time plus the safety buffer.",
+    "boundary_risk": "The recommended policy (SS=622 + OQ=2387 = 3009 units) fits within the 3,379-unit storage capacity with a 370-unit margin. The capacity constraint does not bind for this material. However, if safety stock is revised upward to the robust estimate of 676 units, the total would be 3,063 \u2014 still feasible.",
+    "escalation_flag": "none"
+  }
+}

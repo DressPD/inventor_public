@@ -1,0 +1,77 @@
+{
+  "material_id": "PL1__M7F208CD",
+  "data_quality": {
+    "total_rows": 209,
+    "working_days": 209,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 5854.396
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 2607.0,
+    "std_daily_demand": 1990.0,
+    "robust_std_daily": 1480.0,
+    "cv_wd": 0.763,
+    "non_zero_fraction_wd": 0.813,
+    "trend_detected": false,
+    "regime": "erratic/lumpy",
+    "distribution_type": "empirical"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.15,
+    "std_lead_time": 1.17,
+    "cv_lead_time": 0.543,
+    "stability": "moderate",
+    "effective_lead_time": 3.32
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 3882.0,
+    "safety_stock": 6387.0,
+    "safety_stock_robust": 5900.0
+  },
+  "order_quantity": {
+    "eoq_raw": 23261.0,
+    "order_quantity": 23261
+  },
+  "cost_analysis": {
+    "unit_cost": 1.552369,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.18628428
+  },
+  "policy": {
+    "safety_stock": 6387,
+    "reorder_point": 12637,
+    "order_quantity": 23261,
+    "review_period_days": 9
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.43,
+    "sigma_eff_days": 1.49,
+    "dominant_factor": "transport",
+    "dominant_pct": 50.0,
+    "variance_components": {
+      "transport": 0.684,
+      "supplier": 0.411,
+      "quality": 0.274
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M7F208CD exhibits erratic/lumpy demand with a CV of 0.763 and 81.3% non-zero days, indicating significant day-to-day variability rather than true intermittency. Lead times show moderate stability (CV=0.543, mean 2.15 days) with transport variability as the dominant risk factor. A continuous-review (r,Q) policy is selected because it responds to actual inventory levels rather than elapsed time, which is optimal for this high-variability, non-seasonal demand pattern. The EOQ of 23,261 units balances ordering and holding costs while respecting the storage capacity constraint at 94.8% utilisation.",
+  "warnings": [
+    "Storage utilisation at 94.8% (29,648 / 31,286 units) \u2014 limited headroom of 1,638 units; monitor closely",
+    "Safety lead time recommendation (2.43 days) is lower than current SAP setting (3.0 days) \u2014 consider reducing after validation"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review policy",
+    "selection_rationale": "The (r,Q) policy is appropriate for this material because demand is erratic/lumpy (CV=0.763) and non-seasonal. Continuous review immediately triggers replenishment when stock falls to the reorder point, minimising stockout exposure during the variable lead time. The EOQ order quantity minimises total annual inventory costs at the given unit cost, holding rate, and ordering cost.",
+    "boundary_risk": "Storage capacity is binding at 94.8% utilisation. The EOQ was constrained to 23,261 units to stay within max_storage_units=31,286. If safety stock is further increased (e.g., for higher service levels), the order quantity must be reduced proportionally, increasing order frequency and annual ordering costs.",
+    "escalation_flag": "none"
+  }
+}

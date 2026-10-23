@@ -1,0 +1,104 @@
+{
+  "material_id": "PL3__M1B41D26",
+  "timestamp": "2026-10-20T21:58:48.223165",
+  "input_parameters": {
+    "unit_cost": 2.884224,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 75.0,
+    "minimum_order_quantity": 1068,
+    "service_level_target": 0.95,
+    "sap_safety_stock": 0,
+    "sap_safety_lead_time_days": 0.0,
+    "max_storage_units": 4511.903
+  },
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "non_zero_demand_days": 175,
+    "non_zero_fraction": 0.7675,
+    "outliers_detected": 0,
+    "outlier_bounds": {
+      "lower": 0.0,
+      "upper": 1362.25
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 369.86,
+    "std_daily_demand": 242.17,
+    "robust_std_daily_demand": 169.96,
+    "cv": 0.655,
+    "trend_detected": false,
+    "trend_direction": "none",
+    "trend_slope": 0.1974,
+    "trend_p_value": 0.419,
+    "regime": "LUMPY",
+    "distribution_type": "Gamma-like",
+    "annual_demand": 92465.24
+  },
+  "lead_time_analysis": {
+    "mean_lead_time_days": 1.52,
+    "std_lead_time_days": 1.07,
+    "cv_lead_time": 0.702,
+    "stability": "volatile",
+    "effective_lead_time_days": 2.59,
+    "variance_decomposition": {
+      "transport": 0.571,
+      "supplier": 0.4568,
+      "quality": 0.1142,
+      "dominant_factor": "transport"
+    }
+  },
+  "buffer_analysis": {
+    "z_factor": 1.6449,
+    "sigma_ltd": 495.5,
+    "safety_stock_standard": 816,
+    "safety_stock_robust": 737,
+    "safety_lead_time_days": 2.21,
+    "sap_comparison_action": "INCREASE"
+  },
+  "order_quantity_analysis": {
+    "eoq_raw": 6330.38,
+    "unconstrained_order_quantity": 6331,
+    "recommended_order_quantity": 3695,
+    "storage_constraint_active": true,
+    "available_storage_units": 3695.9,
+    "feasibility_status": "OK",
+    "capacity_utilization_pct": 100.0
+  },
+  "reorder_point": {
+    "rop": 1380,
+    "calculation": "ceiling(369.86 * 1.52 + 816)"
+  },
+  "review_period": {
+    "review_period_days": 10
+  },
+  "cost_analysis": {
+    "previous_policy": {
+      "safety_stock": 0,
+      "order_quantity": 1068,
+      "orders_per_year": 86.58,
+      "annual_ordering_cost": 6493.35,
+      "annual_holding_cost": 184.82,
+      "total_annual_cost": 6678.17
+    },
+    "optimized_policy": {
+      "safety_stock": 816,
+      "order_quantity": 3695,
+      "orders_per_year": 25.02,
+      "annual_ordering_cost": 1876.83,
+      "annual_holding_cost": 921.86,
+      "total_annual_cost": 2798.69
+    },
+    "savings": {
+      "absolute": 3879.48,
+      "percentage": 58.1
+    }
+  },
+  "recommendations": {
+    "selected_model": "(r,Q) continuous review",
+    "selection_rationale": "Continuous review is recommended for lumpy demand to minimize stockout risk during unpredictable demand spikes.",
+    "narrative": "Material PL3__M1B41D26 exhibits lumpy demand with a CV of 0.65 and 77% demand occurrence. Lead time variability is volatile (CV=0.70), requiring elevated safety buffers. No significant trend detected (p=0.419), indicating stable demand patterns. Storage utilization is high (100%), limiting order quantity optimization.",
+    "boundary_risk": "HIGH - storage constraint severely limits optimization",
+    "escalation_required": true
+  }
+}

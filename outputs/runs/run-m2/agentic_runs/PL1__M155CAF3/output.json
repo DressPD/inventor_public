@@ -1,0 +1,77 @@
+{
+  "material_id": "PL1__M155CAF3",
+  "data_quality": {
+    "total_rows": 93,
+    "working_days": 93,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 135.759,
+      "upper_bound": 1100.694
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 493.33,
+    "std_daily_demand": 186.38,
+    "robust_std_daily": 185.79,
+    "cv_wd": 0.378,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": true,
+    "regime": "regular",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.61,
+    "std_lead_time": 1.12,
+    "cv_lead_time": 0.429,
+    "stability": "unstable",
+    "effective_lead_time": 3.73
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 629.47,
+    "safety_stock": 1036,
+    "safety_stock_robust": 591
+  },
+  "order_quantity": {
+    "eoq_raw": 8883.64,
+    "order_quantity": 8884
+  },
+  "cost_analysis": {
+    "unit_cost": 1.953459,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.23
+  },
+  "policy": {
+    "safety_stock": 1036,
+    "reorder_point": 2325,
+    "order_quantity": 8884,
+    "review_period_days": 19
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.1,
+    "sigma_eff_days": 1.28,
+    "dominant_factor": "transport",
+    "dominant_pct": 0.6,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M155CAF3 shows regular demand (CV=0.378) with a declining trend of -3.68 units/day over 93 working days. Lead times are unstable (CV=0.429, mean=2.61 days), which combined with demand variability yields a sigma_LTD of 629 units, requiring a safety stock of 1,036 units at 95% service level. The EOQ of 8,884 units (well above the MOQ of 1,002) reduces annual orders from ~123 to ~14, cutting total inventory cost by 75.8%. An (r,Q) continuous-review policy is recommended with reorder point 2,325 units and order quantity 8,884 units.",
+  "warnings": [
+    "Declining demand trend detected (-3.68 units/day); EOQ should be revisited in 6 months.",
+    "Lead time CV of 0.429 classified as unstable; supplier performance improvement recommended."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review reorder-point / fixed-order-quantity",
+    "selection_rationale": "Demand is regular (CV=0.378, 100% non-zero) and continuous, making a continuous-review (r,Q) policy optimal. The EOQ formula balances ordering and holding costs efficiently, and the fixed order quantity simplifies purchasing execution.",
+    "boundary_risk": "Storage capacity of 25,079.95 units is not binding (peak stock = 9,920 units post-replenishment). No capacity constraint is active.",
+    "escalation_flag": "none"
+  }
+}

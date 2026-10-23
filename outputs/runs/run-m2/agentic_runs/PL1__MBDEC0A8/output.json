@@ -1,0 +1,143 @@
+{
+  "material_id": "PL1__MBDEC0A8",
+  "parameters": {
+    "unit_cost": 2.166507,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 100.0,
+    "moq": 891,
+    "service_level_target": 0.95,
+    "sap_safety_stock": 297,
+    "sap_safety_lead_time_days": 3.0,
+    "max_storage_units": 14285.931
+  },
+  "data_quality": {
+    "total_rows": 129,
+    "working_days": 129,
+    "missing_demand": 0,
+    "missing_leadtime": 0,
+    "quality_score": "GOOD",
+    "narrative": "Data quality is good with 129 working day demand records and 78 lead time observations. No missing values detected."
+  },
+  "demand_statistics": {
+    "mean_daily_demand": 837.07,
+    "std_daily_demand": 956.43,
+    "median_daily_demand": 482.93,
+    "cv_wd": 1.143,
+    "robust_std_daily": 1060.21,
+    "non_zero_fraction_wd": 0.62,
+    "trend_detected": true,
+    "trend_slope": 6.2912,
+    "regime": "erratic",
+    "distribution_type": "Highly intermittent with 38.0% zero demand days. Non-zero demand is right-skewed (skew=0.82).",
+    "skewness": 0.82,
+    "kurtosis": -0.644,
+    "outliers_detected": 0,
+    "outlier_lower_bound": -2145.33,
+    "outlier_upper_bound": 3575.54,
+    "p1_winsor": 0.0,
+    "p99_winsor": 3013.12
+  },
+  "leadtime_statistics": {
+    "mean_lead_time": 5.87,
+    "std_lead_time": 1.57,
+    "median_lead_time": 5.88,
+    "cv_lead_time": 0.267,
+    "stability": "moderate",
+    "effective_lead_time": 7.44,
+    "outliers_count": 2,
+    "min_lead_time": 2.84,
+    "max_lead_time": 13.63
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 2662.34,
+    "sigma_ltd_robust": 2883.79,
+    "z_score": 1.645,
+    "safety_stock": 4380,
+    "safety_stock_robust": 4744,
+    "reorder_point": 9292,
+    "service_level_target": 0.95
+  },
+  "eoq_analysis": {
+    "annual_demand": 209266.44,
+    "eoq_raw": 12688.03,
+    "unconstrained_order_quantity": 12689,
+    "order_quantity": 9905,
+    "storage_cap_binds": true,
+    "capacity_violation": false,
+    "total_inventory_at_peak": 14285,
+    "max_storage_units": 14285.931,
+    "available_storage_for_cycle": 9905.93
+  },
+  "cost_analysis": {
+    "previous_policy": {
+      "safety_stock": 297,
+      "order_quantity": 891,
+      "orders_per_year": 234.87,
+      "annual_ordering_cost": 23486.69,
+      "avg_inventory": 742.5,
+      "annual_holding_cost": 193.04,
+      "total_annual_cost": 23679.73
+    },
+    "recommended_policy": {
+      "safety_stock": 4380,
+      "order_quantity": 9905,
+      "orders_per_year": 21.13,
+      "annual_ordering_cost": 2112.74,
+      "avg_inventory": 9332.5,
+      "annual_holding_cost": 2426.27,
+      "total_annual_cost": 4539.01
+    },
+    "annual_savings": 19140.72,
+    "savings_pct": 80.83
+  },
+  "policy_parameters": {
+    "safety_stock": 4380,
+    "reorder_point": 9292,
+    "order_quantity": 9905,
+    "review_period_days": 12
+  },
+  "safety_leadtime_analysis": {
+    "sigma_eff_days": 3.18,
+    "recommended_days": 5.3,
+    "sap_safety_lead_time_days": 3.0,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "disruption_premium": 1.0,
+    "comparison_action": "INCREASE from 3.0 to 5.3 days to cover observed variability"
+  },
+  "outliers_winsorization": {
+    "outliers_detected": 0,
+    "outliers_low": 0,
+    "outliers_high": 0,
+    "lower_bound": -2145.33,
+    "upper_bound": 3575.54,
+    "q1": 0.0,
+    "q3": 1430.22,
+    "iqr": 1430.22,
+    "winsorization_p1": 0.0,
+    "winsorization_p99": 3013.12
+  },
+  "diagnostics": {
+    "warnings": [
+      "Storage capacity constraint is BINDING. Order quantity reduced from 12689 to 9905.",
+      "Safety stock increases significantly from 297 to 4380 (+1374.7%). Verify demand/lead time data.",
+      "High demand variability (CV=1.14). Consider robust safety stock (4744).",
+      "Lead time is moderate (CV=0.27). Monitor supplier performance closely.",
+      "Demand trend detected (slope=6.29/day). Consider adjusting forecast periodically."
+    ],
+    "flags": [
+      "CAPACITY_CONSTRAINT",
+      "HIGH_SAFETY_STOCK_INCREASE",
+      "HIGH_VARIABILITY",
+      "UNSTABLE_LEAD_TIME",
+      "TREND_DETECTED"
+    ],
+    "escalation_flag": "YES",
+    "boundary_risk": "HIGH: Storage capacity binds and safety stock requirement is much higher than SAP baseline. Risk of stockouts if orders are delayed."
+  }
+}

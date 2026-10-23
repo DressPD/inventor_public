@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__M2D94E9C",
+  "data_quality": {
+    "total_rows": 129,
+    "working_days": 129,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 1035.1
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 465.89,
+    "std_daily_demand": 244.34,
+    "robust_std_daily": 266.86,
+    "cv_wd": 0.524,
+    "non_zero_fraction_wd": 0.9612,
+    "trend_detected": false,
+    "regime": "smooth_high_volume",
+    "distribution_type": "right_skewed"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.58,
+    "std_lead_time": 1.17,
+    "cv_lead_time": 0.452,
+    "stability": "moderate",
+    "effective_lead_time": 3.74
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 669.99,
+    "safety_stock": 1103,
+    "safety_stock_robust": 1138
+  },
+  "order_quantity": {
+    "eoq_raw": 2189.96,
+    "order_quantity": 2190
+  },
+  "cost_analysis": {
+    "unit_cost": 30.357046,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 3.6428
+  },
+  "policy": {
+    "safety_stock": 1103,
+    "reorder_point": 2305,
+    "order_quantity": 2190,
+    "review_period_days": 5
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.4,
+    "sigma_eff_days": 1.44,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M2D94E9C exhibits a smooth_high_volume demand pattern with mean daily demand of 465.9 units (CV=0.52). Lead time shows moderate variability (mean=2.58 days, CV=0.45). The recommended (r,Q) continuous review policy with reorder point 2305 units and order quantity 2190 units achieves a 95% service level while reducing total annual costs by 54.9% compared to the current SAP baseline. Storage utilisation is high at 96.8%, requiring monitoring for future demand growth.",
+  "warnings": [
+    "Zero demand observed on 5 days (3.9%)",
+    "2 demand outliers detected and winsorized (1st-99th percentile: 0.0-1035.1)",
+    "High storage utilization (96.8%) - monitor capacity constraints"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous review",
+    "selection_rationale": "The (r,Q) continuous review model is recommended because: (1) Demand pattern is smooth_high_volume with CV=0.52, indicating moderate variability; (2) Non-zero demand frequency is 96.12%, supporting continuous monitoring; (3) Lead time variability (CV=0.45) is moderate, requiring responsive reordering; (4) The EOQ-based order quantity (2190 units) provides cost-efficient batch sizing.",
+    "boundary_risk": "MODERATE: High capacity utilization (96.8%). Storage constraint may become binding with demand growth or safety stock increases.",
+    "escalation_flag": "NO: Policy operates within normal parameters. SS + OQ = 3293 <= max_storage_units = 3400.8"
+  }
+}

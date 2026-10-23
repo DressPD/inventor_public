@@ -1,0 +1,76 @@
+{
+  "material_id": "PL1__M2E41291",
+  "data_quality": {
+    "total_rows": 88,
+    "working_days": 88,
+    "outliers_detected": 1,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 740.3774
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 383.374015909091,
+    "std_daily_demand": 209.99876459925443,
+    "robust_std_daily": 224.48795404002965,
+    "cv_wd": 0.5477647307454744,
+    "non_zero_fraction_wd": 0.9659090909090909,
+    "trend_detected": false,
+    "regime": "erratic",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 4.082631578947368,
+    "std_lead_time": 1.4817153745331186,
+    "cv_lead_time": 0.36293144406509287,
+    "stability": "moderate",
+    "effective_lead_time": 5.564346953480487
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 709.0303731736551,
+    "safety_stock": 1167,
+    "safety_stock_robust": 1196
+  },
+  "order_quantity": {
+    "eoq_raw": 5574.441276845567,
+    "order_quantity": 2862
+  },
+  "cost_analysis": {
+    "unit_cost": 5.14054,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.616865
+  },
+  "policy": {
+    "safety_stock": 1167,
+    "reorder_point": 2733,
+    "order_quantity": 2862,
+    "review_period_days": 8
+  },
+  "safety_lead_time": {
+    "recommended_days": 3.0440247684306527,
+    "sigma_eff_days": 1.8494481726737229,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 1.317288270676692,
+      "supplier": 0.658644135338346,
+      "quality": 0.219548045112782
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Demand for PL1__M2E41291 is erratic (CV=0.55) with a mean of 383 units/day and 96.6% non-zero days, indicating a regularly active but highly variable material. Lead times average 4.08 days with moderate variability (CV=0.36), producing a combined sigma_LTD of 709 units. The (r,Q) policy was selected as the demand is continuous with identifiable reorder signals; EOQ was capped by the 4,029-unit storage limit, and a safety stock of 1,167 units was set to achieve the 95% service level. Total annual costs fall by 28.4% versus the current zero-safety-stock SAP configuration.",
+  "warnings": [
+    "High capacity utilization (>95%): SS+OQ=4029 units vs max_storage=4029.546 units"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review reorder-point policy",
+    "selection_rationale": "Demand is quasi-continuous (96.6% non-zero days) with no significant trend, making a fixed-reorder-point, fixed-quantity policy appropriate. EOQ provides the cost-minimizing order quantity, bounded by the MOQ (1,483) and the hard storage cap (4,029.5 units).",
+    "boundary_risk": "Storage capacity is nearly fully utilized at 99.99%. Any increase in safety stock due to lead time deterioration or higher service levels cannot be accommodated without a storage capacity increase. Order frequency (33/year) is higher than the EOQ optimum due to the capacity cap, moderately increasing ordering costs.",
+    "escalation_flag": "none"
+  }
+}

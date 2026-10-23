@@ -1,0 +1,159 @@
+{
+  "material_id": "PL1__MAEEEEE5",
+  "analysis_timestamp": "2026-10-22T10:41:11.241358",
+  "input_parameters": {
+    "unit_cost": 0.103467,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 75.0,
+    "moq": 5150,
+    "service_level_target": 0.95,
+    "sap_safety_stock": 3576,
+    "sap_safety_lead_time_days": 3.0,
+    "max_storage_units": 95295.096
+  },
+  "data_quality": {
+    "total_rows": 130,
+    "working_days": 130,
+    "lead_time_observations": 92
+  },
+  "demand_analysis": {
+    "winsorization": {
+      "lower_bound": 560.13,
+      "upper_bound": 11012.63,
+      "outliers_removed": 4
+    },
+    "mean_daily_demand": 5864.07,
+    "std_daily_demand": 2097.98,
+    "robust_std_daily": 2283.56,
+    "cv_demand": 0.3578,
+    "non_zero_fraction": 0.9846,
+    "trend": {
+      "detected": true,
+      "pearson_r": -0.2395,
+      "pearson_p": 0.006058
+    },
+    "regime": "moderate",
+    "distribution_type": "normal-like"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.55,
+    "std_lead_time": 1.19,
+    "cv_lead_time": 0.4684,
+    "stability": "unstable",
+    "effective_lead_time": 3.15,
+    "min_lead_time": 0.94,
+    "max_lead_time": 6.0
+  },
+  "buffer_analysis": {
+    "service_level_target": 0.95,
+    "z_score": 1.6449,
+    "sigma_ltd": 7767.02,
+    "safety_stock": 12776,
+    "sigma_ltd_robust": 7899.42,
+    "safety_stock_robust": 12994,
+    "sap_safety_stock": 3576,
+    "safety_stock_vs_sap_diff": 9200,
+    "safety_stock_vs_sap_pct": 257.27
+  },
+  "eoq_analysis": {
+    "annual_demand": 1466016.51,
+    "eoq_raw": 133083.28,
+    "unconstrained_order_quantity": 133084,
+    "order_quantity": 82519,
+    "moq": 5150,
+    "capacity_binds": true,
+    "moq_safety_exceeds_capacity": false,
+    "available_capacity": 82519.1
+  },
+  "policy": {
+    "reorder_point": 31238,
+    "order_quantity": 82519,
+    "safety_stock": 12776,
+    "review_period_days": 15,
+    "effective_lead_time": 3.15,
+    "final_capacity_check_passed": true,
+    "total_inventory_max": 95295,
+    "max_storage_units": 95295.096,
+    "capacity_utilization_pct": 100.0
+  },
+  "cost_analysis": {
+    "previous_policy": {
+      "orders_per_year": 284.66,
+      "annual_ordering_cost": 21349.75,
+      "avg_inventory": 6151.0,
+      "annual_holding_cost": 76.37,
+      "total_annual_cost": 21426.13
+    },
+    "optimized_policy": {
+      "orders_per_year": 17.77,
+      "annual_ordering_cost": 1332.44,
+      "avg_inventory": 54035.5,
+      "annual_holding_cost": 670.91,
+      "total_annual_cost": 2003.34
+    },
+    "savings": {
+      "total_savings": 19422.78,
+      "savings_pct": 90.65,
+      "ordering_cost_change": 20017.32,
+      "holding_cost_change": -594.54
+    }
+  },
+  "safety_lead_time_analysis": {
+    "variance_decomposition": {
+      "variance_transport": 0.8567,
+      "variance_supplier": 0.4283,
+      "variance_quality": 0.1428,
+      "dominant_factor": "transport",
+      "dominant_pct": 60.0
+    },
+    "sigma_eff_days": 1.19,
+    "disruption_premium": 1.0,
+    "recommended_days": 2,
+    "sap_safety_lead_time_days": 3.0,
+    "difference_days": -1.0,
+    "comparison_action": "decrease"
+  },
+  "narrative": {
+    "executive_summary": "Material PL1__MAEEEEE5 exhibits moderate demand with a coefficient of variation of 0.36. \nHistorical analysis of 130 working days reveals a mean daily demand of 5,864.07 units \nwith significant variability (std: 2,097.98 units). Lead time stability is unstable \n(CV: 0.47, mean: 2.55 days). The optimized inventory policy delivers substantial cost \nsavings of $19,422.78 annually (90.7% reduction) \ncompared to the current SAP configuration, primarily through strategic order consolidation and optimized buffer positioning.",
+    "key_findings": [
+      "Current SAP policy significantly under-buffers risk: safety stock of 3,576 units vs. recommended 12,776 units (+257.3%)",
+      "Optimized order quantity of 82,519 units (vs. MOQ 5,150) reduces order frequency from 285 to 18 orders/year",
+      "Capacity constraint is binding: utilizing 100.0% of available storage (95,295 units)",
+      "Lead time variability (\u03c3=1.19 days) dominated by transport factors (60%)",
+      "Linear trend detected (r=-0.239) with normal-like distribution characteristics"
+    ],
+    "recommendations": [
+      "Implement reorder point of 31,238 units with order quantity of 82,519 units",
+      "Increase safety stock to 12,776 units to achieve 95% service level",
+      "Review inventory policy every 15 days based on effective lead time of 3.15 days",
+      "Monitor transport lead time variability as primary risk driver",
+      "Consider storage capacity expansion if demand growth continues beyond current 100% utilization"
+    ],
+    "risk_assessment": {
+      "demand_risk": "MODERATE",
+      "lead_time_risk": "HIGH",
+      "capacity_risk": "HIGH",
+      "service_risk_current": "HIGH",
+      "overall_risk": "HIGH"
+    }
+  },
+  "research_insights": {
+    "demand_characteristics": "The demand pattern for PL1__MAEEEEE5 displays moderate behavior with normal-like \ncharacteristics. The coefficient of variation (0.36) indicates moderate \ndemand volatility. Non-zero demand occurs in 98.5% of periods, suggesting \nconsistent utilization patterns. \nA statistically significant trend (r=-0.239) indicates systematic demand changes over time that should inform future planning.",
+    "lead_time_dynamics": "Lead time analysis reveals unstable performance with mean delivery of 2.55 days \n(\u03c3=1.19, CV=0.47). The variance decomposition attributes 60% \nto transport factors, indicating that supply chain resilience efforts should prioritize transport optimization. \nThe effective lead time buffer of 3.15 days (mean + 0.5\u03c3) provides a conservative planning horizon that balances \nresponsiveness against variability risk.",
+    "optimization_rationale": "The optimization shifts from a high-frequency, low-volume ordering pattern (285 orders/year) \nto a consolidated approach (18 orders/year), leveraging economies of scale in ordering \nwhile maintaining service levels through strategic buffer positioning. The Economic Order Quantity (EOQ) calculation yields 133,083 units, \nbut the final order quantity of 82,519 units is constrained by available storage capacity. This capacity binding represents a critical \noperational constraint that limits further cost optimization and suggests warehouse expansion as a strategic consideration.",
+    "cost_structure_insights": "The current policy incurs annual costs of $21,426.13, \nheavily weighted toward ordering costs ($21,349.75, 99.6%). \nThe optimized approach rebalances this structure: ordering costs decrease by $20,017.32 while \nholding costs increase by $594.54, yielding net savings of $19,422.78 \n(90.7%). This dramatic improvement reflects the inefficiency of the current policy's frequent small orders \nrelative to the $75 fixed ordering cost.",
+    "implementation_considerations": "Implementation requires warehouse capacity validation (100% utilization post-optimization), \nsupplier negotiation for 82,519-unit order quantities (vs. current 5,150 MOQ), and ERP system reconfiguration for the 31,238-unit \nreorder point. The 9,200-unit safety stock increase demands $951.90 additional \nworking capital investment but is essential for maintaining the 95% service level given observed demand and lead time variability. \nChange management should emphasize that less frequent ordering (every 15 days vs. current practice) does not imply reduced \ncontrol, but rather optimized resource allocation aligned with true economic drivers."
+  },
+  "diagnostics": {
+    "capacity_constrained": true,
+    "capacity_warning": false,
+    "capacity_utilization_pct": 100.0,
+    "service_level_achievable": true,
+    "optimization_success": true,
+    "issues": [
+      "CRITICAL: Storage capacity binding constraint - order quantity limited by warehouse capacity",
+      "WARNING: Recommended safety stock >200% above SAP setting",
+      "WARNING: Overall risk level is HIGH - requires executive attention"
+    ]
+  }
+}

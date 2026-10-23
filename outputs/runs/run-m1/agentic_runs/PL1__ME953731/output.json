@@ -1,0 +1,100 @@
+{
+  "material_id": "PL1__ME953731",
+  "data_quality": {
+    "total_rows": 216,
+    "working_days": 216,
+    "outliers_detected": 12,
+    "winsorisation": {
+      "lower_bound": 1328.26,
+      "upper_bound": 2675.75
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 2137.58,
+    "std_daily_demand": 278.38,
+    "robust_std_daily": 223.44,
+    "cv_wd": 0.1302,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": true,
+    "regime": "smooth",
+    "distribution_type": "left-skewed"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.3,
+    "std_lead_time": 0.85,
+    "cv_lead_time": 0.6503,
+    "stability": "unstable",
+    "effective_lead_time": 2.15
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1835.51,
+    "safety_stock": 3020,
+    "safety_stock_robust": 3004
+  },
+  "order_quantity": {
+    "eoq_raw": 13431.46,
+    "order_quantity": 13432
+  },
+  "cost_analysis": {
+    "unit_cost": 2.577119,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.309254,
+    "previous_policy": {
+      "order_quantity": 3377,
+      "safety_stock": 0,
+      "avg_inventory": 1688.5,
+      "annual_orders": 165.21,
+      "annual_ordering_cost": 8260.4,
+      "annual_holding_cost": 522.18,
+      "total_cost": 8782.57
+    },
+    "optimized_policy": {
+      "order_quantity": 13432,
+      "safety_stock": 3020,
+      "avg_inventory": 9736.0,
+      "annual_orders": 41.54,
+      "annual_ordering_cost": 2076.78,
+      "annual_holding_cost": 3010.9,
+      "total_cost": 5087.68
+    },
+    "savings": {
+      "total_annual_savings": 3694.89,
+      "savings_percentage": 42.07
+    }
+  },
+  "policy": {
+    "safety_stock": 3020,
+    "reorder_point": 7609,
+    "order_quantity": 13432,
+    "review_period_days": 7
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.41,
+    "sigma_eff_days": 0.86,
+    "dominant_factor": "transport",
+    "dominant_pct": 0.5,
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.3,
+      "quality": 0.2
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization analysis for material PL1__ME953731 reveals a smooth demand pattern with a coefficient of variation of 13.02%. The demand exhibits a left-skewed distribution with mean daily demand of 2,138 units and a statistically significant downward trend. Lead time analysis shows unstable performance (CV=65.03%) with mean lead time of 1.30 days and standard deviation of 0.85 days. The optimized (r,Q) policy recommends a safety stock of 3,020 units, a reorder point of 7,609 units, and an order quantity of 13,432 units, achieving the 95% service level target while reducing total annual inventory costs by $3,694.89 (42.1%). The recommended safety lead time of 1.41 days is lower than the current SAP setting of 3.0 days.",
+  "warnings": [
+    "Lead time is unstable (CV=0.65) - consider supplier reliability improvement",
+    "Significant downward trend detected in demand - review forecast assumptions",
+    "Significant cost savings opportunity identified: 42.1%"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with stochastic lead time demand \u2014 continuous-review (r,Q) policy",
+    "selection_rationale": "Selected due to smooth demand pattern (CV=13.02%) and unstable lead time (CV=65%). The model accounts for both demand and lead time variability using the combined-variance safety stock formula: SS = z * sqrt(LT*\u03c3_D\u00b2 + D\u00b2*\u03c3_LT\u00b2). Continuous review is appropriate given the high daily volume and cost sensitivity.",
+    "boundary_risk": "Lead time instability (CV=65%) is the dominant risk driver, contributing ~50% of total variance through transport uncertainty. Close monitoring and supplier SLA enforcement are essential to sustain the 95% service level.",
+    "escalation_flag": "OPPORTUNITY: 42.1% annual cost reduction available via immediate policy implementation. No MOQ/capacity infeasibility detected \u2014 storage utilisation at 63.6% of maximum."
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "material_id": "PL2__MEF4A06B",
+  "data_quality": {
+    "total_rows": 189,
+    "working_days": 189,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 109.23264000000002,
+      "upper_bound": 3815.95756
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 2163.6361925925926,
+    "std_daily_demand": 851.2831303250881,
+    "robust_std_daily": 796.8681481481478,
+    "cv_wd": 0.3934502173884566,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": true,
+    "regime": "moderate",
+    "distribution_type": "Normal approximation"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.7308928571428572,
+    "std_lead_time": 0.8051635108602346,
+    "cv_lead_time": 1.1016163354061357,
+    "stability": "variable",
+    "effective_lead_time": 1.5360563680030919
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1887.9913963276742,
+    "safety_stock": 3105.469495902749,
+    "safety_stock_robust": 3076.7830296096336
+  },
+  "order_quantity": {
+    "eoq_raw": 25949.19492601726,
+    "order_quantity": 20078
+  },
+  "cost_analysis": {
+    "unit_cost": 1.004122,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.12049463999999999,
+    "optimized_policy": {
+      "annual_ordering_cost": 2020.5288679704706,
+      "annual_holding_cost": 1583.9020428,
+      "total_annual_cost": 3604.4309107704703
+    },
+    "previous_policy": {
+      "annual_ordering_cost": 2020.5288679704706,
+      "annual_holding_cost": 1209.64569096,
+      "total_annual_cost": 3230.1745589304705
+    },
+    "annual_savings": -374.25635183999975,
+    "savings_pct": -11.586257801619185
+  },
+  "policy": {
+    "safety_stock": 3106,
+    "reorder_point": 6430,
+    "order_quantity": 20078,
+    "review_period_days": 10
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.4355463319728503,
+    "sigma_eff_days": 0.8726011345120711,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 0.38897296753246746,
+      "supplier": 0.19448648376623373,
+      "quality": 0.06482882792207792
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Optimized safety lead time (1.44 days) vs SAP (3.0 days)",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL2__MEF4A06B exhibits moderate demand variability (CV=0.39) with a clear upward trend (4.02 units/day). Mean daily demand is 2164 units with robust standard deviation 797 units. The demand regime is classified as 'moderate' suitable for Normal approximation. Lead time analysis reveals highly variable lead times (CV=1.10, classified as 'variable') with mean 0.73 days. Transport factors dominate lead time variance (60.0%), suggesting logistics improvements could reduce buffer requirements. The optimized policy recommends safety stock of 3106 units (vs. SAP: 0), reorder point of 6430 units, order quantity of 20078 units (capacity-constrained from EOQ 25950), and review period of 10 days. This policy achieves 95.0% service level at an additional annual cost of $374.26, representing a strategic investment in service reliability. The capacity constraint requires immediate attention.",
+  "warnings": [
+    "CAPACITY CONSTRAINT: Storage capacity (23184.27 units) limits order quantity to 20078 units (EOQ was 25950). Consider warehouse expansion or supplier consignment.",
+    "HIGH LEAD TIME VARIABILITY: CV=1.10 indicates unstable supply. Dominant factor: transport (60.0%). Consider dual-sourcing or vendor quality improvement.",
+    "DEMAND TREND DETECTED: Linear trend slope=4.02 units/day. Consider dynamic forecasting models for better accuracy.",
+    "COST TRADE-OFF: Optimized policy increases annual cost by $374.26 (11.59%) to achieve 95.0% service level. Previous policy (SAP) had zero safety stock and lower service level protection."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Normally distributed demand with stochastic lead time",
+    "selection_rationale": "With CV=0.39 (moderate variability), non-zero fraction=1.00, and continuous demand pattern, Normal approximation is appropriate. Lead time variability (CV=1.10) requires stochastic lead time treatment using combined variance formula.",
+    "boundary_risk": "Regime is 'moderate' bordering on intermittent (CV=0.39 near 0.5 threshold). If demand becomes more sporadic, consider Negative Binomial or empirical bootstrapping methods. Lead time instability (CV=1.10) suggests vendor performance monitoring is critical.",
+    "escalation_flag": "CAPACITY_CONSTRAINT_CRITICAL"
+  }
+}

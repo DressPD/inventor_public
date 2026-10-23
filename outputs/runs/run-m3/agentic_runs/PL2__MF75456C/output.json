@@ -1,0 +1,74 @@
+{
+  "material_id": "PL2__MF75456C",
+  "data_quality": {
+    "total_rows": 129,
+    "working_days": 129,
+    "outliers_detected": 28,
+    "winsorisation": {
+      "lower_bound": 1.06596,
+      "upper_bound": 5099.49468
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 2064.807031007752,
+    "std_daily_demand": 1197.6752545061122,
+    "robust_std_daily": 488.2453669384728,
+    "cv_wd": 0.5800422201785963,
+    "non_zero_fraction_wd": 0.9844961240310077,
+    "trend_detected": false,
+    "regime": "high variability / intermittent",
+    "distribution_type": "heavy-tailed / non-normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.5692248062015506,
+    "std_lead_time": 1.0775055194196663,
+    "cv_lead_time": 0.41938934919933907,
+    "stability": "moderate",
+    "effective_lead_time": 3.646730325621217
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 2938.584736525035,
+    "safety_stock": 4834,
+    "safety_stock_robust": 3880
+  },
+  "order_quantity": {
+    "eoq_raw": 20065.42592942724,
+    "order_quantity": 20066
+  },
+  "cost_analysis": {
+    "unit_cost": 1.602628,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.19231536
+  },
+  "policy": {
+    "safety_stock": 4834,
+    "reorder_point": 10139,
+    "order_quantity": 20066,
+    "review_period_days": 10
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.0775055194196663,
+    "sigma_eff_days": 1.0775055194196663,
+    "dominant_factor": "transport",
+    "dominant_pct": 40.0,
+    "variance_components": {
+      "transport": 0.464407257751938,
+      "supplier": 0.464407257751938,
+      "quality": 0.232203628875969
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "REDUCE",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL2__MF75456C exhibits high variability / intermittent with CV=0.58 and no trend. Mean daily demand is 2064.81 units. Lead time is moderate (mean=2.57 days, CV=0.42). The optimized policy recommends safety stock of 4834 units (vs SAP 1903), order quantity of 20066 (EOQ-based), reorder point of 10139, achieving 95% service level. Total annual cost is reduced by $27,095.13 (85.0%) from $31,883.67 to $4,788.54. Safety lead time should be REDUCED from 3.0 to 1.08 days.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Economic Order Quantity (EOQ) with safety stock",
+    "selection_rationale": "Standard EOQ model is appropriate for high variability / intermittent demand pattern with moderate lead time.",
+    "boundary_risk": "High variability in demand requires robust safety stock; capacity constraint is not binding.",
+    "escalation_flag": "none"
+  }
+}

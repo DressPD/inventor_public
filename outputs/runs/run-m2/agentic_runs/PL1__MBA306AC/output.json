@@ -1,0 +1,79 @@
+{
+  "material_id": "PL1__MBA306AC",
+  "data_quality": {
+    "total_rows": 209,
+    "working_days": 209,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 289.207,
+      "upper_bound": 1684.633
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1026.08,
+    "std_daily_demand": 241.22,
+    "robust_std_daily": 178.45,
+    "cv_wd": 0.235,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": true,
+    "regime": "smooth",
+    "distribution_type": "near-normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.322,
+    "std_lead_time": 0.883,
+    "cv_lead_time": 0.668,
+    "stability": "unstable - bimodal distribution with fast (~0.9d) and slow (~3.0d) delivery modes",
+    "effective_lead_time": 1.322
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 946.2,
+    "safety_stock": 1556.5,
+    "safety_stock_robust": 1320.0
+  },
+  "order_quantity": {
+    "eoq_raw": 5134.1,
+    "order_quantity": 4013
+  },
+  "cost_analysis": {
+    "unit_cost": 3.350148,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.402018
+  },
+  "policy": {
+    "safety_stock": 1557,
+    "reorder_point": 2912,
+    "order_quantity": 4013,
+    "review_period_days": 4
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.52,
+    "sigma_eff_days": 1.52,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 91.0,
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.4,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Reduce SAP safety lead time from 3.0 days to 1.52 days; actual mean lead time is 1.32d and the 3.0d SLT overstates supplier risk",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MBA306AC exhibits smooth, near-normally distributed daily demand averaging 1,026 units across 209 working days, with a statistically significant declining trend (slope -1.30 units/day) that warrants monitoring. Lead time variability is the dominant uncertainty driver (CV=0.67, bimodal distribution), contributing ~91% of total demand-during-lead-time variance, which necessitates a meaningful safety stock of 1,557 units to achieve the 95% service level. The storage capacity of 5,570 units is binding, constraining the order quantity below the theoretical EOQ of 5,134 to 4,013 units; the current SAP policy of zero safety stock leaves the material critically under-buffered and exposed to frequent stockouts.",
+  "warnings": [
+    "Declining demand trend detected (slope=-1.30 units/day, p<0.05) - consider adaptive demand forecasting",
+    "Lead time variability is high (CV=0.67) with bimodal distribution - recommend supplier SLA review and consolidation",
+    "Storage capacity constraint is binding - EOQ reduced from 5134 to 4013 units to satisfy max_storage_units=5569.651",
+    "SAP safety stock of 0 provides no buffer against lead time or demand variability - stockout risk is high under current policy"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) continuous-review policy",
+    "selection_rationale": "Smooth, high-frequency demand with non-zero demand on all working days makes a continuous-review (r,Q) policy optimal: it triggers replenishment exactly when stock falls to the reorder point r=2,912, minimising holding costs while providing the statistical safety buffer required by the 95% SL target. The MOQ of 347 is well below the EOQ, so the EOQ quantity dominates and the policy is cost-efficient.",
+    "boundary_risk": "Storage capacity is binding at 5,569.65 units, capping the order quantity at 4,013 (vs. EOQ 5,134). This reduces order cycle length and increases ordering frequency slightly, raising annual ordering costs by ~28%. If demand recovers or grows, the capacity constraint will become more costly; a storage expansion request is advisable if throughput increases.",
+    "escalation_flag": "MOQ (347) + safety_stock (1,557) = 1,904 units, which is well within max_storage_units (5,570). No MOQ-capacity infeasibility. However, the capacity constraint on order quantity is binding and should be reviewed with the warehouse team."
+  }
+}

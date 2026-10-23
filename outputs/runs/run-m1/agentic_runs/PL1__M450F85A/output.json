@@ -1,0 +1,98 @@
+{
+  "material_id": "PL1__M450F85A",
+  "analysis_metadata": {
+    "total_rows": 217,
+    "working_days": 217,
+    "date_range": "2025-03-03 to 2026-03-09",
+    "analysis_timestamp": "2025-03-03"
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 687.98,
+    "std_daily_demand": 397.69,
+    "robust_std_daily": 383.89,
+    "cv_wd": 0.5781,
+    "non_zero_fraction_wd": 0.9309,
+    "trend_detected": true,
+    "trend_slope": -1.8237,
+    "num_outliers": 3,
+    "winsor_bounds": [
+      0.0,
+      1740.43
+    ],
+    "demand_regime": "erratic",
+    "distribution_type": "right-skewed"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.45,
+    "std_lead_time": 1.26,
+    "cv_lead_time": 0.5137,
+    "stability": "moderate",
+    "effective_lead_time": 3.08
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1065.56,
+    "z_score": 1.6449,
+    "safety_stock": 1753,
+    "safety_stock_robust": 1733,
+    "sap_safety_stock": 1343
+  },
+  "order_policy": {
+    "annual_demand": 171995.36,
+    "eoq_raw": 12775.43,
+    "unconstrained_order_quantity": 12776,
+    "order_quantity": 6274,
+    "moq": 1343,
+    "reorder_point": 3870,
+    "review_period_days": 10,
+    "policy_type": "(r,Q) - continuous review, fixed order quantity"
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.55,
+    "sigma_eff_days": 1.55,
+    "sap_safety_lead_time_days": 3.0,
+    "variance_components": {
+      "transport": 0.4,
+      "supplier": 0.4,
+      "quality": 0.2
+    },
+    "dominant_factor": "transport",
+    "dominant_pct": 0.4,
+    "disruption_premium": 1.0
+  },
+  "cost_analysis": {
+    "recommended_policy": {
+      "annual_demand_units": 171995.36,
+      "num_orders_per_year": 27.41,
+      "annual_ordering_cost": 2056.05,
+      "average_inventory": 4890.0,
+      "annual_holding_cost": 772.98,
+      "total_annual_cost": 2829.02
+    },
+    "sap_baseline": {
+      "annual_ordering_cost": 9605.1,
+      "average_inventory": 2014.5,
+      "annual_holding_cost": 318.44,
+      "total_annual_cost": 9923.54
+    },
+    "cost_savings": 7094.51,
+    "cost_savings_pct": 71.49
+  },
+  "narrative": "Material PL1__M450F85A exhibits erratic demand with moderate variability (CV=0.58) and moderate lead times averaging 2.4 days. The optimized (r,Q) policy with reorder point 3870 and order quantity 6274 achieves 95.0% service level while reducing total annual costs by 71.5% ($7,095 savings) compared to the current SAP policy.",
+  "research_insights": {
+    "demand_pattern": "erratic with CV=0.58, non-zero fraction=93.1%",
+    "lead_time_pattern": "moderate with mean=2.4d, CV=0.51",
+    "buffer_drivers": "Combined demand-lead time variability drives sigma_LTD=1066 units",
+    "capacity_utilization": "100.0% of max storage (8027/8027 units)",
+    "order_frequency": "~27 orders/year (10 day cycles)",
+    "cost_structure": "Ordering: $2,056 | Holding: $773 | Total: $2,829",
+    "sap_comparison": "Safety stock: 1753 vs 1343 SAP (+31%) | Cost savings: $7,095 (71.5%)"
+  },
+  "warnings": [
+    "Linear trend detected in demand (slope=-1.82); consider dynamic forecasting",
+    "Found 3 demand outliers (1.4% of observations)",
+    "Order quantity constrained by storage capacity (EOQ was 12776 but limited to 6274)",
+    "Recommended safety stock 30%+ higher than SAP baseline due to demand/lead time variability"
+  ],
+  "escalation_flag": false,
+  "capacity_constraint_active": true
+}

@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__MED357F1",
+  "data_quality": {
+    "total_rows": 202,
+    "working_days": 202,
+    "outliers_detected": 14,
+    "winsorisation": {
+      "lower_bound": -299.55774999999994,
+      "upper_bound": 2876.23625
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1355.137287128713,
+    "std_daily_demand": 772.9143967802745,
+    "robust_std_daily": 736.572747045352,
+    "cv_wd": 0.5703587408608157,
+    "non_zero_fraction_wd": 0.9801980198019802,
+    "trend_detected": true,
+    "regime": "erratic",
+    "distribution_type": "normal_with_outliers"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.0989247311827957,
+    "std_lead_time": 0.11324536733527038,
+    "cv_lead_time": 1.1447629524108853,
+    "stability": "unstable",
+    "effective_lead_time": 0.10032089968761841
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 287.48600476844416,
+    "safety_stock": 472.87239764116356,
+    "safety_stock_robust": 457.08426601533756
+  },
+  "order_quantity": {
+    "eoq_raw": 1394.2324805724925,
+    "order_quantity": 1395
+  },
+  "cost_analysis": {
+    "unit_cost": 145.235126,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 17.42821512
+  },
+  "policy": {
+    "safety_stock": 473,
+    "reorder_point": 608,
+    "order_quantity": 1395,
+    "review_period_days": 2
+  },
+  "safety_lead_time": {
+    "recommended_days": 0.3490421262056777,
+    "sigma_eff_days": 0.3490421262056777,
+    "dominant_factor": "demand_variability",
+    "dominant_pct": 71.5046454360847,
+    "variance_components": {
+      "transport": 24794.460881316572,
+      "supplier": 41324.10146886096,
+      "quality": 16529.640587544385
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MED357F1 exhibits erratic demand pattern with a CV of 0.57 and 98.0% non-zero demand days. A significant upward trend is present in the demand data. Lead time shows unstable characteristics (CV=1.14). Recommended policy: Safety stock of 473 units, reorder point at 608 units, and order quantity of 1395 units (EOQ: 1394, MOQ: 190). This achieves the target 95% service level. The optimized policy reduces total annual costs by $58,267 compared to the current SAP policy, primarily through drastically fewer replenishment orders (178 vs 24 per year). Current SAP policy operates with zero safety stock, which results in stockout risk despite lower holding costs.",
+  "warnings": [
+    "Lead time is highly unstable (CV=1.14). Consider supplier performance improvement.",
+    "14 demand outliers detected and winsorized for robust calculations.",
+    "Significant upward demand trend detected. Review forecast and capacity planning regularly."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Wilson EOQ with safety stock",
+    "selection_rationale": "EOQ model appropriate for erratic demand with deterministic replenishment cycles. Safety stock calculated using continuous review (r,Q) model with demand and lead time variability.",
+    "boundary_risk": "High demand variability and lead time instability increase forecast risk. Storage capacity utilisation is 84.5% \u2014 comfortable but should be monitored given upward demand trend. Consider periodic review of parameters.",
+    "escalation_flag": "REVIEW_RECOMMENDED"
+  }
+}

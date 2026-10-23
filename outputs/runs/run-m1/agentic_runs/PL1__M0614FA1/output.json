@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__M0614FA1",
+  "data_quality": {
+    "total_rows": 131,
+    "working_days": 131,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 3.212,
+      "upper_bound": 817.572
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 455.74,
+    "std_daily_demand": 182.31,
+    "robust_std_daily": 170.45,
+    "cv_wd": 0.4,
+    "non_zero_fraction_wd": 0.9847,
+    "trend_detected": false,
+    "regime": "lumpy",
+    "distribution_type": "gamma-like"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 4.14,
+    "std_lead_time": 1.4,
+    "cv_lead_time": 0.34,
+    "stability": "moderate",
+    "effective_lead_time": 5.54
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 747.6,
+    "safety_stock": 1230.0,
+    "safety_stock_robust": 1150.0
+  },
+  "order_quantity": {
+    "eoq_raw": 4817.6,
+    "order_quantity": 4818
+  },
+  "cost_analysis": {
+    "unit_cost": 8.618237,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.034
+  },
+  "policy": {
+    "safety_stock": 1230,
+    "reorder_point": 3790,
+    "order_quantity": 4818,
+    "review_period_days": 11
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.67,
+    "sigma_eff_days": 1.64,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "REDUCE",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M0614FA1 exhibits lumpy but consistently non-zero demand (CV=0.40, 98.5% non-zero days) with no detectable trend over the observation period. Lead times show moderate variability (CV=0.34) after removal of one extreme outlier (9201.55 days). The (r,Q) continuous-review policy is selected because it balances holding and ordering costs optimally under these conditions, with EOQ batch sizing reducing annual orders from ~173 to ~25 and safety stock increased to statistically cover 95% of demand-during-lead-time scenarios. Storage capacity remains unconstrained at 74.4% utilisation.",
+  "warnings": [
+    "Lead time outlier removed: 9201.55 days (data entry error suspected)",
+    "Safety stock increased from SAP baseline of 642 to statistically derived 1230 units",
+    "Safety lead time recommended to REDUCE from 4.0 to 2.67 days"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous review",
+    "selection_rationale": "With consistent non-zero demand and moderate lead time variability, a continuous-review reorder-point policy with fixed EOQ batch size is the most cost-efficient choice. It avoids the overhead of periodic review while capturing full EOQ savings through infrequent large replenishments.",
+    "boundary_risk": "Storage capacity is not binding (6,048 / 8,131 units = 74.4%). No capacity-driven order reduction required. If demand surges above the 99th percentile concurrently with maximum lead time, peak stock could approach 7,200 units \u2014 still within limit.",
+    "escalation_flag": "none"
+  }
+}

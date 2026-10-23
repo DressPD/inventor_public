@@ -1,0 +1,86 @@
+{
+  "material_id": "PL1__M069162C",
+  "parameters": {
+    "unit_cost": 0.547113,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 50.0,
+    "moq": 2028,
+    "service_level_target": 0.95,
+    "sap_safety_stock": 0,
+    "sap_safety_lead_time_days": 3.0,
+    "max_storage_units": 6451.683
+  },
+  "data_quality": {
+    "total_rows": 140,
+    "working_days": 140,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 853.0
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 432.53,
+    "std_daily_demand": 211.59,
+    "robust_std_daily": 210.77,
+    "cv_wd": 0.4892,
+    "non_zero_fraction_wd": 0.9571,
+    "trend_detected": true,
+    "regime": "erratic",
+    "distribution_type": "non_normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.4063,
+    "std_lead_time": 0.9437,
+    "cv_lead_time": 0.671,
+    "stability": "variable",
+    "effective_lead_time": 2.3499
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 479.12,
+    "safety_stock": 789,
+    "safety_stock_robust": 788
+  },
+  "order_quantity": {
+    "eoq_raw": 13087.72,
+    "order_quantity": 5662
+  },
+  "cost_analysis": {
+    "unit_cost": 0.547113,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.065654
+  },
+  "policy": {
+    "safety_stock": 789,
+    "reorder_point": 1806,
+    "order_quantity": 5662,
+    "review_period_days": 14
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.55,
+    "sigma_eff_days": 0.9437,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 72.6,
+    "variance_components": {
+      "transport": 0.726,
+      "supplier": 0.274,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce_sap_safety_lead_time_from_3.0_to_1.55_days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Demand for PL1__M069162C is erratic (CV=0.489) with a statistically significant decreasing trend over the observation window. Lead times are variable (CV=0.671, mean 1.41 days), and lead-time variability dominates 72.6% of the safety stock variance, making supplier reliability the primary risk driver. The (r,Q) continuous-review policy is recommended with a storage-constrained order quantity of 5,662 units and a 789-unit safety stock, yielding a 56.7% reduction in total annual inventory costs versus the SAP baseline while maintaining the 95% service level.",
+  "warnings": [
+    "Capacity constraint binding: OQ reduced from 13088 to 5662 units due to max_storage_units=6451.683"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) continuous-review reorder-point / fixed-order-quantity",
+    "selection_rationale": "Erratic demand with variable lead times favours a continuous-review trigger. The binding MOQ and storage cap make a fixed-Q ordering rule more tractable than an (s,S) range policy. EOQ provides the cost-minimising Q subject to capacity.",
+    "boundary_risk": "Storage capacity is the binding constraint, reducing order quantity from the unconstrained EOQ of 13,088 to 5,662 units. This raises ordering frequency from ~20 to the constrained level but preserves service level via the safety stock buffer. If warehouse capacity can be extended, EOQ savings of up to an additional ~$570/year are available.",
+    "escalation_flag": "none \u2014 MOQ (2028) + safety_stock (789) = 2817 < 6452 capacity; policy is feasible"
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__MFD8090A",
+  "data_quality": {
+    "total_rows": 219,
+    "working_days": 219,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 662.864
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 75.47,
+    "std_daily_demand": 156.21,
+    "robust_std_daily": 0.0,
+    "cv_wd": 2.07,
+    "non_zero_fraction_wd": 0.399,
+    "trend_detected": false,
+    "regime": "intermittent",
+    "distribution_type": "zero-inflated"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.437,
+    "std_lead_time": 0.431,
+    "cv_lead_time": 0.987,
+    "stability": "volatile",
+    "effective_lead_time": 0.868
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 169.46,
+    "safety_stock": 179.0,
+    "safety_stock_robust": 179.0
+  },
+  "order_quantity": {
+    "eoq_raw": 747.5,
+    "order_quantity": 748
+  },
+  "cost_analysis": {
+    "unit_cost": 28.118968,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 3.374
+  },
+  "policy": {
+    "safety_stock": 179,
+    "reorder_point": 212,
+    "order_quantity": 748,
+    "review_period_days": 10
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.37,
+    "sigma_eff_days": 0.431,
+    "dominant_factor": "demand_variability",
+    "dominant_pct": 91.0,
+    "variance_components": {
+      "transport": 0.431,
+      "supplier": 0.0,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce_from_3.0_to_2.37_days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Demand for PL1__MFD8090A is strongly intermittent with only 40% of working days showing positive consumption and occasional large-batch events driving a CV of 2.07. Lead times are very short (mean 0.44 days) but volatile (CV 0.99), making demand variability the dominant buffer driver at 91% of total variance. A continuous-review (r,Q) policy is recommended with safety stock raised from 0 to 179 units to achieve the 95% service level target, and an EOQ-derived order quantity of 748 units to minimise total inventory costs. The optimised policy delivers an estimated 63.7% annual cost reduction versus the legacy zero-safety-stock SAP setting.",
+  "warnings": [
+    "SAP safety stock is 0 \u2014 current ERP setting provides no stockout protection.",
+    "Lead time CV of 0.99 indicates high supplier delivery variability; monitor supplier performance closely.",
+    "Intermittent demand with CV > 2 may cause occasional over-ordering; review policy quarterly."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review with EOQ order quantity",
+    "selection_rationale": "Intermittent zero-inflated demand with a short, volatile lead time favours a reorder-point trigger (r) over periodic review, as stock can deplete rapidly during active demand bursts. Fixed-quantity ordering (Q=EOQ) minimises the sum of ordering and holding costs and is straightforward to implement in SAP with a reorder-point MRP type.",
+    "boundary_risk": "No storage capacity constraint binds: SS(179) + OQ(748) = 927 units is well below the 6,591-unit limit. Primary service risk is the high demand intermittency \u2014 periods of zero demand followed by large spikes can cause the reorder point to be breached without warning; a daily stock-check cycle is recommended.",
+    "escalation_flag": "none"
+  }
+}

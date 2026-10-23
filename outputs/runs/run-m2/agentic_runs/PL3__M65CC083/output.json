@@ -1,0 +1,76 @@
+{
+  "material_id": "PL3__M65CC083",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 766.1
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 315.26,
+    "std_daily_demand": 213.87,
+    "robust_std_daily": 329.55,
+    "cv_wd": 0.6784,
+    "non_zero_fraction_wd": 0.9518,
+    "trend_detected": true,
+    "regime": "erratic/lumpy",
+    "distribution_type": "high_variation"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.2599,
+    "std_lead_time": 0.886,
+    "cv_lead_time": 0.7032,
+    "stability": "unstable",
+    "effective_lead_time": 2.146
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 368.31,
+    "safety_stock": 606.0,
+    "safety_stock_robust": 763.0
+  },
+  "order_quantity": {
+    "eoq_raw": 1468.17,
+    "order_quantity": 1469
+  },
+  "cost_analysis": {
+    "unit_cost": 30.470521,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 3.6564625
+  },
+  "policy": {
+    "safety_stock": 606,
+    "reorder_point": 1283,
+    "order_quantity": 1469,
+    "review_period_days": 5
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.9217,
+    "sigma_eff_days": 1.1683,
+    "dominant_factor": "transport",
+    "dominant_pct": 40.0,
+    "variance_components": {
+      "transport": 0.314006,
+      "supplier": 0.314006,
+      "quality": 0.157003
+    },
+    "disruption_premium": 1.7032,
+    "comparison_action": "Increase from 0.0 to 1.92 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__M65CC083 shows erratic, high-volume demand (CV=0.68, mean 315 units/day) with a statistically significant downward trend over the analysis period. Lead times are unstable (CV=0.70, mean 1.26 days), amplifying buffer requirements. The (Q,R) policy with safety stock of 606 units and order quantity of 1,469 units (near EOQ) is recommended to achieve 95% service level while reducing annual costs from $179,166 to $7,584.",
+  "warnings": [
+    "Statistically significant downward demand trend detected (slope=-0.84 units/day, p<0.0001) \u2014 recalibrate parameters quarterly."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(Q,R) continuous-review policy",
+    "selection_rationale": "High daily demand volume with erratic variability and unstable lead times suits a continuous-review (Q,R) model over periodic review. EOQ minimises the cost trade-off between holding and ordering. MOQ=22 is non-binding vs EOQ=1,469.",
+    "boundary_risk": "Storage utilisation at 40.2% (2,075 of 5,159 units). No capacity constraint binds. Robust safety stock (763 units) remains feasible within storage limits.",
+    "escalation_flag": "none"
+  }
+}

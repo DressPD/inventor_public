@@ -1,0 +1,134 @@
+{
+  "material_id": "PL1__MBB420CC",
+  "data_quality": {
+    "total_rows": 172,
+    "working_days": 172,
+    "date_range": {
+      "start": "2025-03-04",
+      "end": "2026-03-09"
+    },
+    "outliers_detected": 0,
+    "outlier_indices": [],
+    "winsorization": {
+      "lower_bound": 15.75,
+      "upper_bound": 585.56
+    }
+  },
+  "demand_analysis": {
+    "statistics": {
+      "mean_daily_demand": 181.23,
+      "std_daily_demand": 172.73,
+      "robust_std_daily": 230.24,
+      "cv": 0.953,
+      "non_zero_fraction": 0.628,
+      "min_demand": 0.0,
+      "max_demand": 658.46,
+      "median_demand": 155.3,
+      "q1_demand": 0.0,
+      "q3_demand": 310.59
+    },
+    "regime": {
+      "classification": "intermittent",
+      "distribution_type": "compound_poisson",
+      "trend_detected": false
+    }
+  },
+  "lead_time_analysis": {
+    "statistics": {
+      "mean_lead_time_months": 0.0817,
+      "mean_lead_time_days": 1.63,
+      "std_lead_time_months": 0.0457,
+      "cv_lead_time": 0.56,
+      "min_lead_time_months": 0.02,
+      "max_lead_time_months": 0.39
+    },
+    "stability": "moderate",
+    "effective_lead_time_months": 0.1275,
+    "effective_lead_time_days": 2.55
+  },
+  "buffer_analysis": {
+    "safety_stock": {
+      "recommended_units": 110,
+      "current_sap_units": 0,
+      "difference_units": 110,
+      "service_level_target": 0.95,
+      "z_score": 1.645,
+      "sigma_ltd": 66.35,
+      "method": "robust_std"
+    },
+    "safety_lead_time": {
+      "recommended_days": 0.6,
+      "current_sap_days": 2.5,
+      "difference_days": -1.9,
+      "action": "decrease",
+      "sigma_effective_days": 0.37
+    },
+    "variance_decomposition": {
+      "transport_std_days": 0.65,
+      "supplier_std_days": 0.58,
+      "quality_std_days": 0.29,
+      "dominant_factor": "transport"
+    }
+  },
+  "order_quantity": {
+    "recommended_units": 361,
+    "eoq_raw": 360.31,
+    "moq": 307,
+    "annual_demand_units": 45307.05,
+    "unconstrained_order_quantity": 361,
+    "capacity_constraint": {
+      "max_storage_units": 2475.437,
+      "feasible": true,
+      "total_inventory_units": 471
+    }
+  },
+  "cost_analysis": {
+    "unit_cost": 290.830382,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 50.0,
+    "optimized_policy": {
+      "orders_per_year": 125.5,
+      "annual_ordering_cost": 6275.21,
+      "average_inventory_units": 290.5,
+      "annual_holding_cost": 10138.35,
+      "total_annual_cost": 16413.56
+    },
+    "current_sap_policy": {
+      "order_quantity": 307,
+      "safety_stock": 0,
+      "orders_per_year": 147.6,
+      "annual_ordering_cost": 7379.0,
+      "average_inventory_units": 153.5,
+      "annual_holding_cost": 5357.1,
+      "total_annual_cost": 12736.09
+    },
+    "savings": {
+      "annual_cost_difference": -3677.47,
+      "percent_change": -28.9
+    }
+  },
+  "policy": {
+    "reorder_point_units": 134,
+    "review_period_days": 2,
+    "order_quantity_units": 361,
+    "safety_stock_units": 110
+  },
+  "safety_lead_time": {
+    "recommended_days": 0.6,
+    "current_sap_days": 2.5,
+    "action": "decrease"
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory Optimization Analysis for Material PL1__MBB420CC:\n\nThis material exhibits a intermittent demand pattern with 62.8% working days having non-zero demand.\nThe demand coefficient of variation is 0.95, indicating high variability.\nNo significant trend was detected in the demand time series.\n\nLead time analysis shows a moderate pattern with mean lead time of 0.08 months (1.6 days)\nand CV of 0.56. The dominant source of lead time variability is transport.\n\nTo achieve the target service level of 95%, a safety stock of 110 units is recommended,\ncompared to the current SAP setting of 0 units. The recommended order quantity based on EOQ is 361 units\n(vs MOQ of 307 units), resulting in a reorder point of 134 units.\n\nThe recommended safety lead time is 0.60 days, compared to the current SAP value of\n2.50 days. The analysis suggests to decrease the safety lead time.\n\nCost analysis indicates the optimized policy will result in a total annual cost of $16,413.56,\ncompared to $12,736.09 under the current SAP policy (delta: $-3,677.47).\nThe increase in cost is driven by higher safety stock requirements to meet the 95% service level target,\nwhich provides better protection against stockouts.",
+  "warnings": [
+    "Intermittent demand pattern detected; consider specialized forecasting methods",
+    "Optimized policy has higher cost than current SAP policy (increase of $3,677.47). This is due to increased safety stock requirements for the target service level."
+  ],
+  "errors": [],
+  "research_insights": {
+    "demand_regime": "intermittent",
+    "lead_time_stability": "moderate",
+    "key_risk_factor": "transport",
+    "recommendation_confidence": "medium"
+  }
+}

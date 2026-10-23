@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__MF765B09",
+  "data_quality": {
+    "total_rows": 217,
+    "working_days": 217,
+    "outliers_detected": 9,
+    "winsorisation": {
+      "lower_bound": 219.67,
+      "upper_bound": 995.68
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 520.24,
+    "std_daily_demand": 170.6,
+    "robust_std_daily": 149.21,
+    "cv_wd": 0.3279,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": true,
+    "regime": "smooth",
+    "distribution_type": "empirical"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.43,
+    "std_lead_time": 0.94,
+    "cv_lead_time": 0.6559,
+    "stability": "volatile",
+    "effective_lead_time": 3.25
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 528.01,
+    "safety_stock": 868.58,
+    "safety_stock_robust": 853.24
+  },
+  "order_quantity": {
+    "eoq_raw": 7090.79,
+    "order_quantity": 7091
+  },
+  "cost_analysis": {
+    "unit_cost": 2.17,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.2607
+  },
+  "policy": {
+    "safety_stock": 869,
+    "reorder_point": 1612,
+    "order_quantity": 7091,
+    "review_period_days": 14.0
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.02,
+    "sigma_eff_days": 1.02,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 85.1,
+    "variance_components": {
+      "transport": 0.851,
+      "supplier": 0.0,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization analysis for material PL1__MF765B09 reveals a SMOOTH demand pattern with mean daily demand of 520.2 units and CV of 0.33. \nA significant declining trend was detected (slope=-0.72 units/day, p=0.0001). \nLead time exhibits VOLATILE behavior (CV=0.66) with mean 1.43 days. \nThe dominant variance component is lead time variability (85.1%), indicating that supply chain reliability improvements would have the greatest impact on buffer requirements.\n\nThe recommended policy establishes a safety stock of 869 units and order quantity of 7091 units, providing 95% service level protection. \nThis results in a reorder point of 1612 units with an order frequency of approximately every 13.6 days.\n\nCompared to the SAP baseline policy (safety stock=0, order quantity=838), the recommended approach reduces total annual costs by $5,855.97 (73.8% savings) \nthrough optimized order batching while maintaining superior service levels through appropriate buffer sizing.\n\nStorage capacity constraint of 9254 units is satisfied with peak inventory of 7960 units.",
+  "warnings": [
+    "Detected 9 demand outliers that may indicate data quality issues or exceptional events",
+    "Significant demand trend detected - consider trend-adjusted forecasting methods",
+    "Lead time is volatile (CV=0.66) - supplier reliability should be investigated"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "continuous_review_rQ",
+    "selection_rationale": "Smooth demand pattern (CV=0.33) with continuous demand justifies (r,Q) policy with EOQ-based order quantity",
+    "boundary_risk": "low",
+    "escalation_flag": "none"
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__MD2C777C",
+  "data_quality": {
+    "total_rows": 209,
+    "working_days": 209,
+    "outliers_detected": 18,
+    "winsorisation": {
+      "lower_bound": 478.601,
+      "upper_bound": 2911.486
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1938.17,
+    "std_daily_demand": 421.93,
+    "robust_std_daily": 312.45,
+    "cv_wd": 0.2177,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "smooth",
+    "distribution_type": "normal-like"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.227,
+    "std_lead_time": 1.281,
+    "cv_lead_time": 0.575,
+    "stability": "variable",
+    "effective_lead_time": 2.227
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 2564.8,
+    "safety_stock": 4219.6,
+    "safety_stock_robust": 3892.4
+  },
+  "order_quantity": {
+    "eoq_raw": 6862.5,
+    "order_quantity": 6427
+  },
+  "cost_analysis": {
+    "unit_cost": 9.777457,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.1733
+  },
+  "policy": {
+    "safety_stock": 4220,
+    "reorder_point": 8545,
+    "order_quantity": 6427,
+    "review_period_days": 4
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.177,
+    "sigma_eff_days": 1.281,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 94.1,
+    "variance_components": {
+      "transport": 0.85,
+      "supplier": 0.13,
+      "quality": 0.02
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MD2C777C shows smooth, high-volume daily demand averaging 1,938 units with a CV of 0.218, consistent with a normal-like distribution and no detectable trend across the observation window. Lead times are variable (CV=0.575, mean 2.23 days), making lead-time variability the dominant driver (94%) of buffer requirements. A continuous-review (s,Q) policy was selected: safety stock of 4,220 units covers the 95th-percentile lead-time demand, while the order quantity of 6,427 (EOQ-derived and capacity-capped) balances holding and ordering costs within the 12,057-unit storage constraint.",
+  "warnings": [
+    "18 outliers detected and winsorised at [478.6, 2911.5] bounds",
+    "Storage capacity cap applied: unconstrained EOQ 6863 reduced to 6427 to satisfy max_storage_units constraint with safety stock",
+    "SAP safety stock is 0 \u2014 current policy carries significant stockout risk at 95% service level target"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(s, Q) continuous-review reorder-point with fixed order quantity",
+    "selection_rationale": "Smooth demand regime (CV=0.218) with near-100% non-zero fraction and normal-like distribution makes the classical EOQ-based (s,Q) model optimal. Continuous review is warranted given high daily volume and variable lead times where periodic review would accumulate excess stockout risk.",
+    "boundary_risk": "Storage capacity binds the order quantity: the unconstrained EOQ of 6,863 units was reduced to 6,427 to keep safety_stock + order_quantity (10,647) within the 12,057-unit storage limit. This represents a modest 6.3% reduction in order size and slightly increases ordering frequency, with negligible service-level impact.",
+    "escalation_flag": "none"
+  }
+}

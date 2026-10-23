@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__MAB0D63B",
+  "data_quality": {
+    "total_rows": 87,
+    "working_days": 87,
+    "outliers_detected": 5,
+    "winsorisation": {
+      "lower_bound": 25566.94,
+      "upper_bound": 72234.7
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 52924.96,
+    "std_daily_demand": 10017.74,
+    "robust_std_daily": 7335.72,
+    "cv_wd": 0.1893,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "stable",
+    "distribution_type": "approximately normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.5214,
+    "std_lead_time": 1.1544,
+    "cv_lead_time": 0.4578,
+    "stability": "moderate",
+    "effective_lead_time": 3.6758
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 63130.99,
+    "safety_stock": 103842.0,
+    "safety_stock_robust": 19160.0
+  },
+  "order_quantity": {
+    "eoq_raw": 646709.86,
+    "order_quantity": 646710
+  },
+  "cost_analysis": {
+    "unit_cost": 0.039545,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.004745
+  },
+  "policy": {
+    "safety_stock": 103842,
+    "reorder_point": 237288,
+    "order_quantity": 646710,
+    "review_period_days": 13
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.962,
+    "sigma_eff_days": 1.193,
+    "dominant_factor": "transport/supplier",
+    "dominant_pct": 93.6,
+    "variance_components": {
+      "transport": 0.533,
+      "supplier": 0.533,
+      "quality": 0.267
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "REDUCE",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MAB0D63B exhibits stable, high-volume demand (CV=0.189, mean ~52,925 units/day) with no statistically significant trend. Lead times are moderately variable (CV=0.458, mean 2.52 days), and lead-time variance accounts for 93.6% of the safety-stock buffer requirement. The current SAP policy carries zero safety stock and replenishes at MOQ (~53K units, ~249 orders/year), creating excessive transaction costs. The recommended (r,Q) policy batches into ~20 large replenishments/year with a 103,842-unit safety buffer, reducing total annual cost by 81.1% while achieving the 95% service level target.",
+  "warnings": [
+    "3 near-zero lead-time observations (<=0.1 days) removed as data anomalies",
+    "Lead-time variance dominates sigma_LTD (93.6%): supplier/transport reliability is the key service risk",
+    "Robust safety stock (19,160) is significantly lower than parametric SS (103,842) \u2014 lead-time variability, not demand variability, is the binding constraint"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review policy",
+    "selection_rationale": "Stable high-volume demand with continuous non-zero daily consumption makes a continuous-review (r,Q) policy optimal. The EOQ formula minimises total ordering and holding costs; the reorder point covers expected lead-time demand plus a z-score safety buffer calibrated to 95% service level.",
+    "boundary_risk": "The optimised policy satisfies the storage constraint: SS + OQ = 750,552 units which is well within the 1,363,206-unit capacity limit. No capacity-driven order reduction was necessary.",
+    "escalation_flag": "none"
+  }
+}

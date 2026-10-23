@@ -1,0 +1,77 @@
+{
+  "material_id": "PL1__M67F9DBD",
+  "data_quality": {
+    "total_rows": 133,
+    "working_days": 133,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 185.78,
+      "upper_bound": 16835.88
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 7799.29,
+    "std_daily_demand": 2568.16,
+    "robust_std_daily": 1112.68,
+    "cv_wd": 0.3293,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "erratic",
+    "distribution_type": "right-skewed"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.5826,
+    "std_lead_time": 1.065,
+    "cv_lead_time": 0.6729,
+    "stability": "unstable",
+    "effective_lead_time": 2.6475
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 8912.26,
+    "safety_stock": 14660.0,
+    "safety_stock_robust": 13855.0
+  },
+  "order_quantity": {
+    "eoq_raw": 22893.33,
+    "order_quantity": 22894
+  },
+  "cost_analysis": {
+    "unit_cost": 3.100244,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.372029
+  },
+  "policy": {
+    "safety_stock": 14660,
+    "reorder_point": 27003,
+    "order_quantity": 22894,
+    "review_period_days": 3
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.06,
+    "sigma_eff_days": 1.065,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 0.6805,
+      "supplier": 0.3403,
+      "quality": 0.1134
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M67F9DBD shows erratic, right-skewed demand averaging 7,799 units/day with no statistically significant trend over the observation window. Lead times are highly unstable (CV 0.67, range 0.7\u20135.18 days), which dominates the safety stock calculation and drives the recommended buffer to 14,660 units \u2014 far above the current ERP setting of 177. An (r,Q) continuous-review policy with EOQ-derived order quantity of 22,894 units reduces total annual inventory costs by 60.5% while maintaining a 95% service level.",
+  "warnings": [
+    "LARGE_SAFETY_STOCK_INCREASE: Recommended safety stock (14660) is 82.8x larger than SAP (177)",
+    "UNSTABLE_LEAD_TIME: Lead time CV (0.67) indicates high variability \u2014 consider supplier consolidation"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review with EOQ",
+    "selection_rationale": "Demand is continuous (non-zero fraction = 1.0) and erratic but not intermittent, making a continuous-review (r,Q) model appropriate. EOQ minimises total ordering plus holding costs under the observed high-volume, steady-flow demand pattern. The MOQ of 2,803 is non-binding since EOQ (22,894) exceeds it.",
+    "boundary_risk": "Storage capacity (50,774 units) is not binding: safety_stock (14,660) + order_quantity (22,894) = 37,554 units, leaving 13,221 units of headroom. No capacity-driven reduction required.",
+    "escalation_flag": "none"
+  }
+}

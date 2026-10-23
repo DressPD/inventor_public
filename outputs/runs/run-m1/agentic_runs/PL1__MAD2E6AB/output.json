@@ -1,0 +1,94 @@
+{
+  "material_id": "PL1__MAD2E6AB",
+  "data_quality": {
+    "total_rows": 97,
+    "working_days": 97,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 105.79450000000003,
+      "upper_bound": 1022.6705
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 581.3196494845361,
+    "std_daily_demand": 209.47052693118664,
+    "robust_std_daily": 178.63402619999994,
+    "cv_wd": 0.3603362231380394,
+    "non_zero_fraction_wd": 0.9896907216494846,
+    "trend_detected": false,
+    "regime": "moderate",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.4960824742268042,
+    "std_lead_time": 1.5397473796461378,
+    "cv_lead_time": 1.0291861619740585,
+    "stability": "variable",
+    "effective_lead_time": 2.2659561640498733
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 931.0332139874635,
+    "safety_stock": 1532,
+    "safety_stock_robust": 1516
+  },
+  "order_quantity": {
+    "eoq_raw": 7001.761073449757,
+    "order_quantity": 7002
+  },
+  "cost_analysis": {
+    "unit_cost": 2.470354,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.29644248,
+    "sap_baseline": {
+      "safety_stock": 0,
+      "order_quantity": 987,
+      "avg_inventory": 493.5,
+      "annual_orders": 147.24408548240527,
+      "annual_ordering_cost": 7362.204274120263,
+      "annual_holding_cost": 146.29436388,
+      "total_annual_cost": 7508.498638000263
+    },
+    "optimized": {
+      "safety_stock": 1532,
+      "order_quantity": 7002,
+      "avg_inventory": 5033.0,
+      "annual_orders": 20.75548591418652,
+      "annual_ordering_cost": 1037.774295709326,
+      "annual_holding_cost": 1491.99500184,
+      "total_annual_cost": 2529.769297549326
+    },
+    "cost_savings": 4978.729340450936,
+    "savings_percentage": 66.30792093713319
+  },
+  "policy": {
+    "safety_stock": 1532,
+    "reorder_point": 2402,
+    "order_quantity": 7002,
+    "review_period_days": 13
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.6353831344914025,
+    "sigma_eff_days": 1.6015856591343904,
+    "dominant_factor": "transport",
+    "dominant_pct": 92.42694628945114,
+    "variance_components": {
+      "transport": 801177.8858791811,
+      "supplier": 65644.95966864478,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Decrease safety lead time from 3.5 to 2.64 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "**Material PL1__MAD2E6AB Inventory Optimization Analysis**\n\nThis analysis examines 97 working days of demand data with a moderate demand regime (CV=36.03%).\nThe material shows a normal distribution with 99.0% non-zero demand days.\n\n**Key Findings:**\n- Daily demand averages 581.3 units with standard deviation 209.5\n- Lead time stability is variable (mean=1.50 days, CV=102.92%)\n- The dominant uncertainty factor is transport (92.4% of variance)\n\n**Recommended Policy:**\n- Safety stock: 1532 units (service level 95%)\n- Reorder point: 2402 units\n- Order quantity: 7002 units (vs EOQ 7002)\n- Review period: approximately 13 days\n\n**Cost Impact:**\nThe optimized policy delivers $4,978.73 annual savings (66.3% reduction) compared to the\nSAP baseline by reducing order frequency from 147.2 to 20.8 orders per year\nwhile maintaining 95% service level.\n\n**Capacity Status:**\nCurrent utilization: 8534/10744 units (79.4%)",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous review with stochastic lead time",
+    "selection_rationale": "Selected due to moderate demand variability (CV=36.03%) and variable lead time. The transport uncertainty dominates (92.4%), requiring dynamic safety stock.",
+    "boundary_risk": "Medium",
+    "escalation_flag": "REVIEW_RECOMMENDED"
+  }
+}

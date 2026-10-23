@@ -1,0 +1,74 @@
+{
+  "material_id": "PL2__M22478CA",
+  "data_quality": {
+    "total_rows": 237,
+    "working_days": 237,
+    "outliers_detected": 6,
+    "winsorisation": {
+      "lower_bound": 6.832439999999997,
+      "upper_bound": 1040.20652
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 491.9766366244726,
+    "std_daily_demand": 225.2775595959046,
+    "robust_std_daily": 193.8395718,
+    "cv_wd": 0.45790296291622423,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": true,
+    "regime": "smooth",
+    "distribution_type": "Normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 3.68775,
+    "std_lead_time": 1.2964781188241967,
+    "cv_lead_time": 0.3515634516505177,
+    "stability": "unstable",
+    "effective_lead_time": 4.984228118824197
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 770.7069495713289,
+    "safety_stock": 1268,
+    "safety_stock_robust": 1215
+  },
+  "order_quantity": {
+    "eoq_raw": 843.1512244307213,
+    "order_quantity": 844
+  },
+  "cost_analysis": {
+    "unit_cost": 299.88561,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 35.9862732
+  },
+  "policy": {
+    "safety_stock": 1268,
+    "reorder_point": 3083,
+    "order_quantity": 844,
+    "review_period_days": 2
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.5,
+    "sigma_eff_days": 1.2964781188241967,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 1.0085133075539567,
+      "supplier": 0.5042566537769784,
+      "quality": 0.16808555125899283
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL2__M22478CA exhibits smooth demand with Normal characteristics (CV=0.46). Mean daily demand is 492.0 units with moderate variability (robust std=193.8). Demand shows a significant upward trend. Lead time averages 3.69 days with unstable variability (CV=0.35). The recommended safety stock of 1268 units provides 95% service level protection against demand and lead time variability, representing a 324-unit increase from the current SAP buffer of 944. The EOQ-based order quantity of 844 units balances ordering costs ($100.00 per order) with holding costs ($35.99 per unit annually). This policy results in approximately 151.6 orders per year with a review cycle of 2 days. The optimized policy increases total annual cost by $11659.55 (18.1%) compared to the previous configuration, primarily due to higher safety stock requirements for achieving the 95% target service level. However, this investment substantially reduces stockout risk.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Safety Stock (Normal approximation) with EOQ order quantity",
+    "selection_rationale": "Demand CV=0.46 and non-zero fraction=1.00 indicate smooth regime suitable for continuous review with normal approximation for buffer sizing.",
+    "boundary_risk": "CV near 0.46 suggests smooth demand; monitor for regime shifts that may require adaptive buffering.",
+    "escalation_flag": "none"
+  }
+}

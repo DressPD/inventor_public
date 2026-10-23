@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__MD4FDBA6",
+  "data_quality": {
+    "total_rows": 137,
+    "working_days": 137,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 47.08480000000001,
+      "upper_bound": 1205.22292
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 736.9047331386862,
+    "std_daily_demand": 248.82839692967616,
+    "robust_std_daily": 182.69829503335808,
+    "cv_wd": 0.33766698155112324,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "smooth",
+    "distribution_type": "gamma"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.5825547445255475,
+    "std_lead_time": 0.9528463776535392,
+    "cv_lead_time": 0.6020937859809735,
+    "stability": "unstable",
+    "effective_lead_time": 2.5354011221790866
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 768.7712542836273,
+    "safety_stock": 1264.5161859044567,
+    "safety_stock_robust": 1215.2430045958129
+  },
+  "order_quantity": {
+    "eoq_raw": 6765.869762560143,
+    "order_quantity": 4274
+  },
+  "cost_analysis": {
+    "unit_cost": 3.487837,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.41854043999999996
+  },
+  "policy": {
+    "safety_stock": 1265,
+    "reorder_point": 3134,
+    "order_quantity": 4274,
+    "review_period_days": 6
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.567292820210996,
+    "sigma_eff_days": 0.9528463776535392,
+    "dominant_factor": "supplier",
+    "dominant_pct": 0.4,
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.4,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "REDUCE safety lead time from 3.0 to 1.57 days; current buffer exceeds statistical requirement",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MD4FDBA6 exhibits smooth demand behavior with moderate variability (CV=0.34), averaging 737 units per working day across 137 observations. The demand pattern shows no significant trend (p=0.5938) and follows a gamma distribution, making it well-suited for continuous review inventory policies.\n\nLead time stability is classified as unstable (CV=0.60), with mean delivery time of 1.58 days but high variance (\u03c3=0.95 days). This volatility drives the need for substantial safety stock buffers to maintain the target 95% service level.\n\nThe EOQ model recommends an order quantity of 6,766 units, but storage capacity constraints (5540 units) force a reduction to 4,274 units. At 99.99% capacity utilization, this material is at the physical limit of available storage space, creating operational rigidity. Despite this constraint, the optimized policy delivers substantial cost savings of $25,345.87 annually (87.4% reduction) compared to the current SAP baseline that orders minimum quantities (331 units) with zero safety stock.\n\nThe recommended reorder point of 3,134 units and 6-day review cycle balance service level protection against the unstable lead time environment while respecting physical constraints. Lead time uncertainty is the dominant risk factor, with supplier variability contributing 40% of total variance.",
+  "warnings": [
+    "CAPACITY CONSTRAINT ACTIVE: EOQ suggests 6766 units but storage limits force 4274 units. Consider capacity expansion or consignment arrangements.",
+    "HIGH CAPACITY UTILIZATION: 100.0% of storage capacity in use. Minimal flexibility for demand surges or supply disruptions.",
+    "UNSTABLE LEAD TIME: CV=0.60 indicates high supplier variability. Recommend supplier performance improvement initiatives or dual-sourcing evaluation."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Classical EOQ with lead time demand uncertainty",
+    "selection_rationale": "Smooth demand regime (CV=0.34, 100% non-zero) with unstable lead time justifies continuous review (Q,r) policy. Gamma distribution approximation appropriate for moderate variability. Capacity constraint requires post-EOQ adjustment.",
+    "boundary_risk": "Material operates at 99.99% storage capacity, leaving no buffer for forecast errors or supply disruptions. Lead time CV of 0.60 places it near the threshold between moderate and unstable classification.",
+    "escalation_flag": "Capacity constraint binding - consider strategic discussion on storage expansion or alternative fulfillment models (VMI, consignment)."
+  }
+}

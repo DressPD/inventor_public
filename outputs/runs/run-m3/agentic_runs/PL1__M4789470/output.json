@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__M4789470",
+  "timestamp": "2026-10-22T07:09:32.820392",
+  "data_quality": {
+    "total_rows": 129,
+    "working_days": 129,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 13921.196
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 5654.63,
+    "std_daily_demand": 2642.09,
+    "robust_std_daily": 2863.74,
+    "cv_wd": 0.467,
+    "non_zero_fraction_wd": 0.984,
+    "trend_detected": false,
+    "regime": "smooth",
+    "distribution_type": "normal-like"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.43,
+    "std_lead_time": 1.1,
+    "cv_lead_time": 0.453,
+    "stability": "moderate",
+    "effective_lead_time": 3.53
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 7460.0,
+    "safety_stock": 12271.0,
+    "safety_stock_robust": 12594.0
+  },
+  "order_quantity": {
+    "eoq_raw": 139048.33,
+    "order_quantity": 139049
+  },
+  "cost_analysis": {
+    "unit_cost": 0.091395,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.011
+  },
+  "policy": {
+    "safety_stock": 12271,
+    "reorder_point": 32226,
+    "order_quantity": 139049,
+    "review_period_days": 25
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.17,
+    "sigma_eff_days": 1.1,
+    "dominant_factor": "transport",
+    "dominant_pct": 69.5,
+    "variance_components": {
+      "transport": 69.5,
+      "supplier": 30.5,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease from 5.0 to 2.17 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M4789470 shows smooth, near-continuous demand (CV=0.47, 98.4% non-zero days) with no detectable trend over the March 2025 to March 2026 observation window. Lead times average 2.43 working days with moderate variability (CV=0.45) driven predominantly by transport uncertainty. The SAP baseline carries zero safety stock, leaving the operation exposed to demand and supply variability; a (r,Q) continuous-review policy with SS=12,271 and Q=139,049 achieves the 95% service level target while staying well within storage capacity.",
+  "warnings": [
+    "SAP safety stock is 0 \u2014 material is currently unprotected against variability",
+    "SAP safety lead time of 5.0 days exceeds data-derived recommendation of 2.17 days \u2014 consider reducing to avoid over-ordering"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) Continuous-Review Policy",
+    "selection_rationale": "Smooth, near-continuous demand with stable mean supports a classical (r,Q) model. The EOQ-derived order quantity of 139,049 far exceeds the MOQ of 6,583 and is well within the storage cap of 341,984 units, making a fixed-quantity continuous-review policy optimal here.",
+    "boundary_risk": "Storage capacity is not binding (SS + Q = 151,320 < 341,984). No capacity-driven reduction required.",
+    "escalation_flag": "none"
+  }
+}

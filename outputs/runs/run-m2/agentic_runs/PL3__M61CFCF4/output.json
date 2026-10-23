@@ -1,0 +1,78 @@
+{
+  "material_id": "PL3__M61CFCF4",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 8179.11
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 5232.79,
+    "std_daily_demand": 547.92,
+    "robust_std_daily": 509.58,
+    "cv_wd": 0.1047,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "stable_continuous",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.3248,
+    "std_lead_time": 0.7634,
+    "cv_lead_time": 0.5763,
+    "stability": "moderate",
+    "effective_lead_time": 2.0881
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 4044.15,
+    "safety_stock": 6653,
+    "safety_stock_robust": 6642
+  },
+  "order_quantity": {
+    "eoq_raw": 204876.98,
+    "order_quantity": 57673
+  },
+  "cost_analysis": {
+    "unit_cost": 0.038958,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.004675
+  },
+  "policy": {
+    "safety_stock": 6653,
+    "reorder_point": 13586,
+    "order_quantity": 57673,
+    "review_period_days": 12
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.2714,
+    "sigma_eff_days": 0.7728,
+    "dominant_factor": "lead_time",
+    "dominant_pct": 97.6,
+    "variance_components": {
+      "transport": 15957413.62,
+      "supplier": 397709.92,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Increase SAP safety lead time from 0.0 to 1.27 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "PL3__M61CFCF4 exhibits stable, high-volume continuous demand averaging 5,233 units/day with a low CV of 0.10, making it well-suited to a fixed (r,Q) replenishment policy. Lead time variability (CV=0.58, range 0.18\u20133.04 days) dominates the buffer requirement, driving a safety stock of 6,653 units needed to achieve the 95% service level. The storage capacity of 64,326 units constrains the order quantity to 57,673 (below the unconstrained EOQ of 204,877), but this still halves ordering frequency versus the current SAP policy and reduces total annual cost by 42%.",
+  "warnings": [
+    "Storage capacity binding: EOQ 204,877 capped to 57,673 (max_storage_units - safety_stock = 57,673)",
+    "Current SAP safety stock = 0: HIGH stockout risk at current policy",
+    "Bimodal demand detected: near-zero demand days present alongside operational demand days"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) Fixed-Order-Quantity Policy",
+    "selection_rationale": "Low demand CV (0.10) and continuous demand pattern make this material ideal for a deterministic fixed-order-quantity rule. The (r,Q) model efficiently balances ordering and holding costs while the reorder point incorporates the statistical safety buffer required by moderate lead-time variability.",
+    "boundary_risk": "Storage capacity hard-caps the order quantity at 57,673 units, well below the unconstrained EOQ of 204,877. This increases ordering frequency compared to the theoretical optimum (~22.7 vs ~6.4 orders/year) and results in slightly higher total ordering cost than a capacity-unconstrained scenario. Service level is maintained as safety stock fits within capacity.",
+    "escalation_flag": "none"
+  }
+}

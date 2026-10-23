@@ -1,0 +1,80 @@
+{
+  "material_id": "PL1__M2DEC9DF",
+  "data_quality": {
+    "total_rows": 94,
+    "working_days": 94,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 929.843
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 276.7,
+    "std_daily_demand": 279.5,
+    "robust_std_daily": 207.0,
+    "cv_wd": 1.01,
+    "non_zero_fraction_wd": 0.628,
+    "trend_detected": false,
+    "regime": "intermittent/lumpy",
+    "distribution_type": "compound-Poisson proxy"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 4.1,
+    "std_lead_time": 1.1,
+    "cv_lead_time": 0.27,
+    "stability": "moderate",
+    "effective_lead_time": 4.65
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 544.8,
+    "safety_stock": 896.0,
+    "safety_stock_robust": 820.0
+  },
+  "order_quantity": {
+    "eoq_raw": 2146.0,
+    "order_quantity": 1344
+  },
+  "cost_analysis": {
+    "unit_cost": 30.493258,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 3.659
+  },
+  "policy": {
+    "safety_stock": 896,
+    "reorder_point": 1970,
+    "order_quantity": 1344,
+    "review_period_days": 6
+  },
+  "safety_lead_time": {
+    "recommended_days": 3.0,
+    "sigma_eff_days": 1.1,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 72.0,
+    "variance_components": {
+      "transport": 0.65,
+      "supplier": 0.25,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "REDUCE",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "PL1__M2DEC9DF shows intermittent lumpy demand over 94 working days with a CV of 1.01 and only 62.8% non-zero days, consistent with batch or project-driven consumption. Lead times are moderately stable (CV=0.27) after removing a clear data-entry error of 9327 days. A (r,Q) continuous-review policy is selected: safety stock of 896 units provides the required 95% cycle-service level buffer, while the EOQ-derived order quantity is capped at 1,344 units by the 2,241-unit storage constraint. The SAP zero-safety-stock baseline is analytically insufficient for this demand profile.",
+  "warnings": [
+    "Storage capacity cap (2240.961 units) reduced order quantity from 2146 to 1344 units; annual ordering cost increases by ~$2,341/year",
+    "Lead time outlier removed: 9327.37 working days (data entry error)",
+    "3 near-zero lead time values removed (0.01, 0.1, 0.13 days) as measurement noise",
+    "Intermittent demand (non_zero_fraction=0.628) \u2014 EOQ continuous-demand assumption is a simplification; safety stock buffer partially compensates",
+    "High CV (1.01) demands substantial safety stock; do not reduce without fill-rate impact assessment"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review with EOQ order quantity",
+    "selection_rationale": "The (r,Q) policy is appropriate for intermittent-but-valuable items where demand, though sporadic, arrives in large batches. The fixed order quantity minimises total cost given known ordering and holding costs, while the reorder point embeds the safety stock required for the 95% service level. A periodic-review (s,S) policy was considered but rejected as it would increase average inventory given the lumpy demand pattern.",
+    "boundary_risk": "Storage cap of 2240.961 units binds: EOQ 2146 + safety stock 896 = 3042 > 2241. Order quantity has been capped at 1344 units (= floor(2241 - 896)). This increases annual ordering cost by ~$2,341 vs unconstrained EOQ. Expanding storage capacity by ~802 units would restore the full EOQ saving.",
+    "escalation_flag": "No MOQ infeasibility: MOQ(46) + safety_stock(896) = 942 < max_storage(2241). Capacity constraint binds on EOQ but not on MOQ. No escalation required beyond the capacity warning."
+  }
+}

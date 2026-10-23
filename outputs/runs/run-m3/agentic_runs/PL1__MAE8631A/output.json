@@ -1,0 +1,76 @@
+{
+  "material_id": "PL1__MAE8631A",
+  "data_quality": {
+    "total_rows": 88,
+    "working_days": 88,
+    "outliers_detected": 1,
+    "winsorisation": {
+      "lower_bound": 215.83037500000012,
+      "upper_bound": 1737.573375
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 977.5453110795454,
+    "std_daily_demand": 304.53142547916485,
+    "robust_std_daily": 252.41932170000007,
+    "cv_wd": 0.3115266597134589,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "variable",
+    "distribution_type": "normal-approximation"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.738028169014084,
+    "std_lead_time": 1.1347216395200943,
+    "cv_lead_time": 0.41443022842554894,
+    "stability": "moderate",
+    "effective_lead_time": 3.872749808534178
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1218.3351225143256,
+    "safety_stock": 2004,
+    "safety_stock_robust": 1950
+  },
+  "order_quantity": {
+    "eoq_raw": 13828.183758516398,
+    "order_quantity": 6638
+  },
+  "cost_analysis": {
+    "unit_cost": 1.597558,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.19170696
+  },
+  "policy": {
+    "safety_stock": 2004,
+    "reorder_point": 4681,
+    "order_quantity": 6638,
+    "review_period_days": 7
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.050032849921705,
+    "sigma_eff_days": 1.2463208699439883,
+    "dominant_factor": "transport",
+    "dominant_pct": 50.0,
+    "variance_components": {
+      "transport": 0.6437965995975854,
+      "supplier": 0.3862779597585512,
+      "quality": 0.25751863983903417
+    },
+    "disruption_premium": 1.15,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MAE8631A exhibits variable demand (CV=0.31) and moderate lead times (CV=0.41). The optimized policy sets safety stock at 2004 units to achieve 95% service level, with an order quantity of 6638 units (vs. MOQ of 904). Annual cost optimization yields $3,781.68 vs. $20,362.07 baseline (savings: $16,580.39, 81.4%).",
+  "warnings": [
+    "Total inventory utilizes 100.0% of max storage capacity"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "normal-approximation",
+    "selection_rationale": "EOQ-based optimization with normal approximation for demand variability (CV=0.31)",
+    "boundary_risk": "high",
+    "escalation_flag": "none"
+  }
+}

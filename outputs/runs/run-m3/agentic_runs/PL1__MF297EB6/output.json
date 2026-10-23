@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__MF297EB6",
+  "data_quality": {
+    "total_rows": 128,
+    "working_days": 128,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 455.911,
+      "upper_bound": 2120.723
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1227.45,
+    "std_daily_demand": 296.82,
+    "robust_std_daily": 198.34,
+    "cv_wd": 0.2418,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "continuous_high_volume",
+    "distribution_type": "approximately_normal_with_outliers"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.157,
+    "std_lead_time": 1.231,
+    "cv_lead_time": 0.571,
+    "stability": "unstable_high_cv",
+    "effective_lead_time": 2.157
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1637.42,
+    "safety_stock": 2694.0,
+    "safety_stock_robust": 2214.0
+  },
+  "order_quantity": {
+    "eoq_raw": 10708.6,
+    "order_quantity": 10709
+  },
+  "cost_analysis": {
+    "unit_cost": 3.338587,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.400631
+  },
+  "policy": {
+    "safety_stock": 2694,
+    "reorder_point": 7051,
+    "order_quantity": 10709,
+    "review_period_days": 9
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.196,
+    "sigma_eff_days": 1.334,
+    "dominant_factor": "lead_time_variance",
+    "dominant_pct": 93.1,
+    "variance_components": {
+      "transport": 0.7,
+      "supplier": 0.23,
+      "quality": 0.07
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce_safety_lead_time_from_3.0_to_2.2_days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MF297EB6 exhibits continuous high-volume demand averaging 1,227 units/day with moderate demand variability (CV=0.24). Lead times range from 0.43 to 5.97 working days with a CV of 57%, making supply unpredictability the dominant risk factor (93% of total safety stock variance). The current SAP safety stock of 1,223 units is insufficient for the 95% service level target; the recommended safety stock of 2,694 units addresses this gap. An (r,Q) continuous-review policy is adopted with EOQ-based order quantity of 10,709 units, well within the 18,907-unit storage capacity.",
+  "warnings": [
+    "Lead time CV of 57% indicates high supply chain instability \u2014 investigate supplier reliability",
+    "Three demand outliers detected and winsorised (upper: 3864.95 and 2120.72 units; lower: 379.44 units)",
+    "Current SAP safety stock (1,223) is 55% below the recommended level (2,694)"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review policy with EOQ order quantity",
+    "selection_rationale": "Demand is continuous and high-volume (non-zero fraction = 100%, mean = 1,227 units/day), making a continuous-review (r,Q) policy appropriate. EOQ balances ordering and holding costs optimally for this volume. The MOQ of 94 units is non-binding as EOQ far exceeds it.",
+    "boundary_risk": "Storage capacity of 18,907 units is not binding (SS + OQ = 13,403 units). However, if safety stock is further increased or order quantities grow, the capacity constraint could become active. No current service/cost degradation from capacity.",
+    "escalation_flag": "none"
+  }
+}

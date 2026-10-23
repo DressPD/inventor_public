@@ -1,0 +1,74 @@
+{
+  "material_id": "PL1__M51F189F",
+  "data_quality": {
+    "total_rows": 130,
+    "working_days": 130,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 621.69
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 262.28,
+    "std_daily_demand": 140.55,
+    "robust_std_daily": 130.84,
+    "cv_wd": 0.536,
+    "non_zero_fraction_wd": 0.938,
+    "trend_detected": false,
+    "regime": "moderate",
+    "distribution_type": "gamma-like"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.23,
+    "std_lead_time": 1.4,
+    "cv_lead_time": 0.629,
+    "stability": "volatile",
+    "effective_lead_time": 3.63
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 423.65,
+    "safety_stock": 697.0,
+    "safety_stock_robust": 686.0
+  },
+  "order_quantity": {
+    "eoq_raw": 1650.6,
+    "order_quantity": 1651
+  },
+  "cost_analysis": {
+    "unit_cost": 30.083891,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 3.61
+  },
+  "policy": {
+    "safety_stock": 697,
+    "reorder_point": 1283,
+    "order_quantity": 1651,
+    "review_period_days": 7
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.66,
+    "sigma_eff_days": 1.62,
+    "dominant_factor": "transport",
+    "dominant_pct": 0.5,
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.4,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Demand for PL1__M51F189F is moderate (CV=0.536) with a gamma-like distribution and 93.8% active days, showing no statistically significant trend over the observation period. Lead times are volatile (CV=0.629, range 0.04\u20136.24 days), which dominates the safety stock calculation and requires a 70% uplift over the current SAP buffer. An (r,Q) continuous-review policy with EOQ-sized batches of 1,651 units reduces annual replenishment events from ~1,681 to ~40, yielding a 93.4% cost reduction while improving service level coverage.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) continuous-review with EOQ",
+    "selection_rationale": "Demand is moderately variable and nearly continuous (93.8% non-zero days), making a continuous-review (r,Q) policy appropriate. EOQ batch sizing is optimal when ordering and holding costs are the primary trade-off, and the current SAP MOQ of 39 units is far below the economic optimum, causing excessive ordering frequency.",
+    "boundary_risk": "Safety stock (697) + order quantity (1651) = 2348 units, which is within the 2670-unit storage cap. No capacity constraint binds. If mean demand grows by more than 14%, the EOQ would approach the remaining headroom and a capacity review would be warranted.",
+    "escalation_flag": "none"
+  }
+}

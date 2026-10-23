@@ -1,0 +1,123 @@
+{
+  "material_id": "PL1__M41E4998",
+  "input_parameters": {
+    "unit_cost": 3.981295,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 50.0,
+    "moq": 361,
+    "service_level_target": 0.95,
+    "sap_safety_stock": 277,
+    "sap_safety_lead_time_days": 3.0,
+    "max_storage_units": 6538.988,
+    "working_days": 172,
+    "total_rows": 172
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 384.7603837209302,
+    "std_demand": 242.2177146402063,
+    "robust_std": 217.24240177909564,
+    "cv_demand": 0.629528727198403,
+    "non_zero_fraction": 0.9186046511627907,
+    "trend_slope": -1.6713835853243815,
+    "trend_detected": true,
+    "outliers_winsorized": 1,
+    "demand_regime": "moderate",
+    "distribution_type": "normal",
+    "min_demand": 0.0,
+    "max_demand": 1077.794,
+    "median_demand": 347.228
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.7825000000000001,
+    "std_lead_time": 0.9709909393270975,
+    "cv_lead_time": 1.2408829895553959,
+    "lead_time_stability": "unstable",
+    "effective_lead_time": 1.7534909393270977,
+    "min_lead_time": 0.11,
+    "max_lead_time": 4.46
+  },
+  "safety_stock_buffer": {
+    "z_score": 1.644853626951472,
+    "sigma_ltd": 430.6796027107621,
+    "safety_stock": 709,
+    "safety_stock_robust": 692,
+    "sap_safety_stock": 277,
+    "safety_stock_increase": 432,
+    "safety_stock_increase_pct": 155.956678700361
+  },
+  "eoq_order_quantity": {
+    "annual_demand": 96190.09593023255,
+    "eoq_raw": 4487.0651638833215,
+    "unconstrained_order_quantity": 4488,
+    "order_quantity": 4488,
+    "moq": 361,
+    "moq_binding": false,
+    "capacity_constraint_active": false
+  },
+  "cost_analysis": {
+    "annual_holding_cost_per_unit": 0.47775539999999994,
+    "num_orders_per_year": 21.43273082224433,
+    "annual_ordering_cost": 1071.6365411122165,
+    "avg_inventory": 2953.0,
+    "annual_holding_cost": 1410.8116962,
+    "total_annual_cost": 2482.4482373122164,
+    "previous_policy": {
+      "safety_stock": 277,
+      "order_quantity": 361,
+      "avg_inventory": 457.5,
+      "num_orders_per_year": 266.45455936352505,
+      "annual_ordering_cost": 13322.727968176252,
+      "annual_holding_cost": 218.5730955,
+      "total_annual_cost": 13541.301063676252
+    },
+    "savings": {
+      "annual_cost_savings": 11058.852826364036,
+      "cost_reduction_pct": 81.66757960967844
+    }
+  },
+  "safety_lead_time": {
+    "sigma_eff_days": 0.9709909393270975,
+    "recommended_days": 1.6,
+    "sap_safety_lead_time_days": 3.0,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease"
+  },
+  "policy": {
+    "reorder_point": 1011,
+    "review_period_days": 12,
+    "order_quantity": 4488,
+    "safety_stock": 709
+  },
+  "capacity_check": {
+    "safety_stock": 709,
+    "order_quantity": 4488,
+    "total_required": 5197,
+    "max_storage_units": 6538.988,
+    "capacity_utilization": 79.47713010025404,
+    "within_capacity": true
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M41E4998 exhibits moderate demand variability (CV=0.63) with 91.9% non-zero demand days, classified as normal distribution. Lead time is unstable (CV=1.24, mean=0.78 days). The optimized EOQ-based policy increases order quantity from 361 to 4488 units and safety stock from 277 to 709 units, achieving 81.7% cost reduction ($11058.85 annually) while maintaining 95% service level. The policy balances infrequent bulk orders (every ~12 days) against holding costs, with capacity utilization at 79.5%.",
+  "research_insights": {
+    "demand_pattern": "moderate (CV=0.63)",
+    "intermittency": "91.9% fill rate, normal",
+    "lead_time_stability": "unstable (CV=1.24)",
+    "policy_type": "EOQ with safety stock",
+    "cost_driver": "Ordering cost (bulk ordering more economical)",
+    "risk_factors": "Lead time variability (1.24), demand spikes (max=1078)",
+    "optimization_method": "Economic Order Quantity with stochastic lead time",
+    "service_level_achieved": "95%"
+  },
+  "warnings": [
+    "\u26a0\ufe0f UNSTABLE LEAD TIME: CV=1.24 suggests supply chain risk",
+    "\u2139\ufe0f MODERATE VARIABILITY: CV=0.63",
+    "\u26a0\ufe0f SAFETY STOCK INCREASE: +156% from current (277\u2192709)"
+  ]
+}

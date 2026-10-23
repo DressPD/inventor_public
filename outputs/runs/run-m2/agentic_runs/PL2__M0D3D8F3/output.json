@@ -1,0 +1,155 @@
+{
+  "material_id": "PL2__M0D3D8F3",
+  "analysis_timestamp": "2026-10-22T15:08:34.792617",
+  "data_quality": {
+    "total_rows": 141,
+    "working_days": 141,
+    "missing_values": 0,
+    "outliers_detected": 0,
+    "data_completeness_pct": 100.0,
+    "quality_score": "high"
+  },
+  "demand_analysis": {
+    "mean": 732.82,
+    "std": 315.82,
+    "robust_std": 306.22,
+    "cv": 0.431,
+    "median": 721.16,
+    "q1": 546.12,
+    "q3": 959.21,
+    "p5": 196.04,
+    "p95": 1241.6,
+    "min": 0.0,
+    "max": 1379.3,
+    "non_zero_fraction": 0.9645,
+    "zero_demand_days": 5,
+    "demand_regime": "smooth",
+    "regime_narrative": "Smooth demand with low variability and high consistency",
+    "trend_detected": true,
+    "trend_slope": 1.6715,
+    "kendall_tau": 0.1162,
+    "distribution_type": "empirical_normal_approximation",
+    "distribution_params": {
+      "mean": 732.82,
+      "std": 315.82
+    }
+  },
+  "lead_time_analysis": {
+    "mean": 2.243,
+    "std": 1.422,
+    "cv": 0.6341,
+    "median": 1.81,
+    "p50": 1.81,
+    "p95": 4.183,
+    "min": 0.56,
+    "max": 5.95,
+    "observations": 59,
+    "stability": "unstable",
+    "effective_lead_time": 4.583,
+    "variance_components": {
+      "transport_variance": 1.0114,
+      "supplier_variance": 0.8091,
+      "quality_variance": 0.2023,
+      "transport_std": 1.006,
+      "supplier_std": 0.9,
+      "quality_std": 0.45
+    }
+  },
+  "safety_stock_calculation": {
+    "method": "robust",
+    "selected_model": "standard_deviation_based",
+    "selection_rationale": "Robust IQR-based standard deviation used to handle outliers; Normal approximation appropriate for smooth demand regime with 95% non-zero fraction",
+    "service_level_target": 0.95,
+    "z_score": 1.645,
+    "sigma_ltd": 1144.55,
+    "robust_sigma_ltd": 1138.69,
+    "safety_stock_standard": 1883,
+    "safety_stock_robust": 1874,
+    "recommended_safety_stock": 1874,
+    "current_sap_safety_stock": 1960,
+    "variance_of_demand": 99741.54,
+    "variance_of_lead_time": 2.0228
+  },
+  "eoq_calculation": {
+    "annual_demand": 183205.97,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "unit_cost": 0.253801,
+    "annual_holding_cost_per_unit": 0.0305,
+    "eoq_raw": 30038.49,
+    "eoq_unconstrained": 30039,
+    "moq": 5881,
+    "max_storage_units": 14334.408,
+    "available_capacity": 12460.41,
+    "order_quantity_optimized": 12460,
+    "capacity_constrained": true
+  },
+  "policy_recommendation": {
+    "reorder_point": 3518,
+    "order_quantity": 12460,
+    "safety_stock": 1874,
+    "review_period_days": 17.0,
+    "max_inventory_level": 14334,
+    "average_inventory": 8104.0,
+    "service_level_target": 0.95
+  },
+  "previous_policy": {
+    "sap_safety_stock": 1960,
+    "sap_safety_lead_time_days": 3.0,
+    "order_quantity": 5881,
+    "reorder_point": 3604,
+    "average_inventory": 4900.5
+  },
+  "cost_analysis": {
+    "previous_policy": {
+      "annual_ordering_cost": 2336.41,
+      "annual_holding_cost": 149.25,
+      "total_annual_cost": 2485.66,
+      "average_inventory": 4900.5
+    },
+    "optimized_policy": {
+      "annual_ordering_cost": 1102.76,
+      "annual_holding_cost": 246.82,
+      "total_annual_cost": 1349.58,
+      "average_inventory": 8104.0
+    },
+    "savings": {
+      "annual_cost_reduction": 1136.08,
+      "percentage_improvement": 45.71,
+      "holding_cost_change": 97.57,
+      "ordering_cost_change": -1233.65
+    }
+  },
+  "safety_lead_time_recommendation": {
+    "recommended_slt_days": 2.557,
+    "current_sap_slt_days": 3.0,
+    "difference_days": -0.443,
+    "calculation_method": "safety_stock / mean_daily_demand",
+    "supporting_rationale": "Based on 95% service level and unstable lead time with CV=0.634. Recommended SLT of 2.56 days reflects actual lead time variability.",
+    "variance_breakdown": {
+      "transport_contribution_pct": 50.0,
+      "supplier_contribution_pct": 40.0,
+      "quality_contribution_pct": 10.0
+    }
+  },
+  "diagnostics": {
+    "feasibility_status": "FEASIBLE",
+    "capacity_utilization_pct": 100.0,
+    "moq_to_eoq_ratio": 0.1958,
+    "ss_to_mean_demand_ratio": 2.557,
+    "flags": [
+      "capacity_constraint_active",
+      "Recommended SS (1874) lower than SAP (1960)"
+    ],
+    "warnings": [
+      "Lead time is unstable (CV=0.634). Monitor supplier performance closely.",
+      "Order quantity constrained by capacity. EOQ=30039, actual=12460",
+      "Significant trend detected (slope=1.67). Review forecast periodically.",
+      "High storage utilization: 100.0%"
+    ],
+    "boundary_risk": "lead_time_volatility, demand_trend, storage_capacity_constraint",
+    "escalation_flag": "yes",
+    "escalation_reason": "Multiple risk factors detected: unstable lead time and/or demand trend"
+  },
+  "narrative": "Inventory optimization analysis for material PL2__M0D3D8F3 completed successfully. \nDemand regime: smooth (Smooth demand with low variability and high consistency). \nLead time: mean=2.24 days, stability=unstable (CV=0.634).\nRecommended safety stock: 1874 units (vs SAP 1960), providing 95% service level.\nReorder point: 3518 units. Order quantity: 12460 units (capacity-constrained from EOQ 30039).\nAnnual cost savings: $1136.08 (45.7% reduction).\nSafety lead time: 2.56 days recommended (current: 3.0 days).\nATTENTION: Lead time is unstable (CV=0.634). Monitor supplier performance closely.; Order quantity constrained by capacity. EOQ=30039, actual=12460; Significant trend detected (slope=1.67). Review forecast periodically.; High storage utilization: 100.0%"
+}

@@ -1,0 +1,98 @@
+{
+  "material_id": "PL3__M0A903F5",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 20506.31513
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 12877.884701754385,
+    "std_daily_demand": 7855.105326090771,
+    "robust_std_daily": 13160.784284655301,
+    "cv_wd": 0.609968601832617,
+    "non_zero_fraction_wd": 0.7982456140350878,
+    "trend_detected": false,
+    "regime": "erratic/intermittent",
+    "distribution_type": "intermittent"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 5.634074074074074,
+    "std_lead_time": 0.7258271634659805,
+    "cv_lead_time": 0.1288281186798677,
+    "stability": "moderate",
+    "effective_lead_time": 6.359901237540054
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 20787.50962921451,
+    "safety_stock": 34193.0,
+    "safety_stock_robust": 53627.0
+  },
+  "order_quantity": {
+    "eoq_raw": 406482.698922608,
+    "order_quantity": 273813
+  },
+  "cost_analysis": {
+    "unit_cost": 0.032475,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.0038969999999999994,
+    "sap_policy": {
+      "safety_stock": 68113,
+      "order_quantity": 273813,
+      "average_inventory": 205019.5,
+      "number_of_orders_per_year": 11.757919366277703,
+      "annual_ordering_cost": 1175.7919366277702,
+      "annual_holding_cost": 798.9609914999999,
+      "total_annual_cost": 1974.75292812777
+    },
+    "optimized_policy": {
+      "safety_stock": 34193,
+      "order_quantity": 273813,
+      "average_inventory": 171099.5,
+      "number_of_orders_per_year": 11.757919366277703,
+      "annual_ordering_cost": 1175.7919366277702,
+      "annual_holding_cost": 666.7747514999999,
+      "total_annual_cost": 1842.56668812777
+    },
+    "annual_savings": 132.18624,
+    "savings_percentage": 6.693811570915028
+  },
+  "policy": {
+    "safety_stock": 34193,
+    "reorder_point": 106748,
+    "order_quantity": 273813,
+    "review_period_days": 22
+  },
+  "safety_lead_time": {
+    "recommended_days": 0.7258271634659805,
+    "sigma_eff_days": 0.7258271634659805,
+    "dominant_factor": "demand_variability",
+    "dominant_pct": 79.85305090332133,
+    "variance_components": {
+      "transport": 0.0,
+      "supplier": 0.0,
+      "quality": 0.0,
+      "demand_variability": 345061448.01328474,
+      "lead_time_variability": 87059108.57140125
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "set",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization for PL3__M0A903F5: Demand shows erratic/intermittent regime with CV=0.610. Lead time is moderate (CV=0.129). Recommended safety stock of 34,193 units (vs SAP 68,113) with order quantity 273,813 units. Expected annual savings: $132.19 (6.69%). Capacity utilization: 100.0%.",
+  "warnings": [
+    "HIGH CAPACITY UTILIZATION: 100.0% - limited flexibility"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Normal approximation with lead time demand variability",
+    "selection_rationale": "Demand is intermittent with 79.8% non-zero days, erratic/intermittent regime suitable for continuous review model",
+    "boundary_risk": "At 100% capacity utilization - no buffer for demand spikes",
+    "escalation_flag": "none"
+  }
+}

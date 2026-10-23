@@ -1,0 +1,88 @@
+{
+  "material_id": "PL1__MDCB9B9C",
+  "data_quality": {
+    "total_rows": 140,
+    "working_days": 140,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": -218.91,
+      "upper_bound": 1661.81
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 767.03,
+    "std_daily_demand": 374.26,
+    "robust_std_daily": 330.55,
+    "cv_wd": 0.488,
+    "non_zero_fraction_wd": 0.979,
+    "trend_detected": true,
+    "regime": "smooth",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 4.05,
+    "std_lead_time": 1.51,
+    "cv_lead_time": 0.372,
+    "stability": "moderate",
+    "effective_lead_time": 5.55
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1378.57,
+    "safety_stock": 2268,
+    "safety_stock_robust": 2193
+  },
+  "order_quantity": {
+    "eoq_raw": 47012.26,
+    "order_quantity": 9397
+  },
+  "cost_analysis": {
+    "unit_cost": 0.144604,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.0174,
+    "optimized": {
+      "num_orders_per_year": 20.41,
+      "annual_ordering_cost": 2040.63,
+      "avg_inventory": 6966.5,
+      "annual_holding_cost": 120.89,
+      "total_annual_cost": 2161.52
+    },
+    "sap_current": {
+      "num_orders_per_year": 4.08,
+      "annual_ordering_cost": 407.88,
+      "avg_inventory": 24045.5,
+      "annual_holding_cost": 417.25,
+      "total_annual_cost": 825.13
+    }
+  },
+  "policy": {
+    "safety_stock": 2268,
+    "reorder_point": 5372,
+    "order_quantity": 9397,
+    "review_period_days": 13
+  },
+  "safety_lead_time": {
+    "recommended_days": 3.0,
+    "sigma_eff_days": 1.51,
+    "dominant_factor": "supplier",
+    "dominant_pct": 50.0,
+    "variance_components": {
+      "transport": 0.4,
+      "supplier": 0.5,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MDCB9B9C exhibits smooth demand with normal characteristics (CV=0.49).\nLead time stability is moderate (CV=0.37, mean=4.0 days).\n\nThe optimized policy recommends:\n- Safety Stock: 2268 units (current SAP: 539)\n- Reorder Point: 5372 units\n- Order Quantity: 9397 units (constrained by max storage)\n- Review Period: 13 days\n\nKey findings:\n1. Current EOQ (47012) significantly exceeds storage capacity (11666)\n2. Capacity constraint forces smaller order quantities (9397 vs unconstrained 47013)\n3. Safety stock increased from 539 to 2268 to maintain 95% service level\n4. Safety lead time should be decreased from 4.0 to 3 days\n\nThe capacity constraint creates a trade-off: more frequent ordering (increased ordering costs) \nversus reduced holding costs from lower average inventory.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Capacity-Constrained EOQ with Safety Stock",
+    "selection_rationale": "Storage capacity (11666) is significantly lower than optimal EOQ (47012), requiring constrained optimization. Lead time variability (CV=0.37) necessitates safety stock buffer.",
+    "boundary_risk": "Low",
+    "escalation_flag": "NO"
+  }
+}

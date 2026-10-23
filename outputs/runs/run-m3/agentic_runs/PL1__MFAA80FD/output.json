@@ -1,0 +1,77 @@
+{
+  "material_id": "PL1__MFAA80FD",
+  "data_quality": {
+    "total_rows": 194,
+    "working_days": 194,
+    "outliers_detected": 23,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 204.1
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 66.8,
+    "std_daily_demand": 28.1,
+    "robust_std_daily": 11.5,
+    "cv_wd": 0.42,
+    "non_zero_fraction_wd": 0.985,
+    "trend_detected": false,
+    "regime": "moderate_variability",
+    "distribution_type": "right_skewed"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.57,
+    "std_lead_time": 1.15,
+    "cv_lead_time": 0.45,
+    "stability": "unstable",
+    "effective_lead_time": 3.72
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 92.9,
+    "safety_stock": 153,
+    "safety_stock_robust": 134
+  },
+  "order_quantity": {
+    "eoq_raw": 2931.0,
+    "order_quantity": 1472
+  },
+  "cost_analysis": {
+    "unit_cost": 2.5155,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.30186
+  },
+  "policy": {
+    "safety_stock": 153,
+    "reorder_point": 331,
+    "order_quantity": 1472,
+    "review_period_days": 22
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.29,
+    "sigma_eff_days": 1.38,
+    "dominant_factor": "lead_time_variance",
+    "dominant_pct": 74.2,
+    "variance_components": {
+      "transport": 0.37,
+      "supplier": 0.3,
+      "quality": 0.074
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce \u2014 SAP safety lead time of 6.0 days exceeds the recommended 2.29 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Demand for PL1__MFAA80FD averages 66.8 units per working day with moderate right-skewed variability (CV=0.42) and no discernible trend over the 194-day observation window. Lead times are unstable (CV=0.45, mean 2.57 days), and this variability is the dominant driver of safety stock needs at 74.2% of combined variance. An (r,Q) fixed-order-quantity policy is recommended: the EOQ of 2,931 units is storage-constrained to 1,472 units, which still delivers an estimated 88.4% annual cost reduction versus the current SAP policy by eliminating excessive small-batch ordering.",
+  "warnings": [
+    "Order quantity constrained from EOQ 2931 to 1472 due to max_storage_units=1625.701 (binding capacity constraint).",
+    "Lead time CV=0.45 classified as unstable \u2014 supplier performance review recommended."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) \u2014 Reorder Point / Fixed Order Quantity",
+    "selection_rationale": "Demand is continuous (98.5% non-zero) with moderate variability and no trend, making a classic (r,Q) model appropriate. The high ordering cost relative to unit holding cost favours large batch sizes, which the EOQ captures well. A base-stock or (s,S) policy would add complexity without benefit given the stable, non-intermittent demand pattern.",
+    "boundary_risk": "Storage capacity is a binding constraint: the unconstrained EOQ (2,931 units) exceeds available space after safety stock (1,472 units remaining). This forces more frequent ordering than optimal, slightly increasing annual ordering costs versus the pure EOQ outcome. Any upward revision of safety stock must be matched by a corresponding reduction in order quantity to remain within 1,625.7 units.",
+    "escalation_flag": "none \u2014 MOQ (132) + safety stock (153) = 285 units, well within storage capacity of 1,625.7 units. No MOQ-capacity infeasibility. Monitor: if safety stock requirements grow (e.g., due to further lead time deterioration), the capacity constraint will tighten further."
+  }
+}

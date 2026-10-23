@@ -1,0 +1,74 @@
+{
+  "material_id": "PL3__M803CD2B",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": -6191.6235,
+      "upper_bound": 10484.746500000001
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 2893.3364736842104,
+    "std_daily_demand": 1814.0786830538914,
+    "robust_std_daily": 3090.5059303187545,
+    "cv_wd": 0.6269850394357855,
+    "non_zero_fraction_wd": 0.7894736842105263,
+    "trend_detected": true,
+    "regime": "erratic",
+    "distribution_type": "negative_binomial"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 5.194927536231884,
+    "std_lead_time": 1.6693144270737277,
+    "cv_lead_time": 0.3213354595287689,
+    "stability": "volatile",
+    "effective_lead_time": 6.864241963305611
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 6357.964447964884,
+    "safety_stock": 10458.851516902234,
+    "safety_stock_robust": 14049.663012729103
+  },
+  "order_quantity": {
+    "eoq_raw": 300436.8453973306,
+    "order_quantity": 52435
+  },
+  "cost_analysis": {
+    "unit_cost": 0.013463,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.0016155599999999998
+  },
+  "policy": {
+    "safety_stock": 10459,
+    "reorder_point": 30320,
+    "order_quantity": 52435,
+    "review_period_days": 19
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.746022232536282,
+    "sigma_eff_days": 1.6693144270737277,
+    "dominant_factor": "lead_time",
+    "dominant_pct": 57.708260954945125,
+    "variance_components": {
+      "transport": 0.0,
+      "supplier": 57.708260954945125,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "INCREASE",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__M803CD2B exhibits erratic demand patterns with a coefficient of variation of 0.63. \nThe analysis of 228 working days reveals a mean daily demand of 2893 units with significant variability (std: 1814).\n\nLead time analysis shows volatile behavior (CV: 0.32) with mean 5.19 days and std 1.67 days. \nLead time variability contributes 57.7% to total uncertainty, making it the dominant factor in safety stock requirements.\n\nThe recommended safety stock of 10,459 units provides 95% service level protection.\nThe optimized order quantity of 52,435 units balances ordering costs ($1390.52/year) \nwith holding costs ($59.25/year), resulting in total annual costs of $1449.78.\n\nCompared to current SAP policy (safety stock: 15,033), the recommended policy reduces inventory by \n4,574 units while maintaining service levels, yielding $7.39 in annual savings (0.51%).\n\nThe capacity utilization is 100.0%, providing adequate buffer for operational flexibility.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with Safety Stock",
+    "selection_rationale": "Continuous review (Q,R) model selected due to erratic demand regime (CV=0.63) and volatile lead time (CV=0.32)",
+    "boundary_risk": "Capacity utilization at 100% - limited buffer for demand spikes",
+    "escalation_flag": "None"
+  }
+}

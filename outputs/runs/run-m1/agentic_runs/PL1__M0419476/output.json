@@ -1,0 +1,98 @@
+{
+  "material_id": "PL1__M0419476",
+  "data_quality": {
+    "total_rows": 172,
+    "working_days": 172,
+    "outliers_detected": 10,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 1003.0088
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 551.2053,
+    "std_daily_demand": 207.3812,
+    "robust_std_daily": 176.8517,
+    "cv_wd": 0.3763,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": true,
+    "regime": "volatile_continuous",
+    "distribution_type": "Normal (high variance)"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.7288,
+    "std_lead_time": 0.9091,
+    "cv_lead_time": 1.2474,
+    "stability": "unstable",
+    "effective_lead_time": 1.822
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 498.8707,
+    "safety_stock": 820.3736,
+    "safety_stock_robust": 699.6872
+  },
+  "order_quantity": {
+    "eoq_raw": 2337.4723,
+    "order_quantity": 2337
+  },
+  "cost_analysis": {
+    "unit_cost": 4.467246,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.5361
+  },
+  "policy": {
+    "safety_stock": 700,
+    "reorder_point": 702,
+    "order_quantity": 2337,
+    "review_period_days": 5
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.49,
+    "sigma_eff_days": 0.9091,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 0.495344,
+      "supplier": 0.247672,
+      "quality": 0.082557
+    },
+    "disruption_premium": 1.1,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M0419476 exhibits volatile continuous demand with a daily mean of 551 units (CV=0.38) over 172 working days. Lead times average 0.73 days with unstable variability (CV=1.25), yielding a combined lead-time demand sigma of 499 units. An (r,Q) policy with safety stock 700, reorder point 702, and order quantity 2337 (capped from EOQ 2337 by storage limit) achieves the 95% service level while keeping total annual inventory costs at $3,938, a $158 saving vs the current SAP policy.",
+  "warnings": [
+    "Order quantity capped from 2337 to 2337 due to storage limit of 5240 units. This may increase ordering frequency and annual ordering costs.",
+    "High demand variability (CV=0.38). Safety stock may underestimate true buffer need under extreme demand scenarios."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) Continuous Review",
+    "selection_rationale": "Demand is continuous with high frequency (non-zero=100%) and moderate-to-high volume (mean=551 units/day). Lead times are short (mean=0.73 days) and unstable. An (r,Q) policy with fixed EOQ-based order quantity and a reorder point calculated from lead-time demand distribution provides the best cost-service balance.",
+    "boundary_risk": "Storage cap of 5240 units constrains the order quantity to 2337 (unconstrained EOQ = 2337). This does not affect annual ordering frequency to 59.2 orders/year, adding ordering cost pressure. Service level target (95%) remains achievable with safety stock of 700 units.",
+    "escalation_flag": "none"
+  },
+  "cost_comparison": {
+    "optimized": {
+      "safety_stock": 700,
+      "order_quantity": 2337,
+      "orders_per_year": 59.18,
+      "avg_inventory_units": 1868.5,
+      "annual_ordering_cost": 2959.0,
+      "annual_holding_cost": 1000.85,
+      "annual_total_cost": 3959.85
+    },
+    "sap_current": {
+      "safety_stock": 327,
+      "order_quantity": 2338,
+      "orders_per_year": 59.15,
+      "avg_inventory_units": 1496.0,
+      "annual_ordering_cost": 2957.5,
+      "annual_holding_cost": 801.55,
+      "annual_total_cost": 3758.05
+    },
+    "annual_savings": -201.8
+  }
+}

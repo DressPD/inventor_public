@@ -1,0 +1,77 @@
+{
+  "material_id": "PL3__M3C13D2B",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 334.6942,
+      "upper_bound": 514.357
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 498.17637076023397,
+    "std_daily_demand": 30.39994119261527,
+    "robust_std_daily": 3.580484357691059,
+    "cv_wd": 0.06102244702257542,
+    "non_zero_fraction_wd": 0.75,
+    "trend_detected": false,
+    "regime": "stable",
+    "distribution_type": "non_normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.1324489795918367,
+    "std_lead_time": 0.9053323453628415,
+    "cv_lead_time": 0.7994464754510585,
+    "stability": "variable",
+    "effective_lead_time": 2.037781324954678
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 452.1739206599067,
+    "safety_stock": 743.7599134103147,
+    "safety_stock_robust": 741.8804310022718
+  },
+  "order_quantity": {
+    "eoq_raw": 2878.5001152848713,
+    "order_quantity": 1455
+  },
+  "cost_analysis": {
+    "unit_cost": 14.655318,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.7586381599999998
+  },
+  "policy": {
+    "safety_stock": 744,
+    "reorder_point": 1168,
+    "order_quantity": 1455,
+    "review_period_days": 4
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.9912626495836696,
+    "sigma_eff_days": 1.2102110743627443,
+    "dominant_factor": "lead_time",
+    "dominant_pct": 99.488137739174,
+    "variance_components": {
+      "transport": 0.9948813773917399,
+      "supplier": 0.0,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__M3C13D2B exhibits stable demand (CV=6.10%) with 75.0% of working days having demand. \nThe primary inventory challenge is lead time variability (CV=79.94%, variable), which accounts for 99.5% of total variance.\nThe recommended safety stock of 744 units provides 95.0% service level protection.\nStorage capacity constraint is active, limiting order quantity to 1455 units (EOQ: 2879, MOQ: 347).\nThe optimized policy increases annual costs by $1308.43 compared to the current zero-safety-stock approach, \nbut provides significant service level protection against demand variability during the variable lead time.",
+  "warnings": [
+    "High lead time variability (CV=0.80)",
+    "Optimized policy increases costs by $1308.43/year due to safety stock holding costs"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(Q,r) continuous review",
+    "selection_rationale": "EOQ-based with safety stock for 95.0% service level. Lead time variability is variable.",
+    "boundary_risk": "Capacity constraint active - storage utilization at 100%",
+    "escalation_flag": "high_lead_time_variability"
+  }
+}

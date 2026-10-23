@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__MAE8631A",
+  "data_quality": {
+    "total_rows": 88,
+    "working_days": 88,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 226.99556,
+      "upper_bound": 1503.6319099999998
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 975.9145113636364,
+    "std_daily_demand": 309.00872351957196,
+    "robust_std_daily": 281.80425925925925,
+    "cv_wd": 0.3166350330089845,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": true,
+    "regime": "Erratic",
+    "distribution_type": "Normal-like"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.738028169014084,
+    "std_lead_time": 1.1347216395200943,
+    "cv_lead_time": 0.41443022842554894,
+    "stability": "Moderate",
+    "effective_lead_time": 3.872749808534178
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1219.7376570504832,
+    "safety_stock": 2007.0,
+    "safety_stock_robust": 1977.0
+  },
+  "order_quantity": {
+    "eoq_raw": 13816.644441118779,
+    "order_quantity": 6635
+  },
+  "cost_analysis": {
+    "unit_cost": 1.597558,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.19170696
+  },
+  "policy": {
+    "safety_stock": 2007,
+    "reorder_point": 4680,
+    "order_quantity": 6635,
+    "review_period_days": 7
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.348863235234176,
+    "sigma_eff_days": 1.4280074510869982,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 82.42697496074243,
+    "variance_components": {
+      "transport": 0.0,
+      "supplier": 82.42697496074243,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Decrease safety lead time",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization analysis for PL1__MAE8631A:\n\nDEMAND PROFILE: Erratic regime with Normal-like distribution. \nMean daily demand: 975.91 units (CV=31.66%). \nSignificant increasing trend detected (p=0.0007, slope=4.28)\n\nLEAD TIME: Mean 2.74 days (std=1.13), classified as Moderate. \nLead time variability is the dominant factor (82.4% of total variance).\n\nINVENTORY POLICY:\n- Safety stock increased from 0 to 2007 units for 95% service level\n- Order quantity optimized to 6635 units (EOQ: 13817, constrained by capacity)\n- Reorder point: 4680 units\n- Review period: 7 days\n\nCOST IMPACT:\nThe optimized policy reduces total annual costs by $16,549.64 (81.4%) \ncompared to SAP baseline, primarily through reduced ordering frequency while maintaining service levels.\n\nRECOMMENDATIONS:\n1. Implement safety stock of 2007 units\n2. Order in quantities of 6635 units\n3. Consider expanding storage capacity to reach EOQ target\n4. Monitor lead time variability closely as it drives 82.4% of buffer requirements",
+  "warnings": [
+    "Capacity constraint active: Order quantity capped at 6635 units (EOQ was 13817)",
+    "2 demand outliers detected and winsorised",
+    "Significant demand trend detected - consider forecast-based planning"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with stochastic lead time",
+    "selection_rationale": "Erratic regime with Moderate lead time justifies classical EOQ approach with safety stock buffer",
+    "boundary_risk": "Capacity constraint limits order quantity below EOQ optimum",
+    "escalation_flag": "Yes - capacity expansion recommended"
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__M6BC7923",
+  "data_quality": {
+    "total_rows": 131,
+    "working_days": 131,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": -393.54,
+      "upper_bound": 655.9000000000001
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 158.66120610687025,
+    "std_daily_demand": 150.6653909218763,
+    "robust_std_daily": 221.76879059999996,
+    "cv_wd": 0.9496044724404266,
+    "non_zero_fraction_wd": 0.6793893129770993,
+    "trend_detected": false,
+    "regime": "intermittent",
+    "distribution_type": "moderate_variability"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.416296296296296,
+    "std_lead_time": 1.207741529111093,
+    "cv_lead_time": 0.49983171805639964,
+    "stability": "moderate",
+    "effective_lead_time": 3.624037825407389
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 302.6036309643557,
+    "safety_stock": 498,
+    "safety_stock_robust": 695
+  },
+  "order_quantity": {
+    "eoq_raw": 2072.8492051497724,
+    "order_quantity": 2073
+  },
+  "cost_analysis": {
+    "unit_cost": 7.692971,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.9231565199999999,
+    "sap_total_annual_cost": 2572.3323344608566,
+    "optimized_total_annual_cost": 2373.2962107339595,
+    "annual_savings": 199.03612372689713,
+    "savings_percentage": 7.737574226333929
+  },
+  "policy": {
+    "safety_stock": 498,
+    "reorder_point": 882,
+    "order_quantity": 2073,
+    "review_period_days": 14
+  },
+  "safety_lead_time": {
+    "recommended_days": 3.138763483649302,
+    "sigma_eff_days": 1.9072313792984117,
+    "dominant_factor": "transport",
+    "dominant_pct": 49.99999999999999,
+    "variance_components": {
+      "transport": 0.7293198005698004,
+      "supplier": 0.5834558404558403,
+      "quality": 0.14586396011396008
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "maintain",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Optimized inventory policy for PL1__M6BC7923 with intermittent demand pattern. Recommended safety stock of 498 units (vs SAP 178) and order quantity of 2073 units provides 95% service level. Expected annual savings of $199.04 (7.7%).",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with safety stock",
+    "selection_rationale": "Classic EOQ model appropriate for intermittent demand with moderate lead time variability",
+    "boundary_risk": "moderate",
+    "escalation_flag": "none"
+  }
+}

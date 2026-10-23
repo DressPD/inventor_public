@@ -1,0 +1,74 @@
+{
+  "material_id": "PL1__MB6ADE36",
+  "data_quality": {
+    "total_rows": 113,
+    "working_days": 113,
+    "outliers_detected": 11,
+    "winsorisation": {
+      "lower_bound": 9079.946000000002,
+      "upper_bound": 17764.002
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 13268.613115044249,
+    "std_daily_demand": 1876.6054510901442,
+    "robust_std_daily": 1666.1725667999988,
+    "cv_wd": 0.14143192169514743,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "smooth",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.4996638655462196,
+    "std_lead_time": 1.1147371300476916,
+    "cv_lead_time": 0.44595481232997797,
+    "stability": "volatile",
+    "effective_lead_time": 3.614400995593911
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 15085.658150836462,
+    "safety_stock": 24814,
+    "safety_stock_robust": 24712
+  },
+  "order_quantity": {
+    "eoq_raw": 88669.84483341301,
+    "order_quantity": 88670
+  },
+  "cost_analysis": {
+    "unit_cost": 0.52738,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.0632856
+  },
+  "policy": {
+    "safety_stock": 24814,
+    "reorder_point": 57982,
+    "order_quantity": 88670,
+    "review_period_days": 7
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.8335794114564201,
+    "sigma_eff_days": 1.1147371300476916,
+    "dominant_factor": "transport",
+    "dominant_pct": 70.0,
+    "variance_components": {
+      "transport": 0.8698472083748748,
+      "supplier": 0.24852777382139282,
+      "quality": 0.12426388691069641
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Decrease from 3.0 to 1.83 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MB6ADE36 exhibits smooth, normally distributed demand averaging 13,268.6 units per working day (CV=0.14), with no statistically significant trend over the 113-day observation window. Lead times are volatile (CV=0.45, mean=2.50 days), making them the dominant driver of buffer requirements. A classical (r,Q) EOQ policy with normal-approximation safety stock is recommended: order 88,670 units whenever inventory falls to the reorder point of 57,982 units, maintaining a safety stock of 24,814 units to achieve the 95% service level target. This policy reduces estimated annual inventory costs by 60% versus the current SAP baseline (MOQ-only ordering, zero safety stock) while keeping peak inventory at 113,484 units \u2014 well within the 161,789-unit storage cap.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with Safety Stock (Normal Approximation) \u2014 (r,Q) policy",
+    "selection_rationale": "Demand is smooth and continuous (CV=0.14, 100% non-zero fill rate) with a normal distribution, making the classical (r,Q) EOQ framework directly applicable. The normal approximation for the safety buffer is valid and efficient for this demand profile. MOQ=14,098 is well below the EOQ of 88,670, so MOQ does not constrain the solution.",
+    "boundary_risk": "Low \u2014 peak inventory (SS+OQ = 113,484 units) occupies only 70.1% of the 161,789-unit storage capacity. No capacity constraint binds. If demand grows by more than ~43% the cap would become active.",
+    "escalation_flag": "None \u2014 MOQ + Safety Stock = 38,912 units, which is well below max_storage_units. No infeasibility detected."
+  }
+}

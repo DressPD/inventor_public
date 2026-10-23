@@ -1,0 +1,78 @@
+{
+  "material_id": "PL2__M7DB30C9",
+  "data_quality": {
+    "total_rows": 186,
+    "working_days": 186,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 6284.801
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 3501.07,
+    "std_daily_demand": 1393.45,
+    "robust_std_daily": 1075.84,
+    "cv_wd": 0.398,
+    "non_zero_fraction_wd": 0.9946,
+    "trend_detected": false,
+    "regime": "SMOOTH",
+    "distribution_type": "Normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.692,
+    "std_lead_time": 0.754,
+    "cv_lead_time": 1.089,
+    "stability": "UNSTABLE",
+    "effective_lead_time": 0.692
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 3034.2,
+    "safety_stock": 4991.0,
+    "safety_stock_robust": 3853.0
+  },
+  "order_quantity": {
+    "eoq_raw": 20467.6,
+    "order_quantity": 20468
+  },
+  "cost_analysis": {
+    "unit_cost": 2.611365,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.31336
+  },
+  "policy": {
+    "safety_stock": 4989,
+    "reorder_point": 7424,
+    "order_quantity": 20468,
+    "review_period_days": 6
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.43,
+    "sigma_eff_days": 0.215,
+    "dominant_factor": "lead_time_variance",
+    "dominant_pct": 85.5,
+    "variance_components": {
+      "transport": 0.855,
+      "supplier": 0.0,
+      "quality": 0.145
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "DECREASE from 3.0 to 1.43 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL2__M7DB30C9 exhibits smooth, high-volume demand (mean 3,501 units/day, CV 0.40) with near-perfect daily non-zero activity, making it well-suited to a continuous-review (r,Q) policy. Lead times are very short on average (0.69 days) but highly unstable (CV 1.09), making lead-time variance the dominant safety-stock driver at 85.5% of total variance. The EOQ of 20,468 units dramatically reduces ordering frequency from ~2,200 to ~43 orders/year, yielding a 95% cost reduction versus the SAP baseline while achieving the 95% service level target. The current SAP safety lead time of 3.0 days is over-conservative and should be reduced to 1.43 days.",
+  "warnings": [
+    "Lead-time CV = 1.09 exceeds 1.0 \u2014 lead time is UNSTABLE; supplier performance review recommended",
+    "SAP safety stock is 0 \u2014 material is currently exposed to stockout risk at 95% SL target",
+    "SAP safety lead time of 3.0 days is over-conservative vs recommended 1.43 days"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) Continuous-Review Fixed-Order-Quantity (EOQ-based)",
+    "selection_rationale": "Smooth, near-continuous high-volume demand with stable mean justifies EOQ-driven fixed order quantities. Continuous review is appropriate given daily demand visibility and low lead times. The (r,Q) policy minimises total inventory cost while maintaining the 95% service level via a statistically derived reorder point.",
+    "boundary_risk": "Lead-time instability (CV > 1.0) is the dominant risk. Any reduction in lead-time variance would allow a material reduction in safety stock and holding costs. Storage capacity (32,583 units) is not binding: SS + OQ = 25,457 units leaves ~7,126 units headroom.",
+    "escalation_flag": "Lead-time CV exceeds 1.0 \u2014 supplier SLA review required. No MOQ-capacity infeasibility detected; policy is implementable as-is."
+  }
+}

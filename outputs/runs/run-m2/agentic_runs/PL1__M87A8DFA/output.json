@@ -1,0 +1,90 @@
+{
+  "material_id": "PL1__M87A8DFA",
+  "analysis_metadata": {
+    "total_rows": 172,
+    "working_days": 172,
+    "date_range_start": "2025-03-04",
+    "date_range_end": "2026-03-06",
+    "unit_cost": 4.468523,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 50.0,
+    "moq": 315,
+    "service_level_target": 0.95,
+    "max_storage_units": 9770.952
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1011.7,
+    "std_daily_demand": 634.2,
+    "robust_std": 563.87,
+    "cv": 0.627,
+    "non_zero_fraction": 0.919,
+    "demand_regime": "moderate",
+    "distribution_type": "continuous",
+    "trend_detected": "YES",
+    "trend_slope": -4.3674
+  },
+  "lead_time_analysis": {
+    "mean_lead_time_days": 0.73,
+    "std_lead_time_days": 0.95,
+    "cv_lead_time": 1.297,
+    "lead_time_stability": "unstable",
+    "effective_lead_time_days": 1.68
+  },
+  "safety_stock_calculation": {
+    "z_score": 1.645,
+    "sigma_demand_during_lead_time": 1099.61,
+    "calculated_safety_stock": 1809,
+    "safety_stock_robust": 1763,
+    "sap_safety_stock": 133
+  },
+  "order_policy": {
+    "annual_demand": 263042.0,
+    "eoq_raw": 7003.9,
+    "unconstrained_order_quantity": 7004,
+    "order_quantity": 7004,
+    "reorder_point": 2548,
+    "review_period_days": 7,
+    "capacity_constraint_active": false,
+    "feasibility_check": "PASS"
+  },
+  "safety_lead_time": {
+    "sigma_effective_days": 1.09,
+    "recommended_safety_lead_time_days": 1.8,
+    "sap_safety_lead_time_days": 3.0,
+    "dominant_factor": "lead_time_variability",
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.3,
+      "quality": 0.2
+    }
+  },
+  "cost_analysis": {
+    "sap_policy": {
+      "order_quantity": 7004,
+      "safety_stock": 133,
+      "num_orders_per_year": 37.6,
+      "annual_ordering_cost": 1877.8,
+      "average_inventory": 3635.0,
+      "annual_holding_cost": 1949.17,
+      "total_annual_cost": 3826.97
+    },
+    "optimized_policy": {
+      "order_quantity": 7004,
+      "safety_stock": 1809,
+      "num_orders_per_year": 37.6,
+      "annual_ordering_cost": 1877.8,
+      "average_inventory": 5311.0,
+      "annual_holding_cost": 2847.88,
+      "total_annual_cost": 4725.68
+    },
+    "annual_savings": -898.71,
+    "savings_percentage": -23.5
+  },
+  "narrative": "The demand analysis reveals a moderate demand pattern with coefficient of variation of 0.63, characterized as continuous with 92% non-zero periods. Lead time exhibits unstable behavior (CV=1.30), with mean of 0.73 days. The optimized policy increases safety stock from 133 to 1809 units to achieve 95% service level, though this results in higher holding costs given the high demand variability.",
+  "research_insights": {
+    "selected_model": "Normal approximation with lead time variability",
+    "selection_rationale": "Continuous demand distribution with high variability justifies Normal model; lead_time_variability is the primary driver of safety stock requirements.",
+    "boundary_risk": "High demand variability (CV=0.83) and unstable lead times (CV=0.95) create elevated stockout risk; current 95% service level may require further buffer or supplier improvements.",
+    "escalation_flag": "YES"
+  }
+}

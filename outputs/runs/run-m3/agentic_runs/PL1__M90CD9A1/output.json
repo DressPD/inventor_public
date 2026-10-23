@@ -1,0 +1,74 @@
+{
+  "material_id": "PL1__M90CD9A1",
+  "data_quality": {
+    "total_rows": 87,
+    "working_days": 87,
+    "outliers_detected": 10,
+    "winsorisation": {
+      "lower_bound": 8187.61,
+      "upper_bound": 19464.87
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 16531.45,
+    "std_daily_demand": 2712.26,
+    "robust_std_daily": 1260.58,
+    "cv_wd": 0.1641,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "moderate",
+    "distribution_type": "left_skewed"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.5139,
+    "std_lead_time": 1.2594,
+    "cv_lead_time": 0.501,
+    "stability": "volatile",
+    "effective_lead_time": 2.5139
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 21258.84,
+    "safety_stock": 34967.69,
+    "safety_stock_robust": 34402.22
+  },
+  "order_quantity": {
+    "eoq_raw": 165971.07,
+    "order_quantity": 165972
+  },
+  "cost_analysis": {
+    "unit_cost": 0.187541,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.022505
+  },
+  "policy": {
+    "safety_stock": 34968,
+    "reorder_point": 76526,
+    "order_quantity": 165972,
+    "review_period_days": 10
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.0715,
+    "sigma_eff_days": 1.2594,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 0.9516,
+      "supplier": 0.4758,
+      "quality": 0.1586
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Demand for PL1__M90CD9A1 is moderate and largely stationary (CV=0.164, negligible trend) with a left-skewed profile driven by periodic low-demand events. Lead times are volatile (CV=0.501, mean 2.51 days), justifying a meaningful safety buffer. A continuous-review (r,Q) policy is chosen: the EOQ of 165,972 units dominates the MOQ and is unconstrained by storage capacity (65.5% utilisation). Setting safety stock at 34,968 units achieves the 95% service level target at a 21.8% lower total annual cost versus the SAP baseline.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review with EOQ order quantity",
+    "selection_rationale": "Demand is near-continuous and stationary with moderate variability; the (r,Q) policy is optimal for such patterns as it minimises combined ordering and holding costs while providing a deterministic reorder trigger aligned with volatile lead times.",
+    "boundary_risk": "Storage capacity utilisation is 65.5% \u2014 no capacity constraint binds. MOQ (60,793) is well below EOQ (165,972) and is non-binding. No boundary risk identified.",
+    "escalation_flag": "none"
+  }
+}

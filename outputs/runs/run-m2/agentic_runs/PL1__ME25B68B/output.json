@@ -1,0 +1,76 @@
+{
+  "material_id": "PL1__ME25B68B",
+  "data_quality": {
+    "total_rows": 147,
+    "working_days": 147,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 637.3855999999993
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 232.72650340136056,
+    "std_daily_demand": 140.74709365034442,
+    "robust_std_daily": 125.2687175685693,
+    "cv_wd": 0.6047746672307954,
+    "non_zero_fraction_wd": 0.9251700680272109,
+    "trend_detected": false,
+    "regime": "lumpy",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.6983928571428573,
+    "std_lead_time": 1.1181585195773784,
+    "cv_lead_time": 0.4143794394569068,
+    "stability": "unstable",
+    "effective_lead_time": 4.537763621847645
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 348.097094354095,
+    "safety_stock": 573,
+    "safety_stock_robust": 546
+  },
+  "order_quantity": {
+    "eoq_raw": 1328.8943834631534,
+    "order_quantity": 1329
+  },
+  "cost_analysis": {
+    "unit_cost": 28.663167,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 3.43958004
+  },
+  "policy": {
+    "safety_stock": 573,
+    "reorder_point": 1201,
+    "order_quantity": 1329,
+    "review_period_days": 6
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.462117514015166,
+    "sigma_eff_days": 0.4143794394569068,
+    "dominant_factor": "transport",
+    "dominant_pct": 0.6,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "REDUCE from 3.5 to 2.5 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__ME25B68B shows lumpy demand with 92.5% non-zero working days (mean=232.7 units/day, CV=0.60). Lead time is unstable (mean=2.70 days, CV=0.41). Recommended policy: reorder at 1201 units with EOQ-optimized order quantity of 1329 units, maintaining 573 units safety stock to achieve 95% service level.",
+  "warnings": [
+    "High capacity utilization: 98.4%"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with safety stock",
+    "selection_rationale": "Lumpy demand (lumpy) with CV=0.60 and unstable lead time (CV=0.41) requires robust safety stock. EOQ optimizes ordering costs.",
+    "boundary_risk": "High capacity utilization at 98.4%. Monitor closely.",
+    "escalation_flag": ""
+  }
+}

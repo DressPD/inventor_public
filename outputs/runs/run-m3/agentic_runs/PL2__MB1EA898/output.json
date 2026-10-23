@@ -1,0 +1,88 @@
+{
+  "material_id": "PL2__MB1EA898",
+  "data_quality": {
+    "total_rows": 141,
+    "working_days": 141,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 38.15280000000001,
+      "upper_bound": 6023.919199999999
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 3331.238312056738,
+    "std_daily_demand": 1395.976771845816,
+    "robust_std_daily": 1288.4180874722017,
+    "cv_wd": 0.41905641118300146,
+    "non_zero_fraction_wd": 0.9858156028368794,
+    "trend_detected": false,
+    "regime": "smooth",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.7152941176470586,
+    "std_lead_time": 1.137459250802892,
+    "cv_lead_time": 0.6631278211127972,
+    "stability": "moderate",
+    "effective_lead_time": 2.8527533684499504
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 4207.17514410394,
+    "safety_stock": 6921,
+    "safety_stock_robust": 6823
+  },
+  "order_quantity": {
+    "eoq_raw": 80247.45654843141,
+    "order_quantity": 44514
+  },
+  "cost_analysis": {
+    "unit_cost": 0.107771,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.01293252,
+    "recommended": {
+      "annual_ordering_cost": 935.4468010223576,
+      "annual_holding_cost": 377.34506855999996,
+      "total_annual_cost": 1312.7918695823575
+    },
+    "previous_sap": {
+      "annual_ordering_cost": 3069.699882101675,
+      "annual_holding_cost": 160.80941994,
+      "total_annual_cost": 3230.5093020416753
+    },
+    "savings": {
+      "absolute": 1917.7174324593177,
+      "percentage": 59.36269650260175
+    }
+  },
+  "policy": {
+    "safety_stock": 6921,
+    "reorder_point": 16425,
+    "order_quantity": 44514,
+    "review_period_days": 14
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.077605788499385,
+    "sigma_eff_days": 1.137459250802892,
+    "dominant_factor": "transport",
+    "dominant_pct": 50.0,
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.3,
+      "quality": 0.2
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "REDUCE",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL2__MB1EA898 exhibits smooth demand behavior with a CV of 0.42. Mean daily demand is 3331 units with normal distribution. Lead time is moderate (mean 1.72 days, CV 0.66). Recommended safety stock is 6921 units (vs SAP 5652), and order quantity is 44514 units (storage-capped from EOQ 80247). This policy achieves 95% service level and saves $1917.72 annually (59.4%).",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Classic EOQ with service level constraint",
+    "selection_rationale": "Demand is smooth with moderate variability",
+    "boundary_risk": "Low",
+    "escalation_flag": ""
+  }
+}

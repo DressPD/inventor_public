@@ -1,0 +1,79 @@
+{
+  "material_id": "PL1__ME4BA165",
+  "data_quality": {
+    "total_rows": 88,
+    "working_days": 88,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 63.57,
+      "upper_bound": 657.954
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 391.428,
+    "std_daily_demand": 139.8694,
+    "robust_std_daily": 109.858,
+    "cv_wd": 0.3573,
+    "non_zero_fraction_wd": 0.9886,
+    "trend_detected": false,
+    "regime": "moderate",
+    "distribution_type": "left-skewed"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.9018,
+    "std_lead_time": 1.0506,
+    "cv_lead_time": 0.3621,
+    "stability": "unstable",
+    "effective_lead_time": 3.9524
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 475.2796,
+    "safety_stock": 782.0,
+    "safety_stock_robust": 744.0
+  },
+  "order_quantity": {
+    "eoq_raw": 4651.13,
+    "order_quantity": 4652
+  },
+  "cost_analysis": {
+    "unit_cost": 3.769592,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.4524
+  },
+  "policy": {
+    "safety_stock": 782,
+    "reorder_point": 1918,
+    "order_quantity": 4652,
+    "review_period_days": 12
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.9978,
+    "sigma_eff_days": 1.2142,
+    "dominant_factor": "lead_time",
+    "dominant_pct": 74.87,
+    "variance_components": {
+      "transport": 0.4492,
+      "supplier": 0.2995,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Demand for PL1__ME4BA165 is near-continuous (98.9% non-zero working days) with moderate variability (CV=0.357) and a left-skewed distribution, indicating consistently high throughput with occasional dips. Lead times are unstable (CV=0.362), exhibiting a bimodal pattern around 2 and 4 days that contributes 74.87% of total demand-during-lead-time variance. A continuous-review (r,Q) policy with EOQ-optimised order quantity of 4,652 units and statistically-derived safety stock of 782 units is recommended to achieve the 95% service level while reducing total annual inventory costs by 68.8%.",
+  "warnings": [
+    "Lead time CV=0.362 classified as unstable; bimodal distribution suggests two distinct supplier delivery modes \u2014 investigate with supplier",
+    "Safety stock raised significantly from SAP baseline 79 to recommended 782 to reflect true demand-during-lead-time uncertainty",
+    "Storage utilisation at 96.59% post-replenishment (5,434/5,626 units); monitor capacity headroom closely",
+    "SAP safety lead time of 4.0 days should be reduced to ~2.0 days once statistical safety stock is implemented"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review with EOQ order quantity",
+    "selection_rationale": "Near-continuous demand (98.9% non-zero days) with moderate CV justifies a continuous-review reorder-point policy. EOQ minimises the sum of annual ordering and holding costs given ~97,857 units annual demand, unit cost of $3.77, holding rate 12%, and ordering cost $50.",
+    "boundary_risk": "Storage utilisation reaches 96.59% immediately after replenishment, leaving only ~192 units of headroom. Any demand surge or early delivery could transiently exceed capacity. Recommend reviewing max_storage_units with the warehouse team and considering a small reduction in order_quantity if capacity is operationally binding.",
+    "escalation_flag": "none"
+  }
+}

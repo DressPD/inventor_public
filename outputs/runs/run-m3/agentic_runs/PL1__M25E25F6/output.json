@@ -1,0 +1,79 @@
+{
+  "material_id": "PL1__M25E25F6",
+  "data_quality": {
+    "total_rows": 181,
+    "working_days": 181,
+    "outliers_detected": 23,
+    "winsorisation": {
+      "lower_bound": 4.535,
+      "upper_bound": 172.0
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 66.3,
+    "std_daily_demand": 27.8,
+    "robust_std_daily": 16.7,
+    "cv_wd": 0.42,
+    "non_zero_fraction_wd": 0.978,
+    "trend_detected": true,
+    "regime": "declining",
+    "distribution_type": "right-skewed"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.15,
+    "std_lead_time": 1.29,
+    "cv_lead_time": 0.6,
+    "stability": "unstable",
+    "effective_lead_time": 3.44
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 95.5,
+    "safety_stock": 157.0,
+    "safety_stock_robust": 126.0
+  },
+  "order_quantity": {
+    "eoq_raw": 829.6,
+    "order_quantity": 884
+  },
+  "cost_analysis": {
+    "unit_cost": 17.674532,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 2.121
+  },
+  "policy": {
+    "safety_stock": 157,
+    "reorder_point": 386,
+    "order_quantity": 884,
+    "review_period_days": 14
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.36,
+    "sigma_eff_days": 1.44,
+    "dominant_factor": "lead_time_variance",
+    "dominant_pct": 81.2,
+    "variance_components": {
+      "transport": 0.65,
+      "supplier": 0.3,
+      "quality": 0.05
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M25E25F6 exhibits a declining demand regime: early-period demand (March 2025) averaged over 150 units/day before stabilising near 63\u201370 units/day through early 2026. Lead times are highly variable (CV=0.60), shifting between a long-lead regime of ~4\u20136 days and a compressed regime below 1 day, making lead-time variance the dominant buffer driver (81% of sigma_LTD). The recommended (r,Q) continuous review policy raises safety stock from 90 to 157 units to properly cover the 95th-percentile demand-during-lead-time risk, while the EOQ-derived order quantity of 884 units remains within the 1,342.5-unit storage constraint at 77.5% utilisation.",
+  "warnings": [
+    "SAP safety stock (90 units) is statistically insufficient; sigma_LTD=95.5 requires at least 157 units at 95% service level.",
+    "Lead time CV=0.60 indicates unstable supplier performance; targeted lead time reduction could reduce required safety stock by ~25%.",
+    "Demand regime is declining; EOQ and reorder point should be reassessed every quarter as baseline demand evolves.",
+    "Storage capacity cap is not binding (77.5% utilised), but should be monitored if safety stock is further increased."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous review",
+    "selection_rationale": "Demand is near-continuous (97.8% non-zero working days) with moderate CV=0.42, making a continuous-review (r,Q) policy the natural fit: replenish Q units whenever inventory falls to reorder point r. The EOQ balances ordering and holding costs efficiently, and the reorder point absorbs lead-time and demand uncertainty via the safety stock.",
+    "boundary_risk": "Storage utilisation post-replenishment is 77.5% (1,041/1,342.5 units), leaving a comfortable 301-unit headroom. No capacity constraint binding at current parameters. If safety stock were raised further (e.g., robust-based 126 units or higher), headroom remains adequate.",
+    "escalation_flag": "Monitor: demand is in a declining regime. If mean daily demand continues to decrease, the EOQ, reorder point, and safety stock should be recalculated to avoid excess inventory accumulation. Supplier lead time instability (CV=0.60) is the primary risk driver and should be escalated to procurement for targeted supplier performance management."
+  }
+}

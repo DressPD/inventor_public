@@ -1,0 +1,74 @@
+{
+  "material_id": "PL1__MC7A8839",
+  "data_quality": {
+    "total_rows": 220,
+    "working_days": 220,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 126.935
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 40.267295454545454,
+    "std_daily_demand": 33.30953710589674,
+    "robust_std_daily": 41.81969820000001,
+    "cv_wd": 0.8272106862378483,
+    "non_zero_fraction_wd": 0.7909090909090909,
+    "trend_detected": false,
+    "regime": "variable",
+    "distribution_type": "normal_approx_high_cv"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.1697744360902254,
+    "std_lead_time": 0.7641428810601254,
+    "cv_lead_time": 0.65323951138319,
+    "stability": "unstable",
+    "effective_lead_time": 1.9339173171503508
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 47.37810852098139,
+    "safety_stock": 78.0,
+    "safety_stock_robust": 90.0
+  },
+  "order_quantity": {
+    "eoq_raw": 265.6885304482227,
+    "order_quantity": 266
+  },
+  "cost_analysis": {
+    "unit_cost": 118.840812,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 14.2608974
+  },
+  "policy": {
+    "safety_stock": 78,
+    "reorder_point": 126,
+    "order_quantity": 266,
+    "review_period_days": 7
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.2569031894208946,
+    "sigma_eff_days": 0.7641428810601254,
+    "dominant_factor": "transport",
+    "dominant_pct": 0.7,
+    "variance_components": {
+      "transport": 0.7,
+      "supplier": 0.2,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "DECREASE from 2.0 to 1.26 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MC7A8839 exhibits variable demand with CV=0.827 and unstable lead times (CV=0.653, range 0.11\u20133.37 days). The current SAP policy (MOQ=SS=43) generates ~234 orders per year, creating unnecessary transaction costs. The optimized EOQ-based (r,Q) policy recommends order quantity 266 and safety stock 78 to maintain a 95% service level, reducing total annual inventory cost by $7,724 (61.2%). Storage capacity is not binding. Safety lead time in SAP can be reduced from 2.0 to 1.26 days.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Economic Order Quantity (EOQ) with (r,Q) continuous-review policy",
+    "selection_rationale": "EOQ is appropriate given continuous demand (79.1% non-zero days), sufficient history (220 observations), and the need to balance ordering vs. holding costs. The combined-variance safety stock formula accounts for both demand variability (CV=0.827) and lead time instability (CV=0.653). Continuous review (r,Q) is preferred over periodic review due to high demand variability and the cost of stockouts.",
+    "boundary_risk": "Lead time instability (CV=0.653) is the dominant risk: if lead times spike above 3.37 days (observed max), the safety stock of 78 units may be insufficient. Storage capacity (1,366.5 units) is not currently binding (SS+OQ=344), but leaves ample headroom. Demand variability should be monitored quarterly and safety stock recalculated if CV changes materially.",
+    "escalation_flag": "none"
+  }
+}

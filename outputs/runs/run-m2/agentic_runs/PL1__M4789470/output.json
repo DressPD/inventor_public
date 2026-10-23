@@ -1,0 +1,88 @@
+{
+  "material_id": "PL1__M4789470",
+  "data_quality": {
+    "total_rows": 129,
+    "working_days": 129,
+    "outliers_detected": 1,
+    "winsorisation": {
+      "lower_bound": -2274.4814999999994,
+      "upper_bound": 13178.2745
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 5653.021437984496,
+    "std_daily_demand": 2670.534533359304,
+    "robust_std_daily": 2745.1628862000007,
+    "cv_wd": 0.47240835058843245,
+    "non_zero_fraction_wd": 0.9844961240310077,
+    "trend_detected": true,
+    "regime": "erratic",
+    "distribution_type": "gamma-like"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.428837209302326,
+    "std_lead_time": 1.1001031166690973,
+    "cv_lead_time": 0.45293406756770566,
+    "stability": "moderate",
+    "effective_lead_time": 3.528940325971423
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 7483.092225491392,
+    "safety_stock": 12309,
+    "safety_stock_robust": 12417
+  },
+  "order_quantity": {
+    "eoq_raw": 139028.58686684692,
+    "order_quantity": 139029
+  },
+  "cost_analysis": {
+    "unit_cost": 0.091395,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.0109674,
+    "recommended_policy": {
+      "annual_ordering_cost": 762.3887963101892,
+      "annual_holding_cost": 897.3910539,
+      "total_annual_cost": 1659.7798502101891
+    },
+    "sap_policy": {
+      "annual_ordering_cost": 16101.192763513487,
+      "annual_holding_cost": 36.0991971,
+      "total_annual_cost": 16137.291960613487
+    },
+    "cost_savings": 14477.512110403299,
+    "cost_savings_pct": 89.7146320816328
+  },
+  "policy": {
+    "safety_stock": 12309,
+    "reorder_point": 26040,
+    "order_quantity": 139029,
+    "review_period_days": 25
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.8095086014737831,
+    "sigma_eff_days": 1.1001031166690973,
+    "dominant_factor": "transport",
+    "dominant_pct": 0.4,
+    "variance_components": {
+      "transport": 0.4,
+      "supplier": 0.4,
+      "quality": 0.2
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "DECREASE",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M4789470 exhibits erratic demand with CV=0.47 and moderate lead time variability (CV=0.45). A slight downward trend is detected (slope=-30.8 units/period). The recommended (r,Q) policy uses safety stock of 12309 units and order quantity of 139029 units, achieving 95% service level while reducing total annual cost by $14477.51 (89.7%) compared to SAP's MOQ-based policy.",
+  "warnings": [
+    "LEAD_TIME_VOLATILITY: Consider supplier performance review or dual sourcing"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous review with safety stock",
+    "selection_rationale": "EOQ-based order quantity balances ordering and holding costs; high service level justified by moderate lead time variability",
+    "boundary_risk": "low",
+    "escalation_flag": null
+  }
+}

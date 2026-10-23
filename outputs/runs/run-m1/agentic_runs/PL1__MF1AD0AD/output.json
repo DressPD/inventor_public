@@ -1,0 +1,77 @@
+{
+  "material_id": "PL1__MF1AD0AD",
+  "data_quality": {
+    "total_rows": 171,
+    "working_days": 171,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 584.973
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 243.8,
+    "std_daily_demand": 277.9,
+    "robust_std_daily": 218.4,
+    "cv_wd": 1.14,
+    "non_zero_fraction_wd": 0.632,
+    "trend_detected": false,
+    "regime": "erratic",
+    "distribution_type": "right-skewed zero-inflated"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.66,
+    "std_lead_time": 1.04,
+    "cv_lead_time": 0.39,
+    "stability": "moderate",
+    "effective_lead_time": 3.7
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 378.7,
+    "safety_stock": 623.0,
+    "safety_stock_robust": 549.0
+  },
+  "order_quantity": {
+    "eoq_raw": 527.8,
+    "order_quantity": 890
+  },
+  "cost_analysis": {
+    "unit_cost": 45.877757,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 5.505
+  },
+  "policy": {
+    "safety_stock": 623,
+    "reorder_point": 1104,
+    "order_quantity": 890,
+    "review_period_days": 4
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.56,
+    "sigma_eff_days": 1.55,
+    "dominant_factor": "demand_variability",
+    "dominant_pct": 76.5,
+    "variance_components": {
+      "transport": 76.5,
+      "supplier": 23.5,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "REDUCE",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MF1AD0AD exhibits erratic demand (CV=1.14) with 63.2% non-zero working days and bursts up to 613 units/day. Lead times are moderately variable (CV=0.39, range 0.06-4.96 days), contributing 23.5% of total lead-time demand variance while demand variability dominates at 76.5%. The current SAP safety stock of 70 units is critically insufficient for a 95% service level, which requires 623 units based on combined demand-lead-time variance. A continuous-review (r,Q) policy with ROP=1,104 and OQ=890 is recommended, well within the 2,564-unit storage constraint.",
+  "warnings": [
+    "SAP safety stock (70 units) is critically below the recommended 623 units \u2014 current policy likely yields service level well below 95%",
+    "High demand variability (CV=1.14) dominates risk; demand bursts may exceed buffer before replenishment arrives"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) Continuous Review Fixed Order Quantity",
+    "selection_rationale": "Erratic demand with moderate lead-time variability is best managed by continuous-review reorder point triggering immediate replenishment upon stock depletion, combined with a fixed EOQ-derived batch size respecting the MOQ=327 constraint. The (r,Q) policy is preferred over periodic review for erratic materials as it avoids the additional exposure of a fixed review interval.",
+    "boundary_risk": "Moderate \u2014 demand variance dominates (76.5% of sigma_LTD); demand spikes above the 95th percentile (~575 units/day) arriving during peak lead-time periods could still cause stockouts. The safety stock provides 95% cycle service level but not full protection against clustered high-demand events.",
+    "escalation_flag": "none \u2014 MOQ (327) + safety stock (623) = 950 units, well within max_storage_units (2564.5). Capacity constraint is non-binding."
+  }
+}

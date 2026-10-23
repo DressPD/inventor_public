@@ -1,0 +1,153 @@
+{
+  "material_id": "PL1__ME993828",
+  "analysis_metadata": {
+    "analysis_date": "2026-10-22 14:21:01",
+    "data_period_start": "2025-03-14",
+    "data_period_end": "2026-03-09",
+    "total_days": 360,
+    "working_days": 126
+  },
+  "input_parameters": {
+    "unit_cost": 12.203529,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 100.0,
+    "moq": 98,
+    "service_level_target": 0.95,
+    "sap_safety_stock": 0,
+    "sap_safety_lead_time_days": 5.0,
+    "max_storage_units": 4572.755
+  },
+  "data_quality": {
+    "total_rows": 126,
+    "working_days": 126,
+    "non_zero_observations": 122,
+    "non_zero_fraction": 0.9683,
+    "demand_outliers_detected": 0,
+    "demand_outlier_indices": [],
+    "lead_time_observations": 79,
+    "lead_time_outliers_removed": 2,
+    "lead_time_valid_observations": 77
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 296.31,
+    "std_demand": 128.2,
+    "robust_std_demand": 126.18,
+    "median_demand": 288.87,
+    "cv_demand": 0.4326,
+    "annual_demand": 74077.82,
+    "trend_detected": true,
+    "trend_slope": 0.8671,
+    "trend_pvalue": 0.009,
+    "trend_direction": "increasing",
+    "demand_regime": "smooth",
+    "distribution_type": "gamma",
+    "outlier_bounds": {
+      "lower": -71.4,
+      "upper": 647.08
+    }
+  },
+  "lead_time_analysis": {
+    "mean_lead_time_days": 4.34,
+    "std_lead_time_days": 1.25,
+    "median_lead_time_days": 4.92,
+    "cv_lead_time": 0.2881,
+    "min_lead_time_days": 0.68,
+    "max_lead_time_days": 6.23,
+    "stability": "moderate",
+    "effective_lead_time_days": 5.59
+  },
+  "safety_stock_calculation": {
+    "service_level_target": 0.95,
+    "z_score": 1.645,
+    "sigma_ltd": 456.52,
+    "sigma_ltd_robust": 454.07,
+    "safety_stock_standard": 751,
+    "safety_stock_robust": 747,
+    "safety_stock_recommended": 747,
+    "variance_decomposition": {
+      "demand_variance_component": 71279.38,
+      "leadtime_variance_component": 137128.6,
+      "demand_contribution_pct": 34.2,
+      "leadtime_contribution_pct": 65.8,
+      "dominant_factor": "leadtime_variability"
+    }
+  },
+  "eoq_calculation": {
+    "eoq_raw": 3180.72,
+    "eoq_rounded": 3181,
+    "moq": 98,
+    "order_quantity_before_capacity": 3181,
+    "capacity_exceeded": false,
+    "order_quantity_final": 3181
+  },
+  "inventory_policy": {
+    "policy_type": "(r,Q) continuous review",
+    "reorder_point": 2033,
+    "order_quantity": 3181,
+    "safety_stock": 747,
+    "review_period_days": 11,
+    "expected_demand_during_lt": 1285.18
+  },
+  "cost_analysis": {
+    "previous_policy": {
+      "orders_per_year": 78.1,
+      "avg_order_size": 948.22,
+      "avg_inventory": 474.11,
+      "annual_ordering_cost": 7812.29,
+      "annual_holding_cost": 694.3,
+      "total_annual_cost": 8506.59
+    },
+    "optimized_policy": {
+      "orders_per_year": 23.3,
+      "avg_inventory": 2337.5,
+      "annual_ordering_cost": 2328.76,
+      "annual_holding_cost": 3423.09,
+      "total_annual_cost": 5751.85
+    },
+    "savings": {
+      "annual_savings": 2754.74,
+      "savings_percentage": 32.38,
+      "holding_cost_change": 2728.79,
+      "holding_cost_change_pct": 393.03,
+      "ordering_cost_change": -5483.53,
+      "ordering_cost_change_pct": -70.19
+    }
+  },
+  "safety_lead_time_analysis": {
+    "recommended_safety_lead_time_days": 1.25,
+    "sap_safety_lead_time_days": 5.0,
+    "difference_days": -3.75,
+    "comparison_action": "decrease",
+    "comparison_rationale": "Can reduce by 3.8 days as current setting is conservative",
+    "dominant_factor": "Lead time variability is the dominant factor"
+  },
+  "research_insights": {
+    "selected_model": "(r,Q) continuous review policy",
+    "key_benefits": [
+      "Reduces annual inventory costs by $2,754.74 (32.4%)",
+      "Achieves 95% service level with 747 units safety stock",
+      "Reduces ordering frequency from 78 to 23 orders per year",
+      "Balances ordering and holding costs through EOQ optimization"
+    ],
+    "implementation_recommendations": [
+      "Implement reorder point at 2033 units",
+      "Order 3181 units when inventory reaches reorder point",
+      "Maintain safety stock of 747 units",
+      "Monitor lead time variability closely as it dominates uncertainty",
+      "Review policy every 11 working days"
+    ],
+    "model_justification": "The (r,Q) continuous review policy is optimal for this material because demand is smooth with CV=43.26%, and lead time variability is moderate. This policy balances ordering and holding costs while maintaining the target 95% service level."
+  },
+  "diagnostics": {
+    "warnings": [
+      "Demand shows increasing trend (slope=0.87, p=0.0090). Monitor and adjust forecasts.",
+      "Removed 2 lead time outliers (< 0.5 days) from analysis."
+    ],
+    "errors": [],
+    "capacity_check": {
+      "max_inventory": 3928.0,
+      "capacity_available": 4572.755,
+      "capacity_utilization_pct": 85.9
+    }
+  }
+}

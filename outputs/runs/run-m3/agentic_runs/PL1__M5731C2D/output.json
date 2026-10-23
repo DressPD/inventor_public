@@ -1,0 +1,111 @@
+{
+  "material_id": "PL1__M5731C2D",
+  "timestamp": "2026-10-22T09:24:09.248151",
+  "data_quality": {
+    "total_rows": 220,
+    "working_days": 220,
+    "outliers_detected": 5,
+    "outlier_method": "IQR (1.5x)",
+    "winsorization_applied": true
+  },
+  "demand_characteristics": {
+    "mean_daily_demand": 66.92,
+    "std_daily_demand": 55.36,
+    "robust_std_daily": 69.5,
+    "cv_wd": 0.827,
+    "non_zero_fraction_wd": 0.791,
+    "trend_detected": false,
+    "trend_direction": "increasing",
+    "trend_slope": 0.023423,
+    "trend_p_value": 0.6912,
+    "regime": "erratic",
+    "distribution_type": "gamma",
+    "annual_demand": 16729.9
+  },
+  "lead_time_characteristics": {
+    "mean_lead_time": 1.56,
+    "std_lead_time": 1.06,
+    "cv_lead_time": 0.683,
+    "stability": "unstable",
+    "effective_lead_time": 2.62,
+    "sample_size": 25
+  },
+  "safety_stock": {
+    "recommended": 164,
+    "robust": 185,
+    "sigma_ltd": 99.23,
+    "z_score": 1.645,
+    "service_level_target": 0.95,
+    "current_sap": 125
+  },
+  "order_quantity": {
+    "eoq_raw": 3973.21,
+    "moq": 500,
+    "unconstrained": 3974,
+    "recommended": 3948,
+    "max_storage_units": 4112.256,
+    "moq_feasible": true,
+    "needs_escalation": false
+  },
+  "cost_analysis": {
+    "unit_cost": 0.883141,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 50.0,
+    "annual_holding_cost_per_unit": 0.106,
+    "recommended_policy": {
+      "annual_ordering_cost": 211.88,
+      "annual_holding_cost": 226.58,
+      "total_annual_cost": 438.46
+    },
+    "previous_policy": {
+      "safety_stock": 125,
+      "order_quantity": 500,
+      "annual_ordering_cost": 1672.99,
+      "annual_holding_cost": 39.74,
+      "total_annual_cost": 1712.73
+    },
+    "savings": {
+      "annual_cost_savings": 1274.27,
+      "savings_percentage": 74.4
+    }
+  },
+  "policy_recommendation": {
+    "model": "(r,Q) continuous review",
+    "safety_stock": 164,
+    "reorder_point": 269,
+    "order_quantity": 3948,
+    "review_period_days": 59
+  },
+  "safety_lead_time_analysis": {
+    "recommended_days": 2.45,
+    "sap_safety_lead_time_days": 2.0,
+    "comparison_action": "increase",
+    "sigma_eff_days": 1.06,
+    "variance_components": {
+      "transport": 0.4528,
+      "supplier": 0.4528,
+      "quality": 0.2264,
+      "dominant_factor": "transport"
+    },
+    "disruption_premium": 1.0
+  },
+  "research_insights": {
+    "selected_model": "(r,Q) continuous review",
+    "key_findings": [
+      "Material PL1__M5731C2D exhibits erratic demand with CV=0.827",
+      "Lead time is unstable with mean=1.56 days and CV=0.683",
+      "Recommended safety stock of 164 units provides 95% service level",
+      "EOQ-based order quantity of 3948 units optimizes ordering and holding costs",
+      "Annual cost savings of $1274.27 (74.4%) vs current policy"
+    ],
+    "demand_pattern": "The demand pattern is classified as erratic with gamma distribution. The coefficient of variation (0.827) indicates moderate to high variability, and 79.1% of working days have non-zero demand.",
+    "lead_time_variability": "Lead time shows unstable behavior with CV=0.683. The dominant source of variability is transport, contributing to supply uncertainty.",
+    "policy_rationale": "The (r,Q) continuous review model is appropriate for this material given its demand characteristics. The reorder point of 269 units (based on mean demand during lead time plus safety stock) triggers replenishment, while the fixed order quantity of 3948 units balances setup and holding costs.",
+    "implementation_notes": [
+      "Increase safety stock from 125 to 164 units to achieve target service level",
+      "Implement large order quantity (3948 units) to reduce ordering frequency and costs",
+      "Monitor lead time closely as it shows unstable behavior",
+      "Review inventory policy every 59 days or when conditions change"
+    ]
+  }
+}

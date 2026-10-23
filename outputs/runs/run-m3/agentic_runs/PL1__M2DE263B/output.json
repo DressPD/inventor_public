@@ -1,0 +1,107 @@
+{
+  "material_id": "PL1__M2DE263B",
+  "analysis_metadata": {
+    "total_rows": 132,
+    "working_days": 132,
+    "non_working_days": 0,
+    "date_range_start": "2025-03-03",
+    "date_range_end": "2026-03-09",
+    "unit_cost": 5.427041,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 50.0,
+    "moq": 1268,
+    "service_level_target": 0.95,
+    "max_storage_units": 8028.048
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 467.06862878787877,
+    "std_daily_demand": 249.61720160165504,
+    "cv_wd": 0.534433670378277,
+    "mean_winsorised": 466.5558412121212,
+    "std_winsorised": 248.20270710858222,
+    "robust_std_daily": 242.0698665678281,
+    "non_zero_fraction_wd": 0.9318181818181818,
+    "zero_days_wd": 9,
+    "outliers_count": 2,
+    "outliers_fraction": 0.015151515151515152,
+    "trend_detected": false,
+    "trend_slope": -0.9251750481338673,
+    "regime": "erratic",
+    "distribution_type": "slightly-skewed"
+  },
+  "lead_time_analysis": {
+    "observations": 59,
+    "mean_lead_time": 2.661016949152543,
+    "std_lead_time": 1.213488409667529,
+    "cv_lead_time": 0.4560243068177337,
+    "min_lead_time": 0.23,
+    "max_lead_time": 4.28,
+    "stability": "moderate",
+    "effective_lead_time": 3.8745053588200715
+  },
+  "buffer_analysis": {
+    "service_level_target": 0.95,
+    "z_score": 1.644853626951472,
+    "sigma_ltd": 696.037432218632,
+    "safety_stock": 1145,
+    "safety_stock_robust": 1136,
+    "demand_variance_component": 163930.84167994067,
+    "lead_time_variance_component": 320537.2653695661,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 66.16271756704329
+  },
+  "order_quantity_analysis": {
+    "annual_demand": 116638.9603030303,
+    "eoq_raw": 4232.038847224958,
+    "unconstrained_order_quantity": 4233,
+    "order_quantity": 4233,
+    "feasibility": "feasible",
+    "capacity_constraint_binding": false
+  },
+  "cost_analysis": {
+    "annual_holding_cost_per_unit": 0.65124492,
+    "previous_policy": {
+      "safety_stock": 440,
+      "order_quantity": 1268,
+      "avg_inventory": 1074.0,
+      "annual_holding_cost": 699.4370440800001,
+      "orders_per_year": 91.98656175317846,
+      "annual_ordering_cost": 4599.328087658923,
+      "total_annual_cost": 5298.765131738924
+    },
+    "optimized_policy": {
+      "safety_stock": 1145,
+      "order_quantity": 4233,
+      "avg_inventory": 3261.5,
+      "annual_holding_cost": 2124.03530658,
+      "orders_per_year": 27.554679967642404,
+      "annual_ordering_cost": 1377.7339983821203,
+      "total_annual_cost": 3501.7693049621203
+    },
+    "savings": {
+      "total_cost_savings": 1796.9958267768034,
+      "total_cost_savings_pct": 33.91348327581136
+    }
+  },
+  "recommended_policy": {
+    "safety_stock": 1145,
+    "reorder_point": 2387,
+    "order_quantity": 4233,
+    "review_period_days": 10
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.4541542487717387,
+    "sap_safety_lead_time_days": 4.0,
+    "sigma_eff_days": 1.213488409667529,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 66.16271756704329,
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease"
+  },
+  "research_insights": {
+    "selected_model": "(r,Q) continuous review",
+    "selection_rationale": "Fixed order quantity with reorder point monitoring. Optimal for materials with regular, relatively predictable demand patterns where continuous monitoring is feasible.",
+    "boundary_risk": "No binding constraints. Operating within optimal parameters.",
+    "escalation_flag": "none"
+  }
+}

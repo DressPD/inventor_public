@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__M6BC7923",
+  "data_quality": {
+    "total_rows": 129,
+    "working_days": 129,
+    "outliers_detected": 6,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 513.49
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 156.08,
+    "std_daily_demand": 137.83,
+    "robust_std_daily": 137.0,
+    "cv_wd": 0.88,
+    "non_zero_fraction_wd": 0.622,
+    "trend_detected": false,
+    "regime": "regular",
+    "distribution_type": "high-variance"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.43,
+    "std_lead_time": 1.32,
+    "cv_lead_time": 0.54,
+    "stability": "moderate",
+    "effective_lead_time": 3.75
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 295.0,
+    "safety_stock": 485.0,
+    "safety_stock_robust": 485.0
+  },
+  "order_quantity": {
+    "eoq_raw": 2058.6,
+    "order_quantity": 2059
+  },
+  "cost_analysis": {
+    "unit_cost": 7.692971,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.9231565
+  },
+  "policy": {
+    "safety_stock": 485,
+    "reorder_point": 567,
+    "order_quantity": 2059,
+    "review_period_days": 13
+  },
+  "safety_lead_time": {
+    "recommended_days": 3.11,
+    "sigma_eff_days": 1.89,
+    "dominant_factor": "transport",
+    "dominant_pct": 0.6,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M6BC7923 exhibits high-variance, semi-regular demand (CV=0.88) with 62% non-zero working days and moderately unstable lead times (CV=0.54, range 0.23\u20134.28 days). The current SAP safety stock of 178 units is substantially under-buffered relative to the analytically required 485 units at the 95% service level. An (r,Q) continuous-review policy with reorder point 567 and order quantity 2,059 is recommended, reducing total annual cost by ~$197 while meeting the service target and respecting the 4,743 unit storage constraint.",
+  "warnings": [
+    "Safety stock increased significantly from SAP baseline (178 \u2192 485 units) due to high demand variability and moderate lead-time instability.",
+    "MOQ of 1025 is binding; unconstrained EOQ is lower but MOQ drives order size upward.",
+    "Capacity gate passed: safety_stock (485) + order_quantity (2059) = 2544 <= max_storage_units (4743.851)."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) Continuous-Review Reorder Point Policy",
+    "selection_rationale": "The (r,Q) policy is appropriate for this material because demand is semi-regular with high variance and lead times are moderately variable. A continuous-review trigger at the reorder point (567 units) ensures replenishment is initiated precisely when stock reaches the buffer threshold, providing robust protection against both demand spikes and lead-time delays without the overstock risk of a periodic review system.",
+    "boundary_risk": "The MOQ (1025) is binding and pushes the order quantity above the unconstrained EOQ, increasing holding costs marginally. The storage capacity (4,743 units) is not binding at the recommended policy (2,544 units peak stock), leaving 2,200 units of headroom. If safety stock requirements increase due to greater demand volatility, capacity could eventually become a constraint.",
+    "escalation_flag": "none"
+  }
+}

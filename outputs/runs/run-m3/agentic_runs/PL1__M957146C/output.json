@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__M957146C",
+  "data_quality": {
+    "total_rows": 85,
+    "working_days": 85,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 868.07
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 143.11,
+    "std_daily_demand": 216.98,
+    "robust_std_daily": 161.27,
+    "cv_wd": 1.516,
+    "non_zero_fraction_wd": 0.541,
+    "trend_detected": true,
+    "regime": "intermittent",
+    "distribution_type": "lumpy"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.397,
+    "std_lead_time": 1.025,
+    "cv_lead_time": 0.734,
+    "stability": "unstable",
+    "effective_lead_time": 1.909
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 295.43,
+    "safety_stock": 486.0,
+    "safety_stock_robust": 396.0
+  },
+  "order_quantity": {
+    "eoq_raw": 2886.39,
+    "order_quantity": 2807
+  },
+  "cost_analysis": {
+    "unit_cost": 3.578608,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.4294
+  },
+  "policy": {
+    "safety_stock": 486,
+    "reorder_point": 760,
+    "order_quantity": 2807,
+    "review_period_days": 20
+  },
+  "safety_lead_time": {
+    "recommended_days": 3.4,
+    "sigma_eff_days": 0.734,
+    "dominant_factor": "transport",
+    "dominant_pct": 0.6,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "INCREASE by 1.40 days \u2014 SAP value of 2.0 days is insufficient given unstable lead times",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M957146C exhibits lumpy intermittent demand (CV=1.52, 54% active days) with a mild declining trend of -1.71 units/day over the observation window. Lead times are highly variable (CV=0.734, mean=1.40 days), warranting an increase in safety lead time from the current SAP value of 2.0 to 3.4 days. The (r,Q) policy with EOQ-derived order quantity (capped to 2,807 by storage capacity) reduces annual cost by 15.1% while maintaining 95% service level, primarily through a 55.4% reduction in safety stock.",
+  "warnings": [
+    "Storage capacity is fully utilised at peak replenishment: SS(486) + OQ(2807) = 3293 \u2248 max_storage_units(3293.62). Any upward revision of safety stock requires additional storage.",
+    "Order quantity was capacity-constrained from unconstrained EOQ of 2887 to 2807 units.",
+    "Declining demand trend detected (-1.71 units/day) \u2014 annual demand estimate may overstate future requirements."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) \u2014 Continuous-review reorder-point with fixed EOQ order quantity",
+    "selection_rationale": "Lumpy intermittent demand with high lead-time variability (CV=0.734) requires a continuous-review policy that triggers replenishment as soon as inventory hits the reorder point, rather than a periodic review which would accumulate additional demand uncertainty. The EOQ order quantity minimises the sum of ordering and holding costs under the observed annual demand of ~35,777 units.",
+    "boundary_risk": "Storage capacity is fully consumed at peak (SS+OQ=3,293 vs limit=3,293.62). A 1-unit increase in safety stock would require reducing order quantity below the EOQ optimum. If demand volatility increases, the safety stock formula will recommend higher SS, creating a binding capacity conflict that cannot be resolved without expanding storage.",
+    "escalation_flag": "none \u2014 MOQ(136)+SS(486)=622 is well below max_storage_units(3293.62); no MOQ-capacity infeasibility exists."
+  }
+}

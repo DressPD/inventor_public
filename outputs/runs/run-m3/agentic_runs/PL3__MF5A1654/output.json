@@ -1,0 +1,78 @@
+{
+  "material_id": "PL3__MF5A1654",
+  "data_quality": {
+    "total_rows": 220,
+    "working_days": 220,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 2553.831
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1559.1,
+    "std_daily_demand": 968.9,
+    "robust_std_daily": 904.2,
+    "cv_wd": 0.622,
+    "non_zero_fraction_wd": 0.731,
+    "trend_detected": true,
+    "regime": "intermittent",
+    "distribution_type": "gamma"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.098,
+    "std_lead_time": 0.893,
+    "cv_lead_time": 0.813,
+    "stability": "volatile",
+    "effective_lead_time": 1.991
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1708.7,
+    "safety_stock": 2812.0,
+    "safety_stock_robust": 2621.0
+  },
+  "order_quantity": {
+    "eoq_raw": 9227.4,
+    "order_quantity": 5914
+  },
+  "cost_analysis": {
+    "unit_cost": 6.361549,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.76338588
+  },
+  "policy": {
+    "safety_stock": 2812,
+    "reorder_point": 5905,
+    "order_quantity": 5914,
+    "review_period_days": 4
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.804,
+    "sigma_eff_days": 1.096,
+    "dominant_factor": "transport",
+    "dominant_pct": 0.6,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Increase safety lead time from 0.0 to 1.80 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__MF5A1654 exhibits intermittent high-volume demand averaging 1,559 units per working day with a CV of 0.62, driven primarily by zero-demand days on non-production days. Lead times are volatile (CV=0.81) with a bimodal distribution suggesting a mix of same-day and multi-day replenishment cycles. The current SAP safety stock of 183 units is critically under-dimensioned given the lead-time demand uncertainty (sigma_LTD=1,709), and the (r,Q) policy with safety stock of 2,812 and order quantity of 5,914 is recommended to achieve 95% service level while consolidating ordering frequency and reducing total annual cost by 94%.",
+  "warnings": [
+    "Storage capacity fully utilised: safety_stock (2812) + order_quantity (5914) = 8726 = max_storage_units. No headroom for safety stock increases.",
+    "Volatile lead times (CV=0.81) significantly inflate buffer requirements. Monitor supplier performance closely.",
+    "Intermittent demand pattern: 26.9% zero-demand days detected; verify whether these reflect true zero consumption or data gaps."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) \u2014 Fixed Reorder Point, Fixed Order Quantity (EOQ-based)",
+    "selection_rationale": "With continuous working-day demand observations, a single replenishment echelon, and no evidence of complex multi-echelon or batch constraints beyond MOQ, the classical (r,Q) policy is optimal. EOQ minimises total ordering plus holding cost; the reorder point r = mean demand over effective lead time + safety stock provides the 95% service level buffer against joint demand and lead-time variability.",
+    "boundary_risk": "Storage is at 100% utilisation under the recommended policy (8,726/8,726 units). Any upward revision to safety stock \u2014 triggered by lead-time spikes or demand surges \u2014 would require either a storage capacity expansion or an explicit service level trade-down. This constraint should be reviewed quarterly.",
+    "escalation_flag": "No MOQ-capacity infeasibility (MOQ 183 + SS 2812 = 2995 < 8726). Capacity binds only at the EOQ order quantity level. Recommend reviewing max_storage_units for potential expansion to allow full unconstrained EOQ of 9,227 units."
+  }
+}

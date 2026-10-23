@@ -1,0 +1,98 @@
+{
+  "material_id": "PL3__M9B8DDA7",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 170,
+    "outliers_detected": 10,
+    "winsorisation": {
+      "lower_bound": 1666.15236,
+      "upper_bound": 3696.9449000000004
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 3294.9658705882352,
+    "std_daily_demand": 420.1815708765567,
+    "robust_std_daily": 176.97944460000014,
+    "cv_wd": 0.12752228319789655,
+    "non_zero_fraction_wd": 0.7456140350877193,
+    "trend_detected": false,
+    "regime": "moderate",
+    "distribution_type": "negatively skewed"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.1491764705882355,
+    "std_lead_time": 0.8810764679055495,
+    "cv_lead_time": 0.7667024956180558,
+    "stability": "volatile",
+    "effective_lead_time": 2.030252938493785
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 2937.8525699409047,
+    "safety_stock": 4832.3374551160005,
+    "safety_stock_robust": 4785.388312619329
+  },
+  "order_quantity": {
+    "eoq_raw": 11593.998053704945,
+    "order_quantity": 2199
+  },
+  "cost_analysis": {
+    "unit_cost": 7.660101,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.91921212,
+    "previous_policy": {
+      "safety_stock": 0,
+      "order_quantity": 11594,
+      "avg_inventory": 5797.0,
+      "annual_holding_cost": 5328.672659639999,
+      "annual_ordering_cost": 5328.670870582147,
+      "total_annual_cost": 10657.343530222146
+    },
+    "optimized_policy": {
+      "safety_stock": 4833,
+      "order_quantity": 2199,
+      "avg_inventory": 5932.5,
+      "annual_holding_cost": 5453.225901899999,
+      "annual_ordering_cost": 28094.86588155044,
+      "total_annual_cost": 33548.091783450436
+    },
+    "annual_savings": -22890.74825322829,
+    "savings_percentage": -214.7884994822077
+  },
+  "policy": {
+    "safety_stock": 4833,
+    "reorder_point": 8620,
+    "order_quantity": 2199,
+    "review_period_days": 1
+  },
+  "safety_lead_time": {
+    "recommended_days": 0.8810764679055495,
+    "sigma_eff_days": 0.8810764679055495,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 0.46577744537815124,
+      "supplier": 0.23288872268907562,
+      "quality": 0.07762957422969188
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__M9B8DDA7 exhibits moderate demand variability (CV=0.13) with 170 working days \nover the analysis period. The demand pattern is moderate with a negatively skewed distribution, showing negative \nskewness (-3.44) indicating occasional low-demand periods or data anomalies.\n\nLead time is highly volatile (CV=0.77, mean=1.15 days, std=0.88 days), \nsuggesting significant supply chain variability. The dominant source of lead time uncertainty is transport, \naccounting for 60% of variance.\n\nThe storage constraint (7033 units) is binding, limiting order quantity to 2199 units \ninstead of the optimal EOQ of 11594 units. This constraint forces frequent ordering (375 \norders/year vs. 71 under unconstrained EOQ), significantly increasing annual ordering costs.\n\nTo achieve the target 95% service level, a safety stock of 4833 units is required, \nconsuming 68.7% of available storage. The recommended reorder point is 8620 \nunits with a review period of 1 day(s).\n\nKey consideration: The optimized policy prioritizes service level over cost efficiency due to the storage constraint. \nThe current SAP policy (zero safety stock) likely experiences frequent stockouts. Management should evaluate the \ntrade-off between expanded storage capacity and higher service-level costs.",
+  "warnings": [
+    "High storage utilization (100.0%) - consider expanding capacity",
+    "Lead time is volatile (CV=0.77) - consider supplier reliability improvements",
+    "Optimized policy increases annual costs by $22,890.75 but improves service level from 0% to 95.0%",
+    "Demand is highly skewed (-3.44) - consider robust safety stock calculation",
+    "10 demand outliers detected - may indicate special events or data quality issues"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with storage constraint and stochastic lead time",
+    "selection_rationale": "Material exhibits moderate demand variability (CV=0.13) and volatile lead times (CV=0.77). Classical EOQ is modified to account for capacity constraint (7033 units) which is binding. Safety stock uses combined variance formula accounting for both demand and lead time uncertainty.",
+    "boundary_risk": "Storage constraint severely limits order quantity, forcing sub-optimal ordering frequency. High storage utilization (100.0%) leaves no buffer for demand spikes. Lead time volatility increases stockout risk.",
+    "escalation_flag": "CAPACITY_CONSTRAINED - Consider storage expansion or alternative sourcing strategies"
+  }
+}

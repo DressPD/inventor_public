@@ -1,0 +1,90 @@
+{
+  "material_id": "PL1__MB2D63A5",
+  "data_quality": {
+    "total_rows": 132,
+    "working_days": 132,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 346.71979,
+      "upper_bound": 1314.39509
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 891.4334527272727,
+    "std_daily_demand": 224.25597832177328,
+    "robust_std_daily": 214.3200518902891,
+    "cv_wd": 0.2515678289116021,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": true,
+    "regime": "moderate",
+    "distribution_type": "continuous"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.7916666666666667,
+    "std_lead_time": 1.021726109299475,
+    "cv_lead_time": 0.5702657354229628,
+    "stability": "volatile",
+    "effective_lead_time": 2.8133927759661415
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 958.9903061923283,
+    "safety_stock": 1578,
+    "safety_stock_robust": 1571
+  },
+  "order_quantity": {
+    "eoq_raw": 94935.14049743307,
+    "order_quantity": 13683
+  },
+  "cost_analysis": {
+    "unit_cost": 0.020606,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.00247272
+  },
+  "policy": {
+    "safety_stock": 1578,
+    "reorder_point": 3176,
+    "order_quantity": 13683,
+    "review_period_days": 16
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.8,
+    "sigma_eff_days": 1.0757845167896387,
+    "dominant_factor": "transport",
+    "dominant_pct": 100.0,
+    "variance_components": {
+      "transport": 1.0439242424242425,
+      "supplier": 0.0,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "DECREASE from 3.0 to 1.8 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization completed for material PL1__MB2D63A5.\nDemand shows a moderate regime (CV=0.25) with continuous distribution.\nLead time is volatile (CV=0.57).\nRecommended safety stock: 1578 units (vs. SAP 1064).\nRecommended order quantity: 13683 units (vs. SAP 8513).\nOptimized policy saves $486.90 annually (36.8% reduction).\nSafety lead time should be DECREASE from 3.0 to 1.8 days.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with safety stock (normal approximation)",
+    "selection_rationale": "Continuous demand pattern with stable lead time supports classical EOQ model with normal safety stock.",
+    "boundary_risk": "None",
+    "escalation_flag": ""
+  },
+  "previous_policy": {
+    "safety_stock": 1064,
+    "order_quantity": 8513,
+    "n_orders_per_year": 26.178593114274424,
+    "annual_ordering_cost": 1308.929655713721,
+    "annual_holding_cost": 13.156106759999998,
+    "annual_total_cost": 1322.0857624737212
+  },
+  "optimized_policy_costs": {
+    "safety_stock": 1578,
+    "order_quantity": 13683,
+    "n_orders_per_year": 16.28724425797107,
+    "annual_ordering_cost": 814.3622128985536,
+    "annual_holding_cost": 20.819066039999996,
+    "annual_total_cost": 835.1812789385535
+  }
+}

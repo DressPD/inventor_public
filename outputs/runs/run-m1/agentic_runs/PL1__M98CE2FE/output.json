@@ -1,0 +1,91 @@
+{
+  "metadata": {
+    "material_id": "PL1__M98CE2FE",
+    "analysis_timestamp": "2026-10-20T00:18:23.405675",
+    "parameters": {
+      "unit_cost": 0.716086,
+      "holding_cost_rate": 0.12,
+      "ordering_cost": 50.0,
+      "moq": 1550,
+      "service_level_target": 0.95,
+      "sap_safety_stock": 0,
+      "sap_safety_lead_time_days": 3.0,
+      "max_storage_units": 5023.855
+    }
+  },
+  "data_quality": {
+    "total_rows": 140,
+    "working_days": 140,
+    "non_working_days": 0,
+    "missing_demand": 0,
+    "quality_flag": "good"
+  },
+  "demand_analysis": {
+    "mean_demand": 330.81,
+    "std_demand": 162.31,
+    "robust_std": 161.16,
+    "cv": 0.4906,
+    "non_zero_fraction": 0.9571,
+    "trend_detected": false,
+    "trend_slope": 0.0,
+    "regime": "smooth",
+    "distribution_type": "normal_approx",
+    "outliers_capped": 3,
+    "winsorized_mean": 330.81
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.46,
+    "std_lead_time": 1.03,
+    "cv_lead_time": 0.7019,
+    "stability": "unstable",
+    "effective_lead_time": 1.97
+  },
+  "safety_stock": {
+    "z_score": 1.6449,
+    "sigma_ltd": 391.89,
+    "safety_stock": 645,
+    "safety_stock_robust": 644
+  },
+  "order_quantity": {
+    "annual_demand": 82703.06,
+    "eoq_raw": 9810.42,
+    "unconstrained_order_quantity": 9811,
+    "order_quantity": 4378,
+    "escalation_flag": false
+  },
+  "cost_analysis": {
+    "annual_holding_cost_per_unit": 0.0859,
+    "previous_policy": {
+      "orders_per_year": 53.36,
+      "annual_ordering_cost": 2667.84,
+      "annual_holding_cost": 66.6,
+      "total_annual_cost": 2734.44
+    },
+    "optimized_policy": {
+      "orders_per_year": 18.89,
+      "annual_ordering_cost": 944.53,
+      "annual_holding_cost": 243.53,
+      "total_annual_cost": 1188.06
+    },
+    "savings": {
+      "total_annual_savings": 1546.38,
+      "savings_percentage": 56.55
+    }
+  },
+  "policy": {
+    "reorder_point": 1298,
+    "review_period_days": 14
+  },
+  "safety_lead_time": {
+    "sigma_eff_days": 0.0031,
+    "variance_components": {
+      "transport": 0.7,
+      "supplier": 0.2,
+      "quality": 0.1
+    },
+    "recommended_days": 1.95,
+    "dominant_factor": "transport",
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease_safety_lead_time"
+  }
+}

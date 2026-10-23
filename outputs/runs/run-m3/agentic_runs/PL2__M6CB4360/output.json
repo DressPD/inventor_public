@@ -1,0 +1,76 @@
+{
+  "material_id": "PL2__M6CB4360",
+  "data_quality": {
+    "total_rows": 117,
+    "working_days": 117,
+    "outliers_detected": 1,
+    "winsorisation": {
+      "lower_bound": -252.367,
+      "upper_bound": 2218.009
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 964.1312393162393,
+    "std_daily_demand": 466.95478691149845,
+    "robust_std_daily": 915.6448643999998,
+    "cv_wd": 0.4843269960245891,
+    "non_zero_fraction_wd": 0.9572649572649573,
+    "trend_detected": true,
+    "regime": "smooth",
+    "distribution_type": "gamma"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.8429268292682925,
+    "std_lead_time": 1.0021883692146125,
+    "cv_lead_time": 0.5438025825542498,
+    "stability": "volatile",
+    "effective_lead_time": 2.845115198482905
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1155.6237014122908,
+    "safety_stock": 1901.0,
+    "safety_stock_robust": 2590.0
+  },
+  "order_quantity": {
+    "eoq_raw": 5106.4928132763525,
+    "order_quantity": 5107
+  },
+  "cost_analysis": {
+    "unit_cost": 7.702815,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.9243378
+  },
+  "policy": {
+    "safety_stock": 1901,
+    "reorder_point": 3678,
+    "order_quantity": 5107,
+    "review_period_days": 6
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.0,
+    "sigma_eff_days": 1.1986165931433335,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 55.765539742498305,
+    "variance_components": {
+      "transport": 740569.5458873905,
+      "supplier": 933621.8912327171,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "DECREASE from 3.0 to 2.0 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL2__M6CB4360 shows a smooth demand pattern with gamma characteristics. Mean daily demand is 964.1 units with CV of 0.48. Lead time averages 1.84 days (CV=0.54, volatile stability). Recommended inventory policy: Safety stock 1901 units (z=1.64 for 95% service level), order quantity 5107 units (EOQ-based), reorder point 3678 units, review period 6 days. The optimized policy reduces total annual cost from $40,311 (SAP baseline) to $6,477, saving $33,833 per year (83.9%). Safety lead time analysis shows lead_time_variability is the dominant source of uncertainty (55.8%); recommended safety lead time is 2.0 days vs current SAP setting of 3.0 days.",
+  "warnings": [
+    "Upward demand trend detected (slope=6.20). Consider dynamic forecasting."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with safety stock (r,Q) \u2014 normal approximation",
+    "selection_rationale": "Classic continuous-review (r,Q) EOQ model is appropriate for smooth gamma demand with volatile lead time; normal z-score safety stock targets 95% service level efficiently.",
+    "boundary_risk": "Upward demand trend detected \u2014 recompute EOQ quarterly to avoid stockouts as demand grows.",
+    "escalation_flag": "Monitor \u2014 no MOQ/capacity infeasibility; storage constraint not binding."
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "material_id": "PL1__MCD7ED62",
+  "parameters": {
+    "unit_cost": 2.870659,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 50.0,
+    "moq": 257,
+    "service_level_target": 0.95,
+    "sap_safety_stock": 180,
+    "sap_safety_lead_time_days": 4.0,
+    "max_storage_units": 3574.333
+  },
+  "data_quality": {
+    "total_rows": 168,
+    "working_days": 168,
+    "data_source": "fallback"
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 140.05851773809525,
+    "std_daily_demand": 146.1663832139662,
+    "robust_std_daily": 190.89473684210526,
+    "cv_wd": 1.0436093825246135,
+    "non_zero_fraction_wd": 0.5714285714285714,
+    "trend_detected": false,
+    "trend_slope": -0.2905183871563719,
+    "trend_p_value": 0.21251716649088664,
+    "regime": "intermittent",
+    "distribution_type": "highly-variable",
+    "winsorize_percentiles": [
+      1,
+      99
+    ],
+    "winsorize_bounds": [
+      0.0,
+      454.7749900000006
+    ]
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.6048571428571428,
+    "std_lead_time": 0.7702221253956417,
+    "cv_lead_time": 1.2733951057556667,
+    "stability": "unstable",
+    "effective_lead_time": 1.3750792682527844,
+    "observations_count": 35
+  },
+  "buffer_analysis": {
+    "z_score": 1.644853626951472,
+    "sigma_ltd": 156.71568461231777,
+    "safety_stock": 258,
+    "sigma_ltd_robust": 183.51770048250197,
+    "safety_stock_robust": 302,
+    "safety_stock_recommended": 302,
+    "safety_stock_method": "robust"
+  },
+  "eoq_analysis": {
+    "annual_demand": 36415.21461190476,
+    "annual_holding_cost_per_unit": 0.34447908,
+    "eoq_raw": 3251.3222088885086,
+    "unconstrained_order_quantity": 3252,
+    "order_quantity": 3252,
+    "capacity_warning": false,
+    "capacity_utilization": 0.99431138620828
+  },
+  "policy": {
+    "safety_stock": 302,
+    "reorder_point": 495,
+    "order_quantity": 3252,
+    "review_period_days": 24
+  },
+  "cost_analysis": {
+    "optimized_policy": {
+      "number_of_orders_per_year": 11.197790471065424,
+      "annual_ordering_cost": 559.8895235532713,
+      "average_inventory": 1928.0,
+      "annual_holding_cost": 664.15566624,
+      "total_annual_cost": 1224.0451897932712
+    },
+    "previous_policy": {
+      "safety_stock": 180,
+      "order_quantity": 257,
+      "number_of_orders_per_year": 141.69344206966832,
+      "annual_ordering_cost": 7084.672103483416,
+      "average_inventory": 308.5,
+      "annual_holding_cost": 106.27179617999998,
+      "total_annual_cost": 7190.943899663416
+    },
+    "cost_savings": 5966.8987098701455,
+    "cost_savings_pct": 82.97796218587432
+  },
+  "safety_lead_time": {
+    "variance_components": {
+      "transport": 0.29662106122448983,
+      "supplier": 0.1779726367346939,
+      "quality": 0.11864842448979594
+    },
+    "dominant_factor": "transport",
+    "dominant_pct": 50.0,
+    "recommended_days": 2.1562415829984003,
+    "sap_days": 4.0,
+    "comparison_action": "reduce",
+    "disruption_premium": 1.1
+  },
+  "narrative": "Material PL1__MCD7ED62 exhibits intermittent demand with highly-variable characteristics (CV=1.04). The demand pattern shows 57.1% non-zero days with mean daily demand of 140.1 units. Lead time is unstable (CV=1.27), requiring robust safety stock approach. The optimized policy reduces annual costs by 83.0% while maintaining 95% service level.",
+  "research_insights": {
+    "selected_model": "(r,Q) continuous review",
+    "selection_rationale": "Continuous review model selected due to intermittent demand pattern with high variability (CV=1.04). The highly-variable distribution and unstable lead times require constant monitoring. EOQ-based order quantity (3252 units) balances ordering and holding costs effectively.",
+    "boundary_risk": "Capacity utilization at 99.4% indicates tight storage constraints. Safety stock of 302 units needed for 95% service level leaves limited buffer for demand spikes. Lead time variability (1.27) poses supply risk.",
+    "escalation_flag": "HIGH_CAPACITY_UTILIZATION"
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "material_id": "PL3__M82622E9",
+  "data_quality": {
+    "total_rows": 220,
+    "working_days": 220,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 46296.725
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 22026.8,
+    "std_daily_demand": 12955.7,
+    "robust_std_daily": 19294.2,
+    "cv_wd": 0.588,
+    "non_zero_fraction_wd": 0.968,
+    "trend_detected": false,
+    "regime": "moderate",
+    "distribution_type": "bimodal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 5.58,
+    "std_lead_time": 0.89,
+    "cv_lead_time": 0.159,
+    "stability": "stable",
+    "effective_lead_time": 6.47
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 36597.0,
+    "safety_stock": 60225.0,
+    "safety_stock_robust": 72941.0
+  },
+  "order_quantity": {
+    "eoq_raw": 1474104.0,
+    "order_quantity": 385439
+  },
+  "cost_analysis": {
+    "unit_cost": 0.018547,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.002226
+  },
+  "policy": {
+    "safety_stock": 60225,
+    "reorder_point": 183666,
+    "order_quantity": 385439,
+    "review_period_days": 17
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.74,
+    "sigma_eff_days": 1.66,
+    "dominant_factor": "demand_variability",
+    "dominant_pct": 72.4,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase_from_0_to_2.74_days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__M82622E9 shows a bimodal demand pattern with a dominant cluster of high-volume working days (~28,000\u201331,000 units) interspersed with near-zero days, yielding moderate CV of 0.59. Lead times from suppliers are stable at ~5.6 days, providing a reliable replenishment window. The (r,Q) continuous review policy is selected because demand is nearly continuous and lead times are predictable, making it straightforward to maintain cycle-service-level targets at 95% without excessive buffer stock. Reducing safety stock from 105,459 to 60,225 units \u2014 driven by empirically calibrated sigma_LTD \u2014 releases capital while meeting the service target, and consolidating orders to the EOQ-capacity boundary cuts annual ordering events from ~83 to ~15.",
+  "warnings": [
+    "10 near-zero lead time observations (< 0.5 days) filtered as data artifacts",
+    "Storage capacity constraint binds: EOQ raw (~1,474,104) capped to 385,439 to satisfy max_storage_units=445,664.859 with safety_stock=60,225",
+    "Capacity utilization at 99.9% \u2014 any safety stock increase would require order quantity reduction"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous review with EOQ order quantity",
+    "selection_rationale": "Demand is nearly continuous (96.7% non-zero days) and moderately variable, while lead times are stable (CV=0.159). These conditions are ideal for a classical (r,Q) policy where a fixed order quantity Q is triggered whenever stock falls to reorder point r. EOQ minimizes total ordering and holding cost; the MOQ of 67,494 is non-binding since EOQ >> MOQ.",
+    "boundary_risk": "Storage capacity of 445,664 units binds tightly: the unconstrained EOQ of 1,474,104 units far exceeds available space. The order quantity is capped at 385,439, which increases annual ordering frequency slightly versus unconstrained optimum but remains well above MOQ. If demand grows or safety stock increases, the capacity constraint will become more restrictive and may require a warehouse capacity review.",
+    "escalation_flag": "none \u2014 MOQ (67,494) + safety_stock (60,225) = 127,719 which is below max_storage_units (445,664). No MOQ-capacity infeasibility detected."
+  }
+}

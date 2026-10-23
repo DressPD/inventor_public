@@ -1,0 +1,77 @@
+{
+  "material_id": "PL2__M0DC4D1D",
+  "data_quality": {
+    "total_rows": 214,
+    "working_days": 214,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 67076.536,
+      "upper_bound": 908381.376
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 352405.18,
+    "std_daily_demand": 89510.45,
+    "robust_std_daily": 55234.72,
+    "cv_wd": 0.254,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "high-volume regular",
+    "distribution_type": "near-normal (unimodal, moderate CV)"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.473,
+    "std_lead_time": 0.487,
+    "cv_lead_time": 1.028,
+    "stability": "moderate-variable",
+    "effective_lead_time": 0.96
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 177183.5,
+    "safety_stock": 291517.0,
+    "safety_stock_robust": 215389.0
+  },
+  "order_quantity": {
+    "eoq_raw": 84737.4,
+    "order_quantity": 84737
+  },
+  "cost_analysis": {
+    "unit_cost": 10.226823,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.22722
+  },
+  "policy": {
+    "safety_stock": 291517,
+    "reorder_point": 629692,
+    "order_quantity": 84737,
+    "review_period_days": 1
+  },
+  "safety_lead_time": {
+    "recommended_days": 0.83,
+    "sigma_eff_days": 0.487,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 93.6,
+    "variance_components": {
+      "transport": 0.487,
+      "supplier": 0.0,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce SAP safety lead time from 2.5 days to 0.83 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL2__M0DC4D1D exhibits high-volume, near-continuous demand averaging 352,405 units/day with a moderate CV of 0.254 and no statistically significant trend across the 214-day observation window. Lead times are short on average (0.47 days) but exhibit high relative variability (CV 1.03), with sporadic spikes to 2.76 days driving 93.6% of the safety buffer requirement. A continuous-review (r,Q) policy with reorder point 629,692 and order quantity 84,737 maintains the 95% service level while reducing holding costs by approximately $47,700/year compared to the current SAP configuration.",
+  "warnings": [
+    "Lead time CV > 1.0 (moderately unstable); monitor for further deterioration",
+    "SAP safety lead time of 2.5 days exceeds data-derived recommendation of 0.83 days \u2014 consider downward revision"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) continuous-review reorder-point / fixed-order-quantity (EOQ-based)",
+    "selection_rationale": "High, near-daily demand volume with a stable mean and moderate CV makes the EOQ-based (r,Q) policy optimal. The policy is straightforward to configure in SAP as a reorder-point trigger with a fixed lot size, and the ordering cost is sufficiently low relative to holding costs that frequent small replenishments are economically justified.",
+    "boundary_risk": "Storage utilization is approximately 11.6% (376,254 / 2,879,354 units), leaving ample headroom. The capacity constraint does not bind and does not reduce service level or inflate costs.",
+    "escalation_flag": "none"
+  }
+}

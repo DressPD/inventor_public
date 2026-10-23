@@ -1,0 +1,76 @@
+{
+  "material_id": "PL1__M2E41291",
+  "data_quality": {
+    "total_rows": 88,
+    "working_days": 88,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": -228.16,
+      "upper_bound": 983.18
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 383.44,
+    "std_daily_demand": 210.1,
+    "robust_std_daily": 224.49,
+    "cv_wd": 0.548,
+    "non_zero_fraction_wd": 0.9659,
+    "trend_detected": false,
+    "regime": "erratic",
+    "distribution_type": "lognormal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 3.77,
+    "std_lead_time": 1.78,
+    "cv_lead_time": 0.4739,
+    "stability": "moderate",
+    "effective_lead_time": 5.55
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 796.46,
+    "safety_stock": 1311,
+    "safety_stock_robust": 1335
+  },
+  "order_quantity": {
+    "eoq_raw": 5574.89,
+    "order_quantity": 2718
+  },
+  "cost_analysis": {
+    "unit_cost": 5.14054,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.6169
+  },
+  "policy": {
+    "safety_stock": 1311,
+    "reorder_point": 2755,
+    "order_quantity": 2718,
+    "review_period_days": 8
+  },
+  "safety_lead_time": {
+    "recommended_days": 3.42,
+    "sigma_eff_days": 1.78,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 1.9105,
+      "supplier": 0.9552,
+      "quality": 0.3184
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "DECREASE from 4.0 to 3.4 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M2E41291 exhibits erratic demand (CV=0.55) with moderate lead time variability (CV=0.47). The recommended policy establishes a safety stock of 1311 units and order quantity of 2718 units, achieving 95.0% service level while reducing total annual costs by $1747.41 (decreasing costs by 25.2%).",
+  "warnings": [
+    "Storage capacity constraint is binding: order quantity reduced from 5575 to 2718"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(Q,R) continuous review model",
+    "selection_rationale": "Given erratic demand pattern (CV=0.55), lognormal distribution, and moderate lead time stability, a continuous review policy optimizes inventory costs.",
+    "boundary_risk": "Capacity constraint binds order quantity at 2718 vs optimal 5575; potential stockout risk if demand surges.",
+    "escalation_flag": "CAPACITY_CONSTRAINT_BINDING"
+  }
+}

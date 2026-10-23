@@ -1,0 +1,76 @@
+{
+  "material_id": "PL2__M63EDC15",
+  "data_quality": {
+    "total_rows": 214,
+    "working_days": 214,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 3.492,
+      "upper_bound": 7311.85
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 4376.0,
+    "std_daily_demand": 1822.0,
+    "robust_std_daily": 1680.0,
+    "cv_wd": 0.42,
+    "non_zero_fraction_wd": 0.978,
+    "trend_detected": false,
+    "regime": "Erratic",
+    "distribution_type": "Normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.13,
+    "std_lead_time": 0.91,
+    "cv_lead_time": 0.81,
+    "stability": "Unstable",
+    "effective_lead_time": 2.04
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 4444.0,
+    "safety_stock": 7308.0,
+    "safety_stock_robust": 6730.0
+  },
+  "order_quantity": {
+    "eoq_raw": 12089.0,
+    "order_quantity": 12089
+  },
+  "cost_analysis": {
+    "unit_cost": 6.239246,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.748709
+  },
+  "policy": {
+    "safety_stock": 7308,
+    "reorder_point": 16237,
+    "order_quantity": 12089,
+    "review_period_days": 3
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.67,
+    "sigma_eff_days": 0.91,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 60.0,
+      "supplier": 30.0,
+      "quality": 10.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Reduce SAP safety lead time from 2.5 to 1.67 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL2__M63EDC15 shows erratic but consistently active demand (CV=0.42, 97.8% non-zero days) with a mean of 4,376 units/day and unstable lead times (CV=0.81, mean=1.13 days). The current SAP policy of zero safety stock and MOQ=55 is severely misaligned with actual demand patterns, generating thousands of micro-orders annually. An (r,Q) continuous-review policy with EOQ-derived order quantity of 12,089 units and safety stock of 7,308 units achieves 95% service level while reducing total annual costs by over 98%.",
+  "warnings": [
+    "SAP safety stock is 0 \u2014 no buffer against lead-time variability; stockout risk is high under current policy."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) Continuous-Review with EOQ",
+    "selection_rationale": "Demand is erratic but near-continuous (97.8% non-zero), making a continuous-review (r,Q) model appropriate. EOQ minimises total ordering and holding costs given the high daily volume; safety stock sized via the sigma-LTD formula accounts for both demand and lead-time variability.",
+    "boundary_risk": "Order quantity (12,089) plus safety stock (7,308) = 19,397 units, well within the 36,800-unit storage capacity. No capacity binding.",
+    "escalation_flag": "none"
+  }
+}

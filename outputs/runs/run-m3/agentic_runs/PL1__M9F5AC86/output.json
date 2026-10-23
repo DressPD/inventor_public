@@ -1,0 +1,76 @@
+{
+  "material_id": "PL1__M9F5AC86",
+  "data_quality": {
+    "total_rows": 217,
+    "working_days": 217,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 1278.2824,
+      "upper_bound": 5095.83716
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 3588.1756022119816,
+    "std_daily_demand": 765.6374596887634,
+    "robust_std_daily": 768.6029629629629,
+    "cv_wd": 0.21337792364921476,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "moderate",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 3.9533088235294125,
+    "std_lead_time": 1.693506576941404,
+    "cv_lead_time": 0.4283770007700751,
+    "stability": "moderate",
+    "effective_lead_time": 5.646815400470817
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 6264.382464396797,
+    "safety_stock": 10304.0,
+    "safety_stock_robust": 10307.0
+  },
+  "order_quantity": {
+    "eoq_raw": 21623.53164206489,
+    "order_quantity": 21624
+  },
+  "cost_analysis": {
+    "unit_cost": 3.19749,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.3836988
+  },
+  "policy": {
+    "safety_stock": 10304,
+    "reorder_point": 30566,
+    "order_quantity": 21624,
+    "review_period_days": 7
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.8716543286365233,
+    "sigma_eff_days": 1.7458405493128681,
+    "dominant_factor": "transport",
+    "dominant_pct": 50.0,
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.3,
+      "quality": 0.2
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "REDUCE",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M9F5AC86 exhibits a moderate demand pattern with CV of 0.21, following a normal distribution. Lead time shows moderate stability (CV=0.43). The recommended (r,Q) continuous review policy with safety stock of 10304 units and order quantity of 21624 units is appropriate for this profile, achieving 95% service level. The warehouse capacity constraint of 36882 units is satisfied.",
+  "warnings": [
+    "Optimized policy has higher total cost than SAP baseline by $3400.72. This is driven by increased safety stock requirements for the target 95% service level."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous review",
+    "selection_rationale": "The continuous review model is selected based on moderate demand pattern with normal distribution characteristics. With CV of 0.21 and consistent demand, the (r,Q) model provides effective control while optimizing order costs through EOQ logic.",
+    "boundary_risk": "Capacity utilization: 86.6%. Moderate risk - close to capacity limit.",
+    "escalation_flag": "none"
+  }
+}

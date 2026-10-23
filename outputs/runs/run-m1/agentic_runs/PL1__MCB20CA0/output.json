@@ -1,0 +1,83 @@
+{
+  "material_id": "PL1__MCB20CA0",
+  "data_quality": {
+    "total_rows": 137,
+    "working_days": 137,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 30.46868000000001,
+      "upper_bound": 608.70112
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 373.77849343065697,
+    "std_daily_demand": 123.4575361461988,
+    "robust_std_daily": 89.51816160118607,
+    "cv_wd": 0.3302959863021186,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "moderate",
+    "distribution_type": "normal-approximation"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 4.01968085106383,
+    "std_lead_time": 1.5719230717781887,
+    "cv_lead_time": 0.3910566858466315,
+    "stability": "moderate",
+    "effective_lead_time": 6.605494304138951
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 637.5603857933098,
+    "safety_stock": 1049,
+    "safety_stock_robust": 1011
+  },
+  "order_quantity": {
+    "eoq_raw": 3527.047872446709,
+    "order_quantity": 2010
+  },
+  "cost_analysis": {
+    "unit_cost": 12.519309,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.5023170799999999,
+    "optimized_annual_ordering_cost": 4648.986236699714,
+    "optimized_annual_holding_cost": 3085.75928232,
+    "optimized_total_annual_cost": 7734.745519019714,
+    "sap_annual_ordering_cost": 4648.986236699714,
+    "sap_annual_holding_cost": 1509.8286653999999,
+    "sap_total_annual_cost": 6158.814902099713,
+    "annual_savings": -1575.9306169200008
+  },
+  "policy": {
+    "safety_stock": 1049,
+    "reorder_point": 2552,
+    "order_quantity": 2010,
+    "review_period_days": 6
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.806475007087612,
+    "sigma_eff_days": 1.5719230717781887,
+    "dominant_factor": "transport",
+    "dominant_pct": 50.0,
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.4,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Decrease SAP safety lead time from 4.0 to 2.8 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization analysis for PL1__MCB20CA0 reveals moderate demand with mean daily demand of 373.8 units (CV=0.33). Lead time averages 4.0 days with moderate variability (CV=0.39). Recommended policy: Safety stock of 1049 units, reorder point of 2552 units, order quantity of 2010 units. This provides 95.0% service level protection. The optimized policy incurs an additional annual cost of $1,575.93 versus the current SAP zero-safety-stock configuration, a necessary investment to eliminate stockout risk.",
+  "warnings": [
+    "Lead time data contained 2 extreme outliers (> 11.8 days) which were removed"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review reorder-point / fixed-order-quantity",
+    "selection_rationale": "Demand CV=0.33 indicates moderate, non-intermittent daily demand suitable for normal approximation under a continuous-review policy. Lead time CV=0.39 shows moderate variability captured by the combined-variance safety stock formula.",
+    "boundary_risk": "Storage cap binds: unconstrained EOQ of 3,527 is reduced to 2,010 due to max_storage_units=3,059.85. This increases ordering frequency slightly but maintains physical feasibility. Service level is preserved; ordering cost increases marginally.",
+    "escalation_flag": "None \u2014 MOQ (222) + safety stock (1,049) = 1,271 units, which is below max_storage_units (3,059.85). No infeasibility conflict."
+  }
+}

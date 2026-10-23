@@ -1,0 +1,76 @@
+{
+  "material_id": "PL1__MA704D5E",
+  "data_quality": {
+    "total_rows": 216,
+    "working_days": 216,
+    "outliers_detected": 16,
+    "winsorisation": {
+      "lower_bound": 824.1801,
+      "upper_bound": 4145.16775
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 3033.4302479166663,
+    "std_daily_demand": 730.4275766837036,
+    "robust_std_daily": 529.644024,
+    "cv_wd": 0.24079260671490796,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": true,
+    "regime": "Smooth",
+    "distribution_type": "Non-Normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.2386324786324785,
+    "std_lead_time": 0.9653897783322851,
+    "cv_lead_time": 0.7793996968318891,
+    "stability": "highly_variable",
+    "effective_lead_time": 2.2040222569647634
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 3039.180235059142,
+    "safety_stock": 5000,
+    "safety_stock_robust": 4914
+  },
+  "order_quantity": {
+    "eoq_raw": 13479.116557209833,
+    "order_quantity": 13480
+  },
+  "cost_analysis": {
+    "unit_cost": 3.617456,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.43409471999999993
+  },
+  "policy": {
+    "safety_stock": 5000,
+    "reorder_point": 11686,
+    "order_quantity": 13480,
+    "review_period_days": 5
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.5879248783117368,
+    "sigma_eff_days": 0.9653897783322851,
+    "dominant_factor": "Lead Time Variability",
+    "dominant_pct": 92.84542445423712,
+    "variance_components": {
+      "transport": 92.84542445423712,
+      "supplier": 0.0,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "DECREASE",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MA704D5E shows smooth demand with a CV of 0.24. \nThe optimized policy recommends a safety stock of 5000 units (vs SAP 3882) \nand an order quantity of 13480 units (EOQ-based). This results in an estimated \nannual cost savings of $24,419.28 (75.3% reduction). \nThe reorder point is set at 11686 units with a review period of 5 days.\nLead time variability is the dominant uncertainty factor (92.8% of variance).",
+  "warnings": [
+    "Highly variable lead times (CV=0.78) - supplier reliability concern"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with safety stock",
+    "selection_rationale": "Standard EOQ model applicable for smooth demand with highly_variable lead times",
+    "boundary_risk": "Low",
+    "escalation_flag": "No"
+  }
+}

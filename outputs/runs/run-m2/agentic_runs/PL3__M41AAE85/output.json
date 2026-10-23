@@ -1,0 +1,78 @@
+{
+  "material_id": "PL3__M41AAE85",
+  "data_quality": {
+    "total_rows": 218,
+    "working_days": 218,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 44523.6
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 30928.1,
+    "std_daily_demand": 44655.8,
+    "robust_std_daily": 14821.3,
+    "cv_wd": 1.4439,
+    "non_zero_fraction_wd": 0.7651,
+    "trend_detected": false,
+    "regime": "Intermittent",
+    "distribution_type": "Mixed (zero-inflated, approximately normal on non-zero days)"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.0014,
+    "std_lead_time": 0.9126,
+    "cv_lead_time": 0.9113,
+    "stability": "Moderate",
+    "effective_lead_time": 1.4953
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 30508.6,
+    "safety_stock": 50143.6,
+    "safety_stock_robust": 17012.3
+  },
+  "order_quantity": {
+    "eoq_raw": 169670.8,
+    "order_quantity": 169671
+  },
+  "cost_analysis": {
+    "unit_cost": 0.169192,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.020303
+  },
+  "policy": {
+    "safety_stock": 50144,
+    "reorder_point": 81204,
+    "order_quantity": 169671,
+    "review_period_days": 6
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.49,
+    "sigma_eff_days": 0.91,
+    "dominant_factor": "transport",
+    "dominant_pct": 97.4,
+    "variance_components": {
+      "transport": 0.832,
+      "supplier": 0.021,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Increase SAP safety lead time from 0.0 to 1.49 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__M41AAE85 exhibits intermittent, high-volume demand (mean 30,928 units/day, CV=1.44) over 218 working days from March 2025 to March 2026, with zero-demand days comprising ~23.5% of observations. Lead times are short (mean ~1.0 day) but moderately volatile (CV=0.91), driven almost entirely by transport variability. The current SAP safety stock of 15,900 units is insufficient for a 95% service level; the optimised (r,Q) policy raises safety stock to 50,144 units and sets a reorder point of 81,204 units with an EOQ-derived order quantity of 169,671 units, fully utilising available storage capacity of 219,815 units.",
+  "warnings": [
+    "Storage capacity binds: safety_stock (50,144) + order_quantity (169,671) = 219,815 == max_storage_units (219,815.507). No buffer for demand spikes during lead time.",
+    "Current SAP safety stock (15,900) is ~68% below the model-recommended level (50,144) for 95% SL.",
+    "Intermittent demand (CV=1.44) \u2014 normal approximation for safety stock may underestimate tail risk on high-demand days."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) Continuous-Review Reorder-Point / Fixed-Order-Quantity",
+    "selection_rationale": "High-volume continuous demand with moderately stable lead times and a well-defined EOQ makes the (r,Q) policy optimal. The fixed order quantity minimises total annual replenishment cost (ordering + holding), while the reorder point set at mean lead-time demand plus safety stock absorbs stochastic lead-time variability to achieve the 95% cycle service level.",
+    "boundary_risk": "Storage capacity is fully consumed by the recommended policy (SS + OQ = 219,815 units \u2248 max_storage_units). Any upward revision of safety stock or service level target is infeasible without expanding storage. During periods of above-average demand, the hard storage ceiling prevents holding additional buffer inventory, exposing the supply chain to stockout risk if a long lead time (>2 days) coincides with elevated demand.",
+    "escalation_flag": "None \u2014 MOQ (7,950) + safety_stock (50,144) = 58,094 units, which is well within the 219,815.5 unit storage limit. No MOQ-capacity infeasibility exists."
+  }
+}

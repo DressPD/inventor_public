@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__MBCDAD62",
+  "data_quality": {
+    "total_rows": 129,
+    "working_days": 129,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 419.31344,
+      "upper_bound": 11979.5138
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 5372.7321240310075,
+    "std_daily_demand": 2551.777398276904,
+    "robust_std_daily": 2718.9822090437365,
+    "cv_wd": 0.4749496791145393,
+    "non_zero_fraction_wd": 0.9844961240310077,
+    "trend_detected": true,
+    "regime": "moderate",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.3930555555555557,
+    "std_lead_time": 1.20159137205492,
+    "cv_lead_time": 0.5021159534994443,
+    "stability": "volatile",
+    "effective_lead_time": 3.5946469276104756
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 7567.0513524671305,
+    "safety_stock": 12446.691862433601,
+    "safety_stock_robust": 12673.835470676888
+  },
+  "order_quantity": {
+    "eoq_raw": 77733.66389807932,
+    "order_quantity": 77734
+  },
+  "cost_analysis": {
+    "unit_cost": 0.288975,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.034677
+  },
+  "policy": {
+    "safety_stock": 12447,
+    "reorder_point": 25304,
+    "order_quantity": 77734,
+    "review_period_days": 14.468244127101277
+  },
+  "safety_lead_time": {
+    "recommended_days": 3.0,
+    "sigma_eff_days": 1.4084177617233944,
+    "dominant_factor": "lead_time",
+    "dominant_pct": 72.78646300928014,
+    "variance_components": {
+      "transport": 72.78646300928014,
+      "supplier": 13.60676849535993,
+      "quality": 13.60676849535993
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization for PL1__MBCDAD62 reveals a moderate-variability demand regime (CV=0.47) with a statistically significant downward trend (slope=-29.42 units/day). Lead time is the dominant uncertainty driver at 73% of total variance, with a CV of 0.50 indicating highly volatile supplier performance. The recommended (r,Q) policy raises safety stock from 4,340 to 12,447 units to achieve a 95% service level, at a marginal annual cost increase of $281. Storage capacity remains well within limits at 27.7% utilisation.",
+  "warnings": [
+    "Recommended policy increases costs by $281.13 annually due to higher safety stock",
+    "Lead time CV (0.50) is very high - consider supplier performance improvement",
+    "Significant demand trend detected (slope=-29.42) - review forecast model regularly"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with stochastic lead time \u2014 continuous-review (r,Q) policy",
+    "selection_rationale": "Demand is near-continuous (98.4% non-zero), normally distributed, and at scale; EOQ minimises ordering/holding trade-off while the safety stock term absorbs combined demand and lead-time variance. Continuous review is appropriate given the high daily throughput and volatile lead times.",
+    "boundary_risk": "MODERATE \u2014 storage capacity is not binding (27.7% utilisation), but the large safety stock uplift (+187% vs SAP) should be validated against physical storage layout before implementation.",
+    "escalation_flag": "none"
+  }
+}

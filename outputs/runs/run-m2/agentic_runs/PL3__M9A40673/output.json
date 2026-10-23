@@ -1,0 +1,100 @@
+{
+  "material_id": "PL3__M9A40673",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 1.925,
+      "upper_bound": 445.8130400000002
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 185.1663070175439,
+    "std_daily_demand": 124.51797122412958,
+    "robust_std_daily": 67.00444444444443,
+    "cv_wd": 0.6724655971689921,
+    "non_zero_fraction_wd": 0.7763157894736842,
+    "trend_detected": false,
+    "regime": "continuous",
+    "distribution_type": "moderate_variance"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.4233333333333331,
+    "std_lead_time": 1.1875822140599426,
+    "cv_lead_time": 0.8343668951240816,
+    "stability": "moderate",
+    "effective_lead_time": 2.610915547393276
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 265.37614014050206,
+    "safety_stock": 437,
+    "safety_stock_robust": 385
+  },
+  "order_quantity": {
+    "eoq_raw": 8616.48173589043,
+    "order_quantity": 3040
+  },
+  "cost_analysis": {
+    "unit_cost": 0.779385,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.09352619999999999,
+    "annual_demand": 46291.57675438597,
+    "previous": {
+      "safety_stock": 0,
+      "order_quantity": 769,
+      "orders_per_year": 60.19710891337577,
+      "average_inventory": 384.5,
+      "annual_ordering_cost": 4514.783168503182,
+      "annual_holding_cost": 35.960823899999994,
+      "total_annual_cost": 4550.743992403182
+    },
+    "optimized": {
+      "safety_stock": 437,
+      "order_quantity": 3040,
+      "orders_per_year": 15.227492353416437,
+      "average_inventory": 1957.0,
+      "annual_ordering_cost": 1142.0619265062328,
+      "annual_holding_cost": 183.0307734,
+      "total_annual_cost": 1325.0926999062328
+    },
+    "savings": {
+      "annual_savings": 3225.6512924969493,
+      "savings_pct": 70.88184476827776
+    }
+  },
+  "policy": {
+    "safety_stock": 437,
+    "reorder_point": 701,
+    "order_quantity": 3040,
+    "review_period_days": 17
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.3600405875059964,
+    "sigma_eff_days": 1.433177257865593,
+    "dominant_factor": "transport",
+    "dominant_pct": 40.0,
+    "variance_components": {
+      "transport": 0.5641406060606061,
+      "supplier": 0.5641406060606061,
+      "quality": 0.28207030303030306
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "SET to 2.4 days (currently no safety lead time)",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization for PL3__M9A40673: Mean daily demand is 185.2 units with continuous pattern (77.6% active days). Demand exhibits moderate_variance distribution with CV=0.67. Lead time averages 1.42 days (moderate variability, CV=0.83). Recommended safety stock is 437 units (vs. SAP 0) for 95.0% service level. Order quantity optimized to 3040 units (EOQ-based: 8616, constrained by capacity). Reorder point set at 701 units with ~17 day review cycle. Optimized policy saves $3225.65/year (70.9%) vs. current SAP configuration.",
+  "warnings": [
+    "Optimal EOQ (8617) was reduced to 3040 due to storage capacity constraints. Consider capacity expansion.",
+    "Lead time variability is moderate (CV=0.83). Consider multiple sourcing or supplier development."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Continuous review (s,Q) policy with normal approximation",
+    "selection_rationale": "Demand is continuous and suitable for classical EOQ + safety stock approach. Normal approximation valid.",
+    "boundary_risk": "HIGH - storage capacity is binding constraint",
+    "escalation_flag": "CAPACITY_CONSTRAINT"
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "material_id": "PL1__MD9F9B81",
+  "data_quality": {
+    "total_rows": 141,
+    "working_days": 141,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 2943.3659999999995
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 350.11634042553186,
+    "std_daily_demand": 737.8015970838137,
+    "robust_std_daily": 0.0,
+    "cv_wd": 2.107304092654141,
+    "non_zero_fraction_wd": 0.3900709219858156,
+    "trend_detected": false,
+    "regime": "lumpy",
+    "distribution_type": "empirical"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.477142857142857,
+    "std_lead_time": 1.0841916014115902,
+    "cv_lead_time": 0.4376782704660399,
+    "stability": "variable",
+    "effective_lead_time": 3.5613344585544473
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1221.6900887232086,
+    "safety_stock": 2010,
+    "safety_stock_robust": 625
+  },
+  "order_quantity": {
+    "eoq_raw": 25705.571388877295,
+    "order_quantity": 25706
+  },
+  "cost_analysis": {
+    "unit_cost": 0.16558,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.0198696,
+    "previous_policy": {
+      "avg_inventory": 12853.0,
+      "annual_ordering_cost": 255.37545253943523,
+      "annual_holding_cost": 255.3839688,
+      "total_annual_cost": 510.7594213394352
+    },
+    "optimized_policy": {
+      "avg_inventory": 14863.0,
+      "annual_ordering_cost": 255.37545253943523,
+      "annual_holding_cost": 295.32186479999996,
+      "total_annual_cost": 550.6973173394351
+    },
+    "savings": {
+      "absolute": -39.93789599999991,
+      "percentage": -7.819316557150375
+    }
+  },
+  "policy": {
+    "safety_stock": 2010,
+    "reorder_point": 3257,
+    "order_quantity": 25706,
+    "review_period_days": 74
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.0841916014115902,
+    "sigma_eff_days": 1.0841916014115902,
+    "dominant_factor": "supplier",
+    "dominant_pct": 0.4,
+    "variance_components": {
+      "transport": 0.4701885714285714,
+      "supplier": 0.4701885714285714,
+      "quality": 0.2350942857142857
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MD9F9B81 exhibits lumpy demand with a coefficient of variation of 2.11 \nand 39% non-zero demand days. Lead time stability is variable \n(CV=0.44). The optimized policy recommends a safety stock of 2010 units \nand order quantity of 25706 units, resulting in a reorder point of 3257 units. \nThis optimization achieves annual cost savings of $-39.94 (-7.8%) \ncompared to the previous policy.",
+  "warnings": [
+    "Demand regime is lumpy, which may require specialized inventory policies",
+    "Lead time is variable (CV=0.44), increasing supply chain risk",
+    "Intermittent demand pattern detected (39% non-zero days)"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Classical EOQ with safety stock",
+    "selection_rationale": "Suitable for lumpy demand with variable lead time variability",
+    "boundary_risk": "High CV and intermittent demand may benefit from advanced stochastic models",
+    "escalation_flag": "Consider advanced forecasting methods for lumpy demand patterns"
+  }
+}

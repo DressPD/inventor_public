@@ -1,0 +1,74 @@
+{
+  "material_id": "PL1__M6700059",
+  "data_quality": {
+    "total_rows": 138,
+    "working_days": 138,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 976.3154599999997
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 520.3897753623189,
+    "std_daily_demand": 257.441982279532,
+    "robust_std_daily": 246.13458029999998,
+    "cv_wd": 0.49470991642810286,
+    "non_zero_fraction_wd": 0.9565217391304348,
+    "trend_detected": true,
+    "regime": "smooth",
+    "distribution_type": "gamma-like"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.5353016393442627,
+    "std_lead_time": 1.0350785641107578,
+    "cv_lead_time": 0.6741858000964857,
+    "stability": "volatile",
+    "effective_lead_time": 2.0528409213996417
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 626.0127071519914,
+    "safety_stock": 1030,
+    "safety_stock_robust": 1019
+  },
+  "order_quantity": {
+    "eoq_raw": 8175.525102183084,
+    "order_quantity": 5058
+  },
+  "cost_analysis": {
+    "unit_cost": 1.62202,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.1946424
+  },
+  "policy": {
+    "safety_stock": 1030,
+    "reorder_point": 2099,
+    "order_quantity": 5058,
+    "review_period_days": 10
+  },
+  "safety_lead_time": {
+    "recommended_days": 0.0032716875137908073,
+    "sigma_eff_days": 1.0350785641107578,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 0.6428325803289529,
+      "supplier": 0.3214162901644764,
+      "quality": 0.10713876338815882
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M6700059 exhibits smooth demand pattern with gamma-like distribution (CV=0.49). \nLead time stability is volatile (CV=0.67). The recommended safety stock of 1030 units provides \n95% service level protection. With an order quantity of 5058 units (EOQ basis: 8176), \nthe reorder point is set at 2099 units. The optimized policy reduces annual inventory costs by \n$-200.48 compared to the current SAP baseline.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Stochastic EOQ with service level constraint",
+    "selection_rationale": "Selected due to smooth demand regime and volatile lead time. Combined variance model accounts for both demand and lead time uncertainty.",
+    "boundary_risk": "Capacity constraint active. MOQ=781, Max storage=6089. No critical conflicts detected.",
+    "escalation_flag": ""
+  }
+}

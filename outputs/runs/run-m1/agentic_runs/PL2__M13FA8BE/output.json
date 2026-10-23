@@ -1,0 +1,90 @@
+{
+  "material_id": "PL2__M13FA8BE",
+  "data_quality": {
+    "total_rows": 218,
+    "working_days": 218,
+    "outliers_detected": 57,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 3098.872479999999
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1344.2731350458714,
+    "std_daily_demand": 734.1357100532447,
+    "robust_std_daily": 277.5293765999999,
+    "cv_wd": 0.5461209414321839,
+    "non_zero_fraction_wd": 0.981651376146789,
+    "trend_detected": true,
+    "regime": "two-phase with uplift",
+    "distribution_type": "mixed (with outliers)"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.27999999999999997,
+    "std_lead_time": 0.38323187063012737,
+    "cv_lead_time": 1.3686852522504551,
+    "stability": "highly variable",
+    "effective_lead_time": 0.6632318706301273
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 645.2176789050728,
+    "safety_stock": 1062,
+    "safety_stock_robust": 882
+  },
+  "order_quantity": {
+    "eoq_raw": 26231.54189484372,
+    "order_quantity": 26232
+  },
+  "cost_analysis": {
+    "unit_cost": 0.41026,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.0492312
+  },
+  "policy": {
+    "safety_stock": 1062,
+    "reorder_point": 1954,
+    "order_quantity": 26232,
+    "review_period_days": 19
+  },
+  "safety_lead_time": {
+    "recommended_days": 0.7894888409593964,
+    "sigma_eff_days": 0.4799751345793693,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 63.750817753963865,
+    "variance_components": {
+      "transport": 150907.46741710688,
+      "supplier": 265398.3857545427,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization completed for material PL2__M13FA8BE. The optimized policy reduces total annual cost by 41.2% ($943.65) compared to SAP current policy. Safety stock reduced from 17491 to 1062 units, while order quantity increased from 17491 to 26232 units. The demand analysis reveals a two-phase pattern with significant uplift (2.4x), suggesting recent demand growth. Lead time is highly variable (CV=1.37), dominated by lead time variability (63.8%). The capacity constraint is satisfied with total inventory of 27294 units below the maximum of 66698 units.",
+  "warnings": [
+    "Very high lead time variability (CV > 1.0)",
+    "High number of outliers detected: 57",
+    "Demand regime change detected - review forecast assumptions"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "z-score safety stock with EOQ",
+    "selection_rationale": "Standard EOQ model with z-score safety stock is appropriate for this material given the 95% service level target and relatively high demand frequency (98.2% non-zero days).",
+    "boundary_risk": "Demand regime change detected - two-phase pattern with 2.4x uplift suggests structural shift. Recommend monitoring forecast accuracy.",
+    "escalation_flag": "medium"
+  },
+  "sap_policy": {
+    "safety_stock": 17491,
+    "order_quantity": 17491,
+    "annual_ordering_cost": 1000.0,
+    "annual_holding_cost": 1291.6543788000001,
+    "total_annual_cost": 2291.6543788
+  },
+  "optimized_policy_costs": {
+    "annual_ordering_cost": 650.0,
+    "annual_holding_cost": 697.9999536,
+    "total_annual_cost": 1347.9999536
+  }
+}

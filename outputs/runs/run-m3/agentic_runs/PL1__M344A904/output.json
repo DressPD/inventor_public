@@ -1,0 +1,93 @@
+{
+  "material_id": "PL1__M344A904",
+  "analysis_date": "2026-10-22T06:53:39.881682",
+  "parameters": {
+    "unit_cost": 0.799667,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 75.0,
+    "moq": 134,
+    "service_level_target": 0.95,
+    "max_storage_units": 12288.327,
+    "sap_safety_stock": 0,
+    "sap_safety_lead_time_days": 2.8
+  },
+  "data_summary": {
+    "total_rows": 217,
+    "working_days": 217,
+    "date_range_start": "2025-03-03",
+    "date_range_end": "2026-03-09",
+    "lead_time_observations": 195
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1038.25,
+    "std_demand": 338.44,
+    "median_demand": 1002.44,
+    "robust_std": 294.03,
+    "cv_demand": 0.326,
+    "non_zero_fraction": 1.0,
+    "trend_direction": "decreasing",
+    "trend_slope": -1.4135,
+    "outlier_count": 9,
+    "skewness": 0.687,
+    "demand_regime": "smooth",
+    "distribution_type": "approximately_normal",
+    "annual_demand": 261639.38
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.6,
+    "std_lead_time": 1.18,
+    "median_lead_time": 2.05,
+    "cv_lead_time": 0.453,
+    "stability": "unstable",
+    "p10": 1.53,
+    "p90": 3.98,
+    "p95": 4.5,
+    "effective_lead_time": 4.54
+  },
+  "safety_stock_calculation": {
+    "z_score": 1.645,
+    "sigma_ltd": 1340.54,
+    "safety_stock_raw": 2205.19,
+    "safety_stock": 2206,
+    "robust_sigma_ltd": 1313.0,
+    "robust_safety_stock": 2160,
+    "safety_lead_time_recommended": 2.12
+  },
+  "order_policy": {
+    "eoq_raw": 20223.3,
+    "eoq_ceiled": 20224,
+    "order_quantity_before_capacity": 20224,
+    "order_quantity": 10082,
+    "capacity_constrained": true,
+    "reorder_point": 4908,
+    "review_period_days": 9.71
+  },
+  "cost_analysis": {
+    "previous_policy": {
+      "safety_stock": 0,
+      "order_quantity": 134,
+      "average_inventory": 67.0,
+      "annual_holding_cost": 6.43,
+      "annual_ordering_cost": 146439.95,
+      "total_annual_cost": 146446.38
+    },
+    "optimized_policy": {
+      "safety_stock": 2206,
+      "order_quantity": 10082,
+      "average_inventory": 7247.0,
+      "annual_holding_cost": 695.42,
+      "annual_ordering_cost": 1946.34,
+      "total_annual_cost": 2641.76
+    },
+    "savings": {
+      "annual_cost_savings": 143804.62,
+      "savings_percentage": 98.2
+    }
+  },
+  "diagnostics": {
+    "storage_utilization": 100.0,
+    "warnings": [
+      "Order quantity reduced from 20224 to 10082 due to storage capacity constraint"
+    ]
+  }
+}

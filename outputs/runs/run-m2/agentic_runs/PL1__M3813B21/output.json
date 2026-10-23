@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__M3813B21",
+  "data_quality": {
+    "total_rows": 130,
+    "working_days": 130,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 672.916
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 277.6,
+    "std_daily_demand": 149.8,
+    "robust_std_daily": 138.4,
+    "cv_wd": 0.54,
+    "non_zero_fraction_wd": 0.892,
+    "trend_detected": false,
+    "regime": "lumpy",
+    "distribution_type": "right-skewed"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 4.1,
+    "std_lead_time": 1.52,
+    "cv_lead_time": 0.37,
+    "stability": "moderate",
+    "effective_lead_time": 5.62
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 520.4,
+    "safety_stock": 856.0,
+    "safety_stock_robust": 812.0
+  },
+  "order_quantity": {
+    "eoq_raw": 2378.0,
+    "order_quantity": 2013
+  },
+  "cost_analysis": {
+    "unit_cost": 20.469962,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 2.456
+  },
+  "policy": {
+    "safety_stock": 856,
+    "reorder_point": 1987,
+    "order_quantity": 2013,
+    "review_period_days": 8
+  },
+  "safety_lead_time": {
+    "recommended_days": 3.1,
+    "sigma_eff_days": 1.88,
+    "dominant_factor": "transport",
+    "dominant_pct": 70.0,
+    "variance_components": {
+      "transport": 0.7,
+      "supplier": 0.2,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce from 4.0 to 3.1 days \u2014 actual lead-time volatility is moderate, SAP setting is conservative",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M3813B21 exhibits lumpy demand (CV=0.54) with a mean of 277.6 units/day over 130 working days; 10.8% of days recorded zero demand. Lead times average 4.1 days with moderate variability (CV=0.37) after removing two extreme data-entry errors (9,201 and 9,327 days). An (r,Q) continuous-review policy is recommended: a reorder point of 1,987 units triggers a fixed replenishment of 2,013 units, capped at the storage limit of 2,869 units. This consolidates 826 annual orders under the current MOQ-only policy into just 34, cutting total annual inventory costs by 90.6%.",
+  "warnings": [
+    "Capacity constraint binds: EOQ of 2378 reduced to 2013 units to satisfy max_storage_units=2869 with safety_stock=856",
+    "Final capacity utilization: 100.0% (2869/2869 units)",
+    "2 extreme lead-time outliers removed (values: 9201.55, 9327.37 working days \u2014 likely data entry errors)"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review with EOQ replenishment",
+    "selection_rationale": "The material has moderate-to-high daily demand (277.6 units/day) and relatively stable lead times (CV=0.37), making a continuous-review (r,Q) policy appropriate. EOQ minimises the sum of ordering and holding costs; the reorder point provides a statistical safety buffer calibrated to the 95th percentile of lead-time demand.",
+    "boundary_risk": "Storage capacity is fully consumed (2,869/2,869 units = safety_stock + order_quantity). Any upward revision of safety stock \u2014 e.g. due to increased demand variability or a higher service level target \u2014 would require either a capacity expansion or a reduction in order quantity, increasing order frequency and cost.",
+    "escalation_flag": "none \u2014 MOQ (84) + safety_stock (856) = 940, which is well below max_storage_units (2869). No MOQ-capacity infeasibility."
+  }
+}

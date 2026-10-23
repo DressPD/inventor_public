@@ -1,0 +1,74 @@
+{
+  "material_id": "PL1__M78165D5",
+  "data_quality": {
+    "total_rows": 168,
+    "working_days": 168,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 535.4450800000005
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 216.27943547619049,
+    "std_daily_demand": 128.2658530502029,
+    "robust_std_daily": 124.88102297998516,
+    "cv_wd": 0.5930561672116224,
+    "non_zero_fraction_wd": 0.9464285714285714,
+    "trend_detected": false,
+    "regime": "lumpy",
+    "distribution_type": "gamma-like"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.964851485148514,
+    "std_lead_time": 1.284865451213773,
+    "cv_lead_time": 0.4333658726752082,
+    "stability": "moderate",
+    "effective_lead_time": 4.249716936362287
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 354.9661352497119,
+    "safety_stock": 584,
+    "safety_stock_robust": 578
+  },
+  "order_quantity": {
+    "eoq_raw": 1628.6918416959836,
+    "order_quantity": 1629
+  },
+  "cost_analysis": {
+    "unit_cost": 25.479295,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 3.0575153999999998
+  },
+  "policy": {
+    "safety_stock": 584,
+    "reorder_point": 1226,
+    "order_quantity": 1629,
+    "review_period_days": 8
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.7,
+    "sigma_eff_days": 1.6412384953205086,
+    "dominant_factor": "transport",
+    "dominant_pct": 50.0,
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.3,
+      "quality": 0.2
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce from 4.0 to 2.7 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M78165D5 shows lumpy demand (CV=0.59) with moderate lead time variability (CV=0.43, mean ~2.96 days). The current SAP policy holds zero safety stock, creating significant stockout risk at the 95% service level target. An (r,Q) continuous-review policy with a 584-unit safety stock and 1,629-unit order quantity is recommended, satisfying the capacity constraint (max inventory 2,213 vs limit 4,307) and aligning ordering/holding costs via EOQ.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) continuous-review reorder-point / fixed-order-quantity",
+    "selection_rationale": "Lumpy demand with CV>0.5 and moderate lead time variability favours continuous-review over periodic review; EOQ balances ordering and holding costs efficiently; MOQ (35) is non-binding relative to EOQ (1,629).",
+    "boundary_risk": "Capacity does not bind. Post-replenishment max inventory (584+1629=2213) is well within the 4,307-unit storage limit, leaving 2,094 units headroom.",
+    "escalation_flag": "none"
+  }
+}

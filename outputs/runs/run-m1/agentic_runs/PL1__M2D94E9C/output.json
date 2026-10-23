@@ -1,0 +1,74 @@
+{
+  "material_id": "PL1__M2D94E9C",
+  "data_quality": {
+    "total_rows": 127,
+    "working_days": 127,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 1192.8
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 491.27,
+    "std_daily_demand": 286.52,
+    "robust_std_daily": 248.33,
+    "cv_wd": 0.5832,
+    "non_zero_fraction_wd": 0.9685,
+    "trend_detected": false,
+    "regime": "normal",
+    "distribution_type": "gamma-like"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.5618,
+    "std_lead_time": 1.1215,
+    "cv_lead_time": 0.4378,
+    "stability": "moderate",
+    "effective_lead_time": 3.6833
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 523.89,
+    "safety_stock": 862.0,
+    "safety_stock_robust": 748.0
+  },
+  "order_quantity": {
+    "eoq_raw": 558.61,
+    "order_quantity": 559
+  },
+  "cost_analysis": {
+    "unit_cost": 30.357046,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 3.6428
+  },
+  "policy": {
+    "safety_stock": 862,
+    "reorder_point": 2275,
+    "order_quantity": 559,
+    "review_period_days": 2
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.756,
+    "sigma_eff_days": 1.067,
+    "dominant_factor": "demand_variability",
+    "dominant_pct": 91.2,
+    "variance_components": {
+      "transport": 0.0,
+      "supplier": 8.8,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce_from_3_to_1.76_days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M2D94E9C shows normal-regime demand with high variability (CV=0.58) and a moderately variable lead time averaging 2.56 working days. The current SAP safety stock of 0 units is insufficient for a 95% service level target; an (r,Q) policy with safety stock 862 units and order quantity 559 units is recommended. Demand variability dominates buffer requirements (91.2% of variance), and the proposed policy respects the 3,400-unit storage constraint with total annual cost savings of approximately $1,698 (11.6%).",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) continuous-review policy",
+    "selection_rationale": "Demand is frequent (97% non-zero days) with no significant trend, making a continuous-review (r,Q) policy optimal. EOQ balances ordering and holding costs efficiently, and the reorder point with safety stock handles variability without triggering periodic review overhead.",
+    "boundary_risk": "Order quantity (559) is well below the storage constraint binding level (3,400 - 862 = 2,539 available). No capacity constraint binds; full EOQ is achievable.",
+    "escalation_flag": "none"
+  }
+}

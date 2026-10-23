@@ -1,0 +1,135 @@
+{
+  "material_id": "PL1__M7E3210C",
+  "analysis_metadata": {
+    "unit_cost": 0.084478,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 50.0,
+    "moq": 18330,
+    "service_level_target": 0.95,
+    "max_storage_units": 136589.408
+  },
+  "data_quality": {
+    "total_rows": 217,
+    "working_days": 217,
+    "weekends_holidays": 0,
+    "missing_values": 0,
+    "outliers_detected": 6,
+    "data_completeness": 1.0,
+    "lead_time_observations": 24
+  },
+  "demand_analysis": {
+    "mean_daily": 4137.3,
+    "std_daily": 715.83,
+    "robust_std": 540.68,
+    "cv": 0.173,
+    "min_demand": 1294.56,
+    "max_demand": 5443.64,
+    "non_zero_fraction": 1.0,
+    "trend_detected": true,
+    "trend_slope": -5.149365,
+    "trend_p_value": 0.0,
+    "regime": "smooth",
+    "distribution_type": "left-skewed",
+    "skewness": -1.2426,
+    "kurtosis": 3.7845,
+    "outliers_count": 6,
+    "annual_demand": 1034325.23
+  },
+  "lead_time_analysis": {
+    "mean_lt_days": 0.4562,
+    "std_lt_days": 0.9118,
+    "cv_lt": 1.9984,
+    "min_lt_days": 0.03,
+    "max_lt_days": 3.03,
+    "stability": "volatile",
+    "effective_lead_time_days": 1.368,
+    "observations_count": 24
+  },
+  "safety_stock": {
+    "recommended": 6256,
+    "robust": 6234,
+    "sap_current": 54990,
+    "z_score": 1.6449,
+    "sigma_demand_during_lt": 3803.14,
+    "service_level": 0.95,
+    "buffer_days_coverage": 1.51,
+    "reduction_vs_sap_pct": 88.62
+  },
+  "order_quantity": {
+    "eoq_raw": 101010.41,
+    "eoq_with_moq": 101011,
+    "recommended": 101011,
+    "moq": 18330,
+    "capacity_constrained": false,
+    "days_coverage": 24.41,
+    "orders_per_year": 10.24
+  },
+  "reorder_policy": {
+    "safety_stock": 6256,
+    "reorder_point": 11916,
+    "order_quantity": 101011,
+    "review_period_days": 25,
+    "service_level": 0.95
+  },
+  "cost_analysis": {
+    "optimized": {
+      "annual_ordering_cost": 511.99,
+      "annual_holding_cost": 575.41,
+      "total_annual_cost": 1087.4,
+      "safety_stock": 6256,
+      "cycle_stock": 50505,
+      "orders_per_year": 10.24
+    },
+    "sap_baseline": {
+      "annual_ordering_cost": 2821.4,
+      "annual_holding_cost": 650.36,
+      "total_annual_cost": 3471.76,
+      "safety_stock": 54990,
+      "cycle_stock": 9165,
+      "orders_per_year": 56.43
+    },
+    "savings": {
+      "total_annual_savings": 2384.36,
+      "savings_percentage": 68.68,
+      "holding_cost_reduction": 74.95,
+      "ordering_cost_change": -2309.41
+    }
+  },
+  "safety_lead_time": {
+    "recommended_days": 0.9118,
+    "sap_current_days": 3.0,
+    "sigma_effective_days": 0.9118,
+    "variance_components": {
+      "transport": 0.498797,
+      "supplier": 0.249399,
+      "quality": 0.083133
+    },
+    "dominant_factor": "transport",
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce"
+  },
+  "capacity_analysis": {
+    "max_storage_units": 136589.408,
+    "safety_stock": 6256,
+    "order_quantity": 101011,
+    "total_inventory": 107267,
+    "capacity_utilization_pct": 78.53,
+    "headroom_units": 29322.41,
+    "capacity_ok": true,
+    "moq_exceeds_capacity": false
+  },
+  "recommendations": {
+    "primary": "Reduce safety stock from 54,990 to 6,256 units (-88.6%)",
+    "secondary": "Increase order quantity from 18,330 to 101,011 units to optimize EOQ",
+    "tertiary": "Set reorder point at 11,916 units for 95% service level",
+    "cost_impact": "Annual cost reduction of $2,384.36 (68.7%)",
+    "implementation_priority": "HIGH - Significant cost savings with low risk"
+  },
+  "diagnostics": {
+    "warnings": [],
+    "data_quality_issues": [
+      "6 demand outliers detected and winsorized"
+    ],
+    "constraint_violations": []
+  }
+}

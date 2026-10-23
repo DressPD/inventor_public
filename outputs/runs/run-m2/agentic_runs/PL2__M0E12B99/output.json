@@ -1,0 +1,74 @@
+{
+  "material_id": "PL2__M0E12B99",
+  "data_quality": {
+    "total_rows": 237,
+    "working_days": 237,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 429.55
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 156.2,
+    "std_daily_demand": 106.09,
+    "robust_std_daily": 108.92,
+    "cv_wd": 0.6792,
+    "non_zero_fraction_wd": 0.8903,
+    "trend_detected": false,
+    "regime": "intermittent",
+    "distribution_type": "mixed-continuous with zero-inflation"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 3.83,
+    "std_lead_time": 1.22,
+    "cv_lead_time": 0.3196,
+    "stability": "moderate",
+    "effective_lead_time": 5.05
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 282.02,
+    "safety_stock": 464.0,
+    "safety_stock_robust": 471.0
+  },
+  "order_quantity": {
+    "eoq_raw": 444.62,
+    "order_quantity": 445
+  },
+  "cost_analysis": {
+    "unit_cost": 343.705753,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 41.24
+  },
+  "policy": {
+    "safety_stock": 464,
+    "reorder_point": 1062,
+    "order_quantity": 445,
+    "review_period_days": 3
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.97,
+    "sigma_eff_days": 1.22,
+    "dominant_factor": "demand variability",
+    "dominant_pct": 68.0,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce from 3.8 to 2.97 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Demand for PL2__M0E12B99 is intermittent with a CV of 0.68 and approximately 11% zero-demand days across 237 working-day observations; no statistically significant trend is present. Lead times average 3.83 days with moderate variability (CV=0.32), yielding a sigma-LTD of 282 units and a statistically justified safety stock of 464 units \u2014 43.6% below the current SAP level of 822. An (r,Q) continuous-review policy with ROP=1,062 and OQ=445 (EOQ-derived, above MOQ=205) reduces annual inventory costs by 35.4% while fully satisfying the 95% service level and the 2,189-unit storage constraint.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) continuous-review reorder-point / fixed-order-quantity",
+    "selection_rationale": "The (r,Q) model is appropriate for this material because demand, while intermittent, occurs on ~89% of working days at volumes that make continuous review practical; the EOQ formula efficiently balances the low ordering cost against holding costs, and a fixed reorder point handles the moderate lead-time variability without requiring a more complex (s,S) or periodic-review structure.",
+    "boundary_risk": "Storage capacity is non-binding at 41.5% utilisation; no capacity-driven order reduction was required. If demand spikes toward the upper tail (>430 units/day) for multiple consecutive days before replenishment, the ROP of 1,062 may be insufficient \u2014 a periodic review of the ROP against rolling 30-day demand is recommended.",
+    "escalation_flag": "none"
+  }
+}

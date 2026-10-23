@@ -1,0 +1,74 @@
+{
+  "material_id": "PL3__MD999041",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": -105789.8705,
+      "upper_bound": 183007.5735
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 54878.23277192983,
+    "std_daily_demand": 31752.561306448162,
+    "robust_std_daily": 53520.65307635286,
+    "cv_wd": 0.5786002883585852,
+    "non_zero_fraction_wd": 0.9605263157894737,
+    "trend_detected": false,
+    "regime": "erratic",
+    "distribution_type": "lognormal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 5.464583333333334,
+    "std_lead_time": 1.3415337723362915,
+    "cv_lead_time": 0.2454960772860922,
+    "stability": "moderate",
+    "effective_lead_time": 6.806117105669625
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 104544.64298332988,
+    "safety_stock": 171961.0,
+    "safety_stock_robust": 238777.0
+  },
+  "order_quantity": {
+    "eoq_raw": 159553.7241310038,
+    "order_quantity": 50724
+  },
+  "cost_analysis": {
+    "unit_cost": 0.449102,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.05389224
+  },
+  "policy": {
+    "safety_stock": 171961,
+    "reorder_point": 471848,
+    "order_quantity": 50724,
+    "review_period_days": 1
+  },
+  "safety_lead_time": {
+    "recommended_days": 3.1335010497633573,
+    "sigma_eff_days": 1.9050293295305307,
+    "dominant_factor": "transport",
+    "dominant_pct": 50.0,
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.3,
+      "quality": 0.2
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "INCREASE",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__MD999041 exhibits erratic demand with CV=0.58. Lead time stability is moderate (CV=0.25). Optimized policy recommends safety stock of 171961 units (vs SAP 21300) and order quantity of 50724 units (constrained by capacity). This delivers 61.9% cost savings ($39222.17 annually).",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with capacity constraint and stochastic lead time",
+    "selection_rationale": "High-volume erratic demand with moderate lead time variability requires robust safety stock calculation",
+    "boundary_risk": "Capacity constraint is binding; order quantity significantly below optimal EOQ",
+    "escalation_flag": "REVIEW_CAPACITY"
+  }
+}

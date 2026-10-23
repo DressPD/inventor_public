@@ -1,0 +1,97 @@
+{
+  "material_id": "PL1__MF18597A",
+  "data_quality": {
+    "total_rows": 133,
+    "working_days": 133,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 91.74208000000003,
+      "upper_bound": 2578.7687600000004
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1912.9064938345864,
+    "std_daily_demand": 420.0077846232457,
+    "robust_std_daily": 192.96590066716064,
+    "cv_wd": 0.2195652458585698,
+    "non_zero_fraction_wd": 0.9849624060150376,
+    "trend_detected": true,
+    "regime": "moderate",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.8166137566137563,
+    "std_lead_time": 1.189096368882943,
+    "cv_lead_time": 0.4221723216720071,
+    "stability": "variable",
+    "effective_lead_time": 3.411161941055228
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 2297.5685772507513,
+    "safety_stock": 3780,
+    "safety_stock_robust": 3780
+  },
+  "order_quantity": {
+    "eoq_raw": 8667.054767280897,
+    "order_quantity": 8668
+  },
+  "cost_analysis": {
+    "unit_cost": 8.276258,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.99315096,
+    "sap_total_annual_cost": 55596.93,
+    "optimized_total_annual_cost": 12361.8,
+    "annual_savings": 43235.13,
+    "savings_percentage": 77.77,
+    "sap_policy": {
+      "safety_stock": 0,
+      "order_quantity": 675,
+      "avg_inventory": 337.5,
+      "annual_ordering_cost": 55261.74,
+      "annual_holding_cost": 335.19,
+      "total_annual_cost": 55596.93
+    },
+    "optimized_policy": {
+      "safety_stock": 3780,
+      "order_quantity": 8668,
+      "avg_inventory": 8114.0,
+      "annual_ordering_cost": 4303.38,
+      "annual_holding_cost": 8058.43,
+      "total_annual_cost": 12361.8
+    }
+  },
+  "policy": {
+    "safety_stock": 3780,
+    "reorder_point": 10306,
+    "order_quantity": 8668,
+    "review_period_days": 5
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.0,
+    "sigma_eff_days": 1.2010877607744832,
+    "dominant_factor": "transport_variability",
+    "dominant_pct": 98.0132122577108,
+    "variance_components": {
+      "transport": 5173942.391309765,
+      "supplier": 104878.97586027715,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "DECREASE from 3.0 to 2.0 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MF18597A shows moderate demand with variable lead time variability. Optimized policy recommends safety stock of 3780 units with order quantity 8668. The dominant factor in buffer sizing is transport_variability (98.0%). Annual cost savings of $43,235.13 (77.8%) expected versus SAP baseline.",
+  "warnings": [
+    "Lead time CV of 0.42 indicates variable delivery performance",
+    "Transport variability dominates buffer requirements (98.0%)"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Analytical EOQ with uncertain demand and lead time",
+    "selection_rationale": "Regime is moderate with CV=0.22, lead time stability=variable. Analytical formula sqrt(mean_lt*var_demand + mean_demand^2*var_lt) used.",
+    "boundary_risk": "Lead time CV=0.42 suggests moderate to high variability",
+    "escalation_flag": "None"
+  }
+}

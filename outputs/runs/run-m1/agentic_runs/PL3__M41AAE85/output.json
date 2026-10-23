@@ -1,0 +1,102 @@
+{
+  "material_id": "PL3__M41AAE85",
+  "inputs": {
+    "unit_cost": 0.169192,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 75.0,
+    "moq": 7950,
+    "service_level_target": 0.95,
+    "sap_safety_stock": 15900,
+    "sap_safety_lead_time_days": 0.0,
+    "max_storage_units": 219815.507
+  },
+  "data_quality": {
+    "total_observations": 228,
+    "working_days": 228,
+    "non_zero_fraction": 0.7982456140350878,
+    "lead_time_observations": 148,
+    "outliers_detected": 3,
+    "winsorization_bounds": {
+      "p1": 0.0,
+      "p99": 43755.65732
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 27196.594442807018,
+    "std_daily_demand": 16552.40916254471,
+    "robust_std_daily": 27913.806708673088,
+    "cv_demand": 0.6086206564337877,
+    "regime": "erratic",
+    "distribution_type": "slightly_skewed",
+    "trend_detected": false,
+    "trend_slope": 8.105851966422215,
+    "annual_demand": 6799148.610701755
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.1400675675675673,
+    "std_lead_time": 0.9130858917668715,
+    "cv_lead_time": 0.8009050671575714,
+    "effective_lead_time": 2.053153459334439,
+    "stability": "unstable",
+    "min_lead_time": 0.51,
+    "max_lead_time": 4.74
+  },
+  "safety_stock": {
+    "z_score": 1.644853626951472,
+    "sigma_lead_time_demand": 30479.953373938653,
+    "safety_stock": 50136,
+    "safety_stock_robust": 63811,
+    "method": "standard_deviation"
+  },
+  "order_policy": {
+    "eoq_raw": 224126.0624370729,
+    "unconstrained_order_quantity": 224127,
+    "order_quantity": 169679,
+    "reorder_point": 105975,
+    "review_period_days": 7,
+    "capacity_feasible": true,
+    "capacity_utilization_percent": 99.9997693520321
+  },
+  "cost_analysis": {
+    "annual_holding_cost_per_unit": 0.02030304,
+    "sap_policy": {
+      "order_quantity": 15900,
+      "safety_stock": 15900,
+      "annual_orders": 427.6194094780978,
+      "annual_ordering_cost": 32071.455710857335,
+      "annual_holding_cost": 484.227504,
+      "total_annual_cost": 32555.683214857334
+    },
+    "optimized_policy": {
+      "order_quantity": 169679,
+      "safety_stock": 50136,
+      "annual_orders": 40.070654652029745,
+      "annual_ordering_cost": 3005.299098902231,
+      "annual_holding_cost": 2740.41297552,
+      "total_annual_cost": 5745.712074422231
+    },
+    "cost_savings": 26809.971140435104,
+    "cost_savings_percent": 82.35112426760536
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.6,
+    "current_sap_days": 0.0,
+    "comparison_action": "INCREASE",
+    "dominant_risk_factor": "transport",
+    "variance_decomposition": {
+      "transport_variance": 0.4168629228718515,
+      "supplier_variance": 0.2501177537231109,
+      "quality_variance": 0.1667451691487406
+    },
+    "disruption_premium": 1.0
+  },
+  "recommendations": {
+    "primary": "Implement optimized policy to reduce annual costs by $26809.97 (82.4%)",
+    "safety_stock_action": "INCREASE safety stock from 15900 to 50136 units",
+    "order_quantity_action": "Order 169679 units per cycle",
+    "lead_time_action": "INCREASE safety lead time to 2.6 days",
+    "capacity_status": "WITHIN CAPACITY",
+    "demand_regime_note": "Demand is erratic (CV=0.61) - consider using robust safety stock calculation",
+    "lead_time_stability_note": "Lead time is unstable (CV=0.80) - monitor supplier performance"
+  }
+}

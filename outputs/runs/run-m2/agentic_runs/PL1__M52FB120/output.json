@@ -1,0 +1,77 @@
+{
+  "material_id": "PL1__M52FB120",
+  "data_quality": {
+    "total_rows": 106,
+    "working_days": 106,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 51.4,
+      "upper_bound": 2095.039
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1515.0,
+    "std_daily_demand": 499.0,
+    "robust_std_daily": 389.0,
+    "cv_wd": 0.33,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": true,
+    "regime": "normal",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.57,
+    "std_lead_time": 0.93,
+    "cv_lead_time": 0.59,
+    "stability": "unstable",
+    "effective_lead_time": 2.51
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1547.0,
+    "safety_stock": 2547.0,
+    "safety_stock_robust": 2098.0
+  },
+  "order_quantity": {
+    "eoq_raw": 30831.0,
+    "order_quantity": 31816
+  },
+  "cost_analysis": {
+    "unit_cost": 0.467716,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.05613
+  },
+  "policy": {
+    "safety_stock": 2547,
+    "reorder_point": 4933,
+    "order_quantity": 31816,
+    "review_period_days": 21
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.68,
+    "sigma_eff_days": 1.02,
+    "dominant_factor": "transport",
+    "dominant_pct": 50.0,
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.4,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M52FB120 exhibits normal demand behavior over 106 working days with a mean of 1,515 units/day and a coefficient of variation of 0.33, indicating moderate but manageable variability. Lead times average 1.57 days but are classified as unstable (CV=0.59) due to occasional spikes near 3 days, which drives the safety stock requirement. The (r,Q) continuous review policy with SS=2,547 and Q=31,816 maintains 95% service level while reducing total annual cost by 38% versus the current SAP policy. The storage capacity constraint is satisfied with 75% utilization.",
+  "warnings": [
+    "Lead time is unstable (CV=0.59); recommend quarterly supplier review",
+    "SAP safety stock (20,450) is 8x the recommended value (2,547); significant over-buffering detected"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous review",
+    "selection_rationale": "Demand is continuous and normally distributed (CV=0.33) with near-100% non-zero days, making a continuous-review fixed-order-quantity model the natural fit. The (r,Q) policy minimizes total cost by balancing ordering frequency against holding cost while the reorder point ensures coverage through the variable lead-time period.",
+    "boundary_risk": "The storage capacity of 45,810 units limits the maximum post-replenishment stock to SS+Q=34,363 units (75% utilization). The EOQ-derived quantity falls within bounds, so the cap does not bind and no service degradation occurs.",
+    "escalation_flag": "none"
+  }
+}

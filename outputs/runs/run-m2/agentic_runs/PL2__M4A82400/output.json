@@ -1,0 +1,78 @@
+{
+  "material_id": "PL2__M4A82400",
+  "data_quality": {
+    "total_rows": 239,
+    "working_days": 239,
+    "outliers_detected": 8,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 189451.606
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 99317.45,
+    "std_daily_demand": 74342.18,
+    "robust_std_daily": 65421.33,
+    "cv_wd": 1.056,
+    "non_zero_fraction_wd": 0.741,
+    "trend_detected": true,
+    "regime": "lumpy",
+    "distribution_type": "right-skewed, high-CV, intermittent"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.479,
+    "std_lead_time": 0.395,
+    "cv_lead_time": 0.826,
+    "stability": "unstable",
+    "effective_lead_time": 0.874
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 54894.12,
+    "safety_stock": 90277.0,
+    "safety_stock_robust": 79821.0
+  },
+  "order_quantity": {
+    "eoq_raw": 40812.44,
+    "order_quantity": 40812
+  },
+  "cost_analysis": {
+    "unit_cost": 8.364352,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.003722
+  },
+  "policy": {
+    "safety_stock": 90277,
+    "reorder_point": 137891,
+    "order_quantity": 40812,
+    "review_period_days": 0
+  },
+  "safety_lead_time": {
+    "recommended_days": 0.93,
+    "sigma_eff_days": 0.395,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 82.6,
+    "variance_components": {
+      "transport": 0.156,
+      "supplier": 0.156,
+      "quality": 0.083
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce_from_6.0_to_0.93_days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL2__M4A82400 exhibits highly variable lumpy demand (CV=1.056) with an upward trend across the 239-day observation window. Lead times are extremely short (mean 0.479 days) but unstable (CV=0.826), making lead-time variability the dominant buffer driver. The current SAP policy of zero safety stock is inadequate given this demand profile; a continuous-review (r,Q) policy with safety stock of 90,277 units is recommended to achieve the 95% service level target while remaining well within the 1,191,946-unit storage capacity.",
+  "warnings": [
+    "SAP safety stock is 0 \u2014 current policy has no stockout protection",
+    "SAP safety lead time of 6.0 days substantially overstates actual observed lead times (mean 0.479 days)",
+    "High demand CV (>1.0) indicates lumpy/intermittent demand pattern requiring careful review period management"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review policy",
+    "selection_rationale": "The continuous-review (r,Q) model is appropriate for this high-value, high-volume material with variable demand and short but unstable lead times. It triggers replenishment whenever stock falls to the reorder point, providing responsive protection against the observed demand spikes without requiring periodic review overhead.",
+    "boundary_risk": "Order quantity (40,812) + safety stock (90,277) = 131,089 units, which is 11% of the 1,191,946-unit storage limit \u2014 no capacity binding constraint applies. The MOQ of 28,031 is satisfied by the EOQ-derived order quantity of 40,812.",
+    "escalation_flag": "none"
+  }
+}

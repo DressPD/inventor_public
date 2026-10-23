@@ -1,0 +1,82 @@
+{
+  "material_id": "PL1__M017F4BA",
+  "analysis_date": "2026-10-22",
+  "demand_statistics": {
+    "mean_daily_demand": 601.66,
+    "std_demand": 198.16,
+    "robust_std_demand": 171.04,
+    "cv_demand": 0.3293,
+    "non_zero_fraction": 1.0,
+    "annual_demand": 150414.87,
+    "trend_slope": -0.8433,
+    "trend_p_value": 0.0001,
+    "has_significant_trend": true,
+    "regime": "Erratic",
+    "distribution_type": "Right-skewed"
+  },
+  "lead_time_statistics": {
+    "mean_lead_time": 2.59,
+    "std_lead_time": 1.17,
+    "cv_lead_time": 0.4504,
+    "lead_time_stability": "Moderate",
+    "effective_lead_time": 2.59
+  },
+  "safety_stock_calculation": {
+    "service_level_target": 0.95,
+    "z_score": 1.6449,
+    "sigma_ltd": 771.27,
+    "safety_stock": 1269,
+    "safety_lead_time_days": 2.11
+  },
+  "eoq_calculation": {
+    "eoq_raw": 12173.38,
+    "moq": 116,
+    "eoq_with_moq": 12173.38,
+    "max_storage_units": 8556.392,
+    "eoq_final": 7287,
+    "order_quantity": 7287
+  },
+  "reorder_point": {
+    "reorder_point": 2828,
+    "safety_stock": 1269,
+    "demand_during_lead_time": 1559.01
+  },
+  "sap_policy": {
+    "safety_stock": 0,
+    "safety_lead_time_days": 2.8,
+    "order_quantity": 7287,
+    "reorder_point": 3244,
+    "average_inventory": 3643.5,
+    "annual_holding_cost": 554.73,
+    "annual_ordering_cost": 1548.12,
+    "total_annual_cost": 2102.84
+  },
+  "recommended_policy": {
+    "safety_stock": 1269,
+    "safety_lead_time_days": 2.11,
+    "order_quantity": 7287,
+    "reorder_point": 2828,
+    "average_inventory": 4912.12,
+    "annual_holding_cost": 747.88,
+    "annual_ordering_cost": 1548.12,
+    "total_annual_cost": 2295.99
+  },
+  "cost_savings": {
+    "absolute_savings": -193.15,
+    "percent_savings": -9.19
+  },
+  "input_parameters": {
+    "unit_cost": 1.268757,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 75.0,
+    "moq": 116,
+    "service_level_target": 0.95,
+    "max_storage_units": 8556.392
+  },
+  "capacity_check": {
+    "total_max_inventory": 8555.62,
+    "max_storage_units": 8556.392,
+    "capacity_ok": true,
+    "spare_capacity": 0.77
+  }
+}

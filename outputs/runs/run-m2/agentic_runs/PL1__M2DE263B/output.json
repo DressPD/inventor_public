@@ -1,0 +1,74 @@
+{
+  "material_id": "PL1__M2DE263B",
+  "data_quality": {
+    "total_rows": 132,
+    "working_days": 132,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 1124.132
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 466.5558,
+    "std_daily_demand": 248.2027,
+    "robust_std_daily": 241.5289,
+    "cv_wd": 0.532,
+    "non_zero_fraction_wd": 0.9318,
+    "trend_detected": false,
+    "regime": "lumpy",
+    "distribution_type": "normal-like"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.661,
+    "std_lead_time": 1.2135,
+    "cv_lead_time": 0.456,
+    "stability": "moderate",
+    "effective_lead_time": 3.8745
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 696.0374,
+    "safety_stock": 1145,
+    "safety_stock_robust": 1135
+  },
+  "order_quantity": {
+    "eoq_raw": 4232.04,
+    "order_quantity": 4233
+  },
+  "cost_analysis": {
+    "unit_cost": 5.427041,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.6512
+  },
+  "policy": {
+    "safety_stock": 1145,
+    "reorder_point": 2387,
+    "order_quantity": 4233,
+    "review_period_days": 10
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.0,
+    "sigma_eff_days": 1.2135,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 0.883532,
+      "supplier": 0.441766,
+      "quality": 0.147255
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M2DE263B exhibits lumpy demand (CV=0.532, 93% non-zero days) with a near-normal distribution and no statistically significant trend. Lead times are moderately variable (CV=0.456) with a bimodal pattern suggesting two supplier delivery modes. The (r,Q) continuous-review policy is selected because it efficiently handles variable lead times and lumpy demand through a fixed reorder point trigger, while the EOQ batch size (4,233 units) reduces costly frequent replenishments from ~92 to ~28 orders/year, delivering 33.9% total cost savings.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) Continuous Review Reorder Point with EOQ",
+    "selection_rationale": "Lumpy but moderately high-volume demand with variable lead times favours continuous-review (r,Q) over periodic review. The EOQ provides the cost-optimal batch size while the reorder point absorbs lead-time demand uncertainty at the 95% service level.",
+    "boundary_risk": "Capacity utilisation at 67% (5,378 of 8,028 units) leaves comfortable 2,650-unit headroom. No capacity constraint binds.",
+    "escalation_flag": "none"
+  }
+}

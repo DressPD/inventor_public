@@ -1,0 +1,75 @@
+{
+  "material_id": "PL1__M514C1DF",
+  "analysis_timestamp": "2026-10-22T07:14:35.147400",
+  "data_quality": {
+    "total_rows": 93,
+    "working_days": 93,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 19.8,
+      "upper_bound": 1798.72
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 988.45,
+    "std_daily_demand": 315.07,
+    "robust_std_daily": 295.81,
+    "cv_wd": 0.3188,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": true,
+    "regime": "variable",
+    "distribution_type": "empirical"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.09,
+    "std_lead_time": 0.87,
+    "cv_lead_time": 0.7924,
+    "stability": "unstable",
+    "effective_lead_time": 1.96
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 917.53,
+    "safety_stock": 1510.0,
+    "safety_stock_robust": 1498.0
+  },
+  "order_quantity": {
+    "eoq_raw": 4974.86,
+    "order_quantity": 4975
+  },
+  "cost_analysis": {
+    "unit_cost": 8.320536,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.9984643199999998
+  },
+  "policy": {
+    "safety_stock": 1510,
+    "reorder_point": 2591,
+    "order_quantity": 4975,
+    "review_period_days": 6
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.53,
+    "sigma_eff_days": 0.93,
+    "dominant_factor": "transport",
+    "dominant_pct": 0.5,
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.4,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M514C1DF exhibits variable demand (CV=0.32) with a statistically significant downward trend (slope=-2.92, p=0.016) and highly unstable lead times (CV=0.79, range 0.03-3.82 days). The current SAP policy uses MOQ-sized orders (132 units), generating ~1,872 replenishment orders/year and incurring ~$93,603 in annual ordering costs. An EOQ-based (r,Q) continuous review policy with Q=4,975 and ROP=2,591 reduces orders to ~50/year, saving $87,853 annually (93.1%) while properly protecting the 95% service level target with a safety stock of 1,510 units.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous review (EOQ-based)",
+    "selection_rationale": "Demand is continuous (100% non-zero working days), moderately variable (CV=0.32), and lead times are unstable. A continuous-review (r,Q) policy triggers a fixed replenishment order Q whenever stock hits reorder point r, providing tight control over stockout risk without the overhead of periodic review. EOQ minimizes the sum of ordering and holding costs given the high ordering cost relative to unit value.",
+    "boundary_risk": "No capacity constraint binds: SS(1510) + OQ(4975) = 6485 units, well within the 9894.629-unit storage limit. The downward demand trend should be monitored; if it persists, the EOQ and reorder point should be recalculated annually.",
+    "escalation_flag": "none"
+  }
+}

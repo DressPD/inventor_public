@@ -1,0 +1,74 @@
+{
+  "material_id": "PL1__M2E41291",
+  "data_quality": {
+    "total_rows": 88,
+    "working_days": 88,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": -228.15637499999997,
+      "upper_bound": 983.180625
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 383.43511363636367,
+    "std_daily_demand": 210.10458169570498,
+    "robust_std_daily": 224.48795404002965,
+    "cv_wd": 0.5479534195581283,
+    "non_zero_fraction_wd": 0.9659090909090909,
+    "trend_detected": false,
+    "regime": "erratic",
+    "distribution_type": "gamma"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 3.76516129032258,
+    "std_lead_time": 1.78441131582681,
+    "cv_lead_time": 0.4739269258964284,
+    "stability": "moderate",
+    "effective_lead_time": 4.657366948235985
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 796.458929237405,
+    "safety_stock": 1311,
+    "safety_stock_robust": 1335
+  },
+  "order_quantity": {
+    "eoq_raw": 5574.885454215608,
+    "order_quantity": 2718
+  },
+  "cost_analysis": {
+    "unit_cost": 5.14054,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.6168648
+  },
+  "policy": {
+    "safety_stock": 1311,
+    "reorder_point": 2755,
+    "order_quantity": 2718,
+    "review_period_days": 8
+  },
+  "safety_lead_time": {
+    "recommended_days": 0.7795404229707017,
+    "sigma_eff_days": 1.78441131582681,
+    "dominant_factor": "transport",
+    "dominant_pct": 0.6,
+    "variance_components": {
+      "transport": 1.9104742464304605,
+      "supplier": 0.9552371232152302,
+      "quality": 0.3184123744050768
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease_moderately",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M2E41291 exhibits erratic demand behavior with CV=0.55. The recommended policy uses a safety stock of 1311 units and order quantity of 2718 units to achieve 95.0% service level. Lead time is moderate with mean 3.77 days. The optimized policy costs $5,173.84 annually compared to SAP's $4,365.13, reflecting the increased holding cost from higher safety stock to meet service level targets.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "classical_eoq_newsvendor",
+    "selection_rationale": "EOQ-based model selected for erratic demand pattern with moderate lead time. Safety stock computed via standard deviation of lead time demand.",
+    "boundary_risk": "Storage constraint active; order quantity limited by max_storage_units",
+    "escalation_flag": "none"
+  }
+}

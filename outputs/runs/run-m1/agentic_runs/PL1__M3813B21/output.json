@@ -1,0 +1,84 @@
+{
+  "material_id": "PL1__M3813B21",
+  "data_quality": {
+    "total_rows": 130,
+    "working_days": 130,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 673.8054699999998
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 277.88722261538464,
+    "std_daily_demand": 149.45956884240263,
+    "robust_std_daily": 143.04318013343217,
+    "cv_wd": 0.5378425371117733,
+    "non_zero_fraction_wd": 0.9307692307692308,
+    "trend_detected": false,
+    "regime": "erratic",
+    "distribution_type": "Gamma/LogNormal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 4.06896312849162,
+    "std_lead_time": 1.5182760762790783,
+    "cv_lead_time": 0.37313586492043466,
+    "stability": "moderate",
+    "effective_lead_time": 5.5872392047706985
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 518.55646289947,
+    "safety_stock": 853,
+    "safety_stock_robust": 841
+  },
+  "order_quantity": {
+    "eoq_raw": 2378.3192443254547,
+    "order_quantity": 2016
+  },
+  "cost_analysis": {
+    "unit_cost": 20.469962,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 2.4563954399999997,
+    "optimized_annual_ordering_cost": 3446.022105845544,
+    "optimized_annual_holding_cost": 4571.35191384,
+    "optimized_total_annual_cost": 8017.374019685543,
+    "previous_annual_ordering_cost": 2920.2104099977373,
+    "previous_annual_holding_cost": 2921.8823758799995,
+    "previous_total_annual_cost": 5842.092785877737,
+    "cost_savings": -2175.2812338078065,
+    "cost_savings_pct": -37.23462316562616
+  },
+  "policy": {
+    "safety_stock": 853,
+    "reorder_point": 1984,
+    "order_quantity": 2016,
+    "review_period_days": 8
+  },
+  "safety_lead_time": {
+    "recommended_days": 3.069590576968023,
+    "sigma_eff_days": 1.866068032991889,
+    "dominant_factor": "transport",
+    "dominant_pct": 0.5,
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.4,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M3813B21 exhibits erratic demand behavior with a coefficient of variation of 0.54. \nThe demand pattern shows no significant trend over the analysis period, \nwith 93.1% of working days having non-zero demand. The lead time demonstrates moderate \nvariability (CV=0.37). After removing extreme outliers (values exceeding 12 days), \nthe cleaned lead time data shows a mean of 4.07 days with standard deviation of 1.52 days.\n\nThe optimized inventory policy recommends a safety stock of 853 units to achieve the target service level \nof 95%, compared to the current SAP safety stock of 0 units. The recommended \norder quantity of 2016 units balances ordering and holding costs while respecting the minimum order quantity \nof 84 units and the maximum storage capacity of 2869 units.\n\nThis optimization is expected to increase total annual inventory costs by \n$2175.28 (37.2%) compared to the previous policy.",
+  "warnings": [
+    "2 extreme lead time outliers removed (values: [9201.55, 9327.37])"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Stochastic Inventory Model with Variable Lead Time",
+    "selection_rationale": "Selected due to erratic demand pattern (CV=0.54) and moderate lead time variability (CV=0.37). The model accounts for both demand and lead time uncertainty using combined variance.",
+    "boundary_risk": "MEDIUM - Model assumes stationary demand. No significant trend detected.",
+    "escalation_flag": "NO"
+  }
+}

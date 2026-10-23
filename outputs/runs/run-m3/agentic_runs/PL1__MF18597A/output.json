@@ -1,0 +1,96 @@
+{
+  "material_id": "PL1__MF18597A",
+  "data_quality": {
+    "total_rows": 133,
+    "working_days": 133,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 91.74208000000003,
+      "upper_bound": 2578.7687600000004
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1912.9064938345864,
+    "std_daily_demand": 420.0077846232457,
+    "robust_std_daily": 203.39937660000038,
+    "cv_wd": 0.2195652458585698,
+    "non_zero_fraction_wd": 0.9849624060150376,
+    "trend_detected": false,
+    "regime": "erratic",
+    "distribution_type": "normal-approximation"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.8166137566137563,
+    "std_lead_time": 1.189096368882943,
+    "cv_lead_time": 0.4221723216720071,
+    "stability": "variable",
+    "effective_lead_time": 4.0057101254967
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 2381.3465678518396,
+    "safety_stock": 3917,
+    "safety_stock_robust": 3784
+  },
+  "order_quantity": {
+    "eoq_raw": 8683.706184682265,
+    "order_quantity": 8684
+  },
+  "cost_analysis": {
+    "unit_cost": 8.276258,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.99315096,
+    "previous_policy": {
+      "safety_stock": 0,
+      "order_quantity": 675,
+      "avg_inventory": 337.5,
+      "annual_orders": 739.65717761604,
+      "annual_ordering_cost": 55474.288321203,
+      "annual_holding_cost": 335.188449,
+      "total_annual_cost": 55809.476770203
+    },
+    "optimized_policy": {
+      "safety_stock": 3917,
+      "order_quantity": 8684,
+      "avg_inventory": 8259.0,
+      "annual_orders": 57.49292893722098,
+      "annual_ordering_cost": 4311.9696702915735,
+      "annual_holding_cost": 8202.433778640001,
+      "total_annual_cost": 12514.403448931575
+    },
+    "annual_savings": 43295.073321271426,
+    "savings_percentage": 77.57656195118983
+  },
+  "policy": {
+    "safety_stock": 3917,
+    "reorder_point": 9305,
+    "order_quantity": 8684,
+    "review_period_days": 5
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.0476693516513893,
+    "sigma_eff_days": 1.189096368882943,
+    "dominant_factor": "transport",
+    "dominant_pct": 0.5,
+    "variance_components": {
+      "transport": 0.7069750872453,
+      "supplier": 0.56558006979624,
+      "quality": 0.14139501744906
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease moderately",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization analysis for material PL1__MF18597A reveals an ERRATIC demand pattern \nwith CV=0.220 and VARIABLE lead times (CV=0.422). The analysis recommends transitioning \nfrom the current SAP policy (no safety stock, MOQ=675) to an optimized (r,Q) continuous review policy \nwith safety stock=3917 units and order quantity=8684 units. \n\nThe optimized policy achieves 95% service level protection while reducing total annual costs by \n$43,295.07 (77.6%), primarily through better order quantity optimization. \nMean demand is 1912.91 units/day with mean lead time 2.82 days. \nThe reorder point is set at 9305 units to cover lead time demand plus safety buffer.\n\nRecommended safety lead time is 2.05 days vs current SAP value of 3.0 \ndays, suggesting a moderate decrease. Lead time variability is driven primarily by transport factors (50% of variance).\n",
+  "warnings": [
+    "Variable lead times (CV=0.422) increase supply chain risk"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with safety stock",
+    "selection_rationale": "Erratic demand regime (CV=0.220) with variable lead times suits continuous review (r,Q) policy. Normal approximation valid due to high non-zero fraction (98.5%).",
+    "boundary_risk": "Demand variability near erratic/variable boundary; monitor for regime shifts.",
+    "escalation_flag": "no"
+  }
+}

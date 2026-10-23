@@ -1,0 +1,91 @@
+{
+  "material_id": "PL1__M5540F1F",
+  "demand_analysis": {
+    "total_rows": 129,
+    "working_days": 129,
+    "mean_daily_demand": 117.917,
+    "std_daily_demand": 112.322,
+    "robust_std_daily_demand": 133.187,
+    "cv": 0.953,
+    "non_zero_fraction": 0.659,
+    "trend_detected": false,
+    "trend_slope": -0.354667,
+    "trend_p_value": 0.184138,
+    "demand_regime": "erratic",
+    "distribution_type": "semi_smooth"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 3.143,
+    "std_lead_time": 1.319,
+    "cv_lead_time": 0.42,
+    "stability": "moderate",
+    "effective_lead_time": 4.462
+  },
+  "safety_stock": {
+    "service_level_target": 0.95,
+    "z_score": 1.6449,
+    "sigma_ltd": 252.692,
+    "safety_stock": 416,
+    "safety_stock_robust": 466,
+    "sap_safety_stock": 215
+  },
+  "order_quantity": {
+    "annual_demand": 29479.34,
+    "eoq_raw": 2230.29,
+    "moq": 215,
+    "unconstrained_order_quantity": 2231,
+    "order_quantity": 1907,
+    "capacity_feasible": true
+  },
+  "policy": {
+    "reorder_point": 787,
+    "safety_stock": 416,
+    "order_quantity": 1907,
+    "review_period_days": 17
+  },
+  "safety_lead_time": {
+    "recommended_days": 3.528,
+    "sigma_effective_days": 2.143,
+    "variance_components": {
+      "transport": 38312.0,
+      "supplier": 19156.0,
+      "quality": 6385.33
+    },
+    "dominant_factor": "transport",
+    "disruption_premium": 1.0,
+    "sap_safety_lead_time_days": 4.0,
+    "comparison_action": "Decrease safety lead time from 4.0 to 3.53 days"
+  },
+  "cost_analysis": {
+    "recommended_policy": {
+      "annual_demand_units": 29479.34,
+      "num_orders_per_year": 15.46,
+      "annual_ordering_cost": 1159.39,
+      "avg_inventory": 1369.5,
+      "annual_holding_cost": 1217.44,
+      "annual_holding_cost_per_unit": 0.889,
+      "total_annual_cost": 2376.83
+    },
+    "sap_policy": {
+      "avg_inventory": 322.5,
+      "annual_orders": 137.11,
+      "annual_ordering_cost": 10283.49,
+      "annual_holding_cost": 286.69,
+      "total_annual_cost": 10570.18
+    },
+    "savings": {
+      "cost_savings": 8193.35,
+      "savings_percentage": 77.51
+    }
+  },
+  "inputs": {
+    "unit_cost": 7.408075,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 75.0,
+    "moq": 215,
+    "service_level_target": 0.95,
+    "sap_safety_stock": 215,
+    "sap_safety_lead_time_days": 4.0,
+    "max_storage_units": 2323.118
+  }
+}

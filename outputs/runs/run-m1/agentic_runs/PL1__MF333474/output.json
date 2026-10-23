@@ -1,0 +1,94 @@
+{
+  "material_id": "PL1__MF333474",
+  "data_quality": {
+    "total_rows": 225,
+    "working_days": 225,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 4958.976319999998
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 867.4944753777778,
+    "std_daily_demand": 1029.2047312798443,
+    "robust_std_daily": 987.9229058561898,
+    "cv_wd": 1.1864107040354863,
+    "non_zero_fraction_wd": 0.9511111111111111,
+    "trend_detected": true,
+    "regime": "erratic",
+    "distribution_type": "right_skewed"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.4885454545454544,
+    "std_lead_time": 0.8826001531288278,
+    "cv_lead_time": 0.5929279152569382,
+    "stability": "moderate",
+    "effective_lead_time": 2.3711456076742823
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1470.7077482167686,
+    "safety_stock": 2420,
+    "safety_stock_robust": 1983
+  },
+  "order_quantity": {
+    "eoq_raw": 2002.9776348526661,
+    "order_quantity": 2003
+  },
+  "cost_analysis": {
+    "unit_cost": 46.849679,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 5.62196148,
+    "sap_baseline": {
+      "safety_stock": 722,
+      "order_quantity": 2003,
+      "annual_ordering_cost": 5630.2686869251675,
+      "annual_holding_cost": 9689.45061078,
+      "total_annual_cost": 15319.719297705167
+    },
+    "optimized": {
+      "safety_stock": 2420,
+      "order_quantity": 2003,
+      "annual_ordering_cost": 5630.2686869251675,
+      "annual_holding_cost": 19235.54120382,
+      "total_annual_cost": 24865.809890745168
+    },
+    "annual_savings": -9546.09059304,
+    "savings_pct": -62.31243802534924
+  },
+  "policy": {
+    "safety_stock": 2420,
+    "reorder_point": 4477,
+    "order_quantity": 2003,
+    "review_period_days": 3
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.7896431259070957,
+    "sigma_eff_days": 0.8826001531288278,
+    "dominant_factor": "transport",
+    "dominant_pct": 50.0,
+    "variance_components": {
+      "transport": 0.38949151515151514,
+      "supplier": 0.31159321212121216,
+      "quality": 0.07789830303030304
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "The analysis reveals that material PL1__MF333474 exhibits an erratic demand pattern (CV=1.19) with moderate lead time variability (CV=0.59). To achieve the target 95% service level, the recommended safety stock is 2420 units, which is 3.4x higher than the current SAP baseline of 722 units. This increase reflects the high demand and lead time variability in the system. While this raises annual holding costs by $9,546.09, it is necessary to maintain the target service level. Management should review the SAP baseline parameters, as the current safety stock of 722 units is insufficient for 95% service level given observed variability.",
+  "warnings": [
+    "Optimized policy increases costs by $9,546.09 due to significantly higher safety stock requirements (SAP: 722, Recommended: 2420)",
+    "High demand variability (CV=1.19) indicates erratic demand pattern. Consider demand smoothing or safety stock increase.",
+    "Moderate to high lead time variability (CV=0.59). Consider supplier performance improvement initiatives."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "continuous_review_rop",
+    "selection_rationale": "Continuous review (R,Q) model selected based on erratic demand regime and moderate lead time. High demand variability justifies continuous monitoring.",
+    "boundary_risk": "High CV indicates boundary with lumpy regime. Monitor demand patterns for regime shift.",
+    "escalation_flag": "high_variability_review"
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "material_id": "PL3__MCCFF617",
+  "data_quality": {
+    "total_rows": 216,
+    "working_days": 216,
+    "outliers_detected": 7,
+    "winsorisation": {
+      "lower_bound": -5.338125,
+      "upper_bound": 8.896875
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 2.0694861111111114,
+    "std_daily_demand": 3.719345606331991,
+    "robust_std_daily": 2.6361111111111106,
+    "cv_wd": 1.7972314896740558,
+    "non_zero_fraction_wd": 0.2777777777777778,
+    "trend_detected": true,
+    "regime": "lumpy",
+    "distribution_type": "zero_inflated"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.24,
+    "std_lead_time": 1.0529640702955319,
+    "cv_lead_time": 0.8491645728189773,
+    "stability": "volatile",
+    "effective_lead_time": 2.2929640702955316
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 4.679960713447557,
+    "safety_stock": 7.697850353504613,
+    "safety_stock_robust": 7.0
+  },
+  "order_quantity": {
+    "eoq_raw": 244.1704450741409,
+    "order_quantity": 455
+  },
+  "cost_analysis": {
+    "unit_cost": 11.281314,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.35375768
+  },
+  "policy": {
+    "safety_stock": 8,
+    "reorder_point": 11,
+    "order_quantity": 455,
+    "review_period_days": 220
+  },
+  "safety_lead_time": {
+    "recommended_days": 3.8656939793158522,
+    "sigma_eff_days": 2.2614119941761177,
+    "dominant_factor": "demand_variability",
+    "dominant_pct": 78.31957846627292,
+    "variance_components": {
+      "transport": 78.31957846627292,
+      "supplier": 21.680421533727092,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.8491645728189772,
+    "comparison_action": "increase",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__MCCFF617 exhibits lumpy demand with high variability (CV=1.80) and 27.8% non-zero days. \nA significant downward trend is detected (p=0.0009). Lead time is volatile (CV=0.85, mean=1.24 days).\n\nThe recommended policy increases safety stock from 0 to 8 units to achieve 95% service level, \ntranslating to a safety lead time of 3.87 days (vs. SAP's 0.00 days). \nOrder quantity remains at MOQ (455 units) as EOQ (244) is below MOQ.\n\nThe optimized policy increases total annual cost by $10.83 (2.7%), \nbut provides significantly better stockout protection. Storage capacity is adequate (463/1321 units used).\n\nPrimary risk factor is demand variability (78.3% of variance), not supplier lead time variability (21.7%). \nGiven the lumpy pattern, consider implementing a (R,s,S) policy or periodic review with higher service targets for business-critical periods.",
+  "warnings": [
+    "Lumpy demand pattern detected (CV=1.80). Standard EOQ may not be optimal. Consider (R,s,S) policy.",
+    "High lead time variability (CV=0.85). Consider supplier performance improvement.",
+    "Significant downward trend detected in demand. Review forecast and policy periodically."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Bootstrapped_Quantile",
+    "selection_rationale": "Lumpy/intermittent demand (CV=1.80, non-zero fraction=0.28) requires non-parametric approach",
+    "boundary_risk": "high",
+    "escalation_flag": "not_required"
+  }
+}

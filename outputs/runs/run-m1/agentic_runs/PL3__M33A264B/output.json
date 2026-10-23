@@ -1,0 +1,78 @@
+{
+  "material_id": "PL3__M33A264B",
+  "data_quality": {
+    "total_rows": 217,
+    "working_days": 217,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": 3.658,
+      "upper_bound": 21.948
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 6.109,
+    "std_daily_demand": 8.136,
+    "robust_std_daily": 6.491,
+    "cv_wd": 1.332,
+    "non_zero_fraction_wd": 0.318,
+    "trend_detected": true,
+    "regime": "intermittent-lumpy",
+    "distribution_type": "empirical/non-parametric"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.323,
+    "std_lead_time": 1.228,
+    "cv_lead_time": 0.928,
+    "stability": "moderate",
+    "effective_lead_time": 1.937
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 6.578,
+    "safety_stock": 11.0,
+    "safety_stock_robust": 8.0
+  },
+  "order_quantity": {
+    "eoq_raw": 136.8,
+    "order_quantity": 526
+  },
+  "cost_analysis": {
+    "unit_cost": 10.276031,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.2331
+  },
+  "policy": {
+    "safety_stock": 11,
+    "reorder_point": 17,
+    "order_quantity": 526,
+    "review_period_days": 86
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.2,
+    "sigma_eff_days": 1.228,
+    "dominant_factor": "supplier",
+    "dominant_pct": 100.0,
+    "variance_components": {
+      "transport": 0.0,
+      "supplier": 1.508,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__M33A264B exhibits intermittent-lumpy demand with only 31.8% of working days showing positive demand and a high coefficient of variation of 1.33, indicating sporadic but occasionally large consumption events. Lead times are moderately unstable (CV=0.93) based on 3 observations ranging from 0.5 to 2.79 days. An (r,Q) policy with MOQ-constrained order quantity of 526 units and a safety stock of 11 units is recommended to achieve the 95% service level target while utilizing only 35.8% of available storage capacity. The slight downward demand trend warrants periodic policy review every 86 days.",
+  "warnings": [
+    "EOQ (136.8) is below MOQ (526); order quantity set to MOQ",
+    "Only 3 lead time observations available; lead time statistics have high uncertainty",
+    "Downward demand trend detected; policy should be reviewed quarterly"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) \u2014 continuous-review reorder-point/fixed-order-quantity",
+    "selection_rationale": "Intermittent-lumpy demand with low mean and high CV is best served by a continuous-review (r,Q) policy that triggers a fixed replenishment when stock drops to the reorder point, avoiding over-ordering while maintaining service level. The MOQ of 526 naturally defines Q, making a variable-order policy (s,S) unnecessarily complex here.",
+    "boundary_risk": "Order quantity is MOQ-constrained at 526 (EOQ=137), resulting in infrequent large orders (~2.9/year). This increases cycle stock holding cost but is unavoidable given the supplier MOQ. Capacity utilisation at 35.8% is well within limits with no capacity-driven risk.",
+    "escalation_flag": "none"
+  }
+}

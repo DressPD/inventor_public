@@ -1,0 +1,74 @@
+{
+  "material_id": "PL1__ME993828",
+  "data_quality": {
+    "total_rows": 126,
+    "working_days": 126,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": -71.39800000000005,
+      "upper_bound": 647.0840000000001
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 286.90455555555565,
+    "std_daily_demand": 136.4868942443079,
+    "robust_std_daily": 133.45623900000004,
+    "cv_wd": 0.4757222971939839,
+    "non_zero_fraction_wd": 0.9682539682539683,
+    "trend_detected": true,
+    "regime": "smooth",
+    "distribution_type": "symmetric"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 4.284358974358974,
+    "std_lead_time": 1.3266230830679846,
+    "cv_lead_time": 0.3096433074370184,
+    "stability": "moderate",
+    "effective_lead_time": 4.947670515892966
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 474.0032628456324,
+    "safety_stock": 780,
+    "safety_stock_robust": 774
+  },
+  "order_quantity": {
+    "eoq_raw": 3129.827358258374,
+    "order_quantity": 3130
+  },
+  "cost_analysis": {
+    "unit_cost": 12.203529,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.46442348
+  },
+  "policy": {
+    "safety_stock": 780,
+    "reorder_point": 2010,
+    "order_quantity": 3130,
+    "review_period_days": 11
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.7186741545097646,
+    "sigma_eff_days": 1.3266230830679846,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 0.6447737160663908,
+    "variance_components": {
+      "transport": 1.055957282717283,
+      "supplier": 0.5279786413586415,
+      "quality": 0.1759928804528805
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease_from_5.0_to_2.7",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__ME993828 exhibits smooth demand with a CV of 0.48 and moderate lead time variability (CV=0.31). A positive trend was detected (p=0.0090), suggesting increasing demand over time. The optimized policy recommends a safety stock of 780 units and an order quantity of 3130 units, which yields an estimated annual cost savings of $67536.05 (92.2%) compared to the current SAP policy.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "dynamic_EOQ",
+    "selection_rationale": "Detected trend suggests need for dynamic adjustment",
+    "boundary_risk": "medium",
+    "escalation_flag": null
+  }
+}

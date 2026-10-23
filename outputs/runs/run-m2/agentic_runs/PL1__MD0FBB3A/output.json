@@ -1,0 +1,111 @@
+{
+  "material_id": "PL1__MD0FBB3A",
+  "analysis_timestamp": "2026-10-22 14:07:19",
+  "input_parameters": {
+    "unit_cost": 46.617989,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 75.0,
+    "moq": 91,
+    "service_level_target": 0.95,
+    "sap_safety_stock": 573,
+    "sap_safety_lead_time_days": 3.3,
+    "max_storage_units": 17740.352
+  },
+  "data_quality": {
+    "total_rows": 221,
+    "working_days": 221,
+    "lead_time_observations": 146,
+    "date_range_start": "2025-03-03",
+    "date_range_end": "2026-03-09",
+    "data_source": "fallback"
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 748.66,
+    "std_demand": 561.88,
+    "robust_std": 719.9,
+    "cv": 0.751,
+    "non_zero_fraction": 0.9,
+    "has_trend": true,
+    "trend_p_value": 0.0095,
+    "winsorize_lower": 0.0,
+    "winsorize_upper": 2189.76,
+    "regime": "erratic",
+    "distribution_type": "right-skewed",
+    "annual_demand": 187165.0,
+    "narrative": "Demand exhibits erratic behavior with CV=0.75 and 90.0% non-zero days. Significant upward trend detected (p=0.0095). Distribution is right-skewed, requiring robust buffer strategies."
+  },
+  "lead_time_analysis": {
+    "mean_lead_time_days": 2.51,
+    "std_lead_time_days": 1.22,
+    "cv_lead_time": 0.486,
+    "stability": "unstable",
+    "effective_lead_time_days": 3.73,
+    "min_lead_time": 0.09,
+    "max_lead_time": 5.78,
+    "narrative": "Lead time averages 2.51 days with unstable stability (CV=0.49). High variability (1.22 days std) requires conservative effective lead time of 3.73 days."
+  },
+  "buffer_analysis": {
+    "z_score": 1.645,
+    "sigma_ltd": 1275.14,
+    "sigma_ltd_robust": 1460.88,
+    "safety_stock": 2098,
+    "safety_stock_robust": 2403,
+    "sap_safety_stock": 573,
+    "selected_model": "standard",
+    "selection_rationale": "Standard model selected for erratic demand with unstable lead times. Safety stock of 2098 units provides 95.0% service level. Robust estimate (2403) available as alternative. Current SAP setting (573) is significantly understated.",
+    "boundary_risk": "high",
+    "escalation_flag": "CRITICAL: Safety stock increase required"
+  },
+  "order_quantity": {
+    "eoq_raw": 2240.22,
+    "unconstrained_order_quantity": 2241,
+    "order_quantity": 2241,
+    "moq_constraint_active": false,
+    "capacity_constraint_active": false,
+    "feasibility": "feasible",
+    "narrative": "EOQ calculation yields 2240 units. Final order quantity of 2241 units meets MOQ requirement and respects capacity constraints."
+  },
+  "inventory_policy": {
+    "reorder_point": 4890,
+    "order_quantity": 2241,
+    "safety_stock": 2098,
+    "review_period_days": 3,
+    "max_inventory_level": 4339,
+    "capacity_utilization_pct": 24.5,
+    "constraint_satisfied": true,
+    "narrative": "Recommended (R,Q) policy: Reorder at 4890 units, order 2241 units. Review every 3 days. Maximum inventory of 4339 units uses 24.5% of available capacity."
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.8,
+    "sap_current_days": 3.3,
+    "sigma_effective_days": 1.7,
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.3,
+      "quality": 0.2
+    },
+    "dominant_factor": "transport",
+    "comparison_action": "reduce",
+    "narrative": "Safety lead time of 2.80 days recommended (current SAP: 3.3 days). Action: REDUCE. Lead time variance dominated by transport factors."
+  },
+  "cost_analysis": {
+    "annual_holding_cost_per_unit": 5.59,
+    "sap_policy": {
+      "orders_per_year": 327,
+      "annual_ordering_cost": 24525.0,
+      "annual_holding_cost": 3205.45,
+      "total_annual_cost": 27730.45
+    },
+    "optimized_policy": {
+      "orders_per_year": 84,
+      "annual_ordering_cost": 6300.0,
+      "annual_holding_cost": 18004.8,
+      "total_annual_cost": 24304.8
+    },
+    "savings": {
+      "absolute": 3425.65,
+      "percentage": 12.4
+    },
+    "narrative": "Optimized policy reduces total annual cost from $27730.45 to $24304.80, saving $3425.65 (12.4%). Savings primarily from reducing order frequency from 327 to 84 orders per year."
+  }
+}

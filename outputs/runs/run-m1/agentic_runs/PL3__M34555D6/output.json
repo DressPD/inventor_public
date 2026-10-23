@@ -1,0 +1,94 @@
+{
+  "material_id": "PL3__M34555D6",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 16852.51528
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 11392.64025877193,
+    "std_daily_demand": 6702.76763709696,
+    "robust_std_daily": 1508.2578756000007,
+    "cv_wd": 0.5883419018638868,
+    "non_zero_fraction_wd": 0.9649122807017544,
+    "trend_detected": false,
+    "regime": "continuous",
+    "distribution_type": "right-skewed"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.4961832061068703,
+    "std_lead_time": 0.9785110022692384,
+    "cv_lead_time": 0.6540048025370929,
+    "stability": "unstable",
+    "effective_lead_time": 2.4746942083761088
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 13838.104634044481,
+    "safety_stock": 22762,
+    "safety_stock_robust": 18586
+  },
+  "order_quantity": {
+    "eoq_raw": 192637.96091679583,
+    "order_quantity": 118463
+  },
+  "cost_analysis": {
+    "unit_cost": 0.095938,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.01151256
+  },
+  "policy": {
+    "safety_stock": 22762,
+    "reorder_point": 39808,
+    "order_quantity": 118463,
+    "review_period_days": 11
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.9979565300917903,
+    "sigma_eff_days": 1.214652996998622,
+    "dominant_factor": "transport",
+    "dominant_pct": 0.5,
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.3,
+      "quality": 0.2
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__M34555D6 exhibits continuous demand with high variability (CV=0.59) and right-skewed distribution. The mean daily demand is 11393 units with significant outliers detected. Lead time variability is unstable (CV=0.65), requiring substantial safety stock (22762 units) to achieve 95% service level. The optimized policy recommends larger order quantities (118463 units vs. MOQ of 25666) to balance ordering frequency against holding costs, yielding 68% cost savings.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous review",
+    "selection_rationale": "The demand pattern is continuous (96.5% of days have demand) with high variability. A continuous review model with fixed order quantity (Q=118463) and reorder point (r=39808) is optimal. The EOQ-based quantity balances high ordering costs ($75.0) against low per-unit holding costs ($0.0115/year).",
+    "boundary_risk": "HIGH RISK: Inventory (safety stock 22762 + order qty 118463 = 141225) consumes 100.0% of storage capacity (141225 units). Limited buffer for demand surges or promotional activities. Consider expanding storage or negotiating smaller MOQ.",
+    "escalation_flag": "none"
+  },
+  "cost_comparison": {
+    "sap_policy": {
+      "safety_stock": 0,
+      "order_quantity": 25666,
+      "avg_inventory": 12833.0,
+      "annual_orders": 110.97015758953411,
+      "annual_ordering_cost": 8322.761819215058,
+      "annual_holding_cost": 147.74068248,
+      "total_annual_cost": 8470.502501695059
+    },
+    "optimized_policy": {
+      "safety_stock": 22762,
+      "order_quantity": 118463,
+      "avg_inventory": 81993.5,
+      "annual_orders": 24.042613007377682,
+      "annual_ordering_cost": 1803.1959755533262,
+      "annual_holding_cost": 943.95508836,
+      "total_annual_cost": 2747.151063913326
+    }
+  }
+}

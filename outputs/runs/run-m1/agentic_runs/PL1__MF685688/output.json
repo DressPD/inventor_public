@@ -1,0 +1,92 @@
+{
+  "material_id": "PL1__MF685688",
+  "data_quality": {
+    "total_rows": 122,
+    "working_days": 122,
+    "outliers_detected": 1,
+    "winsorisation": {
+      "lower_bound": -348.4014999999997,
+      "upper_bound": 2777.2625
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1166.7529221311474,
+    "std_daily_demand": 548.105453967962,
+    "robust_std_daily": 579.2557449962935,
+    "cv_wd": 0.4697699432085527,
+    "non_zero_fraction_wd": 0.9918032786885246,
+    "trend_detected": false,
+    "regime": "Variable",
+    "distribution_type": "Normal-approximation"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.5538461538461537,
+    "std_lead_time": 1.1872910677570168,
+    "cv_lead_time": 0.46490312894100055,
+    "stability": "Unstable",
+    "effective_lead_time": 2.5538461538461537
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1638.9670926581396,
+    "safety_stock": 2696,
+    "safety_stock_robust": 2741
+  },
+  "order_quantity": {
+    "eoq_raw": 6673.8275701096645,
+    "order_quantity": 6674
+  },
+  "cost_analysis": {
+    "unit_cost": 8.186136,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.9823363199999999
+  },
+  "policy": {
+    "safety_stock": 2696,
+    "reorder_point": 5676,
+    "order_quantity": 6674,
+    "review_period_days": 6
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.310686306296612,
+    "sigma_eff_days": 1.4047250806661475,
+    "dominant_factor": "Lead Time Variability",
+    "dominant_pct": 71.43840143353349,
+    "variance_components": {
+      "transport": 767595.0879011274,
+      "supplier": 767595.0879011274,
+      "quality": 383797.5439505637
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Decrease moderately",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "\nInventory optimization analysis for material PL1__MF685688 reveals a Variable demand regime with mean daily demand of 1167 units and CV of 0.47. \nLead time averages 2.55 days but exhibits Unstable behavior (CV=0.46), with Lead Time Variability being the dominant factor (71% of total variance).\n\nThe recommended safety stock of 2696 units (equivalent to 2.3 days of coverage) balances the 95% service level target against the high lead time uncertainty. \nThe EOQ-based order quantity of 6674 units optimizes ordering and holding costs, with a 6-day review period.\n\nCurrent SAP policy (safety stock: 995, safety lead time: 3.0 days) appears to significantly underestimate buffer requirements, \ncreating potential stockout risk. The recommended policy increases buffer investment but delivers $14248 annual savings (61%) \nthrough optimized order quantities that reduce ordering frequency from 293 to 43 orders per year.\n\nCapacity constraint is nearly binding at 100% utilization, requiring close monitoring.\n",
+  "warnings": [
+    "Near capacity limit (99.9% utilized)",
+    "Missing lead time data for 5 observations"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Classical EOQ with Safety Stock (Normal approximation)",
+    "selection_rationale": "Variable demand regime (CV=0.47) with sufficient data (122 observations) supports parametric approach. No intermittent demand patterns detected (non-zero fraction=99.18%).",
+    "boundary_risk": "Near capacity constraint (100% utilization) limits upside flexibility. High lead time CV (0.46) suggests potential for service level degradation under disruptions.",
+    "escalation_flag": ""
+  },
+  "sap_policy": {
+    "safety_stock": 995,
+    "safety_lead_time_days": 3.0,
+    "order_quantity": 995,
+    "annual_ordering_cost": 21986.550040159815,
+    "annual_holding_cost": 1466.1369576,
+    "total_annual_cost": 23452.686997759814
+  },
+  "recommended_policy_costs": {
+    "annual_ordering_cost": 3277.8869178841796,
+    "annual_holding_cost": 5926.43501856,
+    "total_annual_cost": 9204.32193644418
+  },
+  "annual_savings": 14248.365061315635,
+  "savings_percentage": 60.75365719363683
+}

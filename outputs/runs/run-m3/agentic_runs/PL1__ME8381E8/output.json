@@ -1,0 +1,76 @@
+{
+  "material_id": "PL1__ME8381E8",
+  "data_quality": {
+    "total_rows": 180,
+    "working_days": 180,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 2235.45809,
+      "upper_bound": 22336.42443
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 15288.322,
+    "std_daily_demand": 3636.886,
+    "robust_std_daily": 2797.367,
+    "cv_wd": 0.2379,
+    "non_zero_fraction_wd": 0.9944,
+    "trend_detected": false,
+    "regime": "erratic",
+    "distribution_type": "approximately_normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.1853,
+    "std_lead_time": 1.0372,
+    "cv_lead_time": 0.8751,
+    "stability": "moderate",
+    "effective_lead_time": 2.2226
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 16344.559,
+    "safety_stock": 26885,
+    "safety_stock_robust": 26561
+  },
+  "order_quantity": {
+    "eoq_raw": 30502.272,
+    "order_quantity": 30503
+  },
+  "cost_analysis": {
+    "unit_cost": 3.423373,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.41080476
+  },
+  "policy": {
+    "safety_stock": 26885,
+    "reorder_point": 45007,
+    "order_quantity": 30503,
+    "review_period_days": 2
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.8,
+    "sigma_eff_days": 1.0372,
+    "dominant_factor": "supplier",
+    "dominant_pct": 84.5,
+    "variance_components": {
+      "transport": 0.0193,
+      "supplier": 0.8851,
+      "quality": 0.1715
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease from 2.0 to 1.8 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Demand for PL1__ME8381E8 is erratic (CV=0.238) with near-universal daily presence (99.4% non-zero) and no detectable trend over the March 2025\u2013March 2026 observation window. Lead times average 1.19 days but exhibit moderate instability (CV=0.875), with supplier variability accounting for 84.5% of lead-time variance. A continuous-review (r,Q) policy is recommended: the EOQ-derived order quantity of 30,503 units dramatically reduces annual ordering frequency from ~1,170 to ~125 orders, while the analytically derived safety stock of 26,885 units properly covers combined demand and lead-time uncertainty to achieve the 95% service level. The total storage requirement of 57,388 units utilises only 18.5% of the 310,579-unit capacity.",
+  "warnings": [
+    "Safety stock recommendation differs from SAP by +171.5%; increase is analytically justified by erratic demand and moderate lead-time variability."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review policy",
+    "selection_rationale": "Demand is near-continuous (99.4% non-zero days) with erratic but not intermittent pattern, making a continuous-review reorder-point model appropriate. EOQ provides the cost-minimising order quantity while the combined-variance safety stock formula correctly accounts for both demand and lead-time uncertainty.",
+    "boundary_risk": "Storage constraint does not bind (18.5% utilisation). No capacity-driven risk identified. MOQ of 3,268 is well below the EOQ of 30,503, so the MOQ constraint is non-binding.",
+    "escalation_flag": "none"
+  }
+}

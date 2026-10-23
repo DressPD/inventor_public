@@ -1,0 +1,96 @@
+{
+  "material_id": "PL1__M1B02DD2",
+  "data_quality": {
+    "total_rows": 221,
+    "working_days": 221,
+    "outliers_detected": 1,
+    "winsorisation": {
+      "lower_bound": 54.611000000000004,
+      "upper_bound": 1482.9892000000004
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 762.5348307692308,
+    "std_daily_demand": 311.3140479008339,
+    "robust_std_daily": 314.5662072,
+    "cv_wd": 0.40826206927070613,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "smooth",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.56325,
+    "std_lead_time": 1.2124498563190358,
+    "cv_lead_time": 0.4730127206940547,
+    "stability": "moderate",
+    "effective_lead_time": 3.7756998563190356
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1050.3268428251463,
+    "safety_stock": 1728,
+    "safety_stock_robust": 1732
+  },
+  "order_quantity": {
+    "eoq_raw": 10934.275067353174,
+    "order_quantity": 5030
+  },
+  "cost_analysis": {
+    "unit_cost": 2.072827,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.24873924000000003,
+    "previous_policy": {
+      "safety_stock": 701,
+      "order_quantity": 265,
+      "average_inventory": 833.5,
+      "orders_per_year": 748.1473811320756,
+      "annual_ordering_cost": 56111.05358490567,
+      "annual_holding_cost": 207.32415654000002,
+      "total_annual_cost": 56318.37774144567
+    },
+    "recommended_policy": {
+      "safety_stock": 1728,
+      "order_quantity": 5030,
+      "average_inventory": 4243.0,
+      "orders_per_year": 39.415319284294235,
+      "annual_ordering_cost": 2956.148946322068,
+      "annual_holding_cost": 1055.40059532,
+      "total_annual_cost": 4011.549541642068
+    },
+    "cost_savings": 52306.828199803604,
+    "cost_savings_pct": 92.87701510143127
+  },
+  "policy": {
+    "safety_stock": 1728,
+    "reorder_point": 3683,
+    "order_quantity": 5030,
+    "review_period_days": 7
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.2661259922472343,
+    "sigma_eff_days": 1.377414906759861,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 0.8820207924528303,
+      "supplier": 0.44101039622641514,
+      "quality": 0.14700346540880505
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization analysis for material PL1__M1B02DD2:\n\nDATA QUALITY: Analyzed 221 working days with 1 outliers detected. \nDemand data winsorized to [54.61, 1482.99] range.\n\nDEMAND PROFILE: Material exhibits smooth demand with mean daily consumption of 762.53 units \nand CV of 40.83%. No significant trend detected. \nDistribution type: normal.\n\nLEAD TIME: Average lead time is 2.56 days with moderate variability (CV=47.30%). \nEffective lead time including buffer: 3.78 days.\n\nSAFETY STOCK: To achieve 95% service level, recommended safety stock is 1728 units, \nsignificantly higher than current SAP safety stock of 701 units. This increase is driven by lead time \nvariability (CV=47.30%).\n\nORDER POLICY: EOQ calculation suggests optimal order quantity of 10934 units, but storage capacity constraints \nlimit this to 5030 units. Reorder point set at 3683 units with review period of 7 days.\n\nCOST IMPACT: Recommended policy reduces total annual cost from $56,318.38 to $4,011.55, \nsaving $52,306.83 (92.9%). The savings come primarily from reduced ordering frequency \n(from 748 to 39 orders/year), despite higher holding costs.\n\nSAFETY LEAD TIME: Analysis recommends 2.27 days, suggesting current setting of 3.00 \ndays could be reduced. Transport factors dominate lead time variability (60%).",
+  "warnings": [
+    "Order quantity adjusted from 10935 to 5030 due to constraints"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Normal approximation with safety stock buffer",
+    "selection_rationale": "Material exhibits smooth demand (CV=40.83%) with moderate lead time variability. Normal distribution appropriate for this profile.",
+    "boundary_risk": "Storage capacity constraint is binding, limiting order quantity below EOQ optimum. This may result in suboptimal cost efficiency.",
+    "escalation_flag": "CAPACITY_CONSTRAINED"
+  }
+}

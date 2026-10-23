@@ -1,0 +1,113 @@
+{
+  "material_id": "PL1__M1914E67",
+  "analysis_metadata": {
+    "analysis_date": "2026-10-21T21:08:07.240293",
+    "total_observations": 130,
+    "working_days": 130,
+    "lead_time_observations": 86,
+    "service_level_target": 0.95
+  },
+  "demand_characteristics": {
+    "mean_daily_demand": 335.0057,
+    "std_dev_demand": 179.2357,
+    "robust_std_dev": 176.6614,
+    "coefficient_of_variation": 0.535,
+    "non_zero_fraction": 0.9308,
+    "trend": "decreasing",
+    "trend_slope": -0.670312,
+    "demand_regime": "erratic",
+    "distribution_type": "gamma",
+    "winsorization": {
+      "q1": 210.9,
+      "q3": 450.79,
+      "iqr": 239.89,
+      "lower_bound": -148.94,
+      "upper_bound": 810.63,
+      "outliers_detected": 1
+    }
+  },
+  "lead_time_characteristics": {
+    "mean_lead_time_days": 3.2078,
+    "std_dev_lead_time_days": 1.3652,
+    "cv_lead_time": 0.4256,
+    "lead_time_stability": "high",
+    "effective_lead_time_days": 4.573,
+    "sigma_ltd": 558.7709,
+    "sigma_ltd_robust": 556.1348
+  },
+  "safety_stock": {
+    "z_score": 1.6449,
+    "safety_stock_units": 920,
+    "safety_stock_robust_units": 915,
+    "sap_safety_stock_current": 421,
+    "safety_stock_increase_pct": 118.53
+  },
+  "order_policy": {
+    "annual_demand_units": 83751.42,
+    "eoq_raw": 6671.81,
+    "minimum_order_quantity": 506,
+    "unconstrained_order_quantity": 6672,
+    "order_quantity_final": 3061,
+    "reorder_point_units": 1995,
+    "review_period_days": 10,
+    "max_storage_units": 3981.71,
+    "total_inventory_required": 3981,
+    "storage_feasibility": "PASS"
+  },
+  "cost_comparison": {
+    "previous_policy": {
+      "order_quantity_proxy": 421,
+      "orders_per_year": 198.93,
+      "annual_ordering_cost": 14920.09,
+      "annual_holding_cost": 59.41,
+      "total_annual_cost": 14979.49
+    },
+    "optimized_policy": {
+      "order_quantity": 3061,
+      "orders_per_year": 27.36,
+      "annual_ordering_cost": 2052.06,
+      "annual_holding_cost": 691.59,
+      "total_annual_cost": 2743.65
+    },
+    "savings": {
+      "annual_savings_dollars": 12235.84,
+      "savings_percentage": 81.68
+    }
+  },
+  "safety_lead_time": {
+    "sap_safety_lead_time_days": 3.0,
+    "recommended_safety_lead_time_days": 2.75,
+    "comparison_action": "REDUCE"
+  },
+  "diagnostics": {
+    "variance_decomposition": {
+      "total_variance_ltd": 312224.91,
+      "transport_variance_60pct": 187334.95,
+      "supplier_variance_30pct": 93667.47,
+      "quality_variance_10pct": 31222.49,
+      "dominant_factor": "transport"
+    }
+  },
+  "parameters_used": {
+    "unit_cost": 2.351875,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 75.0,
+    "minimum_order_quantity": 506,
+    "service_level_target": 0.95
+  },
+  "narrative": {
+    "executive_summary": "Material PL1__M1914E67 exhibits erratic demand patterns with a coefficient of variation of 0.54. The current SAP safety stock of 421 units is insufficient for the target service level of 95%. Our analysis recommends increasing safety stock to 920 units and implementing an optimal order quantity of 3061 units, resulting in annual savings of $12,235.84 (81.7% reduction).",
+    "demand_profile": "Historical demand shows erratic behavior with mean daily consumption of 335.0 units. The demand pattern exhibits 93.1% working day activity with a decreasing trend. High variability (CV=0.54) suggests a gamma distribution is appropriate for modeling.",
+    "lead_time_risk": "Lead time analysis reveals high variability (mean=3.21 days, std=1.37 days, CV=0.43). This high variability significantly impacts safety stock requirements. Transport logistics contribute approximately 60% to total lead time variance, indicating opportunities for supply chain optimization.",
+    "buffer_strategy": "The recommended safety stock of 920 units represents a 118.5% increase over current levels but is essential to achieve the 95% service target given the combined demand and lead time variability (\u03c3_LTD=558.8).",
+    "optimization_rationale": "The EOQ analysis yields an optimal order quantity of 3061 units (constrained by storage capacity), resulting in 27.4 annual orders. This balances ordering costs ($2052.06/year) with holding costs ($691.59/year), dramatically reducing the previous policy's excessive ordering frequency of 198.9 times per year.",
+    "management_recommendation": "Implement the optimized inventory policy immediately: increase safety stock to 920 units, order 3061 units when inventory reaches the reorder point of 1995 units. This will achieve the target 95% service level while saving $12,235.84 annually. Focus on transport reliability improvements to further reduce safety stock requirements."
+  },
+  "research_insights": {
+    "methodology_notes": "Analysis employs advanced stochastic inventory theory combining demand variability and lead time uncertainty. Safety stock computed using the normal approximation to lead time demand distribution with z-score={z_score:.4f}. Winsorization at 1.5\u00d7IQR applied to mitigate outlier influence.",
+    "distribution_fit_rationale": "The gamma distribution is selected based on CV=0.54 and intermittency=6.92%. For erratic demand patterns, this distribution provides superior tail probability estimates for service level calculations.",
+    "eoq_optimization": "Economic Order Quantity balances setup costs ($75.0/order) against inventory carrying costs (12% of $2.351875/unit). Unconstrained EOQ of 6672 units adjusted for MOQ (506 units) and storage constraint (3982 units).",
+    "safety_stock_formula": "Safety stock = z \u00d7 \u03c3_LTD, where \u03c3_LTD = \u221a(L\u0304 \u00d7 \u03c3_D\u00b2 + D\u0304\u00b2 \u00d7 \u03c3_L\u00b2). This accounts for both demand variance during lead time and lead time variance itself.",
+    "cost_savings_drivers": "Savings primarily from reduced order frequency: 199 \u2192 27 orders/year. While holding costs increase due to higher safety stock and cycle inventory, the dramatic reduction in ordering costs (86.2% decrease) dominates the total cost equation."
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "material_id": "PL1__M37EAE85",
+  "data_quality": {
+    "total_rows": 184,
+    "working_days": 184,
+    "outliers_detected": 24,
+    "winsorisation": {
+      "lower_bound": 47.42787499999998,
+      "upper_bound": 103.14487500000001
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 72.97916304347827,
+    "std_daily_demand": 21.408368073974202,
+    "robust_std_daily": 10.32561156412158,
+    "cv_wd": 0.29334904897744435,
+    "non_zero_fraction_wd": 0.967391304347826,
+    "trend_detected": false,
+    "regime": "smooth",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.3910833333333334,
+    "std_lead_time": 0.8871783198142633,
+    "cv_lead_time": 0.637760728315531,
+    "stability": "unstable",
+    "effective_lead_time": 2.278261653147597
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 69.49491103017498,
+    "safety_stock": 115,
+    "safety_stock_robust": 109
+  },
+  "order_quantity": {
+    "eoq_raw": 1154.7567041879192,
+    "order_quantity": 726
+  },
+  "cost_analysis": {
+    "unit_cost": 11.401885,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.3682262
+  },
+  "policy": {
+    "safety_stock": 115,
+    "reorder_point": 217,
+    "order_quantity": 726,
+    "review_period_days": 10
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.5757922563662081,
+    "sigma_eff_days": 0.9522568926800722,
+    "dominant_factor": "transport",
+    "dominant_pct": 50.0,
+    "variance_components": {
+      "transport": 0.39354268557422967,
+      "supplier": 0.31483414845938373,
+      "quality": 0.07870853711484593
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "maintain",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M37EAE85 exhibits smooth demand with CV=0.293 and 96.7% non-zero days.\nMean daily demand is 72.98 \u00b1 21.41 units.\nLead time is unstable with mean 1.39 days (CV=0.638).\nRecommended safety stock is 115 units (vs SAP 106) to achieve 95% service level.\nStorage constraint reduces optimal order quantity from 1155 to 726 units.\nReview policy: reorder when inventory reaches 217 units, order 726 units.",
+  "warnings": [
+    "Optimized policy costs more than SAP policy"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Normal approximation with lead time variability",
+    "selection_rationale": "CV=0.293, regime=smooth, stable lead time=unstable",
+    "boundary_risk": "medium - near smooth/erratic boundary",
+    "escalation_flag": "yes"
+  }
+}

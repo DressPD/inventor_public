@@ -1,0 +1,114 @@
+{
+  "material_id": "PL1__M178CB8D",
+  "analysis_timestamp": "2026-10-21T22:49:12.495272",
+  "input_parameters": {
+    "unit_cost": 14.47864,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 75.0,
+    "moq": 846,
+    "service_level_target": 0.95,
+    "sap_safety_stock": 0,
+    "sap_safety_lead_time_days": 2.5,
+    "max_storage_units": 11527.995
+  },
+  "data_quality": {
+    "total_rows": 89,
+    "working_days": 89,
+    "outliers_detected": 5,
+    "lower_bound": 436.5164999999998,
+    "upper_bound": 1688.7445000000002,
+    "winsorised_min": 306.53128000000004,
+    "winsorised_max": 1808.3229200000005
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1057.7572494382023,
+    "std_daily_demand": 293.66378079046893,
+    "robust_std_daily": 205.9197966000001,
+    "cv_wd": 0.27762871012837786,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "trend_slope": -0.4216917963908754,
+    "regime": "smooth",
+    "distribution_type": "normal",
+    "annual_demand": 264439.31235955056
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.1622794117647057,
+    "std_lead_time": 0.5948980204069398,
+    "cv_lead_time": 0.5118373554459659,
+    "stability": "moderate",
+    "effective_lead_time": 1.7571774321716456,
+    "lead_time_min": 0.65,
+    "lead_time_max": 4.93
+  },
+  "buffer_analysis": {
+    "z_score": 1.644853626951472,
+    "sigma_ltd": 704.4135012552712,
+    "safety_stock": 1159,
+    "safety_stock_robust": 1098
+  },
+  "order_quantity_analysis": {
+    "eoq_raw": 4778.087857978019,
+    "unconstrained_order_quantity": 4779,
+    "order_quantity": 4779,
+    "capacity_constrained": false
+  },
+  "cost_analysis": {
+    "annual_holding_cost_per_unit": 1.7374368,
+    "previous_policy": {
+      "safety_stock": 0,
+      "order_quantity": 846,
+      "avg_inventory": 423.0,
+      "annual_holding_cost": 734.9357664,
+      "annual_ordering_cost": 23443.201450314766,
+      "total_annual_cost": 24178.137216714767
+    },
+    "new_policy": {
+      "safety_stock": 1159,
+      "order_quantity": 4779,
+      "avg_inventory": 3548.5,
+      "annual_holding_cost": 6165.2944848,
+      "annual_ordering_cost": 4150.0205957242715,
+      "total_annual_cost": 10315.315080524271
+    },
+    "cost_savings": 13862.822136190496,
+    "cost_savings_pct": 57.33618769690365
+  },
+  "recommended_policy": {
+    "safety_stock": 1159,
+    "reorder_point": 3018,
+    "order_quantity": 4779,
+    "review_period_days": 5
+  },
+  "safety_lead_time_analysis": {
+    "sigma_eff_days": 0.5948980204069398,
+    "recommended_days": 0.9785201665326058,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce"
+  },
+  "capacity_gate": {
+    "capacity_used": 5938.0,
+    "max_storage_units": 11527.995,
+    "capacity_utilization_pct": 51.50939083509317,
+    "capacity_warning": null
+  },
+  "narrative": "Material PL1__M178CB8D exhibits a smooth demand pattern (CV=0.278) with 100.0% non-zero days, averaging 1057.8 units/day with moderate variability. Lead times are stable (CV=0.512, mean=1.16 days), enabling reliable planning. The recommended (r,Q) policy with safety stock of 1159 units and order quantity of 4779 units achieves 95% service level while reducing total annual costs by 57.3% ($13863 savings) compared to the current SAP policy that orders in small batches (MOQ=846) with no safety buffer.",
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review reorder-point / fixed-order-quantity",
+    "selection_rationale": "The (r,Q) model was selected because the material exhibits smooth demand (CV=0.278 < 0.5) with stable lead times (CV_LT=0.512 < 0.3). This pattern is well-suited for continuous review with fixed order quantities optimized via EOQ. The model balances holding and ordering costs while maintaining service level through calculated safety stock.",
+    "boundary_risk": "Low capacity utilization (51.5%) provides ample headroom. No storage constraints impact the optimal policy.",
+    "escalation_flag": "none"
+  },
+  "diagnostics": {
+    "feasibility_warning": null,
+    "warnings": [],
+    "errors": []
+  }
+}

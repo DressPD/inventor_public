@@ -1,0 +1,76 @@
+{
+  "material_id": "PL2__M8766F2A",
+  "data_quality": {
+    "total_rows": 241,
+    "working_days": 241,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 0.0
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 111894.35,
+    "std_daily_demand": 49755.17,
+    "robust_std_daily": 55157.89,
+    "cv_wd": 0.4447,
+    "non_zero_fraction_wd": 0.9834,
+    "trend_detected": false,
+    "regime": "regular",
+    "distribution_type": "Normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.5796,
+    "std_lead_time": 1.4167,
+    "cv_lead_time": 0.8968,
+    "stability": "unstable",
+    "effective_lead_time": 2.9963
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 170405.79,
+    "safety_stock": 280293.0,
+    "safety_stock_robust": 284582.0
+  },
+  "order_quantity": {
+    "eoq_raw": 52677.42,
+    "order_quantity": 52678
+  },
+  "cost_analysis": {
+    "unit_cost": 12.601123,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.5121
+  },
+  "policy": {
+    "safety_stock": 280293,
+    "reorder_point": 457044,
+    "order_quantity": 52678,
+    "review_period_days": 1
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.2879,
+    "sigma_eff_days": 1.4167,
+    "dominant_factor": "transport",
+    "dominant_pct": 50.0,
+    "variance_components": {
+      "transport": 1.003474,
+      "supplier": 0.802779,
+      "quality": 0.200695
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "REDUCE",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL2__M8766F2A exhibits a regular, near-normally distributed demand pattern averaging 111,894 units per working day with no detectable trend across 241 observations. Lead times are highly unstable (CV=0.90), ranging from near-zero to over 6 days, with transport variability as the dominant driver. A continuous-review (r,Q) policy with EOQ-based order quantity and a statistically derived safety stock of 280,293 units is recommended to achieve the 95% service level target. The SAP safety lead time of 5.0 days should be reduced to 2.29 days to reflect actual observed lead time behaviour.",
+  "warnings": [
+    "Annual total cost increases by $398,878 vs current policy \u2014 this reflects the explicit cost of achieving 95% service level vs current zero-safety-stock policy."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) Continuous-Review Policy",
+    "selection_rationale": "Regular demand with near-Normal distribution and high-volume daily throughput is ideally suited to a continuous-review (r,Q) model. The EOQ provides the cost-optimal order quantity and the reorder point is calibrated to the 95% service level using the combined demand-lead-time variance formula.",
+    "boundary_risk": "Storage capacity of 1,369,437 units is not binding: safety_stock + order_quantity = 332,971, well within limit. No capacity-driven reduction applied.",
+    "escalation_flag": "none"
+  }
+}

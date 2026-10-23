@@ -1,0 +1,77 @@
+{
+  "material_id": "PL3__MF09094A",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": -703.7333750000001,
+      "upper_bound": 1396.193625
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 406.0397587719298,
+    "std_daily_demand": 274.7659407268722,
+    "robust_std_daily": 389.1636397331357,
+    "cv_wd": 0.6766971332016938,
+    "non_zero_fraction_wd": 0.9517543859649122,
+    "trend_detected": true,
+    "regime": "Smooth",
+    "distribution_type": "Normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.3025,
+    "std_lead_time": 0.8405052492840686,
+    "cv_lead_time": 0.6453015349589778,
+    "stability": "Low",
+    "effective_lead_time": 3.1816263257265716
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 463.4706111756209,
+    "safety_stock": 762.4091553838964,
+    "safety_stock_robust": 921.394601544398
+  },
+  "order_quantity": {
+    "eoq_raw": 15065.345995242227,
+    "order_quantity": 7295
+  },
+  "cost_analysis": {
+    "unit_cost": 0.37569,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.0450828
+  },
+  "policy": {
+    "safety_stock": 763,
+    "reorder_point": 1292,
+    "order_quantity": 7295,
+    "review_period_days": 17.966220899312372
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.8791263257265718,
+    "sigma_eff_days": 1.1414414504071992,
+    "dominant_factor": "lead_time",
+    "dominant_pct": 54.22175636242675,
+    "variance_components": {
+      "transport": 54.22175636242675,
+      "supplier": 45.77824363757325,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "No SAP safety lead time configured",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization analysis for material PL3__MF09094A:\n\nDEMAND PROFILE: Smooth demand pattern with Normal distribution. Mean daily demand is 406.0 units with CV of 0.68. Significant downward trend detected (slope=-1.09).\n\nLEAD TIME: Average lead time is 1.30 days with Low stability (CV=0.65).\n\nRECOMMENDED POLICY:\n- Safety stock: 763 units (1.88 days of coverage)\n- Reorder point: 1292 units\n- Order quantity: 7295 units (review every ~18.0 days)\n- Service level target: 95%\n\nCOST IMPACT:\n- Current SAP annual cost: $1,411.14\n- Recommended annual cost: $900.15\n- Annual savings: $510.99 (36.2%)\n\nThe recommended policy balances service level with inventory carrying costs while respecting MOQ and storage constraints. Lead Time variability is the dominant factor (54.2% of total variance).\n\nREPLENISHMENT MODEL: Economic Order Quantity (EOQ) selected based on demand characteristics.",
+  "warnings": [
+    "Significant trend detected (slope=-1.09). Consider demand forecasting updates.",
+    "High lead time variability (CV=0.65). Consider supplier reliability improvements."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Economic Order Quantity (EOQ)",
+    "selection_rationale": "Stable, predictable demand pattern with low variability. EOQ optimizes order quantity to minimize total cost.",
+    "boundary_risk": "Clear regime classification. Low boundary risk.",
+    "escalation_flag": null
+  }
+}

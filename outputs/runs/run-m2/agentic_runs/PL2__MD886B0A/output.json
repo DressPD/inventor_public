@@ -1,0 +1,79 @@
+{
+  "material_id": "PL2__MD886B0A",
+  "data_quality": {
+    "total_rows": 141,
+    "working_days": 141,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 519.55
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 238.08,
+    "std_daily_demand": 145.71,
+    "robust_std_daily": 188.52,
+    "cv_wd": 0.612,
+    "non_zero_fraction_wd": 0.929,
+    "trend_detected": false,
+    "regime": "VARIABLE",
+    "distribution_type": "GAMMA-LIKE"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 3.039,
+    "std_lead_time": 1.215,
+    "cv_lead_time": 0.4,
+    "stability": "MODERATE",
+    "effective_lead_time": 4.254
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 384.97,
+    "safety_stock": 634.0,
+    "safety_stock_robust": 721.0
+  },
+  "order_quantity": {
+    "eoq_raw": 3026.14,
+    "order_quantity": 2029
+  },
+  "cost_analysis": {
+    "unit_cost": 8.124565,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.9749
+  },
+  "policy": {
+    "safety_stock": 634,
+    "reorder_point": 1358,
+    "order_quantity": 2029,
+    "review_period_days": 9
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.0,
+    "sigma_eff_days": 1.215,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 56.4,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "REDUCE",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Demand for PL2__MD886B0A is variable (CV=0.61, Gamma-like) with 93% active days and no trend. Lead times are moderately unstable (CV=0.40) with a bimodal delivery pattern suggesting two supplier modes. The combined-variance safety stock formula yields SS=634, nearly 4x the current ERP value of 156, properly protecting the 95% service level. A large consolidated EOQ of 3,027 is storage-capped to 2,029 units, cutting annual order events from 159 to 29 and saving $8,463/year.",
+  "warnings": [
+    "Storage cap binding: EOQ 3027 capped to 2029 due to max_storage_units=2663 with SS=634",
+    "High capacity utilization at 100% \u2014 no buffer for demand surges",
+    "Moderate lead time variability (CV=0.40) \u2014 supplier performance monitoring recommended",
+    "SAP safety lead time (4.5d) is 2.25x the statistically recommended value (2.0d)"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) continuous-review",
+    "selection_rationale": "Demand is near-continuous (93% active days) with moderate CV=0.61, making a continuous-review (r,Q) policy optimal: it responds immediately when stock hits the reorder point rather than waiting for a fixed review cycle, reducing stockout exposure during the variable 3-day lead time.",
+    "boundary_risk": "Storage cap binds the order quantity at 2,029 (vs EOQ 3,027), increasing order frequency slightly above the unconstrained optimum. If storage could be expanded by ~1,000 units, an additional ~$400/year saving is achievable. Current 100% utilization leaves no buffer for unexpected demand spikes.",
+    "escalation_flag": "none \u2014 MOQ (374) + SS (634) = 1,008 < max_storage (2,663); no MOQ-capacity conflict."
+  }
+}

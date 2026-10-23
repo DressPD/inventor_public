@@ -1,0 +1,91 @@
+{
+  "material_id": "PL1__M017F4BA",
+  "analysis_metadata": {
+    "total_rows": 217,
+    "working_days": 217,
+    "non_working_days": 0,
+    "outliers_detected": 9,
+    "winsorisation_bounds": {
+      "lower": 123.11999999999983,
+      "upper": 1046.0400000000002
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 603.2495780645161,
+    "std_daily_demand": 190.34293597390945,
+    "robust_std_daily": 171.03780578206084,
+    "cv_wd": 0.3155293313003407,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": true,
+    "regime": "erratic",
+    "distribution_type": "log-normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.5911881188118806,
+    "std_lead_time": 1.1671360424345045,
+    "cv_lead_time": 0.4504250517209315,
+    "stability": "moderate",
+    "effective_lead_time": 3.758324161246385
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 767.8544937466302,
+    "z_score": 1.644853626951472,
+    "safety_stock": 1264,
+    "safety_stock_robust": 1244
+  },
+  "order_quantity": {
+    "annual_demand": 150812.39451612902,
+    "eoq_raw": 12189.455285207987,
+    "unconstrained_order_quantity": 12190,
+    "order_quantity": 7292,
+    "warnings": [
+      "Order quantity reduced from 12190 to 7292 due to capacity constraint"
+    ]
+  },
+  "cost_analysis": {
+    "annual_holding_cost_per_unit": 0.15225083999999997,
+    "previous_policy": {
+      "safety_stock": 0,
+      "order_quantity": 116,
+      "num_orders_per_year": 1300.1068492769743,
+      "annual_ordering_cost": 97508.01369577307,
+      "annual_holding_cost": 8.830548719999998,
+      "total_annual_cost": 97516.84424449307
+    },
+    "optimized_policy": {
+      "safety_stock": 1264,
+      "order_quantity": 7292,
+      "num_orders_per_year": 20.68189721833914,
+      "annual_ordering_cost": 1551.1422913754357,
+      "annual_holding_cost": 747.5516243999998,
+      "total_annual_cost": 2298.6939157754355
+    },
+    "cost_savings": 95218.15032871763,
+    "cost_savings_pct": 97.64277245271373
+  },
+  "policy": {
+    "safety_stock": 1264,
+    "reorder_point": 2828,
+    "order_quantity": 7292,
+    "review_period_days": 13
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.095318498283008,
+    "sigma_eff_days": 1.2728637062793104,
+    "variance_components": {
+      "transport": 495720.6553248724,
+      "supplier": 93879.8682420214,
+      "quality": 0.0
+    },
+    "dominant_factor": "transport",
+    "dominant_pct": 84.07737705623491,
+    "disruption_premium": 1.0,
+    "sap_safety_lead_time_days": 2.8,
+    "comparison_action": "decrease"
+  },
+  "narrative": "Material PL1__M017F4BA exhibits erratic demand with CV 0.32. Lead time is moderate (CV 0.45). Recommended safety stock is 1264 units to achieve 95.0% service level. Order quantity constrained by capacity to 7292 units. Estimated annual savings of $95218.15 (97.6%) vs current policy.",
+  "selected_model": "EOQ with capacity constraint",
+  "selection_rationale": "EOQ balances ordering and holding costs. Capacity constraint reduces optimal order quantity from 12190 to 7292 units. Combined variance method used for safety stock calculation.",
+  "boundary_risk": "High",
+  "escalation_flag": "Yes"
+}

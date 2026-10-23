@@ -1,0 +1,74 @@
+{
+  "material_id": "PL1__M7609E01",
+  "data_quality": {
+    "total_rows": 85,
+    "working_days": 85,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": 415.571,
+      "upper_bound": 1289.933
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 790.357,
+    "std_daily_demand": 211.77,
+    "robust_std_daily": 194.85,
+    "cv_wd": 0.268,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "smooth",
+    "distribution_type": "normal-approximation"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.606,
+    "std_lead_time": 1.751,
+    "cv_lead_time": 1.09,
+    "stability": "unstable",
+    "effective_lead_time": 3.357
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1414.2,
+    "safety_stock": 2327.0,
+    "safety_stock_robust": 2200.0
+  },
+  "order_quantity": {
+    "eoq_raw": 7673.6,
+    "order_quantity": 7674
+  },
+  "cost_analysis": {
+    "unit_cost": 2.796428,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.33557
+  },
+  "policy": {
+    "safety_stock": 2327,
+    "reorder_point": 3597,
+    "order_quantity": 7674,
+    "review_period_days": 10
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.89,
+    "sigma_eff_days": 1.751,
+    "dominant_factor": "lead_time_variance",
+    "dominant_pct": 67.5,
+    "variance_components": {
+      "transport": 0.338,
+      "supplier": 0.337,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M7609E01 displays smooth, stationary daily demand (CV=0.268) with no detectable trend across the 85-observation window from March 2025 to March 2026. However, supplier lead times are highly unstable (CV=1.09, \u03c3=1.75 days), driving 67.5% of total demand-during-lead-time variance and necessitating a safety stock of 2,327 units to achieve the 95% service level target. An (r,Q) fixed-reorder-point policy is recommended, with EOQ set at 7,674 units \u2014 well above the MOQ of 1,675 \u2014 to minimize total ordering and holding costs, yielding an estimated annual saving of $2,823 vs. the current SAP policy.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) \u2014 Fixed Reorder Point, Fixed Order Quantity (EOQ-based)",
+    "selection_rationale": "Demand is smooth and continuous (CV=0.268), making the classical (r,Q) model appropriate. The fixed reorder point handles the high lead-time variability through the safety stock buffer, while the EOQ order quantity minimizes total replenishment and holding costs. An (s,S) or periodic-review policy would add unnecessary complexity without improving performance for this demand pattern.",
+    "boundary_risk": "Storage capacity of 10,692 units is respected: safety_stock (2,327) + order_quantity (7,674) = 10,001 units, leaving a 690-unit buffer (6.5% headroom). No capacity cap binds. If safety stock requirements increase or demand surges, the remaining headroom is limited and should be monitored.",
+    "escalation_flag": "none"
+  }
+}

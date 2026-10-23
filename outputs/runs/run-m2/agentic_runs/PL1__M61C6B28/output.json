@@ -1,0 +1,94 @@
+{
+  "material_id": "PL1__M61C6B28",
+  "data_quality": {
+    "total_rows": 131,
+    "working_days": 131,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 164.92225000000005,
+      "upper_bound": 773.14825
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 479.8479465648855,
+    "std_daily_demand": 141.40088456873997,
+    "robust_std_daily": 117.92155619999996,
+    "cv_wd": 0.2946785238553055,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "variable",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 4.0572580645161285,
+    "std_lead_time": 1.5836825057405495,
+    "cv_lead_time": 0.39033319561086893,
+    "stability": "moderate",
+    "effective_lead_time": 5.640940570256678
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 811.5481558812033,
+    "safety_stock": 1335,
+    "safety_stock_robust": 1310
+  },
+  "order_quantity": {
+    "eoq_raw": 3273.582335405005,
+    "order_quantity": 1809
+  },
+  "cost_analysis": {
+    "unit_cost": 18.657174,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 2.2388608800000003,
+    "previous_policy": {
+      "safety_stock": 152,
+      "order_quantity": 168,
+      "avg_inventory": 236.0,
+      "annual_holding_cost": 528.3711676800001,
+      "annual_ordering_cost": 71405.94442929844,
+      "total_annual_cost": 71934.31559697844
+    },
+    "optimized_policy": {
+      "safety_stock": 1335,
+      "order_quantity": 1809,
+      "avg_inventory": 2239.5,
+      "annual_holding_cost": 5013.928940760001,
+      "annual_ordering_cost": 6631.397824279788,
+      "total_annual_cost": 11645.32676503979
+    },
+    "annual_savings": 60288.98883193865,
+    "savings_percentage": 83.81116624465535
+  },
+  "policy": {
+    "safety_stock": 1335,
+    "reorder_point": 4042,
+    "order_quantity": 1809,
+    "review_period_days": 4
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.6049259135069383,
+    "sigma_eff_days": 1.5836825057405495,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 1.5048301673931992,
+      "supplier": 0.7524150836965996,
+      "quality": 0.25080502789886655
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease_moderately",
+    "override_flag": null
+  },
+  "milp_trigger": "capacity_constrained",
+  "narrative": "INVENTORY OPTIMIZATION ANALYSIS FOR PL1__M61C6B28\n\nEXECUTIVE SUMMARY:\nThis analysis reveals significant optimization opportunities for material PL1__M61C6B28. \nThe current SAP safety stock of 152 units is severely undersized given the \ndemand variability (CV=0.29) and lead time uncertainty (CV=0.39).\n\nKEY FINDINGS:\n- Current policy results in annual cost of $71,934.32\n- Optimized policy reduces annual cost to $11,645.33\n- Annual savings: $60,288.99 (83.8% reduction)\n- Safety stock must increase from 152 to 1335 units to achieve 95% service level\n- Order quantity optimized from 168 (MOQ) to 1809 units (constrained by storage capacity)\n\nDEMAND PROFILE:\n- Regime: VARIABLE (CV=0.295)\n- Mean daily demand: 480 units\n- Annual demand: 119962 units\n- Trend: No significant trend\n\nLEAD TIME PROFILE:\n- Stability: MODERATE (CV=0.390)\n- Mean lead time: 4.06 days\n- Effective lead time: 5.64 days (\u03bc + 1\u03c3)\n- Dominant variability factor: transport (60%)\n\nPOLICY RECOMMENDATION:\nImplement (R,Q) policy with:\n- Reorder Point (ROP): 4042 units\n- Order Quantity (Q): 1809 units\n- Safety Stock (SS): 1335 units\n- Review Period: 4 days\n\nCRITICAL NOTES:\n- Storage capacity constraint is ACTIVE: order quantity capped at 1809 units\n- Maximum inventory (3144 units) is at storage limit (3144 units)\n- Safety lead time can be reduced from 4.0 to 2.60 days",
+  "warnings": [
+    "Storage capacity constraint active: order quantity reduced from 3274 to 1809"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Stochastic (R,Q) Policy with Lead Time Uncertainty",
+    "selection_rationale": "Selected due to variable demand regime (CV=0.295), moderate lead time (CV=0.390), and storage constraints.",
+    "boundary_risk": "Storage capacity constraint is active; consider multi-echelon optimization if shortages occur.",
+    "escalation_flag": "yes"
+  }
+}

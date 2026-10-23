@@ -1,0 +1,74 @@
+{
+  "material_id": "PL1__MCD27F63",
+  "data_quality": {
+    "total_rows": 146,
+    "working_days": 146,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 659.27
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 144.27483561643834,
+    "std_daily_demand": 197.2586877064114,
+    "robust_std_daily": 195.48406226834695,
+    "cv_wd": 1.3672425053446826,
+    "non_zero_fraction_wd": 0.5753424657534246,
+    "trend_detected": false,
+    "regime": "intermittent/lumpy",
+    "distribution_type": "compound_poisson"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 3.1644262295081966,
+    "std_lead_time": 1.1206642741251933,
+    "cv_lead_time": 0.3541445408570522,
+    "stability": "moderate",
+    "effective_lead_time": 4.2850905036333895
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 378.7465866204062,
+    "safety_stock": 623,
+    "safety_stock_robust": 630
+  },
+  "order_quantity": {
+    "eoq_raw": 2184.2507310034343,
+    "order_quantity": 2185
+  },
+  "cost_analysis": {
+    "unit_cost": 6.236912,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.74842944
+  },
+  "policy": {
+    "safety_stock": 623,
+    "reorder_point": 1075,
+    "order_quantity": 2185,
+    "review_period_days": 16
+  },
+  "safety_lead_time": {
+    "recommended_days": 3.3519529189762505,
+    "sigma_eff_days": 2.6517519342212523,
+    "dominant_factor": "supplier",
+    "dominant_pct": 82.13984326557284,
+    "variance_components": {
+      "transport": 25620.21210409452,
+      "supplier": 117828.76477251432,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization analysis for PL1__MCD27F63 reveals an intermittent/lumpy demand pattern (CV=1.37) with moderate lead time variability (CV=0.35). The recommended safety stock of 623 units ensures 95% service level while accounting for both demand and supply variability. The supplier variability is the dominant factor (82.1%) affecting safety stock requirements. Recommended order quantity of 2185 units balances ordering and holding costs.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with safety stock for intermittent demand",
+    "selection_rationale": "Given the intermittent/lumpy demand pattern (CV=1.37, 57.5% non-zero days) and moderate lead time variability, a robust EOQ model with enhanced safety stock is appropriate.",
+    "boundary_risk": "High demand variability requires careful monitoring. Consider periodic review of safety stock levels.",
+    "escalation_flag": ""
+  }
+}

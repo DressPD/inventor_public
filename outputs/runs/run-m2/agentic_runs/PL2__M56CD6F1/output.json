@@ -1,0 +1,88 @@
+{
+  "material_id": "PL2__M56CD6F1",
+  "analysis_timestamp": "2026-10-22T15:20:01.190695",
+  "input_parameters": {
+    "unit_cost": 1.092017,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 75.0,
+    "minimum_order_quantity": 1801,
+    "service_level_target": 0.95,
+    "sap_safety_stock": 2780,
+    "sap_safety_lead_time_days": 3.0,
+    "max_storage_units": 50079.358
+  },
+  "data_quality": {
+    "total_rows": 129,
+    "working_days": 129,
+    "outliers_detected": 28,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 7718.204
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 3013.404239379845,
+    "std_daily_demand": 1742.89128542734,
+    "robust_std_daily": 758.4699905999995,
+    "cv_wd": 0.5783795159809111,
+    "non_zero_fraction_wd": 0.9844961240310077,
+    "trend_detected": true,
+    "regime": "trending",
+    "distribution_type": "empirical"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.5665185185185186,
+    "std_lead_time": 1.0856529217229371,
+    "cv_lead_time": 0.4230060737491241,
+    "stability": "unstable",
+    "effective_lead_time": 3.652171440241456
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 4301.048869731873,
+    "safety_stock": 7074.595833074001,
+    "safety_stock_robust": 5740.3372851697695
+  },
+  "order_quantity": {
+    "eoq_raw": 29365.60877927815,
+    "order_quantity": 29366
+  },
+  "cost_analysis": {
+    "unit_cost": 1.092017,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.13104204
+  },
+  "policy": {
+    "safety_stock": 7075,
+    "reorder_point": 18081,
+    "order_quantity": 29366,
+    "review_period_days": 10
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.0,
+    "sigma_eff_days": 1.0856529217229371,
+    "dominant_factor": "transport",
+    "dominant_pct": 50.0,
+    "variance_components": {
+      "transport": 0.5893211332227749,
+      "supplier": 0.35359267993366494,
+      "quality": 0.23572845328910996
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Demand for PL2__M56CD6F1 shows a strong, statistically significant upward trend (slope +29.7 units/day, p<1e-15), shifting from ~2,500 units/day in Q1 2025 to over 6,500 units/day by Q1 2026. Lead times are unstable (CV=42%), driven primarily by transport variability, which inflates the lead-time demand sigma to 4,301 units. The current SAP safety stock of 2,780 is insufficient at a 95% service level; the model recommends raising it to 7,075. A continuous-review (r,Q) policy is chosen because the high and growing volume justifies real-time monitoring, and the EOQ of 29,366 units consolidates frequent small orders into ~25 annual replenishments, reducing ordering cost by 91%.",
+  "warnings": [
+    "Demand trend is significant \u2014 safety stock and reorder point should be reviewed quarterly as the trend continues.",
+    "28 outliers (21.7%) detected; winsorisation applied at the 99th percentile."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) Continuous Review",
+    "selection_rationale": "High-volume, trending material with continuous daily consumption; continuous-review (r,Q) responds immediately to inventory depletion and is optimal when ordering costs are fixed and demand is non-stationary.",
+    "boundary_risk": "Safety stock increase from 2,780 to 7,075 units combined with EOQ of 29,366 yields a post-replenishment peak of 36,441 units \u2014 well within the 50,079-unit storage cap (72.8% utilisation). No capacity binding.",
+    "escalation_flag": "none"
+  }
+}

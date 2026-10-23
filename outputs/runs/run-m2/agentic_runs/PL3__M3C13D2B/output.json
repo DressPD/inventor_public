@@ -1,0 +1,94 @@
+{
+  "material_id": "PL3__M3C13D2B",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 171,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 334.6942,
+      "upper_bound": 514.357
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 497.3121228070175,
+    "std_daily_demand": 55.93827627380763,
+    "robust_std_daily": 3.58047900000003,
+    "cv_wd": 0.1124812239807686,
+    "non_zero_fraction_wd": 0.75,
+    "trend_detected": false,
+    "regime": "smooth",
+    "distribution_type": "intermittent"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.1324489795918367,
+    "std_lead_time": 0.9099870410592973,
+    "cv_lead_time": 0.8035567671995958,
+    "stability": "unstable",
+    "effective_lead_time": 2.042436020651134
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 456.44589409291854,
+    "safety_stock": 751,
+    "safety_stock_robust": 745
+  },
+  "order_quantity": {
+    "eoq_raw": 3256.431226465317,
+    "order_quantity": 1448
+  },
+  "cost_analysis": {
+    "unit_cost": 14.655318,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.7586381599999998,
+    "optimized_policy": {
+      "annual_ordering_cost": 6439.642474193078,
+      "annual_holding_cost": 2593.991286,
+      "total_annual_cost": 9033.633760193077,
+      "average_inventory": 1475.0,
+      "orders_per_year": 85.8618996559077
+    },
+    "previous_policy": {
+      "annual_ordering_cost": 26872.05274533596,
+      "annual_holding_cost": 305.12372076,
+      "total_annual_cost": 27177.17646609596,
+      "average_inventory": 173.5,
+      "orders_per_year": 358.29403660447946
+    },
+    "savings": {
+      "annual_savings": 18143.54270590288,
+      "savings_percentage": 66.76021965908522
+    }
+  },
+  "policy": {
+    "safety_stock": 751,
+    "reorder_point": 1315,
+    "order_quantity": 1448,
+    "review_period_days": 3
+  },
+  "safety_lead_time": {
+    "recommended_days": 0.9099870410592973,
+    "sigma_eff_days": 0.9099870410592973,
+    "dominant_factor": "leadtime_variability",
+    "dominant_pct": 98.29918062574062,
+    "variance_components": {
+      "transport": 0.0,
+      "supplier": 0.0,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__M3C13D2B exhibits smooth demand with intermittent distribution. Lead time is unstable (CV=0.80). Optimized policy recommends safety stock of 751 units and order quantity of 1448 units (storage-constrained from EOQ of 3257). This yields annual cost savings of $18,143.54 (66.8%) vs. previous policy. Storage constraint is ACTIVE.",
+  "warnings": [
+    "Storage constraint active: Order quantity capped from 3257 to 1448"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with safety stock",
+    "selection_rationale": "Smooth demand (CV=0.11) with unstable lead time (CV=0.80). Dominant variability source: leadtime_variability.",
+    "boundary_risk": "Storage constraint active; order quantity capped.",
+    "escalation_flag": "none"
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__M6502671",
+  "data_quality": {
+    "total_rows": 225,
+    "working_days": 225,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 2964.79752
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1626.7585555555552,
+    "std_daily_demand": 698.2986101642473,
+    "robust_std_daily": 538.5000000000001,
+    "cv_wd": 0.42925768411020954,
+    "non_zero_fraction_wd": 0.9777777777777777,
+    "trend_detected": true,
+    "regime": "moderate",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.3447567567567567,
+    "std_lead_time": 0.9571550180376436,
+    "cv_lead_time": 0.7117681418802319,
+    "stability": "volatile",
+    "effective_lead_time": 2.3019117747944002
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1755.040673682531,
+    "safety_stock": 2887,
+    "safety_stock_robust": 2760
+  },
+  "order_quantity": {
+    "eoq_raw": 27121.307052226228,
+    "order_quantity": 27122
+  },
+  "cost_analysis": {
+    "unit_cost": 0.460745,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.0552894
+  },
+  "policy": {
+    "safety_stock": 2887,
+    "reorder_point": 6632,
+    "order_quantity": 27122,
+    "review_period_days": 17
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.0,
+    "sigma_eff_days": 0.9571550180376436,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 0.5496874371327851,
+      "supplier": 0.27484371856639256,
+      "quality": 0.09161457285546419
+    },
+    "disruption_premium": 1.2,
+    "comparison_action": "maintain",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M6502671 exhibits moderate demand with a declining trend (slope=-3.31) and volatile lead times (CV=0.71). The optimized policy increases safety stock from 1812 to 2887 units to achieve 95% service level given the high lead time variability. Despite higher holding costs, this policy ensures stockout protection while maintaining efficient order quantities through EOQ optimization.",
+  "warnings": [
+    "High lead time variability (CV=0.71) increases supply risk",
+    "Significant demand trend detected (slope=-3.31), review policy quarterly",
+    "Optimized policy costs $59.44 more annually due to increased safety stock for better service level"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Classical EOQ with stochastic lead time",
+    "selection_rationale": "Given moderate demand variability (CV=0.43) and volatile lead times (CV=0.71), a classical EOQ model with safety stock buffer is appropriate. The high lead time volatility drives the need for increased safety stock to maintain service levels.",
+    "boundary_risk": "Lead time CV of 0.71 exceeds 0.5 threshold, indicating significant supply risk. Transport variance dominates at 60%, suggesting carrier performance issues. Declining demand trend may lead to excess inventory if not monitored.",
+    "escalation_flag": "High lead time volatility warrants supplier performance review"
+  }
+}

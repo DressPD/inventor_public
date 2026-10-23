@@ -1,0 +1,77 @@
+{
+  "material_id": "PL1__MBCECCF3",
+  "data_quality": {
+    "total_rows": 93,
+    "working_days": 93,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 1743.1481199999998,
+      "upper_bound": 3589.8598
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 2862.4855582795703,
+    "std_daily_demand": 410.4246155501666,
+    "robust_std_daily": 299.56592592592574,
+    "cv_wd": 0.14338050173320094,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": true,
+    "regime": "smooth",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.2378846153846155,
+    "std_lead_time": 0.5134822926418319,
+    "cv_lead_time": 0.4148062640574065,
+    "stability": "volatile",
+    "effective_lead_time": 1.2378846153846155
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1539.1349743036674,
+    "safety_stock": 2532,
+    "safety_stock_robust": 2480
+  },
+  "order_quantity": {
+    "eoq_raw": 23916.628018028616,
+    "order_quantity": 23917
+  },
+  "cost_analysis": {
+    "unit_cost": 1.563844,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.18766127999999999
+  },
+  "policy": {
+    "safety_stock": 2532,
+    "reorder_point": 6076,
+    "order_quantity": 23917,
+    "review_period_days": 9
+  },
+  "safety_lead_time": {
+    "recommended_days": 0.8446032114272742,
+    "sigma_eff_days": 0.537691786724237,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 91.19775298750363,
+    "variance_components": {
+      "transport": 54.71865179250218,
+      "supplier": 27.35932589625109,
+      "quality": 9.119775298750364
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce_buffer",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MBCECCF3 exhibits smooth demand with CV=0.14 and a statistically detected downward trend. The current SAP safety stock of 0 units is inadequate for a 95% service level; the recommended safety stock of 2,532 units is driven predominantly (91%) by lead time volatility (CV=0.415). The EOQ of 23,917 units is well above the MOQ of 4,002 and comfortably within the 51,002-unit storage limit. Reducing supplier lead time variability is the highest-leverage action to lower buffer requirements.",
+  "warnings": [
+    "High lead time variability detected (CV > 0.3)",
+    "2 demand outliers detected and winsorised"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review with normal-approximation safety stock and EOQ",
+    "selection_rationale": "Smooth demand regime (CV=0.143) with 100% non-zero fraction and approximately normal distribution makes the classic (r,Q) model with z-score safety stock the most appropriate and analytically tractable policy. EOQ balances ordering and holding costs; MOQ of 4,002 is non-binding as EOQ exceeds it.",
+    "boundary_risk": "Storage capacity is non-binding: peak inventory (SS + OQ = 26,449) uses only 52% of the 51,002-unit limit. No capacity constraint drives policy distortion.",
+    "escalation_flag": "Lead time CV of 0.415 with extreme outliers (0.05 and 3.16 days observed) warrants supplier performance review. If the two extreme lead time values (0.05 and 3.09\u20133.16 days) reflect data errors rather than real events, std_lead_time would fall sharply and safety stock could be reduced by ~30%."
+  }
+}

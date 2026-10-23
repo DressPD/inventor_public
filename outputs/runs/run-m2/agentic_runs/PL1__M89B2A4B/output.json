@@ -1,0 +1,74 @@
+{
+  "material_id": "PL1__M89B2A4B",
+  "data_quality": {
+    "total_rows": 194,
+    "working_days": 194,
+    "outliers_detected": 24,
+    "winsorisation": {
+      "lower_bound": 6.15,
+      "upper_bound": 253.45
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 92.97,
+    "std_daily_demand": 37.97,
+    "robust_std_daily": 16.55,
+    "cv_wd": 0.4084,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": true,
+    "regime": "erratic",
+    "distribution_type": "right-skewed"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.61,
+    "std_lead_time": 1.04,
+    "cv_lead_time": 0.4003,
+    "stability": "unstable",
+    "effective_lead_time": 3.65
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 114.81,
+    "safety_stock": 189,
+    "safety_stock_robust": 166
+  },
+  "order_quantity": {
+    "eoq_raw": 4196.67,
+    "order_quantity": 2218
+  },
+  "cost_analysis": {
+    "unit_cost": 1.649679,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.198
+  },
+  "policy": {
+    "safety_stock": 189,
+    "reorder_point": 529,
+    "order_quantity": 2218,
+    "review_period_days": 24
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.1,
+    "sigma_eff_days": 1.23,
+    "dominant_factor": "transport",
+    "dominant_pct": 0.5,
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.3,
+      "quality": 0.2
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M89B2A4B exhibits erratic demand with a coefficient of variation of 0.41. The mean daily demand is 93.0 units with standard deviation 38.0. Lead time averages 2.6 days with unstable variability (CV=0.40). To achieve a 95% service level, a safety stock of 189 units is recommended (vs. SAP's 318 units). The economic order quantity is 4197 units, but storage constraints limit it to 2218 units. The optimized policy reduces total annual costs by $4533 (81%) compared to the current SAP baseline, primarily by reducing ordering frequency from 73 to 10 orders per year.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) fixed order quantity policy",
+    "selection_rationale": "The (r,Q) fixed order quantity model is selected because: (1) demand shows erratic behavior with CV=0.41, (2) continuous review is feasible for this material, (3) fixed ordering cost justifies economic order quantity optimization, (4) MOQ constraint of 318 units is below the economic order quantity of 4197 units, making the fixed quantity model appropriate.",
+    "boundary_risk": "Storage capacity constraint is binding. Optimal EOQ is 4197 units, but reduced to 2218 units due to max_storage_units=2407. This increases ordering frequency from 5.5 to 10.5 orders/year.",
+    "escalation_flag": "none"
+  }
+}

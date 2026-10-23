@@ -1,0 +1,74 @@
+{
+  "material_id": "PL1__MD0FBB3A",
+  "data_quality": {
+    "total_rows": 221,
+    "working_days": 221,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": -1276.0515,
+      "upper_bound": 2611.4085000000005
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 750.7650226244344,
+    "std_daily_demand": 567.6877908728005,
+    "robust_std_daily": 592.8057492000002,
+    "cv_wd": 0.7561457630089712,
+    "non_zero_fraction_wd": 0.9004524886877828,
+    "trend_detected": true,
+    "regime": "erratic",
+    "distribution_type": "intermittent-normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.509041095890411,
+    "std_lead_time": 1.2197061990875442,
+    "cv_lead_time": 0.4861244405622992,
+    "stability": "moderate",
+    "effective_lead_time": 3.728747294977955
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1283.4005933539204,
+    "safety_stock": 2112,
+    "safety_stock_robust": 1883
+  },
+  "order_quantity": {
+    "eoq_raw": 2243.366647475711,
+    "order_quantity": 2244
+  },
+  "cost_analysis": {
+    "unit_cost": 46.617989,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 5.59415868
+  },
+  "policy": {
+    "safety_stock": 2112,
+    "reorder_point": 3996,
+    "order_quantity": 2244,
+    "review_period_days": 3
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.8131305220069036,
+    "sigma_eff_days": 1.7094570933360245,
+    "dominant_factor": "transport",
+    "dominant_pct": 0.6,
+    "variance_components": {
+      "transport": 0.8926099272555504,
+      "supplier": 0.4463049636277752,
+      "quality": 0.1487683212092584
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "MAINTAIN",
+    "override_flag": null
+  },
+  "milp_trigger": "High demand variability (CV=0.76 > 0.75) - consider MILP for multi-echelon optimization",
+  "narrative": "Material PL1__MD0FBB3A exhibits erratic demand (CV=0.756) with a statistically significant upward trend and moderate lead-time instability driven primarily by transport variability (60% of lead-time variance). The current SAP policy is severely under-stocked relative to the 95% service-level target (SS=573 vs required 2,112) and over-orders in frequency by using MOQ (91) rather than EOQ (2,244). Adopting the recommended (r,Q) policy reduces total annual cost by ~$133,786 (-84.6%) while achieving the 95% service target. Transport reliability improvement is the highest-leverage operational action to further reduce safety stock requirements.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) continuous-review with EOQ",
+    "selection_rationale": "Erratic but largely continuous demand with moderate lead-time variability is best served by a fixed-quantity reorder-point system; EOQ balances ordering and holding costs efficiently given the high unit cost and moderate ordering cost.",
+    "boundary_risk": "Moderate - CV of 0.756 is near the lumpy threshold (1.0); if demand intermittency increases, a periodic (s,S) review or MILP-based policy should be considered.",
+    "escalation_flag": "None - storage capacity constraint is not binding (SS + OQ = 4,356 vs capacity 17,740)."
+  }
+}

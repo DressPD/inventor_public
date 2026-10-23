@@ -1,0 +1,77 @@
+{
+  "material_id": "PL1__M1914E67",
+  "data_quality": {
+    "total_rows": 130,
+    "working_days": 130,
+    "outliers_detected": 1,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 847.8
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 335.2916,
+    "std_daily_demand": 180.0282,
+    "robust_std_daily": 176.6614,
+    "cv_wd": 0.5369,
+    "non_zero_fraction_wd": 0.9308,
+    "trend_detected": false,
+    "regime": "continuous",
+    "distribution_type": "right-skewed"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 3.2078,
+    "std_lead_time": 1.3652,
+    "cv_lead_time": 0.4256,
+    "stability": "moderate",
+    "effective_lead_time": 4.573
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 559.9066,
+    "safety_stock": 921,
+    "safety_stock_robust": 916
+  },
+  "order_quantity": {
+    "eoq_raw": 6674.66,
+    "order_quantity": 3060
+  },
+  "cost_analysis": {
+    "unit_cost": 2.351875,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.2822
+  },
+  "policy": {
+    "safety_stock": 921,
+    "reorder_point": 1997,
+    "order_quantity": 3060,
+    "review_period_days": 10
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.75,
+    "sigma_eff_days": 1.67,
+    "dominant_factor": "transport",
+    "dominant_pct": 0.6,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "aligned",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Demand for PL1__M1914E67 is continuous and right-skewed (CV=0.54) with no statistically significant trend over the 130 working-day observation window. Lead times are moderately variable (CV=0.43), likely reflecting two distinct routing modes, with transport variability as the dominant uncertainty driver. A capacity-constrained (r,Q) policy is recommended: the theoretical EOQ of 6,675 units is capped at 3,060 units by the 3,982-unit storage limit, but this still delivers a 78.2% annual cost reduction over the current SAP policy by eliminating excessive ordering frequency. Safety stock is raised from 421 to 921 units to achieve the 95% service level target.",
+  "warnings": [
+    "High capacity utilization (99.98%): storage cap of 3,981.709 units limits order quantity to 3,060 instead of EOQ 6,675. Consider expanding storage.",
+    "Moderate lead time variability (CV=0.43): bimodal distribution suggests two routing modes. Supplier coordination recommended."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) \u2014 continuous-review reorder-point / fixed-order-quantity",
+    "selection_rationale": "Demand is continuous (93.1% non-zero days) with no trend, making a fixed reorder-point policy appropriate. EOQ minimises total ordering and holding cost; the MOQ of 506 is well below the EOQ so it does not bind. Capacity constrains the order quantity to 3,060 units but the policy structure remains (r,Q).",
+    "boundary_risk": "Storage capacity is binding at 99.98% utilisation post-replenishment. Any positive demand shock during a replenishment cycle could cause a stockout that the safety stock cannot absorb. Expanding storage to ~7,600 units would unlock the full EOQ and reduce total annual cost by a further ~30%.",
+    "escalation_flag": "none \u2014 MOQ (506) + safety stock (921) = 1,427 units, which is below max_storage_units (3,981.709). No MOQ-capacity infeasibility."
+  }
+}

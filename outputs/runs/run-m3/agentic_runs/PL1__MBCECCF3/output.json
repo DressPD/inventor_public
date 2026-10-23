@@ -1,0 +1,74 @@
+{
+  "material_id": "PL1__MBCECCF3",
+  "data_quality": {
+    "total_rows": 93,
+    "working_days": 93,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 1743.1481199999998,
+      "upper_bound": 3589.8598
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 2862.4855582795703,
+    "std_daily_demand": 410.4246155501666,
+    "robust_std_daily": 299.7925468845151,
+    "cv_wd": 0.14338050173320094,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "Smooth",
+    "distribution_type": "Normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.2378846153846155,
+    "std_lead_time": 0.5134822926418319,
+    "cv_lead_time": 0.4148062640574065,
+    "stability": "Moderate",
+    "effective_lead_time": 1.2378846153846155
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1539.1349743036674,
+    "safety_stock": 2532,
+    "safety_stock_robust": 2480
+  },
+  "order_quantity": {
+    "eoq_raw": 23916.628018028616,
+    "order_quantity": 23917
+  },
+  "cost_analysis": {
+    "unit_cost": 1.563844,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.18766127999999999
+  },
+  "policy": {
+    "safety_stock": 2532,
+    "reorder_point": 6076,
+    "order_quantity": 23917,
+    "review_period_days": 9
+  },
+  "safety_lead_time": {
+    "recommended_days": 0.8845459473765167,
+    "sigma_eff_days": 0.537691786724237,
+    "dominant_factor": "transport",
+    "dominant_pct": 40.0,
+    "variance_components": {
+      "transport": 0.10546562594268474,
+      "supplier": 0.10546562594268474,
+      "quality": 0.05273281297134237
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Increase",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization analysis for material PL1__MBCECCF3 recommends a safety stock of 2532 units, reorder point of 6076 units, and order quantity of 23917 units. The optimized policy achieves $8,823.32 (64.0%) annual cost savings compared to the current SAP policy. Demand exhibits a smooth pattern with CV=0.143 and follows a normal distribution. Lead time is moderate (CV=0.415). The recommended safety lead time is 0.88 days, suggesting an action to increase from the current 2.00 days.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Normal Distribution",
+    "selection_rationale": "Demand follows Normal distribution based on CV=0.143",
+    "boundary_risk": "High variability detected in demand and/or lead time",
+    "escalation_flag": "None"
+  }
+}

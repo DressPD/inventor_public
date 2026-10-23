@@ -1,0 +1,76 @@
+{
+  "material_id": "PL1__MC0A352A",
+  "data_quality": {
+    "total_rows": 133,
+    "working_days": 133,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": 95.257,
+      "upper_bound": 8268.188
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 3941.7005305263156,
+    "std_daily_demand": 1195.153828923481,
+    "robust_std_daily": 554.355819125278,
+    "cv_wd": 0.30320766878855154,
+    "non_zero_fraction_wd": 0.9849624060150376,
+    "trend_detected": false,
+    "regime": "Variable",
+    "distribution_type": "Right-skewed"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.4582258064516127,
+    "std_lead_time": 0.9696201461918637,
+    "cv_lead_time": 0.6649314131611056,
+    "stability": "Volatile",
+    "effective_lead_time": 2.4278459526434766
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 4085.368774117902,
+    "safety_stock": 6720,
+    "safety_stock_robust": 6383
+  },
+  "order_quantity": {
+    "eoq_raw": 11982.944229054403,
+    "order_quantity": 11983
+  },
+  "cost_analysis": {
+    "unit_cost": 5.718937,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.6862724399999999
+  },
+  "policy": {
+    "safety_stock": 6720,
+    "reorder_point": 12468,
+    "order_quantity": 11983,
+    "review_period_days": 4
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.7048479324995072,
+    "sigma_eff_days": 1.036448289888832,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 87.52013567713759,
+    "variance_components": {
+      "transport": 0.0,
+      "supplier": 87.52,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "DECREASE from SAP 2.5 days to 1.70 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Demand for PL1__MC0A352A is near-continuous (98.5% non-zero days) at ~3,942 units/day with a moderate CV of 0.30, classified as Variable/Right-skewed. Lead times are highly volatile (CV=0.665, range 0.63\u20135.26 days), and this variability dominates 87.5% of the safety stock requirement. The current SAP safety stock of 90 units is critically insufficient for the 95% service level target; 6,720 units are required. A continuous-review (r,Q) policy with EOQ lot sizing reduces orders from 628 to 82 per year, cutting total annual inventory cost by 59.9% while simultaneously meeting the service level target.",
+  "warnings": [
+    "Current SAP safety stock (90) covers only 1.3% of statistically required buffer (6,720) \u2014 service level is at significant risk under current policy."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Continuous-review (r,Q) policy with EOQ lot sizing",
+    "selection_rationale": "Demand is near-continuous with 98.5% non-zero days and moderate CV, making a continuous-review (r,Q) policy appropriate. EOQ lot sizing balances ordering and holding costs given the low unit cost and high annual volume (~985,425 units/year). The volatile lead time (CV=0.665) necessitates a statistically derived safety stock rather than SAP's fixed 90-unit buffer.",
+    "boundary_risk": "No capacity boundary risk \u2014 optimized policy (SS=6,720 + OQ=11,983 = 18,703 units) utilizes only 50.6% of available storage (36,932 units). MOQ of 1,568 is non-binding as EOQ (11,983) exceeds it comfortably.",
+    "escalation_flag": "none"
+  }
+}

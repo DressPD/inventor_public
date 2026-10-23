@@ -1,0 +1,101 @@
+{
+  "material_id": "PL1__MC035CB1",
+  "unit_cost": 1.731567,
+  "holding_cost_rate": 0.12,
+  "ordering_cost": 75.0,
+  "moq": 427,
+  "service_level_target": 0.95,
+  "max_storage_units": 18804.568,
+  "data_quality": {
+    "total_rows": 221,
+    "working_days": 221,
+    "outlier_count": 0,
+    "outlier_pct": 0.0,
+    "zero_demand_days": 15
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1644.815411764706,
+    "std_daily_demand": 858.0782193552412,
+    "robust_std_daily": 757.7094143810231,
+    "cv_wd": 0.5216866362132501,
+    "non_zero_fraction_wd": 0.9321266968325792,
+    "trend_detected": false,
+    "trend_slope_per_day": -2.3508669649904945,
+    "trend_pct_per_day": -0.0014292588385150604,
+    "regime": "lumpy",
+    "distribution_type": "right-skewed"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.3459302325581395,
+    "std_lead_time": 1.2256774023042294,
+    "cv_lead_time": 0.5224696733490147,
+    "stability": "moderate",
+    "effective_lead_time": 3.571607634862369
+  },
+  "buffer_analysis": {
+    "z_score": 1.644853626951472,
+    "sigma_ltd": 2406.577034420248,
+    "sigma_ltd_robust": 2326.1905666055413,
+    "safety_stock": 3959,
+    "safety_stock_robust": 3827,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 70.17576498215968
+  },
+  "order_quantity": {
+    "annual_demand": 411203.8529411765,
+    "eoq_raw": 17229.15364390057,
+    "unconstrained_order_quantity": 17230,
+    "order_quantity": 14845,
+    "capacity_available": 14845.568,
+    "feasibility_flag": true
+  },
+  "cost_analysis": {
+    "annual_holding_cost_per_unit": 0.20778804,
+    "sap_policy": {
+      "safety_stock": 1503,
+      "average_inventory": 10118.0,
+      "orders_per_year": 23.865574749923187,
+      "annual_holding_cost": 2102.39938872,
+      "annual_ordering_cost": 1789.918106244239,
+      "total_cost": 3892.317494964239
+    },
+    "optimized_policy": {
+      "safety_stock": 3959,
+      "average_inventory": 11381.5,
+      "orders_per_year": 27.699821686842473,
+      "annual_holding_cost": 2364.93957726,
+      "annual_ordering_cost": 2077.4866265131855,
+      "total_cost": 4442.426203773186
+    },
+    "cost_savings": -550.1087088089471,
+    "cost_savings_pct": -14.133192102665337
+  },
+  "policy": {
+    "reorder_point": 7818,
+    "review_period_days": 10
+  },
+  "safety_lead_time": {
+    "sigma_eff_days": 1.2256774023042294,
+    "recommended_days": 2.1,
+    "sap_safety_lead_time_days": 3.0,
+    "comparison_action": "DECREASE from 3.0 to 2.1 days",
+    "variance_components": {
+      "transport": 0.7017576498215968,
+      "supplier": 0,
+      "quality": 0
+    },
+    "disruption_premium": 1.0
+  },
+  "narrative": "Material PL1__MC035CB1 exhibits lumpy demand behavior with a coefficient of variation of 0.52 and 93.2% non-zero demand days. The demand distribution is right-skewed with mean daily demand of 1644.8 units. Lead time variability is moderate, contributing 70.2% to total buffer requirement uncertainty. The optimized policy increases safety stock from 1503 to 3959 units to achieve the 95% service level target, while adjusting order quantity to 14845 units (constrained by storage capacity of 18805 units).",
+  "research_insights": {
+    "selected_model": "Combined Variability Model",
+    "selection_rationale": "Moderate demand and lead time variability handled with combined variance formula",
+    "boundary_risk": "low",
+    "escalation_flag": false
+  },
+  "warnings": [
+    "15 days with zero demand (6.8%)",
+    "Optimized policy increases total cost by $550.11 (14.1%) due to higher safety stock requirement",
+    "Order quantity constrained by storage capacity: 14845 vs. unconstrained 17230"
+  ]
+}

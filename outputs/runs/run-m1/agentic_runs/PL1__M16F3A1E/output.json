@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__M16F3A1E",
+  "data_quality": {
+    "total_rows": 175,
+    "working_days": 175,
+    "outliers_detected": 5,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 694.747
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 301.19,
+    "std_daily_demand": 186.91,
+    "robust_std_daily": 158.63,
+    "cv_wd": 0.62,
+    "non_zero_fraction_wd": 0.909,
+    "trend_detected": false,
+    "regime": "erratic",
+    "distribution_type": "normal approximation"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.086,
+    "std_lead_time": 0.014,
+    "cv_lead_time": 0.16,
+    "stability": "stable",
+    "effective_lead_time": 0.099
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 51.14,
+    "safety_stock": 84.0,
+    "safety_stock_robust": 72.0
+  },
+  "order_quantity": {
+    "eoq_raw": 618.56,
+    "order_quantity": 619
+  },
+  "cost_analysis": {
+    "unit_cost": 164.953226,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 19.794
+  },
+  "policy": {
+    "safety_stock": 84,
+    "reorder_point": 84,
+    "order_quantity": 619,
+    "review_period_days": 2
+  },
+  "safety_lead_time": {
+    "recommended_days": 0.099,
+    "sigma_eff_days": 0.014,
+    "dominant_factor": "transport",
+    "dominant_pct": 50.0,
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.3,
+      "quality": 0.2
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M16F3A1E shows erratic demand with a CV of 0.62 across 175 working days, with 90.9% of days having positive demand and no statistically significant trend. Lead times are extremely short and stable (mean 0.086 days, CV 0.16), meaning replenishment risk is primarily demand-driven. The current SAP policy holds zero safety stock and orders at the minimum quantity (185 units), which results in excessive ordering frequency (~406/year) and exposure to stockout. The recommended (r,Q) policy with safety stock of 84 units and order quantity of 619 units balances ordering and holding costs while meeting the 95% service level target.",
+  "warnings": [
+    "SAP safety stock is 0; policy introduces 84 units of buffer to meet 95% SL target.",
+    "SAP safety lead time (1.8 days) is significantly higher than observed effective lead time (0.099 days) \u2014 recommend reduction.",
+    "Capacity constraint is not binding: SS(84) + OQ(619) = 703 <= 1619 max storage units."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review policy",
+    "selection_rationale": "With erratic but predominantly active daily demand (non-zero fraction 90.9%) and stable, near-instantaneous lead times, a continuous-review (r,Q) model is appropriate. The reorder point triggers replenishment when stock falls to the safety stock level, and the fixed order quantity is set by EOQ balancing ordering and holding costs.",
+    "boundary_risk": "Capacity is not binding (703 of 1619 units used post-replenishment). No service degradation from capacity constraint. If demand spikes toward the 2025-Q1 peak levels (~830 units/day), safety stock of 84 units may be insufficient for multi-day coverage, but given lead times under 0.1 days, same-day replenishment effectively mitigates this risk.",
+    "escalation_flag": "none"
+  }
+}

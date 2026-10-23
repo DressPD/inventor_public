@@ -1,0 +1,80 @@
+{
+  "material_id": "PL1__MB382F9E",
+  "data_quality": {
+    "total_rows": 132,
+    "working_days": 132,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 483.0124
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 190.2777,
+    "std_daily_demand": 129.2257,
+    "robust_std_daily": 150.7013,
+    "cv_wd": 0.6791,
+    "non_zero_fraction_wd": 0.7803,
+    "trend_detected": true,
+    "regime": "erratic",
+    "distribution_type": "gamma"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.8965,
+    "std_lead_time": 1.2288,
+    "cv_lead_time": 0.4242,
+    "stability": "unstable",
+    "effective_lead_time": 4.1253
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 320.9944,
+    "safety_stock": 528,
+    "safety_stock_robust": 571
+  },
+  "order_quantity": {
+    "eoq_raw": 2401.604,
+    "order_quantity": 2371
+  },
+  "cost_analysis": {
+    "unit_cost": 10.309443,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.2371
+  },
+  "policy": {
+    "safety_stock": 528,
+    "reorder_point": 1080,
+    "order_quantity": 2371,
+    "review_period_days": 13
+  },
+  "safety_lead_time": {
+    "recommended_days": 0.5,
+    "sigma_eff_days": 1.2288,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 0.906,
+      "supplier": 0.453,
+      "quality": 0.151
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MB382F9E exhibits erratic demand (CV=0.68, 78% non-zero days) with a mild declining trend of -0.64 units/day and unstable lead times (CV=0.42). The current SAP safety stock of 100 units is severely under-buffered relative to the sigma_LTD of 321 units required for 95% service level. An (r,Q) continuous-review policy with SS=528, ROP=1080, and OQ=2371 (storage-capped from EOQ of 2402) reduces total annual cost by 76% by consolidating ~198 annual orders into ~20, while the safety stock increase ensures the service level target is met under demand and lead time volatility.",
+  "warnings": [
+    "WARNING: Storage cap binding - order quantity reduced from 2402 to 2371",
+    "WARNING: Recommended safety stock (528) is >3x SAP value (100) - management review required",
+    "INFO: High demand variability detected (CV=0.68)",
+    "INFO: Lead time is unstable (CV=0.42)",
+    "INFO: Declining demand trend detected (slope=-0.6362 units/day)"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) continuous-review reorder-point policy",
+    "selection_rationale": "Erratic demand with unstable lead times requires continuous inventory monitoring rather than periodic review. EOQ minimises the sum of ordering and holding costs; the MOQ of 240 is well below the EOQ of 2402, so no MOQ conflict arises. The (r,Q) structure directly incorporates sigma_LTD into the safety stock, providing a statistically grounded 95% service level guarantee.",
+    "boundary_risk": "Storage cap (2899 units) reduced the order quantity by 31 units from the unconstrained EOQ of 2402 to 2371. The annual cost impact is marginal (~$40). The cap is non-binding for safety stock. Service level is unaffected.",
+    "escalation_flag": "None \u2014 MOQ (240) + safety stock (528) = 768 units, well within the 2899-unit storage limit. No infeasibility conflict."
+  }
+}

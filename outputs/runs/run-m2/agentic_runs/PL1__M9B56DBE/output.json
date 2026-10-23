@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__M9B56DBE",
+  "data_quality": {
+    "total_rows": 221,
+    "working_days": 221,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 395.24,
+      "upper_bound": 9768.082
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 4912.3,
+    "std_daily_demand": 1774.1,
+    "robust_std_daily": 1480.6,
+    "cv_wd": 0.361,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "moderate",
+    "distribution_type": "continuous"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 5.53,
+    "std_lead_time": 1.45,
+    "cv_lead_time": 0.262,
+    "stability": "moderate",
+    "effective_lead_time": 6.98
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 8094.7,
+    "safety_stock": 13315.0,
+    "safety_stock_robust": 11408.0
+  },
+  "order_quantity": {
+    "eoq_raw": 31202.6,
+    "order_quantity": 10361
+  },
+  "cost_analysis": {
+    "unit_cost": 2.102281,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.25227372
+  },
+  "policy": {
+    "safety_stock": 13315,
+    "reorder_point": 40467,
+    "order_quantity": 10361,
+    "review_period_days": 3
+  },
+  "safety_lead_time": {
+    "recommended_days": 4.5,
+    "sigma_eff_days": 1.45,
+    "dominant_factor": "demand_variability",
+    "dominant_pct": 74.2,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "no_change_required",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M9B56DBE shows moderate, fully continuous demand (CV=0.36) across 221 working days with no statistically significant trend. Lead times average 5.53 days with moderate variability (CV=0.26), making a continuous-review (r,Q) policy appropriate. Safety stock of 13,315 units is set at the 95th service level using combined demand-lead time sigma. The EOQ of 31,203 units was capped to 10,361 to respect the 50,800-unit storage constraint, increasing order frequency but maintaining feasibility.",
+  "warnings": [
+    "Storage capacity constraint is binding: unconstrained EOQ (31203) reduced to 10361 to satisfy SS+Q <= 50800",
+    "Max inventory level (23676) = 50800 * 46.6% \u2014 storage is tight; expansion recommended",
+    "4 demand outliers detected and winsorised at 1st/99th percentile"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review with EOQ order sizing",
+    "selection_rationale": "Demand is continuous (100% non-zero days), moderate CV (0.36), and lead times are moderately stable. A continuous-review (r,Q) policy is optimal: it minimises total ordering + holding cost via EOQ while the reorder point provides the required 95% service level buffer against demand and lead-time variability.",
+    "boundary_risk": "Storage capacity (50,800 units) is binding: EOQ was reduced from 31,203 to 10,361 units, raising annual orders from ~39 to ~119 and increasing ordering cost. If storage could be expanded to ~45,000 units of usable space above safety stock, the unconstrained EOQ would apply and save an additional ~$9,000/year in ordering costs.",
+    "escalation_flag": "none \u2014 MOQ (1016) + safety_stock (13315) = 14331 < max_storage_units (50800); no MOQ-capacity infeasibility"
+  }
+}

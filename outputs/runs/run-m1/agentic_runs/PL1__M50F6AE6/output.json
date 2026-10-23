@@ -1,0 +1,86 @@
+{
+  "material_id": "PL1__M50F6AE6",
+  "analysis_timestamp": "2026-10-19T11:00:11.669326",
+  "input_parameters": {
+    "unit_cost": 0.046031,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 50.0,
+    "moq": 34758,
+    "service_level_target": 0.95,
+    "max_storage_units": 57332.521
+  },
+  "data_quality": {
+    "total_rows": 219,
+    "working_days": 219,
+    "outliers_detected": 10,
+    "winsorisation": {
+      "lower_bound": 171.622,
+      "upper_bound": 7073.422
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 3522.09,
+    "std_daily_demand": 510.35,
+    "robust_std_daily": 376.84,
+    "cv_wd": 0.1449,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": true,
+    "regime": "smooth",
+    "distribution_type": "non_normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.41,
+    "std_lead_time": 0.92,
+    "cv_lead_time": 0.6521,
+    "stability": "variable",
+    "effective_lead_time": 2.33
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 3302.1,
+    "safety_stock": 5432.0,
+    "safety_stock_robust": 5390.0
+  },
+  "order_quantity": {
+    "eoq_raw": 126256.72,
+    "order_quantity": 51900
+  },
+  "cost_analysis": {
+    "unit_cost": 0.046031,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.005524
+  },
+  "policy": {
+    "safety_stock": 5432,
+    "reorder_point": 10410,
+    "order_quantity": 51900,
+    "review_period_days": 0
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.54,
+    "sigma_eff_days": 0.92,
+    "dominant_factor": "lead_time",
+    "dominant_pct": 96.6,
+    "variance_components": {
+      "transport": 0.966,
+      "supplier": 0.034,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce_safety_lead_time_from_3.0_to_1.54_days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Demand for PL1__M50F6AE6 is smooth and high-volume (mean 3,522 units/day, CV 0.14) with a statistically significant decreasing trend of 3.06 units/day. Lead times are short on average (1.41 days) but highly variable (CV 0.65), which drives 96.6% of the required safety buffer. A continuous-review (r,Q) policy was selected because demand is near-continuous and the unit cost is low enough to justify holding a larger batch; the MOQ of 34,758 and a hard storage cap of 57,332 units constrain the order quantity to 51,900, fully utilising available capacity. Reducing lead time variability through supplier SLA agreements is the single highest-leverage action available.",
+  "warnings": [
+    "Storage capacity constraint is binding: order quantity capped at 51,900 (EOQ unconstrained = 126,257). Any further increase requires storage expansion.",
+    "Demand shows a statistically significant decreasing trend; revalidate mean demand quarterly."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review fixed-order-quantity policy",
+    "selection_rationale": "Demand is near-continuous (100% non-zero days) and smooth (CV=0.14), making a fixed-reorder-point policy ideal. The EOQ framework minimises total ordering and holding cost, constrained by the MOQ floor and the hard storage ceiling.",
+    "boundary_risk": "Storage capacity is fully utilised (100%). The recommended SS+OQ=57,332 units sits within the 57,332.521-unit cap by only 0.52 units. Any upward revision to safety stock \u2014 e.g., if lead time variability worsens \u2014 would breach capacity and require either a storage expansion or an MOQ renegotiation.",
+    "escalation_flag": "none"
+  }
+}

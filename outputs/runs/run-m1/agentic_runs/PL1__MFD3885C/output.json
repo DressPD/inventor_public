@@ -1,0 +1,88 @@
+{
+  "material_id": "PL1__MFD3885C",
+  "data_quality": {
+    "total_rows": 169,
+    "working_days": 169,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 826.5447199999995
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 172.91307100591717,
+    "std_daily_demand": 245.1108394605721,
+    "robust_std_daily": 229.17642698295032,
+    "cv_wd": 1.4175379457125268,
+    "non_zero_fraction_wd": 0.5443786982248521,
+    "trend_detected": true,
+    "regime": "Lumpy",
+    "distribution_type": "Zero-inflated with high variance"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.25,
+    "std_lead_time": 0.23658684099783178,
+    "cv_lead_time": 0.9463473639913271,
+    "stability": "Volatile",
+    "effective_lead_time": 0.25
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 129.20283931650386,
+    "safety_stock": 212.5197588621796,
+    "safety_stock_robust": 200.1321294208494
+  },
+  "order_quantity": {
+    "eoq_raw": 7333.453874198338,
+    "order_quantity": 7334
+  },
+  "cost_analysis": {
+    "unit_cost": 0.696631,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.08359572
+  },
+  "policy": {
+    "safety_stock": 213,
+    "reorder_point": 257,
+    "order_quantity": 7334,
+    "review_period_days": 42
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.2290554879735325,
+    "sigma_eff_days": 0.7472126807121624,
+    "dominant_factor": "Demand Variability",
+    "dominant_pct": 89.97480788776532,
+    "variance_components": {
+      "transport": 15019.830905266586,
+      "supplier": 1673.5427821797268,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Reduce safety lead time",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MFD3885C exhibits lumpy demand with CV=1.42. The optimized policy reduces total annual costs by 69.8% ($1455.35) compared to SAP baseline. Safety stock can be reduced from 4546 to 213 units while maintaining 95% service level. Dominant uncertainty is demand variability.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Classical EOQ with Normal approximation",
+    "selection_rationale": "Demand regime is Lumpy with 54.4% non-zero demand. Lead time is volatile.",
+    "boundary_risk": "Low - sufficient demand history and stable lead time observations",
+    "escalation_flag": "None"
+  },
+  "sap_policy": {
+    "safety_stock": 4546,
+    "order_quantity": 1363,
+    "annual_ordering_cost": 1649.207573790846,
+    "annual_holding_cost": 436.9966263,
+    "total_annual_cost": 2086.204200090846
+  },
+  "optimized_policy": {
+    "safety_stock": 213,
+    "order_quantity": 7334,
+    "annual_ordering_cost": 306.49985316020224,
+    "annual_holding_cost": 324.3513936,
+    "total_annual_cost": 630.8512467602022
+  }
+}

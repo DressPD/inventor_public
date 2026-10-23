@@ -1,0 +1,96 @@
+{
+  "material_id": "PL1__M069162C",
+  "data_quality": {
+    "total_rows": 140,
+    "working_days": 140,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 810.1126499999991
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 432.5265021428571,
+    "std_daily_demand": 211.58667846616987,
+    "robust_std_daily": 191.00409929999995,
+    "cv_wd": 0.48918777790010637,
+    "non_zero_fraction_wd": 0.9571428571428572,
+    "trend_detected": true,
+    "regime": "erratic",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.4062745098039218,
+    "std_lead_time": 0.9436651117516505,
+    "cv_lead_time": 0.6710390504647821,
+    "stability": "unstable",
+    "effective_lead_time": 2.3499396215555723
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 479.1159764686488,
+    "safety_stock": 789,
+    "safety_stock_robust": 768
+  },
+  "order_quantity": {
+    "eoq_raw": 12833.562375102805,
+    "order_quantity": 5662
+  },
+  "cost_analysis": {
+    "unit_cost": 0.547113,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.06565356,
+    "previous_policy": {
+      "safety_stock": 0,
+      "order_quantity": 5662,
+      "avg_inventory": 2831.0,
+      "annual_holding_cost": 185.86522835999997,
+      "annual_ordering_cost": 954.8889573976888,
+      "total_annual_cost": 1140.754185757689
+    },
+    "optimized_policy": {
+      "safety_stock": 789,
+      "order_quantity": 5662,
+      "avg_inventory": 3620.0,
+      "annual_holding_cost": 237.66588719999996,
+      "annual_ordering_cost": 954.8889573976888,
+      "total_annual_cost": 1192.5548445976888
+    },
+    "cost_savings": -51.80065883999987,
+    "cost_savings_pct": -4.540913326177617
+  },
+  "policy": {
+    "safety_stock": 789,
+    "reorder_point": 1398,
+    "order_quantity": 5662,
+    "review_period_days": 14
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.8241656779204827,
+    "sigma_eff_days": 1.1077147275253063,
+    "dominant_factor": "transport",
+    "dominant_pct": 50.0,
+    "variance_components": {
+      "transport": 0.4452519215686275,
+      "supplier": 0.356201537254902,
+      "quality": 0.0890503843137255
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M069162C exhibits erratic demand with CV=0.49 and a declining trend (slope=-1.59). Lead time variability is unstable (CV=0.67), requiring a safety stock of 789 units to achieve 95% service level. The capacity constraint (6452 units) limits the order quantity to 5662 units, far below the economic optimum (12834 units), resulting in higher ordering costs.",
+  "warnings": [
+    "Capacity utilization at 100.0% - no buffer available",
+    "Order quantity (5662) is constrained by capacity, 7172 units below EOQ",
+    "Lead time is unstable (CV=0.67), increasing stockout risk"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous review with capacity constraint",
+    "selection_rationale": "Continuous review is appropriate for high-volume erratic demand. The capacity constraint forces order quantity below EOQ, necessitating a constrained optimization approach.",
+    "boundary_risk": "At 100% capacity utilization, no buffer exists for demand surges or additional SKUs. Unstable lead time (CV=0.67) may cause stockouts if variance increases.",
+    "escalation_flag": "HIGH_CAPACITY_UTILIZATION"
+  }
+}

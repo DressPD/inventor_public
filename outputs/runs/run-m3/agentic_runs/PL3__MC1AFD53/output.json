@@ -1,0 +1,74 @@
+{
+  "material_id": "PL3__MC1AFD53",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 400.831
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 242.60792982456135,
+    "std_daily_demand": 157.30952235426008,
+    "robust_std_daily": 84.89515859999995,
+    "cv_wd": 0.6484104722711098,
+    "non_zero_fraction_wd": 0.7456140350877193,
+    "trend_detected": true,
+    "regime": "lumpy",
+    "distribution_type": "gamma"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.584285714285714,
+    "std_lead_time": 1.3432519176556996,
+    "cv_lead_time": 0.8478596414418303,
+    "stability": "volatile",
+    "effective_lead_time": 1.584285714285714
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 381.32045098064754,
+    "safety_stock": 628,
+    "safety_stock_robust": 565
+  },
+  "order_quantity": {
+    "eoq_raw": 24539.829498101455,
+    "order_quantity": 4447
+  },
+  "cost_analysis": {
+    "unit_cost": 0.125896,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.015107520000000001
+  },
+  "policy": {
+    "safety_stock": 628,
+    "reorder_point": 1013,
+    "order_quantity": 4447,
+    "review_period_days": 19
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.58853863702695,
+    "sigma_eff_days": 1.5717559242865402,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 73.037302769785,
+    "variance_components": {
+      "transport": 106200.09922455881,
+      "supplier": 39205.18711152561,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__MC1AFD53 exhibits lumpy demand with gamma distribution (CV=0.65). Lead time is volatile (CV=0.85). The dominant variance factor is lead_time_variability (73.0%). Recommended safety stock is 628 units with reorder point at 1013 units. Order quantity is 4447 units (constrained by max storage capacity of 5075 units). The optimized policy achieves $937.72 (46.8%) annual cost savings compared to SAP policy.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "analytical_eoq_with_safety_stock",
+    "selection_rationale": "EOQ model selected for lumpy demand pattern with volatile lead time. Safety stock computed using normal approximation for 95% service level.",
+    "boundary_risk": "Capacity constraint active: order quantity limited to 4447 units (EOQ would be 24540 units). ",
+    "escalation_flag": ""
+  }
+}

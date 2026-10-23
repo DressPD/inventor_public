@@ -1,0 +1,79 @@
+{
+  "material_id": "PL3__MCD18380",
+  "data_quality": {
+    "total_rows": 222,
+    "working_days": 222,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 11806.178
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 6331.97,
+    "std_daily_demand": 5267.82,
+    "robust_std_daily": 357.42,
+    "cv_wd": 0.832,
+    "non_zero_fraction_wd": 0.878,
+    "trend_detected": false,
+    "regime": "Bimodal campaign-based: alternates between low-activity days (~50-200 units) and high-consumption campaign days (~5500-8500 units)",
+    "distribution_type": "Bimodal (mixed low/high demand states); not well-described by a single unimodal distribution"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.033,
+    "std_lead_time": 0.784,
+    "cv_lead_time": 0.759,
+    "stability": "Moderate \u2014 short mean lead time (1.03 days) but high relative variability (CV=0.76); occasional spikes above 3 days observed",
+    "effective_lead_time": 1.425
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 5425.21,
+    "safety_stock": 8925.0,
+    "safety_stock_robust": 8928.0
+  },
+  "order_quantity": {
+    "eoq_raw": 5489.32,
+    "order_quantity": 5111
+  },
+  "cost_analysis": {
+    "unit_cost": 5.878235,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.7054
+  },
+  "policy": {
+    "safety_stock": 8928,
+    "reorder_point": 16772,
+    "order_quantity": 5111,
+    "review_period_days": 1
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.42,
+    "sigma_eff_days": 0.784,
+    "dominant_factor": "supplier",
+    "dominant_pct": 85.0,
+    "variance_components": {
+      "transport": 0.1,
+      "supplier": 0.85,
+      "quality": 0.05
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Increase SAP safety lead time from 0.0 to 1.42 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "PL3__MCD18380 exhibits a pronounced bimodal demand pattern: roughly 12% of working days are low-activity (~50-200 units) while the remaining 88% are high-consumption campaign days averaging ~6,800 units. The current SAP safety stock of 607 units covers less than 0.1 days of average demand, providing virtually no buffer against the observed lead time variability (CV=0.76). An (s,Q) continuous-review policy with ROP=16,772 and Q=5,111 is recommended, which respects the 14,040-unit storage cap while delivering a projected 81% reduction in total annual inventory costs.",
+  "warnings": [
+    "Storage capacity is binding: safety_stock (8928) + order_quantity (5111) = 14039, which equals max_storage_units (14039.853). Zero practical buffer remains.",
+    "Order quantity was capped from unconstrained EOQ (5490) to 5111 due to storage capacity constraint.",
+    "Bimodal demand structure: standard safety stock formula may underestimate tail risk on campaign days. Quarterly policy review recommended.",
+    "Lead time CV=0.76 indicates moderate-to-high supplier variability; reducing lead time sigma would allow meaningful safety stock reduction."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(s, Q) continuous-review reorder point policy",
+    "selection_rationale": "The (s,Q) model is appropriate for this material because: (1) demand is high-volume with daily replenishment monitoring feasible; (2) lead times are short (mean ~1 day) enabling responsive triggering; (3) the bimodal demand structure benefits from a fixed reorder point that captures both low and high-demand regimes; (4) the MOQ constraint aligns naturally with a fixed order quantity Q rather than variable order-up-to policies.",
+    "boundary_risk": "The storage capacity constraint (14,039.853 units) binds exactly at safety_stock + order_quantity = 14,039 units. This leaves virtually no headroom. If demand spikes coincide with a delayed replenishment, available storage may prevent placing a full order. Management should explore a 5-10% storage capacity increase to decouple the safety stock and order quantity decisions.",
+    "escalation_flag": "Capacity is critically tight. Any upward revision to safety stock (e.g., from demand plan changes or improved service level target) will require either a storage expansion or a reduction in order quantity below EOQ-optimal levels. This trade-off should be escalated to supply chain management and site logistics."
+  }
+}

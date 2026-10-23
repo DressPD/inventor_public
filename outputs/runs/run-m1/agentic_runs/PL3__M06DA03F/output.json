@@ -1,0 +1,78 @@
+{
+  "material_id": "PL3__M06DA03F",
+  "data_quality": {
+    "total_rows": 216,
+    "working_days": 216,
+    "outliers_detected": 7,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 17.461
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 2.1152,
+    "std_daily_demand": 3.8015,
+    "robust_std_daily": 0.0,
+    "cv_wd": 1.7972,
+    "non_zero_fraction_wd": 0.2778,
+    "trend_detected": false,
+    "regime": "intermittent, high-variability",
+    "distribution_type": "intermittent/compound-Poisson"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.7,
+    "std_lead_time": 0.1212,
+    "cv_lead_time": 0.1732,
+    "stability": "stable",
+    "effective_lead_time": 0.8212
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 3.1908,
+    "safety_stock": 6,
+    "safety_stock_robust": 6
+  },
+  "order_quantity": {
+    "eoq_raw": 214.52,
+    "order_quantity": 419
+  },
+  "cost_analysis": {
+    "unit_cost": 14.363491,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.7236
+  },
+  "policy": {
+    "safety_stock": 6,
+    "reorder_point": 8,
+    "order_quantity": 419,
+    "review_period_days": 199
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.4813,
+    "sigma_eff_days": 1.5087,
+    "dominant_factor": "transport",
+    "dominant_pct": 100.0,
+    "variance_components": {
+      "transport": 0.0147,
+      "supplier": 0.0,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase from SAP value of 0.0 days to 2.48 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__M06DA03F shows intermittent, high-variability demand (CV=1.80) with only 27.8% of working days carrying positive demand, averaging 2.12 units/day. Lead times are very short (mean 0.70 days) and stable (CV=0.17), limiting exposure to supply risk. The current SAP policy carries zero safety stock, leaving the material unprotected against demand spikes. A continuous-review (r,Q) policy with safety stock of 6 units and MOQ-constrained order quantity of 419 achieves 95% service level for a marginal annual cost increase of ~$10.",
+  "warnings": [
+    "Intermittent demand pattern detected (only 27.8% of days have demand)",
+    "Current SAP safety stock is 0 - no buffer against uncertainty",
+    "Very high demand variability (CV=1.80) - consider review-based policies"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review",
+    "selection_rationale": "Given a very short and stable lead time, a continuous-review (r,Q) policy is appropriate. The MOQ of 419 units dominates the EOQ of 215, making fixed-order-quantity replenishment natural. The intermittent demand pattern does not warrant Croston methods given the brevity of the lead time exposure window.",
+    "boundary_risk": "MOQ (419) + safety stock (6) = 425 units, well within max_storage_units of 1222. No capacity constraint binds. EOQ falls below MOQ, so order frequency is lower than economically optimal \u2014 this inflates holding costs slightly but is unavoidable given the supplier minimum.",
+    "escalation_flag": "none"
+  }
+}

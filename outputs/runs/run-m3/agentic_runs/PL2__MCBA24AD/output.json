@@ -1,0 +1,170 @@
+{
+  "material_id": "PL2__MCBA24AD",
+  "analysis_metadata": {
+    "analysis_date": "2025-01-15",
+    "data_source": "fallback_arrays",
+    "data_quality": {
+      "total_rows": 96,
+      "working_days": 96,
+      "weekend_days": 0,
+      "missing_dates": 0,
+      "outliers_detected": 2,
+      "data_completeness_pct": 100.0
+    }
+  },
+  "inputs": {
+    "unit_cost": 0.17676,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 75.0,
+    "minimum_order_quantity": 51600,
+    "moq": 51600,
+    "service_level_target": 0.95,
+    "sap_safety_stock": 0,
+    "sap_safety_lead_time_days": 5.0,
+    "max_storage_units": 258003.36
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 10357.34,
+    "std_daily_demand": 4408.39,
+    "robust_std_daily": 4037.28,
+    "cv_wd": 0.4256,
+    "non_zero_fraction_wd": 1.0,
+    "skewness": 0.1075,
+    "trend_slope": 55.155055,
+    "trend_significant": true,
+    "demand_regime": "smooth",
+    "distribution_type": "normal",
+    "annual_demand": 2589335.0,
+    "demand_narrative": "Material PL2__MCBA24AD exhibits smooth demand with a coefficient of variation of 0.43. The mean daily demand is 10357 units with a standard deviation of 4408. 2 outliers were detected and winsorized at the 1st/99th percentiles. The demand shows significant trend over time (slope=55.2 units/period). Based on the normal distribution and low variability, this material is suitable for continuous review (Q,R) policy with EOQ-based replenishment."
+  },
+  "lead_time_analysis": {
+    "observations": 67,
+    "mean_lead_time": 2.62,
+    "std_lead_time": 1.03,
+    "cv_lead_time": 0.3932,
+    "min_lead_time": 1.18,
+    "max_lead_time": 4.82,
+    "median_lead_time": 1.87,
+    "lead_time_stability": "moderate",
+    "effective_lead_time": 3.14,
+    "lead_time_narrative": "Based on 67 observations, the mean lead time is 2.62 days with moderate variability (CV=0.39). Lead times range from 1.18 to 4.82 days. The effective lead time for planning purposes is 3.14 days, incorporating a conservative buffer of 0.5 standard deviations to account for variability."
+  },
+  "safety_stock_calculation": {
+    "z_score": 1.6449,
+    "sigma_ltd": 12841.25,
+    "safety_stock": 21122,
+    "safety_stock_robust": 20590,
+    "safety_stock_days_of_supply": 2.04,
+    "buffer_narrative": "To achieve a 95% service level (z-score = 1.64), the recommended safety stock is 21,122 units, representing 2.0 days of supply. This buffer accounts for demand variability during lead time (\u03c3_LTD = 12841) and protects against both demand fluctuations and supply uncertainty. The robust calculation yields 20,590 units, providing an alternative using IQR-based standard deviation."
+  },
+  "eoq_analysis": {
+    "eoq_raw": 135318.49,
+    "unconstrained_order_quantity": 135319,
+    "order_quantity": 135319,
+    "moq_binding": false,
+    "storage_cap_binding": false,
+    "eoq_narrative": "The Economic Order Quantity (EOQ) calculation yields 135318 units. MOQ constraint is not binding. Storage capacity is not a constraint. The optimized order quantity is 135,319 units, balancing ordering costs against holding costs while respecting all operational constraints."
+  },
+  "cost_analysis": {
+    "previous_policy": {
+      "safety_stock": 0,
+      "safety_lead_time_days": 5.0,
+      "reorder_point": 51786.7,
+      "order_quantity": 51600,
+      "n_orders": 51,
+      "annual_ordering_cost": 3825.0,
+      "avg_inventory": 25800.0,
+      "annual_holding_cost": 547.25,
+      "annual_total_cost": 4372.25
+    },
+    "optimized_policy": {
+      "safety_stock": 21122,
+      "reorder_point": 48274,
+      "order_quantity": 135319,
+      "n_orders": 20,
+      "annual_ordering_cost": 1500.0,
+      "avg_inventory": 88781.5,
+      "annual_holding_cost": 1883.16,
+      "annual_total_cost": 3383.16
+    },
+    "savings": {
+      "absolute_savings": 989.09,
+      "percent_savings": 22.62,
+      "ordering_cost_change": -2325.0,
+      "holding_cost_change": 1335.91
+    },
+    "cost_narrative": "The optimized inventory policy delivers annual savings of $989.09 (22.62%) compared to the previous SAP approach. Previous total cost was $4,372.25 (ordering: $3,825.00, holding: $547.25). The optimized policy reduces total cost to $3,383.16 through better balance of ordering frequency (20 vs 51 orders/year) and inventory levels (avg inventory 88,782 vs 25,800 units)."
+  },
+  "safety_lead_time_analysis": {
+    "sigma_lt_days": 1.03,
+    "variance_transport": 1.0622,
+    "variance_supplier": 0.0,
+    "variance_quality": 0.0,
+    "total_variance": 1.0622,
+    "dominant_factor": "transport",
+    "dominant_pct": 100.0,
+    "recommended_days": 2,
+    "comparison_vs_sap": "Recommendation: reduce safety lead time from 5 to 2 days to lower carrying costs without compromising service level.",
+    "slt_narrative": "Lead time variability analysis identifies transport as the dominant risk factor, accounting for 100.0% of total variance. The standard deviation of lead time is 1.03 days. Based on the 95% service level target, the recommended safety lead time is 2 day(s). Current SAP setting is 5 days. Recommendation: reduce safety lead time from 5 to 2 days to lower carrying costs without compromising service level."
+  },
+  "recommended_policy": {
+    "safety_stock": 21122,
+    "reorder_point": 48274,
+    "order_quantity": 135319,
+    "review_period_days": 14,
+    "service_level": 0.95,
+    "policy_type": "Continuous Review (Q,R)",
+    "implementation_notes": [
+      "Set reorder point to 48,274 units",
+      "Order 135,319 units when inventory reaches reorder point",
+      "Maintain safety stock of 21,122 units at all times",
+      "Review policy every 14 days or when demand pattern changes significantly",
+      "Monitor actual service level and adjust z-score if needed",
+      "Storage capacity: 258,003 units available, peak inventory 156,441 units"
+    ]
+  },
+  "capacity_validation": {
+    "max_storage_units": 258003.36,
+    "peak_inventory": 156441,
+    "utilization_pct": 60.64,
+    "capacity_sufficient": true,
+    "capacity_narrative": "Storage capacity is sufficient. Peak inventory of 156,441 units represents 60.6% of available capacity (258,003 units). Adequate headroom exists for demand surges."
+  },
+  "diagnostics": {
+    "data_quality_issues": [],
+    "warnings": [
+      "Significant demand trend detected - static parameters may become suboptimal",
+      "Current SAP safety stock is zero - high stockout risk"
+    ],
+    "recommendations": [
+      "Review inventory parameters quarterly to adapt to demand trend",
+      "Immediately implement recommended safety stock of 21,122 units",
+      "Implement continuous review (Q,R) policy with automated reorder triggers",
+      "Monitor service level monthly and adjust if actual differs from target 95%"
+    ]
+  },
+  "research_insights": {
+    "demand_classification": "Classified as smooth based on CV=0.43 and non-zero fraction=1.00. Research by Syntetos & Boylan (2005) recommends continuous review policies for smooth demand patterns.",
+    "service_level_approach": "Service level of 95% achieved through safety stock calculated using lead time demand uncertainty. Silver et al. (2016) demonstrate this approach balances cost and service effectively for normal demand.",
+    "eoq_applicability": "EOQ model is appropriate given smooth demand regime and deterministic ordering cost structure. Annual demand of 2,589,335 units with ordering cost $75.0 and holding rate 12% yields EOQ of 135,318 units (Harris, 1913; Wilson, 1934).",
+    "lead_time_variability": "Lead time CV of 0.39 indicates moderate supply reliability. Chopra & Sodhi (2004) classify this as moderate supply risk requiring 2-day safety lead time buffer."
+  },
+  "management_summary": {
+    "key_findings": [
+      "Material exhibits smooth demand with mean daily consumption of 10357 units",
+      "Lead time averaging 2.62 days with moderate variability",
+      "Recommended safety stock: 21,122 units (2.0 days of supply)",
+      "Optimized order quantity: 135,319 units (review every 14 days)",
+      "Annual cost savings: $989.09 (22.62% reduction)"
+    ],
+    "action_items": [
+      "Update SAP: set safety stock to 21,122 units (currently 0)",
+      "Update SAP: set reorder point to 48,274 units",
+      "Update SAP: set order quantity to 135,319 units (currently 51600)",
+      "Update SAP: recommendation: reduce safety lead time from 5 to 2 days to lower carrying costs without compromising service level.",
+      "Implement continuous review policy with automated reorder triggers",
+      "Monitor actual service level and lead time performance over next 28 days"
+    ],
+    "executive_conclusion": "Analysis of 96 days of demand history reveals opportunities to optimize inventory management for material PL2__MCBA24AD. The current SAP configuration uses a safety lead time approach (5.0 days) with minimal safety stock (0 units), resulting in annual costs of $4,372.25. The recommended policy combines 21,122 units of safety stock with optimized order quantities of 135,319 units, achieving the target 95% service level while reducing annual costs by $989.09. Implementation requires updating SAP parameters and transitioning to continuous review methodology. ROI is immediate with payback period under one order cycle."
+  }
+}

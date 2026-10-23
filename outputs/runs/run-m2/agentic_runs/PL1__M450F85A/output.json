@@ -1,0 +1,97 @@
+{
+  "material_id": "PL1__M450F85A",
+  "analysis_metadata": {
+    "total_observations": 217,
+    "working_days": 217,
+    "date_range_start": "2025-03-03",
+    "date_range_end": "2026-03-09",
+    "service_level_target": 0.95,
+    "z_score": 1.645
+  },
+  "demand_profile": {
+    "mean_daily_demand": 687.04,
+    "std_daily_demand": 395.04,
+    "robust_std": 383.89,
+    "coefficient_of_variation": 0.575,
+    "non_zero_fraction": 0.931,
+    "trend": {
+      "slope": -1.8118,
+      "direction": "decreasing",
+      "has_significant_trend": true
+    },
+    "regime": "erratic",
+    "distribution_type": "moderate_intermittent",
+    "annual_demand": 171759.5
+  },
+  "lead_time_profile": {
+    "mean_lead_time_days": 2.45,
+    "std_lead_time_days": 1.26,
+    "cv_lead_time": 0.514,
+    "stability": "moderate",
+    "effective_lead_time_days": 3.71,
+    "observations_count": 81
+  },
+  "safety_stock_analysis": {
+    "sigma_ltd": 1062.18,
+    "recommended_safety_stock": 1748,
+    "safety_stock_robust": 1731,
+    "sap_safety_stock": 1343,
+    "difference_vs_sap": 405,
+    "percent_change_vs_sap": 30.2
+  },
+  "order_policy": {
+    "eoq_raw": 12766.67,
+    "moq": 1343,
+    "unconstrained_order_quantity": 12767,
+    "final_order_quantity": 6279,
+    "capacity_constrained": true,
+    "reorder_point": 3430,
+    "review_period_days": 10
+  },
+  "cost_analysis": {
+    "optimized_policy": {
+      "orders_per_year": 27.35,
+      "annual_ordering_cost": 2051.59,
+      "average_inventory": 4887.5,
+      "annual_holding_cost": 772.58,
+      "total_annual_cost": 2824.17
+    },
+    "sap_policy": {
+      "average_inventory": 2014.5,
+      "orders_per_year": 127.89,
+      "annual_ordering_cost": 9591.93,
+      "annual_holding_cost": 318.44,
+      "total_annual_cost": 9910.37
+    },
+    "savings": {
+      "annual_cost_savings": 7086.19,
+      "percent_savings": 71.5
+    }
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.07,
+    "sap_safety_lead_time_days": 3.0,
+    "comparison_action": "reduce",
+    "sigma_effective_days": 1.26,
+    "variance_decomposition": {
+      "supplier_std_days": 1.05,
+      "transport_std_days": 0.56,
+      "quality_std_days": 0.4
+    },
+    "disruption_premium": 1.0
+  },
+  "capacity_constraints": {
+    "max_storage_units": 8027.027,
+    "safety_stock_plus_order_qty": 8027,
+    "capacity_check_passed": true,
+    "capacity_utilization_percent": 100.0,
+    "escalation_required": false
+  },
+  "input_parameters": {
+    "unit_cost": 1.317272,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 75.0,
+    "minimum_order_quantity": 1343,
+    "service_level_target": 0.95
+  }
+}

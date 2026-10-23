@@ -1,0 +1,76 @@
+{
+  "material_id": "PL2__MA3BEFE0",
+  "data_quality": {
+    "total_rows": 140,
+    "working_days": 140,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 1037.749539999998
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 378.3213862857142,
+    "std_daily_demand": 292.1250952044022,
+    "robust_std_daily": 375.11262600000003,
+    "cv_wd": 0.7721611989013616,
+    "non_zero_fraction_wd": 0.8714285714285714,
+    "trend_detected": false,
+    "regime": "continuous",
+    "distribution_type": "moderate-variability"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.7836781609195405,
+    "std_lead_time": 1.150792563028698,
+    "cv_lead_time": 0.41340718879963956,
+    "stability": "variable",
+    "effective_lead_time": 3.9344707239482384
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 653.5269611091583,
+    "safety_stock": 1076,
+    "safety_stock_robust": 1255
+  },
+  "order_quantity": {
+    "eoq_raw": 2607.246343586648,
+    "order_quantity": 2152
+  },
+  "cost_analysis": {
+    "unit_cost": 17.39189,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 2.0870268
+  },
+  "policy": {
+    "safety_stock": 1076,
+    "reorder_point": 2130,
+    "order_quantity": 2152,
+    "review_period_days": 6
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.844142676056352,
+    "sigma_eff_days": 1.7274385874014655,
+    "dominant_factor": "demand_variability",
+    "dominant_pct": 55.619840370431994,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "MAINTAIN",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization analysis for material PL2__MA3BEFE0 reveals a continuous demand pattern with moderate variability (CV=0.77). \nThe mean daily demand is 378.32 units with variable lead time (mean=2.78 days, CV=0.41).\n\nThe recommended policy maintains a safety stock of 1076 units and an order quantity of 2152 units, with a reorder point at 2130 units. \nThis translates to approximately 6 days of review period.\n\nThe optimized policy delivers significant annual cost savings of $7857.94 (50.2%) compared to the current SAP policy, \nprimarily through better balancing of ordering and holding costs. The current policy's low safety stock (0 units) results in excessive ordering frequency, \nwhile the optimized policy increases safety stock to 1076 units to achieve the 95% service level target while reducing order frequency from 202 to 44 orders per year.\n\nDemand variability is the dominant factor (55.6%) in safety stock requirements. The recommended safety lead time of 2.84 days is consistent with \nthe current SAP setting of 3.0 days, suggesting the action to MAINTAIN the safety lead time parameter.\n\nThe capacity constraint is satisfied with current utilization at 100.0% of maximum storage.",
+  "warnings": [
+    "High lead time variability (CV=0.41) detected - consider supplier performance review"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Classical (r,Q) with variable lead time and demand",
+    "selection_rationale": "Continuous demand pattern (87.1% non-zero), moderate variability (CV=0.77), variable lead time justifies classical inventory model with safety stock calculated from lead time demand distribution.",
+    "boundary_risk": "Moderate",
+    "escalation_flag": "NO"
+  }
+}

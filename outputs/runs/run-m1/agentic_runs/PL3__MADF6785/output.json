@@ -1,0 +1,78 @@
+{
+  "material_id": "PL3__MADF6785",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 1023.83291
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 445.4855554385965,
+    "std_daily_demand": 301.0959783090389,
+    "robust_std_daily": 466.20240740740735,
+    "cv_wd": 0.6758826961574526,
+    "non_zero_fraction_wd": 0.9517543859649122,
+    "trend_detected": true,
+    "regime": "erratic",
+    "distribution_type": "log-normal-like"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.2538709677419357,
+    "std_lead_time": 0.760735071797249,
+    "cv_lead_time": 0.6067092159947186,
+    "stability": "volatile",
+    "effective_lead_time": 2.014606039539185
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 478.04314727939254,
+    "safety_stock": 787.0,
+    "safety_stock_robust": 1024.0
+  },
+  "order_quantity": {
+    "eoq_raw": 14249.421559844395,
+    "order_quantity": 5955
+  },
+  "cost_analysis": {
+    "unit_cost": 0.457086,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.054850319999999994
+  },
+  "policy": {
+    "safety_stock": 787,
+    "reorder_point": 1685,
+    "order_quantity": 5955,
+    "review_period_days": 14
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.7666117125283,
+    "sigma_eff_days": 1.0730833838343914,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 50.25739076617552,
+    "variance_components": {
+      "transport": 0.0,
+      "supplier": 0.0,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__MADF6785 exhibits erratic demand with log-normal-like distribution. Lead time is volatile. Recommended safety stock is 787 units to achieve 95% service level. Order quantity optimized to 5955 units (constrained by storage capacity). Annual cost savings of $424.11 (27.1%) compared to current SAP policy.",
+  "warnings": [
+    "Storage capacity constraint active: order quantity capped at 5955 units (EOQ was 14249)",
+    "Lead time volatility (CV=0.61) drives 50.3% of safety stock requirement",
+    "Current SAP policy has zero safety stock, creating high stockout risk"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Normal approximation with lead time variance",
+    "selection_rationale": "CV=0.68 suggests log-normal-like distribution, but normal approximation is robust for service level 0.95. Lead time variability is volatile, requiring variance component modeling.",
+    "boundary_risk": "Storage constraint binding (utilization 100.0%). Consider MILP optimization if demand increases.",
+    "escalation_flag": "MEDIUM"
+  }
+}

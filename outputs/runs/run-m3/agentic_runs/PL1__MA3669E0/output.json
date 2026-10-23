@@ -1,0 +1,90 @@
+{
+  "material_id": "PL1__MA3669E0",
+  "data_quality": {
+    "total_rows": 137,
+    "working_days": 137,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 37.26684000000001,
+      "upper_bound": 744.51508
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 457.19312291970806,
+    "std_daily_demand": 151.01495500223973,
+    "robust_std_daily": 109.49073387694591,
+    "cv_wd": 0.3303088944948126,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "REGULAR",
+    "distribution_type": "NORMAL"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 4.029675324675324,
+    "std_lead_time": 1.595218268186947,
+    "cv_lead_time": 0.3958676914784631,
+    "stability": "MODERATE",
+    "effective_lead_time": 5.624893592862271
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 789.8168180051497,
+    "safety_stock": 1300,
+    "safety_stock_robust": 1253
+  },
+  "order_quantity": {
+    "eoq_raw": 7195.952725493196,
+    "order_quantity": 2703
+  },
+  "cost_analysis": {
+    "unit_cost": 3.678848,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.44146176,
+    "previous_policy": {
+      "avg_inventory": 818.0,
+      "num_orders": 69.86447477379403,
+      "annual_ordering_cost": 6986.447477379403,
+      "annual_holding_cost": 361.11571968,
+      "annual_total_cost": 7347.563197059402
+    },
+    "optimized_policy": {
+      "avg_inventory": 2651.5,
+      "num_orders": 42.28571244170441,
+      "annual_ordering_cost": 4228.571244170441,
+      "annual_holding_cost": 1170.53585664,
+      "annual_total_cost": 5399.107100810441
+    },
+    "annual_savings": 1948.4560962489613,
+    "savings_pct": 26.51839860361815
+  },
+  "policy": {
+    "safety_stock": 1300,
+    "reorder_point": 3872,
+    "order_quantity": 2703,
+    "review_period_days": 6
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.9,
+    "sigma_eff_days": 1.7275343359525046,
+    "dominant_factor": "LEAD_TIME_VARIABILITY",
+    "dominant_pct": 85.26815242264904,
+    "variance_components": {
+      "transport": 0.0,
+      "supplier": 531911.7783559535,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "DECREASE",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MA3669E0 exhibits regular demand patterns with normal \ndistribution characteristics (CV=0.33). The demand shows an upward trend \nover the observation period. Lead time analysis reveals moderate performance with mean lead time of \n4.0 days. The dominant source of variability in the supply chain is lead_time_variability, \naccounting for 85.3% of total variance. The optimized policy recommends a safety stock of 1300 \nunits with order quantity of 2703 units, resulting in annual cost savings of $1948.46 \n(26.5%) compared to the current SAP policy. The reorder point is set at 3872 units with \nan estimated review period of 6 days.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Normal Approximation with Lead Time Variability",
+    "selection_rationale": "Given the regular demand regime with CV=0.33 and non-zero fraction of 1.00, the Normal approximation is appropriate. Lead time variability (CV=0.40, moderate) is incorporated using the combined variance formula.",
+    "boundary_risk": "The material operates near capacity constraints with total inventory (4003 units) at 100.0% of maximum storage (4004 units). Any increase in demand or lead time variability may trigger stockout risk.",
+    "escalation_flag": "NONE"
+  }
+}

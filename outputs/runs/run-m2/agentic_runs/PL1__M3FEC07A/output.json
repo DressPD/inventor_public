@@ -1,0 +1,77 @@
+{
+  "material_id": "PL1__M3FEC07A",
+  "data_quality": {
+    "total_rows": 137,
+    "working_days": 137,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 59.929,
+      "upper_bound": 1197.277
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 734.506,
+    "std_daily_demand": 243.325,
+    "robust_std_daily": 189.623,
+    "cv_wd": 0.331,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "variable",
+    "distribution_type": "log-normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 4.083,
+    "std_lead_time": 1.525,
+    "cv_lead_time": 0.373,
+    "stability": "moderate",
+    "effective_lead_time": 5.608
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1223.136,
+    "safety_stock": 2012,
+    "safety_stock_robust": 1948
+  },
+  "order_quantity": {
+    "eoq_raw": 12139.316,
+    "order_quantity": 4572
+  },
+  "cost_analysis": {
+    "unit_cost": 3.032133,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.364
+  },
+  "policy": {
+    "safety_stock": 2012,
+    "reorder_point": 5011,
+    "order_quantity": 4572,
+    "review_period_days": 7
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.739,
+    "sigma_eff_days": 1.665,
+    "dominant_factor": "transport",
+    "dominant_pct": 0.6,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "REDUCE",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Demand for PL1__M3FEC07A is continuous and variable (CV=0.331) with a log-normal profile and no detectable trend across the 137-day observation window. Lead times are moderately unstable (CV=0.373) with a mean of 4.08 days after removal of two data-error outliers. The combined lead-time demand sigma of 1,223 units drives a statistically required safety stock of 2,012 units \u2014 far above the current SAP value of 182. A continuous-review (r,Q) policy with r=5,011 and Q=4,572 (capacity-constrained from an unconstrained EOQ of 12,140) achieves the 95% service level while reducing total annual costs by 41.5%.",
+  "warnings": [
+    "Safety stock increases by 1005.5% from SAP baseline \u2014 significant working capital commitment required",
+    "Storage capacity constraint is binding: EOQ of 12,140 reduced to 4,572 units"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) continuous-review replenishment policy",
+    "selection_rationale": "Demand is continuous (non-zero fraction = 100%), moderately variable (CV=0.331), and non-intermittent \u2014 making a continuous-review (r,Q) model the standard economic choice. The policy balances ordering and holding costs via the EOQ formula while the reorder point provides the required service buffer against lead-time demand variability.",
+    "boundary_risk": "Storage capacity cap of 6,584.95 units binds tightly: with safety stock at 2,012 only 4,572 units of order quantity are permitted versus the unconstrained EOQ of 12,140. This increases ordering frequency (58.6 vs theoretical 22 orders/year) and raises ordering costs. If storage capacity can be expanded, significant further savings are achievable.",
+    "escalation_flag": "none \u2014 MOQ (2,192) + safety_stock (2,012) = 4,204 < max_storage_units (6,584.95); policy is feasible."
+  }
+}

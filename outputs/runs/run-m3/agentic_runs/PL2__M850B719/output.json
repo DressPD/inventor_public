@@ -1,0 +1,74 @@
+{
+  "material_id": "PL2__M850B719",
+  "data_quality": {
+    "total_rows": 178,
+    "working_days": 178,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 9178.97761,
+      "upper_bound": 23531.488139999998
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 18110.938210674158,
+    "std_daily_demand": 3378.6135357605685,
+    "robust_std_daily": 2861.3017049666396,
+    "cv_wd": 0.186550994567984,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "Smooth",
+    "distribution_type": "Normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.4184239130434784,
+    "std_lead_time": 0.9450030876717781,
+    "cv_lead_time": 0.6662345995310439,
+    "stability": "Volatile",
+    "effective_lead_time": 2.977679007701912
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 17581.549903435483,
+    "safety_stock": 28920,
+    "safety_stock_robust": 28705
+  },
+  "order_quantity": {
+    "eoq_raw": 47519.35852677671,
+    "order_quantity": 47520
+  },
+  "cost_analysis": {
+    "unit_cost": 2.526448,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.30317375999999996
+  },
+  "policy": {
+    "safety_stock": 28920,
+    "reorder_point": 54609,
+    "order_quantity": 47520,
+    "review_period_days": 0
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.5968250602807113,
+    "sigma_eff_days": 1.5592550946584338,
+    "dominant_factor": "lead_time",
+    "dominant_pct": 94.76196055852245,
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.35,
+      "quality": 0.15
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL2__M850B719 exhibits smooth demand (CV=0.19) with volatile lead times (CV=0.67). Recommended safety stock of 28920 units achieves 95% service level, with EOQ-based ordering of 47520 units reducing total annual costs by $7,705 compared to current SAP policy. Lead_Time variability is the dominant risk factor (94.8%).",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) Continuous Review with EOQ",
+    "selection_rationale": "High frequency, high-value demand with volatile lead times favors continuous review with economic order quantity.",
+    "boundary_risk": "Low",
+    "escalation_flag": "No"
+  }
+}

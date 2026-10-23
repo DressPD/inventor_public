@@ -1,0 +1,77 @@
+{
+  "material_id": "PL1__M9962796",
+  "data_quality": {
+    "total_rows": 169,
+    "working_days": 169,
+    "outliers_detected": 92,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 3045.9307999999983
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 636.6131893491124,
+    "std_daily_demand": 902.428402307741,
+    "robust_std_daily": 149.03984759999997,
+    "cv_wd": 1.4175458777886836,
+    "non_zero_fraction_wd": 0.5443786982248521,
+    "trend_detected": true,
+    "regime": "intermittent",
+    "distribution_type": "Heavy-tailed/Empirical"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.3244,
+    "std_lead_time": 0.33121090964318595,
+    "cv_lead_time": 1.0209954058051354,
+    "stability": "unstable",
+    "effective_lead_time": 0.6556109096431859
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 555.5564703963628,
+    "safety_stock": 914.0,
+    "safety_stock_robust": 374.0
+  },
+  "order_quantity": {
+    "eoq_raw": 8381.195407253432,
+    "order_quantity": 8382
+  },
+  "cost_analysis": {
+    "unit_cost": 1.888089,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.22657067999999997
+  },
+  "policy": {
+    "safety_stock": 914,
+    "reorder_point": 1332,
+    "order_quantity": 8382,
+    "review_period_days": 14
+  },
+  "safety_lead_time": {
+    "recommended_days": 0.5447934660124907,
+    "sigma_eff_days": 0.33121090964318595,
+    "dominant_factor": "transport",
+    "dominant_pct": 33.33333333333333,
+    "variance_components": {
+      "transport": 0.03656688888888889,
+      "supplier": 0.03656688888888889,
+      "quality": 0.03656688888888889
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M9962796 exhibits intermittent demand with CV=1.42 and only 54.4% non-zero demand days, classified as heavy-tailed/empirical. Lead time is unstable (CV=1.02, mean=0.32 working days). The recommended (r,Q) policy sets safety stock at 914 units \u2014 85.5% below the current SAP level of 6,282 \u2014 while maintaining the 95% service level target. This yields an estimated annual holding cost reduction of $2,431 (36.6%), with no storage capacity conflict.",
+  "warnings": [
+    "High demand variability (CV=1.42) may require advanced forecasting methods",
+    "Unstable lead time (CV=1.02) increases stockout risk"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with Normal Approximation (r,Q) continuous-review policy",
+    "selection_rationale": "Intermittent demand regime with CV=1.42 and 54.4% non-zero days. The (r,Q) policy is appropriate for a continuous-review single-echelon setting at 95% service level. Normal approximation is used for sigma_ltd given the moderate sample size; the robust SS (374 units) is provided as a conservative alternative if demand spikes are episodic.",
+    "boundary_risk": "Medium \u2014 storage capacity (20,926 units) is non-binding (SS+OQ=9,296), but the high CV and unstable lead time mean actual demand during replenishment cycles can exceed the buffer in tail scenarios. Quarterly review of fill rates recommended.",
+    "escalation_flag": "None \u2014 MOQ (3,183) + SS (914) = 4,097 units, well within max_storage_units (20,926). No infeasibility conflict."
+  }
+}

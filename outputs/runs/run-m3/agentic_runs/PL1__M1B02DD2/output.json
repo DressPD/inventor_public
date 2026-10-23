@@ -1,0 +1,77 @@
+{
+  "material_id": "PL1__M1B02DD2",
+  "data_quality": {
+    "total_rows": 221,
+    "working_days": 221,
+    "outliers_detected": 6,
+    "winsorisation": {
+      "lower_bound": 54.611,
+      "upper_bound": 1482.989
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 762.53,
+    "std_daily_demand": 311.31,
+    "robust_std_daily": 311.83,
+    "cv_wd": 0.408,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "moderate",
+    "distribution_type": "empirical"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.563,
+    "std_lead_time": 1.212,
+    "cv_lead_time": 0.473,
+    "stability": "volatile",
+    "effective_lead_time": 4.201
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1050.33,
+    "safety_stock": 1728,
+    "safety_stock_robust": 1729
+  },
+  "order_quantity": {
+    "eoq_raw": 10721.94,
+    "order_quantity": 5030
+  },
+  "cost_analysis": {
+    "unit_cost": 2.073,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.249
+  },
+  "policy": {
+    "safety_stock": 1728,
+    "reorder_point": 3683,
+    "order_quantity": 5030,
+    "review_period_days": 6.6
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.0,
+    "sigma_eff_days": 1.377,
+    "dominant_factor": "lead_time",
+    "dominant_pct": 77.48,
+    "variance_components": {
+      "transport": 77.48,
+      "supplier": 0.0,
+      "quality": 22.52
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M1B02DD2 exhibits moderate demand with CV=0.41 and volatile lead time with CV=0.47. Lead time variance dominates (77% of total uncertainty), requiring safety stock of 1728 units. Storage capacity constraint reduced order quantity from 10722 to 5030 units.",
+  "warnings": [
+    "Storage capacity binding: max=6758, current policy uses 6758 units (100.0%)",
+    "Recommended safety stock (1728) is significantly higher than SAP setting (701)"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "classical_eoq_ss",
+    "selection_rationale": "Deterministic EOQ with stochastic lead time demand safety stock",
+    "boundary_risk": "Storage capacity constraint is binding",
+    "escalation_flag": "capacity_constrained"
+  }
+}

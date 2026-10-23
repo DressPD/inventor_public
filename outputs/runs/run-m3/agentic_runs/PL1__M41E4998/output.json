@@ -1,0 +1,77 @@
+{
+  "material_id": "PL1__M41E4998",
+  "data_quality": {
+    "total_rows": 172,
+    "working_days": 172,
+    "outliers_detected": 5,
+    "winsorisation": {
+      "lower_bound": 2.778,
+      "upper_bound": 1063.905
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 385.04,
+    "std_daily_demand": 242.16,
+    "robust_std_daily": 214.92,
+    "cv_wd": 0.629,
+    "non_zero_fraction_wd": 0.872,
+    "trend_detected": false,
+    "regime": "erratic",
+    "distribution_type": "Gamma"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.784,
+    "std_lead_time": 0.971,
+    "cv_lead_time": 1.239,
+    "stability": "unstable",
+    "effective_lead_time": 1.755
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 431.4,
+    "safety_stock": 710.0,
+    "safety_stock_robust": 626.0
+  },
+  "order_quantity": {
+    "eoq_raw": 4486.3,
+    "order_quantity": 4487
+  },
+  "cost_analysis": {
+    "unit_cost": 3.981295,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.477755
+  },
+  "policy": {
+    "safety_stock": 710,
+    "reorder_point": 1012,
+    "order_quantity": 4487,
+    "review_period_days": 12
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.844,
+    "sigma_eff_days": 1.121,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M41E4998 exhibits erratic demand (CV=0.63) over 172 working days with a mean of 385 units/day and no detectable trend. Lead times are short on average (0.78 days) but highly unstable (CV=1.24), making them the dominant contributor to safety stock uncertainty. The current SAP safety stock of 277 units is insufficient to achieve the 95% service level target; the model recommends increasing it to 710 units. An EOQ-based (r,Q) policy with order quantity 4,487 units reduces annual costs by 81.7% compared to the current MOQ-driven approach.",
+  "warnings": [
+    "Storage capacity usage at 79.5% (5,197/6,539 units): SS=710 + OQ=4,487. Constraint satisfied.",
+    "Lead time is unstable (CV=1.24): monitor supplier performance closely."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review policy",
+    "selection_rationale": "The (r,Q) model is appropriate for this material because demand, while erratic, is roughly continuous (87% non-zero days) and the replenishment lead time is short and measurable. EOQ determines batch size to minimize total ordering plus holding costs, and the reorder point incorporates safety stock derived from combined demand and lead-time variance.",
+    "boundary_risk": "Storage capacity cap of 6,539 units constrains maximum post-replenishment stock to 5,197 units (SS+OQ). At 79.5% utilization there is reasonable buffer; however, if safety stock is revised upward (e.g., due to higher service level target), the EOQ may need to be reduced to stay within capacity.",
+    "escalation_flag": "none"
+  }
+}

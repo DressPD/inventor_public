@@ -1,0 +1,74 @@
+{
+  "material_id": "PL1__MAFE6108",
+  "data_quality": {
+    "total_rows": 206,
+    "working_days": 206,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": -2063.3,
+      "upper_bound": 4239.72
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1229.89,
+    "std_daily_demand": 932.72,
+    "robust_std_daily": 986.37,
+    "cv_wd": 0.758,
+    "non_zero_fraction_wd": 0.908,
+    "trend_detected": true,
+    "regime": "erratic",
+    "distribution_type": "normal_approximation"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.93,
+    "std_lead_time": 0.88,
+    "cv_lead_time": 0.942,
+    "stability": "volatile",
+    "effective_lead_time": 1.81
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1407.31,
+    "safety_stock": 2314.82,
+    "safety_stock_robust": 2370.29
+  },
+  "order_quantity": {
+    "eoq_raw": 7582.23,
+    "order_quantity": 7583
+  },
+  "cost_analysis": {
+    "unit_cost": 4.456867,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.5348
+  },
+  "policy": {
+    "safety_stock": 2315,
+    "reorder_point": 4544,
+    "order_quantity": 7583,
+    "review_period_days": 7
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.0,
+    "sigma_eff_days": 1.14,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 59.0,
+    "variance_components": {
+      "transport": 0.0,
+      "supplier": 59.0,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MAFE6108 exhibits erratic demand behavior with a coefficient of variation of 0.76. \nThe analysis of 206 working days reveals mean daily demand of 1230 units with 90.8% non-zero demand days. \nLead time variability is volatile (CV=0.94), with mean lead time of 0.93 days. \nThe recommended safety stock of 2315 units provides 95% service level protection against combined demand and lead time uncertainty (sigma_LTD=1407). \nThe optimized order quantity of 7583 units balances ordering costs ($2027/year) against holding costs ($3266/year), \nachieving total annual inventory cost of $5293 compared to $4055 under current SAP parameters\u2014a savings of $-1238 (-30.5%). \nThe reorder point of 4544 units triggers replenishment when inventory falls below the sum of expected demand during effective lead time plus safety buffer. \nLead Time Variability dominates the uncertainty profile, accounting for 59% of total variance.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "hybrid_eoq_safety",
+    "selection_rationale": "Moderate variability justifies hybrid approach with EOQ order sizing and empirical safety stock buffer",
+    "boundary_risk": "Medium: Demand regime classification suggests monitoring for shifts in pattern",
+    "escalation_flag": "monitor"
+  }
+}

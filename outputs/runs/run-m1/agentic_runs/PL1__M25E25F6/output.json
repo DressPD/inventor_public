@@ -1,0 +1,128 @@
+{
+  "material_id": "PL1__M25E25F6",
+  "analysis_metadata": {
+    "timestamp": "2026-10-19T19:58:04.147120",
+    "data_points": 145,
+    "date_range": {
+      "start": "2025-03-03T00:00:00",
+      "end": "2025-11-25T00:00:00"
+    }
+  },
+  "demand_analysis": {
+    "statistics": {
+      "mean_daily": 68.5,
+      "median_daily": 65.76,
+      "std_dev": 31.5,
+      "robust_std_iqr": 11.77,
+      "coefficient_of_variation": 0.46,
+      "min": 0.0,
+      "max": 213.17,
+      "percentiles": {
+        "p25": 58.96,
+        "p50": 65.76,
+        "p75": 74.84,
+        "p90": 86.17,
+        "p95": 126.54,
+        "p99": 188.04
+      }
+    },
+    "characteristics": {
+      "non_zero_fraction": 0.9931,
+      "outlier_count": 22,
+      "outlier_fraction": 0.1517,
+      "trend_slope": -0.1231,
+      "trend_p_value": 0.0485,
+      "trend_significant": true
+    },
+    "classification": {
+      "demand_regime": "Erratic",
+      "distribution_type": "Normal/Empirical",
+      "recommended_model": "Periodic Review (R,S) with Safety Stock"
+    },
+    "annual_demand": 17125.39
+  },
+  "lead_time_analysis": {
+    "statistics": {
+      "mean_days": 2.15,
+      "median_days": 1.96,
+      "std_dev_days": 1.29,
+      "coefficient_of_variation": 0.599,
+      "min_days": 0.21,
+      "max_days": 6.03,
+      "percentiles": {
+        "p25": 0.98,
+        "p50": 1.96,
+        "p75": 2.97,
+        "p90": 4.08,
+        "p95": 4.25,
+        "p99": 5.84
+      }
+    },
+    "stability": "Highly Variable",
+    "effective_lead_time_days": 2.15,
+    "variance_components": {
+      "transport_std": 0.82,
+      "supplier_std": 0.82,
+      "quality_std": 0.58
+    }
+  },
+  "safety_stock_analysis": {
+    "service_level_target": 0.95,
+    "z_score": 1.6449,
+    "lead_time_demand_std": 99.76,
+    "robust_lead_time_demand_std": 90.08,
+    "calculated_safety_stock": 165,
+    "robust_safety_stock": 149,
+    "sap_safety_stock": 90,
+    "recommended_safety_stock": 165,
+    "safety_stock_change_pct": 83.3,
+    "safety_lead_time_days": 2.41,
+    "sap_safety_lead_time_days": 3.0
+  },
+  "order_policy": {
+    "eoq_raw": 899.0,
+    "moq_constraint": 58,
+    "recommended_order_quantity": 899,
+    "reorder_point": 313,
+    "orders_per_year": 19.0,
+    "days_between_orders": 13.1,
+    "storage_capacity_units": 1342.506,
+    "total_inventory_peak": 1064,
+    "storage_utilization_pct": 79.3,
+    "storage_constraint_binding": false
+  },
+  "cost_analysis": {
+    "unit_cost": 17.674532,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 50.0,
+    "previous_policy": {
+      "safety_stock": 90,
+      "order_quantity": 58,
+      "orders_per_year": 295.3,
+      "avg_inventory": 119.0,
+      "annual_ordering_cost": 14763.27,
+      "annual_holding_cost": 252.39,
+      "total_annual_cost": 15015.66
+    },
+    "optimized_policy": {
+      "safety_stock": 165,
+      "order_quantity": 899,
+      "orders_per_year": 19.0,
+      "avg_inventory": 614.5,
+      "annual_ordering_cost": 952.47,
+      "annual_holding_cost": 1303.32,
+      "total_annual_cost": 2255.79
+    },
+    "savings": {
+      "annual_savings": 12759.87,
+      "savings_percentage": 85.0
+    }
+  },
+  "recommendations": {
+    "primary": "Implement EOQ-based ordering with order quantity of 899 units and reorder point of 313 units",
+    "safety_stock_adjustment": "Increase safety stock from 90 to 165 units (+75 units) to achieve 95% service level",
+    "lead_time_improvement": "Lead time variability is highly variable (CV=0.60). Focus on reducing transport and supplier variability.",
+    "inventory_monitoring": "Monitor stock levels every 13 days. Implement automated reorder triggers at 313 units.",
+    "cost_benefit": "Expected annual savings of $12,760 (85% reduction) through optimized ordering policy"
+  }
+}

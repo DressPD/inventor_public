@@ -1,0 +1,81 @@
+{
+  "material_id": "PL1__M933F308",
+  "data_quality": {
+    "total_rows": 215,
+    "working_days": 215,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 1793.239
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 839.76,
+    "std_daily_demand": 371.23,
+    "robust_std_daily": 318.45,
+    "cv_wd": 0.442,
+    "non_zero_fraction_wd": 0.921,
+    "trend_detected": true,
+    "regime": "variable",
+    "distribution_type": "log-normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.377,
+    "std_lead_time": 0.94,
+    "cv_lead_time": 0.682,
+    "stability": "unstable",
+    "effective_lead_time": 2.317
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 958.27,
+    "safety_stock": 1577.0,
+    "safety_stock_robust": 1354.0
+  },
+  "order_quantity": {
+    "eoq_raw": 1844.3,
+    "order_quantity": 2848
+  },
+  "cost_analysis": {
+    "unit_cost": 35.937093,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 4.312
+  },
+  "policy": {
+    "safety_stock": 1577,
+    "reorder_point": 3646,
+    "order_quantity": 2848,
+    "review_period_days": 4
+  },
+  "safety_lead_time": {
+    "recommended_days": 0.94,
+    "sigma_eff_days": 0.94,
+    "dominant_factor": "transport",
+    "dominant_pct": 76.6,
+    "variance_components": {
+      "transport": 189847.2,
+      "supplier": 58032.1,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.1,
+    "comparison_action": "REDUCE",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Demand for PL1__M933F308 exhibits a variable pattern (CV=0.44) with a statistically significant declining trend of -1.35 units/day over the observation period from March 2025 to March 2026. Lead times are unstable (CV=0.68) after removing the extreme outlier of 31.97 days, averaging 1.38 days with std of 0.94 days. The combination of high demand variability and unstable lead times drives a safety stock requirement of 1,577 units \u2014 far above the current SAP value of 79 units. A continuous-review (r,Q) policy is recommended with a reorder point of 3,646 units and order quantity of 2,848 units, which is capacity-feasible within the 8,265-unit storage limit and balances ordering economics with 95% service level protection.",
+  "warnings": [
+    "High demand variability detected (CV=0.44) \u2014 demand forecasting improvements recommended",
+    "Unstable lead times (CV=0.68) \u2014 supplier performance management needed",
+    "Significant declining demand trend (-1.35 units/day) \u2014 quarterly parameter reviews essential",
+    "SAP safety stock (79 units) is critically insufficient vs recommended 1,577 units",
+    "Lead time outlier (31.97 days) detected and winsorized at 99th percentile",
+    "Safety lead time recommendation (0.94 days) is LOWER than SAP value (2.0 days) \u2014 update ERP"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) Continuous-Review Policy",
+    "selection_rationale": "The (r,Q) policy is appropriate for this material due to its variable but non-intermittent demand pattern (non-zero fraction 92.1%), relatively frequent deliveries, and the need to maintain a specific service level. The continuous-review approach triggers replenishment when stock falls to the reorder point, providing tighter control than periodic review given the demand variability. EOQ provides the cost-optimal batch size balancing ordering and holding costs.",
+    "boundary_risk": "Capacity constraint is non-binding: safety_stock (1,577) + order_quantity (2,848) = 4,425 units, well within max_storage_units (8,265). No capacity-driven service degradation. The MOQ of 1,013 units is below the EOQ-derived order quantity of 2,848, so MOQ is not a binding constraint.",
+    "escalation_flag": "No infeasibility. MOQ (1,013) + safety_stock (1,577) = 2,590 < max_storage_units (8,265). All constraints are satisfiable simultaneously. Primary business risk is the 1,896% safety stock increase relative to current SAP master data \u2014 this requires a formal change management process before ERP update."
+  }
+}

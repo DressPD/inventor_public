@@ -1,0 +1,79 @@
+{
+  "material_id": "PL3__MDD5C33C",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": -1464.52,
+      "upper_bound": 2479.44
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 684.02,
+    "std_daily_demand": 428.65,
+    "robust_std_daily": 730.9,
+    "cv_wd": 0.6267,
+    "non_zero_fraction_wd": 0.7895,
+    "trend_detected": false,
+    "regime": "erratic",
+    "distribution_type": "compound_poisson"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 3.48,
+    "std_lead_time": 1.46,
+    "cv_lead_time": 0.4192,
+    "stability": "moderate",
+    "effective_lead_time": 4.94
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1279.53,
+    "safety_stock": 2105,
+    "safety_stock_robust": 2781
+  },
+  "order_quantity": {
+    "eoq_raw": 22006.88,
+    "order_quantity": 14512
+  },
+  "cost_analysis": {
+    "unit_cost": 0.441371,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.053
+  },
+  "policy": {
+    "safety_stock": 2105,
+    "reorder_point": 4488,
+    "order_quantity": 14512,
+    "review_period_days": 22
+  },
+  "safety_lead_time": {
+    "recommended_days": 3.08,
+    "sigma_eff_days": 1.87,
+    "dominant_factor": "transport",
+    "dominant_pct": 50.0,
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.3,
+      "quality": 0.2
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization analysis for material PL3__MDD5C33C reveals an ERRATIC demand pattern with moderate lead time variability. The demand exhibits high variability (CV=0.63) with 78.9% non-zero observations. The current SAP policy uses zero safety stock with MOQ orders, resulting in ~41 annual orders and total cost of $3,160.70. The optimized (r,Q) policy recommends safety stock of 2,105 units, reorder point of 4,488 units, and order quantity of 14,512 units (storage-capacity-constrained below the unconstrained EOQ of 22,007). This achieves the 95% service level target while reducing total annual cost by $1,780.85 (56.3%), primarily through reduced ordering frequency (11.8 vs 41 orders/year). Recommended safety lead time of 3.08 days should be activated in SAP immediately.",
+  "warnings": [
+    "High demand variability detected (CV=0.63)",
+    "Lead time variability is moderate-to-high (CV=0.42)",
+    "Intermittent demand pattern detected (78.9% non-zero)",
+    "Storage capacity constraint is binding: order quantity capped at 14,512 vs EOQ 22,007"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous review with capacity constraints",
+    "selection_rationale": "Erratic demand pattern with CV=0.63 and moderate lead time variability is well-served by a continuous-review (r,Q) policy. The fixed reorder point provides demand-driven triggers while the fixed order quantity controls replenishment economics within the storage capacity envelope.",
+    "boundary_risk": "Storage capacity limits order quantity to 14,512 units (100% capacity utilisation at peak), versus the unconstrained EOQ of 22,007 units. This increases ordering frequency slightly above the theoretical optimum and raises annual ordering cost. If storage capacity can be expanded, the EOQ policy would save an additional ~$200/year.",
+    "escalation_flag": "none"
+  }
+}

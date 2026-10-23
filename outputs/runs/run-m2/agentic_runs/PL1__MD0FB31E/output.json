@@ -1,0 +1,96 @@
+{
+  "material_id": "PL1__MD0FB31E",
+  "unit_cost": 0.298523,
+  "holding_cost_rate": 0.12,
+  "ordering_cost": 75.0,
+  "moq": 18898,
+  "service_level_target": 0.95,
+  "max_storage_units": 113764.66,
+  "demand_analysis": {
+    "mean_daily_demand": 6145.26,
+    "std_daily_demand": 2241.24,
+    "robust_std_daily": 2393.92,
+    "coefficient_of_variation": 0.3647,
+    "non_zero_fraction": 0.9846,
+    "outliers_detected": 0,
+    "trend_detected": true,
+    "trend_slope": -14.2498,
+    "trend_p_value": 0.006058,
+    "regime": "smooth",
+    "distribution_type": "Normal",
+    "annual_demand": 1536314.68
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.5076,
+    "std_lead_time": 1.1933,
+    "cv_lead_time": 0.4759,
+    "stability": "moderate",
+    "effective_lead_time": 3.7009,
+    "num_observations": 54
+  },
+  "safety_stock_analysis": {
+    "z_score": 1.6449,
+    "sigma_ltd": 8147.09,
+    "sigma_ltd_robust": 8255.28,
+    "safety_stock": 13401,
+    "safety_stock_robust": 13579,
+    "safety_stock_days": 2.18,
+    "variance_decomposition": {
+      "demand_contribution_pct": 18.98,
+      "leadtime_contribution_pct": 81.02,
+      "dominant_factor": "lead_time"
+    }
+  },
+  "order_policy": {
+    "eoq_raw": 80205.88,
+    "unconstrained_order_quantity": 80206,
+    "recommended_order_quantity": 80206,
+    "reorder_point": 28811,
+    "review_period_days": 14,
+    "moq_feasibility": "feasible"
+  },
+  "safety_lead_time": {
+    "sap_safety_lead_time_days": 4.5,
+    "recommended_safety_lead_time_days": 3,
+    "dominant_variability_source": "lead_time"
+  },
+  "cost_analysis": {
+    "sap_policy": {
+      "safety_stock": 0,
+      "order_quantity": 80206,
+      "orders_per_year": 19.15,
+      "annual_ordering_cost": 1436.6,
+      "average_inventory": 40103.0,
+      "annual_holding_cost": 1436.6,
+      "total_annual_cost": 2873.2
+    },
+    "recommended_policy": {
+      "safety_stock": 13401,
+      "order_quantity": 80206,
+      "orders_per_year": 19.15,
+      "annual_ordering_cost": 1436.6,
+      "average_inventory": 53504.0,
+      "annual_holding_cost": 1916.66,
+      "total_annual_cost": 3353.26
+    },
+    "annual_savings": -480.06,
+    "savings_percentage": -16.71
+  },
+  "diagnostics": {
+    "winsorized_percentiles": "1st/99th",
+    "iqr_multiplier": 1.5,
+    "trend_significance_threshold": 0.05,
+    "storage_constraint_active": false,
+    "current_capacity_utilization_pct": 82.28
+  },
+  "recommendations": {
+    "summary": "Implement (R, Q) policy with reorder point 28,811 units and order quantity 80,206 units. Maintain safety stock of 13,401 units to achieve 95% service level. Primary variability driver is lead_time.",
+    "action_items": [
+      "Set reorder point to 28,811 units",
+      "Order 80,206 units when inventory hits reorder point",
+      "Maintain safety stock buffer of 13,401 units",
+      "Monitor lead_time variability closely",
+      "Review policy every 14 days"
+    ]
+  }
+}

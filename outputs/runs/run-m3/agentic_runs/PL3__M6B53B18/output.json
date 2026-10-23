@@ -1,0 +1,82 @@
+{
+  "material_id": "PL3__M6B53B18",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 275.610325
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 110.88630263157894,
+    "std_daily_demand": 79.22413292822836,
+    "robust_std_daily": 48.50555967383248,
+    "cv_wd": 0.41451700085967225,
+    "non_zero_fraction_wd": 0.7763157894736842,
+    "trend_detected": true,
+    "regime": "smooth",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.7622916666666667,
+    "std_lead_time": 0.9163113834382063,
+    "cv_lead_time": 1.2020482756226811,
+    "stability": "unstable",
+    "effective_lead_time": 1.678603050104873
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 110.07891908236921,
+    "safety_stock": 182,
+    "safety_stock_robust": 182
+  },
+  "order_quantity": {
+    "eoq_raw": 1223.942677455068,
+    "order_quantity": 1116
+  },
+  "cost_analysis": {
+    "unit_cost": 15.42107,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.8505284,
+    "sap_annual_ordering_cost": 38502.18841374269,
+    "sap_annual_holding_cost": 33.3095112,
+    "sap_total_annual_cost": 38535.49792494269,
+    "opt_annual_ordering_cost": 1242.0060778626673,
+    "opt_annual_holding_cost": 1369.391016,
+    "opt_total_annual_cost": 2611.397093862667,
+    "cost_savings": 35924.100831080024,
+    "cost_savings_pct": 93.22339859485143
+  },
+  "policy": {
+    "safety_stock": 182,
+    "reorder_point": 267,
+    "order_quantity": 1116,
+    "review_period_days": 11
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.6413208455935009,
+    "sigma_eff_days": 0.9163113834382063,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 85.19883502424392,
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.4,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Increase safety lead time from 0.0 to 1.6 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization analysis for material PL3__M6B53B18 reveals significant optimization opportunities.\n\nDEMAND PROFILE:\n- The material exhibits a smooth demand pattern with CV of 0.41\n- Mean daily demand: 110.9 units with 77.6% non-zero days\n- A statistically significant declining trend detected (slope=-0.1810, p=0.0228)\n- Distribution type: normal\n\nLEAD TIME CHARACTERISTICS:\n- Mean lead time: 0.76 days (CV: 1.20)\n- Lead time stability: unstable\n- Effective lead time (mean + 1\u03c3): 1.68 days\n- Lead Time Variability is the dominant factor (85.2% of variance)\n\nRECOMMENDED POLICY:\n- Safety stock: 182 units (currently 0)\n- Reorder point: 267 units\n- Order quantity: 1116 units (currently ~36)\n- Review period: 11 days\n\nCOST IMPACT:\n- Current SAP policy total annual cost: $38,535.50\n- Optimized policy total annual cost: $2,611.40\n- Annual savings: $35,924.10 (93.2%)\n\nThe optimization achieves a 93.2% cost reduction by balancing ordering frequency with holding costs,\nwhile maintaining 95% service level through appropriate safety stock.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with safety stock",
+    "selection_rationale": "Classic EOQ model applied with CV=0.41 (smooth regime) and unstable lead time. Safety stock calculated using robust demand variability.",
+    "boundary_risk": "Low - demand distribution is normal with moderate variability",
+    "escalation_flag": "No"
+  }
+}

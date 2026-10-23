@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__M82D44A4",
+  "data_quality": {
+    "total_rows": 140,
+    "working_days": 140,
+    "outliers_detected": 5,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 640.5088199999999
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 347.2301545714286,
+    "std_daily_demand": 169.3276402398412,
+    "robust_std_daily": 160.41438102298,
+    "cv_wd": 0.4876524633894055,
+    "non_zero_fraction_wd": 0.9785714285714285,
+    "trend_detected": true,
+    "regime": "smooth",
+    "distribution_type": "normal-approx"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 4.030212307692308,
+    "std_lead_time": 1.5597230140212401,
+    "cv_lead_time": 0.38700765491789557,
+    "stability": "moderate",
+    "effective_lead_time": 5.589935321713548
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 639.4260234824263,
+    "safety_stock": 1052,
+    "safety_stock_robust": 624
+  },
+  "order_quantity": {
+    "eoq_raw": 5288.123551438526,
+    "order_quantity": 3152
+  },
+  "cost_analysis": {
+    "unit_cost": 5.173721,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.62084652
+  },
+  "policy": {
+    "safety_stock": 1052,
+    "reorder_point": 2452,
+    "order_quantity": 3152,
+    "review_period_days": 10
+  },
+  "safety_lead_time": {
+    "recommended_days": 3.029690786211926,
+    "sigma_eff_days": 1.8415048781452827,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 0.7173799151159733,
+    "variance_components": {
+      "transport": 0.7173799151159733,
+      "supplier": 0.28262008488402673,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "MAINTAIN",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M82D44A4 exhibits smooth demand patterns with moderate variability (CV=0.49) and a statistically significant declining trend (p<0.001). Historical data shows 140 working-day observations with 5 outliers detected (including 2 extreme lead time data errors >9000 days). After data cleaning and winsorisation, mean daily demand is 347.2 units with standard deviation 169.3. Lead time analysis reveals moderate stability (CV=0.39) with mean 4.0 days (\u00b11.6 days). Variance decomposition shows lead time variability dominates (72% of total uncertainty), driving safety stock requirements. The optimized (r,Q) policy recommends safety stock of 1052 units and order quantity of 3152 units (capacity-constrained from EOQ of 5289 units), yielding a reorder point of 2452 units. This policy achieves 95% service level while reducing total annual costs by $1660 (27.5%) compared to the current SAP baseline.",
+  "warnings": [
+    "Storage capacity constraint is binding: order quantity capped at 3152 (EOQ would be 5289)",
+    "5 outliers detected and winsorised, including 2 extreme lead time data errors (>9000 days)",
+    "Significant declining demand trend detected (slope=-1.23, p=0.0004). Recommend quarterly review."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous review with normal approximation",
+    "selection_rationale": "Selected continuous review model based on smooth demand regime (CV=0.49, non-zero fraction=97.9%), high observation count (n=140), and moderate lead time variability. Normal approximation justified by central limit theorem given sufficient sample size and distribution kurtosis (-0.51) within acceptable range. Capacity constraint (4204 units) binds the order quantity below unconstrained EOQ.",
+    "boundary_risk": "Primary risk stems from declining demand trend (slope=-1.23 units/period, p=0.0004), which may reduce optimal order quantities over time. Lead time variability (CV=0.39) contributes 72% of safety stock uncertainty. Zero-demand periods observed (2.1% of observations) suggest potential intermittent behavior if trend continues. Capacity constraint may limit responsiveness to demand spikes. Recommend quarterly policy review given trend significance.",
+    "escalation_flag": "Capacity constraint binding: order quantity capped below EOQ"
+  }
+}

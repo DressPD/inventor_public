@@ -1,0 +1,91 @@
+{
+  "material_id": "PL1__MB3E07ED",
+  "input_parameters": {
+    "unit_cost": 2.876634,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 50.0,
+    "moq": 2964,
+    "service_level_target": 0.95,
+    "sap_safety_stock": 187,
+    "sap_safety_lead_time_days": 2.5,
+    "max_storage_units": 90078.084
+  },
+  "data_quality": {
+    "total_rows": 133,
+    "working_days": 133,
+    "outliers_detected": 15,
+    "outliers_percentage": 11.278195488721805,
+    "values_winsorized": 4,
+    "winsorization": {
+      "lower_bound": 196.45504000000005,
+      "upper_bound": 18148.734560000026
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 8118.150144360903,
+    "std_daily_demand": 2499.8942875310927,
+    "robust_std_daily": 1109.985174203114,
+    "cv_wd": 0.30793890764235127,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "erratic",
+    "distribution_type": "heavy-tailed"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.5224060150375942,
+    "std_lead_time": 0.9972797473673071,
+    "cv_lead_time": 0.6550681864868225,
+    "stability": "unstable",
+    "effective_lead_time": 2.5196857624049014
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 8663.747996167625,
+    "safety_stock": 14251,
+    "safety_stock_robust": 13507
+  },
+  "order_quantity": {
+    "eoq_raw": 24247.424534092348,
+    "order_quantity": 24248
+  },
+  "cost_analysis": {
+    "unit_cost": 2.876634,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.34519608
+  },
+  "policy": {
+    "safety_stock": 14251,
+    "reorder_point": 34707,
+    "order_quantity": 24248,
+    "review_period_days": 3
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.7554491782711297,
+    "sigma_eff_days": 0.9972797473673071,
+    "dominant_factor": "supply",
+    "dominant_pct": 68.0,
+    "variance_components": {
+      "transport": 0.4972834472544999,
+      "supplier": 0.39782675780359994,
+      "quality": 0.09945668945089998
+    },
+    "disruption_premium": 1.2,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MB3E07ED exhibits high-volume erratic daily demand (mean 8,118 units/day, CV 0.31) with a heavy-tailed distribution driven by periodic demand spikes. Lead times are highly unstable (CV 0.66, mean 1.52 days), with supply-side variability being the dominant buffer driver. An (r,Q) continuous-review policy with reorder point 34,707 and order quantity 24,248 is recommended; this consolidates ~685 annual orders into ~84, saving $21,523/year (61.8%) while meeting the 95% service level with a safety stock of 14,251 units \u2014 far above the current SAP setting of 187.",
+  "warnings": [
+    "CRITICAL: Recommended safety stock (14251 units) is 76.2x higher than current SAP setting (187 units). This indicates significant underestimation of demand/lead time variability.",
+    "RISK: Lead time variability is very high (CV=0.66). Consider supplier diversification or buffer stock positioning.",
+    "PATTERN: Demand classified as ERRATIC (high variability, regular occurrence). Consider demand smoothing initiatives or collaborative planning with customers.",
+    "DATA: 15 outliers detected (11.3% of data). Review for data quality issues or exceptional events."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review policy",
+    "selection_rationale": "Demand occurs every working day (non-zero fraction = 100%) with moderate-to-high CV (0.31), making a continuous-review (r,Q) model appropriate. EOQ sets the optimal batch size while the reorder point absorbs demand and lead-time uncertainty. A periodic review would be less responsive given the unstable lead times.",
+    "boundary_risk": "Storage cap (90,078 units) does not bind: safety stock (14,251) + order quantity (24,248) = 38,499 units, well within capacity. No capacity-driven service degradation.",
+    "escalation_flag": "ESCALATE: Current SAP safety stock (187 units) is critically insufficient \u2014 76x below the statistically required level. Immediate SAP parameter update required to avoid stockouts and service failures at the 95% target."
+  }
+}

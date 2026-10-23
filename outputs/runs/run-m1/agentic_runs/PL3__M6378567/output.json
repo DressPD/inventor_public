@@ -1,0 +1,78 @@
+{
+  "material_id": "PL3__M6378567",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 1761.66164
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 880.2086443859649,
+    "std_daily_demand": 541.9577489034123,
+    "robust_std_daily": 874.632690882135,
+    "cv_wd": 0.6157150947790145,
+    "non_zero_fraction_wd": 0.9649122807017544,
+    "trend_detected": false,
+    "regime": "smooth",
+    "distribution_type": "right-skewed"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.7477777777777779,
+    "std_lead_time": 0.8681397736923857,
+    "cv_lead_time": 1.1609595784890743,
+    "stability": "volatile",
+    "effective_lead_time": 1.6159175514701636
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 896.4107320863421,
+    "safety_stock": 1475,
+    "safety_stock_robust": 1769
+  },
+  "order_quantity": {
+    "eoq_raw": 3596.7814336019924,
+    "order_quantity": 3597
+  },
+  "cost_analysis": {
+    "unit_cost": 14.174779,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.7009734799999998
+  },
+  "policy": {
+    "safety_stock": 1475,
+    "reorder_point": 2134,
+    "order_quantity": 3597,
+    "review_period_days": 5
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.6751306105827135,
+    "sigma_eff_days": 1.018407099048294,
+    "dominant_factor": "transport",
+    "dominant_pct": 70.0,
+    "variance_components": {
+      "transport": 0.5275666666666666,
+      "supplier": 0.15073333333333336,
+      "quality": 0.07536666666666668
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "SAP safety lead time is 0.0 days. Recommend implementing 1.68 days buffer.",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__M6378567 exhibits smooth demand with a coefficient of variation of 0.62. \nMean daily demand is 880.2 units with standard deviation 542.0 units. \nLead time is volatile (mean=0.75 days, CV=1.16).\n\nRecommended policy:\n- Safety stock: 1475 units (vs SAP: 0)\n- Reorder point: 2134 units\n- Order quantity: 3597 units (EOQ: 3597, MOQ: 37)\n- Review period: 5 days\n\nThe optimized policy will reduce stockout risk to 5.0% while managing 74.7% of available storage capacity.\nTotal annual cost is estimated at $8,626.97. Note: The optimized policy prioritizes service level achievement over cost minimization, resulting in higher inventory carrying costs but improved reliability.",
+  "warnings": [
+    "VOLATILE LEAD TIME: Lead time variability is high. Work with suppliers to improve delivery consistency.",
+    "OUTLIERS DETECTED: 3 demand observations were winsorized. Investigate root causes.",
+    "COST INCREASE: The optimized policy increases annual costs by $2,508.94 but provides significantly higher service level (95.0%) and safety stock protection."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Normal approximation with lead-time-demand uncertainty",
+    "selection_rationale": "Demand CV=0.62, regime=smooth, lead time CV=1.16 (volatile). Normal approximation appropriate for smooth demand.",
+    "boundary_risk": "Capacity utilization: 74.7%. Low risk.",
+    "escalation_flag": "No"
+  }
+}

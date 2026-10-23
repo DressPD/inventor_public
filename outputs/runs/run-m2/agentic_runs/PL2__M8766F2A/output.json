@@ -1,0 +1,80 @@
+{
+  "material_id": "PL2__M8766F2A",
+  "analysis_timestamp": "2026-10-22T15:47:17.272565",
+  "data_quality": {
+    "total_rows": 241,
+    "working_days": 241,
+    "non_working_days": 0,
+    "outliers_detected": 3,
+    "quality_score": "high"
+  },
+  "demand_statistics": {
+    "mean_daily_demand": 111841.13234190871,
+    "std_daily_demand": 49644.70567116158,
+    "robust_std_daily_demand": 55157.89103039288,
+    "cv_demand": 0.4438859356269133,
+    "non_zero_fraction": 0.983402489626556,
+    "demand_trend_slope": -192.06367011693698,
+    "annual_demand": 29190535.541238174,
+    "regime": "smooth",
+    "distribution_type": "light-tailed",
+    "skewness": 0.12281858247171976,
+    "kurtosis": -0.43398160409816056
+  },
+  "lead_time_statistics": {
+    "mean_lead_time_days": 1.5796153846153846,
+    "std_lead_time_days": 1.4166677180801206,
+    "cv_lead_time": 0.8968434543482624,
+    "min_lead_time_days": 0.01,
+    "max_lead_time_days": 6.54,
+    "stability": "low"
+  },
+  "buffer_parameters": {
+    "service_level_target": 0.95,
+    "z_score": 1.644853626951472,
+    "sigma_ltd": 170284.7445095392,
+    "dominant_variance_factor": "lead_time_variability",
+    "effective_lead_time_days": 3.9098264188845366
+  },
+  "recommended_policy": {
+    "safety_stock": 280094,
+    "order_quantity": 53812,
+    "reorder_point": 717374,
+    "safety_lead_time_days": 2.504391668207781,
+    "eoq_raw": 53811.04332569126,
+    "moq_applied": 24333,
+    "capacity_constrained": false
+  },
+  "current_sap_policy": {
+    "safety_stock": 0,
+    "order_quantity": 53812,
+    "reorder_point": 735872,
+    "safety_lead_time_days": 5.0
+  },
+  "cost_analysis": {
+    "unit_cost": 12.601123,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 75.0,
+    "recommended_annual_ordering_cost": 40684.05124494281,
+    "recommended_annual_holding_cost": 464225.37132,
+    "recommended_total_annual_cost": 504909.4225649428,
+    "sap_annual_ordering_cost": 40684.05124494281,
+    "sap_annual_holding_cost": 40685.497852559994,
+    "sap_total_annual_cost": 81369.54909750281,
+    "annual_savings": -423539.87346744,
+    "savings_percent": -520.5139737961732
+  },
+  "constraints": {
+    "moq": 24333,
+    "max_storage_units": 1369437.139,
+    "available_capacity_after_safety": 1089343.0,
+    "feasibility_check": true
+  },
+  "diagnostics": {
+    "selected_model": "EOQ with safety stock (z-score based)",
+    "selection_rationale": "EOQ model selected for smooth demand regime with low lead time. Z-score approach appropriate for service level 95.0%. Dominant variance from lead time variability.",
+    "boundary_risk": "low",
+    "escalation_flag": "none",
+    "narrative": "Analysis for material PL2__M8766F2A shows smooth demand pattern with mean daily demand of 111,841 units. Lead time averages 1.58 days with low stability (CV=0.90). The lead time variability drives safety stock requirements. Recommended safety stock of 280,094 units provides 95.0% service level protection. EOQ-based order quantity of 53,812 units balances ordering and holding costs. Total recommended annual cost is $504,909.42 vs SAP's $81,369.55. Note: recommended policy requires higher safety stock investment to achieve target service level, resulting in increased holding costs but improved service reliability."
+  }
+}

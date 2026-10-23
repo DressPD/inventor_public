@@ -1,0 +1,122 @@
+{
+  "material_id": "PL1__M7E573E7",
+  "analysis_timestamp": "2026-10-20T00:07:16.265304",
+  "input_parameters": {
+    "unit_cost": 14.772274,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 50.0,
+    "minimum_order_quantity": 54,
+    "service_level_target": 0.95,
+    "sap_safety_stock": 0,
+    "sap_safety_lead_time_days": 3.0,
+    "max_storage_units": 4599.191
+  },
+  "data_quality": {
+    "total_rows": 216,
+    "working_days": 216,
+    "non_working_days": 0,
+    "missing_values": 0,
+    "date_range_start": "2025-03-03T00:00:00",
+    "date_range_end": "2026-03-09T00:00:00"
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 883.87,
+    "std_daily_demand": 202.16,
+    "robust_std": 183.5,
+    "coefficient_of_variation": 0.2287,
+    "non_zero_fraction_wd": 1.0,
+    "outlier_count": 5,
+    "outlier_indices": [
+      11,
+      105,
+      151,
+      152,
+      156
+    ],
+    "trend_detected": true,
+    "trend_direction": "decreasing",
+    "trend_slope": -1.112293,
+    "trend_p_value": 0.0,
+    "demand_regime": "continuous",
+    "distribution_type": "Normal",
+    "annual_demand": 220967.9
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.22,
+    "std_lead_time": 1.28,
+    "cv_lead_time": 0.5743,
+    "stability": "unstable",
+    "effective_lead_time": 3.5,
+    "observations_count": 191
+  },
+  "buffer_analysis": {
+    "service_level": 0.95,
+    "z_score": 1.6449,
+    "sigma_combined": 1168.8,
+    "safety_stock": 1923,
+    "safety_stock_robust": 1912,
+    "demand_variance_component": 301.51,
+    "lead_time_variance_component": 1129.24
+  },
+  "order_quantity_analysis": {
+    "eoq_raw": 3530.61,
+    "eoq_with_moq": 3531,
+    "order_quantity_final": 2676,
+    "storage_constrained": true,
+    "available_storage_capacity": 2676.19
+  },
+  "inventory_policy": {
+    "reorder_point": 3889,
+    "order_quantity": 2676,
+    "safety_stock": 1923,
+    "review_period_days": 4,
+    "policy_type": "(r,Q)"
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.18,
+    "current_sap_days": 3.0,
+    "sigma_effective_days": 1.32,
+    "dominant_factor": "lead_time_variability",
+    "dominant_percentage": 96.62,
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.3,
+      "quality": 0.2
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce"
+  },
+  "cost_analysis": {
+    "annual_holding_cost_per_unit": 1.77,
+    "current_policy": {
+      "safety_stock": 0,
+      "order_quantity": 54,
+      "number_of_orders_per_year": 4092.0,
+      "annual_ordering_cost": 204599.91,
+      "average_inventory": 27.0,
+      "annual_holding_cost": 47.86,
+      "total_annual_cost": 204647.77
+    },
+    "optimized_policy": {
+      "safety_stock": 1923,
+      "order_quantity": 2676,
+      "number_of_orders_per_year": 82.57,
+      "annual_ordering_cost": 4128.7,
+      "average_inventory": 3261.0,
+      "annual_holding_cost": 5780.69,
+      "total_annual_cost": 9909.38
+    },
+    "savings": {
+      "absolute": 194738.39,
+      "percentage": 95.16
+    }
+  },
+  "capacity_check": {
+    "required_storage": 4599,
+    "max_storage_units": 4599.191,
+    "capacity_utilization_pct": 100.0,
+    "status": "PASSED",
+    "feasibility_warning": null
+  },
+  "narrative": "Analysis of material PL1__M7E573E7 reveals a continuous demand pattern with moderate variability (CV=0.23) and unstable lead times (CV=0.57). The current SAP policy with minimal safety stock and frequent small orders (MOQ=54) results in extremely high ordering costs ($204600/year). The optimized (r,Q) policy recommends a safety stock of 1923 units and order quantity of 2676 units, achieving 95% service level while reducing total annual costs by $194738 (95.2%). Lead time variability is the dominant risk factor, accounting for 97% of buffer requirements."
+}

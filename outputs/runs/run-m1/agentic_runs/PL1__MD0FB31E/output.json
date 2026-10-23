@@ -1,0 +1,76 @@
+{
+  "material_id": "PL1__MD0FB31E",
+  "data_quality": {
+    "total_rows": 130,
+    "working_days": 130,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": 587.2,
+      "upper_bound": 11544.83
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 6145.26,
+    "std_daily_demand": 2241.24,
+    "robust_std_daily": 2393.92,
+    "cv_wd": 0.3647,
+    "non_zero_fraction_wd": 0.9846,
+    "trend_detected": true,
+    "regime": "lumpy",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.5076,
+    "std_lead_time": 1.1933,
+    "cv_lead_time": 0.4759,
+    "stability": "moderate",
+    "effective_lead_time": 3.7009
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 8147.09,
+    "safety_stock": 13401.0,
+    "safety_stock_robust": 13579.0
+  },
+  "order_quantity": {
+    "eoq_raw": 80205.88,
+    "order_quantity": 80206
+  },
+  "cost_analysis": {
+    "unit_cost": 0.298523,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.035823
+  },
+  "policy": {
+    "safety_stock": 13401,
+    "reorder_point": 36145,
+    "order_quantity": 80206,
+    "review_period_days": 14
+  },
+  "safety_lead_time": {
+    "recommended_days": 0.0275,
+    "sigma_eff_days": 1.1933,
+    "dominant_factor": "supplier",
+    "dominant_pct": 40.0,
+    "variance_components": {
+      "transport": 0.5696,
+      "supplier": 0.5696,
+      "quality": 0.2848
+    },
+    "disruption_premium": 1.1,
+    "comparison_action": "reduce from SAP 4.5 days \u2014 safety stock buffer is now explicit",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MD0FB31E shows near-continuous lumpy demand averaging 6,145 units/day with a statistically significant declining trend (p=0.006). Lead times are moderately variable (CV=0.48, mean 2.51 days). The current SAP policy carries no safety stock, creating unacceptable stockout risk. An (r,Q) policy with EOQ-derived order quantity of 80,206 units and a z-based safety stock of 13,401 units achieves the 95% service level while cutting total annual cost by 47.9%.",
+  "warnings": [
+    "Significant demand trend detected (slope=-14.25, p=0.0061) \u2014 policy should be reviewed quarterly"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review reorder-point / fixed-order-quantity",
+    "selection_rationale": "Demand is near-continuous (98.5% non-zero days) with moderate variability; the (r,Q) EOQ model is well-suited, minimising total ordering and holding cost while maintaining a statistically grounded safety buffer.",
+    "boundary_risk": "Storage cap non-binding at 47% utilisation (93,607 of 113,765 units); no capacity-driven order reduction required.",
+    "escalation_flag": "none"
+  }
+}

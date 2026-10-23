@@ -1,0 +1,76 @@
+{
+  "material_id": "PL1__M4AA1B3D",
+  "data_quality": {
+    "total_rows": 216,
+    "working_days": 216,
+    "outliers_detected": 5,
+    "winsorisation": {
+      "lower_bound": 987.4178749999999,
+      "upper_bound": 2266.5888750000004
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1608.270074074074,
+    "std_daily_demand": 264.34075466179365,
+    "robust_std_daily": 237.0591178650853,
+    "cv_wd": 0.16436341067527604,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "smooth",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.2491534391534391,
+    "std_lead_time": 0.9384682646621584,
+    "cv_lead_time": 0.7512834174304204,
+    "stability": "unstable",
+    "effective_lead_time": 2.792796368061844
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1537.954436743999,
+    "safety_stock": 2530,
+    "safety_stock_robust": 2521
+  },
+  "order_quantity": {
+    "eoq_raw": 28737.669827533497,
+    "order_quantity": 23505
+  },
+  "cost_analysis": {
+    "unit_cost": 0.405709,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.04868508
+  },
+  "policy": {
+    "safety_stock": 2530,
+    "reorder_point": 4539,
+    "order_quantity": 23505,
+    "review_period_days": 15
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.5731188690161952,
+    "sigma_eff_days": 0.9562787130945294,
+    "dominant_factor": "supply",
+    "dominant_pct": 96.30973885564829,
+    "variance_components": {
+      "transport": 0.0,
+      "supplier": 2278017.960596577,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "review_recommended",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M4AA1B3D exhibits smooth, normally distributed demand (mean 1,608 units/day, CV 16.44%) with no detectable trend, making it well-suited to a continuous-review (R,Q) replenishment policy. Lead times average 1.25 days but are highly unstable (CV 75.13%), contributing 96.3% of total demand-uncertainty variance and requiring a safety stock of 2,530 units to meet the 95% service level. The current SAP policy effectively orders at MOQ (986 units), generating excessive replenishment frequency and ordering costs; the optimised EOQ of 28,738 units (capped at 23,505 units by storage constraints) consolidates replenishments to ~17 per year, cutting total annual inventory costs by 95.2% from $20,485 to $978. Storage expansion is recommended to unlock the full unconstrained EOQ benefit.",
+  "warnings": [
+    "Storage constraint active: reduced order quantity from 28738 to 23505"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(R,Q) continuous-review with EOQ and safety stock",
+    "selection_rationale": "Smooth, normally distributed demand (CV=16.44%) with 100% non-zero fraction supports a continuous-review (R,Q) policy. The unstable lead time (CV=75.13%) necessitates a statistically derived safety stock using the combined demand-lead-time variance formula rather than a fixed safety lead time.",
+    "boundary_risk": "Storage capacity caps the order quantity at 23,505 units (vs. unconstrained EOQ of 28,738). This increases annual ordering frequency from ~14 to ~17 orders/year and raises ordering cost from the theoretical minimum. A storage expansion of ~3,233 units would eliminate the constraint.",
+    "escalation_flag": "Storage expansion recommended to achieve full EOQ savings. MOQ (986) is well below the order quantity and poses no infeasibility conflict."
+  }
+}

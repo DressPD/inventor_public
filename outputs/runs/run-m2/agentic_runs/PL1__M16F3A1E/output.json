@@ -1,0 +1,74 @@
+{
+  "material_id": "PL1__M16F3A1E",
+  "data_quality": {
+    "total_rows": 217,
+    "working_days": 217,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": -145.59,
+      "upper_bound": 771.29
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 302.58,
+    "std_daily_demand": 173.19,
+    "robust_std_daily": 171.45,
+    "cv_wd": 0.57,
+    "non_zero_fraction_wd": 0.949,
+    "trend_detected": true,
+    "regime": "lumpy",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.0859,
+    "std_lead_time": 0.017,
+    "cv_lead_time": 0.197,
+    "stability": "moderate",
+    "effective_lead_time": 0.1029
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 51.03,
+    "safety_stock": 84,
+    "safety_stock_robust": 84
+  },
+  "order_quantity": {
+    "eoq_raw": 618.18,
+    "order_quantity": 619
+  },
+  "cost_analysis": {
+    "unit_cost": 164.95,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 19.79
+  },
+  "policy": {
+    "safety_stock": 84,
+    "reorder_point": 111,
+    "order_quantity": 619,
+    "review_period_days": 3
+  },
+  "safety_lead_time": {
+    "recommended_days": 0.28,
+    "sigma_eff_days": 0.17,
+    "dominant_factor": "demand_variability",
+    "dominant_pct": 98.99,
+    "variance_components": {
+      "transport": 1.01,
+      "supplier": 0.0,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization analysis for PL1__M16F3A1E reveals a lumpy demand pattern with normal distribution (CV=0.57). Mean daily demand is 302.58 units with 94.9% non-zero days. Lead time is moderate (mean=0.0859 weeks, CV=0.20). Demand variability is the dominant factor (99.0% of total variance). Recommended policy: Safety stock of 84 units, reorder point at 111 units, and order quantity of 619 units (EOQ-based, constrained by MOQ=185 and storage capacity=1619). This achieves 95% service level target. Cost analysis shows the optimized policy reduces total annual cost by $8376.05 (37.6%) compared to SAP baseline (from $22275.32 to $13899.27). Review period is 3 days.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with Service Level Constraint",
+    "selection_rationale": "EOQ model selected due to lumpy demand pattern with normal distribution and moderate lead time. The model balances ordering and holding costs while maintaining 95% service level through safety stock buffer.",
+    "boundary_risk": "Storage capacity utilization is 43.4%. MOQ constraint not binding. Demand variability dominates risk profile.",
+    "escalation_flag": "NONE - policy is feasible and balanced"
+  }
+}

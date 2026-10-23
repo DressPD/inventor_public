@@ -1,0 +1,77 @@
+{
+  "material_id": "PL2__MA43799B",
+  "data_quality": {
+    "total_rows": 141,
+    "working_days": 141,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": 21.85,
+      "upper_bound": 3450.56
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1908.17,
+    "std_daily_demand": 799.63,
+    "robust_std_daily": 792.03,
+    "cv_wd": 0.4191,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "erratic",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.04,
+    "std_lead_time": 1.31,
+    "cv_lead_time": 0.6434,
+    "stability": "unstable",
+    "effective_lead_time": 2.7
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 2752.72,
+    "safety_stock": 4528,
+    "safety_stock_robust": 4521
+  },
+  "order_quantity": {
+    "eoq_raw": 53600.24,
+    "order_quantity": 27525
+  },
+  "cost_analysis": {
+    "unit_cost": 0.13837,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.0166
+  },
+  "policy": {
+    "safety_stock": 4528,
+    "reorder_point": 9673,
+    "order_quantity": 27525,
+    "review_period_days": 15
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.37,
+    "sigma_eff_days": 1.44,
+    "dominant_factor": "supplier",
+    "dominant_pct": 70.0,
+    "variance_components": {
+      "transport": 0.2,
+      "supplier": 0.7,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "MAINTAIN: Recommended safety lead time is close to SAP value",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL2__MA43799B exhibits an erratic demand pattern with CV=0.42 and mean daily demand of 1908 units. Lead time is unstable (CV=0.64). The optimized policy recommends a safety stock of 4528 units and order quantity of 27525 units, reducing total annual costs by 45.4% compared to the current policy.",
+  "warnings": [
+    "UNSTABLE LEAD TIME: Lead time CV exceeds 0.5, consider supplier performance improvements",
+    "ORDER QUANTITY CONSTRAINED: Storage capacity limits order quantity to 27525, below optimal EOQ of 53600"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Demand-Lead Time Convolution with Winsorization",
+    "selection_rationale": "Selected due to erratic demand regime with normal distribution. Lead time variability (unstable) requires robust buffering approach.",
+    "boundary_risk": "Moderate",
+    "escalation_flag": "No"
+  }
+}

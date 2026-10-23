@@ -1,0 +1,78 @@
+{
+  "material_id": "PL2__MA43799B",
+  "data_quality": {
+    "total_rows": 141,
+    "working_days": 141,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 3527.055
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1908.1683617021276,
+    "std_daily_demand": 799.6302486485308,
+    "robust_std_daily": 792.0316068000001,
+    "cv_wd": 0.4190564442307613,
+    "non_zero_fraction_wd": 0.9858156028368794,
+    "trend_detected": false,
+    "regime": "variable",
+    "distribution_type": "gamma"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.04,
+    "std_lead_time": 1.3125738074485565,
+    "cv_lead_time": 0.6434185330630179,
+    "stability": "unstable",
+    "effective_lead_time": 2.6962869037242783
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 2752.721151544154,
+    "safety_stock": 4528.0,
+    "safety_stock_robust": 4521.0
+  },
+  "order_quantity": {
+    "eoq_raw": 53600.242707637306,
+    "order_quantity": 27525
+  },
+  "cost_analysis": {
+    "unit_cost": 0.13837,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.016604400000000002
+  },
+  "policy": {
+    "safety_stock": 4528,
+    "reorder_point": 9673,
+    "order_quantity": 27525,
+    "review_period_days": 15
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.7348409643113016,
+    "sigma_eff_days": 1.3125738074485565,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "REDUCE",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "The demand data for PL2__MA43799B exhibits variable behavior with a coefficient of variation of 0.419, indicating moderate variability best described by a Gamma distribution. Lead time analysis shows unstable patterns (CV: 0.643) dominated by transport variability, requiring a safety stock of 4,528 units to achieve the 95% service level target. The storage capacity constraint of 32,053 units is binding, capping the order quantity at 27,525 units versus the unconstrained EOQ of 53,601 units, resulting in more frequent replenishments and a 31% cost increase. The SAP safety lead time of 3.5 days should be reduced to 1.73 days to align with observed supplier performance.",
+  "warnings": [
+    "Storage capacity is binding: EOQ 53601 reduced to 27525 to satisfy max_storage_units=32053.095 with safety_stock=4528",
+    "Storage utilization is 99.99% \u2014 near-zero headroom; any demand spike risks stockout before replenishment arrives",
+    "SAP safety stock of 0 is critically insufficient; required safety stock is 4528 units for 95% service level"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) Continuous Review Policy",
+    "selection_rationale": "The material has continuous, variable demand (CV=0.42) with unstable lead times. A continuous-review (r,Q) policy is appropriate as it triggers replenishment precisely when stock hits the reorder point, providing faster response than a periodic review system and minimizing stockout exposure during unstable lead time windows.",
+    "boundary_risk": "Storage capacity is hard-binding at 32,053 units. The constrained OQ of 27,525 increases annual ordering frequency to 17.3 orders/year (from ~8.9 at EOQ), adding ~$280/year in ordering cost. Any safety stock increase (e.g., for higher service levels) would further reduce available OQ headroom.",
+    "escalation_flag": "none \u2014 MOQ (11,655) + safety_stock (4,528) = 16,183 < max_storage_units (32,053); policy is feasible."
+  }
+}

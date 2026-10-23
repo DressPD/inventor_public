@@ -1,0 +1,78 @@
+{
+  "material_id": "PL2__M0DC4D1D",
+  "data_quality": {
+    "total_rows": 224,
+    "working_days": 224,
+    "outliers_detected": 6,
+    "winsorisation": {
+      "lower_bound": 170317.58419999998,
+      "upper_bound": 469213.7392300001
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 352471.4201754018,
+    "std_daily_demand": 65332.85267626368,
+    "robust_std_daily": 57659.70777777778,
+    "cv_wd": 0.18535645427295022,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "Smooth",
+    "distribution_type": "Normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.4739351851851852,
+    "std_lead_time": 0.4941385840465043,
+    "cv_lead_time": 1.042629033447738,
+    "stability": "Unstable",
+    "effective_lead_time": 1.2892638488619172
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 179883.38044979086,
+    "safety_stock": 295882,
+    "safety_stock_robust": 293830
+  },
+  "order_quantity": {
+    "eoq_raw": 84736.5866387717,
+    "order_quantity": 84737
+  },
+  "cost_analysis": {
+    "unit_cost": 10.226823,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.22721876
+  },
+  "policy": {
+    "safety_stock": 295882,
+    "reorder_point": 462931,
+    "order_quantity": 84737,
+    "review_period_days": 1
+  },
+  "safety_lead_time": {
+    "recommended_days": 0.8127856421855574,
+    "sigma_eff_days": 0.4941385840465043,
+    "dominant_factor": "transport",
+    "dominant_pct": 50.0,
+    "variance_components": {
+      "transport": 0.12208647012174209,
+      "supplier": 0.09766917609739367,
+      "quality": 0.024417294024348418
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL2__M0DC4D1D exhibits smooth demand patterns with CV=0.185 and follows a normal distribution.\nLead time is unstable (mean=0.47 days, CV=1.04), with transport being the dominant variance source.\nThe optimized policy recommends safety stock of 295,882 units (vs SAP's 330,383), achieving 8.3% cost savings.\nOrder quantity is set to 84,737 units (MOQ-constrained from EOQ=84737), with a reorder point at 462,931 units.\nCapacity utilization is 13.2% of maximum storage.",
+  "warnings": [
+    "Unstable lead time (CV=1.04). Consider supplier performance improvement.",
+    "Current SAP safety lead time (2.5 days) is 1.69 days higher than recommended.",
+    "6 demand outliers detected and winsorized"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Normal approximation with stochastic lead time",
+    "selection_rationale": "CV=0.185 < 0.3 and non-zero fraction=1.0 indicate smooth, continuous demand suitable for Normal distribution.",
+    "boundary_risk": "Low",
+    "escalation_flag": "None"
+  }
+}

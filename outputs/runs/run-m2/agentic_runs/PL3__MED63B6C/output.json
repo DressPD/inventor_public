@@ -1,0 +1,90 @@
+{
+  "material_id": "PL3__MED63B6C",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 180,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 1.819,
+      "upper_bound": 849.8110700000011
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 589.3994285555555,
+    "std_daily_demand": 182.47538941636864,
+    "robust_std_daily": 109.22461082283168,
+    "cv_wd": 0.30959546374783925,
+    "non_zero_fraction_wd": 0.7894736842105263,
+    "trend_detected": false,
+    "regime": "Moderate",
+    "distribution_type": "Empirical"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.1172549019607843,
+    "std_lead_time": 0.8848954257875294,
+    "cv_lead_time": 0.7920264428775712,
+    "stability": "Variable",
+    "effective_lead_time": 1.1172549019607843
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 556.078314662007,
+    "safety_stock": 914.667432740864,
+    "safety_stock_robust": 879.0
+  },
+  "order_quantity": {
+    "eoq_raw": 3738.6902358600896,
+    "order_quantity": 2621
+  },
+  "cost_analysis": {
+    "unit_cost": 13.177128,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.5812553599999999
+  },
+  "policy": {
+    "safety_stock": 915,
+    "reorder_point": 1574,
+    "order_quantity": 2621,
+    "review_period_days": 5
+  },
+  "safety_lead_time": {
+    "recommended_days": 0.0026329571736961118,
+    "sigma_eff_days": 0.9434659888028586,
+    "dominant_factor": "Lead Time Variability",
+    "dominant_pct": 87.96935398249933,
+    "variance_components": {
+      "transport": 0.0,
+      "supplier": 87.96935398249933,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Maintain current safety lead time",
+    "override_flag": null
+  },
+  "sap_policy": {
+    "safety_stock": 127,
+    "order_quantity": 2621,
+    "annual_ordering_cost": 4216.420940639704,
+    "annual_holding_cost": 2273.05458,
+    "total_annual_cost": 6489.475520639704
+  },
+  "optimized_policy": {
+    "safety_stock": 915,
+    "order_quantity": 2621,
+    "annual_ordering_cost": 4216.420940639704,
+    "annual_holding_cost": 3519.0838036799996,
+    "total_annual_cost": 7735.504744319704
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__MED63B6C exhibits moderate demand (CV=31.0%) and variable lead time (CV=79.2%). The optimized policy recommends safety stock of 915 units with order quantity of 2621 units (constrained by max storage). Lead time variability dominates (88% of variance). Note: The current SAP policy has lower total cost due to significantly lower safety stock, which may not meet the 95% service level target.",
+  "warnings": [
+    "Storage constraint violation: need 4654, have 3536.255"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with Service Level Safety Stock",
+    "selection_rationale": "Standard EOQ model with safety stock calculated from lead time demand variability. Storage constraint applied.",
+    "boundary_risk": "High lead time variability (CV=79%) suggests potential for stockouts or excess inventory",
+    "escalation_flag": "Review recommended - SAP policy appears more cost-effective but may not meet service level"
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "material_id": "PL1__MF3DD6BA",
+  "data_quality": {
+    "total_rows": 194,
+    "working_days": 194,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 157.56954999999996
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 69.31306237113402,
+    "std_daily_demand": 25.684665955060783,
+    "robust_std_daily": 10.596738324684953,
+    "cv_wd": 0.3705602533838898,
+    "non_zero_fraction_wd": 0.9690721649484536,
+    "trend_detected": true,
+    "regime": "stable",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.4180701754385965,
+    "std_lead_time": 0.9342384954689248,
+    "cv_lead_time": 0.6588097765894929,
+    "stability": "unstable",
+    "effective_lead_time": 2.3523086709075214
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 71.61497696644645,
+    "safety_stock": 118,
+    "safety_stock_robust": 109
+  },
+  "order_quantity": {
+    "eoq_raw": 1183.6989595294556,
+    "order_quantity": 1184
+  },
+  "cost_analysis": {
+    "unit_cost": 10.306028,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.2367233599999998,
+    "sap_annual_cost": 4795.047331237765,
+    "optimized_annual_cost": 1609.8415582682223,
+    "annual_savings": 3185.205772969543,
+    "savings_percentage": 66.42699337333407
+  },
+  "policy": {
+    "safety_stock": 118,
+    "reorder_point": 282,
+    "order_quantity": 1184,
+    "review_period_days": 18
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.5366855777097472,
+    "sigma_eff_days": 0.9342384954689248,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 81.75945317807394,
+    "variance_components": {
+      "transport": 0.0,
+      "supplier": 4193.201102536589,
+      "quality": 935.5038233680668
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "DECREASE",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MF3DD6BA exhibits stable demand with normal distribution characteristics. The demand pattern has a CV of 0.37 and 96.9% non-zero days. Lead time is unstable (CV=0.66). The dominant variability driver is lead_time_variability (81.8%). Optimized policy recommends safety stock of 118 units (vs SAP 95), order quantity of 1184 units (vs SAP 190), and reorder point of 282 units. This yields annual cost savings of $3185.21 (66.4%).",
+  "warnings": [
+    "Detected 2 outliers; demand winsorised at [0.00, 157.57]",
+    "Linear trend detected (slope=-0.0783, p=0.0170); demand may be non-stationary",
+    "Lead time is highly variable (CV=0.66); consider supplier improvement"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with safety stock (combined variability)",
+    "selection_rationale": "EOQ model selected due to stable demand and unstable lead time. Safety stock computed using combined variability approach accounting for both demand and lead time uncertainty. The lead_time_variability dominates the variance contribution.",
+    "boundary_risk": "Medium",
+    "escalation_flag": "None"
+  }
+}

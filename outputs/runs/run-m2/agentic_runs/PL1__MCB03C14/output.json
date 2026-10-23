@@ -1,0 +1,83 @@
+{
+  "material_id": "PL1__MCB03C14",
+  "data_summary": {
+    "total_rows": 87,
+    "working_days": 87,
+    "data_source": "fallback (demand_wd)"
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1370.61,
+    "std_daily_demand": 1342.38,
+    "robust_std_daily": 1569.04,
+    "cv_wd": 0.979,
+    "non_zero_fraction_wd": 0.667,
+    "regime": "erratic",
+    "distribution_type": "high skew",
+    "has_trend": false,
+    "trend_slope": -8.9375,
+    "trend_p_value": 0.1195,
+    "outliers_detected": 1,
+    "annual_demand": 342653.15
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.82,
+    "std_lead_time": 1.08,
+    "cv_lead_time": 0.593,
+    "stability": "variable",
+    "effective_lead_time": 2.9
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 2336.49,
+    "z_score": 1.645,
+    "safety_stock": 3844,
+    "safety_stock_robust": 4245,
+    "sap_safety_stock": 3463,
+    "service_level_target": 0.95,
+    "dominant_factor": "demand variability"
+  },
+  "eoq_analysis": {
+    "eoq_raw": 76345.43,
+    "unconstrained_order_quantity": 76346,
+    "order_quantity": 44390,
+    "moq": 6927,
+    "max_storage_units": 48234.172,
+    "capacity_constraint_active": true
+  },
+  "policy_parameters": {
+    "reorder_point": 7814,
+    "review_period_days": 33,
+    "recommended_safety_lead_time_days": 2.8,
+    "sap_safety_lead_time_days": 3.5,
+    "sigma_eff_days": 1.7
+  },
+  "cost_analysis": {
+    "sap_policy": {
+      "safety_stock": 3463,
+      "order_quantity": 6927,
+      "annual_ordering_cost": 3709.97,
+      "annual_holding_cost": 61.08,
+      "total_annual_cost": 3771.05
+    },
+    "optimized_policy": {
+      "safety_stock": 3844,
+      "order_quantity": 44390,
+      "annual_ordering_cost": 578.94,
+      "annual_holding_cost": 229.62,
+      "total_annual_cost": 808.55
+    },
+    "annual_savings": 2962.5,
+    "savings_percentage": 78.56
+  },
+  "input_parameters": {
+    "unit_cost": 0.073485,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 75.0,
+    "moq": 6927,
+    "service_level_target": 0.95
+  },
+  "narrative": "Material PL1__MCB03C14 exhibits erratic demand pattern with high variability (CV=0.98). Lead time is variable (CV=0.59). The dominant risk factor is demand variability. Optimized policy increases safety stock from 3463 to 3844 units and order quantity from 6927 to 44390 units, achieving $2962.50 annual savings (78.6%).",
+  "selected_model": "EOQ with variable lead time safety stock",
+  "selection_rationale": "Classical EOQ applied due to continuous demand pattern. Safety stock calculated using combined demand and lead time variability. Capacity constraint enforced (max=48234 units).",
+  "boundary_risk": "high",
+  "escalation_flag": "no"
+}

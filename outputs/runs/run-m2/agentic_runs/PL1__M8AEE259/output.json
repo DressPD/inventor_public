@@ -1,0 +1,79 @@
+{
+  "material_id": "PL1__M8AEE259",
+  "data_quality": {
+    "total_rows": 96,
+    "working_days": 96,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 1728.924
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 528.08,
+    "std_daily_demand": 444.7,
+    "robust_std_daily": 378.2,
+    "cv_wd": 0.842,
+    "non_zero_fraction_wd": 0.604,
+    "trend_detected": true,
+    "regime": "variable",
+    "distribution_type": "mixed"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.69,
+    "std_lead_time": 1.07,
+    "cv_lead_time": 0.398,
+    "stability": "moderate",
+    "effective_lead_time": 3.225
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 921.4,
+    "safety_stock": 1516,
+    "safety_stock_robust": 1293
+  },
+  "order_quantity": {
+    "eoq_raw": 46248.3,
+    "order_quantity": 46467
+  },
+  "cost_analysis": {
+    "unit_cost": 0.07949,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.009539
+  },
+  "policy": {
+    "safety_stock": 1516,
+    "reorder_point": 2937,
+    "order_quantity": 46467,
+    "review_period_days": 88
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.87,
+    "sigma_eff_days": 2.87,
+    "dominant_factor": "transport",
+    "dominant_pct": 50.0,
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.3,
+      "quality": 0.2
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Reduce SAP safety lead time from 5.0 to 2.87 days; replace with explicit safety stock of 1516 units",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M8AEE259 exhibits high daily demand variability (CV=0.84) with a statistically significant upward trend over the observation period, suggesting growing consumption. Approximately 60% of working days carry positive demand, classifying this as a mixed/variable regime. Lead times average 2.69 days with moderate variability (CV=0.40). The EOQ-based (r,Q) continuous-review policy was selected to minimize total ordering and holding costs, establishing an explicit safety stock of 1,516 units calibrated to a 95% service level, replacing the current SAP approach of zero safety stock and frequent small orders at MOQ.",
+  "warnings": [
+    "2 demand outliers winsorised at upper bound 1728.92 units",
+    "SAP safety stock is 0 \u2014 material is currently exposed to stockout risk",
+    "Upward demand trend detected (p=0.0005) \u2014 reorder point should be reviewed quarterly",
+    "SAP policy of ordering at MOQ=559 generates ~246 orders/year \u2014 highly inefficient"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) continuous-review EOQ policy",
+    "selection_rationale": "With moderately frequent demand (60% non-zero days), significant annual volume (~137K units), and moderate lead-time variability, the classical (r,Q) model with EOQ-derived batch size minimises total inventory cost. The policy is tractable, well-understood by planners, and directly addresses the extreme over-ordering inefficiency in the current SAP setup.",
+    "boundary_risk": "Storage capacity (160,800 units) is not binding \u2014 SS+Q = 47,983 units represents only 30% utilisation. No capacity-driven reduction required.",
+    "escalation_flag": "none \u2014 MOQ (559) + safety stock (1,516) = 2,075 units is well within max_storage_units (160,800). No infeasibility."
+  }
+}

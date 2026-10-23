@@ -1,0 +1,77 @@
+{
+  "material_id": "PL1__MB2D63A5",
+  "data_quality": {
+    "total_rows": 132,
+    "working_days": 132,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 329.470125,
+      "upper_bound": 1485.941125
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 890.5328863636364,
+    "std_daily_demand": 227.1780550802061,
+    "robust_std_daily": 214.3200518902891,
+    "cv_wd": 0.25510349876898447,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "Erratic",
+    "distribution_type": "Moderately skewed"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.7916666666666667,
+    "std_lead_time": 1.021726109299475,
+    "cv_lead_time": 0.5702657354229628,
+    "stability": "variable",
+    "effective_lead_time": 1.7916666666666667
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 959.3490354570343,
+    "safety_stock": 1578,
+    "safety_stock_robust": 1570
+  },
+  "order_quantity": {
+    "eoq_raw": 96766.31086812308,
+    "order_quantity": 13683
+  },
+  "cost_analysis": {
+    "unit_cost": 0.020606,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.00247272
+  },
+  "policy": {
+    "safety_stock": 1578,
+    "reorder_point": 3174,
+    "order_quantity": 13683,
+    "review_period_days": 16
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.771972741448704,
+    "sigma_eff_days": 1.0772752473795761,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 89.95299353650648,
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.3,
+      "quality": 0.2
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "DECREASE: Recommended safety lead time significantly lower than SAP",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory Optimization Analysis for Material PL1__MB2D63A5\n\nEXECUTIVE SUMMARY:\nThis material exhibits Erratic demand patterns with a coefficient of variation of 0.255. \nThe demand is classified as following a Moderately skewed distribution. Lead time analysis reveals \nvariable lead times (CV: 0.570), with lead time variability being the \ndominant factor contributing 90.0% to demand variability during lead time.\n\nCURRENT STATE:\nThe current SAP policy maintains a safety stock of 1064 units with a safety lead time \nof 3.0 days, resulting in an annual total cost of $1373.07.\n\nRECOMMENDED OPTIMIZATION:\nBased on statistical analysis and EOQ optimization, the recommended policy suggests:\n- Safety Stock: 1578 units (up from 1064)\n- Order Quantity: 13683 units (constrained by storage capacity of 15261)\n- Reorder Point: 3174 units\n- Review Period: 16 days\n\nThis optimization is projected to reduce total annual costs to $866.90, \nrepresenting savings of $506.17 (36.9% reduction).\n\nCONSTRAINTS & CONSIDERATIONS:\nThe EOQ calculation suggests an optimal order quantity of 96766 units, but this has been \nconstrained to 13683 units due to storage capacity limitations. The safety lead time \nrecommendation is 1.77 days, which is decrease \ncompared to the current SAP setting.\n\nKEY INSIGHT:\nLead Time Variability is the primary driver of inventory requirements, \naccounting for 90.0% of the variance. Management should focus mitigation efforts \non this area to achieve further inventory optimization.",
+  "warnings": [
+    "Order quantity constrained by storage: Optimal EOQ=96766, Applied=13683",
+    "Detected 2 demand outliers; data winsorized at [329, 1486]"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Economic Order Quantity (EOQ) with Safety Stock",
+    "selection_rationale": "EOQ model selected based on Erratic demand regime and variable lead times. \nThe classical EOQ approach with safety stock buffer is appropriate given:\n1. Sufficient historical demand data (132 working days)\n2. Relatively stable lead time pattern (CV=0.570)\n3. Non-zero demand in 100.0% of periods\n4. Standard normal distribution assumptions valid for Moderately skewed pattern\n\nSafety stock calculated using demand and lead time variability formula with 95% \nservice level target (z-score=1.645).",
+    "boundary_risk": "Primary constraints identified:\n1. Storage capacity: 15261 units (binding constraint)\n2. Minimum order quantity (MOQ): 8513 units\n3. Current utilization: 100.0% of max storage\n\nRisk level: HIGH - Storage capacity severely limits optimization",
+    "escalation_flag": ""
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "material_id": "PL1__MB202B0B",
+  "data_quality": {
+    "total_rows": 227,
+    "working_days": 227,
+    "outliers_detected": 6,
+    "winsorisation": {
+      "lower_bound": 38.74902000000004,
+      "upper_bound": 1253.5413800000001
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 761.6489832599119,
+    "std_daily_demand": 258.213963252464,
+    "robust_std_daily": 204.76781640000004,
+    "cv_wd": 0.3390196388726075,
+    "non_zero_fraction_wd": 0.9955947136563876,
+    "trend_detected": false,
+    "regime": "regular",
+    "distribution_type": "normal-approximation"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.8058904109589041,
+    "std_lead_time": 0.9191819406651963,
+    "cv_lead_time": 1.1405793246397982,
+    "stability": "unstable",
+    "effective_lead_time": 1.7250723516241004
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 737.4712849723471,
+    "safety_stock": 1214,
+    "safety_stock_robust": 1191
+  },
+  "order_quantity": {
+    "eoq_raw": 2796.135135950597,
+    "order_quantity": 2591
+  },
+  "cost_analysis": {
+    "unit_cost": 20.295386,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 2.43544632
+  },
+  "policy": {
+    "safety_stock": 1214,
+    "reorder_point": 2528,
+    "order_quantity": 2591,
+    "review_period_days": 4
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.5119197489314409,
+    "sigma_eff_days": 0.9191819406651963,
+    "dominant_factor": "transport",
+    "dominant_pct": 70.0,
+    "variance_components": {
+      "transport": 0.7,
+      "supplier": 0.2,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce from 1.8 to 1.51 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MB202B0B exhibits regular demand behavior (CV=0.34) with 99.6% non-zero days. Mean daily demand is 761.65 units with standard deviation 258.21. Lead time mean is 0.81 days with CV 1.14, classified as unstable. Calculated safety stock of 1,214 units provides 95% service level protection. Order quantity of 2,591 units is constrained by storage capacity (EOQ raw = 2,797), with a review period of 4 days. The optimized policy increases total annual cost by $1,621.60 compared to the previous SAP approach, but provides substantially improved service level protection through systematic safety stock (previously zero).",
+  "warnings": [
+    "Order quantity constrained by storage: 2797 \u2192 2591"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with safety stock \u2014 (r,Q) continuous-review policy",
+    "selection_rationale": "Regular demand pattern (CV=0.34) with near-continuous demand and unstable lead times (CV=1.14) justifies the classical EOQ approach with z-factor statistical safety stock. No intermittency or lumpy-demand adjustments are required.",
+    "boundary_risk": "Storage capacity constraint reduces order quantity from EOQ-optimal 2,797 to 2,591 units, increasing annual ordering frequency slightly and raising total cost marginally above the unconstrained optimum.",
+    "escalation_flag": "none"
+  }
+}

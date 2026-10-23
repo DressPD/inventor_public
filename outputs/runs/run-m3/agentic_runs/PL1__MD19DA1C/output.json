@@ -1,0 +1,77 @@
+{
+  "material_id": "PL1__MD19DA1C",
+  "data_quality": {
+    "total_rows": 113,
+    "working_days": 113,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 111.9478800000001,
+      "upper_bound": 5475.24604
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 4314.348025132744,
+    "std_daily_demand": 964.1628043343884,
+    "robust_std_daily": 361.34988880652355,
+    "cv_wd": 0.22347821703714388,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "smooth",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.679938271604938,
+    "std_lead_time": 1.1867778271743918,
+    "cv_lead_time": 0.44283774732754,
+    "stability": "moderate",
+    "effective_lead_time": 2.679938271604938
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 5357.934712311611,
+    "safety_stock": 8814.0,
+    "safety_stock_robust": 8478.0
+  },
+  "order_quantity": {
+    "eoq_raw": 18621.162175610298,
+    "order_quantity": 18622
+  },
+  "cost_analysis": {
+    "unit_cost": 3.919333,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.47031996
+  },
+  "policy": {
+    "safety_stock": 8814,
+    "reorder_point": 20377,
+    "order_quantity": 18622,
+    "review_period_days": 5
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.0429506262951076,
+    "sigma_eff_days": 1.2418874604226575,
+    "dominant_factor": "lead_time",
+    "dominant_pct": 91.32177906374501,
+    "variance_components": {
+      "transport": 0.0,
+      "supplier": 0.9132177906374501,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "DECREASE",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "\n**Material PL1__MD19DA1C Inventory Optimization Analysis**\n\n**Demand Profile:**\nThe material exhibits smooth demand pattern with a coefficient of variation of 0.22 and 100.0% non-zero demand days. \nMean daily demand is 4314.35 units with standard deviation of 964.16 units. \nNo significant trend detected in the demand pattern.\n4 outliers were detected and winsorized to prevent distortion.\n\n**Lead Time Characteristics:**\nSupply lead time averages 2.68 days (\u00b11.19 days) with moderate variability (CV=0.44). \nThe lead time uncertainty is the dominant driver of safety stock requirements, contributing 91.3% of total variance.\n\n**Inventory Policy Recommendation:**\n- **Safety Stock**: 8,814 units (equivalent to 2.0 days of demand)\n- **Reorder Point**: 20,377 units\n- **Order Quantity**: 18,622 units (EOQ-based, respecting MOQ of 1,075 units)\n- **Review Period**: 5 days\n\n**Service Level Achievement:**\nThe recommended policy achieves 95.0% service level, balancing stockout risk against holding costs.\nThe storage capacity constraint does not bind.\n\n**Cost Implications:**\nCompared to current SAP parameters (zero safety stock), the optimized policy increases total annual costs by $4,145.40 \n(47.3% increase) but provides 95.0% service level protection vs. virtually zero protection currently.\nThis represents the true cost of achieving the target service level.\n\n**Key Recommendations:**\n1. Implement the recommended safety stock of 8,814 units to achieve target service level\n2. Maintain order quantity at 18,622 units to balance ordering and holding costs\n3. Monitor lead time variability closely given moderate classification\n4. Consider negotiating with supplier to reduce lead time variability\n",
+  "warnings": [
+    "Moderate lead time variability (CV=0.44) requires monitoring",
+    "Optimized policy increases costs due to required safety stock (improves service level)"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Normal distribution with lead-time demand variance",
+    "selection_rationale": "Demand is smooth with CV=0.223 and no trend. Normal approximation is appropriate.",
+    "boundary_risk": "Low",
+    "escalation_flag": "No"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "material_id": "PL3__M65CC083",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 766.1025099999995
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 315.26193214912274,
+    "std_daily_demand": 213.87456239909847,
+    "robust_std_daily": 329.3038888888889,
+    "cv_wd": 0.678402752089755,
+    "non_zero_fraction_wd": 0.9517543859649122,
+    "trend_detected": true,
+    "regime": "lumpy",
+    "distribution_type": "Empirical"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.2599473684210525,
+    "std_lead_time": 0.888351125447019,
+    "cv_lead_time": 0.7050700272982733,
+    "stability": "unstable",
+    "effective_lead_time": 2.1482984938680714
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 368.8744691664927,
+    "safety_stock": 607,
+    "safety_stock_robust": 763
+  },
+  "order_quantity": {
+    "eoq_raw": 1468.166153232376,
+    "order_quantity": 1469
+  },
+  "cost_analysis": {
+    "unit_cost": 30.470521,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 3.65646252
+  },
+  "policy": {
+    "safety_stock": 607,
+    "reorder_point": 1005,
+    "order_quantity": 1469,
+    "review_period_days": 5
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.5,
+    "sigma_eff_days": 0.888351125447019,
+    "dominant_factor": "transport",
+    "dominant_pct": 50.0,
+    "variance_components": {
+      "transport": 0.3945838610414926,
+      "supplier": 0.23675031662489557,
+      "quality": 0.15783354441659705
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "INCREASE",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__M65CC083 exhibits lumpy demand with mean daily demand of 315.3 units and CV of 0.68. Lead time is unstable (CV=0.71). Safety stock of 607 units recommended to achieve 95.0% service level. EOQ-based order quantity of 1469 units balances ordering and holding costs.",
+  "warnings": [
+    "Unstable lead time (CV=0.71) requires increased safety buffers"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Combined Variance Safety Stock Model",
+    "selection_rationale": "Uses both demand and lead time variability to compute safety stock via the combined variance formula, appropriate for variable lead times.",
+    "boundary_risk": "Moderate - periodic review recommended",
+    "escalation_flag": ""
+  }
+}

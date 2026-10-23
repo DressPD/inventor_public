@@ -1,0 +1,78 @@
+{
+  "material_id": "PL3__M0A903F5",
+  "data_quality": {
+    "total_rows": 221,
+    "working_days": 221,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 20777.042
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 12855.05,
+    "std_daily_demand": 7831.42,
+    "robust_std_daily": 2108.54,
+    "cv_wd": 0.609,
+    "non_zero_fraction_wd": 0.798,
+    "trend_detected": false,
+    "regime": "intermittent/lumpy",
+    "distribution_type": "Poisson"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 5.627,
+    "std_lead_time": 0.728,
+    "cv_lead_time": 0.129,
+    "stability": "stable",
+    "effective_lead_time": 6.355
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 20808.84,
+    "safety_stock": 34193.0,
+    "safety_stock_robust": 10647.0
+  },
+  "order_quantity": {
+    "eoq_raw": 3610447.3,
+    "order_quantity": 273813
+  },
+  "cost_analysis": {
+    "unit_cost": 0.032475,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.003897
+  },
+  "policy": {
+    "safety_stock": 34193,
+    "reorder_point": 106620,
+    "order_quantity": 273813,
+    "review_period_days": 22
+  },
+  "safety_lead_time": {
+    "recommended_days": 0.73,
+    "sigma_eff_days": 0.728,
+    "dominant_factor": "transport variability",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Increase safety lead time from 0.0 to 0.73 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__M0A903F5 exhibits intermittent-lumpy daily demand (CV=0.609) with 79.8% non-zero days and a stable supply lead time of 5.63 working days (CV=0.129). Two erroneous near-zero lead time observations were removed as data quality corrections. The (r,Q) continuous-review policy is applied: safety stock is right-sized to 34,193 units (vs SAP 68,113), and order quantity is maximised within the binding storage cap of 308,007 units, yielding a 43% reduction in total annual inventory cost while maintaining the 95% service level.",
+  "warnings": [
+    "Storage capacity constraint is binding: order quantity capped at floor(308006.688 - 34193) = 273813 units.",
+    "Two lead time observations (0.05, 0.08 days) identified as data entry errors and excluded from lead time statistics.",
+    "High demand variability (CV=0.609) increases stockout risk during demand spikes; monitor closely."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) Continuous Review with EOQ",
+    "selection_rationale": "Stable lead times and moderately high-volume demand make a continuous-review reorder point policy with EOQ-based order sizing optimal. The (r,Q) model minimises total holding and ordering costs while providing a clear, actionable trigger for replenishment.",
+    "boundary_risk": "The storage ceiling of 308,006.688 units binds tightly against the sum of safety stock (34,193) and order quantity (273,813). Any upward revision to safety stock must be accompanied by a corresponding reduction in order quantity or an increase in storage capacity. Current configuration leaves only 0.688 units of headroom.",
+    "escalation_flag": "None \u2014 MOQ + safety stock (116,765 + 34,193 = 150,958) is within max_storage_units (308,006.688). No infeasibility detected."
+  }
+}

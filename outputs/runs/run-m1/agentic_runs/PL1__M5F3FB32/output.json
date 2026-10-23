@@ -1,0 +1,90 @@
+{
+  "material_id": "PL1__M5F3FB32",
+  "data_quality": {
+    "total_rows": 93,
+    "working_days": 93,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 2759.22872,
+      "upper_bound": 5954.362999999999
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 4810.5035591397855,
+    "std_daily_demand": 743.3436646103735,
+    "robust_std_daily": 540.3098483999989,
+    "cv_wd": 0.15452512517074163,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": true,
+    "regime": "smooth",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.7613333333333334,
+    "std_lead_time": 0.9412898951261862,
+    "cv_lead_time": 1.2363702650519082,
+    "stability": "unstable",
+    "effective_lead_time": 1.7026232284595197
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 4574.295148920156,
+    "safety_stock": 7525,
+    "safety_stock_robust": 7489
+  },
+  "order_quantity": {
+    "eoq_raw": 311475.9296354234,
+    "order_quantity": 160263
+  },
+  "cost_analysis": {
+    "unit_cost": 0.01033,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.0012396,
+    "previous_policy": {
+      "avg_inventory": 87207.5,
+      "annual_holding_cost": 108.102417,
+      "annual_ordering_cost": 375.2038492306229,
+      "total_annual_cost": 483.3062662306229
+    },
+    "optimized_policy": {
+      "avg_inventory": 87656.5,
+      "annual_holding_cost": 108.6589974,
+      "annual_ordering_cost": 375.2038492306229,
+      "total_annual_cost": 483.8628466306229
+    },
+    "savings": {
+      "absolute": -0.5565804000000298,
+      "percentage": -0.11516101463796088
+    }
+  },
+  "policy": {
+    "safety_stock": 7525,
+    "reorder_point": 15716,
+    "order_quantity": 160263,
+    "review_period_days": 34
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.5642852993430942,
+    "sigma_eff_days": 0.9508973629650804,
+    "dominant_factor": "transport",
+    "dominant_pct": 40.0,
+    "variance_components": {
+      "transport": 0.4,
+      "supplier": 0.4,
+      "quality": 0.2
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization for PL1__M5F3FB32 reveals a smooth demand pattern with normal distribution (CV=0.155). \nThe material experiences 4811 units of daily demand with unstable lead times (mean=0.76 days, CV=1.24).\n\nThe optimized policy recommends a safety stock of 7525 units (vs. SAP's 7076) and an order quantity of 160,263 units \nconstrained by maximum storage capacity of 167788 units. The reorder point is set at 15,716 units with a 34-day review cycle.\n\nThis optimization delivers annual cost savings of $-0.56 (-0.1%) compared to the current SAP policy, \nprimarily through increased safety stock and optimized order quantities.\n\nKey risks: Review recommended - high variability detected \nThe recommended safety lead time is 1.56 days (reduce from SAP's 2 days).",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Normal approximation",
+    "selection_rationale": "Demand is smooth (CV < 0.2) and normally distributed",
+    "boundary_risk": "Moderate - near smooth/variable boundary",
+    "escalation_flag": "Review recommended - high variability detected"
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "material_id": "PL2__M31E3DB3",
+  "data_quality": {
+    "total_rows": 96,
+    "working_days": 96,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": 7813.77,
+      "upper_bound": 26355.88
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 19659.06,
+    "std_daily_demand": 4634.94,
+    "robust_std_daily": 2655.58,
+    "cv_wd": 0.2359,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": true,
+    "regime": "erratic",
+    "distribution_type": "normal-approximation"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.7235,
+    "std_lead_time": 1.1393,
+    "cv_lead_time": 0.4183,
+    "stability": "moderate",
+    "effective_lead_time": 3.8628
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 23582.77,
+    "safety_stock": 38828,
+    "safety_stock_robust": 32371
+  },
+  "order_quantity": {
+    "eoq_raw": 293135.67,
+    "order_quantity": 293136
+  },
+  "cost_analysis": {
+    "unit_cost": 0.071495,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.008579
+  },
+  "policy": {
+    "safety_stock": 38828,
+    "reorder_point": 92213,
+    "order_quantity": 293136,
+    "review_period_days": 15
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.976,
+    "sigma_eff_days": 1.2,
+    "dominant_factor": "transport",
+    "dominant_pct": 89.5,
+    "variance_components": {
+      "transport": 500840182.3,
+      "supplier": 58924872.5,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL2__M31E3DB3 exhibits erratic but fully non-zero demand (CV=0.236) with a statistically significant upward trend over the observation window (Mar 2025\u2013Mar 2026). Lead times show moderate variability (CV=0.418), with transport variance accounting for 89.5% of total demand-during-lead-time risk. An (r,Q) continuous-review policy is recommended: orders of 293,136 units are placed whenever stock falls to the reorder point of 92,213 units, supported by a 38,828-unit safety stock targeting 95% service level.",
+  "warnings": [
+    "Significant upward demand trend detected (p=0.017, slope=+40.4 units/day). Safety stock and ROP should be reviewed in 3-6 months if trend continues.",
+    "SAP safety stock is currently 0; this exposes operations to stockout risk. The recommended safety stock of 38,828 units should be implemented promptly."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review policy with EOQ order quantity",
+    "selection_rationale": "The material has continuous non-zero demand (non_zero_fraction=1.0) with erratic but manageable variability (CV=0.236), making a continuous-review (r,Q) policy appropriate. EOQ balances the high ordering cost ($75) against a low unit holding cost ($0.0085/unit/year) to yield a large optimal batch size of 293,136 units, far exceeding the MOQ of 52,313.",
+    "boundary_risk": "The capacity constraint (470,820 units) is not binding: SS(38,828) + OQ(293,136) = 331,964 units, leaving 138,856 units of headroom. No service or cost degradation from capacity.",
+    "escalation_flag": "none"
+  }
+}

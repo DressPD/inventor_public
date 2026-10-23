@@ -1,0 +1,75 @@
+{
+  "material_id": "PL1__M4716C03",
+  "analysis_date": "2026-10-22",
+  "data_quality": {
+    "total_rows": 93,
+    "working_days": 93,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 246.46,
+      "upper_bound": 1550.58
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 799.35,
+    "std_daily_demand": 303.65,
+    "robust_std_daily": 305.51,
+    "cv_wd": 0.3799,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": true,
+    "regime": "moderately variable",
+    "distribution_type": "right-skewed / empirical"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.45,
+    "std_lead_time": 0.92,
+    "cv_lead_time": 0.3757,
+    "stability": "moderate",
+    "effective_lead_time": 3.37
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 876.68,
+    "safety_stock": 1443.0,
+    "safety_stock_robust": 1445.0
+  },
+  "order_quantity": {
+    "eoq_raw": 19489.28,
+    "order_quantity": 19490
+  },
+  "cost_analysis": {
+    "unit_cost": 0.65765,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.0789
+  },
+  "policy": {
+    "safety_stock": 1443,
+    "reorder_point": 3404,
+    "order_quantity": 19490,
+    "review_period_days": 25
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.6,
+    "sigma_eff_days": 0.92,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 0.5093,
+      "supplier": 0.2547,
+      "quality": 0.0849
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "DECREASE - Recommended safety lead time is lower than SAP",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Demand for PL1__M4716C03 is moderately variable (CV=38%) with a statistically significant downward trend (Mann-Kendall p<0.001) and a right-skewed empirical distribution. Lead times are moderate in stability (CV=37.6%, mean=2.45 days), with transport variability as the dominant source. An (r,Q) continuous-review policy was selected: EOQ drives a large order quantity of 19,490 units to minimise total replenishment and holding costs, while the safety stock of 1,443 units is calibrated to deliver the 95% service level target using combined demand-and-lead-time uncertainty. The current SAP policy over-orders in frequency (MOQ=953 vs EOQ=19,490), creating an ~90% cost inefficiency that can be corrected without any capacity or feasibility constraint.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) Continuous Review \u2014 EOQ-based",
+    "selection_rationale": "Demand is continuous and non-zero on all working days with moderate variability. A continuous-review (r,Q) policy is well-suited: it triggers a fixed order of economic quantity Q whenever inventory reaches reorder point r, providing responsive replenishment without the overhead of periodic review. EOQ is appropriate because both ordering and holding costs are well-defined and the demand rate is relatively stable.",
+    "boundary_risk": "The order quantity of 19,490 units combined with a safety stock of 1,443 units totals 20,933 units, well within the 44,671-unit storage limit (47% utilisation). No capacity constraint binds. The trend-detected flag warrants monitoring: if demand continues to decline, the EOQ and reorder point should be recalibrated.",
+    "escalation_flag": "none"
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__M8EEE30A",
+  "data_quality": {
+    "total_rows": 140,
+    "working_days": 140,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 1572.6090899999997
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 852.3938798571427,
+    "std_daily_demand": 415.66085986569703,
+    "robust_std_daily": 367.210368,
+    "cv_wd": 0.48763942314480235,
+    "non_zero_fraction_wd": 0.9785714285714285,
+    "trend_detected": false,
+    "regime": "smooth",
+    "distribution_type": "left-skewed (negative skew)"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 3.9613868613138687,
+    "std_lead_time": 1.638141514429292,
+    "cv_lead_time": 0.41352727511343623,
+    "stability": "moderate",
+    "effective_lead_time": 5.59952837574316
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1623.0202965695412,
+    "safety_stock": 2670,
+    "safety_stock_robust": 2593
+  },
+  "order_quantity": {
+    "eoq_raw": 10519.554283534808,
+    "order_quantity": 6781
+  },
+  "cost_analysis": {
+    "unit_cost": 3.209478,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.38513736
+  },
+  "policy": {
+    "safety_stock": 2670,
+    "reorder_point": 6047,
+    "order_quantity": 6781,
+    "review_period_days": 8
+  },
+  "safety_lead_time": {
+    "recommended_days": 3.132354728365107,
+    "sigma_eff_days": 1.9040731461393787,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 74.01769847837963,
+    "variance_components": {
+      "transport": 74.01769847837963,
+      "supplier": 25.98230152162038,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Recommend to decrease safety lead time from 4.0 to 3.1 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M8EEE30A exhibits smooth demand behavior with 97.9% non-zero demand days. \nThe demand is left-skewed (negative skew) with CV=0.49, indicating moderate variability. \nNo significant trend detected in demand.\n\nLead time analysis shows moderate variability (CV=0.41), with mean 3.96 days. \nThe dominant source of uncertainty is lead time variability (74.0% of total variance).\n\nSafety stock recommendation is 2670 units (vs SAP 399), driven by 95% service level target. \nThe optimal order quantity of 6781 units is constrained by storage capacity (9452 units).\n\nCost analysis shows potential annual savings of $9772.96 (64.1%) by adopting the optimized policy,\nprimarily through reduced ordering frequency (from 148 to 31 orders per year).",
+  "warnings": [
+    "INFO: Order quantity limited by storage capacity",
+    "Demand outliers detected and winsorised: 2 observations",
+    "Lead time outliers removed: 1 observations (including extreme value 9327.37)"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Stochastic continuous review (R,Q) policy with lead time demand uncertainty",
+    "selection_rationale": "Selected based on smooth demand regime, moderate lead time variability, and 95% service level target. The model accounts for both demand and lead time uncertainty using combined variance approach.",
+    "boundary_risk": "LOW: Demand and lead time patterns are within normal model assumptions.",
+    "escalation_flag": "REVIEW: Significant capacity constraint affecting optimal order quantity"
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "material_id": "PL1__M203A428",
+  "data_quality": {
+    "total_rows": 131,
+    "working_days": 131,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 7.6193,
+      "upper_bound": 1450.621
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 842.0112946564885,
+    "std_daily_demand": 333.68697478201386,
+    "robust_std_daily": 308.4830993999999,
+    "cv_wd": 0.39629750443923273,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": true,
+    "regime": "smooth",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 4.169124999999999,
+    "std_lead_time": 1.4069035879178795,
+    "cv_lead_time": 0.3374577610212886,
+    "stability": "moderate",
+    "effective_lead_time": 5.576028587917879
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1366.5887214536865,
+    "safety_stock": 2248,
+    "safety_stock_robust": 2207
+  },
+  "order_quantity": {
+    "eoq_raw": 8957.092825941381,
+    "order_quantity": 8958
+  },
+  "cost_analysis": {
+    "unit_cost": 4.37293,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.5247516
+  },
+  "policy": {
+    "safety_stock": 2248,
+    "reorder_point": 5759,
+    "order_quantity": 8958,
+    "review_period_days": 11
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.4069035879178795,
+    "sigma_eff_days": 1.4069035879178795,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 1.1876266234177215,
+      "supplier": 0.5938133117088608,
+      "quality": 0.19793777056962025
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Demand for PL1__M203A428 is smooth and continuous (CV=0.396, 100% non-zero days) with a statistically significant upward trend (Kendall p=0.010), making a normal-distribution EOQ-based (r,Q) policy the appropriate choice. Lead times are moderately variable (CV=0.337) after removing one extreme data-entry error (9201.55 days). The recommended safety stock of 2,248 units \u2014 nearly 2.6x the current SAP level of 879 \u2014 is required to meet the 95% service level given joint demand and lead-time uncertainty. Consolidating from ~150 annual orders at MOQ to ~24 EOQ-sized orders yields a 62.8% total cost reduction while remaining within storage capacity.",
+  "warnings": [
+    "Upward demand trend detected (tau=0.151, p=0.010) \u2014 monitor for sustained growth requiring periodic EOQ recalibration.",
+    "SAP safety stock of 879 is significantly below the statistically required 2,248 units \u2014 service risk under current policy.",
+    "SAP safety lead time of 4.0 days is overstated; data supports reduction to 1.41 days.",
+    "1 extreme lead time outlier removed (9201.55 days) \u2014 verify data entry process with ERP team."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) Continuous Review with EOQ",
+    "selection_rationale": "Demand is smooth (CV=0.396) with 100% non-zero days and near-normal distribution, making continuous review appropriate. EOQ minimises the ordering/holding cost trade-off. The MOQ of 1,406 is non-binding (EOQ=8,958), and storage capacity is comfortably satisfied at 71.9% peak utilisation, so no MILP or (s,S) complexity is required.",
+    "boundary_risk": "Storage capacity is non-binding (peak 11,206 vs limit 15,590 \u2014 71.9% utilisation). MOQ constraint is non-binding (EOQ >> MOQ). No capacity-driven order quantity reduction required.",
+    "escalation_flag": "none"
+  }
+}

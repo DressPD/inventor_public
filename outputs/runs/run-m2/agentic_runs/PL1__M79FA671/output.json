@@ -1,0 +1,91 @@
+{
+  "material_id": "PL1__M79FA671",
+  "data_quality": {
+    "total_rows": 214,
+    "working_days": 214,
+    "outliers_detected": 6,
+    "winsorisation": {
+      "lower_bound": 107.6788,
+      "upper_bound": 1355.1933999999999
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 694.7299093457943,
+    "std_daily_demand": 247.37477628224602,
+    "robust_std_daily": 247.37477628224602,
+    "cv_wd": 0.3560733069851436,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": true,
+    "regime": "Variable",
+    "distribution_type": "Normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.0533333333333337,
+    "std_lead_time": 0.7803769828064624,
+    "cv_lead_time": 0.7408642241833502,
+    "stability": "Highly Variable",
+    "effective_lead_time": 3.0533333333333337
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 598.6534319837706,
+    "safety_stock": 984.6972688854514,
+    "safety_stock_robust": 984.6972688854514
+  },
+  "order_quantity": {
+    "eoq_raw": 2140.3129164191546,
+    "order_quantity": 2141
+  },
+  "cost_analysis": {
+    "unit_cost": 31.847896,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 3.8217475199999997,
+    "optimized": {
+      "annual_ordering_cost": 4088.5552815305978,
+      "annual_holding_cost": 7855.60202736,
+      "total_annual_cost": 11944.157308890597
+    },
+    "sap_baseline": {
+      "annual_ordering_cost": 4088.5552815305978,
+      "annual_holding_cost": 4091.1807201599995,
+      "total_annual_cost": 8179.736001690597
+    },
+    "savings": {
+      "annual_savings": -3764.4213072000002,
+      "savings_percent": -46.021305656098995
+    }
+  },
+  "policy": {
+    "safety_stock": 985,
+    "reorder_point": 1717,
+    "order_quantity": 2141,
+    "review_period_days": 3.0817731771705548
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.0,
+    "sigma_eff_days": 0.8617067207420277,
+    "dominant_factor": "Lead Time Variability",
+    "dominant_pct": 82.01436798078969,
+    "variance_components": {
+      "transport": 82.01436798078969,
+      "supplier": 82.01436798078969,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Decrease safety lead time",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M79FA671 exhibits variable demand with a CV of 0.36 and highly variable lead times (CV=0.74). The optimized inventory policy recommends a safety stock of 985 units, reorder point of 1717 units, and order quantity of 2141 units (constrained by MOQ=1408). This policy achieves a 95% service level and reduces annual costs by $-3,764.42 (-46.0%) compared to the baseline. Lead Time Variability is the primary driver of inventory variability, accounting for 82.0% of total variance.",
+  "warnings": [
+    "High lead time variability detected (CV=0.741). Consider supplier performance review.",
+    "Statistically significant trend detected in demand. Consider trend-adjusted forecasting."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Classical EOQ with Safety Stock",
+    "selection_rationale": "Material exhibits variable demand pattern suitable for continuous review (Q,R) policy.",
+    "boundary_risk": "High variance in demand and/or lead time suggests boundary conditions for classical EOQ model.",
+    "escalation_flag": "HIGH"
+  }
+}

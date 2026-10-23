@@ -1,0 +1,92 @@
+{
+  "material_id": "PL3__MA248BDC",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "outliers_detected": 2,
+    "winsorization_applied": true,
+    "winsor_percentile_lower": 1,
+    "winsor_percentile_upper": 99
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 657.55,
+    "std_daily_demand": 410.17,
+    "robust_std": 207.71,
+    "cv_working_day": 0.6238,
+    "non_zero_fraction": 0.7895,
+    "trend_detected": false,
+    "trend_slope": 0.031,
+    "demand_regime": "lumpy",
+    "distribution_type": "log-normal approximation",
+    "skewness": -0.7915
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.1,
+    "std_lead_time": 0.8769,
+    "cv_lead_time": 0.7962,
+    "stability": "unstable",
+    "effective_lead_time": 1.98
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 719.57,
+    "z_score": 1.645,
+    "safety_stock": 1184,
+    "safety_stock_robust": 1015,
+    "sap_safety_stock": 179
+  },
+  "order_quantity": {
+    "eoq_raw": 4565.62,
+    "moq": 179,
+    "unconstrained_oq": 4566,
+    "order_quantity": 3933,
+    "capacity_constrained": true,
+    "max_storage_units": 5117.983
+  },
+  "cost_analysis": {
+    "annual_demand": 164387.08,
+    "annual_holding_cost_per_unit": 1.1829,
+    "sap_policy": {
+      "safety_stock": 179,
+      "order_quantity": 179,
+      "avg_inventory": 268.5,
+      "annual_holding_cost": 317.62,
+      "num_orders_per_year": 918.36,
+      "annual_ordering_cost": 68877.27,
+      "total_annual_cost": 69194.89
+    },
+    "recommended_policy": {
+      "safety_stock": 1184,
+      "order_quantity": 3933,
+      "avg_inventory": 3150.5,
+      "annual_holding_cost": 3726.83,
+      "num_orders_per_year": 41.8,
+      "annual_ordering_cost": 3134.77,
+      "total_annual_cost": 6861.6
+    },
+    "annual_savings": 62333.29,
+    "savings_percentage": 90.08
+  },
+  "policy_parameters": {
+    "reorder_point": 1909,
+    "review_period_days": 6,
+    "service_level_target": 0.95
+  },
+  "safety_lead_time": {
+    "sigma_eff_days": 1.09,
+    "recommended_days": 1.8,
+    "sap_days": 0.0,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "dominant_factor": "transport",
+    "disruption_premium": 1.0,
+    "comparison_action": "INCREASE safety lead time buffer"
+  },
+  "capacity_gate": {
+    "total_inventory": 5117,
+    "max_storage_units": 5117.983,
+    "within_capacity": true
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "material_id": "PL1__M7EDFC42",
+  "data_quality": {
+    "total_rows": 225,
+    "working_days": 225,
+    "outliers_detected": 6,
+    "winsorisation": {
+      "lower_bound": 70.97684000000001,
+      "upper_bound": 3518.558559999999
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 2344.3951475555555,
+    "std_daily_demand": 658.1364671586421,
+    "robust_std_daily": 472.05040770941423,
+    "cv_wd": 0.28072761873989766,
+    "non_zero_fraction_wd": 0.9911111111111112,
+    "trend_detected": true,
+    "regime": "smooth",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.3564795918367347,
+    "std_lead_time": 0.9539055237806938,
+    "cv_lead_time": 0.7032214340129236,
+    "stability": "variable",
+    "effective_lead_time": 3.0075000000000003
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 2364.0492719481217,
+    "safety_stock": 3889,
+    "safety_stock_robust": 3918
+  },
+  "order_quantity": {
+    "eoq_raw": 28674.412970897352,
+    "order_quantity": 18947
+  },
+  "cost_analysis": {
+    "unit_cost": 0.61778,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.0741336
+  },
+  "policy": {
+    "safety_stock": 3889,
+    "reorder_point": 7070,
+    "order_quantity": 18947,
+    "review_period_days": 9
+  },
+  "safety_lead_time": {
+    "recommended_days": 3.0075000000000003,
+    "sigma_eff_days": 1.027105334169345,
+    "dominant_factor": "transport",
+    "dominant_pct": 40.0,
+    "variance_components": {
+      "transport": 0.3639742993197279,
+      "supplier": 0.3639742993197279,
+      "quality": 0.18198714965986396
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M7EDFC42 exhibits smooth demand with CV=0.28. Mean daily demand is 2344.4 units with std=658.1. Lead time averages 1.36 days (stability: variable, CV=0.70). Recommended safety stock is 3889 units (vs SAP 2610), order quantity 18947 units (EOQ: 28674), reorder point 7070 units. Storage capacity constraint is respected (22836 <= 22836.276). Annual cost delta: +$236.68.",
+  "warnings": [
+    "High lead time variability detected (CV=0.70)"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Stochastic (r,Q) continuous-review policy",
+    "selection_rationale": "Smooth near-normal demand with highly variable lead times makes a stochastic reorder-point/fixed-order-quantity model the optimal fit; EOQ balances ordering vs holding costs while safety stock absorbs lead-time uncertainty at 95% service level.",
+    "boundary_risk": "HIGH \u2014 storage capacity constraint is binding at 22,836 units; any increase in safety stock would require a corresponding reduction in order quantity below the unconstrained EOQ, potentially increasing ordering frequency and cost.",
+    "escalation_flag": "SAP safety stock (2,610) is materially understated for observed lead-time volatility (CV=0.70); recommend raising to 3,889 and updating safety lead time from 2.0 to 3.01 days in ERP. Consider simulation-based validation given the binding capacity constraint."
+  }
+}

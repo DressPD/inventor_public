@@ -1,0 +1,79 @@
+{
+  "material_id": "PL2__M0D3D8F3",
+  "data_quality": {
+    "total_rows": 141,
+    "working_days": 141,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 1318.1493999999998
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 732.3,
+    "std_daily_demand": 314.8,
+    "robust_std_daily": 306.22,
+    "cv_wd": 0.43,
+    "non_zero_fraction_wd": 0.965,
+    "trend_detected": true,
+    "regime": "smooth",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.24,
+    "std_lead_time": 1.42,
+    "cv_lead_time": 0.634,
+    "stability": "volatile",
+    "effective_lead_time": 3.67
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1143.25,
+    "safety_stock": 1881,
+    "safety_stock_robust": 1872
+  },
+  "order_quantity": {
+    "eoq_raw": 30027.84,
+    "order_quantity": 12453
+  },
+  "cost_analysis": {
+    "unit_cost": 0.253801,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.0305
+  },
+  "policy": {
+    "safety_stock": 1881,
+    "reorder_point": 4566,
+    "order_quantity": 12453,
+    "review_period_days": 18
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.57,
+    "sigma_eff_days": 1.56,
+    "dominant_factor": "transport",
+    "dominant_pct": 40.0,
+    "variance_components": {
+      "transport": 0.8091,
+      "supplier": 0.8091,
+      "quality": 0.4046
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "DECREASE",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL2__M0D3D8F3 exhibits smooth demand behavior with a coefficient of variation of 0.43, \nindicating relatively stable and predictable consumption patterns. Historical demand analysis over 141 working days \nshows a mean daily consumption of 732 units with 96.5% active demand days. \nA statistically significant upward trend was detected (p=0.0075), suggesting growing consumption that should be \nmonitored for capacity planning.\n\nLead time analysis reveals volatile variability (CV=0.63) with a mean of 2.24 days and \nstandard deviation of 1.42 days. This volatility is primarily driven by transport factors, \ncontributing 40% of lead time variance. The effective planning lead time of 3.67 days \nincorporates this variability to maintain the target 95% service level.\n\nThe optimized inventory policy recommends a safety stock of 1881 units (vs. SAP's 1960) and an \norder quantity of 12453 units, fully utilizing available storage capacity (100%). \nThis configuration achieves a 45.7% cost reduction ($1134.48 annually) compared to the current SAP \npolicy, primarily through reduced ordering frequency (15 vs 31 orders/year). \nThe recommended reorder point of 4566 units provides adequate buffer against demand and lead time variability.",
+  "warnings": [
+    "Safety lead time can be reduced from 3.0 to 2.6 days",
+    "Storage utilization >95% - capacity expansion planning recommended",
+    "Volatile lead times (CV=0.63) may impact service levels - consider supplier performance review",
+    "Significant demand trend detected - review forecast assumptions quarterly"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Stochastic EOQ with Lead Time Variability",
+    "selection_rationale": "Selected model accounts for both demand uncertainty (CV=0.43) and lead time volatility \n(CV_LT=0.63). The combined variance approach is appropriate for this smooth demand regime with volatile \nlead times. The normal demand distribution supports the use of normal approximation for safety stock calculation.",
+    "boundary_risk": "Material operates at 100% storage capacity utilization, \nleaving minimal buffer for demand surges. The detected upward trend (slope=1.73 units/day) suggests capacity \nconstraints may emerge within 6-12 months if growth continues. Lead time volatility (0.63) introduces \nservice level risk that should be monitored through fill rate tracking.",
+    "escalation_flag": "CAPACITY_CRITICAL"
+  }
+}

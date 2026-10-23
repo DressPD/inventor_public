@@ -1,0 +1,78 @@
+{
+  "material_id": "PL3__M7F9E1E9",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 36763.9506
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 23872.2732622807,
+    "std_daily_demand": 13833.487308877951,
+    "robust_std_daily": 20276.433283914008,
+    "cv_wd": 0.5794792626949149,
+    "non_zero_fraction_wd": 0.9649122807017544,
+    "trend_detected": false,
+    "regime": "irregular",
+    "distribution_type": "left_skewed"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.084,
+    "std_lead_time": 1.0719452722348595,
+    "cv_lead_time": 0.9888794024306821,
+    "stability": "unstable",
+    "effective_lead_time": 2.1559452722348595
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 29364.543492894092,
+    "safety_stock": 48301,
+    "safety_stock_robust": 54567
+  },
+  "order_quantity": {
+    "eoq_raw": 67954.12068567879,
+    "order_quantity": 67955
+  },
+  "cost_analysis": {
+    "unit_cost": 1.077013,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.12924156
+  },
+  "policy": {
+    "safety_stock": 48301,
+    "reorder_point": 74179,
+    "order_quantity": 67955,
+    "review_period_days": 3
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.023309614016434,
+    "sigma_eff_days": 1.2300690081028618,
+    "dominant_factor": "transport",
+    "dominant_pct": 75.942741932866,
+    "variance_components": {
+      "transport": 75.942741932866,
+      "supplier": 24.057258067133994,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "establish_new",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__M7F9E1E9 exhibits irregular demand with mean daily demand of 23872.27 units (CV=0.58). Lead time analysis shows unstable behavior (mean=1.08 days, CV=0.99), with transport variability being the dominant factor (75.9% of variance). The optimized (r,Q) EOQ policy recommends a safety stock of 48,301 units (vs. SAP's 0), an order quantity of 67,955 units, and a reorder point of 74,179 units, achieving the 95% service level target within the 195,673-unit storage capacity. The marginal annual cost premium of $994.60 over the SAP baseline is fully justified by the elimination of stockout risk inherent in the zero-safety-stock configuration.",
+  "warnings": [
+    "Lead time is unstable (CV=0.99). Monitor supplier performance closely.",
+    "Current SAP policy has zero safety stock, creating high stockout risk.",
+    "Optimized policy has higher total cost ($994.60 more) but provides 95.0% service level vs. SAP's uncertain service level with zero safety stock."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with safety stock",
+    "selection_rationale": "EOQ model selected for irregular demand regime with unstable lead time. Safety stock calculated using z-score method for 95.0% service level target.",
+    "boundary_risk": "Moderate - CV near regime boundary. Monitor demand patterns.",
+    "escalation_flag": "none"
+  }
+}

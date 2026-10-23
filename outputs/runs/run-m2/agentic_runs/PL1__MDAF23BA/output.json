@@ -1,0 +1,117 @@
+{
+  "material_id": "PL1__MDAF23BA",
+  "analysis_metadata": {
+    "total_observations": 87,
+    "working_days": 87,
+    "date_range": {
+      "start": "2025-03-04",
+      "end": "2026-03-05"
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 2403.9,
+    "std_daily_demand": 461.45,
+    "robust_std_daily": 286.14,
+    "cv": 0.192,
+    "non_zero_fraction": 1.0,
+    "outliers": {
+      "count": 8,
+      "lower_bound": 1721.35,
+      "upper_bound": 3265.35
+    },
+    "winsorization": {
+      "p1": 1095.09,
+      "p99": 3068.18,
+      "std_winsorised": 408.66
+    },
+    "trend": {
+      "slope": -0.7375,
+      "detected": false
+    },
+    "regime": "stable",
+    "distribution_type": "heavily skewed",
+    "skewness": -1.4145
+  },
+  "lead_time_analysis": {
+    "observations": 18,
+    "mean_lead_time_days": 1.2306,
+    "std_lead_time_days": 0.794,
+    "cv_lead_time": 0.6452,
+    "stability": "unstable",
+    "effective_lead_time_days": 2.0245
+  },
+  "safety_stock": {
+    "service_level_target": 0.95,
+    "z_score": 1.6449,
+    "sigma_LTD_standard": 1976.03,
+    "safety_stock_standard": 3251,
+    "sigma_LTD_robust": 1934.79,
+    "safety_stock_robust": 3183,
+    "sigma_LTD_winsorised": 1961.68,
+    "safety_stock_winsorised": 3227,
+    "recommended_safety_stock": 3227,
+    "sap_safety_stock": 8345,
+    "difference_vs_sap": -5118
+  },
+  "safety_lead_time": {
+    "sigma_effective_days": 0.816,
+    "recommended_days": 2.6483,
+    "sap_days": 5.0,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "dominant_factor": "transport",
+    "comparison_action": "Decrease from 5.0 to 2.65 days"
+  },
+  "order_policy": {
+    "annual_demand": 600974.27,
+    "eoq_raw": 153088.24,
+    "eoq_rounded": 153089,
+    "moq": 33383,
+    "unconstrained_order_quantity": 153089,
+    "order_quantity": 65567,
+    "reorder_point": 6186,
+    "review_period_days": 28,
+    "max_storage_units": 68794.091,
+    "capacity_utilization": 100.0,
+    "infeasibility_flag": false,
+    "capacity_warning": null
+  },
+  "cost_analysis": {
+    "unit_cost": 0.032054,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 75.0,
+    "previous_policy": {
+      "safety_stock": 8345,
+      "order_quantity": 153089,
+      "reorder_point": 11304,
+      "review_period_days": 64,
+      "annual_ordering_cost": 294.42,
+      "annual_holding_cost": 326.53,
+      "total_annual_cost": 620.95
+    },
+    "new_policy": {
+      "safety_stock": 3227,
+      "order_quantity": 65567,
+      "reorder_point": 6186,
+      "review_period_days": 28,
+      "annual_ordering_cost": 687.44,
+      "annual_holding_cost": 138.51,
+      "total_annual_cost": 825.95
+    },
+    "savings": {
+      "annual_savings": -205.0,
+      "savings_percentage": -33.01
+    }
+  },
+  "diagnostics": {
+    "warnings": [
+      "8 demand outliers detected using 1.5*IQR rule",
+      "Lead time is unstable (CV=0.6452 > 0.5)",
+      "Recommended safety stock (3227) is significantly lower than SAP (8345)"
+    ],
+    "errors": []
+  }
+}

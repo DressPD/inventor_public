@@ -1,0 +1,79 @@
+{
+  "material_id": "PL3__M91F4E56",
+  "analysis_timestamp": "2026-10-23T06:29:19.259769",
+  "data_quality": {
+    "total_rows": 135,
+    "working_days": 135,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": -360.7065,
+      "upper_bound": 601.1775
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 152.7244,
+    "std_daily_demand": 184.078,
+    "robust_std_daily": 183.639,
+    "cv_wd": 0.8194,
+    "non_zero_fraction_wd": 0.6815,
+    "trend_detected": true,
+    "regime": "lumpy",
+    "distribution_type": "right-skewed"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.6243,
+    "std_lead_time": 0.5891,
+    "cv_lead_time": 0.9435,
+    "stability": "unstable \u2014 CV>0.9, single spike at 3.1 days",
+    "effective_lead_time": 0.6243
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 171.027,
+    "safety_stock": 282.0,
+    "safety_stock_robust": 282.0
+  },
+  "order_quantity": {
+    "eoq_raw": 1187.889,
+    "order_quantity": 1188
+  },
+  "cost_analysis": {
+    "unit_cost": 22.548388,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 2.705806
+  },
+  "policy": {
+    "safety_stock": 282,
+    "reorder_point": 378,
+    "order_quantity": 1188,
+    "review_period_days": 8
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.846,
+    "sigma_eff_days": 1.1198,
+    "dominant_factor": "demand",
+    "dominant_pct": 72.0,
+    "variance_components": {
+      "transport": 0.0,
+      "supplier": 0.0,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase from 0.0 to 1.85 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__M91F4E56 exhibits lumpy, right-skewed demand with a statistically significant upward trend (slope +3.0 units/working day, p<0.001). Lead times are short on average (0.62 days) but highly variable (CV=0.94), with one spike to 3.1 days. The current SAP policy carries zero safety stock, leaving the material exposed to frequent stockouts. A continuous-review (r,Q) policy with SS=282 and OQ=1,188 achieves the 95% service level target at an incremental annual cost of approximately $763.",
+  "warnings": [
+    "SAP safety stock is 0 \u2014 no buffer against demand or lead-time variability",
+    "Significant increasing demand trend detected \u2014 policy should be recalibrated quarterly",
+    "4 demand outliers winsorised at upper bound of 601.18 units"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review replenishment",
+    "selection_rationale": "Lumpy intermittent demand with high CV and a rising trend is best served by a fixed reorder-point / fixed order-quantity policy. The EOQ minimises total inventory cost while the ROP provides explicit service-level-linked stockout protection. Periodic review would add unnecessary latency given the short lead times.",
+    "boundary_risk": "Storage constraint is non-binding at 17.4% utilisation (1,470 of 8,427 max units). No capacity risk identified.",
+    "escalation_flag": "none"
+  }
+}

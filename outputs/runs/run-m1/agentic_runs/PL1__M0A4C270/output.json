@@ -1,0 +1,79 @@
+{
+  "material_id": "PL1__M0A4C270",
+  "data_quality": {
+    "total_rows": 204,
+    "working_days": 204,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 1572.848
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 332.74,
+    "std_daily_demand": 419.88,
+    "robust_std_daily": 374.35,
+    "cv_wd": 1.262,
+    "non_zero_fraction_wd": 0.626,
+    "trend_detected": false,
+    "regime": "intermittent",
+    "distribution_type": "right-skewed with high zero-mass"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.769,
+    "std_lead_time": 0.896,
+    "cv_lead_time": 1.166,
+    "stability": "unstable",
+    "effective_lead_time": 1.665
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 473.0,
+    "safety_stock": 778,
+    "safety_stock_robust": 696
+  },
+  "order_quantity": {
+    "eoq_raw": 2146.7,
+    "order_quantity": 2147
+  },
+  "cost_analysis": {
+    "unit_cost": 15.040846,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.8049
+  },
+  "policy": {
+    "safety_stock": 778,
+    "reorder_point": 1333,
+    "order_quantity": 2147,
+    "review_period_days": 7
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.34,
+    "sigma_eff_days": 1.421,
+    "dominant_factor": "demand_variability",
+    "dominant_pct": 60.2,
+    "variance_components": {
+      "transport": 0.398,
+      "supplier": 0.602,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce_slightly",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M0A4C270 exhibits intermittent demand (CV=1.26, 62.6% non-zero days) with high day-to-day variability and no statistically significant trend. Lead times are highly unstable (CV=1.17, ranging from 0.07 to 4.43 days), which is the primary driver of safety stock requirements. A continuous-review (r,Q) policy is recommended: the EOQ of 2,147 units efficiently balances ordering and holding costs, while a safety stock of 778 units (up from SAP's 396) is necessary to achieve the 95% service level target given the compound demand-and-lead-time uncertainty.",
+  "warnings": [
+    "Recommended safety stock (778) is 96% higher than current SAP safety stock (396)",
+    "Lead time CV of 1.17 classified as unstable \u2014 supplier reliability improvement recommended",
+    "Demand intermittency (CV>1.0) reduces EOQ model precision; monitor actual service levels closely",
+    "Storage capacity verified: 778 + 2147 = 2925 <= 3763.741 (feasible)"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review with EOQ order quantity",
+    "selection_rationale": "Despite intermittent demand, the material has sufficient non-zero frequency (62.6%) and meaningful average demand (332.7/day) to support a standard continuous-review model. The EOQ minimises total annual ordering and holding costs. A Croston-type model was explicitly excluded per instructions; the (r,Q) framework with z-score safety stock is appropriate and conservative.",
+    "boundary_risk": "Storage capacity of 3,763.741 units does not bind (policy total: 2,925 units = 77.7% utilisation). No capacity-driven reduction was required. Risk is low from a storage perspective.",
+    "escalation_flag": "none"
+  }
+}

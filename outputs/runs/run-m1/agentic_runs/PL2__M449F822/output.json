@@ -1,0 +1,92 @@
+{
+  "material_id": "PL2__M449F822",
+  "data_quality": {
+    "total_rows": 95,
+    "working_days": 95,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 1192.14333
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 582.521775368421,
+    "std_daily_demand": 365.76625921550163,
+    "robust_std_daily": 469.2531504818384,
+    "cv_wd": 0.6279014359320209,
+    "non_zero_fraction_wd": 0.8842105263157894,
+    "trend_detected": true,
+    "regime": "variable",
+    "distribution_type": "mixed"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 5.77404255319149,
+    "std_lead_time": 0.9286962801468285,
+    "cv_lead_time": 0.16083987459245683,
+    "stability": "moderate",
+    "effective_lead_time": 5.77404255319149
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1032.0589485545133,
+    "safety_stock": 1698,
+    "safety_stock_robust": 2058
+  },
+  "order_quantity": {
+    "eoq_raw": 9922.122020563971,
+    "order_quantity": 9923
+  },
+  "cost_analysis": {
+    "unit_cost": 2.465425,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.29585100000000003,
+    "previous_policy": {
+      "safety_stock": 0,
+      "order_quantity": 1385,
+      "annual_ordering_cost": 10514.83349040471,
+      "annual_holding_cost": 204.87681750000002,
+      "total_annual_cost": 10719.71030790471
+    },
+    "optimized_policy": {
+      "safety_stock": 1698,
+      "order_quantity": 9923,
+      "annual_ordering_cost": 1467.6049968971606,
+      "annual_holding_cost": 1970.2197345000002,
+      "total_annual_cost": 3437.8247313971606
+    },
+    "savings": {
+      "annual_savings": 7281.88557650755,
+      "savings_percentage": 67.92987279831517
+    }
+  },
+  "policy": {
+    "safety_stock": 1698,
+    "reorder_point": 5062,
+    "order_quantity": 9923,
+    "review_period_days": 18
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.9149124922001155,
+    "sigma_eff_days": 1.7717087878848454,
+    "dominant_factor": "supplier",
+    "dominant_pct": 72.52341632584518,
+    "variance_components": {
+      "transport": 292665.64217356447,
+      "supplier": 772480.0311178832,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "DECREASE",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "INVENTORY OPTIMIZATION ANALYSIS - PL2__M449F822\n\nEXECUTIVE SUMMARY:\nMaterial PL2__M449F822 exhibits variable demand characteristics with mean daily demand of 582.5 units \n(CV=62.79%). Lead time stability is moderate (mean=5.77 days, CV=16.1%).\n\nRECOMMENDED POLICY:\n- Safety Stock: 1698 units (up from SAP's 0)\n- Reorder Point: 5062 units\n- Order Quantity: 9923 units (optimized from MOQ of 1385)\n- Review Period: 18 days\n\nCOST IMPACT:\nThe optimized policy reduces total annual cost by $7281.89 (67.9% savings).\n- Previous policy: $10719.71/year (frequent small orders at MOQ)\n- Optimized policy: $3437.82/year (balanced ordering and holding costs)\n\nKEY FINDINGS:\n1. Demand variability (62.79% CV) requires 1698 units of safety stock to achieve 95% service level\n2. Supplier variance dominates (72.5%) over transport variance in lead time demand uncertainty\n3. Recommended safety lead time is 2.9 days vs. SAP's 4.5 days \u2192 DECREASE\n4. Storage capacity (13219 units) is adequate for optimized policy\n\nRISK ASSESSMENT:\nMEDIUM: Variable demand with some zero periods may benefit from periodic review\n\nIMPLEMENTATION:\nThe EOQ model with Normal approximation is appropriate given the demand characteristics. \nNo capacity constraints violated.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with Normal Approximation",
+    "selection_rationale": "Variable demand pattern (CV=0.63) with moderate lead time stability. Normal approximation appropriate for service level 0.95.",
+    "boundary_risk": "MEDIUM: Variable demand with some zero periods may benefit from periodic review",
+    "escalation_flag": ""
+  }
+}

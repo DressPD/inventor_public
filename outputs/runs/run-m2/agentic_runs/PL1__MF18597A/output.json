@@ -1,0 +1,89 @@
+{
+  "material_id": "PL1__MF18597A",
+  "data_quality": {
+    "total_rows": 133,
+    "working_days": 133,
+    "outliers_detected": 17,
+    "winsorisation": {
+      "lower_bound": 91.74208000000003,
+      "upper_bound": 2578.7687600000004
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1912.117789473684,
+    "std_daily_demand": 427.1166926935608,
+    "robust_std_daily": 203.39937660000038,
+    "cv_wd": 0.22337363056024176,
+    "non_zero_fraction_wd": 0.9849624060150376,
+    "trend_detected": false,
+    "regime": "Moderate",
+    "distribution_type": "Left-skewed"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.8166137566137563,
+    "std_lead_time": 1.185946439193673,
+    "cv_lead_time": 0.42105398243153663,
+    "stability": "Volatile",
+    "effective_lead_time": 4.00256019580743
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 2378.267243109462,
+    "safety_stock": 3911.9015006884765,
+    "safety_stock_robust": 3772.0087249554776
+  },
+  "order_quantity": {
+    "eoq_raw": 8530.914465208918,
+    "order_quantity": 8531
+  },
+  "cost_analysis": {
+    "unit_cost": 8.276258,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.99315096
+  },
+  "policy": {
+    "safety_stock": 3912,
+    "reorder_point": 9298,
+    "order_quantity": 8531,
+    "review_period_days": 4.461545228522863
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.045847553024042,
+    "sigma_eff_days": 1.2437869969109419,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 90.9155408228646,
+    "variance_components": {
+      "transport": 0.0,
+      "supplier": 90.9155408228646,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Analysis for PL1__MF18597A: Moderate demand variability (CV=22.34%) with volatile lead times (CV=42.11%). The optimized policy increases safety stock from 0 to 3912 units to achieve 95% service level, while increasing order quantity from 675 to 8531 units to reduce ordering frequency. This results in annual cost savings of $41,516.79 (77.1% reduction).",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Continuous Review (Q,r)",
+    "selection_rationale": "Standard EOQ with safety stock appropriate for moderate demand variability and volatile lead times",
+    "boundary_risk": "Lead time volatility is high; consider supplier performance improvement initiatives",
+    "escalation_flag": "None"
+  },
+  "previous_policy": {
+    "safety_stock": 0,
+    "safety_lead_time_days": 3.0,
+    "order_quantity": 675,
+    "annual_ordering_cost": 53539.29810526315,
+    "annual_holding_cost": 335.188449,
+    "total_annual_cost": 53874.48655426315
+  },
+  "optimized_policy_costs": {
+    "annual_ordering_cost": 4236.200471345988,
+    "annual_holding_cost": 8121.4919754,
+    "total_annual_cost": 12357.692446745988,
+    "annual_savings": 41516.79410751716,
+    "savings_pct": 77.06206919615067
+  }
+}

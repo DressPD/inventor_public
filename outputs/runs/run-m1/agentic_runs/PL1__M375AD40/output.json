@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__M375AD40",
+  "data_quality": {
+    "total_rows": 129,
+    "working_days": 129,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 1907.173
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 943.59,
+    "std_daily_demand": 355.88,
+    "robust_std_daily": 311.2,
+    "cv_wd": 0.377,
+    "non_zero_fraction_wd": 0.953,
+    "trend_detected": false,
+    "regime": "Smooth",
+    "distribution_type": "negative-binomial"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.71,
+    "std_lead_time": 1.14,
+    "cv_lead_time": 0.42,
+    "stability": "Unstable",
+    "effective_lead_time": 4.59
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1228.0,
+    "safety_stock": 2020.9,
+    "safety_stock_robust": 1764.6
+  },
+  "order_quantity": {
+    "eoq_raw": 4819.3,
+    "order_quantity": 5883
+  },
+  "cost_analysis": {
+    "unit_cost": 8.590476,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.030857
+  },
+  "policy": {
+    "safety_stock": 2021,
+    "reorder_point": 4577,
+    "order_quantity": 5883,
+    "review_period_days": 6
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.14,
+    "sigma_eff_days": 1.21,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 77.0,
+    "variance_components": {
+      "transport": 0.77,
+      "supplier": 0.18,
+      "quality": 0.05
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M375AD40 exhibits smooth, high-volume daily demand (mean 943.6 units/day, CV=0.38) with no statistically significant trend over the observed period. Lead times are highly variable (CV=0.42, mean 2.71 days), and this variability dominates 77% of the total demand-during-lead-time uncertainty, driving a recommended safety stock of 2,021 units. The current SAP policy of zero safety stock is critically insufficient for the 95% service level target. An (r,Q) continuous-review policy with reorder point 4,577 and order quantity 5,883 (EOQ-derived, MOQ=643 satisfied, capacity constraint 17,466 respected) is recommended.",
+  "warnings": [
+    "SAP safety stock is 0 \u2014 critical stockout risk at 95% service level target",
+    "Lead time CV=0.42 indicates high supplier lead time instability",
+    "4 zero-demand days detected \u2014 may indicate data gaps or shutdowns"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review reorder-point policy",
+    "selection_rationale": "Smooth, high-volume demand with no trend makes a continuous-review (r,Q) model optimal. The EOQ formula provides an economically efficient order quantity, while the reorder point with safety stock buffers the dominant lead-time variability. The MOQ of 643 units is comfortably below the EOQ of 4,819, so no MOQ conflict exists.",
+    "boundary_risk": "Capacity constraint of 17,466 units is not binding: SS(2021) + OQ(5883) = 7,904, well within limit. If demand shifts upward or safety stock is increased, the 17,466 cap should be monitored.",
+    "escalation_flag": "none"
+  }
+}

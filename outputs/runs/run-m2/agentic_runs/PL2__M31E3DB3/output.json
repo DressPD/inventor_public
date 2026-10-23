@@ -1,0 +1,78 @@
+{
+  "material_id": "PL2__M31E3DB3",
+  "data_quality": {
+    "total_rows": 96,
+    "working_days": 96,
+    "outliers_detected": 15,
+    "winsorisation": {
+      "lower_bound": 7209.429,
+      "upper_bound": 27043.533
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 19647.93,
+    "std_daily_demand": 4692.24,
+    "robust_std_daily": 2737.28,
+    "cv_wd": 0.2388,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "smooth",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.55,
+    "std_lead_time": 1.28,
+    "cv_lead_time": 0.5013,
+    "stability": "unstable",
+    "effective_lead_time": 3.83
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 26206.35,
+    "safety_stock": 43106.0,
+    "safety_stock_robust": 41928.0
+  },
+  "order_quantity": {
+    "eoq_raw": 293052.63,
+    "order_quantity": 293053
+  },
+  "cost_analysis": {
+    "unit_cost": 0.071495,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.008579
+  },
+  "policy": {
+    "safety_stock": 43106,
+    "reorder_point": 118312,
+    "order_quantity": 293053,
+    "review_period_days": 15
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.19,
+    "sigma_eff_days": 1.28,
+    "dominant_factor": "transport",
+    "dominant_pct": 0.7,
+    "variance_components": {
+      "transport": 0.7,
+      "supplier": 0.2,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "REDUCE",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL2__M31E3DB3 shows smooth, normally distributed daily demand averaging 19,648 units with a CV of 0.24 and no statistically significant trend over the observation period. Lead times are highly unstable (CV=0.50), driven primarily by transport variability across three clusters, warranting a robust safety buffer. An (r,Q) continuous-review policy with EOQ-based order quantity of 293,053 units and a 43,106-unit safety stock achieves the 95% service level at minimal holding cost, while the current SAP zero-safety-stock setting is structurally insufficient.",
+  "warnings": [
+    "15 demand observations flagged as outliers (winsorised at IQR bounds); likely reflect partial-day or batch-entry records.",
+    "Lead time CV of 0.5013 exceeds unstable threshold; dominant driver is transport variance at 70%.",
+    "SAP safety stock is currently 0, providing no protection against demand or lead time variability."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) continuous-review reorder-point / fixed-order-quantity",
+    "selection_rationale": "Demand is smooth and near-normally distributed with continuous non-zero flow, making a continuous-review (r,Q) policy optimal. The EOQ balances ordering and holding costs, the reorder point embeds lead-time uncertainty, and the policy maps directly to SAP MRP reorder-point materials.",
+    "boundary_risk": "No capacity constraint binds: SS (43,106) + Q (293,053) = 336,159 units, which is 71.4% of the 470,820-unit storage limit. Ample headroom exists.",
+    "escalation_flag": "none"
+  }
+}

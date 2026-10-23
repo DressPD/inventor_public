@@ -1,0 +1,77 @@
+{
+  "material_id": "PL1__M4021F19",
+  "data_quality": {
+    "total_rows": 87,
+    "working_days": 87,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": -8805.084749999998,
+      "upper_bound": 24459.22125
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 8849.656436781608,
+    "std_daily_demand": 7724.640968110739,
+    "robust_std_daily": 6164.623054114159,
+    "cv_wd": 0.8728746729652695,
+    "non_zero_fraction_wd": 0.9655172413793104,
+    "trend_detected": true,
+    "regime": "erratic",
+    "distribution_type": "non_normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.135,
+    "std_lead_time": 1.1338416727107494,
+    "cv_lead_time": 0.531073383002693,
+    "stability": "volatile",
+    "effective_lead_time": 2.135
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 15102.283446532623,
+    "safety_stock": 24842,
+    "safety_stock_robust": 22180
+  },
+  "order_quantity": {
+    "eoq_raw": 272397.2341745948,
+    "order_quantity": 272398
+  },
+  "cost_analysis": {
+    "unit_cost": 0.037271,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.00447252
+  },
+  "policy": {
+    "safety_stock": 24842,
+    "reorder_point": 43737,
+    "order_quantity": 272398,
+    "review_period_days": 31
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.706538954864211,
+    "sigma_eff_days": 1.706538954864211,
+    "dominant_factor": "demand_variability",
+    "dominant_pct": 55.85592540146285,
+    "variance_components": {
+      "transport": 0.0,
+      "supplier": 44.144074598537145,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "review_recommended",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M4021F19 exhibits erratic demand (CV=0.87) with a statistically significant declining trend, combined with volatile lead times (CV=0.53, mean 2.14 days). The current SAP policy carries zero safety stock, creating material stockout exposure at the 95% service level. A hybrid (r,Q) policy is recommended: safety stock of 24,842 units (z=1.645 \u00d7 \u03c3_LTD=15,102) protects against combined demand and lead time uncertainty, while an EOQ-driven order quantity of 272,398 units reduces annual ordering cost from $1,654 to $609, yielding a net annual saving of $548 (29.2%). The policy is feasible within the 521,912-unit storage capacity constraint.",
+  "warnings": [
+    "Volatile lead time detected (CV > 0.5)",
+    "Significant demand trend detected - consider dynamic forecasting"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "hybrid_buffer_eoq",
+    "selection_rationale": "Erratic demand (CV=0.87) with volatile lead times requires robust z-score safety stock buffering combined with EOQ replenishment to balance holding and ordering costs efficiently. A continuous-review (r,Q) policy is appropriate given the non-intermittent, high-variability demand pattern.",
+    "boundary_risk": "Medium \u2014 the capacity constraint (521,912 units) is not binding at the recommended policy (SS+OQ=297,240), but if demand trend reverses upward, safety stock recalculation may approach capacity. Recommend annual policy review.",
+    "escalation_flag": "none"
+  }
+}

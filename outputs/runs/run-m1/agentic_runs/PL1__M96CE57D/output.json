@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__M96CE57D",
+  "data_quality": {
+    "total_rows": 141,
+    "working_days": 141,
+    "outliers_detected": 42,
+    "winsorisation": {
+      "lower_bound": 2.0,
+      "upper_bound": 728.059
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 427.1,
+    "std_daily_demand": 188.7,
+    "robust_std_daily": 171.4,
+    "cv_wd": 0.442,
+    "non_zero_fraction_wd": 0.949,
+    "trend_detected": false,
+    "regime": "smooth",
+    "distribution_type": "right-skewed"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 3.89,
+    "std_lead_time": 1.12,
+    "cv_lead_time": 0.288,
+    "stability": "stable",
+    "effective_lead_time": 5.01
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 797.6,
+    "safety_stock": 1312.0,
+    "safety_stock_robust": 1197.0
+  },
+  "order_quantity": {
+    "eoq_raw": 2487.3,
+    "order_quantity": 2370
+  },
+  "cost_analysis": {
+    "unit_cost": 7.290421,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.87485
+  },
+  "policy": {
+    "safety_stock": 1312,
+    "reorder_point": 3733,
+    "order_quantity": 2370,
+    "review_period_days": 6
+  },
+  "safety_lead_time": {
+    "recommended_days": 3.07,
+    "sigma_eff_days": 1.867,
+    "dominant_factor": "transport",
+    "dominant_pct": 50.0,
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.4,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M96CE57D shows smooth, high-frequency demand averaging 427 units/day with moderate variability (CV=0.44) and a 95% non-zero rate, confirming near-continuous consumption. Lead times are stable (mean 3.89 days, CV=0.29) after removal of two clearly erroneous ERP entries exceeding 9,000 days. An (r,Q) continuous-review policy with EOQ-derived order quantity of 2,370 units and a safety stock of 1,312 units meets the 95% service level target. The storage capacity constraint (3,682 units) is fully binding and caps the order quantity below the unconstrained EOQ.",
+  "warnings": [
+    "Storage capacity is fully utilised: safety_stock (1312) + order_quantity (2370) = 3682 == max_storage_units (3682.3). No headroom remains.",
+    "2 extreme lead time outliers removed (9201.55, 9327.37 days) prior to statistical analysis.",
+    "Order quantity capped by storage constraint from unconstrained EOQ of 2487 to 2370."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) Continuous Review \u2014 Fixed Order Quantity (EOQ-based)",
+    "selection_rationale": "Smooth demand with 95% non-zero days and stable lead times (CV=0.29) satisfies the classical assumptions for a continuous-review (r,Q) policy. EOQ minimises the sum of ordering and holding costs; the reorder point with z=1.645 safety stock provides the target 95% cycle service level.",
+    "boundary_risk": "Storage capacity is fully saturated at 3,682 units. The capacity constraint reduced the order quantity from the unconstrained EOQ of 2,487 to 2,370 units, slightly increasing ordering frequency and cost. Any future increase in safety stock requirements (e.g., from higher service level targets or greater demand variability) would require a physical capacity expansion or reallocation.",
+    "escalation_flag": "none"
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "material_id": "PL1__M3883975",
+  "data_quality": {
+    "total_rows": 169,
+    "working_days": 169,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 649.4781999999997
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 125.57850532544377,
+    "std_daily_demand": 170.19340594505454,
+    "robust_std_daily": 162.63528539659006,
+    "cv_wd": 1.3552749772263075,
+    "non_zero_fraction_wd": 0.5384615384615384,
+    "trend_detected": false,
+    "regime": "intermittent",
+    "distribution_type": "negative_binomial"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.7431746031746036,
+    "std_lead_time": 1.6364771618571652,
+    "cv_lead_time": 0.9387913057457784,
+    "stability": "unstable",
+    "effective_lead_time": 1.7431746031746036
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 304.50829430369066,
+    "safety_stock": 501,
+    "safety_stock_robust": 489
+  },
+  "order_quantity": {
+    "eoq_raw": 1673.5045238318014,
+    "order_quantity": 1674
+  },
+  "cost_analysis": {
+    "unit_cost": 9.341579,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.12098948,
+    "sap_policy": {
+      "safety_stock": 171,
+      "order_quantity": 308,
+      "average_inventory": 325.0,
+      "annual_ordering_cost": 5096.530248597555,
+      "annual_holding_cost": 364.321581,
+      "total_annual_cost": 5460.8518295975555
+    },
+    "optimized_policy": {
+      "safety_stock": 501,
+      "order_quantity": 1674,
+      "average_inventory": 1338.0,
+      "annual_ordering_cost": 937.7128533859301,
+      "annual_holding_cost": 1499.88392424,
+      "total_annual_cost": 2437.59677762593
+    },
+    "total_savings": 3023.2550519716256,
+    "savings_percentage": 55.36233441796988
+  },
+  "policy": {
+    "safety_stock": 501,
+    "reorder_point": 720,
+    "order_quantity": 1674,
+    "review_period_days": 14
+  },
+  "safety_lead_time": {
+    "recommended_days": 3.9895362562377237,
+    "sigma_eff_days": 2.4248440727538543,
+    "dominant_factor": "transport_variability",
+    "dominant_pct": 50.0,
+    "variance_components": {
+      "transport": 1.3390287506400411,
+      "supplier": 0.8034172503840247,
+      "quality": 0.5356115002560164
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "INCREASE",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M3883975 exhibits intermittent demand (53.8% non-zero days) with a high CV of 1.36, indicating highly variable burst consumption patterns. Lead times are unstable (CV=0.94, mean=1.74 days), which jointly with demand variability drives a required safety stock of 501 units \u2014 nearly 3x the current SAP level of 171. The EOQ of 1,674 units is 5.4x the current order quantity, collapsing annual orders from 102 to 19 and delivering 55% total cost savings. The (r,Q) continuous-review policy is selected as it best handles the stochastic demand and lead time combination while respecting the MOQ and storage constraints.",
+  "warnings": [
+    "High demand variability detected (CV=1.36). Consider periodic review.",
+    "Lead time is unstable (CV=0.94). Consider supplier evaluation.",
+    "Recommended safety stock (501) is more than 2x current SAP level (171)"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with stochastic demand and lead time \u2014 (r,Q) continuous-review",
+    "selection_rationale": "Intermittent demand pattern with CV=1.36 and unstable lead time (CV=0.94) requires a continuous-review (r,Q) policy with combined demand-leadtime safety stock formula capturing both variance sources.",
+    "boundary_risk": "High demand variability and lead time uncertainty create elevated stockout risk without adequate buffers. Current SAP safety stock of 171 is insufficient for 95% service level.",
+    "escalation_flag": "none"
+  }
+}

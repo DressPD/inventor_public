@@ -1,0 +1,76 @@
+{
+  "material_id": "PL3__M27982FE",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 1079.0295799999992
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 173.14694736842105,
+    "std_daily_demand": 270.9517136520528,
+    "robust_std_daily": 183.94736842105263,
+    "cv_wd": 1.5648656691331861,
+    "non_zero_fraction_wd": 0.6754385964912281,
+    "trend_detected": true,
+    "regime": "erratic",
+    "distribution_type": "lognormal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 3.002,
+    "std_lead_time": 1.1575133871274708,
+    "cv_lead_time": 0.38558074188123614,
+    "stability": "variable",
+    "effective_lead_time": 3.5807566935637354
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 510.4502553500189,
+    "safety_stock": 840,
+    "safety_stock_robust": 620
+  },
+  "order_quantity": {
+    "eoq_raw": 4987.922224957726,
+    "order_quantity": 4988
+  },
+  "cost_analysis": {
+    "unit_cost": 2.174831,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.26097972
+  },
+  "policy": {
+    "safety_stock": 840,
+    "reorder_point": 1360,
+    "order_quantity": 4988,
+    "review_period_days": 29
+  },
+  "safety_lead_time": {
+    "recommended_days": 0.0066851504154128725,
+    "sigma_eff_days": 1.1575133871274708,
+    "dominant_factor": "demand_variability",
+    "dominant_pct": 84.58388743959267,
+    "variance_components": {
+      "transport": 40168.140131685504,
+      "supplier": 0.0,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "implement_safety_lead_time",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization completed for PL3__M27982FE. \nDemand regime: erratic with lognormal distribution (CV=1.56).\nMean daily demand: 173.15 units, lead time: 3.00 days (stability: variable).\nRecommended safety stock: 840 units to achieve 95% service level.\nOrder quantity: 4988 units (EOQ-based), reorder point: 1360 units.\nReview period: 29 days.\nCapacity utilization: 18.7% of max storage.\nCost impact: increase of $219.22 annually vs SAP baseline.",
+  "warnings": [
+    "Recommended policy increases cost by $219.22 vs SAP baseline due to safety stock investment"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Normal approximation with service level optimization",
+    "selection_rationale": "Regime=erratic, CV=1.56. Normal approximation valid for lognormal demand with moderate CV.",
+    "boundary_risk": "High variability (CV>1) may require intermittent demand models",
+    "escalation_flag": "REVIEW"
+  }
+}

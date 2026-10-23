@@ -1,0 +1,74 @@
+{
+  "material_id": "PL1__M90E32FE",
+  "data_quality": {
+    "total_rows": 168,
+    "working_days": 168,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 325.14959000000044
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 99.10734630952382,
+    "std_daily_demand": 103.67590917401155,
+    "robust_std_daily": 92.8100187,
+    "cv_wd": 1.0460971162543247,
+    "non_zero_fraction_wd": 0.5595238095238095,
+    "trend_detected": true,
+    "regime": "intermittent",
+    "distribution_type": "empirical_normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.6882608695652174,
+    "std_lead_time": 0.7123817424917438,
+    "cv_lead_time": 1.0350461198553447,
+    "stability": "unstable",
+    "effective_lead_time": 1.0444517408110894
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 111.27706532644709,
+    "safety_stock": 184,
+    "safety_stock_robust": 172
+  },
+  "order_quantity": {
+    "eoq_raw": 1859.8158621115747,
+    "order_quantity": 1860
+  },
+  "cost_analysis": {
+    "unit_cost": 5.969318,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.71631816
+  },
+  "policy": {
+    "safety_stock": 184,
+    "reorder_point": 288,
+    "order_quantity": 1860,
+    "review_period_days": 19
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.8565727653058786,
+    "sigma_eff_days": 1.1227933091752433,
+    "dominant_factor": "transport",
+    "dominant_pct": 0.5,
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.3,
+      "quality": 0.2
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M90E32FE exhibits intermittent demand with 56% non-zero days and CV=1.05. Mean daily demand is 99.1 units with std=103.7. Lead time is unstable (mean=0.69 days, CV=1.04). The optimized policy recommends a safety stock of 184 units (matching SAP's 184) and order quantity of 1860 units based on EOQ optimization. The reorder point is 288 units, triggering orders approximately every 19 days. The recommended safety lead time is 1.86 days, suggesting we can reduce from SAP's current 3.0 days. The optimized policy aligns with current SAP settings, maintaining total annual cost of $1464.02. ",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with stochastic lead time and demand",
+    "selection_rationale": "Selected standard EOQ model given intermittent demand pattern with CV=1.05. Lead time variability (CV=1.04) is unstable, justifying stochastic safety stock approach. Intermittent demand approaches Croston/SBA boundary; monitor closely. ",
+    "boundary_risk": "high",
+    "escalation_flag": "yes"
+  }
+}

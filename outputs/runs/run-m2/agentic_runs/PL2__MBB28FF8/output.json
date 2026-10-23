@@ -1,0 +1,78 @@
+{
+  "material_id": "PL2__MBB28FF8",
+  "data_quality": {
+    "total_rows": 186,
+    "working_days": 186,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 4256.244
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 2242.18,
+    "std_daily_demand": 939.42,
+    "robust_std_daily": 626.31,
+    "cv_wd": 0.419,
+    "non_zero_fraction_wd": 0.962,
+    "trend_detected": false,
+    "regime": "erratic",
+    "distribution_type": "log-normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.631,
+    "std_lead_time": 0.739,
+    "cv_lead_time": 1.171,
+    "stability": "unstable",
+    "effective_lead_time": 1.37
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1937.45,
+    "safety_stock": 3186,
+    "safety_stock_robust": 1202
+  },
+  "order_quantity": {
+    "eoq_raw": 83447.2,
+    "order_quantity": 21638
+  },
+  "cost_analysis": {
+    "unit_cost": 0.715077,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.08581
+  },
+  "policy": {
+    "safety_stock": 3186,
+    "reorder_point": 6479,
+    "order_quantity": 21638,
+    "review_period_days": 10
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.42,
+    "sigma_eff_days": 0.863,
+    "dominant_factor": "transport",
+    "dominant_pct": 50.0,
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.35,
+      "quality": 0.15
+    },
+    "disruption_premium": 1.117,
+    "comparison_action": "REDUCE",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL2__MBB28FF8 shows erratic daily demand averaging 2,242 units (CV=41.9%) with no statistically significant trend over the observation window. Lead times are highly unstable (CV=117%), clustering near zero but with occasional spikes to ~3 days. The current SAP policy carries zero safety stock, creating substantial stockout risk; the recommended (r,Q) continuous-review policy introduces a 3,186-unit safety stock to achieve 95% service level, with replenishments triggered at 6,479 units and capped at 21,638 units per order due to storage constraints.",
+  "warnings": [
+    "Storage capacity constraint binds: unconstrained EOQ (83,447) far exceeds available storage; order quantity capped at 21,638 units.",
+    "SAP safety lead time (4.0 days) significantly exceeds data-supported value (1.42 days) \u2014 recommend reduction.",
+    "Lead time CV = 117.1% \u2014 highly unstable supply; monitor supplier performance closely."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) Continuous Review",
+    "selection_rationale": "Erratic demand with unstable lead times makes a fixed-reorder-point continuous-review policy optimal. Periodic review would accumulate unacceptable risk between cycles given the high demand variability and frequent near-zero lead times punctuated by multi-day spikes.",
+    "boundary_risk": "Storage capacity is fully utilised at the recommended policy (SS+OQ = 24,824 units vs limit 24,824.49). Any upward revision to safety stock or order quantity is infeasible without capacity expansion. At peak demand periods, service level may slightly underperform the 95% target.",
+    "escalation_flag": "None \u2014 MOQ (983) + safety_stock (3,186) = 4,169 which is well below max_storage_units (24,824). No MOQ-capacity conflict exists."
+  }
+}

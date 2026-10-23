@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__MA783317",
+  "data_quality": {
+    "total_rows": 209,
+    "working_days": 209,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 750.332
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 321.17,
+    "std_daily_demand": 215.36,
+    "robust_std_daily": 198.42,
+    "cv_wd": 0.67,
+    "non_zero_fraction_wd": 0.874,
+    "trend_detected": false,
+    "regime": "variable",
+    "distribution_type": "approximately normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.563,
+    "std_lead_time": 1.068,
+    "cv_lead_time": 0.683,
+    "stability": "unstable",
+    "effective_lead_time": 2.631
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 346.21,
+    "safety_stock": 570.0,
+    "safety_stock_robust": 541.0
+  },
+  "order_quantity": {
+    "eoq_raw": 3256.4,
+    "order_quantity": 3148
+  },
+  "cost_analysis": {
+    "unit_cost": 7.857451,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.9429
+  },
+  "policy": {
+    "safety_stock": 570,
+    "reorder_point": 1295,
+    "order_quantity": 3148,
+    "review_period_days": 10
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.26,
+    "sigma_eff_days": 1.373,
+    "dominant_factor": "transport",
+    "dominant_pct": 67.8,
+    "variance_components": {
+      "transport": 0.678,
+      "supplier": 0.322,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MA783317 exhibits variable but largely continuous demand averaging 321 units per working day (CV=0.67) with no statistically significant trend over the observed period March 2025 to March 2026. Lead times are unstable (CV=0.68, mean 1.56 days) and constitute the dominant source of buffer variance, driving safety stock requirements significantly above the current SAP setting of 208 units. An (r,Q) continuous-review policy is recommended, with a reorder point of 1,295 units and EOQ-derived order quantity of 3,148 units (capacity-constrained), ensuring 95% service level at a modest incremental annual cost.",
+  "warnings": [
+    "Safety stock increased substantially from SAP baseline (208) to recommended (570) \u2014 review with planning team before activation.",
+    "Order quantity capped at 3,148 due to storage capacity constraint (max_storage_units=3,718.313); unconstrained EOQ was 3,256.",
+    "Lead time CV=0.68 classifies as unstable \u2014 monitor supplier performance closely."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) continuous-review reorder-point / fixed-order-quantity",
+    "selection_rationale": "Continuous demand with high daily volumes and unstable lead times favours continuous-review over periodic-review. The (r,Q) model minimises total annual cost (ordering + holding) via EOQ while providing a statistically grounded reorder point that absorbs both demand and lead-time variability at the 95% service level.",
+    "boundary_risk": "Storage capacity binds: safety_stock(570) + order_quantity(3148) = 3718 units, just within the 3718.313 unit limit. Any upward revision of safety stock (e.g., to the robust estimate of 541+buffer) would require a corresponding reduction in order quantity, increasing ordering frequency and annual ordering cost.",
+    "escalation_flag": "none"
+  }
+}

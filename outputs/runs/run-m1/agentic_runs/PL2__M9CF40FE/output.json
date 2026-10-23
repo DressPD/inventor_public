@@ -1,0 +1,88 @@
+{
+  "material_id": "PL2__M9CF40FE",
+  "input_parameters": {
+    "unit_cost": 0.282671,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 50.0,
+    "minimum_order_quantity": 3696,
+    "service_level_target": 0.95,
+    "sap_safety_stock": 0,
+    "sap_safety_lead_time_days": 3.5,
+    "max_storage_units": 43281.756
+  },
+  "data_quality": {
+    "total_rows": 141,
+    "working_days": 141,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 7249.92
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 4027.73,
+    "std_daily_demand": 1731.44,
+    "robust_std_daily": 1682.98,
+    "cv_wd": 0.4299,
+    "non_zero_fraction_wd": 0.9645,
+    "trend_detected": false,
+    "regime": "variable",
+    "distribution_type": "empirical-gamma"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.1822,
+    "std_lead_time": 1.0297,
+    "cv_lead_time": 0.871,
+    "stability": "volatile",
+    "effective_lead_time": 2.2119
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 4554.66,
+    "safety_stock": 7492.0,
+    "safety_stock_robust": 7457.0
+  },
+  "order_quantity": {
+    "eoq_raw": 54483.99,
+    "order_quantity": 35789
+  },
+  "cost_analysis": {
+    "unit_cost": 0.282671,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.033921
+  },
+  "policy": {
+    "safety_stock": 7492,
+    "reorder_point": 12254,
+    "order_quantity": 35789,
+    "review_period_days": 9
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.7,
+    "sigma_eff_days": 1.0297,
+    "dominant_factor": "transport",
+    "dominant_pct": 78.1,
+    "variance_components": {
+      "transport": 0.3817,
+      "supplier": 0.0954,
+      "quality": 0.0106
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease by 1.8 days vs SAP value of 3.5",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL2__M9CF40FE exhibits variable demand (CV=0.43) with a flat trend across 141 working days and an annual volume of ~1M units. Lead times are highly volatile (CV=0.87, range 0.03\u20132.95 days), making safety stock the dominant buffer component. A continuous-review (r,Q) policy was selected: the EOQ of 54,484 units is capacity-capped to 35,789, and a safety stock of 7,492 units is required to achieve the 95% service level. This policy reduces total annual inventory cost by 83% versus the current SAP MOQ-only baseline.",
+  "warnings": [
+    "Volatile lead time (CV=0.87) \u2014 supplier delivery consistency requires active monitoring",
+    "SAP safety stock is currently 0 \u2014 high stockout risk under current ERP configuration",
+    "Storage capacity constraint is active \u2014 EOQ capped from 54,484 to 35,789 units"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review policy",
+    "selection_rationale": "Variable but non-intermittent demand (CV=0.43, 96.5% non-zero days) with known unit cost and holding rate makes EOQ-based (r,Q) the canonical choice. Continuous review is appropriate given the high lead time volatility requiring prompt reorder triggering.",
+    "boundary_risk": "Storage cap binds: unconstrained EOQ of 54,484 reduced to 35,789. This increases ordering frequency (~28 vs ~18 orders/year) and raises annual ordering cost slightly, but total cost remains 83% below SAP baseline. If storage capacity increases, order quantity should be revisited toward the unconstrained EOQ.",
+    "escalation_flag": "none \u2014 MOQ (3,696) + safety stock (7,492) = 11,188 units, well within the 43,282-unit storage limit. No infeasibility conflict."
+  }
+}

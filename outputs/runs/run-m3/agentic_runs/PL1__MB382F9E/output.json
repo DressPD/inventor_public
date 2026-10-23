@@ -1,0 +1,94 @@
+{
+  "material_id": "PL1__MB382F9E",
+  "data_quality": {
+    "total_rows": 132,
+    "working_days": 132,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 504.05493999999993
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 190.74745454545456,
+    "std_daily_demand": 130.34895314807653,
+    "robust_std_daily": 150.70126019273536,
+    "cv_wd": 0.6833588078996606,
+    "non_zero_fraction_wd": 0.7803030303030303,
+    "trend_detected": true,
+    "regime": "variable",
+    "distribution_type": "gamma-like"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.896521739130435,
+    "std_lead_time": 1.2287876953542005,
+    "cv_lead_time": 0.42422871499769754,
+    "stability": "unstable",
+    "effective_lead_time": 4.1253094344846355
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 322.72613523887753,
+    "safety_stock": 531,
+    "safety_stock_robust": 572
+  },
+  "order_quantity": {
+    "eoq_raw": 2404.566462493268,
+    "order_quantity": 2368
+  },
+  "cost_analysis": {
+    "unit_cost": 10.309443,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.23713316,
+    "previous_policy": {
+      "safety_stock": 100,
+      "order_quantity": 240,
+      "avg_inventory": 220.0,
+      "annual_holding_cost": 272.16929519999997,
+      "annual_ordering_cost": 14902.144886363638,
+      "total_annual_cost": 15174.314181563637
+    },
+    "optimized_policy": {
+      "safety_stock": 531,
+      "order_quantity": 2368,
+      "avg_inventory": 1715.0,
+      "annual_holding_cost": 2121.6833694,
+      "annual_ordering_cost": 1510.3525222665849,
+      "total_annual_cost": 3632.035891666585
+    },
+    "savings": {
+      "annual_cost_reduction": 11542.278289897053,
+      "savings_percentage": 76.06457960334441
+    }
+  },
+  "policy": {
+    "safety_stock": 531,
+    "reorder_point": 1318,
+    "order_quantity": 2368,
+    "review_period_days": 13
+  },
+  "safety_lead_time": {
+    "recommended_days": 0.5,
+    "sigma_eff_days": 1.2287876953542005,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 0.9059515201523325,
+      "supplier": 0.45297576007616625,
+      "quality": 0.15099192002538875
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization completed for PL1__MB382F9E. The material exhibits variable demand with gamma-like distribution. Lead time stability is unstable. Optimized policy recommends safety stock of 531 units and order quantity of 2368 units, resulting in annual cost savings of $11542.28 (76.1%).",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with stochastic demand and lead time",
+    "selection_rationale": "Material has variable demand pattern with CV=0.68 and unstable lead time (CV=0.42). Classical EOQ approach with safety stock based on lead time demand variability.",
+    "boundary_risk": "Low - demand and lead time patterns are within normal operating ranges",
+    "escalation_flag": ""
+  }
+}

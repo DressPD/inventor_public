@@ -1,0 +1,79 @@
+{
+  "material_id": "PL2__M4A82400",
+  "data_quality": {
+    "total_rows": 241,
+    "working_days": 241,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 276831.32559999963
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 66469.6552979253,
+    "std_daily_demand": 66228.86663694752,
+    "robust_std_daily": 92246.76649369905,
+    "cv_wd": 0.9963774648762878,
+    "non_zero_fraction_wd": 0.7385892116182573,
+    "trend_detected": false,
+    "regime": "erratic",
+    "distribution_type": "gamma"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.4421002682926829,
+    "std_lead_time": 0.4710064527444252,
+    "cv_lead_time": 1.0653837749598596,
+    "stability": "unstable",
+    "effective_lead_time": 0.9131067210371081
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 54030.88058568673,
+    "safety_stock": 88873.0,
+    "safety_stock_robust": 113271.0
+  },
+  "order_quantity": {
+    "eoq_raw": 40688.80583609678,
+    "order_quantity": 40689
+  },
+  "cost_analysis": {
+    "unit_cost": 8.364352,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.00372224
+  },
+  "policy": {
+    "safety_stock": 88873,
+    "reorder_point": 149567,
+    "order_quantity": 40689,
+    "review_period_days": 1
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.3370461995275906,
+    "sigma_eff_days": 0.4710064527444252,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 0.13310824711613187,
+      "supplier": 0.06655412355806593,
+      "quality": 0.022184707852688647
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease_significantly",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL2__M4A82400 exhibits erratic demand with CV=1.00 across 241 working days, with 73.9% of days recording positive demand. Lead times are extremely short on average (0.44 days) but highly unstable (CV=1.07). The (r,Q) continuous-review policy is recommended: a safety stock of 88,873 units provides the 95% service level target, while the EOQ-derived order quantity of 40,689 units (above the 28,031 MOQ) balances ordering and holding costs. Storage capacity is ample at only 10.9% utilisation.",
+  "warnings": [
+    "3 outliers detected and winsorized at 99th percentile",
+    "High demand variability (CV=1.00) \u2014 consider advanced forecasting methods",
+    "Unstable lead times (CV=1.07) \u2014 consider supplier development or lead-time contracts",
+    "Optimised policy has higher total annual cost (+$86,335) due to safety stock investment required for 95% service level; trade-off is explicit and justified"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) continuous-review reorder-point policy with EOQ",
+    "selection_rationale": "Erratic demand (CV=1.00, 74% active days) with very short but unstable lead times suits a continuous-review (r,Q) policy. The combined-variance safety stock formula captures both demand and lead-time uncertainty. EOQ exceeds MOQ so no MOQ constraint binds. Gamma distribution approximation is consistent with right-skewed, non-negative demand.",
+    "boundary_risk": "CV close to 1.0 with lead-time instability means safety stock could be understated in extreme disruption scenarios. Robust IQR-based safety stock (113,271 units) provides an upper bound and should be considered if service level breaches are costly. Storage capacity is not a binding constraint.",
+    "escalation_flag": "none"
+  }
+}

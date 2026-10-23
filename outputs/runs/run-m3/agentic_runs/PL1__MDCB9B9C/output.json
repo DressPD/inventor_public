@@ -1,0 +1,74 @@
+{
+  "material_id": "PL1__MDCB9B9C",
+  "data_quality": {
+    "total_rows": 140,
+    "working_days": 140,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 1415.61
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 766.55,
+    "std_daily_demand": 373.38,
+    "robust_std_daily": 348.54,
+    "cv_wd": 0.4871,
+    "non_zero_fraction_wd": 0.9786,
+    "trend_detected": true,
+    "regime": "smooth",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 4.05,
+    "std_lead_time": 1.51,
+    "cv_lead_time": 0.3722,
+    "stability": "moderate",
+    "effective_lead_time": 5.55
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1377.01,
+    "safety_stock": 2265,
+    "safety_stock_robust": 2222
+  },
+  "order_quantity": {
+    "eoq_raw": 46997.55,
+    "order_quantity": 9400
+  },
+  "cost_analysis": {
+    "unit_cost": 0.144604,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.0174
+  },
+  "policy": {
+    "safety_stock": 2265,
+    "reorder_point": 5367,
+    "order_quantity": 9400,
+    "review_period_days": 13
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.48,
+    "sigma_eff_days": 1.51,
+    "dominant_factor": "transport",
+    "dominant_pct": 50.0,
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.4,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__MDCB9B9C exhibits a smooth demand pattern with a coefficient of variation of 0.49 and 97.9% non-zero demand days, following a normal distribution. Lead time shows moderate stability (CV=0.37) with a mean of 4.05 days. The optimized policy recommends increasing safety stock from 539 to 2265 units and order quantity from 2589 to 9400 units, resulting in 70.9% cost savings ($5274.27 annually) while maintaining the 95.0% service level. The capacity-constrained order quantity of 9400 units, combined with safety stock of 2265 units, totals 11665 units, which is within the maximum storage limit of 11666 units.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) continuous-review fixed-order-quantity",
+    "selection_rationale": "Smooth near-continuous demand with CV=0.49 and 97.9% non-zero days is well-suited to a continuous-review (r,Q) policy. The EOQ balances ordering and holding costs; the reorder point provides statistically derived protection at the 95% service level.",
+    "boundary_risk": "Storage capacity is binding: unconstrained EOQ of 46,998 is capped to 9,400 by the 11,665.51-unit storage limit. This increases ordering frequency vs. unconstrained optimum but still yields 70.9% cost reduction over current SAP policy.",
+    "escalation_flag": "none"
+  }
+}

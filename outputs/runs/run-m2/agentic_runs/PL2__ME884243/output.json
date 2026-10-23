@@ -1,0 +1,74 @@
+{
+  "material_id": "PL2__ME884243",
+  "data_quality": {
+    "total_rows": 93,
+    "working_days": 93,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": 8.95,
+      "upper_bound": 9427.12
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1767.25,
+    "std_daily_demand": 2485.24,
+    "robust_std_daily": 1803.04,
+    "cv_wd": 1.4063,
+    "non_zero_fraction_wd": 0.4624,
+    "trend_detected": false,
+    "regime": "intermittent",
+    "distribution_type": "intermittent-lognormal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.21,
+    "std_lead_time": 0.8,
+    "cv_lead_time": 0.6655,
+    "stability": "unstable",
+    "effective_lead_time": 1.61
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 3080.69,
+    "safety_stock": 5068.0,
+    "safety_stock_robust": 4014.0
+  },
+  "order_quantity": {
+    "eoq_raw": 11352.59,
+    "order_quantity": 11353
+  },
+  "cost_analysis": {
+    "unit_cost": 2.970989,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.35652
+  },
+  "policy": {
+    "safety_stock": 5068,
+    "reorder_point": 7205,
+    "order_quantity": 11353,
+    "review_period_days": 7
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.87,
+    "sigma_eff_days": 0.0,
+    "dominant_factor": "transport",
+    "dominant_pct": 50.0,
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.4,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL2__ME884243 exhibits an intermittent demand pattern with approximately 46% of working days showing activity. Demand volatility (CV=1.41) combined with unstable lead times (CV=0.67) necessitates elevated safety stock to maintain 95% service levels. The optimised policy increases safety stock from 0 to 5,068 units to mitigate supply-demand variability, while the EOQ-based order quantity of 11,353 units balances ordering frequency against holding costs.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous review",
+    "selection_rationale": "Selected based on intermittent demand pattern. Continuous review with fixed order quantity provides responsive replenishment while minimising monitoring overhead for this material. MOQ of 4,032 is satisfied by EOQ of 11,353.",
+    "boundary_risk": "Low: Sufficient storage capacity available. Post-replenishment stock (16,421 units) is well within the 35,091-unit storage limit.",
+    "escalation_flag": "none"
+  }
+}

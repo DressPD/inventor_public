@@ -1,0 +1,78 @@
+{
+  "material_id": "PL3__MDAB776E",
+  "data_quality": {
+    "total_rows": 222,
+    "working_days": 222,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 669.912
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 277.93,
+    "std_daily_demand": 175.82,
+    "robust_std_daily": 129.47,
+    "cv_wd": 0.3902,
+    "non_zero_fraction_wd": 0.7928,
+    "trend_detected": false,
+    "regime": "moderately_variable",
+    "distribution_type": "near_normal_with_zero_mass"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.639,
+    "std_lead_time": 1.254,
+    "cv_lead_time": 0.765,
+    "stability": "variable",
+    "effective_lead_time": 2.893
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 432.89,
+    "safety_stock": 712.0,
+    "safety_stock_robust": 524.0
+  },
+  "order_quantity": {
+    "eoq_raw": 13475.3,
+    "order_quantity": 5248
+  },
+  "cost_analysis": {
+    "unit_cost": 0.490274,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.058833
+  },
+  "policy": {
+    "safety_stock": 712,
+    "reorder_point": 1504,
+    "order_quantity": 5248,
+    "review_period_days": 19
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.562,
+    "sigma_eff_days": 1.254,
+    "dominant_factor": "transport",
+    "dominant_pct": 50.0,
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.3,
+      "quality": 0.2
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase_from_0_to_2.56_days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__MDAB776E exhibits moderately variable daily demand (CV=39%) with a significant zero-demand fraction (~21% of working days), consistent with intermittent-to-regular demand. Lead times are highly variable (CV=76%), which is the primary driver of safety stock requirements. The current SAP policy carries zero safety stock, structurally exposing the material to stockouts under the 95% service level target. An (r,Q) fixed-order-quantity policy is recommended with SS=712, ROP=1504, and OQ=5248 \u2014 the order quantity is storage-capped from the unconstrained EOQ of 13,475, which binds the capacity constraint exactly.",
+  "warnings": [
+    "Storage capacity constraint is binding: unconstrained EOQ=13475 capped to OQ=5248 (max_storage_units=5960.672, safety_stock=712).",
+    "High lead-time CV=0.765 classified as variable; safety stock is sensitive to further lead-time deterioration.",
+    "SAP baseline safety stock=0 is insufficient for 95% service level given observed demand and lead-time variability."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) Fixed-Order-Quantity with Safety Stock",
+    "selection_rationale": "Demand is moderately variable but not severely intermittent (non-zero fraction=79%), and lead times are observable with sufficient observations for parametric sigma_LTD estimation. The (r,Q) policy is the classical fit: trigger a fixed replenishment of Q units whenever inventory falls to the reorder point r, combining EOQ cost efficiency with a safety buffer sized to the 95th percentile of lead-time demand. The MOQ=1370 is comfortably below the capacity-capped OQ=5248, so no MOQ conflict exists.",
+    "boundary_risk": "The storage cap of 5,960.672 units binds tightly: SS+OQ=5,960 leaves only 0.672 units of headroom. Any upward revision to safety stock (e.g., due to higher demand volatility or worse lead-time performance) will require either a reduction in OQ or a storage capacity increase. Annual ordering cost rises to $1,050 vs. the unconstrained EOQ optimum of ~$518, representing a $532/year capacity-induced penalty.",
+    "escalation_flag": "none"
+  }
+}

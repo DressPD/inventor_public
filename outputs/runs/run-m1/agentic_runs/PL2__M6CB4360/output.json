@@ -1,0 +1,78 @@
+{
+  "material_id": "PL2__M6CB4360",
+  "data_quality": {
+    "total_rows": 115,
+    "working_days": 115,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 1852.781
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 962.73,
+    "std_daily_demand": 463.15,
+    "robust_std_daily": 389.21,
+    "cv_wd": 0.481,
+    "non_zero_fraction_wd": 0.878,
+    "trend_detected": true,
+    "regime": "moderate",
+    "distribution_type": "Mixed/Lumpy"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.84,
+    "std_lead_time": 1.0,
+    "cv_lead_time": 0.544,
+    "stability": "unstable",
+    "effective_lead_time": 2.84
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1150.42,
+    "safety_stock": 1894.0,
+    "safety_stock_robust": 1594.0
+  },
+  "order_quantity": {
+    "eoq_raw": 5102.67,
+    "order_quantity": 5103
+  },
+  "cost_analysis": {
+    "unit_cost": 7.702815,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.9243378
+  },
+  "policy": {
+    "safety_stock": 1894,
+    "reorder_point": 4634,
+    "order_quantity": 5103,
+    "review_period_days": 5
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.97,
+    "sigma_eff_days": 1.19,
+    "dominant_factor": "transport",
+    "dominant_pct": 62.1,
+    "variance_components": {
+      "transport": 0.621,
+      "supplier": 0.379,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "DECREASE",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL2__M6CB4360 exhibits moderate demand variability (CV=0.481) averaging 962.7 units per working day, with a mild downward trend and sporadic zero-demand periods classifying it as Mixed/Lumpy. Lead times are unstable (CV=0.544) with a bimodal pattern suggesting two delivery modes (~1 day express, ~3 day standard). An (r,Q) continuous-review policy with EOQ-based order sizing (5,103 units) and a statistically-derived safety stock (1,894 units) achieves the 95% service level while reducing total annual inventory costs by 83.9% versus the current SAP MOQ-only approach.",
+  "warnings": [
+    "Lead time CV=0.544 classified as unstable; bimodal delivery pattern detected \u2014 recommend supplier performance review.",
+    "Mild downward demand trend detected (slope: -0.93 units/day); monitor quarterly and recalibrate EOQ if trend persists.",
+    "2 demand outliers winsorised at upper bound 1852.781 units."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review policy with EOQ order sizing",
+    "selection_rationale": "Daily demand with moderate CV, a fixed MOQ of 300, and continuously observable inventory levels favour a continuous-review (r,Q) policy. The EOQ (5,103 units) substantially exceeds the MOQ, making economic order sizing dominant. Periodic review would be less responsive given the unstable lead times.",
+    "boundary_risk": "Storage utilisation post-replenishment is 59.0% (6,997 / 11,859 units), providing ample headroom. The capacity constraint does not bind and does not reduce the recommended order quantity.",
+    "escalation_flag": "none"
+  }
+}

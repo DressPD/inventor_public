@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__M890BCAD",
+  "data_quality": {
+    "total_rows": 85,
+    "working_days": 85,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 72.346,
+      "upper_bound": 1321.515
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 507.05,
+    "std_daily_demand": 212.89,
+    "robust_std_daily": 148.21,
+    "cv_wd": 0.42,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "Smooth",
+    "distribution_type": "Normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.08,
+    "std_lead_time": 0.54,
+    "cv_lead_time": 0.499,
+    "stability": "Moderate",
+    "effective_lead_time": 1.9
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 330.18,
+    "safety_stock": 543.0,
+    "safety_stock_robust": 378.0
+  },
+  "order_quantity": {
+    "eoq_raw": 3739.6,
+    "order_quantity": 3740
+  },
+  "cost_analysis": {
+    "unit_cost": 11.046954,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.3256
+  },
+  "policy": {
+    "safety_stock": 543,
+    "reorder_point": 1110,
+    "order_quantity": 3740,
+    "review_period_days": 7
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.79,
+    "sigma_eff_days": 0.54,
+    "dominant_factor": "demand_variability",
+    "dominant_pct": 50.0,
+    "variance_components": {
+      "transport": 0.33,
+      "supplier": 0.34,
+      "quality": 0.33
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Decrease SAP safety lead time from 2.5 to 1.79 days (-0.71 days)",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M890BCAD exhibits smooth, high-volume daily demand averaging 507 units with moderate variability (CV=0.42) and no detectable trend over the observation period. Lead times are generally short (~1.08 days) but show episodic spikes up to 4.1 days, yielding a moderate-stability classification. A continuous-review (r,Q) policy with safety stock of 543 units and order quantity of 3,740 is recommended to achieve the 95% service level target while remaining well within the 9,718-unit storage capacity. The current SAP zero-safety-stock setting is the primary risk factor and should be corrected immediately.",
+  "warnings": [
+    "Current SAP safety_stock = 0 provides no buffer against stockout; immediate correction to 543 units is critical.",
+    "Lead time outliers detected (max 4.10 days) \u2014 investigate root causes to reduce variability.",
+    "SAP safety lead time of 2.5 days exceeds data-driven recommendation of 1.79 days; consider reducing."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) Continuous Review Policy",
+    "selection_rationale": "Demand is smooth (CV=0.42), non-intermittent (100% non-zero working days), and high-volume, making continuous review appropriate. The (r,Q) model with fixed EOQ-derived order quantity minimises total ordering and holding costs while the reorder point absorbs lead-time demand uncertainty. No lumpy/intermittent patterns were detected that would require Poisson or base-stock alternatives.",
+    "boundary_risk": "Storage capacity of 9,718 units is non-binding: safety_stock (543) + order_quantity (3,740) = 4,283 units, leaving 5,435 units of headroom (56% free). No capacity-driven reduction was required.",
+    "escalation_flag": "none"
+  }
+}

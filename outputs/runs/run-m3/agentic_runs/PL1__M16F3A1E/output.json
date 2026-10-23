@@ -1,0 +1,83 @@
+{
+  "material_id": "PL1__M16F3A1E",
+  "data_quality": {
+    "total_rows": 217,
+    "working_days": 217,
+    "outliers_detected": 5,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 734.625
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 303.23,
+    "std_daily_demand": 174.41,
+    "robust_std_daily": 155.43,
+    "cv_wd": 0.575,
+    "non_zero_fraction_wd": 0.949,
+    "trend_detected": true,
+    "regime": "erratic",
+    "distribution_type": "right-skewed continuous (approx. normal with outliers)"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 0.086,
+    "std_lead_time": 0.017,
+    "cv_lead_time": 0.197,
+    "stability": "stable",
+    "effective_lead_time": 0.086
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 51.15,
+    "safety_stock": 84.14,
+    "safety_stock_robust": 74.97
+  },
+  "order_quantity": {
+    "eoq_raw": 618.22,
+    "order_quantity": 619
+  },
+  "cost_analysis": {
+    "unit_cost": 164.953226,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 19.794
+  },
+  "policy": {
+    "safety_stock": 85,
+    "reorder_point": 111,
+    "order_quantity": 619,
+    "review_period_days": 2
+  },
+  "safety_lead_time": {
+    "recommended_days": 0.28,
+    "sigma_eff_days": 0.169,
+    "dominant_factor": "demand_variability",
+    "dominant_pct": 99.0,
+    "variance_components": {
+      "transport": 0.01,
+      "supplier": 0.98,
+      "quality": 0.01
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce \u2014 SAP safety lead time of 1.8 days is excessive given ultra-short actual lead times of 0.086 days; recommend 0.28 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M16F3A1E exhibits erratic but predominantly continuous demand averaging 303 units/day with a CV of 0.58 and a statistically significant downward trend over the analysis horizon. Lead times are extremely short (mean 0.086 working days) and stable (CV 0.197), meaning demand variability is the overwhelming driver of replenishment uncertainty. An (r,Q) continuous-review policy with safety stock of 85 units and order quantity of 619 units is recommended; this captures EOQ economics, satisfies the 95% service level, and reduces total annual inventory cost by 37.6% versus the current SAP baseline.",
+  "warnings": [
+    "Downward demand trend detected \u2014 policy should be reviewed quarterly",
+    "SAP safety lead time of 1.8 days is significantly above the empirical mean of 0.086 days \u2014 consider updating ERP master data"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review policy with EOQ order quantity",
+    "selection_rationale": "Demand is erratic but continuous (94.9% non-zero days) and lead times are stable and very short; a continuous-review (r,Q) model is optimal as it reacts immediately to inventory position crossing the reorder point, minimising exposure to demand spikes without the overhead of periodic review.",
+    "boundary_risk": "Storage capacity at 1,618.99 units is not binding \u2014 recommended SS+OQ of 704 units occupies only 43.5% of capacity. No capacity-driven constraint applies.",
+    "escalation_flag": "none"
+  },
+  "sap_policy_annual_ordering_cost": 12094.21,
+  "sap_policy_annual_holding_cost": 10224.9,
+  "sap_policy_total_annual_cost": 22319.11,
+  "optimized_policy_annual_ordering_cost": 3872.54,
+  "optimized_policy_annual_holding_cost": 10058.7,
+  "optimized_policy_total_annual_cost": 13931.24
+}

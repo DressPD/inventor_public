@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__MF297EB6",
+  "data_quality": {
+    "total_rows": 131,
+    "working_days": 131,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 476.2066,
+      "upper_bound": 1996.3033999999952
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1225.0713664122136,
+    "std_daily_demand": 281.05485955026694,
+    "robust_std_daily": 261.6482579688659,
+    "cv_wd": 0.22941917283837424,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "Smooth",
+    "distribution_type": "Normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.2654729729729732,
+    "std_lead_time": 1.2911758783854486,
+    "cv_lead_time": 0.569936562381957,
+    "stability": "Unstable",
+    "effective_lead_time": 2.2654729729729732
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1637.3729114942776,
+    "safety_stock": 2694,
+    "safety_stock_robust": 2682
+  },
+  "order_quantity": {
+    "eoq_raw": 10920.46235553242,
+    "order_quantity": 10921
+  },
+  "cost_analysis": {
+    "unit_cost": 3.338587,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.40063044
+  },
+  "policy": {
+    "safety_stock": 2694,
+    "reorder_point": 5470,
+    "order_quantity": 10921,
+    "review_period_days": 9
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.1990555602403323,
+    "sigma_eff_days": 1.336553082853895,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 0.9332508283273393,
+    "variance_components": {
+      "transport": 0.0,
+      "supplier": 2502036.1861086455,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "decrease",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "For material PL1__MF297EB6, analysis shows smooth demand with CV=22.94% and unstable lead time (CV=56.99%). Statistical safety stock of 2694 units recommended vs SAP's 1223, driven by lead time variability (93.3% of variance). Optimized (r,Q) continuous review policy: reorder at 5470 units, order 10921 units. Note that the higher safety stock increases total costs by $589.33 annually but provides the target 95.0% service level protection.",
+  "warnings": [
+    "Optimized safety stock (2694) is 120.3% higher than SAP (1223)",
+    "Lead time variability is dominant (93.3%) - consider supplier consolidation or buffer strategies",
+    "Higher safety stock increases annual costs by $589.33 but ensures 95.0% service level"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous review",
+    "selection_rationale": "Smooth demand with continuous non-zero pattern supports perpetual inventory system",
+    "boundary_risk": "None detected",
+    "escalation_flag": "None"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "material_id": "PL3__M9B8DDA7",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 170,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 1666.15236,
+      "upper_bound": 3696.9449000000004
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 3296.3154854117647,
+    "std_daily_demand": 329.3305663193831,
+    "robust_std_daily": 176.97944460000014,
+    "cv_wd": 0.09990869131819287,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "smooth",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.1491764705882355,
+    "std_lead_time": 0.8810764679055495,
+    "cv_lead_time": 0.7667024956180558,
+    "stability": "unstable",
+    "effective_lead_time": 2.030252938493785
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 2925.6847859858276,
+    "safety_stock": 4813,
+    "safety_stock_robust": 4788
+  },
+  "order_quantity": {
+    "eoq_raw": 11596.372255788763,
+    "order_quantity": 2219
+  },
+  "cost_analysis": {
+    "unit_cost": 7.660101,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.91921212
+  },
+  "policy": {
+    "safety_stock": 4813,
+    "reorder_point": 11506,
+    "order_quantity": 2219,
+    "review_period_days": 1
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.4601150955667024,
+    "sigma_eff_days": 0.8875621277556086,
+    "dominant_factor": "transport",
+    "dominant_pct": 0.6,
+    "variance_components": {
+      "transport": 5135778.880169363,
+      "supplier": 2567889.4400846814,
+      "quality": 855963.1466948938
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization analysis for material PL3__M9B8DDA7 reveals significant opportunities for improvement. The material exhibits smooth demand with a CV of 0.10 and unstable lead time variability (CV 0.77). Current SAP policy maintains zero safety stock with MOQ of 700 units, resulting in 1177 orders annually. The optimized policy recommends a safety stock of 4813 units and order quantity of 2219 units, yielding 371 orders per year and annual cost savings of $55318.81 (62.4%). The reorder point is calculated at 11506 units based on effective lead time of 2.03 days. Storage capacity is binding: the EOQ (11596 units) exceeds available capacity after safety stock allocation. Transport variability is the dominant factor (60% of variance) influencing safety stock requirements. Action: INCREASE safety lead time from 0.0 to 1.46 days to achieve 95.0% service level.",
+  "warnings": [
+    "Order quantity constrained by capacity: 11597 \u2192 2219"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with Safety Stock",
+    "selection_rationale": "Demand regime 'smooth' with CV=0.10 and lead time stability 'unstable' (CV=0.77) support classical EOQ with safety stock. Capacity constraint binds, limiting order quantity below optimal.",
+    "boundary_risk": "High capacity utilization (>99%) presents minimal buffer for demand spikes.",
+    "escalation_flag": "capacity_constrained"
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "material_id": "PL3__M708AD38",
+  "data_quality": {
+    "total_rows": 215,
+    "working_days": 180,
+    "outliers_detected": 3,
+    "winsorisation": {
+      "lower_bound": 1920.336,
+      "upper_bound": 6091.29
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 3895.97,
+    "std_daily_demand": 631.8,
+    "robust_std_daily": 220.5,
+    "cv_wd": 0.162,
+    "non_zero_fraction_wd": 0.922,
+    "trend_detected": false,
+    "regime": "smooth",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.031,
+    "std_lead_time": 0.8,
+    "cv_lead_time": 0.776,
+    "stability": "stable",
+    "effective_lead_time": 1.831
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 3233.0,
+    "safety_stock": 5318.0,
+    "safety_stock_robust": 3800.0
+  },
+  "order_quantity": {
+    "eoq_raw": 12876.0,
+    "order_quantity": 3443
+  },
+  "cost_analysis": {
+    "unit_cost": 6.182111,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.7418533
+  },
+  "policy": {
+    "safety_stock": 5318,
+    "reorder_point": 9424,
+    "order_quantity": 3443,
+    "review_period_days": 1
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.365,
+    "sigma_eff_days": 0.8,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__M708AD38 exhibits smooth, normally distributed daily demand averaging ~3,896 units with a low CV of 0.162, indicating high predictability. Lead times are short (mean 1.03 days) but show moderate variability (CV 0.776), primarily driven by transport uncertainty. The current SAP policy carries zero safety stock, creating significant stockout risk; the recommended (r,Q) policy establishes a 5,318-unit buffer to achieve the 95% service level while constraining the order quantity to 3,443 units due to the storage capacity limit of 8,762 units. This reduces annual total cost by ~67% compared to the high-frequency MOQ-driven current policy.",
+  "warnings": [
+    "EOQ of 12,876 units exceeds available storage after safety stock (3,443 units remaining). Order quantity capped at storage limit.",
+    "3 outlier observations winsorised at 1st/99th percentile before computing demand statistics.",
+    "Lead time CV of 0.776 is high; transport variability is the dominant risk factor."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r, Q) continuous-review",
+    "selection_rationale": "Demand is smooth and approximately normal with no intermittency, making a continuous-review reorder-point model with fixed order quantity the appropriate choice. The short, sub-daily lead time supports a simple (r,Q) structure without requiring periodic-review complexity.",
+    "boundary_risk": "Storage capacity constrains the order quantity to 3,443 units (vs. unconstrained EOQ of 12,876). This increases ordering frequency and annual ordering cost but is unavoidable given the 8,762-unit storage limit. If storage can be expanded, the EOQ would halve annual total cost further.",
+    "escalation_flag": "none"
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "material_id": "PL1__M7BAD750",
+  "data_quality": {
+    "total_rows": 237,
+    "working_days": 237,
+    "non_working_days": 0,
+    "outliers_removed": 6,
+    "notes": "All rows are working days; demand winsorised at 1st/99th percentile"
+  },
+  "demand_statistics": {
+    "mean_daily_demand": 632.11,
+    "std_daily_demand": 278.53,
+    "robust_std_daily": 186.01,
+    "cv_wd": 0.441,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "trend_slope": -0.937,
+    "regime": "smooth/regular",
+    "distribution_type": "normal"
+  },
+  "lead_time_statistics": {
+    "mean_lead_time": 3.0,
+    "std_lead_time": 0.6000000000000001,
+    "cv_lead_time": 0.2,
+    "stability": "assumed (no observations)",
+    "effective_lead_time": 3.0,
+    "notes": "No lead time observations; assumed from SAP safety lead time with CV=0.2"
+  },
+  "inventory_parameters": {
+    "unit_cost": 4.644737,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 50.0,
+    "moq": 66,
+    "service_level_target": 0.95,
+    "max_storage_units": 6203.527
+  },
+  "sap_current": {
+    "safety_stock": 0,
+    "safety_lead_time_days": 3.0
+  },
+  "calculations": {
+    "annual_demand": 158028.56,
+    "eoq_raw": 5324.72,
+    "sigma_LTD": 613.66,
+    "sigma_LTD_robust": 322.18,
+    "z_score": 1.645
+  },
+  "recommended_policy": {
+    "safety_stock": 1010,
+    "safety_stock_robust": 530,
+    "order_quantity": 5193,
+    "reorder_point": 2907,
+    "review_period_days": 9,
+    "capacity_compliant": true,
+    "total_inventory_peak": 6203
+  },
+  "cost_analysis": {
+    "previous_policy": {
+      "safety_stock": 0,
+      "order_quantity": 66,
+      "annual_ordering_cost": 119718.61,
+      "annual_holding_cost": 18.39,
+      "total_annual_cost": 119737.0
+    },
+    "recommended_policy": {
+      "safety_stock": 1010,
+      "order_quantity": 5193,
+      "annual_ordering_cost": 1521.55,
+      "annual_holding_cost": 2010.15,
+      "total_annual_cost": 3531.7
+    },
+    "cost_impact": {
+      "annual_savings": 116205.3,
+      "savings_percentage": 97.1
+    }
+  },
+  "safety_lead_time_analysis": {
+    "recommended_days": 1.6,
+    "sap_current_days": 3.0,
+    "comparison_action": "decrease",
+    "variance_components": {
+      "transport_fraction": 0.5,
+      "supplier_fraction": 0.3,
+      "quality_fraction": 0.2,
+      "dominant_factor": "transport"
+    },
+    "disruption_premium": 1.0
+  }
+}

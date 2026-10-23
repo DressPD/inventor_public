@@ -1,0 +1,457 @@
+{
+  "masked_runs": {
+    "run-m1": {
+      "n_backtested": 340,
+      "n_invalid": 5,
+      "n_missing": 1,
+      "n_targets": 365,
+      "plants": {
+        "ALL": {
+          "cost_ratio_to": {
+            "mf-01": {
+              "n": 340,
+              "ratio": 0.991
+            },
+            "mf-02": {
+              "n": 340,
+              "ratio": 0.99
+            },
+            "mf-03": {
+              "n": 340,
+              "ratio": 0.993
+            },
+            "run-m2": {
+              "n": 339,
+              "ratio": 0.987
+            },
+            "run-m3": {
+              "n": 339,
+              "ratio": 1.002
+            }
+          },
+          "llm_cost": 2892.19,
+          "llm_fill_pct": 98.34,
+          "n": 340,
+          "vs_arm_pct": {
+            "or_cold": 5.1,
+            "or_empirical": 17.0,
+            "or_sba": 7.4,
+            "or_tuned": -11.2,
+            "sap_static": -12.1
+          }
+        },
+        "PL1": {
+          "cost_ratio_to": {
+            "mf-01": {
+              "n": 214,
+              "ratio": 0.982
+            },
+            "mf-02": {
+              "n": 214,
+              "ratio": 1.009
+            },
+            "mf-03": {
+              "n": 214,
+              "ratio": 0.982
+            },
+            "run-m2": {
+              "n": 213,
+              "ratio": 0.975
+            },
+            "run-m3": {
+              "n": 214,
+              "ratio": 0.996
+            }
+          },
+          "llm_cost": 2332.81,
+          "llm_fill_pct": 99.32,
+          "n": 214,
+          "vs_arm_pct": {
+            "or_cold": 5.4,
+            "or_empirical": 19.1,
+            "or_sba": 11.1,
+            "or_tuned": 50.3,
+            "sap_static": -15.5
+          }
+        },
+        "PL2": {
+          "cost_ratio_to": {
+            "mf-01": {
+              "n": 64,
+              "ratio": 1.013
+            },
+            "mf-02": {
+              "n": 64,
+              "ratio": 0.954
+            },
+            "mf-03": {
+              "n": 64,
+              "ratio": 0.996
+            },
+            "run-m2": {
+              "n": 64,
+              "ratio": 0.995
+            },
+            "run-m3": {
+              "n": 64,
+              "ratio": 1.016
+            }
+          },
+          "llm_cost": 5033.7,
+          "llm_fill_pct": 96.15,
+          "n": 64,
+          "vs_arm_pct": {
+            "or_cold": 4.9,
+            "or_empirical": 9.2,
+            "or_sba": 3.6,
+            "or_tuned": -52.1,
+            "sap_static": -21.7
+          }
+        },
+        "PL3": {
+          "cost_ratio_to": {
+            "mf-01": {
+              "n": 62,
+              "ratio": 0.977
+            },
+            "mf-02": {
+              "n": 62,
+              "ratio": 1.008
+            },
+            "mf-03": {
+              "n": 62,
+              "ratio": 1.021
+            },
+            "run-m2": {
+              "n": 62,
+              "ratio": 1.012
+            },
+            "run-m3": {
+              "n": 61,
+              "ratio": 0.991
+            }
+          },
+          "llm_cost": 2612.34,
+          "llm_fill_pct": 97.19,
+          "n": 62,
+          "vs_arm_pct": {
+            "or_cold": 4.8,
+            "or_empirical": 28.2,
+            "or_sba": 4.2,
+            "or_tuned": 57.6,
+            "sap_static": 39.1
+          }
+        }
+      }
+    },
+    "run-m2": {
+      "n_backtested": 342,
+      "n_invalid": 4,
+      "n_missing": 0,
+      "n_targets": 365,
+      "plants": {
+        "ALL": {
+          "cost_ratio_to": {
+            "mf-01": {
+              "n": 342,
+              "ratio": 1.004
+            },
+            "mf-02": {
+              "n": 342,
+              "ratio": 1.003
+            },
+            "mf-03": {
+              "n": 342,
+              "ratio": 1.004
+            },
+            "run-m1": {
+              "n": 339,
+              "ratio": 1.013
+            },
+            "run-m3": {
+              "n": 341,
+              "ratio": 1.013
+            }
+          },
+          "llm_cost": 2947.14,
+          "llm_fill_pct": 98.27,
+          "n": 342,
+          "vs_arm_pct": {
+            "or_cold": 6.4,
+            "or_empirical": 18.1,
+            "or_sba": 8.7,
+            "or_tuned": -10.1,
+            "sap_static": -10.9
+          }
+        },
+        "PL1": {
+          "cost_ratio_to": {
+            "mf-01": {
+              "n": 214,
+              "ratio": 1.007
+            },
+            "mf-02": {
+              "n": 214,
+              "ratio": 1.034
+            },
+            "mf-03": {
+              "n": 214,
+              "ratio": 1.007
+            },
+            "run-m1": {
+              "n": 213,
+              "ratio": 1.026
+            },
+            "run-m3": {
+              "n": 214,
+              "ratio": 1.022
+            }
+          },
+          "llm_cost": 2412.39,
+          "llm_fill_pct": 99.23,
+          "n": 214,
+          "vs_arm_pct": {
+            "or_cold": 8.1,
+            "or_empirical": 21.5,
+            "or_sba": 13.9,
+            "or_tuned": 51.6,
+            "sap_static": -13.4
+          }
+        },
+        "PL2": {
+          "cost_ratio_to": {
+            "mf-01": {
+              "n": 65,
+              "ratio": 1.018
+            },
+            "mf-02": {
+              "n": 65,
+              "ratio": 0.959
+            },
+            "mf-03": {
+              "n": 65,
+              "ratio": 1.0
+            },
+            "run-m1": {
+              "n": 64,
+              "ratio": 1.005
+            },
+            "run-m3": {
+              "n": 65,
+              "ratio": 1.021
+            }
+          },
+          "llm_cost": 5004.24,
+          "llm_fill_pct": 96.13,
+          "n": 65,
+          "vs_arm_pct": {
+            "or_cold": 5.3,
+            "or_empirical": 9.5,
+            "or_sba": 4.1,
+            "or_tuned": -51.7,
+            "sap_static": -21.4
+          }
+        },
+        "PL3": {
+          "cost_ratio_to": {
+            "mf-01": {
+              "n": 63,
+              "ratio": 0.966
+            },
+            "mf-02": {
+              "n": 63,
+              "ratio": 0.996
+            },
+            "mf-03": {
+              "n": 63,
+              "ratio": 1.002
+            },
+            "run-m1": {
+              "n": 62,
+              "ratio": 0.988
+            },
+            "run-m3": {
+              "n": 62,
+              "ratio": 0.969
+            }
+          },
+          "llm_cost": 2641.2,
+          "llm_fill_pct": 97.21,
+          "n": 63,
+          "vs_arm_pct": {
+            "or_cold": 3.3,
+            "or_empirical": 26.5,
+            "or_sba": 2.8,
+            "or_tuned": 55.7,
+            "sap_static": 37.3
+          }
+        }
+      }
+    },
+    "run-m3": {
+      "n_backtested": 342,
+      "n_invalid": 4,
+      "n_missing": 0,
+      "n_targets": 365,
+      "plants": {
+        "ALL": {
+          "cost_ratio_to": {
+            "mf-01": {
+              "n": 342,
+              "ratio": 0.991
+            },
+            "mf-02": {
+              "n": 342,
+              "ratio": 0.99
+            },
+            "mf-03": {
+              "n": 342,
+              "ratio": 0.99
+            },
+            "run-m1": {
+              "n": 339,
+              "ratio": 0.998
+            },
+            "run-m2": {
+              "n": 341,
+              "ratio": 0.988
+            }
+          },
+          "llm_cost": 2902.67,
+          "llm_fill_pct": 98.27,
+          "n": 342,
+          "vs_arm_pct": {
+            "or_cold": 5.0,
+            "or_empirical": 16.5,
+            "or_sba": 7.2,
+            "or_tuned": -11.3,
+            "sap_static": -12.2
+          }
+        },
+        "PL1": {
+          "cost_ratio_to": {
+            "mf-01": {
+              "n": 215,
+              "ratio": 0.986
+            },
+            "mf-02": {
+              "n": 215,
+              "ratio": 1.012
+            },
+            "mf-03": {
+              "n": 215,
+              "ratio": 0.986
+            },
+            "run-m1": {
+              "n": 214,
+              "ratio": 1.004
+            },
+            "run-m2": {
+              "n": 214,
+              "ratio": 0.979
+            }
+          },
+          "llm_cost": 2354.76,
+          "llm_fill_pct": 99.22,
+          "n": 215,
+          "vs_arm_pct": {
+            "or_cold": 5.8,
+            "or_empirical": 18.9,
+            "or_sba": 11.4,
+            "or_tuned": 48.4,
+            "sap_static": -15.3
+          }
+        },
+        "PL2": {
+          "cost_ratio_to": {
+            "mf-01": {
+              "n": 65,
+              "ratio": 0.997
+            },
+            "mf-02": {
+              "n": 65,
+              "ratio": 0.939
+            },
+            "mf-03": {
+              "n": 65,
+              "ratio": 0.979
+            },
+            "run-m1": {
+              "n": 64,
+              "ratio": 0.984
+            },
+            "run-m2": {
+              "n": 65,
+              "ratio": 0.979
+            }
+          },
+          "llm_cost": 4899.93,
+          "llm_fill_pct": 96.08,
+          "n": 65,
+          "vs_arm_pct": {
+            "or_cold": 3.1,
+            "or_empirical": 7.2,
+            "or_sba": 2.0,
+            "or_tuned": -52.7,
+            "sap_static": -23.0
+          }
+        },
+        "PL3": {
+          "cost_ratio_to": {
+            "mf-01": {
+              "n": 62,
+              "ratio": 0.994
+            },
+            "mf-02": {
+              "n": 62,
+              "ratio": 1.025
+            },
+            "mf-03": {
+              "n": 62,
+              "ratio": 1.029
+            },
+            "run-m1": {
+              "n": 61,
+              "ratio": 1.009
+            },
+            "run-m2": {
+              "n": 62,
+              "ratio": 1.032
+            }
+          },
+          "llm_cost": 2708.8,
+          "llm_fill_pct": 97.27,
+          "n": 62,
+          "vs_arm_pct": {
+            "or_cold": 6.2,
+            "or_empirical": 30.1,
+            "or_sba": 5.6,
+            "or_tuned": 60.4,
+            "sap_static": 41.5
+          }
+        }
+      }
+    }
+  },
+  "originals": {
+    "mf-01": {
+      "n_backtested": 346,
+      "n_invalid": 0,
+      "n_missing": 0,
+      "n_targets": 365
+    },
+    "mf-02": {
+      "n_backtested": 346,
+      "n_invalid": 0,
+      "n_missing": 0,
+      "n_targets": 365
+    },
+    "mf-03": {
+      "n_backtested": 346,
+      "n_invalid": 0,
+      "n_missing": 0,
+      "n_targets": 365
+    }
+  },
+  "scope": "hard-limit replay on the masked release"
+}

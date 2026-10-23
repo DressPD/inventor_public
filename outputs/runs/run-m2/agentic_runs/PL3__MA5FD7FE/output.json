@@ -1,0 +1,91 @@
+{
+  "material_id": "PL3__MA5FD7FE",
+  "analysis_metadata": {
+    "total_observations": 228,
+    "working_days": 228,
+    "lead_time_observations": 133,
+    "service_level_target": 0.95
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 2006.82,
+    "std_daily_demand": 1186.92,
+    "robust_std_daily": 2020.7,
+    "cv_demand": 0.5914,
+    "non_zero_fraction": 0.9649,
+    "trend_detected": false,
+    "trend_slope": -1.3169,
+    "trend_pvalue": 0.2711,
+    "regime": "erratic",
+    "distribution_type": "gamma",
+    "outliers_detected": 3,
+    "winsorization_bounds": {
+      "lower": 0.0,
+      "upper": 3386.57
+    }
+  },
+  "lead_time_analysis": {
+    "mean_lead_time_days": 1.16,
+    "std_lead_time_days": 0.83,
+    "cv_lead_time": 0.7148,
+    "stability": "unstable",
+    "effective_lead_time_days": 1.58
+  },
+  "safety_stock": {
+    "z_score": 1.645,
+    "sigma_ltd": 2100.3,
+    "safety_stock": 3455,
+    "safety_stock_robust": 4510
+  },
+  "order_quantity": {
+    "annual_demand": 501705.71,
+    "eoq_raw": 19973.01,
+    "unconstrained_order_quantity": 19974,
+    "order_quantity": 12778,
+    "moq": 3668,
+    "capacity_constraint_active": false
+  },
+  "inventory_policy": {
+    "safety_stock": 3455,
+    "reorder_point": 5786,
+    "order_quantity": 12778,
+    "review_period_days": 7,
+    "max_storage_units": 16233.275
+  },
+  "cost_analysis": {
+    "unit_cost": 1.048047,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 50.0,
+    "annual_holding_cost_per_unit": 0.1258,
+    "sap_baseline": {
+      "safety_stock": 0,
+      "order_quantity": 19973.01,
+      "avg_inventory": 9986.5,
+      "annual_ordering_cost": 1255.96,
+      "annual_holding_cost": 1255.96,
+      "total_annual_cost": 2511.92
+    },
+    "optimized_policy": {
+      "safety_stock": 3455,
+      "order_quantity": 12778,
+      "avg_inventory": 9844.0,
+      "annual_ordering_cost": 1963.16,
+      "annual_holding_cost": 1238.04,
+      "total_annual_cost": 3201.2
+    },
+    "savings": {
+      "annual_cost_reduction": -689.28,
+      "savings_percentage": -27.44
+    }
+  },
+  "safety_lead_time_analysis": {
+    "variance_demand": 1900090.38,
+    "variance_lead_time": 2775139.54,
+    "total_variance": 4675229.92,
+    "dominant_factor": "lead_time",
+    "dominant_percentage": 59.36,
+    "recommended_safety_lead_time_days": 0.83,
+    "sap_safety_lead_time_days": 0.0,
+    "comparison_action": "increase",
+    "disruption_premium": 1.0
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "material_id": "PL2__M4BBB8ED",
+  "data_quality": {
+    "total_rows": 141,
+    "working_days": 141,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 1421.4838
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 789.6586,
+    "std_daily_demand": 339.3881,
+    "robust_std_daily": 330.2246,
+    "cv_wd": 0.4298,
+    "non_zero_fraction_wd": 0.9645,
+    "trend_detected": true,
+    "regime": "moderate",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.6603,
+    "std_lead_time": 0.9639,
+    "cv_lead_time": 0.5805,
+    "stability": "variable",
+    "effective_lead_time": 2.6242
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 877.8231,
+    "safety_stock": 1444.0,
+    "safety_stock_robust": 1435.0
+  },
+  "order_quantity": {
+    "eoq_raw": 15606.24,
+    "order_quantity": 6433
+  },
+  "cost_analysis": {
+    "unit_cost": 0.675463,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.0811
+  },
+  "policy": {
+    "safety_stock": 1444,
+    "reorder_point": 2756,
+    "order_quantity": 6433,
+    "review_period_days": 9
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.8286,
+    "sigma_eff_days": 0.9639,
+    "dominant_factor": "transport",
+    "dominant_pct": 50.0,
+    "variance_components": {
+      "transport": 0.5,
+      "supplier": 0.3,
+      "quality": 0.2
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "Decrease SAP safety lead time from 3.0 to 1.83 days",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL2__M4BBB8ED exhibits moderate demand variability (CV=0.43) with a slight upward trend (+1.87 units/day) and highly variable lead times (CV=0.58). The current SAP policy carries zero safety stock, exposing the operation to frequent stockouts. The recommended (r,Q) continuous review policy with safety stock of 1,444 units and order quantity of 6,433 units (storage-capacity constrained) achieves the 95% service level target and reduces total annual costs by 84.8% through order consolidation.",
+  "warnings": [
+    "Order quantity capacity-constrained from unconstrained EOQ of 15,607 to 6,433 units due to max_storage_units=7877.559; storage utilisation at 99.99% \u2014 monitor for capacity breaches"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) Continuous Review Policy",
+    "selection_rationale": "High non-zero demand fraction (96.5%) with moderate CV and variable lead times favour continuous review over periodic review, enabling responsive replenishment triggered by actual inventory levels rather than fixed intervals.",
+    "boundary_risk": "Storage capacity is binding at 99.99% utilisation. Any increase in safety stock requirements or demand surge would immediately breach max_storage_units=7877.559. Recommend escalation to facilities management for capacity review.",
+    "escalation_flag": "none"
+  }
+}

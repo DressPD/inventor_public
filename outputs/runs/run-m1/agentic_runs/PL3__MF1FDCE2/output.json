@@ -1,0 +1,78 @@
+{
+  "material_id": "PL3__MF1FDCE2",
+  "parameters": {
+    "unit_cost": 0.013376,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 100.0,
+    "moq": 5288,
+    "service_level_target": 0.95,
+    "max_storage_units": 369433.535
+  },
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "non_working_days": 0,
+    "outliers_detected": 0,
+    "outliers_winsorized": 0,
+    "data_start_date": "2025-03-03",
+    "data_end_date": "2026-03-09"
+  },
+  "demand_statistics": {
+    "mean_daily_demand": 17328.029,
+    "std_daily_demand": 10506.314382481267,
+    "coefficient_of_variation": 0.6063190673608214,
+    "min_demand": 0.0,
+    "max_demand": 37503.645,
+    "median_demand": 21545.903,
+    "q1_demand": 929.72075,
+    "q3_demand": 24561.345999999998,
+    "nonzero_demand_fraction": 0.9166666666666666,
+    "annual_demand": 4505287.54,
+    "demand_regime": "erratic",
+    "trend_detected": "none"
+  },
+  "lead_time_statistics": {
+    "mean_lead_time_days": 5.059350649350649,
+    "std_lead_time_days": 1.8006229460517982,
+    "min_lead_time_days": 0.04,
+    "max_lead_time_days": 7.68,
+    "median_lead_time_days": 5.74,
+    "observations_count": 77
+  },
+  "recommended_policy": {
+    "eoq": 749242.6682038716,
+    "safety_stock": 64381,
+    "order_quantity": 305052,
+    "reorder_point": 152050,
+    "safety_lead_time_days": 2.961761183585345,
+    "moq_constraint_active": true,
+    "capacity_constraint_active": true,
+    "capacity_utilization": 0.9999985518369361,
+    "z_score": 1.644853626951472
+  },
+  "sap_current_policy": {
+    "safety_stock": 61489,
+    "order_quantity": 5288,
+    "safety_lead_time_days": 0.0
+  },
+  "cost_analysis": {
+    "recommended": {
+      "annual_ordering_cost": 1476.8916578157168,
+      "annual_holding_cost": 348.16176384000005,
+      "total_annual_cost": 1825.0534216557169,
+      "number_of_orders_per_year": 14.768916578157167,
+      "average_inventory": 216907.0
+    },
+    "sap_current": {
+      "annual_ordering_cost": 85198.3271558245,
+      "annual_holding_cost": 102.94116096,
+      "total_annual_cost": 85301.26831678451,
+      "number_of_orders_per_year": 851.9832715582451,
+      "average_inventory": 64133.0
+    },
+    "savings": {
+      "annual_cost_savings": 83476.2148951288,
+      "cost_savings_percentage": 97.86046156444242
+    }
+  }
+}

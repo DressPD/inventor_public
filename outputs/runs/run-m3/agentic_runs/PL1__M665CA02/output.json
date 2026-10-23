@@ -1,0 +1,77 @@
+{
+  "material_id": "PL1__M665CA02",
+  "data_quality": {
+    "total_rows": 70,
+    "working_days": 70,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 154.15704,
+      "upper_bound": 3368.43417
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 2846.673545857143,
+    "std_daily_demand": 599.0893458346743,
+    "robust_std_daily": 303.89714603409965,
+    "cv_wd": 0.21045242321745977,
+    "non_zero_fraction_wd": 0.9857142857142858,
+    "trend_detected": false,
+    "regime": "moderate",
+    "distribution_type": "normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.1260869565217393,
+    "std_lead_time": 0.25829403840716075,
+    "cv_lead_time": 0.22937308429979522,
+    "stability": "moderate",
+    "effective_lead_time": 1.3843809949289
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 972.0064763649239,
+    "safety_stock": 1599,
+    "safety_stock_robust": 1321
+  },
+  "order_quantity": {
+    "eoq_raw": 28473.668442215236,
+    "order_quantity": 24308
+  },
+  "cost_analysis": {
+    "unit_cost": 1.097238,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.13166856
+  },
+  "policy": {
+    "safety_stock": 1599,
+    "reorder_point": 4805,
+    "order_quantity": 24308,
+    "review_period_days": 9
+  },
+  "safety_lead_time": {
+    "recommended_days": 0.2776452057115498,
+    "sigma_eff_days": 0.25829403840716075,
+    "dominant_factor": "transport",
+    "dominant_pct": 70.0,
+    "variance_components": {
+      "transport": 0.04670106719367588,
+      "supplier": 0.02001474308300395,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.05,
+    "comparison_action": "DECREASE",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "INVENTORY OPTIMIZATION ANALYSIS FOR PL1__M665CA02\n\nEXECUTIVE SUMMARY:\nMaterial PL1__M665CA02 exhibits moderate demand variability (CV=0.210) with a mean daily demand of 2847 units. \nLead time is moderately stable (CV=0.229) with mean of 1.13 days. \n\nRECOMMENDED POLICY:\n- Safety Stock: 1599 units (vs. SAP: 0)\n- Reorder Point: 4805 units (vs. SAP: 3206)\n- Order Quantity: 24308 units (vs. SAP: 28474)\n- Review Period: 9 days\n\nCAPACITY STATUS:\nThe recommended policy operates at the storage capacity limit (25907/25908 units utilized, 100.0%).\nStorage capacity is the binding constraint, requiring the order quantity to be reduced from the unconstrained EOQ of 28474 units to 24308 units.\n\nCOST IMPACT:\nThe recommended policy increases total annual costs by $258 (6.9%) compared to the SAP baseline, \nprimarily due to increased safety stock to achieve 95% service level. While this results in higher costs, it significantly improves service reliability \nby providing buffer against demand and lead time variability.\n\nThe SAP policy with zero safety stock operates at higher risk of stockouts. The recommended policy balances cost efficiency with service level reliability,\nthough capacity constraints limit further optimization opportunities.\n\nKEY FINDINGS:\n1. Demand is moderately variable (regime: moderate)\n2. Lead time shows moderate variability (stability: moderate)\n3. Current safety lead time (2.0 days) exceeds calculated need (0.28 days)\n4. Storage capacity is the primary constraint limiting order quantity optimization\n5. 2 demand outliers detected and winsorized\n\nRECOMMENDATIONS:\n1. Implement safety stock of 1599 units to maintain 95% service level\n2. Consider reducing safety lead time to 0.28 days based on actual lead time performance\n3. Monitor capacity utilization closely as the policy operates at 100% of available storage\n4. Evaluate opportunities to increase storage capacity or reduce MOQ to enable better optimization",
+  "warnings": [
+    "Capacity constraint binding: EOQ reduced from 28474 to 24308 units",
+    "Lead time variability elevated (CV=0.229), applying 5% disruption premium"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with Safety Stock (Normal Approximation)",
+    "selection_rationale": "Normal approximation appropriate given moderate CV (0.210) and high non-zero demand fraction (0.986). No trend detected, making static policy suitable.",
+    "boundary_risk": "MEDIUM - Capacity constraint is binding at 100% utilization. Any demand increase will require capacity expansion or policy revision.",
+    "escalation_flag": "CAPACITY_LIMIT_BINDING"
+  }
+}

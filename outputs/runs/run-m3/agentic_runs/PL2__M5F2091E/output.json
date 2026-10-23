@@ -1,0 +1,75 @@
+{
+  "material_id": "PL2__M5F2091E",
+  "analysis_timestamp": "2026-10-22T15:57:46.770570",
+  "data_quality": {
+    "total_rows": 85,
+    "working_days": 85,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": 20.63805,
+      "upper_bound": 12566.565149999999
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 1077.1067176470588,
+    "std_daily_demand": 2674.3867422764533,
+    "robust_std_daily": 0.0,
+    "cv_wd": 2.482935718866052,
+    "non_zero_fraction_wd": 0.18823529411764706,
+    "trend_detected": false,
+    "regime": "intermittent",
+    "distribution_type": "intermittent-lognormal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.395,
+    "std_lead_time": 0.9661271629114121,
+    "cv_lead_time": 0.6925642744884675,
+    "stability": "unstable",
+    "effective_lead_time": 2.361127162911412
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 3325.7201881723036,
+    "safety_stock": 5471.0,
+    "safety_stock_robust": 1712.0
+  },
+  "order_quantity": {
+    "eoq_raw": 10116.864808001394,
+    "order_quantity": 10117
+  },
+  "cost_analysis": {
+    "unit_cost": 3.288644,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.39463728
+  },
+  "policy": {
+    "safety_stock": 5471,
+    "reorder_point": 8015,
+    "order_quantity": 10117,
+    "review_period_days": 10
+  },
+  "safety_lead_time": {
+    "recommended_days": 5.079348137342795,
+    "sigma_eff_days": 3.087642230509289,
+    "dominant_factor": "demand_variability",
+    "dominant_pct": 90.2,
+    "variance_components": {
+      "transport": 0.9334016949152542,
+      "supplier": 0.0,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL2__M5F2091E exhibits strongly intermittent demand with only 18.8% of working days carrying non-zero consumption and a CV of 2.48, indicating large, irregular order spikes typical of batch-pull or project-driven usage. Lead times, while short on average (1.40 WD), are highly unstable (CV 0.69) with occasional outliers exceeding 4 days. The combined demand-lead-time uncertainty produces a lead-time demand sigma of 3,326 units, driving the required safety stock to 5,471 units \u2014 78% above the current SAP setting of 3,065. An (r,Q) policy with EOQ-derived order quantity of 10,117 units is selected; the reorder point of 8,015 and safety lead time extension to 5.08 days together close the service-level gap at a marginal additional holding cost of ~$950/year.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) \u2014 Continuous-review reorder-point / fixed-order-quantity",
+    "selection_rationale": "The (r,Q) policy is appropriate for intermittent-lumpy demand because it triggers replenishment only when stock falls to the reorder point, avoiding unnecessary orders during the many zero-demand periods, while the fixed EOQ-derived quantity balances ordering and holding costs optimally given high annual volume.",
+    "boundary_risk": "Storage capacity (48,415 units) is not binding \u2014 post-replenishment peak stock of 15,588 units represents only 32% utilisation. No capacity-driven reduction was necessary.",
+    "escalation_flag": "none"
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "material_id": "PL1__MF3ADC0D",
+  "data_quality": {
+    "total_rows": 125,
+    "working_days": 125,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 1175.1866800000003
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 339.02669087999993,
+    "std_daily_demand": 389.3331408723277,
+    "robust_std_daily": 293.006238,
+    "cv_wd": 1.148384924684688,
+    "non_zero_fraction_wd": 0.616,
+    "trend_detected": false,
+    "regime": "intermittent/lumpy",
+    "distribution_type": "intermittent"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 4.329523809523809,
+    "std_lead_time": 1.7666885631776397,
+    "cv_lead_time": 0.40805609136307125,
+    "stability": "moderate",
+    "effective_lead_time": 6.096212372701449
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1007.4805607163398,
+    "safety_stock": 1658,
+    "safety_stock_robust": 1406
+  },
+  "order_quantity": {
+    "eoq_raw": 6492.533456755222,
+    "order_quantity": 4602
+  },
+  "cost_analysis": {
+    "unit_cost": 3.351153,
+    "ordering_cost": 100.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.40213836,
+    "prev_annual_ordering_cost": 4467.932141275698,
+    "prev_annual_holding_cost": 533.8386729,
+    "prev_total_cost": 5001.770814175698,
+    "opt_annual_ordering_cost": 1841.7356088657104,
+    "opt_annual_holding_cost": 1592.06576724,
+    "opt_total_cost": 3433.8013761057105,
+    "cost_saving": 1567.969438069988
+  },
+  "policy": {
+    "safety_stock": 1658,
+    "reorder_point": 3126,
+    "order_quantity": 4602,
+    "review_period_days": 14
+  },
+  "safety_lead_time": {
+    "recommended_days": 4.9,
+    "sigma_eff_days": 2.971685085033444,
+    "dominant_factor": "demand_variability",
+    "dominant_pct": 0.6465610355071043,
+    "variance_components": {
+      "transport": 0.35343896449289575,
+      "supplier": 0.0,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Inventory optimization analysis for material PL1__MF3ADC0D reveals an intermittent/lumpy demand pattern with high variability (CV=1.15). The analysis recommends increasing safety stock from 379 to 1658 units to achieve the 95.0% service level target. Order quantity is set at 4602 units (down from unconstrained EOQ of 6493 due to storage capacity constraints). The optimized policy is projected to save $1567.97 annually (31.3%) compared to the current SAP policy. Lead time analysis shows moderate variability, with demand_variability as the primary risk factor. Safety lead time should be increased from 4.0 to 4.9 days.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Normal Approximation EOQ with MOQ and Capacity Constraints",
+    "selection_rationale": "Selected due to intermittent/lumpy demand pattern with CV=1.15 and intermittent distribution",
+    "boundary_risk": "Lead time moderate with CV=0.41; storage utilization at 100.0%",
+    "escalation_flag": "none"
+  }
+}

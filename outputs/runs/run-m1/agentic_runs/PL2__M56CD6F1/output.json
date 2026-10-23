@@ -1,0 +1,77 @@
+{
+  "material_id": "PL2__M56CD6F1",
+  "data_quality": {
+    "total_rows": 129,
+    "working_days": 129,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 1.5570800000000002,
+      "upper_bound": 7448.17836
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 3013.404239379845,
+    "std_daily_demand": 1742.89128542734,
+    "robust_std_daily": 713.1171237954039,
+    "cv_wd": 0.5783795159809111,
+    "non_zero_fraction_wd": 0.9844961240310077,
+    "trend_detected": true,
+    "regime": "intermittent/erratic with trend",
+    "distribution_type": "right-skewed/empirical"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.5665185185185186,
+    "std_lead_time": 1.0856529217229371,
+    "cv_lead_time": 0.4230060737491241,
+    "stability": "moderate",
+    "effective_lead_time": 3.652171440241456
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 4301.048869731873,
+    "safety_stock": 7075,
+    "safety_stock_robust": 5700
+  },
+  "order_quantity": {
+    "eoq_raw": 29365.60877927815,
+    "order_quantity": 29366
+  },
+  "cost_analysis": {
+    "unit_cost": 1.092017,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.13104204
+  },
+  "policy": {
+    "safety_stock": 7075,
+    "reorder_point": 14809,
+    "order_quantity": 29366,
+    "review_period_days": 10
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.1,
+    "sigma_eff_days": 1.0856529217229371,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL2__M56CD6F1 exhibits intermittent/erratic with trend demand pattern with right-skewed/empirical characteristics. The recommended policy increases safety stock from 2780 to 7075 units (up 154.5%) to achieve the 95% service level target, while optimizing order quantity to 29366 units (vs. SAP MOQ 1801). This results in annual savings of $27,079.25.",
+  "warnings": [
+    "Safety stock increase required: 7075 units (was 2780)",
+    "High demand variability detected (CV=0.58)"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "EOQ with safety stock (Normal approximation)",
+    "selection_rationale": "Demand pattern is intermittent/erratic with trend with right-skewed/empirical distribution. Non-zero fraction 98.45% and CV 0.58 support standard inventory model. Lead time variability is moderate (CV=0.42).",
+    "boundary_risk": "Low - demand is regular and non-intermittent",
+    "escalation_flag": "None"
+  }
+}

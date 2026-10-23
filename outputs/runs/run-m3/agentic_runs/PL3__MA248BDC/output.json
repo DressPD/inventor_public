@@ -1,0 +1,123 @@
+{
+  "material_id": "PL3__MA248BDC",
+  "timestamp": "2026-10-23T11:29:01.729993",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "non_working_days": 0,
+    "date_range_start": "2025-03-03",
+    "date_range_end": "2026-03-09",
+    "outliers_winsorized": 3,
+    "data_source": "fallback_demand_wd"
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 656.9736814473684,
+    "std_daily_demand": 409.44732526424394,
+    "robust_std": 704.5698665678281,
+    "cv": 0.6232324624666805,
+    "median_demand": 841.858,
+    "min_demand": 0.0,
+    "max_demand": 1143.3587899999993,
+    "non_zero_fraction": 0.7894736842105263,
+    "annual_demand_250_days": 164243.42036184212,
+    "trend_slope": 0.03359382744054997,
+    "trend_p_value": 0.9352268269881965,
+    "has_significant_trend": false,
+    "trend_direction": "increasing",
+    "demand_regime": "lumpy",
+    "regime_interpretation": "High variability, intermittent demand (current)"
+  },
+  "lead_time_analysis": {
+    "observations": 105,
+    "mean_lead_time_days": 1.1014285714285714,
+    "std_lead_time_days": 0.8769170522253039,
+    "median_lead_time_days": 0.75,
+    "min_lead_time_days": 0.5,
+    "max_lead_time_days": 3.72,
+    "cv_lead_time": 0.7961633418387973,
+    "stability": "unstable",
+    "effective_lead_time_days": 1.9783456236538752
+  },
+  "safety_stock": {
+    "service_level_target": 0.95,
+    "z_score": 1.644853626951472,
+    "sigma_ltd_standard": 718.71808956214,
+    "sigma_ltd_robust": 937.3761833632183,
+    "recommended_safety_stock": 1183,
+    "robust_safety_stock": 1542,
+    "sap_current_safety_stock": 179,
+    "recommended_safety_lead_time_days": 1.8006809609081313,
+    "sap_safety_lead_time_days": 0.0
+  },
+  "order_policy": {
+    "eoq_raw": 4563.620055851872,
+    "moq": 179,
+    "unconstrained_order_quantity": 4564,
+    "optimized_order_quantity": 3934,
+    "max_storage_units": 5117.983,
+    "available_storage_after_safety_stock": 3934.983,
+    "capacity_feasible": true,
+    "reorder_point": 1907,
+    "review_period_days": 6
+  },
+  "cost_analysis": {
+    "unit_cost": 9.857778,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 75.0,
+    "sap_baseline": {
+      "safety_stock": 179,
+      "order_quantity": 4564,
+      "annual_ordering_cost": 2699.004497620105,
+      "annual_holding_cost": 2911.1989989599997,
+      "total_annual_cost": 5610.203496580105
+    },
+    "optimized_policy": {
+      "safety_stock": 1183,
+      "order_quantity": 3934,
+      "annual_ordering_cost": 3131.229417167808,
+      "annual_holding_cost": 3726.2400839999996,
+      "total_annual_cost": 6857.469501167808
+    },
+    "savings": {
+      "absolute": -1247.2660045877028,
+      "percentage": -22.23209916267774
+    }
+  },
+  "recommendations": {
+    "executive_summary": "Material PL3__MA248BDC exhibits lumpy demand with CV=0.62 and unstable lead times (CV=0.80). Current SAP safety stock of 179 units is significantly below the recommended 1183 units for 95% service level. The optimized policy increases total annual cost by $1,247.27 (22.2%) but substantially improves service level protection.",
+    "key_actions": [
+      "Increase safety stock from 179 to 1183 units (+1004 units)",
+      "Adjust order quantity to 3934 units (vs EOQ of 4564)",
+      "Set reorder point at 1907 units",
+      "Implement 6-day review period",
+      "Update safety lead time from 0.0 to 1.80 days"
+    ],
+    "risk_assessment": {
+      "demand_variability": "HIGH - Lumpy demand pattern with CV=0.62 requires substantial buffer",
+      "lead_time_variability": "HIGH - Unstable lead times (CV=0.80) increase uncertainty",
+      "capacity_constraint": "OK - Current capacity sufficient for recommended policy",
+      "service_level_risk": "CRITICAL - Current SAP safety stock provides inadequate protection for 95% target"
+    }
+  },
+  "warnings": [
+    "Demand regime is LUMPY with high variability (CV=0.62)",
+    "Lead time is UNSTABLE with CV=0.80",
+    "Current SAP safety stock (179) is 1004 units below recommended level",
+    "Optimized policy increases costs by $1,247.27 but necessary for service level",
+    "Only 78.9% of working days have non-zero demand (intermittent)"
+  ],
+  "research_insights": {
+    "demand_pattern": "The lumpy demand pattern (CV=0.62, intermittent 78.9%) suggests irregular consumption with high variability. This is common in MRO, spare parts, or project-based materials.",
+    "lead_time_variability": "Lead time variability is unstable (CV=0.80), ranging from 0.50 to 3.72 days. This instability significantly increases the required safety buffer (sigma_LTD=719).",
+    "safety_stock_rationale": "The recommended safety stock of 1183 units is based on z=1.645 for 95% service level, accounting for both demand and lead time variability. The current SAP setting of 179 units likely results in frequent stockouts.",
+    "cost_tradeoff": "While the optimized policy increases holding costs due to higher safety stock, this investment (22.2% cost increase) is necessary to achieve the 95% service level target and avoid stockout costs, which typically far exceed holding costs."
+  },
+  "diagnostics": {
+    "capacity_utilization": "61.5%",
+    "safety_stock_days_of_supply": "1.80",
+    "order_quantity_days_of_supply": "6.0",
+    "orders_per_year": "41.7",
+    "stockout_risk_with_current_sap": "Very High - inadequate buffer for variability",
+    "recommended_monitoring": "Weekly review due to lumpy demand and unstable lead times"
+  }
+}

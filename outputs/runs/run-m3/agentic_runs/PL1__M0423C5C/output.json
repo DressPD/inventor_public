@@ -1,0 +1,77 @@
+{
+  "material_id": "PL1__M0423C5C",
+  "data_quality": {
+    "total_rows": 219,
+    "working_days": 219,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 1116.541
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 431.33,
+    "std_daily_demand": 250.92,
+    "robust_std_daily": 236.17,
+    "cv_wd": 0.582,
+    "non_zero_fraction_wd": 0.918,
+    "trend_detected": true,
+    "regime": "intermittent",
+    "distribution_type": "right-skewed"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.64,
+    "std_lead_time": 1.09,
+    "cv_lead_time": 0.413,
+    "stability": "moderate",
+    "effective_lead_time": 3.73
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 623.2,
+    "safety_stock": 1025.0,
+    "safety_stock_robust": 966.0
+  },
+  "order_quantity": {
+    "eoq_raw": 1796.7,
+    "order_quantity": 1797
+  },
+  "cost_analysis": {
+    "unit_cost": 28.968734,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 3.4762
+  },
+  "policy": {
+    "safety_stock": 1025,
+    "reorder_point": 2636,
+    "order_quantity": 1797,
+    "review_period_days": 5
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.38,
+    "sigma_eff_days": 1.09,
+    "dominant_factor": "transport",
+    "dominant_pct": 50.0,
+    "variance_components": {
+      "transport": 0.595,
+      "supplier": 0.476,
+      "quality": 0.119
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce_from_4.0_to_2.38",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M0423C5C exhibits moderately intermittent demand averaging 431 units/day with a CV of 0.582 and a statistically significant decreasing trend (p=0.0001). Lead times are moderately variable (CV=0.413, mean 2.64 days), contributing substantially to combined LTD uncertainty. The current SAP safety stock of 90 units is critically under-protective; the data-driven policy raises it to 1,025 units and right-sizes the order quantity to 1,797 via EOQ, reducing total annual costs by 51.6% while maintaining 95% service levels.",
+  "warnings": [
+    "SAP safety stock (90) is critically below the statistically required 1,025 units \u2014 high stockout risk",
+    "Significant decreasing demand trend detected (p=0.0001) \u2014 review policy in next cycle"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review policy",
+    "selection_rationale": "Demand is predominantly daily (91.8% non-zero) with moderate variability (CV=0.582), making the continuous-review EOQ-based (r,Q) policy appropriate. It optimally balances ordering and holding costs and directly incorporates lead-time demand uncertainty into the reorder point.",
+    "boundary_risk": "Storage capacity is non-binding: peak inventory (safety_stock + order_quantity = 2,822 units) is only 29.8% of the 9,477-unit limit. No capacity-driven constraint applies.",
+    "escalation_flag": "CRITICAL: Current SAP safety stock of 90 units covers less than 0.21 days of average demand. This represents a high probability of stockout during any replenishment cycle and should be escalated to supply chain management immediately."
+  }
+}

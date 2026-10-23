@@ -1,0 +1,92 @@
+{
+  "material_id": "PL2__MAFC767A",
+  "data_quality": {
+    "total_rows": 141,
+    "working_days": 141,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 734.0205
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 232.65180141843967,
+    "std_daily_demand": 144.0402643863474,
+    "robust_std_daily": 183.4373610081542,
+    "cv_wd": 0.6191237871710326,
+    "non_zero_fraction_wd": 0.9290780141843972,
+    "trend_detected": true,
+    "regime": "highly variable",
+    "distribution_type": "heavy-tailed"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.4361688311688312,
+    "std_lead_time": 1.0570517626048763,
+    "cv_lead_time": 0.736021935349057,
+    "stability": "unstable",
+    "effective_lead_time": 2.4932205937737075
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 300.4599095780547,
+    "safety_stock": 495,
+    "safety_stock_robust": 543
+  },
+  "order_quantity": {
+    "eoq_raw": 3296.8086677641277,
+    "order_quantity": 2082
+  },
+  "cost_analysis": {
+    "unit_cost": 4.459413,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.5351295599999999,
+    "recommended_policy": {
+      "safety_stock": 495,
+      "order_quantity": 2082,
+      "annual_ordering_cost": 1396.8047635593161,
+      "annual_holding_cost": 821.9590041599998,
+      "annual_total_cost": 2218.763767719316
+    },
+    "sap_policy": {
+      "safety_stock": 218,
+      "order_quantity": 3297,
+      "annual_ordering_cost": 882.0586950956919,
+      "annual_holding_cost": 998.8193237399998,
+      "annual_total_cost": 1880.8780188356918
+    },
+    "cost_savings": -337.8857488836243,
+    "cost_savings_pct": -17.964256347298033
+  },
+  "policy": {
+    "safety_stock": 495,
+    "reorder_point": 830,
+    "order_quantity": 2082,
+    "review_period_days": 9
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.127643100040776,
+    "sigma_eff_days": 1.2914574817224718,
+    "dominant_factor": "demand_uncertainty",
+    "dominant_pct": 0.6699344086615883,
+    "variance_components": {
+      "transport": 0.5586792144130379,
+      "supplier": 0.44694337153043034,
+      "quality": 0.11173584288260759
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase",
+    "override_flag": null
+  },
+  "milp_trigger": false,
+  "narrative": "Material PL2__MAFC767A exhibits highly variable demand patterns (CV=0.62) with a heavy-tailed distribution and unstable lead times (CV=0.74). \nThe analysis reveals demand uncertainty as the dominant factor (67.0%) driving buffer requirements. Current SAP safety stock of 218 units is insufficient \ngiven the observed variability. The recommended policy increases safety stock to 495 units and adjusts order quantity to 2082 units (constrained by \nstorage capacity of 2578 units). While this increases annual costs by $337.89 (18.0%), it provides the required \n95% service level protection against demand and lead-time variability. The storage constraint limits the EOQ optimization. Recommended safety lead time is 2.13 days, \nslightly higher than SAP's 2.0 days.",
+  "warnings": [
+    "Recommended policy increases costs by $337.89 but provides better service level protection"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Stochastic EOQ with safety stock",
+    "selection_rationale": "Continuous demand with high variability; normal approximation suitable given 92.9% non-zero days",
+    "boundary_risk": "HIGH: Both demand and lead time exhibit high variability",
+    "escalation_flag": "RECOMMEND_REVIEW"
+  }
+}

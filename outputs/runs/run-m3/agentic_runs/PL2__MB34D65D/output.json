@@ -1,0 +1,88 @@
+{
+  "material_id": "PL2__MB34D65D",
+  "data_quality": {
+    "total_rows": 141,
+    "working_days": 141,
+    "outliers_detected": 2,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 1321.2821999999999
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 734.5653191489362,
+    "std_daily_demand": 316.56932302021306,
+    "robust_std_daily": 306.94588584136403,
+    "cv_wd": 0.43096143360945594,
+    "non_zero_fraction_wd": 0.9645390070921985,
+    "trend_detected": false,
+    "regime": "moderate",
+    "distribution_type": "normal-like"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.944753086419753,
+    "std_lead_time": 1.2472211101730206,
+    "cv_lead_time": 0.4235401317430654,
+    "stability": "unstable",
+    "effective_lead_time": 4.191974196592774
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 1065.1153773228955,
+    "safety_stock": 1752,
+    "safety_stock_robust": 1739
+  },
+  "order_quantity": {
+    "eoq_raw": 5331.020679926604,
+    "order_quantity": 5332
+  },
+  "cost_analysis": {
+    "unit_cost": 8.077179,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.9692614799999999,
+    "optimized": {
+      "annual_holding_cost": 4282.19721864,
+      "annual_ordering_cost": 2583.1019756268856,
+      "total_annual_cost": 6865.299194266885
+    },
+    "sap_baseline": {
+      "annual_holding_cost": 190.45988081999997,
+      "annual_ordering_cost": 35046.05530290726,
+      "total_annual_cost": 35236.515183727264
+    },
+    "annual_savings": 28371.21598946038,
+    "savings_percentage": 80.5165205512792
+  },
+  "policy": {
+    "safety_stock": 1752,
+    "reorder_point": 3916,
+    "order_quantity": 5332,
+    "review_period_days": 8
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.385084014080407,
+    "sigma_eff_days": 1.4499940979475223,
+    "dominant_factor": "transport",
+    "dominant_pct": 0.39999999999999997,
+    "variance_components": {
+      "transport": 0.6222241990644889,
+      "supplier": 0.6222241990644889,
+      "quality": 0.31111209953224445
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "MAINTAIN: Recommended aligns with SAP",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL2__MB34D65D exhibits moderate demand behavior with normal-like distribution characteristics.\nThe optimized inventory policy recommends a safety stock of 1752 units and an order \nquantity of 5332 units, yielding a reorder point of 3916 units. This policy \nachieves a 95.0% service level while reducing total annual costs by \n$28,371.22 (80.5%) compared to the current SAP baseline.",
+  "warnings": [
+    "Unstable lead times - recommend supplier performance review"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Robust EOQ with Safety Stock Buffer",
+    "selection_rationale": "Moderate-to-high variability requires safety stock protection",
+    "boundary_risk": "Moderate",
+    "escalation_flag": null
+  }
+}

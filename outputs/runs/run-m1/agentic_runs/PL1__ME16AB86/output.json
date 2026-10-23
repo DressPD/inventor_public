@@ -1,0 +1,74 @@
+{
+  "material_id": "PL1__ME16AB86",
+  "data_quality": {
+    "total_rows": 179,
+    "working_days": 179,
+    "outliers_detected": 4,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 623.473
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 104.08,
+    "std_daily_demand": 144.25,
+    "robust_std_daily": 0.0,
+    "cv_wd": 1.386,
+    "non_zero_fraction_wd": 0.486,
+    "trend_detected": true,
+    "regime": "lumpy",
+    "distribution_type": "zero-inflated, right-skewed"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.77,
+    "std_lead_time": 1.04,
+    "cv_lead_time": 0.374,
+    "stability": "moderate",
+    "effective_lead_time": 3.81
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 263.15,
+    "safety_stock": 433.0,
+    "safety_stock_robust": 431.0
+  },
+  "order_quantity": {
+    "eoq_raw": 840.22,
+    "order_quantity": 841
+  },
+  "cost_analysis": {
+    "unit_cost": 31.943544,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 3.83
+  },
+  "policy": {
+    "safety_stock": 433,
+    "reorder_point": 722,
+    "order_quantity": 841,
+    "review_period_days": 9
+  },
+  "safety_lead_time": {
+    "recommended_days": 4.16,
+    "sigma_eff_days": 1.04,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 0.6,
+      "supplier": 0.3,
+      "quality": 0.1
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__ME16AB86 exhibits lumpy demand (CV=1.39, 48.6% non-zero days) with a statistically significant upward trend (slope=0.563, p=0.007). Lead time is moderately variable (CV=0.37, mean=2.77 days). The EOQ-derived order quantity of 841 units dominates the MOQ of 220 and fits comfortably within the 1,891-unit storage cap. Safety stock is increased 6.3x from the SAP baseline of 69 to 433 units to achieve the 95% service level target, at an incremental holding cost of ~$1,395/year.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review reorder-point fixed-order-quantity",
+    "selection_rationale": "Lumpy zero-inflated demand requires continuous monitoring rather than periodic review; a fixed order quantity (EOQ=841) keeps ordering costs predictable while the reorder point (722 units) absorbs demand-during-lead-time uncertainty.",
+    "boundary_risk": "No capacity or MOQ constraint binds. Post-replenishment maximum inventory of 1,274 units is 67.4% of the 1,891-unit storage limit, leaving 617 units of headroom.",
+    "escalation_flag": "none"
+  }
+}

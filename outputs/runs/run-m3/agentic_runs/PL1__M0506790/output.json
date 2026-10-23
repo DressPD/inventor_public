@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__M0506790",
+  "data_quality": {
+    "total_rows": 221,
+    "working_days": 221,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": -799.0885000000001,
+      "upper_bound": 1570.6915
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 432.17126244343893,
+    "std_daily_demand": 332.8496708765957,
+    "robust_std_daily": 440.688024,
+    "cv_wd": 0.7701800184369222,
+    "non_zero_fraction_wd": 0.9638009049773756,
+    "trend_detected": false,
+    "regime": "erratic",
+    "distribution_type": "normal-like"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.533174603174604,
+    "std_lead_time": 1.2482632099320403,
+    "cv_lead_time": 0.4927663526895076,
+    "stability": "variable",
+    "effective_lead_time": 4.245
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 756.0876209414679,
+    "safety_stock": 1243.6534655986832,
+    "safety_stock_robust": 1455.466272979618
+  },
+  "order_quantity": {
+    "eoq_raw": 3534.729049784664,
+    "order_quantity": 3535
+  },
+  "cost_analysis": {
+    "unit_cost": 10.895676,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 1.30748112
+  },
+  "policy": {
+    "safety_stock": 1244,
+    "reorder_point": 2339,
+    "order_quantity": 3535,
+    "review_period_days": 9
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.877686634153395,
+    "sigma_eff_days": 1.7495092493347404,
+    "dominant_factor": "lead_time_variability",
+    "dominant_pct": 50.90727562269155,
+    "variance_components": {
+      "transport": 280647.63641317794,
+      "supplier": 291020.854127751,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "maintain",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M0506790 exhibits erratic demand (CV=0.77) with variable lead times (CV=0.49). The current SAP policy uses excessive ordering frequency (955 orders/year) with insufficient safety stock (610 units). Optimizing to EOQ-based ordering (3535 units every 9 days) with adequate safety buffers (1244 units) will reduce total annual costs by $66273 (91.4%), primarily by reducing ordering costs from $71649 to $2311.",
+  "warnings": [
+    "Recommended safety stock (1244) is 2.0x higher than SAP (610)",
+    "High demand variability (CV=0.77) increases risk; consider demand forecasting improvements",
+    "Variable lead times (CV=0.49) detected; supplier reliability should be monitored"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Hybrid EOQ with statistical safety stock",
+    "selection_rationale": "Moderate variability justifies combined variance formula for buffers",
+    "boundary_risk": "medium",
+    "escalation_flag": "no"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "material_id": "PL3__M1B41D26",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 175,
+    "outliers_detected": 8,
+    "winsorisation": {
+      "lower_bound": 179.19,
+      "upper_bound": 802.44
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 481.88,
+    "std_daily_demand": 149.07,
+    "robust_std_daily": 115.5,
+    "cv_wd": 0.3093,
+    "non_zero_fraction_wd": 1.0,
+    "trend_detected": false,
+    "regime": "smooth",
+    "distribution_type": "gamma"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.5225,
+    "std_lead_time": 1.0687,
+    "cv_lead_time": 0.7019,
+    "stability": "volatile",
+    "effective_lead_time": 3.1255
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 546.83,
+    "safety_stock": 900,
+    "safety_stock_robust": 879
+  },
+  "order_quantity": {
+    "eoq_raw": 7225.67,
+    "order_quantity": 3611
+  },
+  "cost_analysis": {
+    "unit_cost": 2.884224,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.3461
+  },
+  "policy": {
+    "safety_stock": 900,
+    "reorder_point": 1634,
+    "order_quantity": 3611,
+    "review_period_days": 8
+  },
+  "safety_lead_time": {
+    "recommended_days": 2,
+    "sigma_eff_days": 1.603,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 0.6852,
+      "supplier": 0.3426,
+      "quality": 0.1142
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "INCREASE",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "The inventory optimization analysis for material PL3__M1B41D26 reveals a smooth demand pattern with moderate variability (CV=0.309). \nThe analysis is based on 175 working days with an average daily demand of 482 units. \n\nLead time analysis shows volatile behavior with a mean of 1.52 days and CV of 0.702, \nrequiring an effective lead time buffer of 3.13 days.\n\nThe recommended safety stock of 900 units provides 95% service level protection against demand and lead time variability. \nThe storage capacity constraint (4512 units) limits the order quantity to 3611 units, \ndown from the unconstrained EOQ of 7226 units.\n\nThe recommended policy is projected to reduce annual costs by $5,206 (60.2%) compared to \nthe current policy, primarily through reduced ordering frequency (from 113 to 33 orders per year).",
+  "warnings": [
+    "Storage capacity constraint violated: 900 + 7226 = 8126 > 4511.903"
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "Combined Variance EOQ with Storage Constraint",
+    "selection_rationale": "EOQ optimized for annual demand of 120469 units, constrained by storage capacity of 4512 units and MOQ of 1068 units. Safety stock calculated using combined variance formula for demand and lead time uncertainty.",
+    "boundary_risk": "Storage capacity is the binding constraint, limiting order quantity optimization.",
+    "escalation_flag": "None"
+  }
+}

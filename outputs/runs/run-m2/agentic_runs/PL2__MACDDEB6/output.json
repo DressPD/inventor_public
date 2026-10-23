@@ -1,0 +1,109 @@
+{
+  "material_id": "PL2__MACDDEB6",
+  "analysis_metadata": {
+    "timestamp": "2025-01-16T00:00:00Z",
+    "analyst": "inventory_optimizer_v1.0",
+    "service_level_target": 0.95,
+    "z_score": 1.6449
+  },
+  "input_parameters": {
+    "unit_cost": 6.807883,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 50.0,
+    "moq": 1260,
+    "service_level_target": 0.95,
+    "sap_safety_stock": 437,
+    "sap_safety_lead_time_days": 4.0,
+    "max_storage_units": 17750.885
+  },
+  "demand_statistics": {
+    "mean_daily_demand": 916.14,
+    "median_daily_demand": 901.55,
+    "std_demand": 394.82,
+    "robust_std_demand": 382.82,
+    "cv_demand": 0.431,
+    "min_demand": 0.0,
+    "max_demand": 1724.32,
+    "non_zero_fraction": 0.9645,
+    "annual_demand": 229034.27,
+    "trend_slope": 2.175,
+    "trend_interpretation": "increasing",
+    "regime": "moderate",
+    "distribution_type": "normal-approximation",
+    "observations_count": 141
+  },
+  "lead_time_statistics": {
+    "mean_lead_time_days": 2.39,
+    "median_lead_time_days": 2.14,
+    "std_lead_time_days": 1.1,
+    "cv_lead_time": 0.4627,
+    "min_lead_time": 0.19,
+    "max_lead_time": 4.49,
+    "stability": "volatile",
+    "effective_lead_time_days": 3.49,
+    "observations_count": 115
+  },
+  "uncertainty_analysis": {
+    "sigma_ltd": 1181.3,
+    "sigma_ltd_robust": 1171.83,
+    "demand_variance_contribution": 372044.34,
+    "lead_time_variance_contribution": 1023421.24,
+    "dominant_factor": "lead_time_variability"
+  },
+  "safety_stock_calculation": {
+    "safety_stock_units": 1944,
+    "safety_stock_robust_units": 1928,
+    "sap_safety_stock_units": 437,
+    "safety_stock_delta": 1507,
+    "safety_stock_days_of_supply": 2.12
+  },
+  "order_quantity_calculation": {
+    "eoq_raw": 5294.85,
+    "eoq_with_moq": 5295,
+    "final_order_quantity": 5295,
+    "moq_constraint_active": false,
+    "storage_constraint_active": false,
+    "is_feasible": true
+  },
+  "inventory_policy": {
+    "reorder_point_units": 4131,
+    "order_quantity_units": 5295,
+    "review_period_days": 6,
+    "max_inventory_level": 7239,
+    "average_inventory_units": 4591.5
+  },
+  "cost_analysis": {
+    "sap_policy": {
+      "order_quantity": 1260,
+      "safety_stock": 437,
+      "average_inventory": 1067.0,
+      "annual_ordering_cost": 9088.66,
+      "annual_holding_cost": 871.68,
+      "total_annual_cost": 9960.34
+    },
+    "optimized_policy": {
+      "order_quantity": 5295,
+      "safety_stock": 1944,
+      "average_inventory": 4591.5,
+      "annual_ordering_cost": 2162.74,
+      "annual_holding_cost": 3751.01,
+      "total_annual_cost": 5913.75
+    },
+    "cost_savings": 4046.59,
+    "cost_savings_percent": 40.63
+  },
+  "safety_lead_time_recommendation": {
+    "recommended_safety_lead_time_days": 1.82,
+    "current_sap_safety_lead_time_days": 4.0,
+    "variance_breakdown": {
+      "transport_fraction": 0.6,
+      "supplier_fraction": 0.3,
+      "quality_fraction": 0.1
+    }
+  },
+  "recommendations": {
+    "primary": "Increase safety stock from 437 to 1944 units to achieve 95% service level",
+    "secondary": "Increase order quantity to 5295 units (EOQ-based) to reduce ordering costs",
+    "tertiary": "Monitor lead time volatility (CV=0.46) and work with suppliers to improve consistency"
+  }
+}

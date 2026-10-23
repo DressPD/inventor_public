@@ -1,0 +1,74 @@
+{
+  "material_id": "PL3__M7F9E1E9",
+  "data_quality": {
+    "total_rows": 228,
+    "working_days": 228,
+    "outliers_detected": 0,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 36763.9506
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 23872.2732622807,
+    "std_daily_demand": 13833.487308877951,
+    "robust_std_daily": 20276.433283914008,
+    "cv_wd": 0.5794792626949149,
+    "non_zero_fraction_wd": 0.9649122807017544,
+    "trend_detected": false,
+    "regime": "erratic/intermittent",
+    "distribution_type": "heavy-tailed/mixed"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.084,
+    "std_lead_time": 1.0719452722348595,
+    "cv_lead_time": 0.9888794024306821,
+    "stability": "moderate",
+    "effective_lead_time": 2.1559452722348595
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 29364.543492894092,
+    "safety_stock": 48301,
+    "safety_stock_robust": 54567
+  },
+  "order_quantity": {
+    "eoq_raw": 67954.12068567879,
+    "order_quantity": 67955
+  },
+  "cost_analysis": {
+    "unit_cost": 1.077013,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.12924156
+  },
+  "policy": {
+    "safety_stock": 48301,
+    "reorder_point": 99769,
+    "order_quantity": 67955,
+    "review_period_days": 3
+  },
+  "safety_lead_time": {
+    "recommended_days": 2.131969872480862,
+    "sigma_eff_days": 1.0719452722348595,
+    "dominant_factor": "leadtime_variability",
+    "dominant_pct": 75.942741932866,
+    "variance_components": {
+      "transport": 0.0,
+      "supplier": 1.0,
+      "quality": 0.0
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "increase",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL3__M7F9E1E9 exhibits erratic demand (CV=0.58) driven by a bimodal distribution of near-zero and high-volume days, with a mean working-day demand of ~23,872 units. Lead times are short on average (1.08 days) but highly variable (CV=0.99), contributing 76% of the total lead-time demand variance and making lead time stabilisation the highest-leverage improvement action. A continuous-review (s,Q) policy is recommended with safety stock of 48,301 units and an EOQ-based order quantity of 67,955 units, achieving the 95% service level target while utilising only 59% of available storage capacity.",
+  "warnings": [],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(s, Q) Continuous-Review Policy",
+    "selection_rationale": "Given non-negligible demand volume on 96.5% of working days and a short but variable lead time, a continuous-review (s,Q) model is appropriate. It triggers a fixed replenishment order Q whenever inventory falls to the reorder point s, providing responsive coverage without the overhead of periodic reviews. The MOQ of 23,899 is well below the EOQ of 67,955, so no MOQ conflict distorts the policy.",
+    "boundary_risk": "Storage capacity (195,673 units) is not binding \u2014 max post-replenishment inventory of 167,724 units represents 59.4% utilisation. No capacity-driven reduction to order quantity was necessary.",
+    "escalation_flag": "none"
+  }
+}

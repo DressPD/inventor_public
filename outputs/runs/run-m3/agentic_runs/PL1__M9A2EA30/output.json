@@ -1,0 +1,78 @@
+{
+  "material_id": "PL1__M9A2EA30",
+  "data_quality": {
+    "total_rows": 97,
+    "working_days": 97,
+    "outliers_detected": 7,
+    "winsorisation": {
+      "lower_bound": 731.659,
+      "upper_bound": 6686.546
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 4071.45,
+    "std_daily_demand": 1423.18,
+    "robust_std_daily": 1185.42,
+    "cv_wd": 0.35,
+    "non_zero_fraction_wd": 0.9897,
+    "trend_detected": false,
+    "regime": "lumpy",
+    "distribution_type": "normal-like"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 2.41,
+    "std_lead_time": 1.16,
+    "cv_lead_time": 0.48,
+    "stability": "moderate",
+    "effective_lead_time": 3.57
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 5407.2,
+    "safety_stock": 8895.0,
+    "safety_stock_robust": 7423.0
+  },
+  "order_quantity": {
+    "eoq_raw": 47925.4,
+    "order_quantity": 48627
+  },
+  "cost_analysis": {
+    "unit_cost": 0.042,
+    "ordering_cost": 75.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.00504
+  },
+  "policy": {
+    "safety_stock": 8899,
+    "reorder_point": 18965,
+    "order_quantity": 48627,
+    "review_period_days": 13
+  },
+  "safety_lead_time": {
+    "recommended_days": 1.91,
+    "sigma_eff_days": 1.16,
+    "dominant_factor": "transport",
+    "dominant_pct": 60.0,
+    "variance_components": {
+      "transport": 0.8073,
+      "supplier": 0.4037,
+      "quality": 0.1346
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M9A2EA30 exhibits lumpy demand (CV=0.35) with a mean of ~4,071 units/day over 97 working days, showing no significant trend. Lead times are moderately variable (CV=0.48, mean 2.41 days) with a bimodal pattern suggesting dual transport modes. The current SAP policy carries zero safety stock, exposing operations to stockout risk. An (r,Q) policy with safety stock of 8,899 units and order quantity of 48,627 units (exceeding the 24,388 MOQ) achieves the 95% service level target while reducing annual costs by ~45.5%; the storage capacity is fully consumed, warranting close monitoring.",
+  "warnings": [
+    "High capacity utilization: safety_stock (8899) + order_quantity (48627) = 57526 units, effectively at the storage limit of 57526.652 units. No buffer remains for unexpected demand spikes.",
+    "SAP safety lead time (5.0 days) exceeds the statistically recommended value (1.91 days). Consider reducing in ERP to free planning headroom.",
+    "SAP safety stock is 0 \u2014 current ERP configuration carries no buffer against demand/lead-time variability."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) fixed-reorder-point, fixed-order-quantity policy",
+    "selection_rationale": "The (r,Q) model is appropriate for PL1__M9A2EA30 because demand is continuous (non-zero fraction 98.97%), roughly normal in distribution (CV=0.35 < 0.5), and the MOQ constraint naturally fixes the minimum order size. The EOQ balances ordering and holding costs optimally, and the reorder point provides a statistically derived trigger that maintains 95% service level against combined demand and lead-time variability.",
+    "boundary_risk": "Storage capacity is fully saturated (57,526 units = safety stock + order quantity). Any demand below the mean during a replenishment cycle or any lead time shorter than average will cause the incoming order to breach capacity. Recommend negotiating increased storage or splitting into two smaller deliveries if operationally feasible.",
+    "escalation_flag": "none \u2014 MOQ (24,388) + safety_stock (8,899) = 33,287 which is below max_storage_units (57,526.652), so no MOQ-capacity infeasibility exists. Capacity is consumed by the full order quantity, not the MOQ alone."
+  }
+}

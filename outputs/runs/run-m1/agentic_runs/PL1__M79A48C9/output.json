@@ -1,0 +1,88 @@
+{
+  "material_id": "PL1__M79A48C9",
+  "report_date": "2026-10-19",
+  "input_parameters": {
+    "unit_cost": 3.66,
+    "holding_cost_rate": 0.12,
+    "ordering_cost": 50.0,
+    "moq": 364,
+    "service_level_target": 0.95,
+    "max_storage_units": 6236.438,
+    "sap_safety_stock": 405,
+    "sap_safety_lead_time_days": 3.0
+  },
+  "data_quality": {
+    "total_rows": 90,
+    "working_days": 90,
+    "outliers_detected": 1,
+    "winsorisation": {
+      "lower_bound": 0.0,
+      "upper_bound": 1350.131
+    }
+  },
+  "demand_analysis": {
+    "mean_daily_demand": 685.35,
+    "std_daily_demand": 291.57,
+    "robust_std_daily": 231.9,
+    "cv_wd": 0.4254,
+    "non_zero_fraction_wd": 0.9556,
+    "trend_detected": false,
+    "regime": "smooth",
+    "distribution_type": "Normal"
+  },
+  "lead_time_analysis": {
+    "mean_lead_time": 1.14,
+    "std_lead_time": 0.91,
+    "cv_lead_time": 0.8058,
+    "stability": "unstable",
+    "effective_lead_time": 1.59
+  },
+  "buffer_analysis": {
+    "sigma_ltd": 699.79,
+    "safety_stock": 1152.0,
+    "safety_stock_robust": 1109.0
+  },
+  "order_quantity": {
+    "eoq_raw": 6246.59,
+    "order_quantity": 5084
+  },
+  "cost_analysis": {
+    "unit_cost": 3.659177,
+    "ordering_cost": 50.0,
+    "holding_cost_rate": 0.12,
+    "annual_holding_cost_per_unit": 0.4391
+  },
+  "policy": {
+    "safety_stock": 1152,
+    "reorder_point": 1931,
+    "order_quantity": 5084,
+    "review_period_days": 0
+  },
+  "safety_lead_time": {
+    "recommended_days": 0.0014,
+    "sigma_eff_days": 0.5822,
+    "dominant_factor": "transport",
+    "dominant_pct": 65.79,
+    "variance_components": {
+      "transport": 0.2093,
+      "supplier": 0.0753,
+      "quality": 0.0335
+    },
+    "disruption_premium": 1.0,
+    "comparison_action": "reduce",
+    "override_flag": null
+  },
+  "milp_trigger": null,
+  "narrative": "Material PL1__M79A48C9 shows smooth, high-volume demand (mean 685 units/day, CV 0.43) consistent with a Normal distribution and no detectable trend. Lead times are short but highly variable (CV 0.81, mean 1.14 days), requiring a significantly larger safety stock of 1,152 units compared to the current SAP level of 405. An (r,Q) continuous-review policy with EOQ-derived order quantity of 5,084 units (capped by the 6,236-unit storage limit) reduces annual replenishments from ~423 to ~34, saving approximately $18,112/year (85% cost reduction) while maintaining the 95% service level.",
+  "warnings": [
+    "Lead time is unstable (CV=0.81). Consider dual sourcing or supplier performance management.",
+    "EOQ raw (6,247) exceeds max_storage_units minus safety_stock (5,084); order quantity capped at 5,084 units."
+  ],
+  "errors": [],
+  "research_insights": {
+    "selected_model": "(r,Q) continuous-review with EOQ",
+    "selection_rationale": "Smooth demand (CV=0.43) with a high non-zero fraction (95.6%) and Normal-approximable distribution is the canonical fit for a continuous-review (r,Q) policy. EOQ minimises the sum of ordering and holding costs; the reorder point absorbs lead-time demand uncertainty at the target service level.",
+    "boundary_risk": "Order quantity is capacity-constrained from 6,247 to 5,084 units. This marginally increases ordering frequency (from ~27 to ~34 orders/year) and raises annual ordering cost by ~$350, but the policy remains well within the storage limit at all times (max inventory = SS + OQ = 6,236 units).",
+    "escalation_flag": "none"
+  }
+}
