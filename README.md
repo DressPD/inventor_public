@@ -4,6 +4,9 @@
 
 This repository contains a confidentiality-screened research release.
 
+- Paper preprint (version 3; not a peer-reviewed journal article): https://doi.org/10.5281/zenodo.23628463
+- Software release v1.3.0 (separate archive): https://doi.org/10.5281/zenodo.23627916
+
 ## Reproducibility Boundary
 
 The public synthetic benchmark fully reproduces the released software method:
