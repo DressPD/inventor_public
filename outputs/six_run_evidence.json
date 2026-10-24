@@ -1,0 +1,1903 @@
+{
+  "scope": "same masked panel, working-day hard-limit replay, fixed policies",
+  "originals": "O1*--O3*: frozen original policies rescaled; not new generations",
+  "n_common": 338,
+  "runs": {
+    "mf-01": {
+      "groups": {
+        "ALL": {
+          "n": 338,
+          "arms": {
+            "llm_pure": {
+              "mean_cost": 2921.8976962071924,
+              "mean_holding": 1830.9213648462458,
+              "mean_ordering": 1090.9763313609467,
+              "mean_fill_pct": 98.33612638982132,
+              "aggregate_fill_pct": 76.43513756322452,
+              "shortage_exposure": 1682811.5810764863
+            },
+            "sap_static": {
+              "mean_cost": 3298.358611789308,
+              "mean_holding": 2179.7935230319113,
+              "mean_ordering": 1118.5650887573966,
+              "mean_fill_pct": 98.50998546286661,
+              "aggregate_fill_pct": 76.8886279707436,
+              "shortage_exposure": 1647813.2601896035
+            },
+            "universal_rq": {
+              "mean_cost": 4221.586668249196,
+              "mean_holding": 2630.166549906001,
+              "mean_ordering": 1591.4201183431953,
+              "mean_fill_pct": 98.43435599907056,
+              "aggregate_fill_pct": 76.66452830719248,
+              "shortage_exposure": 1708454.5792809266
+            },
+            "or_erp_floor": {
+              "mean_cost": 4249.849460587101,
+              "mean_holding": 2645.707448752781,
+              "mean_ordering": 1604.1420118343194,
+              "mean_fill_pct": 98.43435599907056,
+              "aggregate_fill_pct": 76.66452830719248,
+              "shortage_exposure": 1708454.5792809266
+            },
+            "or_cold": {
+              "mean_cost": 2755.805179314828,
+              "mean_holding": 1730.2134633384965,
+              "mean_ordering": 1025.5917159763314,
+              "mean_fill_pct": 98.36618366206861,
+              "aggregate_fill_pct": 76.27602957578934,
+              "shortage_exposure": 1696071.3290529915
+            },
+            "or_sba": {
+              "mean_cost": 2696.928609421377,
+              "mean_holding": 1669.3398520249273,
+              "mean_ordering": 1027.5887573964496,
+              "mean_fill_pct": 98.51780143828228,
+              "aggregate_fill_pct": 76.43848808562973,
+              "shortage_exposure": 1688258.565986845
+            },
+            "or_empirical": {
+              "mean_cost": 2475.9289578945645,
+              "mean_holding": 1547.378662036576,
+              "mean_ordering": 928.5502958579882,
+              "mean_fill_pct": 98.56076812425842,
+              "aggregate_fill_pct": 76.46638104256357,
+              "shortage_exposure": 1709914.9906647333
+            },
+            "or_tuned": {
+              "mean_cost": 3267.4147698548245,
+              "mean_holding": 2486.0538231092623,
+              "mean_ordering": 781.3609467455622,
+              "mean_fill_pct": 96.17174791255965,
+              "aggregate_fill_pct": 82.81625095007006,
+              "shortage_exposure": 1113012.771220329
+            }
+          },
+          "vs_arm_pct": {
+            "sap_static": -11.413583539295358,
+            "universal_rq": -30.786741435798092,
+            "or_erp_floor": -31.247030670033592,
+            "or_cold": 6.0270050342840165,
+            "or_sba": 8.341677491940814,
+            "or_empirical": 18.012178293349045,
+            "or_tuned": -10.57463156607399
+          }
+        },
+        "PL1": {
+          "n": 213,
+          "arms": {
+            "llm_pure": {
+              "mean_cost": 2381.1199653888443,
+              "mean_holding": 1490.6270076423652,
+              "mean_ordering": 890.4929577464789,
+              "mean_fill_pct": 99.31905499246825,
+              "aggregate_fill_pct": 98.9122741678035,
+              "shortage_exposure": 80596.05043238513
+            },
+            "sap_static": {
+              "mean_cost": 2766.9570619738165,
+              "mean_holding": 1734.3279539925957,
+              "mean_ordering": 1032.6291079812206,
+              "mean_fill_pct": 99.483146229026,
+              "aggregate_fill_pct": 99.11719724040186,
+              "shortage_exposure": 60590.3567548009
+            },
+            "universal_rq": {
+              "mean_cost": 3773.8398009736743,
+              "mean_holding": 2220.2013033210924,
+              "mean_ordering": 1553.6384976525821,
+              "mean_fill_pct": 99.25572450086081,
+              "aggregate_fill_pct": 98.47989372272798,
+              "shortage_exposure": 153503.43024246857
+            },
+            "or_erp_floor": {
+              "mean_cost": 3787.6844315247813,
+              "mean_holding": 2226.7689385670346,
+              "mean_ordering": 1560.9154929577464,
+              "mean_fill_pct": 99.25572450086081,
+              "aggregate_fill_pct": 98.47989372272798,
+              "shortage_exposure": 153503.43024246857
+            },
+            "or_cold": {
+              "mean_cost": 2218.1198835542787,
+              "mean_holding": 1397.932090127049,
+              "mean_ordering": 820.1877934272301,
+              "mean_fill_pct": 99.32654927328365,
+              "aggregate_fill_pct": 98.91357664773362,
+              "shortage_exposure": 81202.8775281731
+            },
+            "or_sba": {
+              "mean_cost": 2102.819472944116,
+              "mean_holding": 1275.706796887778,
+              "mean_ordering": 827.112676056338,
+              "mean_fill_pct": 99.2973122862037,
+              "aggregate_fill_pct": 98.92965412393679,
+              "shortage_exposure": 93306.5549613105
+            },
+            "or_empirical": {
+              "mean_cost": 1962.8658493150954,
+              "mean_holding": 1218.0301685639217,
+              "mean_ordering": 744.8356807511738,
+              "mean_fill_pct": 99.30612237737554,
+              "aggregate_fill_pct": 98.9847111693003,
+              "shortage_exposure": 111303.09415045088
+            },
+            "or_tuned": {
+              "mean_cost": 1555.288763948366,
+              "mean_holding": 929.8192803802908,
+              "mean_ordering": 625.4694835680751,
+              "mean_fill_pct": 97.0586122600157,
+              "aggregate_fill_pct": 97.82310054474317,
+              "shortage_exposure": 82373.558138843
+            }
+          },
+          "vs_arm_pct": {
+            "sap_static": -13.944455513513976,
+            "universal_rq": -36.90458283961867,
+            "or_erp_floor": -37.13520731635255,
+            "or_cold": 7.348569526971516,
+            "or_sba": 13.234635498932533,
+            "or_empirical": 21.30833934574239,
+            "or_tuned": 53.098255486908094
+          }
+        },
+        "PL2": {
+          "n": 64,
+          "arms": {
+            "llm_pure": {
+              "mean_cost": 4967.095733837957,
+              "mean_holding": 3655.767608837957,
+              "mean_ordering": 1311.328125,
+              "mean_fill_pct": 96.25669554477567,
+              "aggregate_fill_pct": 55.829368878727536,
+              "shortage_exposure": 8576235.061120996
+            },
+            "sap_static": {
+              "mean_cost": 6430.563249392594,
+              "mean_holding": 4998.531999392594,
+              "mean_ordering": 1432.03125,
+              "mean_fill_pct": 96.49152636142695,
+              "aggregate_fill_pct": 56.4530350546032,
+              "shortage_exposure": 8480117.433796272
+            },
+            "universal_rq": {
+              "mean_cost": 7364.154642679941,
+              "mean_holding": 5530.951517679941,
+              "mean_ordering": 1833.203125,
+              "mean_fill_pct": 96.5792071249689,
+              "aggregate_fill_pct": 56.4588122680886,
+              "shortage_exposure": 8479781.895283211
+            },
+            "or_erp_floor": {
+              "mean_cost": 7458.820538651362,
+              "mean_holding": 5590.461163651362,
+              "mean_ordering": 1868.359375,
+              "mean_fill_pct": 96.5792071249689,
+              "aggregate_fill_pct": 56.4588122680886,
+              "shortage_exposure": 8479781.895283211
+            },
+            "or_cold": {
+              "mean_cost": 4800.626504406733,
+              "mean_holding": 3514.689004406733,
+              "mean_ordering": 1285.9375,
+              "mean_fill_pct": 95.98345827445755,
+              "aggregate_fill_pct": 55.396204832148435,
+              "shortage_exposure": 8655008.132019194
+            },
+            "or_sba": {
+              "mean_cost": 4860.044533888703,
+              "mean_holding": 3595.5914088887034,
+              "mean_ordering": 1264.453125,
+              "mean_fill_pct": 96.22123707500585,
+              "aggregate_fill_pct": 55.806279002269136,
+              "shortage_exposure": 8574440.88612775
+            },
+            "or_empirical": {
+              "mean_cost": 4608.544297534675,
+              "mean_holding": 3321.044297534675,
+              "mean_ordering": 1287.5,
+              "mean_fill_pct": 96.1602659180406,
+              "aggregate_fill_pct": 55.48946843447613,
+              "shortage_exposure": 8646062.989138959
+            },
+            "or_tuned": {
+              "mean_cost": 10508.047707774344,
+              "mean_holding": 9422.110207774344,
+              "mean_ordering": 1085.9375,
+              "mean_fill_pct": 93.84693870535271,
+              "aggregate_fill_pct": 69.58948975326804,
+              "shortage_exposure": 5563451.105694735
+            }
+          },
+          "vs_arm_pct": {
+            "sap_static": -22.757998931009205,
+            "universal_rq": -32.55036083774653,
+            "or_erp_floor": -33.40641850680506,
+            "or_cold": 3.4676563419048234,
+            "or_sba": 2.2026794035074015,
+            "or_empirical": 7.780145164170116,
+            "or_tuned": -52.73055593225878
+          }
+        },
+        "PL3": {
+          "n": 61,
+          "arms": {
+            "llm_pure": {
+              "mean_cost": 2664.4056020422627,
+              "mean_holding": 1104.569536468492,
+              "mean_ordering": 1559.8360655737704,
+              "mean_fill_pct": 97.08563100816761,
+              "aggregate_fill_pct": 94.58347224554143,
+              "shortage_exposure": 44988.71721328817
+            },
+            "sap_static": {
+              "mean_cost": 1867.6607971022481,
+              "mean_holding": 777.9066987415923,
+              "mean_ordering": 1089.7540983606557,
+              "mean_fill_pct": 97.22962709073856,
+              "aggregate_fill_pct": 95.03579020125976,
+              "shortage_exposure": 21764.26544839394
+            },
+            "universal_rq": {
+              "mean_cost": 2487.9101496609746,
+              "mean_holding": 1018.2380185134338,
+              "mean_ordering": 1469.672131147541,
+              "mean_fill_pct": 97.51268447548341,
+              "aggregate_fill_pct": 94.99306998005784,
+              "shortage_exposure": 33694.68618331033
+            },
+            "or_erp_floor": {
+              "mean_cost": 2496.849496556959,
+              "mean_holding": 1018.9806440979426,
+              "mean_ordering": 1477.8688524590164,
+              "mean_fill_pct": 97.51268447548341,
+              "aggregate_fill_pct": 94.99306998005784,
+              "shortage_exposure": 33694.68618331033
+            },
+            "or_cold": {
+              "mean_cost": 2487.9101496609746,
+              "mean_holding": 1018.2380185134338,
+              "mean_ordering": 1469.672131147541,
+              "mean_fill_pct": 97.51268447548341,
+              "aggregate_fill_pct": 94.99306998005784,
+              "shortage_exposure": 33694.68618331033
+            },
+            "or_sba": {
+              "mean_cost": 2501.942165220519,
+              "mean_holding": 1022.8438045647816,
+              "mean_ordering": 1479.0983606557377,
+              "mean_fill_pct": 98.20541305537125,
+              "aggregate_fill_pct": 94.64510859820102,
+              "shortage_exposure": 32670.203026533272
+            },
+            "or_empirical": {
+              "mean_cost": 2029.9463413447245,
+              "mean_holding": 836.5037183939048,
+              "mean_ordering": 1193.4426229508197,
+              "mean_fill_pct": 98.47669739120909,
+              "aggregate_fill_pct": 95.80085502865056,
+              "shortage_exposure": 14683.221077712744
+            },
+            "or_tuned": {
+              "mean_cost": 1649.0923310224723,
+              "mean_holding": 642.9447900388657,
+              "mean_ordering": 1006.1475409836065,
+              "mean_fill_pct": 95.51413616261057,
+              "aggregate_fill_pct": 93.09783829517583,
+              "shortage_exposure": 42489.80367925494
+            }
+          },
+          "vs_arm_pct": {
+            "sap_static": 42.66003795636748,
+            "universal_rq": 7.09412485838119,
+            "or_erp_floor": 6.710701054122636,
+            "or_cold": 7.09412485838119,
+            "or_sba": 6.493492898442921,
+            "or_empirical": 31.254976930929356,
+            "or_tuned": 61.568006346271375
+          }
+        }
+      }
+    },
+    "mf-02": {
+      "groups": {
+        "ALL": {
+          "n": 338,
+          "arms": {
+            "llm_pure": {
+              "mean_cost": 2925.4731780578068,
+              "mean_holding": 1857.795663264907,
+              "mean_ordering": 1067.6775147928995,
+              "mean_fill_pct": 98.11313862411266,
+              "aggregate_fill_pct": 76.27059353155495,
+              "shortage_exposure": 1693333.40814541
+            },
+            "sap_static": {
+              "mean_cost": 3298.358611789308,
+              "mean_holding": 2179.7935230319113,
+              "mean_ordering": 1118.5650887573966,
+              "mean_fill_pct": 98.50998546286661,
+              "aggregate_fill_pct": 76.8886279707436,
+              "shortage_exposure": 1647813.2601896035
+            },
+            "universal_rq": {
+              "mean_cost": 4221.586668249196,
+              "mean_holding": 2630.166549906001,
+              "mean_ordering": 1591.4201183431953,
+              "mean_fill_pct": 98.43435599907056,
+              "aggregate_fill_pct": 76.66452830719248,
+              "shortage_exposure": 1708454.5792809266
+            },
+            "or_erp_floor": {
+              "mean_cost": 4249.849460587101,
+              "mean_holding": 2645.707448752781,
+              "mean_ordering": 1604.1420118343194,
+              "mean_fill_pct": 98.43435599907056,
+              "aggregate_fill_pct": 76.66452830719248,
+              "shortage_exposure": 1708454.5792809266
+            },
+            "or_cold": {
+              "mean_cost": 2755.805179314828,
+              "mean_holding": 1730.2134633384965,
+              "mean_ordering": 1025.5917159763314,
+              "mean_fill_pct": 98.36618366206861,
+              "aggregate_fill_pct": 76.27602957578934,
+              "shortage_exposure": 1696071.3290529915
+            },
+            "or_sba": {
+              "mean_cost": 2696.928609421377,
+              "mean_holding": 1669.3398520249273,
+              "mean_ordering": 1027.5887573964496,
+              "mean_fill_pct": 98.51780143828228,
+              "aggregate_fill_pct": 76.43848808562973,
+              "shortage_exposure": 1688258.565986845
+            },
+            "or_empirical": {
+              "mean_cost": 2475.9289578945645,
+              "mean_holding": 1547.378662036576,
+              "mean_ordering": 928.5502958579882,
+              "mean_fill_pct": 98.56076812425842,
+              "aggregate_fill_pct": 76.46638104256357,
+              "shortage_exposure": 1709914.9906647333
+            },
+            "or_tuned": {
+              "mean_cost": 3267.4147698548245,
+              "mean_holding": 2486.0538231092623,
+              "mean_ordering": 781.3609467455622,
+              "mean_fill_pct": 96.17174791255965,
+              "aggregate_fill_pct": 82.81625095007006,
+              "shortage_exposure": 1113012.771220329
+            }
+          },
+          "vs_arm_pct": {
+            "sap_static": -11.305181686390874,
+            "universal_rq": -30.702046222088384,
+            "or_erp_floor": -31.1628987052717,
+            "or_cold": 6.156748670643086,
+            "or_sba": 8.474253557844968,
+            "or_empirical": 18.156588004266382,
+            "or_tuned": -10.46520310037684
+          }
+        },
+        "PL1": {
+          "n": 213,
+          "arms": {
+            "llm_pure": {
+              "mean_cost": 2318.0535537497094,
+              "mean_holding": 1465.2366523412586,
+              "mean_ordering": 852.8169014084507,
+              "mean_fill_pct": 99.23737588114169,
+              "aggregate_fill_pct": 98.90394933111006,
+              "shortage_exposure": 82111.03073622483
+            },
+            "sap_static": {
+              "mean_cost": 2766.9570619738165,
+              "mean_holding": 1734.3279539925957,
+              "mean_ordering": 1032.6291079812206,
+              "mean_fill_pct": 99.483146229026,
+              "aggregate_fill_pct": 99.11719724040186,
+              "shortage_exposure": 60590.3567548009
+            },
+            "universal_rq": {
+              "mean_cost": 3773.8398009736743,
+              "mean_holding": 2220.2013033210924,
+              "mean_ordering": 1553.6384976525821,
+              "mean_fill_pct": 99.25572450086081,
+              "aggregate_fill_pct": 98.47989372272798,
+              "shortage_exposure": 153503.43024246857
+            },
+            "or_erp_floor": {
+              "mean_cost": 3787.6844315247813,
+              "mean_holding": 2226.7689385670346,
+              "mean_ordering": 1560.9154929577464,
+              "mean_fill_pct": 99.25572450086081,
+              "aggregate_fill_pct": 98.47989372272798,
+              "shortage_exposure": 153503.43024246857
+            },
+            "or_cold": {
+              "mean_cost": 2218.1198835542787,
+              "mean_holding": 1397.932090127049,
+              "mean_ordering": 820.1877934272301,
+              "mean_fill_pct": 99.32654927328365,
+              "aggregate_fill_pct": 98.91357664773362,
+              "shortage_exposure": 81202.8775281731
+            },
+            "or_sba": {
+              "mean_cost": 2102.819472944116,
+              "mean_holding": 1275.706796887778,
+              "mean_ordering": 827.112676056338,
+              "mean_fill_pct": 99.2973122862037,
+              "aggregate_fill_pct": 98.92965412393679,
+              "shortage_exposure": 93306.5549613105
+            },
+            "or_empirical": {
+              "mean_cost": 1962.8658493150954,
+              "mean_holding": 1218.0301685639217,
+              "mean_ordering": 744.8356807511738,
+              "mean_fill_pct": 99.30612237737554,
+              "aggregate_fill_pct": 98.9847111693003,
+              "shortage_exposure": 111303.09415045088
+            },
+            "or_tuned": {
+              "mean_cost": 1555.288763948366,
+              "mean_holding": 929.8192803802908,
+              "mean_ordering": 625.4694835680751,
+              "mean_fill_pct": 97.0586122600157,
+              "aggregate_fill_pct": 97.82310054474317,
+              "shortage_exposure": 82373.558138843
+            }
+          },
+          "vs_arm_pct": {
+            "sap_static": -16.223725130880073,
+            "universal_rq": -38.57572986665632,
+            "or_erp_floor": -38.800246016890405,
+            "or_cold": 4.505332238188076,
+            "or_sba": 10.23549969813853,
+            "or_empirical": 18.09536319349334,
+            "or_tuned": 49.04329070473927
+          }
+        },
+        "PL2": {
+          "n": 64,
+          "arms": {
+            "llm_pure": {
+              "mean_cost": 5276.20450004672,
+              "mean_holding": 3957.8451250467197,
+              "mean_ordering": 1318.359375,
+              "mean_fill_pct": 96.2306767143678,
+              "aggregate_fill_pct": 55.6319069249233,
+              "shortage_exposure": 8615224.565760482
+            },
+            "sap_static": {
+              "mean_cost": 6430.563249392594,
+              "mean_holding": 4998.531999392594,
+              "mean_ordering": 1432.03125,
+              "mean_fill_pct": 96.49152636142695,
+              "aggregate_fill_pct": 56.4530350546032,
+              "shortage_exposure": 8480117.433796272
+            },
+            "universal_rq": {
+              "mean_cost": 7364.154642679941,
+              "mean_holding": 5530.951517679941,
+              "mean_ordering": 1833.203125,
+              "mean_fill_pct": 96.5792071249689,
+              "aggregate_fill_pct": 56.4588122680886,
+              "shortage_exposure": 8479781.895283211
+            },
+            "or_erp_floor": {
+              "mean_cost": 7458.820538651362,
+              "mean_holding": 5590.461163651362,
+              "mean_ordering": 1868.359375,
+              "mean_fill_pct": 96.5792071249689,
+              "aggregate_fill_pct": 56.4588122680886,
+              "shortage_exposure": 8479781.895283211
+            },
+            "or_cold": {
+              "mean_cost": 4800.626504406733,
+              "mean_holding": 3514.689004406733,
+              "mean_ordering": 1285.9375,
+              "mean_fill_pct": 95.98345827445755,
+              "aggregate_fill_pct": 55.396204832148435,
+              "shortage_exposure": 8655008.132019194
+            },
+            "or_sba": {
+              "mean_cost": 4860.044533888703,
+              "mean_holding": 3595.5914088887034,
+              "mean_ordering": 1264.453125,
+              "mean_fill_pct": 96.22123707500585,
+              "aggregate_fill_pct": 55.806279002269136,
+              "shortage_exposure": 8574440.88612775
+            },
+            "or_empirical": {
+              "mean_cost": 4608.544297534675,
+              "mean_holding": 3321.044297534675,
+              "mean_ordering": 1287.5,
+              "mean_fill_pct": 96.1602659180406,
+              "aggregate_fill_pct": 55.48946843447613,
+              "shortage_exposure": 8646062.989138959
+            },
+            "or_tuned": {
+              "mean_cost": 10508.047707774344,
+              "mean_holding": 9422.110207774344,
+              "mean_ordering": 1085.9375,
+              "mean_fill_pct": 93.84693870535271,
+              "aggregate_fill_pct": 69.58948975326804,
+              "shortage_exposure": 5563451.105694735
+            }
+          },
+          "vs_arm_pct": {
+            "sap_static": -17.951129700106915,
+            "universal_rq": -28.352882902977463,
+            "or_erp_floor": -29.262214143568656,
+            "or_cold": 9.906581884748377,
+            "or_sba": 8.562883801910992,
+            "or_empirical": 14.487442441840193,
+            "or_tuned": -49.78891753467071
+          }
+        },
+        "PL3": {
+          "n": 61,
+          "arms": {
+            "llm_pure": {
+              "mean_cost": 2580.1219546206635,
+              "mean_holding": 1025.2039218337784,
+              "mean_ordering": 1554.9180327868853,
+              "mean_fill_pct": 96.16256528766172,
+              "aggregate_fill_pct": 94.16364463875946,
+              "shortage_exposure": 57092.95406003077
+            },
+            "sap_static": {
+              "mean_cost": 1867.6607971022481,
+              "mean_holding": 777.9066987415923,
+              "mean_ordering": 1089.7540983606557,
+              "mean_fill_pct": 97.22962709073856,
+              "aggregate_fill_pct": 95.03579020125976,
+              "shortage_exposure": 21764.26544839394
+            },
+            "universal_rq": {
+              "mean_cost": 2487.9101496609746,
+              "mean_holding": 1018.2380185134338,
+              "mean_ordering": 1469.672131147541,
+              "mean_fill_pct": 97.51268447548341,
+              "aggregate_fill_pct": 94.99306998005784,
+              "shortage_exposure": 33694.68618331033
+            },
+            "or_erp_floor": {
+              "mean_cost": 2496.849496556959,
+              "mean_holding": 1018.9806440979426,
+              "mean_ordering": 1477.8688524590164,
+              "mean_fill_pct": 97.51268447548341,
+              "aggregate_fill_pct": 94.99306998005784,
+              "shortage_exposure": 33694.68618331033
+            },
+            "or_cold": {
+              "mean_cost": 2487.9101496609746,
+              "mean_holding": 1018.2380185134338,
+              "mean_ordering": 1469.672131147541,
+              "mean_fill_pct": 97.51268447548341,
+              "aggregate_fill_pct": 94.99306998005784,
+              "shortage_exposure": 33694.68618331033
+            },
+            "or_sba": {
+              "mean_cost": 2501.942165220519,
+              "mean_holding": 1022.8438045647816,
+              "mean_ordering": 1479.0983606557377,
+              "mean_fill_pct": 98.20541305537125,
+              "aggregate_fill_pct": 94.64510859820102,
+              "shortage_exposure": 32670.203026533272
+            },
+            "or_empirical": {
+              "mean_cost": 2029.9463413447245,
+              "mean_holding": 836.5037183939048,
+              "mean_ordering": 1193.4426229508197,
+              "mean_fill_pct": 98.47669739120909,
+              "aggregate_fill_pct": 95.80085502865056,
+              "shortage_exposure": 14683.221077712744
+            },
+            "or_tuned": {
+              "mean_cost": 1649.0923310224723,
+              "mean_holding": 642.9447900388657,
+              "mean_ordering": 1006.1475409836065,
+              "mean_fill_pct": 95.51413616261057,
+              "aggregate_fill_pct": 93.09783829517583,
+              "shortage_exposure": 42489.80367925494
+            }
+          },
+          "vs_arm_pct": {
+            "sap_static": 38.14724593586951,
+            "universal_rq": 3.7063961080851193,
+            "or_erp_floor": 3.3351012217009313,
+            "or_cold": 3.7063961080851193,
+            "or_sba": 3.124764052779505,
+            "or_empirical": 27.10296336756757,
+            "or_tuned": 56.45709497787386
+          }
+        }
+      }
+    },
+    "mf-03": {
+      "groups": {
+        "ALL": {
+          "n": 338,
+          "arms": {
+            "llm_pure": {
+              "mean_cost": 2918.7451889084987,
+              "mean_holding": 1843.6712244114572,
+              "mean_ordering": 1075.0739644970415,
+              "mean_fill_pct": 98.36660571488345,
+              "aggregate_fill_pct": 76.46413205645783,
+              "shortage_exposure": 1682110.9603143285
+            },
+            "sap_static": {
+              "mean_cost": 3298.358611789308,
+              "mean_holding": 2179.7935230319113,
+              "mean_ordering": 1118.5650887573966,
+              "mean_fill_pct": 98.50998546286661,
+              "aggregate_fill_pct": 76.8886279707436,
+              "shortage_exposure": 1647813.2601896035
+            },
+            "universal_rq": {
+              "mean_cost": 4221.586668249196,
+              "mean_holding": 2630.166549906001,
+              "mean_ordering": 1591.4201183431953,
+              "mean_fill_pct": 98.43435599907056,
+              "aggregate_fill_pct": 76.66452830719248,
+              "shortage_exposure": 1708454.5792809266
+            },
+            "or_erp_floor": {
+              "mean_cost": 4249.849460587101,
+              "mean_holding": 2645.707448752781,
+              "mean_ordering": 1604.1420118343194,
+              "mean_fill_pct": 98.43435599907056,
+              "aggregate_fill_pct": 76.66452830719248,
+              "shortage_exposure": 1708454.5792809266
+            },
+            "or_cold": {
+              "mean_cost": 2755.805179314828,
+              "mean_holding": 1730.2134633384965,
+              "mean_ordering": 1025.5917159763314,
+              "mean_fill_pct": 98.36618366206861,
+              "aggregate_fill_pct": 76.27602957578934,
+              "shortage_exposure": 1696071.3290529915
+            },
+            "or_sba": {
+              "mean_cost": 2696.928609421377,
+              "mean_holding": 1669.3398520249273,
+              "mean_ordering": 1027.5887573964496,
+              "mean_fill_pct": 98.51780143828228,
+              "aggregate_fill_pct": 76.43848808562973,
+              "shortage_exposure": 1688258.565986845
+            },
+            "or_empirical": {
+              "mean_cost": 2475.9289578945645,
+              "mean_holding": 1547.378662036576,
+              "mean_ordering": 928.5502958579882,
+              "mean_fill_pct": 98.56076812425842,
+              "aggregate_fill_pct": 76.46638104256357,
+              "shortage_exposure": 1709914.9906647333
+            },
+            "or_tuned": {
+              "mean_cost": 3267.4147698548245,
+              "mean_holding": 2486.0538231092623,
+              "mean_ordering": 781.3609467455622,
+              "mean_fill_pct": 96.17174791255965,
+              "aggregate_fill_pct": 82.81625095007006,
+              "shortage_exposure": 1113012.771220329
+            }
+          },
+          "vs_arm_pct": {
+            "sap_static": -11.50916160310642,
+            "universal_rq": -30.861417323004293,
+            "or_erp_floor": -31.32120993986256,
+            "or_cold": 5.912609890448861,
+            "or_sba": 8.224784991053657,
+            "or_empirical": 17.884852051267575,
+            "or_tuned": -10.671114795805913
+          }
+        },
+        "PL1": {
+          "n": 213,
+          "arms": {
+            "llm_pure": {
+              "mean_cost": 2381.17446165984,
+              "mean_holding": 1502.0664804391827,
+              "mean_ordering": 879.1079812206573,
+              "mean_fill_pct": 99.32167554802419,
+              "aggregate_fill_pct": 98.91394783876038,
+              "shortage_exposure": 79758.02411347843
+            },
+            "sap_static": {
+              "mean_cost": 2766.9570619738165,
+              "mean_holding": 1734.3279539925957,
+              "mean_ordering": 1032.6291079812206,
+              "mean_fill_pct": 99.483146229026,
+              "aggregate_fill_pct": 99.11719724040186,
+              "shortage_exposure": 60590.3567548009
+            },
+            "universal_rq": {
+              "mean_cost": 3773.8398009736743,
+              "mean_holding": 2220.2013033210924,
+              "mean_ordering": 1553.6384976525821,
+              "mean_fill_pct": 99.25572450086081,
+              "aggregate_fill_pct": 98.47989372272798,
+              "shortage_exposure": 153503.43024246857
+            },
+            "or_erp_floor": {
+              "mean_cost": 3787.6844315247813,
+              "mean_holding": 2226.7689385670346,
+              "mean_ordering": 1560.9154929577464,
+              "mean_fill_pct": 99.25572450086081,
+              "aggregate_fill_pct": 98.47989372272798,
+              "shortage_exposure": 153503.43024246857
+            },
+            "or_cold": {
+              "mean_cost": 2218.1198835542787,
+              "mean_holding": 1397.932090127049,
+              "mean_ordering": 820.1877934272301,
+              "mean_fill_pct": 99.32654927328365,
+              "aggregate_fill_pct": 98.91357664773362,
+              "shortage_exposure": 81202.8775281731
+            },
+            "or_sba": {
+              "mean_cost": 2102.819472944116,
+              "mean_holding": 1275.706796887778,
+              "mean_ordering": 827.112676056338,
+              "mean_fill_pct": 99.2973122862037,
+              "aggregate_fill_pct": 98.92965412393679,
+              "shortage_exposure": 93306.5549613105
+            },
+            "or_empirical": {
+              "mean_cost": 1962.8658493150954,
+              "mean_holding": 1218.0301685639217,
+              "mean_ordering": 744.8356807511738,
+              "mean_fill_pct": 99.30612237737554,
+              "aggregate_fill_pct": 98.9847111693003,
+              "shortage_exposure": 111303.09415045088
+            },
+            "or_tuned": {
+              "mean_cost": 1555.288763948366,
+              "mean_holding": 929.8192803802908,
+              "mean_ordering": 625.4694835680751,
+              "mean_fill_pct": 97.0586122600157,
+              "aggregate_fill_pct": 97.82310054474317,
+              "shortage_exposure": 82373.558138843
+            }
+          },
+          "vs_arm_pct": {
+            "sap_static": -13.942485975506159,
+            "universal_rq": -36.90313878597915,
+            "or_erp_floor": -37.133768540974586,
+            "or_cold": 7.351026394672822,
+            "or_sba": 13.237227079983448,
+            "or_empirical": 21.311115708223525,
+            "or_tuned": 53.10175941957054
+          }
+        },
+        "PL2": {
+          "n": 64,
+          "arms": {
+            "llm_pure": {
+              "mean_cost": 5054.450682403213,
+              "mean_holding": 3747.8100574032137,
+              "mean_ordering": 1306.640625,
+              "mean_fill_pct": 96.05876734797111,
+              "aggregate_fill_pct": 55.812147263418574,
+              "shortage_exposure": 8582209.860633044
+            },
+            "sap_static": {
+              "mean_cost": 6430.563249392594,
+              "mean_holding": 4998.531999392594,
+              "mean_ordering": 1432.03125,
+              "mean_fill_pct": 96.49152636142695,
+              "aggregate_fill_pct": 56.4530350546032,
+              "shortage_exposure": 8480117.433796272
+            },
+            "universal_rq": {
+              "mean_cost": 7364.154642679941,
+              "mean_holding": 5530.951517679941,
+              "mean_ordering": 1833.203125,
+              "mean_fill_pct": 96.5792071249689,
+              "aggregate_fill_pct": 56.4588122680886,
+              "shortage_exposure": 8479781.895283211
+            },
+            "or_erp_floor": {
+              "mean_cost": 7458.820538651362,
+              "mean_holding": 5590.461163651362,
+              "mean_ordering": 1868.359375,
+              "mean_fill_pct": 96.5792071249689,
+              "aggregate_fill_pct": 56.4588122680886,
+              "shortage_exposure": 8479781.895283211
+            },
+            "or_cold": {
+              "mean_cost": 4800.626504406733,
+              "mean_holding": 3514.689004406733,
+              "mean_ordering": 1285.9375,
+              "mean_fill_pct": 95.98345827445755,
+              "aggregate_fill_pct": 55.396204832148435,
+              "shortage_exposure": 8655008.132019194
+            },
+            "or_sba": {
+              "mean_cost": 4860.044533888703,
+              "mean_holding": 3595.5914088887034,
+              "mean_ordering": 1264.453125,
+              "mean_fill_pct": 96.22123707500585,
+              "aggregate_fill_pct": 55.806279002269136,
+              "shortage_exposure": 8574440.88612775
+            },
+            "or_empirical": {
+              "mean_cost": 4608.544297534675,
+              "mean_holding": 3321.044297534675,
+              "mean_ordering": 1287.5,
+              "mean_fill_pct": 96.1602659180406,
+              "aggregate_fill_pct": 55.48946843447613,
+              "shortage_exposure": 8646062.989138959
+            },
+            "or_tuned": {
+              "mean_cost": 10508.047707774344,
+              "mean_holding": 9422.110207774344,
+              "mean_ordering": 1085.9375,
+              "mean_fill_pct": 93.84693870535271,
+              "aggregate_fill_pct": 69.58948975326804,
+              "shortage_exposure": 5563451.105694735
+            }
+          },
+          "vs_arm_pct": {
+            "sap_static": -21.3995650710591,
+            "universal_rq": -31.36414255738915,
+            "or_erp_floor": -32.23525547757562,
+            "or_cold": 5.287313598828858,
+            "or_sba": 4.000089858414491,
+            "or_empirical": 9.675644977679276,
+            "or_tuned": -51.89924120097309
+          }
+        },
+        "PL3": {
+          "n": 61,
+          "arms": {
+            "llm_pure": {
+              "mean_cost": 2555.0962269462448,
+              "mean_holding": 1038.702784323294,
+              "mean_ordering": 1516.3934426229507,
+              "mean_fill_pct": 97.45302835461149,
+              "aggregate_fill_pct": 94.83684345838606,
+              "shortage_exposure": 37764.169992744464
+            },
+            "sap_static": {
+              "mean_cost": 1867.6607971022481,
+              "mean_holding": 777.9066987415923,
+              "mean_ordering": 1089.7540983606557,
+              "mean_fill_pct": 97.22962709073856,
+              "aggregate_fill_pct": 95.03579020125976,
+              "shortage_exposure": 21764.26544839394
+            },
+            "universal_rq": {
+              "mean_cost": 2487.9101496609746,
+              "mean_holding": 1018.2380185134338,
+              "mean_ordering": 1469.672131147541,
+              "mean_fill_pct": 97.51268447548341,
+              "aggregate_fill_pct": 94.99306998005784,
+              "shortage_exposure": 33694.68618331033
+            },
+            "or_erp_floor": {
+              "mean_cost": 2496.849496556959,
+              "mean_holding": 1018.9806440979426,
+              "mean_ordering": 1477.8688524590164,
+              "mean_fill_pct": 97.51268447548341,
+              "aggregate_fill_pct": 94.99306998005784,
+              "shortage_exposure": 33694.68618331033
+            },
+            "or_cold": {
+              "mean_cost": 2487.9101496609746,
+              "mean_holding": 1018.2380185134338,
+              "mean_ordering": 1469.672131147541,
+              "mean_fill_pct": 97.51268447548341,
+              "aggregate_fill_pct": 94.99306998005784,
+              "shortage_exposure": 33694.68618331033
+            },
+            "or_sba": {
+              "mean_cost": 2501.942165220519,
+              "mean_holding": 1022.8438045647816,
+              "mean_ordering": 1479.0983606557377,
+              "mean_fill_pct": 98.20541305537125,
+              "aggregate_fill_pct": 94.64510859820102,
+              "shortage_exposure": 32670.203026533272
+            },
+            "or_empirical": {
+              "mean_cost": 2029.9463413447245,
+              "mean_holding": 836.5037183939048,
+              "mean_ordering": 1193.4426229508197,
+              "mean_fill_pct": 98.47669739120909,
+              "aggregate_fill_pct": 95.80085502865056,
+              "shortage_exposure": 14683.221077712744
+            },
+            "or_tuned": {
+              "mean_cost": 1649.0923310224723,
+              "mean_holding": 642.9447900388657,
+              "mean_ordering": 1006.1475409836065,
+              "mean_fill_pct": 95.51413616261057,
+              "aggregate_fill_pct": 93.09783829517583,
+              "shortage_exposure": 42489.80367925494
+            }
+          },
+          "vs_arm_pct": {
+            "sap_static": 36.80729557051157,
+            "universal_rq": 2.700502560127638,
+            "or_erp_floor": 2.332809024717175,
+            "or_cold": 2.700502560127638,
+            "or_sba": 2.1245120076962554,
+            "or_empirical": 25.870136313733205,
+            "or_tuned": 54.939549404248986
+          }
+        }
+      }
+    },
+    "run-m1": {
+      "groups": {
+        "ALL": {
+          "n": 338,
+          "arms": {
+            "llm_pure": {
+              "mean_cost": 2897.5746890687115,
+              "mean_holding": 1812.7374109622024,
+              "mean_ordering": 1084.8372781065088,
+              "mean_fill_pct": 98.32585633810241,
+              "aggregate_fill_pct": 76.33700220925697,
+              "shortage_exposure": 1691550.0081409998
+            },
+            "sap_static": {
+              "mean_cost": 3298.358611789308,
+              "mean_holding": 2179.7935230319113,
+              "mean_ordering": 1118.5650887573966,
+              "mean_fill_pct": 98.50998546286661,
+              "aggregate_fill_pct": 76.8886279707436,
+              "shortage_exposure": 1647813.2601896035
+            },
+            "universal_rq": {
+              "mean_cost": 4221.586668249196,
+              "mean_holding": 2630.166549906001,
+              "mean_ordering": 1591.4201183431953,
+              "mean_fill_pct": 98.43435599907056,
+              "aggregate_fill_pct": 76.66452830719248,
+              "shortage_exposure": 1708454.5792809266
+            },
+            "or_erp_floor": {
+              "mean_cost": 4249.849460587101,
+              "mean_holding": 2645.707448752781,
+              "mean_ordering": 1604.1420118343194,
+              "mean_fill_pct": 98.43435599907056,
+              "aggregate_fill_pct": 76.66452830719248,
+              "shortage_exposure": 1708454.5792809266
+            },
+            "or_cold": {
+              "mean_cost": 2755.805179314828,
+              "mean_holding": 1730.2134633384965,
+              "mean_ordering": 1025.5917159763314,
+              "mean_fill_pct": 98.36618366206861,
+              "aggregate_fill_pct": 76.27602957578934,
+              "shortage_exposure": 1696071.3290529915
+            },
+            "or_sba": {
+              "mean_cost": 2696.928609421377,
+              "mean_holding": 1669.3398520249273,
+              "mean_ordering": 1027.5887573964496,
+              "mean_fill_pct": 98.51780143828228,
+              "aggregate_fill_pct": 76.43848808562973,
+              "shortage_exposure": 1688258.565986845
+            },
+            "or_empirical": {
+              "mean_cost": 2475.9289578945645,
+              "mean_holding": 1547.378662036576,
+              "mean_ordering": 928.5502958579882,
+              "mean_fill_pct": 98.56076812425842,
+              "aggregate_fill_pct": 76.46638104256357,
+              "shortage_exposure": 1709914.9906647333
+            },
+            "or_tuned": {
+              "mean_cost": 3267.4147698548245,
+              "mean_holding": 2486.0538231092623,
+              "mean_ordering": 781.3609467455622,
+              "mean_fill_pct": 96.17174791255965,
+              "aggregate_fill_pct": 82.81625095007006,
+              "shortage_exposure": 1113012.771220329
+            }
+          },
+          "vs_arm_pct": {
+            "sap_static": -12.151011151063928,
+            "universal_rq": -31.362899384216302,
+            "or_erp_floor": -31.81935699274341,
+            "or_cold": 5.144395214074304,
+            "or_sba": 7.439799442462158,
+            "or_empirical": 17.02979925291146,
+            "or_tuned": -11.319042938725088
+          }
+        },
+        "PL1": {
+          "n": 213,
+          "arms": {
+            "llm_pure": {
+              "mean_cost": 2338.4377392504907,
+              "mean_holding": 1457.4518237575328,
+              "mean_ordering": 880.9859154929577,
+              "mean_fill_pct": 99.3173764837081,
+              "aggregate_fill_pct": 98.89971886906682,
+              "shortage_exposure": 82565.77562288656
+            },
+            "sap_static": {
+              "mean_cost": 2766.9570619738165,
+              "mean_holding": 1734.3279539925957,
+              "mean_ordering": 1032.6291079812206,
+              "mean_fill_pct": 99.483146229026,
+              "aggregate_fill_pct": 99.11719724040186,
+              "shortage_exposure": 60590.3567548009
+            },
+            "universal_rq": {
+              "mean_cost": 3773.8398009736743,
+              "mean_holding": 2220.2013033210924,
+              "mean_ordering": 1553.6384976525821,
+              "mean_fill_pct": 99.25572450086081,
+              "aggregate_fill_pct": 98.47989372272798,
+              "shortage_exposure": 153503.43024246857
+            },
+            "or_erp_floor": {
+              "mean_cost": 3787.6844315247813,
+              "mean_holding": 2226.7689385670346,
+              "mean_ordering": 1560.9154929577464,
+              "mean_fill_pct": 99.25572450086081,
+              "aggregate_fill_pct": 98.47989372272798,
+              "shortage_exposure": 153503.43024246857
+            },
+            "or_cold": {
+              "mean_cost": 2218.1198835542787,
+              "mean_holding": 1397.932090127049,
+              "mean_ordering": 820.1877934272301,
+              "mean_fill_pct": 99.32654927328365,
+              "aggregate_fill_pct": 98.91357664773362,
+              "shortage_exposure": 81202.8775281731
+            },
+            "or_sba": {
+              "mean_cost": 2102.819472944116,
+              "mean_holding": 1275.706796887778,
+              "mean_ordering": 827.112676056338,
+              "mean_fill_pct": 99.2973122862037,
+              "aggregate_fill_pct": 98.92965412393679,
+              "shortage_exposure": 93306.5549613105
+            },
+            "or_empirical": {
+              "mean_cost": 1962.8658493150954,
+              "mean_holding": 1218.0301685639217,
+              "mean_ordering": 744.8356807511738,
+              "mean_fill_pct": 99.30612237737554,
+              "aggregate_fill_pct": 98.9847111693003,
+              "shortage_exposure": 111303.09415045088
+            },
+            "or_tuned": {
+              "mean_cost": 1555.288763948366,
+              "mean_holding": 929.8192803802908,
+              "mean_ordering": 625.4694835680751,
+              "mean_fill_pct": 97.0586122600157,
+              "aggregate_fill_pct": 97.82310054474317,
+              "shortage_exposure": 82373.558138843
+            }
+          },
+          "vs_arm_pct": {
+            "sap_static": -15.487024667366555,
+            "universal_rq": -38.03558543616082,
+            "or_erp_floor": -38.262075906119705,
+            "or_cold": 5.424317079896368,
+            "or_sba": 11.20487371065144,
+            "or_empirical": 19.13385420946847,
+            "or_tuned": 50.35392741563742
+          }
+        },
+        "PL2": {
+          "n": 64,
+          "arms": {
+            "llm_pure": {
+              "mean_cost": 5033.695105917693,
+              "mean_holding": 3734.0857309176927,
+              "mean_ordering": 1299.609375,
+              "mean_fill_pct": 96.14898979781562,
+              "aggregate_fill_pct": 55.66302471847404,
+              "shortage_exposure": 8616030.534627572
+            },
+            "sap_static": {
+              "mean_cost": 6430.563249392594,
+              "mean_holding": 4998.531999392594,
+              "mean_ordering": 1432.03125,
+              "mean_fill_pct": 96.49152636142695,
+              "aggregate_fill_pct": 56.4530350546032,
+              "shortage_exposure": 8480117.433796272
+            },
+            "universal_rq": {
+              "mean_cost": 7364.154642679941,
+              "mean_holding": 5530.951517679941,
+              "mean_ordering": 1833.203125,
+              "mean_fill_pct": 96.5792071249689,
+              "aggregate_fill_pct": 56.4588122680886,
+              "shortage_exposure": 8479781.895283211
+            },
+            "or_erp_floor": {
+              "mean_cost": 7458.820538651362,
+              "mean_holding": 5590.461163651362,
+              "mean_ordering": 1868.359375,
+              "mean_fill_pct": 96.5792071249689,
+              "aggregate_fill_pct": 56.4588122680886,
+              "shortage_exposure": 8479781.895283211
+            },
+            "or_cold": {
+              "mean_cost": 4800.626504406733,
+              "mean_holding": 3514.689004406733,
+              "mean_ordering": 1285.9375,
+              "mean_fill_pct": 95.98345827445755,
+              "aggregate_fill_pct": 55.396204832148435,
+              "shortage_exposure": 8655008.132019194
+            },
+            "or_sba": {
+              "mean_cost": 4860.044533888703,
+              "mean_holding": 3595.5914088887034,
+              "mean_ordering": 1264.453125,
+              "mean_fill_pct": 96.22123707500585,
+              "aggregate_fill_pct": 55.806279002269136,
+              "shortage_exposure": 8574440.88612775
+            },
+            "or_empirical": {
+              "mean_cost": 4608.544297534675,
+              "mean_holding": 3321.044297534675,
+              "mean_ordering": 1287.5,
+              "mean_fill_pct": 96.1602659180406,
+              "aggregate_fill_pct": 55.48946843447613,
+              "shortage_exposure": 8646062.989138959
+            },
+            "or_tuned": {
+              "mean_cost": 10508.047707774344,
+              "mean_holding": 9422.110207774344,
+              "mean_ordering": 1085.9375,
+              "mean_fill_pct": 93.84693870535271,
+              "aggregate_fill_pct": 69.58948975326804,
+              "shortage_exposure": 5563451.105694735
+            }
+          },
+          "vs_arm_pct": {
+            "sap_static": -21.72232958919802,
+            "universal_rq": -31.64598857356633,
+            "or_erp_floor": -32.51352435906922,
+            "or_cold": 4.854962186644052,
+            "or_sba": 3.573024296755678,
+            "or_empirical": 9.225273338708085,
+            "or_tuned": -52.09676196850981
+          }
+        },
+        "PL3": {
+          "n": 61,
+          "arms": {
+            "llm_pure": {
+              "mean_cost": 2608.7954043629115,
+              "mean_holding": 1037.4839289530755,
+              "mean_ordering": 1571.311475409836,
+              "mean_fill_pct": 97.14758859325559,
+              "aggregate_fill_pct": 94.51900258853341,
+              "shortage_exposure": 44777.67750522144
+            },
+            "sap_static": {
+              "mean_cost": 1867.6607971022481,
+              "mean_holding": 777.9066987415923,
+              "mean_ordering": 1089.7540983606557,
+              "mean_fill_pct": 97.22962709073856,
+              "aggregate_fill_pct": 95.03579020125976,
+              "shortage_exposure": 21764.26544839394
+            },
+            "universal_rq": {
+              "mean_cost": 2487.9101496609746,
+              "mean_holding": 1018.2380185134338,
+              "mean_ordering": 1469.672131147541,
+              "mean_fill_pct": 97.51268447548341,
+              "aggregate_fill_pct": 94.99306998005784,
+              "shortage_exposure": 33694.68618331033
+            },
+            "or_erp_floor": {
+              "mean_cost": 2496.849496556959,
+              "mean_holding": 1018.9806440979426,
+              "mean_ordering": 1477.8688524590164,
+              "mean_fill_pct": 97.51268447548341,
+              "aggregate_fill_pct": 94.99306998005784,
+              "shortage_exposure": 33694.68618331033
+            },
+            "or_cold": {
+              "mean_cost": 2487.9101496609746,
+              "mean_holding": 1018.2380185134338,
+              "mean_ordering": 1469.672131147541,
+              "mean_fill_pct": 97.51268447548341,
+              "aggregate_fill_pct": 94.99306998005784,
+              "shortage_exposure": 33694.68618331033
+            },
+            "or_sba": {
+              "mean_cost": 2501.942165220519,
+              "mean_holding": 1022.8438045647816,
+              "mean_ordering": 1479.0983606557377,
+              "mean_fill_pct": 98.20541305537125,
+              "aggregate_fill_pct": 94.64510859820102,
+              "shortage_exposure": 32670.203026533272
+            },
+            "or_empirical": {
+              "mean_cost": 2029.9463413447245,
+              "mean_holding": 836.5037183939048,
+              "mean_ordering": 1193.4426229508197,
+              "mean_fill_pct": 98.47669739120909,
+              "aggregate_fill_pct": 95.80085502865056,
+              "shortage_exposure": 14683.221077712744
+            },
+            "or_tuned": {
+              "mean_cost": 1649.0923310224723,
+              "mean_holding": 642.9447900388657,
+              "mean_ordering": 1006.1475409836065,
+              "mean_fill_pct": 95.51413616261057,
+              "aggregate_fill_pct": 93.09783829517583,
+              "shortage_exposure": 42489.80367925494
+            }
+          },
+          "vs_arm_pct": {
+            "sap_static": 39.68250596738787,
+            "universal_rq": 4.8589075742309085,
+            "or_erp_floor": 4.483486407984172,
+            "or_cold": 4.8589075742309085,
+            "or_sba": 4.270811716903711,
+            "or_empirical": 28.515485913520866,
+            "or_tuned": 58.19583629652823
+          }
+        }
+      }
+    },
+    "run-m2": {
+      "groups": {
+        "ALL": {
+          "n": 338,
+          "arms": {
+            "llm_pure": {
+              "mean_cost": 2932.1435983159886,
+              "mean_holding": 1869.0518823396574,
+              "mean_ordering": 1063.0917159763314,
+              "mean_fill_pct": 98.36635170748579,
+              "aggregate_fill_pct": 76.37574919859071,
+              "shortage_exposure": 1684296.2613675848
+            },
+            "sap_static": {
+              "mean_cost": 3298.358611789308,
+              "mean_holding": 2179.7935230319113,
+              "mean_ordering": 1118.5650887573966,
+              "mean_fill_pct": 98.50998546286661,
+              "aggregate_fill_pct": 76.8886279707436,
+              "shortage_exposure": 1647813.2601896035
+            },
+            "universal_rq": {
+              "mean_cost": 4221.586668249196,
+              "mean_holding": 2630.166549906001,
+              "mean_ordering": 1591.4201183431953,
+              "mean_fill_pct": 98.43435599907056,
+              "aggregate_fill_pct": 76.66452830719248,
+              "shortage_exposure": 1708454.5792809266
+            },
+            "or_erp_floor": {
+              "mean_cost": 4249.849460587101,
+              "mean_holding": 2645.707448752781,
+              "mean_ordering": 1604.1420118343194,
+              "mean_fill_pct": 98.43435599907056,
+              "aggregate_fill_pct": 76.66452830719248,
+              "shortage_exposure": 1708454.5792809266
+            },
+            "or_cold": {
+              "mean_cost": 2755.805179314828,
+              "mean_holding": 1730.2134633384965,
+              "mean_ordering": 1025.5917159763314,
+              "mean_fill_pct": 98.36618366206861,
+              "aggregate_fill_pct": 76.27602957578934,
+              "shortage_exposure": 1696071.3290529915
+            },
+            "or_sba": {
+              "mean_cost": 2696.928609421377,
+              "mean_holding": 1669.3398520249273,
+              "mean_ordering": 1027.5887573964496,
+              "mean_fill_pct": 98.51780143828228,
+              "aggregate_fill_pct": 76.43848808562973,
+              "shortage_exposure": 1688258.565986845
+            },
+            "or_empirical": {
+              "mean_cost": 2475.9289578945645,
+              "mean_holding": 1547.378662036576,
+              "mean_ordering": 928.5502958579882,
+              "mean_fill_pct": 98.56076812425842,
+              "aggregate_fill_pct": 76.46638104256357,
+              "shortage_exposure": 1709914.9906647333
+            },
+            "or_tuned": {
+              "mean_cost": 3267.4147698548245,
+              "mean_holding": 2486.0538231092623,
+              "mean_ordering": 781.3609467455622,
+              "mean_fill_pct": 96.17174791255965,
+              "aggregate_fill_pct": 82.81625095007006,
+              "shortage_exposure": 1113012.771220329
+            }
+          },
+          "vs_arm_pct": {
+            "sap_static": -11.102947149662823,
+            "universal_rq": -30.54403880017874,
+            "or_erp_floor": -31.005942080806705,
+            "or_cold": 6.398798446449083,
+            "or_sba": 8.721587515254114,
+            "or_empirical": 18.42599881417324,
+            "or_tuned": -10.261053314444446
+          }
+        },
+        "PL1": {
+          "n": 213,
+          "arms": {
+            "llm_pure": {
+              "mean_cost": 2399.147515500155,
+              "mean_holding": 1539.8752150306716,
+              "mean_ordering": 859.2723004694835,
+              "mean_fill_pct": 99.39071454420049,
+              "aggregate_fill_pct": 98.90928319749335,
+              "shortage_exposure": 79642.82453432815
+            },
+            "sap_static": {
+              "mean_cost": 2766.9570619738165,
+              "mean_holding": 1734.3279539925957,
+              "mean_ordering": 1032.6291079812206,
+              "mean_fill_pct": 99.483146229026,
+              "aggregate_fill_pct": 99.11719724040186,
+              "shortage_exposure": 60590.3567548009
+            },
+            "universal_rq": {
+              "mean_cost": 3773.8398009736743,
+              "mean_holding": 2220.2013033210924,
+              "mean_ordering": 1553.6384976525821,
+              "mean_fill_pct": 99.25572450086081,
+              "aggregate_fill_pct": 98.47989372272798,
+              "shortage_exposure": 153503.43024246857
+            },
+            "or_erp_floor": {
+              "mean_cost": 3787.6844315247813,
+              "mean_holding": 2226.7689385670346,
+              "mean_ordering": 1560.9154929577464,
+              "mean_fill_pct": 99.25572450086081,
+              "aggregate_fill_pct": 98.47989372272798,
+              "shortage_exposure": 153503.43024246857
+            },
+            "or_cold": {
+              "mean_cost": 2218.1198835542787,
+              "mean_holding": 1397.932090127049,
+              "mean_ordering": 820.1877934272301,
+              "mean_fill_pct": 99.32654927328365,
+              "aggregate_fill_pct": 98.91357664773362,
+              "shortage_exposure": 81202.8775281731
+            },
+            "or_sba": {
+              "mean_cost": 2102.819472944116,
+              "mean_holding": 1275.706796887778,
+              "mean_ordering": 827.112676056338,
+              "mean_fill_pct": 99.2973122862037,
+              "aggregate_fill_pct": 98.92965412393679,
+              "shortage_exposure": 93306.5549613105
+            },
+            "or_empirical": {
+              "mean_cost": 1962.8658493150954,
+              "mean_holding": 1218.0301685639217,
+              "mean_ordering": 744.8356807511738,
+              "mean_fill_pct": 99.30612237737554,
+              "aggregate_fill_pct": 98.9847111693003,
+              "shortage_exposure": 111303.09415045088
+            },
+            "or_tuned": {
+              "mean_cost": 1555.288763948366,
+              "mean_holding": 929.8192803802908,
+              "mean_ordering": 625.4694835680751,
+              "mean_fill_pct": 97.0586122600157,
+              "aggregate_fill_pct": 97.82310054474317,
+              "shortage_exposure": 82373.558138843
+            }
+          },
+          "vs_arm_pct": {
+            "sap_static": -13.292925702695356,
+            "universal_rq": -36.42688502884622,
+            "or_erp_floor": -36.65925557229309,
+            "or_cold": 8.1613096428224,
+            "or_sba": 14.091939244844243,
+            "or_empirical": 22.226769411536296,
+            "or_tuned": 54.25736822077396
+          }
+        },
+        "PL2": {
+          "n": 64,
+          "arms": {
+            "llm_pure": {
+              "mean_cost": 5059.022828712119,
+              "mean_holding": 3755.8978287121195,
+              "mean_ordering": 1303.125,
+              "mean_fill_pct": 96.14872235810101,
+              "aggregate_fill_pct": 55.73568267296973,
+              "shortage_exposure": 8586706.570815094
+            },
+            "sap_static": {
+              "mean_cost": 6430.563249392594,
+              "mean_holding": 4998.531999392594,
+              "mean_ordering": 1432.03125,
+              "mean_fill_pct": 96.49152636142695,
+              "aggregate_fill_pct": 56.4530350546032,
+              "shortage_exposure": 8480117.433796272
+            },
+            "universal_rq": {
+              "mean_cost": 7364.154642679941,
+              "mean_holding": 5530.951517679941,
+              "mean_ordering": 1833.203125,
+              "mean_fill_pct": 96.5792071249689,
+              "aggregate_fill_pct": 56.4588122680886,
+              "shortage_exposure": 8479781.895283211
+            },
+            "or_erp_floor": {
+              "mean_cost": 7458.820538651362,
+              "mean_holding": 5590.461163651362,
+              "mean_ordering": 1868.359375,
+              "mean_fill_pct": 96.5792071249689,
+              "aggregate_fill_pct": 56.4588122680886,
+              "shortage_exposure": 8479781.895283211
+            },
+            "or_cold": {
+              "mean_cost": 4800.626504406733,
+              "mean_holding": 3514.689004406733,
+              "mean_ordering": 1285.9375,
+              "mean_fill_pct": 95.98345827445755,
+              "aggregate_fill_pct": 55.396204832148435,
+              "shortage_exposure": 8655008.132019194
+            },
+            "or_sba": {
+              "mean_cost": 4860.044533888703,
+              "mean_holding": 3595.5914088887034,
+              "mean_ordering": 1264.453125,
+              "mean_fill_pct": 96.22123707500585,
+              "aggregate_fill_pct": 55.806279002269136,
+              "shortage_exposure": 8574440.88612775
+            },
+            "or_empirical": {
+              "mean_cost": 4608.544297534675,
+              "mean_holding": 3321.044297534675,
+              "mean_ordering": 1287.5,
+              "mean_fill_pct": 96.1602659180406,
+              "aggregate_fill_pct": 55.48946843447613,
+              "shortage_exposure": 8646062.989138959
+            },
+            "or_tuned": {
+              "mean_cost": 10508.047707774344,
+              "mean_holding": 9422.110207774344,
+              "mean_ordering": 1085.9375,
+              "mean_fill_pct": 93.84693870535271,
+              "aggregate_fill_pct": 69.58948975326804,
+              "shortage_exposure": 5563451.105694735
+            }
+          },
+          "vs_arm_pct": {
+            "sap_static": -21.328464824757386,
+            "universal_rq": -31.30205605145937,
+            "or_erp_floor": -32.17395696147361,
+            "or_cold": 5.3825542159589235,
+            "or_sba": 4.094166080906381,
+            "or_empirical": 9.77485518406378,
+            "or_tuned": -51.85573029927131
+          }
+        },
+        "PL3": {
+          "n": 61,
+          "arms": {
+            "llm_pure": {
+              "mean_cost": 2561.7812195359916,
+              "mean_holding": 1038.8303998638603,
+              "mean_ordering": 1522.950819672131,
+              "mean_fill_pct": 97.11617128355783,
+              "aggregate_fill_pct": 94.509433827042,
+              "shortage_exposure": 45557.28170927457
+            },
+            "sap_static": {
+              "mean_cost": 1867.6607971022481,
+              "mean_holding": 777.9066987415923,
+              "mean_ordering": 1089.7540983606557,
+              "mean_fill_pct": 97.22962709073856,
+              "aggregate_fill_pct": 95.03579020125976,
+              "shortage_exposure": 21764.26544839394
+            },
+            "universal_rq": {
+              "mean_cost": 2487.9101496609746,
+              "mean_holding": 1018.2380185134338,
+              "mean_ordering": 1469.672131147541,
+              "mean_fill_pct": 97.51268447548341,
+              "aggregate_fill_pct": 94.99306998005784,
+              "shortage_exposure": 33694.68618331033
+            },
+            "or_erp_floor": {
+              "mean_cost": 2496.849496556959,
+              "mean_holding": 1018.9806440979426,
+              "mean_ordering": 1477.8688524590164,
+              "mean_fill_pct": 97.51268447548341,
+              "aggregate_fill_pct": 94.99306998005784,
+              "shortage_exposure": 33694.68618331033
+            },
+            "or_cold": {
+              "mean_cost": 2487.9101496609746,
+              "mean_holding": 1018.2380185134338,
+              "mean_ordering": 1469.672131147541,
+              "mean_fill_pct": 97.51268447548341,
+              "aggregate_fill_pct": 94.99306998005784,
+              "shortage_exposure": 33694.68618331033
+            },
+            "or_sba": {
+              "mean_cost": 2501.942165220519,
+              "mean_holding": 1022.8438045647816,
+              "mean_ordering": 1479.0983606557377,
+              "mean_fill_pct": 98.20541305537125,
+              "aggregate_fill_pct": 94.64510859820102,
+              "shortage_exposure": 32670.203026533272
+            },
+            "or_empirical": {
+              "mean_cost": 2029.9463413447245,
+              "mean_holding": 836.5037183939048,
+              "mean_ordering": 1193.4426229508197,
+              "mean_fill_pct": 98.47669739120909,
+              "aggregate_fill_pct": 95.80085502865056,
+              "shortage_exposure": 14683.221077712744
+            },
+            "or_tuned": {
+              "mean_cost": 1649.0923310224723,
+              "mean_holding": 642.9447900388657,
+              "mean_ordering": 1006.1475409836065,
+              "mean_fill_pct": 95.51413616261057,
+              "aggregate_fill_pct": 93.09783829517583,
+              "shortage_exposure": 42489.80367925494
+            }
+          },
+          "vs_arm_pct": {
+            "sap_static": 37.16522954867927,
+            "universal_rq": 2.9692016765590745,
+            "or_erp_floor": 2.6005461309770883,
+            "or_cold": 2.9692016765590745,
+            "or_sba": 2.3917041387804483,
+            "or_empirical": 26.19945499835019,
+            "or_tuned": 55.34492346754367
+          }
+        }
+      }
+    },
+    "run-m3": {
+      "groups": {
+        "ALL": {
+          "n": 338,
+          "arms": {
+            "llm_pure": {
+              "mean_cost": 2892.217118879157,
+              "mean_holding": 1804.86504787324,
+              "mean_ordering": 1087.3520710059172,
+              "mean_fill_pct": 98.36695482978391,
+              "aggregate_fill_pct": 76.28830303739801,
+              "shortage_exposure": 1691722.4403731267
+            },
+            "sap_static": {
+              "mean_cost": 3298.358611789308,
+              "mean_holding": 2179.7935230319113,
+              "mean_ordering": 1118.5650887573966,
+              "mean_fill_pct": 98.50998546286661,
+              "aggregate_fill_pct": 76.8886279707436,
+              "shortage_exposure": 1647813.2601896035
+            },
+            "universal_rq": {
+              "mean_cost": 4221.586668249196,
+              "mean_holding": 2630.166549906001,
+              "mean_ordering": 1591.4201183431953,
+              "mean_fill_pct": 98.43435599907056,
+              "aggregate_fill_pct": 76.66452830719248,
+              "shortage_exposure": 1708454.5792809266
+            },
+            "or_erp_floor": {
+              "mean_cost": 4249.849460587101,
+              "mean_holding": 2645.707448752781,
+              "mean_ordering": 1604.1420118343194,
+              "mean_fill_pct": 98.43435599907056,
+              "aggregate_fill_pct": 76.66452830719248,
+              "shortage_exposure": 1708454.5792809266
+            },
+            "or_cold": {
+              "mean_cost": 2755.805179314828,
+              "mean_holding": 1730.2134633384965,
+              "mean_ordering": 1025.5917159763314,
+              "mean_fill_pct": 98.36618366206861,
+              "aggregate_fill_pct": 76.27602957578934,
+              "shortage_exposure": 1696071.3290529915
+            },
+            "or_sba": {
+              "mean_cost": 2696.928609421377,
+              "mean_holding": 1669.3398520249273,
+              "mean_ordering": 1027.5887573964496,
+              "mean_fill_pct": 98.51780143828228,
+              "aggregate_fill_pct": 76.43848808562973,
+              "shortage_exposure": 1688258.565986845
+            },
+            "or_empirical": {
+              "mean_cost": 2475.9289578945645,
+              "mean_holding": 1547.378662036576,
+              "mean_ordering": 928.5502958579882,
+              "mean_fill_pct": 98.56076812425842,
+              "aggregate_fill_pct": 76.46638104256357,
+              "shortage_exposure": 1709914.9906647333
+            },
+            "or_tuned": {
+              "mean_cost": 3267.4147698548245,
+              "mean_holding": 2486.0538231092623,
+              "mean_ordering": 781.3609467455622,
+              "mean_fill_pct": 96.17174791255965,
+              "aggregate_fill_pct": 82.81625095007006,
+              "shortage_exposure": 1113012.771220329
+            }
+          },
+          "vs_arm_pct": {
+            "sap_static": -12.313442554684052,
+            "universal_rq": -31.489808307580326,
+            "or_erp_floor": -31.945421933142825,
+            "or_cold": 4.9499848751371145,
+            "or_sba": 7.24114493708008,
+            "or_empirical": 16.81341298817347,
+            "or_tuned": -11.483012638531287
+          }
+        },
+        "PL1": {
+          "n": 213,
+          "arms": {
+            "llm_pure": {
+              "mean_cost": 2347.465889455891,
+              "mean_holding": 1460.9635420380507,
+              "mean_ordering": 886.5023474178404,
+              "mean_fill_pct": 99.37471873078361,
+              "aggregate_fill_pct": 98.91731071056599,
+              "shortage_exposure": 78261.12317638716
+            },
+            "sap_static": {
+              "mean_cost": 2766.9570619738165,
+              "mean_holding": 1734.3279539925957,
+              "mean_ordering": 1032.6291079812206,
+              "mean_fill_pct": 99.483146229026,
+              "aggregate_fill_pct": 99.11719724040186,
+              "shortage_exposure": 60590.3567548009
+            },
+            "universal_rq": {
+              "mean_cost": 3773.8398009736743,
+              "mean_holding": 2220.2013033210924,
+              "mean_ordering": 1553.6384976525821,
+              "mean_fill_pct": 99.25572450086081,
+              "aggregate_fill_pct": 98.47989372272798,
+              "shortage_exposure": 153503.43024246857
+            },
+            "or_erp_floor": {
+              "mean_cost": 3787.6844315247813,
+              "mean_holding": 2226.7689385670346,
+              "mean_ordering": 1560.9154929577464,
+              "mean_fill_pct": 99.25572450086081,
+              "aggregate_fill_pct": 98.47989372272798,
+              "shortage_exposure": 153503.43024246857
+            },
+            "or_cold": {
+              "mean_cost": 2218.1198835542787,
+              "mean_holding": 1397.932090127049,
+              "mean_ordering": 820.1877934272301,
+              "mean_fill_pct": 99.32654927328365,
+              "aggregate_fill_pct": 98.91357664773362,
+              "shortage_exposure": 81202.8775281731
+            },
+            "or_sba": {
+              "mean_cost": 2102.819472944116,
+              "mean_holding": 1275.706796887778,
+              "mean_ordering": 827.112676056338,
+              "mean_fill_pct": 99.2973122862037,
+              "aggregate_fill_pct": 98.92965412393679,
+              "shortage_exposure": 93306.5549613105
+            },
+            "or_empirical": {
+              "mean_cost": 1962.8658493150954,
+              "mean_holding": 1218.0301685639217,
+              "mean_ordering": 744.8356807511738,
+              "mean_fill_pct": 99.30612237737554,
+              "aggregate_fill_pct": 98.9847111693003,
+              "shortage_exposure": 111303.09415045088
+            },
+            "or_tuned": {
+              "mean_cost": 1555.288763948366,
+              "mean_holding": 929.8192803802908,
+              "mean_ordering": 625.4694835680751,
+              "mean_fill_pct": 97.0586122600157,
+              "aggregate_fill_pct": 97.82310054474317,
+              "shortage_exposure": 82373.558138843
+            }
+          },
+          "vs_arm_pct": {
+            "sap_static": -15.160740232762414,
+            "universal_rq": -37.79635561503617,
+            "or_erp_floor": -38.02372051066334,
+            "or_cold": 5.83133521594652,
+            "or_sba": 11.634209196724354,
+            "or_empirical": 19.593801597546488,
+            "or_tuned": 50.93440805786111
+          }
+        },
+        "PL2": {
+          "n": 64,
+          "arms": {
+            "llm_pure": {
+              "mean_cost": 4953.082510057212,
+              "mean_holding": 3655.816885057212,
+              "mean_ordering": 1297.265625,
+              "mean_fill_pct": 96.10431592407598,
+              "aggregate_fill_pct": 55.54894086074178,
+              "shortage_exposure": 8631201.341655685
+            },
+            "sap_static": {
+              "mean_cost": 6430.563249392594,
+              "mean_holding": 4998.531999392594,
+              "mean_ordering": 1432.03125,
+              "mean_fill_pct": 96.49152636142695,
+              "aggregate_fill_pct": 56.4530350546032,
+              "shortage_exposure": 8480117.433796272
+            },
+            "universal_rq": {
+              "mean_cost": 7364.154642679941,
+              "mean_holding": 5530.951517679941,
+              "mean_ordering": 1833.203125,
+              "mean_fill_pct": 96.5792071249689,
+              "aggregate_fill_pct": 56.4588122680886,
+              "shortage_exposure": 8479781.895283211
+            },
+            "or_erp_floor": {
+              "mean_cost": 7458.820538651362,
+              "mean_holding": 5590.461163651362,
+              "mean_ordering": 1868.359375,
+              "mean_fill_pct": 96.5792071249689,
+              "aggregate_fill_pct": 56.4588122680886,
+              "shortage_exposure": 8479781.895283211
+            },
+            "or_cold": {
+              "mean_cost": 4800.626504406733,
+              "mean_holding": 3514.689004406733,
+              "mean_ordering": 1285.9375,
+              "mean_fill_pct": 95.98345827445755,
+              "aggregate_fill_pct": 55.396204832148435,
+              "shortage_exposure": 8655008.132019194
+            },
+            "or_sba": {
+              "mean_cost": 4860.044533888703,
+              "mean_holding": 3595.5914088887034,
+              "mean_ordering": 1264.453125,
+              "mean_fill_pct": 96.22123707500585,
+              "aggregate_fill_pct": 55.806279002269136,
+              "shortage_exposure": 8574440.88612775
+            },
+            "or_empirical": {
+              "mean_cost": 4608.544297534675,
+              "mean_holding": 3321.044297534675,
+              "mean_ordering": 1287.5,
+              "mean_fill_pct": 96.1602659180406,
+              "aggregate_fill_pct": 55.48946843447613,
+              "shortage_exposure": 8646062.989138959
+            },
+            "or_tuned": {
+              "mean_cost": 10508.047707774344,
+              "mean_holding": 9422.110207774344,
+              "mean_ordering": 1085.9375,
+              "mean_fill_pct": 93.84693870535271,
+              "aggregate_fill_pct": 69.58948975326804,
+              "shortage_exposure": 5563451.105694735
+            }
+          },
+          "vs_arm_pct": {
+            "sap_static": -22.975914893224004,
+            "universal_rq": -32.74065048347897,
+            "or_erp_floor": -33.59429303345613,
+            "or_cold": 3.1757522796354243,
+            "or_sba": 1.914344107749688,
+            "or_empirical": 7.476074662162757,
+            "or_tuned": -52.8639129950591
+          }
+        },
+        "PL3": {
+          "n": 61,
+          "arms": {
+            "llm_pure": {
+              "mean_cost": 2632.16182103916,
+              "mean_holding": 1063.7191980883404,
+              "mean_ordering": 1568.4426229508197,
+              "mean_fill_pct": 97.22195776506868,
+              "aggregate_fill_pct": 94.53977952399029,
+              "shortage_exposure": 44847.208911188696
+            },
+            "sap_static": {
+              "mean_cost": 1867.6607971022481,
+              "mean_holding": 777.9066987415923,
+              "mean_ordering": 1089.7540983606557,
+              "mean_fill_pct": 97.22962709073856,
+              "aggregate_fill_pct": 95.03579020125976,
+              "shortage_exposure": 21764.26544839394
+            },
+            "universal_rq": {
+              "mean_cost": 2487.9101496609746,
+              "mean_holding": 1018.2380185134338,
+              "mean_ordering": 1469.672131147541,
+              "mean_fill_pct": 97.51268447548341,
+              "aggregate_fill_pct": 94.99306998005784,
+              "shortage_exposure": 33694.68618331033
+            },
+            "or_erp_floor": {
+              "mean_cost": 2496.849496556959,
+              "mean_holding": 1018.9806440979426,
+              "mean_ordering": 1477.8688524590164,
+              "mean_fill_pct": 97.51268447548341,
+              "aggregate_fill_pct": 94.99306998005784,
+              "shortage_exposure": 33694.68618331033
+            },
+            "or_cold": {
+              "mean_cost": 2487.9101496609746,
+              "mean_holding": 1018.2380185134338,
+              "mean_ordering": 1469.672131147541,
+              "mean_fill_pct": 97.51268447548341,
+              "aggregate_fill_pct": 94.99306998005784,
+              "shortage_exposure": 33694.68618331033
+            },
+            "or_sba": {
+              "mean_cost": 2501.942165220519,
+              "mean_holding": 1022.8438045647816,
+              "mean_ordering": 1479.0983606557377,
+              "mean_fill_pct": 98.20541305537125,
+              "aggregate_fill_pct": 94.64510859820102,
+              "shortage_exposure": 32670.203026533272
+            },
+            "or_empirical": {
+              "mean_cost": 2029.9463413447245,
+              "mean_holding": 836.5037183939048,
+              "mean_ordering": 1193.4426229508197,
+              "mean_fill_pct": 98.47669739120909,
+              "aggregate_fill_pct": 95.80085502865056,
+              "shortage_exposure": 14683.221077712744
+            },
+            "or_tuned": {
+              "mean_cost": 1649.0923310224723,
+              "mean_holding": 642.9447900388657,
+              "mean_ordering": 1006.1475409836065,
+              "mean_fill_pct": 95.51413616261057,
+              "aggregate_fill_pct": 93.09783829517583,
+              "shortage_exposure": 42489.80367925494
+            }
+          },
+          "vs_arm_pct": {
+            "sap_static": 40.933611987951245,
+            "universal_rq": 5.798106149365645,
+            "or_erp_floor": 5.4193224168613385,
+            "or_cold": 5.798106149365645,
+            "or_sba": 5.204742844531873,
+            "or_empirical": 29.666571348654557,
+            "or_tuned": 59.61276221611942
+          }
+        }
+      }
+    }
+  }
+}

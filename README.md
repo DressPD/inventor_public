@@ -11,15 +11,13 @@ fixture generation, schema handling, calendar repair, eligibility, policy-artifa
 parsing, and deterministic policy simulation. It runs offline with a fixed seed
 and no credentials or network access.
 
-It does not reproduce the manuscript's confidential-study numerical findings.
-Those findings depended on confidential operational data and a private enterprise
-LLM deployment. The release provides aggregate-only study evidence and integrity
-hashes for audit, but does not include the source rows, material-level inputs,
-artifacts, credentials, or sufficient runtime metadata to independently regenerate
-the 365-material study outputs.
-
-The synthetic benchmark is methodological and software replication, not a
-numerical reproduction of the confidential study.
+Three distinct reproducibility levels apply:
+1. Synthetic demonstration: software checks, not industrial evidence.
+2. Masked numerical replay: the approved masked panel and frozen artifacts
+   reproduce the six-run table and Figures 2--4 offline, without credentials.
+3. Original confidential analysis and fresh LLM generation: not publicly
+   regenerable; aggregate evidence is supplied for audit. Original unmasked
+   source rows and the private inference deployment are not released.
 
 ## Replication on the masked release
 
@@ -42,12 +40,22 @@ structure are unchanged.
   `runner_code_sha256_original`).
 - `outputs/masked_replication_evidence.json` is the scored replication
   (`python3 scripts/build_masked_replication_evidence.py`, offline).
+- `outputs/six_run_evidence.json` intersects all six runs and all seven
+  comparators on 338 valid pairs. O1*--O3* are rescaled original policies;
+  M1--M3 are fresh masked generations, not independent industrial datasets.
+- `python3 scripts/build_six_run_report.py` generates Figures 2--4 and
+  `manuscript/Six_Run_Table.tex` from that evidence.
 
 Scoring needs only the standard-library simulator, no network or credentials.
 The three masked runs reproduce the original pattern: the LLM is 11--12% cheaper
 than the ERP-derived parameters and 5--6%, 7--9% and 16--18% costlier than the
-history-only, Croston/SBA and empirical-quantile code arms, with mean cost within
-1% of the original runs. The LLM generation itself still needs the private
+history-only, Croston/SBA and empirical-quantile code arms on their own cohorts.
+Matched cost ratios compare fresh masked policies with rescaled frozen policies,
+not with untransformed confidential costs. On the common 338-pair cohort, costs
+are 11.1--12.3% below ERP and 4.9--6.4%, 7.2--8.7%, and 16.8--18.4% above
+history-only, SBA, and empirical policies. Mean fill is 98.1--98.4%, but
+volume-weighted fill is only 76.3--76.5%; costs are not compared at equal service.
+Capacity clipping can produce orders below MOQ. LLM generation still needs the private
 enterprise deployment and cannot be rerun publicly.
 
 ## Release Contents
@@ -70,6 +78,7 @@ standard library and makes no network calls.
 ```bash
 python3 -m inventory_llm.synthetic_demo
 python3 -m unittest discover -s tests -v
+python3 scripts/verify_public.py --recompute
 ```
 
 The demo recreates `data/synthetic_inventory.csv` with seed `20260718`, builds
@@ -104,7 +113,8 @@ calendar sensitivities.
 The study inference stage cannot be rerun publicly. It depended on confidential
 operational data and a private enterprise LLM deployment. The aggregate evidence
 is auditable against the published integrity record, but not independently
-regenerable from this repository. See `docs/methodology.md` and
+regenerable from this repository. Masked six-run replay is independently
+reproducible. See `docs/methodology.md` and
 `docs/public_demo.md`.
 
 ## Manuscript

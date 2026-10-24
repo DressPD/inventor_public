@@ -2,13 +2,13 @@
 
 ## Question
 
-Can a general-purpose LLM, without training or fine-tuning, receive one material trace and produce replenishment parameters that are admissible, storage-feasible and competitive with ERP-derived and operations-research policies when replayed on held-out data?
+Can a pretrained general-purpose LLM, without project-specific training or fine-tuning, propose material-level replenishment parameters competitive with ERP-derived and operations-research policies in simplified held-out replay? Static admission and trajectory/order-level compliance are separate questions.
 
 ## Arms
 
 | Arm | Role |
 |---|---|
-| SAP-derived | Recomputed reorder point and quantity with the ERP safety stock |
+| SAP-derived | Recomputed reorder point using ERP safety stock and safety lead time, with EOQ quantity |
 | SLT-informed OR | Deterministic `(r,Q)` policy that adds the ERP safety lead time to the mean lead time |
 | ERP-floor OR | SLT-informed OR with the ERP safety stock as a floor (same ERP inputs as the LLM) |
 | History-only OR | Deterministic `(r,Q)` policy computed from demand and lead-time history only, no ERP planning inputs |
@@ -54,6 +54,17 @@ Storage limits: in the unconstrained replay the peak on-hand stock exceeds the l
 
 ## Repeated runs
 
-Three masked re-runs (run-m1..m3, 364/365/365 policies produced; 340/342/342 scorable) on the masked release reproduce the aggregate pattern within 1% of cost; see `outputs/masked_replication_evidence.json`. The runner-hash re-stamp of 38 run-m1 records (authentication handling only) is documented in each record (`runner_hash_amendment`, `runner_code_sha256_original`).
+Three masked generations (run-m1..m3, 364/365/365 policies produced; 340/342/342 scorable) preserve the main ranking. Ratios near one compare matched masked costs with rescaled frozen originals, not unscaled original means. `outputs/six_run_evidence.json` restricts all six runs and seven comparators to 338 shared pairs; the six generations reuse one underlying dataset. Hash amendments retain original values and amendment histories rather than asserting amended hashes were execution-time provenance.
 
 Three full runs with the same prompt file give nearly identical aggregate results (cost spread below one percentage point). Exact policy equality between runs 2 and 3 holds for only 36 of 365 pairs; median absolute differences are 81 units for reorder point, 6 for order quantity and 3 for safety stock. None of these results establishes prospective operating performance.
+
+## Implementation qualifications
+
+- Arrivals precede demand; at most one order follows demand on each working day. Lead time is a rounded, deterministic working-observation offset, not stochastic realized lead time.
+- Shared observed opening inventory and an empty pipeline initialize evaluation; observed receipts, scrap and corrections are ignored.
+- Capacity clipping uses `min(Q, capacity - floor(position))` and can release less than MOQ. Static policy feasibility does not establish simultaneous order-level feasibility.
+- SLT-informed and ERP-floor arms use effective lead time in both mean demand and lead-time-demand variance.
+- The tuned arm tests up to 85 candidates on the last 250 pre-cutoff working days, without capacity clipping, initializing each at its own R+Q. Statistics use all pre-cutoff observations; this is in-sample tuning, not nested validation.
+- Positive shortage prices revalue fixed trajectories, not re-optimize policies. Mean material fill and volume-weighted fill differ substantially; comparisons are not at equal service.
+- The 10.5% original cost-variation measure is mean within-pair range divided by pair mean, not SD. Policy ratios use +1 smoothing and cannot reveal internal LLM calculations.
+- Paired bootstrap intervals describe the observed cohort; three plants and within-plant dependence preclude broad population inference.

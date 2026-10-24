@@ -19,6 +19,7 @@ os.environ["INVENTOR_DATA_CSV"] = str(MASKED_CSV)
 sys.path.insert(0, str(ROOT))
 
 from inventory_llm import policy_backtest as pb  # noqa: E402
+from scripts.build_six_run_report import summarize  # noqa: E402
 
 MASKED_RUNS = ["run-m1", "run-m2", "run-m3"]
 ORIGINAL_RUNS = ["mf-01", "mf-02", "mf-03"]
@@ -98,6 +99,13 @@ def main() -> None:
 
     dest = ROOT / "outputs" / "masked_replication_evidence.json"
     dest.write_text(json.dumps(out, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    grouped = pb.core.load_grouped_rows()
+    end = pb.core.validation_end(grouped)
+    unit_cost = {k: pb.core.compute_stats(pb.core.split_rows(v, pb.core.TRAIN_CUTOFF, end)[0])["unit_cost"]
+                 for k, v in grouped.items()}
+    six = summarize(runs, unit_cost)
+    (ROOT / "outputs/six_run_evidence.json").write_text(
+        json.dumps(six, indent=2) + "\n", encoding="utf-8")
     print("wrote", dest.relative_to(ROOT))
     for rn, e in out["masked_runs"].items():
         a = e["plants"]["ALL"]

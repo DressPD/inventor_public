@@ -26,5 +26,6 @@ outputs/*
 !outputs/plantc_calendar_sensitivity.json
 !outputs/synthetic_demo_summary.json
 !outputs/masked_replication_evidence.json
+!outputs/six_run_evidence.json
 !outputs/runs/
 !data/masked_release/

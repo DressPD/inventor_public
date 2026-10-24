@@ -2,43 +2,18 @@
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{pgfplots}
-\usetikzlibrary{shapes.geometric}
 \pgfplotsset{compat=1.18}
-\definecolor{runone}{RGB}{110,110,110}
-\definecolor{runtwo}{RGB}{38,108,165}
-\definecolor{runthree}{RGB}{211,122,42}
-\input{Figure_S1_Three_Run_Reproducibility_data.tex}
-
 \begin{document}
 \begin{tikzpicture}
-\draw[runone,thick] (4.6,0) -- +(0.5,0) node[pos=0.5,circle,fill=runone,inner sep=1.2pt]{};
-\node[anchor=west,font=\footnotesize] at (5.2,0) {Run 1};
-\draw[runtwo,thick,dashed] (7.0,0) -- +(0.5,0) node[pos=0.5,rectangle,fill=runtwo,inner sep=1.2pt]{};
-\node[anchor=west,font=\footnotesize] at (7.6,0) {Run 2};
-\draw[runthree,thick,dotted] (9.4,0) -- +(0.5,0) node[pos=0.5,regular polygon,regular polygon sides=3,fill=runthree,inner sep=1.1pt]{};
-\node[anchor=west,font=\footnotesize] at (10.0,0) {Run 3};
-\pgfplotsset{panel/.style={
-  width=4.3cm,height=3.2cm,ymin=0,ymajorgrids=true,grid style={black!12},
-  axis line style={black!65},xlabel={Log-spaced bin},
-  tick label style={font=\scriptsize},label style={font=\footnotesize},
-  title style={font=\footnotesize\bfseries},enlarge x limits=0.08}}
-\begin{axis}[panel,name=rop,at={(0,-1.45cm)},anchor=north west,ylabel={Materials},
-  xtick/.expand once=\RopAxisTicks,xticklabels/.expand once=\RopAxisTickLabels,title={A. Reorder point}]
-  \addplot[runone,thick,mark=*,mark size=1.4pt,mark options={fill=runone,draw=none}] coordinates {\RopRunOneHistogram};
-  \addplot[runtwo,thick,dashed,mark=square*,mark size=1.3pt,mark options={fill=runtwo,draw=none}] coordinates {\RopRunTwoHistogram};
-  \addplot[runthree,thick,dotted,mark=triangle*,mark size=1.6pt,mark options={fill=runthree,draw=none}] coordinates {\RopRunThreeHistogram};
-\end{axis}
-\begin{axis}[panel,name=oq,at={(rop.east)},anchor=west,xshift=1.15cm,
-  xtick/.expand once=\OqAxisTicks,xticklabels/.expand once=\OqAxisTickLabels,title={B. Order quantity}]
-  \addplot[runone,thick,mark=*,mark size=1.4pt,mark options={fill=runone,draw=none}] coordinates {\OqRunOneHistogram};
-  \addplot[runtwo,thick,dashed,mark=square*,mark size=1.3pt,mark options={fill=runtwo,draw=none}] coordinates {\OqRunTwoHistogram};
-  \addplot[runthree,thick,dotted,mark=triangle*,mark size=1.6pt,mark options={fill=runthree,draw=none}] coordinates {\OqRunThreeHistogram};
-\end{axis}
-\begin{axis}[panel,name=ss,at={(oq.east)},anchor=west,xshift=1.15cm,
-  xtick/.expand once=\SsAxisTicks,xticklabels/.expand once=\SsAxisTickLabels,title={C. Safety stock}]
-  \addplot[runone,thick,mark=*,mark size=1.4pt,mark options={fill=runone,draw=none}] coordinates {\SsRunOneHistogram};
-  \addplot[runtwo,thick,dashed,mark=square*,mark size=1.3pt,mark options={fill=runtwo,draw=none}] coordinates {\SsRunTwoHistogram};
-  \addplot[runthree,thick,dotted,mark=triangle*,mark size=1.6pt,mark options={fill=runthree,draw=none}] coordinates {\SsRunThreeHistogram};
+\begin{axis}[width=13cm,height=6.8cm,xtick={0,1,2,3,4,5},
+xticklabels={O1*,O2*,O3*,M1,M2,M3},ylabel={LLM cost vs comparator (\%)},ymajorgrids,
+legend columns=2,legend style={at={(0.5,1.03)},anchor=south},
+extra y ticks={0},extra y tick labels={},extra y tick style={grid=major}]
+\addplot[color=black,mark=*] coordinates {(0,-11.414) (1,-11.305) (2,-11.509) (3,-12.151) (4,-11.103) (5,-12.313)};
+\addplot[color=blue,mark=square*] coordinates {(0,6.027) (1,6.157) (2,5.913) (3,5.144) (4,6.399) (5,4.950)};
+\addplot[color=orange,mark=triangle*] coordinates {(0,8.342) (1,8.474) (2,8.225) (3,7.440) (4,8.722) (5,7.241)};
+\addplot[color=green!50!black,mark=diamond*] coordinates {(0,18.012) (1,18.157) (2,17.885) (3,17.030) (4,18.426) (5,16.813)};
+\legend{ERP-derived,History-only,Croston/SBA,Empirical-quantile}
 \end{axis}
 \end{tikzpicture}
 \end{document}

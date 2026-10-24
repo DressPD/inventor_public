@@ -3,29 +3,20 @@
 \usepackage{lmodern}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.18}
-\definecolor{holdc}{RGB}{76,120,168}
-\definecolor{ordc}{RGB}{233,160,40}
-\definecolor{sapgray}{RGB}{122,122,122}
-\definecolor{llmred}{RGB}{190,60,50}
-\definecolor{greenc}{RGB}{70,140,90}
 \begin{document}
 \begin{tikzpicture}
-\begin{axis}[
-  width=11.5cm,height=8cm,
-  y dir=reverse,symbolic y coords={all,a,b,c,lumpy,smooth,cvl,cvm,cvh},ytick=data,yticklabels={{All pairs (346)},{Plant A (215)},{Plant B (65)},{Plant C (66)},{Lumpy (33)},{Smooth (313)},{Low CV (115)},{Mid CV (115)},{High CV (116)}},ytick style={draw=none},
-  xmin=-30,xmax=40,xtick={-30,-20,-10,0,10,20,30,40},
-  xlabel={LLM cost relative to the arm (\%); positive: the LLM costs more},
-  xmajorgrids=true,ymajorgrids=true,grid style={black!12},axis line style={black!65},
-  extra x ticks=0,extra x tick style={grid=major,grid style={black!60}},extra x tick labels={},
-  tick label style={font=\footnotesize},label style={font=\footnotesize},
-  legend style={font=\footnotesize,at={(0.5,1.03)},anchor=south,draw=none},legend columns=2,
-  enlarge y limits=0.06,
-]
-  \addplot[only marks,mark=*,mark size=2.6pt,color=sapgray] coordinates {(-11.4,all) (-14.1,a) (-22.7,b) (36.2,c) (-25.4,lumpy) (-9.8,smooth) (-15.7,cvl) (-7.5,cvm) (-12.9,cvh)};
-  \addplot[only marks,mark=square*,mark size=2.6pt,color=holdc] coordinates {(5.9,all) (7.2,a) (3.6,b) (6.7,c) (9.1,lumpy) (5.6,smooth) (9.0,cvl) (5.0,cvm) (4.7,cvh)};
-  \addplot[only marks,mark=triangle*,mark size=2.6pt,color=ordc] coordinates {(8.2,all) (13.1,a) (2.3,b) (6.2,c) (9.7,lumpy) (8.1,smooth) (15.1,cvl) (9.9,cvm) (0.9,cvh)};
-  \addplot[only marks,mark=diamond*,mark size=2.6pt,color=greenc] coordinates {(17.6,all) (20.8,a) (7.7,b) (29.5,c) (-1.2,lumpy) (19.8,smooth) (35.4,cvl) (17.7,cvm) (5.7,cvh)};
-  \legend{SAP-derived,History-only OR,Croston/SBA OR,Empirical-quantile OR}
+\begin{axis}[width=13cm,height=7cm,
+xtick={0,1,2,3},xticklabels={{ALL (n=338)},{PL1 (n=213)},{PL2 (n=64)},{PL3 (n=61)}},
+ylabel={LLM cost vs ERP-derived (\%)},ymajorgrids,
+legend columns=3,legend style={at={(0.5,1.03)},anchor=south},
+extra y ticks={0},extra y tick labels={},extra y tick style={grid=major}]
+\addplot[color=blue!70!black,mark=*] coordinates {(0,-11.414) (1,-13.944) (2,-22.758) (3,42.660)};
+\addplot[color=cyan!70!black,mark=*] coordinates {(0,-11.305) (1,-16.224) (2,-17.951) (3,38.147)};
+\addplot[color=violet,mark=*] coordinates {(0,-11.509) (1,-13.942) (2,-21.400) (3,36.807)};
+\addplot[color=red!75!black,mark=*] coordinates {(0,-12.151) (1,-15.487) (2,-21.722) (3,39.683)};
+\addplot[color=orange!90!black,mark=*] coordinates {(0,-11.103) (1,-13.293) (2,-21.328) (3,37.165)};
+\addplot[color=green!50!black,mark=*] coordinates {(0,-12.313) (1,-15.161) (2,-22.976) (3,40.934)};
+\legend{O1*,O2*,O3*,M1,M2,M3}
 \end{axis}
 \end{tikzpicture}
 \end{document}
