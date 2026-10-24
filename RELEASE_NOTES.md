@@ -1,9 +1,24 @@
-# InventOR v1.3.0 — prepared release notes
+# InventOR v1.3.0 — verified archive and subsequent paper corrections
 
-Prepared 24 October 2026. **Not yet an archived release.** Version 1.3.0 is a
-candidate only; if that tag already names another commit, stop and select a new
-version consistently in these notes, `.zenodo.json` and `CITATION.cff`. Never
-overwrite or force-move an existing tag. No new version DOI is asserted here.
+Verified 25 October 2026. Software **v1.3.0 is published and archived**:
+
+- GitHub release: https://github.com/DressPD/inventor_public/releases/tag/v1.3.0
+- Version DOI: https://doi.org/10.5281/zenodo.23627916
+- Record: https://zenodo.org/records/23627916
+- Frozen public commit: `d1d602d7087714e6430fe9ac551ab086800b4608`.
+- Archived manifest SHA-256:
+  `024d64eb793078a15f70e95d3f38c2c5557fe00e55cbd14e36d939f1c1e73003`.
+
+The actual archived ZIP passed checksum, 4,800-file manifest, 51 credential-free
+tests and frozen numerical replay verification. Its temporary downloaded ZIP and
+extracted verification copy were subsequently deleted at the author's request;
+verification evidence was retained. No published files or tags were changed.
+
+This **later working snapshot** includes corrected manuscript reporting, Figure 1
+labels and the verified DOI. It is not the source tree or manifest of the published
+v1.3.0 archive. Numerical results, tables and historical prompts are unchanged.
+Do not overwrite or force-move the published tag. A separately authorized new
+version is needed if the later corrected files must themselves be archived.
 
 ## Contents and boundaries
 
@@ -21,15 +36,16 @@ overwrite or force-move an existing tag. No new version DOI is asserted here.
   be independently regenerated. Clipped orders can violate MOQ; capacity replay
   does not establish simultaneous MOQ/capacity feasibility.
 
-## Verification before the author publishes
+## Verification for a later working snapshot or separately authorized release
 
 Optional commercial generation adds manual ChatGPT/Claude handoff, offline strict
 validation/replay and opt-in OpenAI Responses/Code Interpreter or Anthropic
 Messages/code-execution adapters. Only selected normalized training rows and
 allowlisted parameters may be uploaded after explicit consent. New candidates
 stay in ignored workspaces and are not paper evidence or proprietary-inference
-replication. The original six-run evidence, prompts, figures and tables remain
-frozen. No paid call is required for release verification. See
+replication. The original six-run evidence, prompts, numerical Figures 2–4 and
+tables remain frozen; Figure 1 labels are corrected in this later snapshot.
+No paid call is required for release verification. See
 `docs/commercial_alternatives.md`.
 
 ```sh
@@ -42,20 +58,25 @@ git status --short
 
 Run from the public snapshot without credentials. Record the reviewed full commit
 and `PUBLIC_MANIFEST.json` hash in the GitHub release body. Do not fabricate them
-in a template. Existing concept DOI: https://doi.org/10.5281/zenodo.22262051 .
-Its latest checked version is v1.2.0, not this masked release.
+in a template. Software concept DOI: https://doi.org/10.5281/zenodo.22262051 .
+The verified v1.3.0 version DOI above identifies the frozen release, not later edits.
 
-## Author-only publication and archive inspection
+## Reference procedure for future publication and archive inspection
+
+The v1.3.0 publication and archive inspection above are complete. These instructions
+apply only to a future, separately approved release with an unused version/tag.
 
 1. Obtain explicit authorization for this external publication action. Preparation
    and company permission do not themselves authorize an agent to publish.
 2. In Zenodo account settings, connect the owning GitHub account. Profile → GitHub
    → Sync now → enable `DressPD/inventor_public`; verify the enabled repository.
 3. Inspect local and remote tags/releases before choosing the candidate version.
+   If a candidate tag already exists, stop; never reuse or force-move it.
    Create the GitHub release on the reviewed full commit only after approval.
 4. Check Zenodo's GitHub ingestion status and open the resulting record. If it
    fails, inspect the integration error; do not create a guessed DOI or an
    unrelated upload as a silent substitute.
+   No new version DOI may be inferred from a tag; use the actual returned DOI.
 5. Confirm the record belongs to concept `22262051`, has the intended version,
    title, creator and MIT license, and contains the actual GitHub source archive.
    Download/extract it; run the manifest verifier and offline replay there. Compare
@@ -94,13 +115,11 @@ Archiving is not journal submission, disclosure clearance or journal acceptance.
 
 ## Software version versus paper version
 
-The commercial path is a **software upgrade**. Before author publication, inspect
-existing local and remote tags/releases and choose an unused software version;
-update canonical `.zenodo.json`, `CITATION.cff` and these notes consistently.
-No local tags were present at implementation baseline; remote checks and version
-selection remain with the controlling session/author. Preserve software concept
-DOI `10.5281/zenodo.22262051`, then inspect the actual newly archived source and
-returned version DOI. No version DOI is preassigned here.
+The commercial path is included in the archived **software v1.3.0**. Before any
+future software publication, inspect local and remote tags/releases, choose an
+unused version and update canonical metadata consistently. Preserve software
+concept DOI `10.5281/zenodo.22262051`; inspect the actual new archive and returned
+version DOI. Never reuse v1.3.0 for later manuscript edits.
 
 A **paper upgrade** is separate: if an existing manuscript/preprint record must
 change, use that record's New version workflow and preserve its own concept DOI,

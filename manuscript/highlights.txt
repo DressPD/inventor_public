@@ -1,5 +1,5 @@
 - Prompt-configured LLM sets (r,Q) parameters for 365 plant-material pairs
-- LLM costs 11% less than ERP values but 6-18% more than data-driven code
+- LLM costs 11% less than ERP-derived policies but 6-18% more than data-driven code
 - Six-run reporting separates original policies from masked-release generations
-- Break-even shortage prices are 1-2% of unit cost; a tuned policy then wins
+- Cost rankings depend on shortage prices in fixed-policy sensitivity analysis
 - Static storage checks fail: 53-66% of pairs exceed limits in simulation
