@@ -16,7 +16,7 @@ and no credentials or network access.
 
 Three distinct reproducibility levels apply:
 1. Synthetic demonstration: software checks, not industrial evidence.
-2. Masked numerical replay: the approved masked panel and frozen artifacts
+2. Masked numerical replay: the masked panel and frozen artifacts
    reproduce the six-run table and Figures 2--4 offline, without credentials.
 3. Original confidential analysis and fresh LLM generation: not publicly
    regenerable; aggregate evidence is supplied for audit. Original unmasked
@@ -24,9 +24,9 @@ Three distinct reproducibility levels apply:
 
 ## Replication on the masked release
 
-The company approved the release of a masked version of the study panel
-(`data/masked_release/masked_inventory_panel.csv`, 233,078 daily records, 411
-plant-material pairs). Plants are labelled PL1, PL2 and PL3 (corresponding to
+The masked version of the study panel contains
+233,078 daily records and 411 plant-material pairs
+(`data/masked_release/masked_inventory_panel.csv`). Plants are labelled PL1, PL2 and PL3 (corresponding to
 Plants A, B and C of the manuscript), material identifiers are pseudonymized,
 and quantities and prices are multiplied by secret per-pair factors; the
 factors, the salt and the source data are not released. Dates and plant
@@ -78,6 +78,12 @@ panel and masked-run outputs use pseudonymized identifiers and scaled quantities
 
 Python 3.10 or newer is sufficient. The public synthetic path uses only the
 standard library and makes no network calls.
+
+Exact hash-identical masked replay is verified with **Python 3.14.9**. Other
+interpreters can produce last-bit floating-point differences: Python 3.9 changed
+69 aggregate-fill values in `outputs/six_run_evidence.json` during verification.
+That is not a new experiment or a change to the frozen evidence. Use the verified
+runtime for `verify_public.py --recompute` when exact file hashes are required.
 
 ```bash
 python3 -m inventory_llm.synthetic_demo

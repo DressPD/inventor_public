@@ -38,4 +38,4 @@ A masked panel and sanitized frozen policies support offline scoring, without cr
 
 ## Study Boundary
 
-The private exporter creates a screened snapshot containing approved masked rows and sanitized masked artifacts, original aggregate evidence, scoring software and a hash manifest. The public snapshot cannot regenerate confidential original inference or raw-scale study results. Synthetic tests exercise software behavior; masked replay reproduces public numerical results; neither establishes independent external validation. Static policy quantities satisfy MOQ, but capacity-clipped simulated orders can violate MOQ.
+The private exporter creates a screened snapshot containing allowlisted masked rows and sanitized masked artifacts, original aggregate evidence, scoring software and a hash manifest. The public snapshot cannot regenerate confidential original inference or raw-scale study results. Synthetic tests exercise software behavior; masked replay reproduces public numerical results; neither establishes independent external validation. Static policy quantities satisfy MOQ, but capacity-clipped simulated orders can violate MOQ.

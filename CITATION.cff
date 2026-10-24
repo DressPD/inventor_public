@@ -10,7 +10,7 @@ license: MIT
 repository-code: "https://github.com/DressPD/inventor_public"
 abstract: >-
   A confidentiality-screened public release of InventOR: analysis code, the
-  approved masked panel, three frozen original generations rescaled to that
+  masked panel, three frozen original generations rescaled to that
   panel and three fresh masked generations, sanitized provenance with retained
   amendment histories, APA seventh-edition manuscript sources, and an integrity
   manifest. Credential-free replay reproduces six-run evidence, the matched

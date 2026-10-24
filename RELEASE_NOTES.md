@@ -22,7 +22,7 @@ version is needed if the later corrected files must themselves be archived.
 
 ## Contents and boundaries
 
-- Approved masked industrial panel: 233,078 daily records, 411 plant-material pairs.
+- Masked industrial panel: 233,078 daily records, 411 plant-material pairs.
 - O1*–O3*: frozen original policies rescaled to the masked panel, not fresh inference.
 - M1–M3: three fresh masked generations; missing and invalid outputs retained.
 - Six-run evidence, table and Figures 2–4 use 338 shared feasible pairs and seven
@@ -66,8 +66,8 @@ The verified v1.3.0 version DOI above identifies the frozen release, not later e
 The v1.3.0 publication and archive inspection above are complete. These instructions
 apply only to a future, separately approved release with an unused version/tag.
 
-1. Obtain explicit authorization for this external publication action. Preparation
-   and company permission do not themselves authorize an agent to publish.
+1. Obtain explicit authorization for this external publication action.
+   Preparation does not authorize an agent to publish.
 2. In Zenodo account settings, connect the owning GitHub account. Profile → GitHub
    → Sync now → enable `DressPD/inventor_public`; verify the enabled repository.
 3. Inspect local and remote tags/releases before choosing the candidate version.
