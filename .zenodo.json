@@ -1,6 +1,7 @@
 {
-  "title": "InventOR: A Human-Reviewed, Prompt-Configured Large Language Model Decision Support System for Material-Level Inventory Control",
-  "description": "Confidentiality-screened public release: analysis code, anonymized variable schema, aggregate evaluation results (Run 1, Run 2, Run 3), a masked release of the study panel with three masked replication runs (run-m1 to run-m3) and their policies, manuscript sources, and integrity manifest for InventOR, a prompt-configured LLM workflow that generates material-level (r,Q) inventory policies without project-specific model training or fine-tuning.",
+  "title": "InventOR: Can Large Language Models Set Reorder Points and Safety Stocks? Industrial Evidence Against ERP and Data-Driven Benchmarks",
+  "version": "1.3.0",
+  "description": "Confidentiality-screened InventOR release prepared as version 1.3.0: analysis code, the approved masked industrial panel, three frozen original generations rescaled to that panel (O1*–O3*), three fresh masked generations (M1–M3), sanitized provenance retaining hash-amendment histories, and credential-free numerical replay. Six-run evidence, the matched 338-pair table and figure sources share one underlying panel, not six independent datasets. Includes APA seventh-edition manuscript sources and an integrity manifest. Original-scale confidential results and proprietary inference are not independently regenerable; capacity-clipped replay does not prove simultaneous MOQ/capacity compliance. No new archive DOI has been assigned in these prepared files.",
   "creators": [
     {
       "name": "Dressino, Aris",

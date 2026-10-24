@@ -1,0 +1,37 @@
+# Manuscript build
+
+Canonical source: `main.tex` with `refs.bib`, `elsarticle.cls`, `Six_Run_Table.tex`
+and the four figure PDFs. APA seventh edition uses installed `biblatex-apa`
+(9.20), `biblatex` (3.22) and Biber (2.22), tested with TeX Live 2026.
+Standard TeX packages include `babel`, `csquotes`, `lmodern` and the packages
+listed in the preamble; install a matching TeX Live distribution, not a legacy
+numeric `.bst` approximation. Existing `.bst` files are not used by this build.
+
+```sh
+pdflatex -interaction=nonstopmode -halt-on-error Figure_1_Workflow.tex
+pdflatex -interaction=nonstopmode -halt-on-error Figure_2_Cost_Decomposition.tex
+pdflatex -interaction=nonstopmode -halt-on-error Figure_3_Segments.tex
+pdflatex -interaction=nonstopmode -halt-on-error Figure_S1_Three_Run_Reproducibility.tex
+pdflatex -interaction=nonstopmode -halt-on-error main.tex
+biber main
+pdflatex -interaction=nonstopmode -halt-on-error main.tex
+pdflatex -interaction=nonstopmode -halt-on-error main.tex
+```
+
+When migrating a previous numeric build, remove only its generated `main.bbl`
+before the first LaTeX pass; the private package builder handles that stale file.
+Do not remove source files. `\cite` aliases `\parencite` for existing parenthetical
+citations; narrative citations use `\textcite`. APA's own sorting and
+disambiguation rules apply. The reference metadata is not regenerated or invented.
+
+The private `scripts/build_submission_packages.py` also rebuilds the main and
+reviewer PDFs, rejects unresolved citations/references and a page count over 35,
+and scans reviewer PDFs, DOCX and source ZIP for identifying strings. The ZIP
+includes all local inputs, `main.bbl` and its own build instructions. System TeX
+packages are prerequisites, not private source dependencies. The automatic Word
+draft is noncanonical and needs citation/table/equation inspection before use.
+
+The public guide specifies no page/spacing ceiling; 35 pages is the author's
+stricter local constraint. Current layout: 12 pt, 1.85 spacing, one-inch margins;
+tables and APA references are single-spaced. Identified public files are not
+suitable for double-anonymized reviewer upload.

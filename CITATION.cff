@@ -1,22 +1,21 @@
 cff-version: 1.2.0
 message: "If you use this software or evaluation protocol, please cite it as below."
-title: "InventOR: A Human-Reviewed, Prompt-Configured Large Language Model Decision Support System for Material-Level Inventory Control"
+title: "InventOR: Can Large Language Models Set Reorder Points and Safety Stocks? Industrial Evidence Against ERP and Data-Driven Benchmarks"
 authors:
   - family-names: Dressino
     given-names: Aris
     affiliation: "TUM School of Management, Technical University of Munich"
 version: 1.3.0
-date-released: "2026-10-23"
 license: MIT
 repository-code: "https://github.com/DressPD/inventor_public"
 abstract: >-
   A confidentiality-screened public release of InventOR: analysis code, the
-  anonymized variable schema, aggregate evaluation results for Run 1, Run 2,
-  and Run 3, a masked release of the study panel with three masked
-  replication runs, manuscript sources, and an integrity manifest for a
-  prompt-configured large-language-model workflow that generates
-  material-level (r,Q) inventory policies without project-specific model
-  training or fine-tuning.
+  approved masked panel, three frozen original generations rescaled to that
+  panel and three fresh masked generations, sanitized provenance with retained
+  amendment histories, APA seventh-edition manuscript sources, and an integrity
+  manifest. Credential-free replay reproduces six-run evidence, the matched
+  338-pair table and figure sources on one underlying panel, not six independent
+  datasets. Prepared version 1.3.0 has no new archive DOI assigned here.
 keywords:
   - large language models
   - inventory management

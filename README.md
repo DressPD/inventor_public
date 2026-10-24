@@ -66,7 +66,7 @@ enterprise deployment and cannot be rerun publicly.
 - manuscript source, figures, references, highlights, and compiled PDF; and
 - prompt specifications documenting the intended LLM interaction.
 
-No operational row, original material identifier, credential,
+No unmasked operational row, original material identifier, credential,
 private inference adapter, or private runtime metadata is included. The masked
 panel and masked-run outputs use pseudonymized identifiers and scaled quantities.
 
@@ -128,7 +128,7 @@ pdflatex -interaction=nonstopmode -halt-on-error Figure_2_Cost_Decomposition.tex
 pdflatex -interaction=nonstopmode -halt-on-error Figure_3_Segments.tex
 pdflatex -interaction=nonstopmode -halt-on-error Figure_S1_Three_Run_Reproducibility.tex
 pdflatex -interaction=nonstopmode -halt-on-error main.tex
-bibtex main
+biber main
 pdflatex -interaction=nonstopmode -halt-on-error main.tex
 pdflatex -interaction=nonstopmode -halt-on-error main.tex
 ```

@@ -5,16 +5,8 @@
 \usepackage{lmodern}
 \usepackage{fvextra}
 
-% The reproduced prompt texts contain U+2014 (em dash), which the Latin Modern
-% typewriter font cannot represent. The macro below remaps that character at
-% typeset time only. The source prompt files are reproduced byte-for-byte and are
-% never edited.
-\newcommand{\EmDashVerbatimFix}{%
-  \catcode"2014=\active
-  \begingroup
-  \lccode`\~="2014
-  \lowercase{\endgroup\def~}{---}%
-}
+% Remap em dashes at typeset time; preserve source prompt bytes unchanged.
+\DeclareUnicodeCharacter{2014}{---}
 
 \title{Supplementary File S1\\Application Prompt Specification}
 \author{Aris Dressino}
@@ -43,10 +35,10 @@ is reproduced for completeness. Em dashes in the source texts are typeset as
 altered.
 
 \section*{System Prompt}
-\VerbatimInput[breaklines=true,fontsize=\scriptsize,codes={\EmDashVerbatimFix}]{Supplementary_File_S1_System_Prompt.txt}
+\VerbatimInput[breaklines=true,fontsize=\scriptsize]{Supplementary_File_S1_System_Prompt.txt}
 
 \clearpage
 \section*{Tool Prompt}
-\VerbatimInput[breaklines=true,fontsize=\scriptsize,codes={\EmDashVerbatimFix}]{Supplementary_File_S1_Tool_Prompt.txt}
+\VerbatimInput[breaklines=true,fontsize=\scriptsize]{Supplementary_File_S1_Tool_Prompt.txt}
 
 \end{document}

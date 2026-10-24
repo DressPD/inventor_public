@@ -1,4 +1,12 @@
-\documentclass[preprint,12pt]{elsarticle}
+\documentclass[preprint,12pt,nonatbib]{elsarticle}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[american]{babel}
+\usepackage{csquotes}
+\usepackage[style=apa,backend=biber]{biblatex}
+\addbibresource{refs.bib}
+\let\cite\parencite
 
 \usepackage{amssymb}
 \usepackage{amsmath}
@@ -13,7 +21,7 @@
 \usepackage{etoolbox}
 \setstretch{1.85}
 \AtBeginEnvironment{table}{\singlespacing}
-\AtBeginEnvironment{thebibliography}{\singlespacing\footnotesize}
+\AtBeginBibliography{\singlespacing\footnotesize}
 \newcolumntype{L}{>{\raggedright\arraybackslash}X}
 \newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
 \setlength{\emergencystretch}{3em}
@@ -84,7 +92,7 @@ The decision supported is the periodic (re)setting of a reorder point, a safety 
 \begin{quote}
 \textbf{Definition.} \emph{InventOR is a human-reviewed planning workflow that, for one plant-material pair at a time, (i) obtains from a large language model, configured only by a written prompt, a candidate $(r,Q)$ policy with a justification and an escalation flag; (ii) verifies the candidate deterministically against explicit constraints; (iii) evaluates it by counterfactual simulation against reference policies on held-out demand; and (iv) presents the result to a planner, who alone decides whether ERP parameters are changed.}
 \end{quote}
-In the levels of automation of Parasuraman et al. \cite{parasuraman2000model}, InventOR operates at a low-to-intermediate level: it suggests one alternative and leaves execution to the human. Accepting suggestions invites complacency and automation bias \cite{parasuraman2010complacency}, which the review rules of Section~\ref{subsec:rules} are meant to counter.
+In the levels of automation of \textcite{parasuraman2000model}, InventOR operates at a low-to-intermediate level: it suggests one alternative and leaves execution to the human. Accepting suggestions invites complacency and automation bias \cite{parasuraman2010complacency}, which the review rules of Section~\ref{subsec:rules} are meant to counter.
 
 \subsection{Requirements on the workflow}
 \label{subsec:requirements}
@@ -118,7 +126,7 @@ DR6 & Human control with explicit escalation & Trust, escalate and reject rules;
 Decision support aims to improve the judgement of a human decision-maker, not to replace it \cite{gorry1971framework, sprague1980framework, shim2002past}, and how suggestions are scoped, presented and verified determines whether users rely on them appropriately \cite{parasuraman2000model, parasuraman2010complacency}. In inventory control, human override of algorithmic safety-stock advice is a documented risk \cite{wang2024aversion}, people discount algorithms after seeing them err \cite{dietvorst2015aversion}, and AI-based route planning yields efficiency advantages when it is followed in full \cite{loske2021humanai}. InventOR therefore keeps the planner as decision-maker and makes the evidence for each proposal explicit.
 
 \paragraph{LLMs in operations and supply-chain decisions.}
-Wu \cite{wu2026disruptions} compares automated and human-specified LLM-assisted inventory optimization under supply-chain disruptions through numerical experiments. Our study instead freezes per-material policies for held-out replay on an industrial portfolio; it is not the first use of LLMs in inventory optimization.
+\textcite{wu2026disruptions} compares automated and human-specified LLM-assisted inventory optimization under supply-chain disruptions through numerical experiments. Our study instead freezes per-material policies for held-out replay on an industrial portfolio; it is not the first use of LLMs in inventory optimization.
 Reviews and frameworks map the opportunities of generative AI in supply chains \cite{jackson2024generative, fossowamba2023chatgpt, fossowamba2023ijpe, li2024genaiscm, song2026llmscm, panja2026genai} and stress human roles, data quality and governance \cite{trifone2026agentic, cannas2023aiscm, venkatesh2023adoption}. Evidence from manufacturing planning is thin: a fine-tuned LLM for digital-manufacturing optimization \cite{amarasinghe2026finetuned}, a transformer trained to set order timing and quantity \cite{liu2026transformer} and evidence that ChatGPT reproduces managers' decision biases \cite{chen2025manager}. Most technical LLM work translates problem statements into solver code \cite{li2023large, huang2025orlm, ahmaditeshnizi2024optimus, zhang2025or} or studies multi-agent control in inventory flows \cite{quan2024invagent, jannelli2025agentic}. The closest conceptual neighbour studies how OR algorithms, LLM agents and humans complement each other in multi-period inventory control on a benchmark of more than 1,000 instances, and reports that OR-augmented LLM methods outperform either alone \cite{baek2026inventorybench}; we ask the prior question of how far an LLM alone gets on industrial data. In forecasting, LLMs do not consistently outperform human judgment in retail \cite{abolghasemi2025humans}, and an LLM forecasting copilot for spare-parts demand shows high variability for irregular demand that averaging repeated queries reduces \cite{nakhost2025copilot}. We test run-to-run variability directly (Section~\ref{subsec:stability}) and let the LLM propose a complete policy, not a forecast.
 
 \paragraph{Data-driven inventory control without LLMs.}
@@ -142,7 +150,7 @@ For one material, InventOR answers how much safety stock to hold, at what level 
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.72\linewidth]{Figure_1_Workflow.pdf}
+  \includegraphics[width=\linewidth]{Figure_1_Workflow.pdf}
   \caption{InventOR workflow: material data are prepared, an LLM proposes a policy, deterministic software parses, checks and simulates it, and a planner reviews the result.}
   \label{fig:tool_process_map}
 \end{figure}
@@ -212,7 +220,7 @@ ERP safety stock and safety lead time embed planner judgement and are alternativ
 Three further arms use no ERP planning inputs. \emph{Croston/SBA OR} uses bias-corrected Croston demand \cite{croston1972forecasting, syntetos2005accuracy}, smoothing 0.1, and root mean squared one-step forecast error as demand spread \cite{willemain2004new}. \emph{Empirical-quantile OR} uses the service-target quantile of rolling demand over rounded mean lead time. \emph{Simulation-tuned $(r,Q)$} searches reserve factors $-0.5,-0.25,\ldots,3.5$ and quantity multiples $0.5,0.75,1,1.5,2$ (up to 85 candidates), selecting the cheapest meeting the service target, or the best fill if none meets it. Statistics use all pre-cutoff data; tuning replays the last 250 working days without capacity clipping, initialized at each candidate's $R+Q$ with an empty pipeline. This is in-sample tuning, not nested validation; evaluation instead uses shared observed opening stock and capacity clipping. No post-cutoff demand informs selection. Deep reinforcement learning \cite{stranieri2024drl, kolyaei2025rl} is not benchmarked.
 
 \subsection{Simulation, capacity replay and metrics}
-Each pair is replayed as a single-item, single-echelon $(r,Q)$ system \cite{hadley1963analysis, axsater2015inventory, zipkin2000foundations, silver2017inventory, porteus2002foundations} with lost sales \cite{bijvank2011lost}, a discrete working-day approximation to continuous review, shared observed opening stock, an empty pipeline and deterministic arrivals after the rounded mean lead time (Appendix~\ref{app:math}). This is a simulation experiment, not a reconstruction of actual orders \cite{grasso1984simulation}. The policy quantity satisfies the supplier MOQ \cite{heese2025moq}, but the hard-limit replay prioritizes capacity \cite{zhang2023replenishment}: clipped orders may fall below MOQ. Metrics are mean material-horizon holding-plus-ordering cost, mean material-level and volume-weighted fill rates, and stockout days. Paired 10{,}000-resample bootstrap 95\% intervals describe this cohort; material dependence within three plants precludes population-level inference.
+Each pair is replayed as a single-item, single-echelon $(r,Q)$ system \cite{hadley1963analysis, axsater2015inventory, zipkin2000foundations, silver2017inventory, porteus2002foundations} with lost sales \cite{bijvank2011lost}, a discrete working-day approximation to continuous review, shared observed opening stock, an empty pipeline and deterministic arrivals after the rounded mean lead time (\ref{app:math}). This is a simulation experiment, not a reconstruction of actual orders \cite{grasso1984simulation}. The policy quantity satisfies the supplier MOQ \cite{heese2025moq}, but the hard-limit replay prioritizes capacity \cite{zhang2023replenishment}: clipped orders may fall below MOQ. Metrics are mean material-horizon holding-plus-ordering cost, mean material-level and volume-weighted fill rates, and stockout days. Paired 10{,}000-resample bootstrap 95\% intervals describe this cohort; material dependence within three plants precludes population-level inference.
 
 A static check $SS+Q\le\texttt{max\_storage\_units}$ does not show that storage limits hold as inventory evolves, because the reorder point includes lead-time demand and inventory on order can exceed the limit on arrival. We therefore record the post-receipt on-hand stock for every policy and day and report the share of pairs and days above the limit (the \emph{unconstrained} simulation), and we \emph{replay} every policy with each order truncated to the storage limit minus the current inventory position (the \emph{hard-limit replay}), which is our primary evaluation.
 
@@ -239,7 +247,7 @@ Relative to SAP-derived parameters the LLM carries about 17\% less average inven
 \begin{adjustbox}{max width=\textwidth}
 \begin{tabular}{l r r r r r r r r r}
 \hline
-\textbf{Arm} & \textbf{Mean cost} & \textbf{Holding} & \textbf{Ordering} & \textbf{Avg.\ inv.} & \textbf{Orders} & \textbf{Mean fill (\%)} & \textbf{Aggr.\ fill (\%)} & \textbf{Stockout days} & \textbf{LLM vs arm (\%)} \\
+\textbf{Arm} & \shortstack{\textbf{Mean}\\\textbf{cost}} & \textbf{Holding} & \textbf{Ordering} & \shortstack{\textbf{Avg.}\\\textbf{inv.}} & \textbf{Orders} & \shortstack{\textbf{Mean}\\\textbf{fill (\%)}} & \shortstack{\textbf{Aggr.}\\\textbf{fill (\%)}} & \shortstack{\textbf{Stockout}\\\textbf{days}} & \shortstack{\textbf{LLM vs}\\\textbf{arm (\%)}} \\
 \hline
 ERP-derived (SAP) & 3{,}305 & 2{,}172 & 1{,}132 & 19{,}565 & 17.6 & 98.30 & 79.34 & 804 & $-11.4$ / $-11.3$ / $-11.4$ \\
 SLT-informed OR & 4{,}211 & 2{,}608 & 1{,}603 & 21{,}614 & 24.5 & 98.23 & 79.15 & 831 & $-30.5$ / $-30.4$ / $-30.5$ \\
@@ -299,7 +307,7 @@ By demand regime, the 33 lumpy materials show the largest reduction against SAP-
 \end{figure}
 
 \subsection{Descriptive comparison with formula-based code}\label{subsec:mechanism}
-The prompt prescribes an economic order quantity with a minimum-order-quantity floor and a normal-approximation safety stock (Appendix~\ref{app:math}). The History-only OR applies these formulas as code to the same demand and lead-time history, and the SLT-informed and ERP-floor ORs apply them with the ERP inputs the LLM also receives (Section~\ref{sec:design}). The comparison with code is therefore direct.
+The prompt prescribes an economic order quantity with a minimum-order-quantity floor and a normal-approximation safety stock (\ref{app:math}). The History-only OR applies these formulas as code to the same demand and lead-time history, and the SLT-informed and ERP-floor ORs apply them with the ERP inputs the LLM also receives (Section~\ref{sec:design}). The comparison with code is therefore direct.
 
 \paragraph{The LLM resembles the formula-based policies.}
 The median smoothed ratio $(x_{\mathrm{LLM}}+1)/(x_{\mathrm{code}}+1)$ is 1.00 for order quantity (medians 2{,}810 and 2{,}828 units) and safety stock (712 and 718, against an ERP median of 0); LLM parameters are averaged over the three original runs first. The corresponding reorder-point ratio is 1.09, including across the segments in Table~\ref{tab:mechanism}, where LLM cost is 4--9\% higher. These summaries indicate similarity and a reorder-point uplift, not item-level proof that the LLM executes the formulas faithfully.
@@ -438,18 +446,17 @@ Conceptualization, Methodology, Software, Formal analysis, Investigation, Data c
 This research did not receive any specific grant from funding agencies in the public, commercial, or not-for-profit sectors.
 
 \section*{Declaration of Competing Interest}
-The author declares no known competing financial interests or personal relationships that could have appeared to influence the work reported in this paper.
+Competing interests are addressed in the separate publisher declaration, to be completed by the author before submission.
 
 \section*{Data and Code Availability}
 Raw operational data are confidential. The company approved a masked panel of the same 233{,}078 records, with pseudonymous identifiers and secret per-pair quantity and price factors. The panel, rescaled frozen policies, three masked generations, sanitized provenance, scoring code, aggregate evidence and manuscript sources are at \texttt{github.com/DressPD/inventor\_public}. The archive concept DOI is \texttt{https://doi.org/10.5281/zenodo.22262051}; at the audit date (24 October 2026), its latest archived version is v1.2.0, not the current masked release. Supplementary File S1 contains the prompt. Runner-hash amendments are recorded separately from original call provenance, with retained original hashes and amendment histories; they must not be read as original execution hashes. Model identity (Claude Sonnet 4.6) is operator-declared; runtime identifier and sampling settings are unavailable.
 
 \section*{Declaration of Generative AI and AI-Assisted Technologies in the Manuscript Preparation Process}
-OpenCode AI-assisted tools, including GPT-6.1 Sol for the final audit, assisted language editing, restructuring, consistency and citation checks, LaTeX preparation and analysis-script development. These preparation tools are distinct from the operator-declared Claude Sonnet 4.6 deployment evaluated in the study. The author is responsible for verifying the complete tool history, reviewing the resulting text and code, and the content of the final article. Figures are deterministic diagrams and data plots rendered from source files, not image-model outputs.
+OpenCode AI-assisted tools, including Claude Sonnet 5.5 and GPT-6.1 Sol, assisted language editing, restructuring, consistency and citation checks, LaTeX preparation and analysis-script development. These preparation tools are distinct from the operator-declared Claude Sonnet 4.6 deployment evaluated in the study. The author retains responsibility for reviewing and verifying the resulting text and code and for the content of the final article. Figures are deterministic diagrams and data plots rendered from source files, not image-model outputs.
 
 \begingroup
 \small
-\bibliographystyle{elsarticle-num}
-\bibliography{refs}
+\printbibliography
 \endgroup
 
 \end{document}
