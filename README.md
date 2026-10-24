@@ -55,8 +55,9 @@ not with untransformed confidential costs. On the common 338-pair cohort, costs
 are 11.1--12.3% below ERP and 4.9--6.4%, 7.2--8.7%, and 16.8--18.4% above
 history-only, SBA, and empirical policies. Mean fill is 98.1--98.4%, but
 volume-weighted fill is only 76.3--76.5%; costs are not compared at equal service.
-Capacity clipping can produce orders below MOQ. LLM generation still needs the private
-enterprise deployment and cannot be rerun publicly.
+Capacity clipping can produce orders below MOQ. The original study's proprietary
+inference cannot be rerun publicly. Optional commercial candidates use a different
+protocol and do not extend the frozen paper evidence.
 
 ## Release Contents
 
@@ -153,3 +154,28 @@ manuscript/                                    article source and PDF
 prompts/                                       intended prompt specifications
 tests/                                         offline regression tests
 ```
+
+## Optional commercial candidates
+
+Prepare a manual ChatGPT/Claude handoff, validate final JSON locally, or preview
+an OpenAI/Anthropic hosted-execution request offline:
+
+```bash
+python3 -S -m inventory_llm.commercial prepare --csv data/synthetic_inventory.csv --pair SYN_A__MAT_SMOOTH --dest commercial_workspaces/handoff-01
+# Save the service's final JSON as commercial_workspaces/handoff-01/candidate.json.
+python3 -S -m inventory_llm.commercial validate --bundle commercial_workspaces/handoff-01 --candidate commercial_workspaces/handoff-01/candidate.json --csv data/synthetic_inventory.csv --dest commercial_workspaces/check-01
+python3 -S -m inventory_llm.commercial generate --bundle commercial_workspaces/handoff-01 --provider openai --model gpt-4.1 --dest commercial_workspaces/preview-01
+```
+
+No upload or paid call occurs without `--live --allow-upload --allow-paid` and
+environment credentials. Only selected normalized training rows and allowlisted
+parameters leave your computer. Never upload a complete source panel or held-out
+rows. Every output destination must be fresh and under `commercial_workspaces/`
+(ignored by Git). No generated code runs locally.
+
+See [commercial alternatives](docs/commercial_alternatives.md) for manual/API
+instructions, compatible models, retention and billing. Live transport requires
+POSIX fork in a single-threaded process; manual/offline use remains portable.
+These candidates are not paper evidence, proprietary-inference replication or
+guaranteed optima. Human approval remains necessary; clipped replay cannot prove
+joint MOQ/capacity feasibility.

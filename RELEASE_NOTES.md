@@ -23,6 +23,15 @@ overwrite or force-move an existing tag. No new version DOI is asserted here.
 
 ## Verification before the author publishes
 
+Optional commercial generation adds manual ChatGPT/Claude handoff, offline strict
+validation/replay and opt-in OpenAI Responses/Code Interpreter or Anthropic
+Messages/code-execution adapters. Only selected normalized training rows and
+allowlisted parameters may be uploaded after explicit consent. New candidates
+stay in ignored workspaces and are not paper evidence or proprietary-inference
+replication. The original six-run evidence, prompts, figures and tables remain
+frozen. No paid call is required for release verification. See
+`docs/commercial_alternatives.md`.
+
 ```sh
 python3 -S -m unittest discover -s tests -v
 python3 -S scripts/verify_public.py --recompute
@@ -82,3 +91,20 @@ absolute immutability or silently replace files. See official instructions:
 - https://help.zenodo.org/docs/deposit/manage-files/#modify
 
 Archiving is not journal submission, disclosure clearance or journal acceptance.
+
+## Software version versus paper version
+
+The commercial path is a **software upgrade**. Before author publication, inspect
+existing local and remote tags/releases and choose an unused software version;
+update canonical `.zenodo.json`, `CITATION.cff` and these notes consistently.
+No local tags were present at implementation baseline; remote checks and version
+selection remain with the controlling session/author. Preserve software concept
+DOI `10.5281/zenodo.22262051`, then inspect the actual newly archived source and
+returned version DOI. No version DOI is preassigned here.
+
+A **paper upgrade** is separate: if an existing manuscript/preprint record must
+change, use that record's New version workflow and preserve its own concept DOI,
+not the software DOI. Upload only the author-approved manuscript/supplementary
+package, inspect the archived PDF and metadata, then cite the returned version
+DOI honestly. Software release ingestion does not update a paper record or submit
+to a journal. No paper DOI is guessed and no publication occurs automatically.

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import csv
+import io
 import math
 from datetime import date, datetime, timedelta
 from pathlib import Path
@@ -147,9 +148,13 @@ def _aggregate_material_dates(rows: list[dict[str, str]]) -> list[dict[str, str]
     return merged
 
 
-def load_grouped_rows(path: Path | None = None) -> dict[str, list[dict[str, str]]]:
+def load_grouped_rows(path: Path | None = None, *, before: str | None = None,
+                      snapshot: bytes | None = None) -> dict[str, list[dict[str, str]]]:
+    """Load historical files, or the caller's immutable in-memory CSV snapshot."""
     grouped: dict[str, list[dict[str, str]]] = {}
-    with (path or data_csv()).open(encoding="utf-8-sig", newline="") as fh:
+    source = (io.StringIO(snapshot.decode("utf-8-sig"), newline="") if snapshot is not None
+              else (path or data_csv()).open(encoding="utf-8-sig", newline=""))
+    with source as fh:
         for row in csv.DictReader(fh, delimiter=";"):
             # Normalize renamed ERP source fields before downstream processing.
             for source, target in {
@@ -161,6 +166,8 @@ def load_grouped_rows(path: Path | None = None) -> dict[str, list[dict[str, str]
                 if target not in row and source in row:
                     row[target] = row[source]
             row["date"] = parse_date(row["date"]).isoformat()
+            if before is not None and row["date"] >= before:
+                continue
             key = f"{row['plant_code']}__{row['material']}"
             grouped.setdefault(key, []).append(row)
     parsed_records = sum(len(rows) for rows in grouped.values())

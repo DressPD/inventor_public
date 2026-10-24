@@ -16,9 +16,10 @@
 \maketitle
 
 \noindent
-This file reproduces the system prompt that configures the enterprise LLM application
-used for all reported runs (runs 1--3 and the without-ERP ablation), together with the
-tool prompt of the application. The system prompt is a plain-text file
+This file reproduces the system and tool prompts of the enterprise LLM application
+used for the three original full-input runs (1--3), the without-ERP ablation and the
+three fresh masked-panel runs (m1--m3). O1*--O3* denote rescaled frozen original
+policies, not additional inference runs. The system prompt is a plain-text file
 (\texttt{prompts/system\_prompt.txt} in the code release) and is deployed unchanged in the
 application; it is the configuration of record for the study. Each call logs its input
 hash, UTC time, application session identifier and full raw response. The platform does
@@ -26,6 +27,12 @@ not expose the underlying model identifier or sampling settings to the client; t
 (Anthropic Claude Sonnet 4.6 with a code interpreter) is declared by the operator and
 is not machine-verifiable. In the without-ERP ablation only the uploaded data differ:
 the safety-stock and safety-lead-time fields are blanked and marked ``not supplied''.
+
+\noindent
+The optional commercial handoff and API adapters are post-study software extensions
+with adapted instructions and a separate candidate schema. They were not used for
+any results reported in the article; the API adapters have not been tested against
+live providers.
 
 \bigskip
 \noindent
