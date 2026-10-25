@@ -13,10 +13,22 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def _unique_keys(pairs: list[tuple[str, object]]) -> dict:
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError("Duplicate manifest key")
+        result[key] = value
+    return result
+
+
 def verify(root: Path, recompute: bool = False, *, strict: bool = False) -> None:
     root = root.resolve()
+    manifest_path = root / "PUBLIC_MANIFEST.json"
+    if not manifest_path.is_file() or (strict and manifest_path.is_symlink()):
+        raise SystemExit("Release integrity failed: manifest is not a regular file")
     try:
-        document = json.loads((root / "PUBLIC_MANIFEST.json").read_text())
+        document = json.loads(manifest_path.read_text(), object_pairs_hook=_unique_keys)
     except (OSError, ValueError) as exc:
         raise SystemExit("Release integrity failed: unreadable manifest") from exc
     if (not isinstance(document, dict) or type(document.get("schema_version")) is not int
@@ -42,9 +54,11 @@ def verify(root: Path, recompute: bool = False, *, strict: bool = False) -> None
         # Normal mode allows generated demo/cache files; strict mode does not.
         for path in root.rglob("*"):
             rel = path.relative_to(root)
-            if path.is_symlink():
+            if rel.parts[0] == ".git":
+                continue
+            if path.is_symlink() or not (path.is_file() or path.is_dir()):
                 bad.append(str(rel))
-            elif rel.parts[0] != ".git" and path.is_file() and str(rel) not in manifest and str(rel) != "PUBLIC_MANIFEST.json":
+            elif path.is_file() and str(rel) not in manifest and str(rel) != "PUBLIC_MANIFEST.json":
                 bad.append(str(rel))
     if bad:
         raise SystemExit("Release integrity failed: " + ", ".join(bad))

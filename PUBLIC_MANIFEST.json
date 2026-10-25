@@ -4795,12 +4795,12 @@
     "requirements.txt": "b6f13cd5189f481d3281d07ed5199b6ae694a320e600bccca976c333b2cc6f74",
     "scripts/build_masked_replication_evidence.py": "0f1d05f034a0f6714b6ea6b2bd40780350269bcf194895959f67018564904612",
     "scripts/build_six_run_report.py": "07cbf387f80560673f91944fb68bb77308ab6ef5cd5d2aeaca34b031160bdee0",
-    "scripts/verify_public.py": "3dd9bd4b86e43efcb677d66cdcfcc223d706aa654d0f49848e197565ec5516a4",
+    "scripts/verify_public.py": "584d670799950fe9f27853fcd8e528f6f4c953334c0f15ea238653038bd50e9a",
     "tests/test_commercial.py": "570fc84739305e0988071871efd1f8053775689a322fa160db756bb179f4a82c",
     "tests/test_commercial_api.py": "b6e1bd686172fd1726483a1aef6eef5062d0ad015889a30253b55ff9c4e6c668",
     "tests/test_policy_integrity.py": "6cb5a87805f9d02a643a43043cdc7fec42d1fd796e29b6153590df5b82d0d3e1",
     "tests/test_six_run_report.py": "13c89b972cb00c5cabe3a6c1bf50bfb6a9374e111ebbcd70b1c9da1582a5fd0c",
     "tests/test_synthetic_demo.py": "74c23804970c4181712029b03819461e55c6a3388e43e9a38c5dac2564a95ad7",
-    "tests/test_verify_public.py": "55648adb8b806bf685a48172aae596803618a7c3d1b198d3a5ae4b7d858e7311"
+    "tests/test_verify_public.py": "c70c469f7cf9ec4adcc1230f1503885c6a294e8af403a31b0ff5275379d0b6c3"
   }
 }
