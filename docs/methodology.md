@@ -1,5 +1,33 @@
 # Methodology
 
+## Scientific and disclosure HOLD — 25 October 2026
+
+**Major Revision.** All industrial results below are conditional on the frozen
+processed recorded series, not validated industrial demand/service performance.
+Source grain/additivity, demand semantics, privacy and publication/release rights
+are separate unresolved gates; software verification does not close them.
+
+The 233,078 rows form 220,017 pair-date groups. A public-panel diagnostic finds
+12,036 repeated groups across 62/411 full-panel pairs, repeating daily quantities
+while context varies. The frozen loader sums signed demand, receipts, scrap and
+corrections; demand becomes the absolute daily net. Stock is not summed; other
+attributes use the last row, and positive lead times are averaged. Additivity,
+sign handling, context selection and stock snapshot timing lack source validation.
+No deduplication is authorized. Diagnostic one-measure totals are not corrected
+demand; affected overlap with 365/346/338 cohorts and ranking impacts are unknown.
+
+Whether the series represents availability-independent requests or fulfilled
+issues is unverified. Simulated fill/shortage denominators condition on that
+series; no latent-demand or historical lost-sales reconstruction occurred.
+Obtain an authorized source dictionary, extract lineage/keys and private grain
+reconciliation before scientific clearance. Permission does not validate grain;
+valid grain does not grant publication rights.
+
+The masked panel is pseudonymized, not demonstrated anonymous. Quantity factors
+and reciprocal unit-price factors preserve economic products before rounding;
+dates, lead times, calendars, normalized patterns and stable identifiers retain
+linkage exposure. Existing data/narratives remain unchanged, not newly cleared.
+
 ## Question
 
 Can a pretrained general-purpose LLM, without project-specific training or fine-tuning, propose material-level replenishment parameters competitive with ERP-derived and operations-research policies in simplified held-out replay? Static admission and trajectory/order-level compliance are separate questions.
@@ -67,4 +95,5 @@ Three full runs with the same prompt file give nearly identical aggregate result
 - The tuned arm tests up to 85 candidates on the last 250 pre-cutoff working days, without capacity clipping, initializing each at its own R+Q. Statistics use all pre-cutoff observations; this is in-sample tuning, not nested validation.
 - Positive shortage prices revalue fixed trajectories, not re-optimize policies. Mean material fill and volume-weighted fill differ substantially; comparisons are not at equal service.
 - The 10.5% original cost-variation measure is mean within-pair range divided by pair mean, not SD. Policy ratios use +1 smoothing and cannot reveal internal LLM calculations.
-- Paired bootstrap intervals describe the observed cohort; three plants and within-plant dependence preclude broad population inference.
+- Primary paired percentile-bootstrap intervals use 5,000 resamples, seed 20261006; three plants and within-plant dependence preclude broad population inference.
+- Orders are mean counts per material over its observed evaluation horizon, not annualized rates. Frozen table values are unchanged.

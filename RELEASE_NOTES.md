@@ -1,5 +1,16 @@
 # InventOR v1.3.0 — verified archive and subsequent paper corrections
 
+## Current-snapshot HOLD — 25 October 2026
+
+**Major Revision.** Data grain/additivity and demand semantics remain unvalidated;
+privacy/confidentiality and publication/release rights remain separate holds.
+This later local snapshot fixes transport/parser/cache and export-integrity defects
+and corrects reporting/citations, without changing frozen numerical evidence.
+The panel is pseudonymized, not demonstrated anonymous: dated lead-time/normalized
+demand signatures and invariant economic products retain linkage exposure.
+Tests/replay do not grant scientific clearance or redistribution rights.
+No new release, push, submission or published-history change is authorized here.
+
 Verified 25 October 2026. Software **v1.3.0 is published and archived**:
 
 - GitHub release: https://github.com/DressPD/inventor_public/releases/tag/v1.3.0
@@ -49,6 +60,7 @@ No paid call is required for release verification. See
 `docs/commercial_alternatives.md`.
 
 ```sh
+python3 -B -S scripts/verify_public.py --strict  # fresh snapshot, before generated files
 python3 -S -m unittest discover -s tests -v
 python3 -S scripts/verify_public.py --recompute
 git diff --check

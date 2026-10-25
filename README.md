@@ -4,6 +4,12 @@
 
 This repository contains a confidentiality-screened research release.
 
+**HOLD — Major Revision (current local snapshot).** Source data grain/additivity
+and demand semantics remain unvalidated. Privacy/confidentiality and publication/
+release rights are separate unresolved gates. Technical screening, tests and replay
+do not establish anonymity, scientific clearance or permission. No new distribution
+is cleared. Published archives/tags remain unchanged.
+
 - Paper preprint (version 3; not a peer-reviewed journal article): https://doi.org/10.5281/zenodo.23628463
 - Software release v1.3.0 (separate archive): https://doi.org/10.5281/zenodo.23627916
 
@@ -28,9 +34,19 @@ The masked version of the study panel contains
 233,078 daily records and 411 plant-material pairs
 (`data/masked_release/masked_inventory_panel.csv`). Plants are labelled PL1, PL2 and PL3 (corresponding to
 Plants A, B and C of the manuscript), material identifiers are pseudonymized,
-and quantities and prices are multiplied by secret per-pair factors; the
+and quantities are multiplied by secret per-pair factors while unit prices use
+reciprocal factors (economic products survive before rounding); the
 factors, the salt and the source data are not released. Dates and plant
 structure are unchanged.
+
+The panel is pseudonymized, not demonstrated anonymous. Exact dates, lead-time
+sequences, normalized demand, stable identifiers and invariant economics retain
+linkage and attribute-disclosure risk. The 233,078 rows form 220,017 pair-date
+groups; 12,036 repeated groups across 62/411 pairs have unvalidated additive grain.
+The frozen pipeline sums signed daily demand then takes its absolute value and
+retains last-row context. Request-versus-fulfilled-issue meaning, sign/context rules
+and stock timing need source-owner validation; no deduplication occurred. Ranking
+effects are unknown. See `docs/methodology.md`.
 
 - `outputs/runs/mf-01`, `mf-02`, `mf-03`, `mf-noerp` hold the frozen policies of
   the original runs, rescaled to the masked panel (`output.json` only).
@@ -90,6 +106,11 @@ python3 -m inventory_llm.synthetic_demo
 python3 -m unittest discover -s tests -v
 python3 scripts/verify_public.py --recompute
 ```
+
+Before tests/demo/replay on a fresh snapshot, run
+`python3 -B -S scripts/verify_public.py --strict`. Strict mode rejects unlisted
+files and symlinks, except local `.git` administration; normal mode permits local
+generated outputs. Neither mode certifies privacy or release rights.
 
 The demo recreates `data/synthetic_inventory.csv` with seed `20260718`, builds
 three explicitly synthetic candidate artifacts, parses them, and evaluates the

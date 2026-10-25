@@ -34,8 +34,20 @@ confidential study data.
 
 ## Masked-release replication
 
+Before generating local files in a fresh snapshot, run
+`python3 -B -S scripts/verify_public.py --strict`; only local `.git` administration
+is excluded from strict inventory. Use normal mode after generating local outputs.
+These checks validate integrity, not source demand, anonymity or release rights.
+
 A masked panel and sanitized frozen policies support offline scoring, without credentials. Run `python3 scripts/verify_public.py --recompute` to verify file hashes and rebuild both masked evidence files, the six-run table and Figures 2–4 source files. The six-run cohort contains 338 pairs; O1*–O3* are rescaled frozen original policies and M1–M3 fresh masked generations on the same underlying panel. The main ranking persists, but masked costs cannot be compared directly with confidential unscaled means. Raw operational inputs, masking factors and proprietary inference access remain unavailable. Provenance amendments retain their history and original hashes.
 
 ## Study Boundary
+
+**HOLD — Major Revision:** source-demand semantics and additive grain of repeated
+pair-date records remain unvalidated. Privacy/confidentiality and release rights
+are separate holds. The masked series is pseudonymized, not demonstrated anonymous:
+dates/lead-time signatures and invariant quantity-times-unit-price products retain
+linkage and economic disclosure exposure. No industrial-data dissemination is
+cleared by offline replay. Independently generated synthetic tests remain usable.
 
 The private exporter creates a screened snapshot containing allowlisted masked rows and sanitized masked artifacts, original aggregate evidence, scoring software and a hash manifest. The public snapshot cannot regenerate confidential original inference or raw-scale study results. Synthetic tests exercise software behavior; masked replay reproduces public numerical results; neither establishes independent external validation. Static policy quantities satisfy MOQ, but capacity-clipped simulated orders can violate MOQ.

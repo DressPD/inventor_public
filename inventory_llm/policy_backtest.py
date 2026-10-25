@@ -14,6 +14,7 @@ confidential input and stored material-level artifacts.
 from __future__ import annotations
 
 import csv
+import hashlib
 import json
 import os
 from collections import Counter
@@ -151,7 +152,7 @@ def _as_int(value: object) -> int | None:
         return None
     try:
         return int(round(float(value)))
-    except (TypeError, ValueError):
+    except (TypeError, ValueError, OverflowError):
         return None
 
 
@@ -348,9 +349,6 @@ def _resolved_family(artifact: dict[str, Any]) -> str | None:
 
 
 def _llm_policy(artifact: dict[str, Any], stats: dict[str, Any]) -> dict[str, Any] | None:
-    insights = artifact.get("research_insights") or {}
-    if not isinstance(insights, dict):
-        insights = {}
     rop, oq, ss = _policy_triple(artifact)
     if rop is None or oq is None or ss is None:
         return None
@@ -411,11 +409,11 @@ def _invalid_reason(artifact: dict[str, Any], stats: dict[str, Any]) -> str:
     return "unknown_invalid_policy"
 
 
-_POLICY_CACHE: dict[tuple[str, str, str, str], dict[str, Any]] = {}
+_POLICY_CACHE: dict[tuple[str, str, str, str, str], dict[str, Any]] = {}
 
 
-def _cached_policy(arm: str, item_key: str, build: Any) -> dict[str, Any]:
-    key = (arm, item_key, core.WORKING_DAY_DERIVATION_MODE, core.TRAIN_CUTOFF)
+def _cached_policy(arm: str, item_key: str, training_identity: str, build: Any) -> dict[str, Any]:
+    key = (arm, item_key, core.WORKING_DAY_DERIVATION_MODE, core.TRAIN_CUTOFF, training_identity)
     if key not in _POLICY_CACHE:
         _POLICY_CACHE[key] = build()
     return _POLICY_CACHE[key]
@@ -486,12 +484,16 @@ def build_backtest(
             "universal_rq": core.simulate(test, rq_policy, stats, initial_inventory, arrival_mode, shortage_penalty, enforce_capacity),
             "llm_policy": llm_policy,
         }
+        # Once per material: validation rows must not influence trained policies.
+        training_identity = hashlib.sha256(
+            json.dumps([train, stats], sort_keys=True, separators=(",", ":")).encode("utf-8")
+        ).hexdigest()
         history_arms = (
             ("or_cold", lambda: core.make_cold_rq_policy(stats)),
             ("or_erp_floor", lambda: core.make_erp_floor_rq_policy(stats)),
-            ("or_sba", lambda: _cached_policy("or_sba", item_key, lambda: core.make_sba_rq_policy(train, stats))),
-            ("or_empirical", lambda: _cached_policy("or_empirical", item_key, lambda: core.make_empirical_rq_policy(train, stats))),
-            ("or_tuned", lambda: _cached_policy("or_tuned", item_key, lambda: core.make_tuned_rq_policy(train, stats))),
+            ("or_sba", lambda: _cached_policy("or_sba", item_key, training_identity, lambda: core.make_sba_rq_policy(train, stats))),
+            ("or_empirical", lambda: _cached_policy("or_empirical", item_key, training_identity, lambda: core.make_empirical_rq_policy(train, stats))),
+            ("or_tuned", lambda: _cached_policy("or_tuned", item_key, training_identity, lambda: core.make_tuned_rq_policy(train, stats))),
         )
         for arm, make in history_arms:
             projected = core.project_policy_to_feasibility(make(), stats)
