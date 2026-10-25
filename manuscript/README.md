@@ -28,8 +28,16 @@ The private `scripts/build_submission_packages.py` also rebuilds the main and
 reviewer PDFs, rejects unresolved citations/references and a page count over 35,
 and scans reviewer PDFs, DOCX and source ZIP for identifying strings. The ZIP
 includes all local inputs, `main.bbl` and its own build instructions. System TeX
-packages are prerequisites, not private source dependencies. The automatic Word
-draft is noncanonical and needs citation/table/equation inspection before use.
+packages are prerequisites, not private source dependencies. The private revision
+package contains the checked anonymous `01c_Manuscript_Anonymized.docx`, six
+separate editable table DOCXs (`12_Table_1.docx` through `17_Table_6.docx`) and the
+identified `02_Title_Page.docx`. These are the Word revision uploads required by
+the author's portal quotation; this does not claim independent portal access.
+PDFs and LaTeX remain backups/previews. Final author visual approval remains
+required. The unchanged third-party APA7 CSL, its pinned revision, attribution
+and CC BY-SA 3.0 license exception are documented in `styles/NOTICE.md` in the
+private source tree. No financial support or company clearance is inferred from
+the disclosed employment and non-financial operational-data access.
 
 The public guide specifies no page/spacing ceiling; 35 pages is the author's
 stricter local constraint. Current layout: 12 pt, 1.85 spacing, one-inch margins;
