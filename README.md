@@ -4,11 +4,12 @@
 
 This repository contains a confidentiality-screened research release.
 
-**HOLD — Major Revision (current local snapshot).** Source data grain/additivity
-and demand semantics remain unvalidated. Privacy/confidentiality and publication/
-release rights are separate unresolved gates. Technical screening, tests and replay
-do not establish anonymity, scientific clearance or permission. No new distribution
-is cleared. Published archives/tags remain unchanged.
+**Author-accepted study limitations (current repository snapshot).** The author
+proceeds using the supplied data as study input. Source data grain/additivity and
+demand semantics remain unverified. Technical screening, tests and replay do not
+establish anonymity, privacy/confidentiality protection or publication/release
+rights. The manuscript retains these qualifications. Published archives/tags
+remain unchanged; this status is not certification of scientific or legal clearance.
 
 - Paper preprint (version 3; not a peer-reviewed journal article): https://doi.org/10.5281/zenodo.23628463
 - Software release v1.3.0 (separate archive): https://doi.org/10.5281/zenodo.23627916
