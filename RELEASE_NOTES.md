@@ -1,5 +1,30 @@
 # InventOR v1.3.0 — verified archive and subsequent paper corrections
 
+## Working C&IE revision — 29 October 2026 (superseding status)
+
+The current manuscript prepares a fresh Computers & Industrial Engineering
+submission after ESWA novelty rejection, not a transfer or a new published
+preprint. It emphasizes reproducible industrial comparisons and trajectory
+validation, removes unsupported priority/runtime claims, and corrects percentage
+denominators. LLM cost is about 6%/8%/18% above history-only/SBA/empirical costs;
+the cheaper-baseline findings, Plant C losses and service trade-offs remain.
+The n=346 original and n=338 same-panel six-run protocols remain distinct.
+
+This status supersedes the preparation wording below, not the underlying
+scientific/access limitations. Source semantics, privacy and release rights
+remain unverified; tests/replay do not close those gates. The working PDF/source
+differs from archived preprint v3 (https://doi.org/10.5281/zenodo.23628463).
+Software v1.3.0, historical evidence, tags and DOIs remain unchanged.
+The private CIE packet/declaration is not exported. No new software archive is
+needed for a manuscript-only revision. An optional new paper-preprint version
+requires separate authorization after final review; never overwrite v3.
+
+Review-fix follow-up: highlights now affirm training-free configuration,
+comparative evidence, reproducible replay and trajectory checks. Stronger
+baselines/Plant C losses remain in the manuscript and cover. The local
+robustness paragraph explicitly defines penalties 1/5 as multiples of unit cost
+per shortage unit; all frozen numerical values remain unchanged.
+
 ## Current-snapshot HOLD — 25 October 2026
 
 **Major Revision.** Data grain/additivity and demand semantics remain unvalidated;

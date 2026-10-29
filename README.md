@@ -14,6 +14,19 @@ remain unchanged; this status is not certification of scientific or legal cleara
 - Paper preprint (version 3; not a peer-reviewed journal article): https://doi.org/10.5281/zenodo.23628463
 - Software release v1.3.0 (separate archive): https://doi.org/10.5281/zenodo.23627916
 
+## Working manuscript revision — 29 October 2026
+
+The current sources/PDF prepare a fresh Computers & Industrial Engineering
+submission, not an ESWA revision, transfer, or newly published preprint. They
+emphasize reproducible industrial evidence and trajectory validation, not a new
+optimization algorithm. The n=346 original results and n=338 same-panel six-run
+comparison remain distinct; stronger classical baselines, Plant C losses and
+service trade-offs are retained. Runtime, fees and planner savings were not measured.
+The working revision differs from archived preprint v3; software v1.3.0 and
+archives/tags/DOIs remain unchanged. Private submission files and the completed
+declaration are not exported. Preparation/replay does not certify acceptance,
+anonymity or publication rights. No archive update or submission occurs here.
+
 ## Reproducibility Boundary
 
 The public synthetic benchmark fully reproduces the released software method:

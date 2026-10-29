@@ -1,5 +1,15 @@
 # Manuscript build
 
+## Working revision and archives
+
+As of 29 October 2026, these sources prepare a **fresh Computers & Industrial
+Engineering submission**, distinct from archived paper preprint v3
+(https://doi.org/10.5281/zenodo.23628463) and software v1.3.0
+(https://doi.org/10.5281/zenodo.23627916). Archives/tags and frozen evidence remain
+unchanged. The revision reports industrial evidence and trajectory validation,
+not a new algorithm, measured runtime/fee savings or observed planner benefit.
+Original results use n=346; six-run replay uses n=338 on the same masked panel.
+
 Canonical source: `main.tex` with `refs.bib`, `elsarticle.cls`, `Six_Run_Table.tex`
 and the four figure PDFs. APA seventh edition uses installed `biblatex-apa`
 (9.20), `biblatex` (3.22) and Biber (2.22), tested with TeX Live 2026.
@@ -24,15 +34,20 @@ Do not remove source files. `\cite` aliases `\parencite` for existing parentheti
 citations; narrative citations use `\textcite`. APA's own sorting and
 disambiguation rules apply. The reference metadata is not regenerated or invented.
 
-The private `scripts/build_submission_packages.py` also rebuilds the main and
+The private `scripts/build_submission_packages.py --venue CIE` rebuilds the main and
 reviewer PDFs, rejects unresolved citations/references and a page count over 35,
 and scans reviewer PDFs, DOCX and source ZIP for identifying strings. The ZIP
 includes all local inputs, `main.bbl` and its own build instructions. System TeX
-packages are prerequisites, not private source dependencies. The private revision
+packages are prerequisites, not private source dependencies. The private CIE
 package contains the checked anonymous `01c_Manuscript_Anonymized.docx`, six
 separate editable table DOCXs (`12_Table_1.docx` through `17_Table_6.docx`) and the
-identified `02_Title_Page.docx`. These are the Word revision uploads required by
-the author's portal quotation; this does not claim independent portal access.
+identified `02_Title_Page.docx`. C&IE requires editable source and mandatory
+highlights; authenticated portal requirements remain unverified. The existing
+ESWA packet is historical preparation and must not be rebuilt for this task.
+The private packet verifier requires all 26 artifacts and refuses optimized
+Python execution. It compares current source-derived abstract/body prose with
+Word text independently of table/equation counts; text checks do not establish
+visual correctness.
 PDFs and LaTeX remain backups/previews. Final author visual approval remains
 required. The unchanged third-party APA7 CSL, its pinned revision, attribution
 and CC BY-SA 3.0 license exception are documented in `styles/NOTICE.md` in the

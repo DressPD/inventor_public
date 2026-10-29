@@ -1,5 +1,5 @@
-- Prompt-configured LLM sets (r,Q) parameters for 365 plant-material pairs
-- LLM costs 11% less than ERP-derived policies but 6-18% more than data-driven code
-- Six-run reporting separates original policies from masked-release generations
-- Cost rankings depend on shortage prices in fixed-policy sensitivity analysis
-- Static storage checks fail: 53-66% of pairs exceed limits in simulation
+- Original LLM runs yield static-valid policies for all 365 target pairs
+- LLM cost falls 11% versus ERP-derived policies at zero shortage price (346 pairs)
+- InventOR evaluates prompt-configured policies without project-specific training
+- Six-run policies support reproducible replay on 338 same-panel pairs
+- Trajectory checks distinguish static compliance from storage/MOQ failures
