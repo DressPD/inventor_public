@@ -1,4 +1,5 @@
 __pycache__/
+secondary-check/
 commercial_workspaces/
 *.py[cod]
 .DS_Store
@@ -30,5 +31,6 @@ outputs/*
 !outputs/synthetic_demo_summary.json
 !outputs/masked_replication_evidence.json
 !outputs/six_run_evidence.json
+!outputs/secondary_admission/
 !outputs/runs/
 !data/masked_release/

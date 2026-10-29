@@ -1,5 +1,5 @@
-- Original LLM runs yield static-valid policies for all 365 target pairs
-- LLM cost falls 11% versus ERP-derived policies at zero shortage price (346 pairs)
-- InventOR evaluates prompt-configured policies without project-specific training
-- Six-run policies support reproducible replay on 338 same-panel pairs
-- Trajectory checks distinguish static compliance from storage/MOQ failures
+- Training-free LLM proposals undergo auditable cost, service and trajectory screening
+- LLM costs 11% less than ERP-derived policies at zero shortage price
+- Plant C and shortage pricing reverse the pooled ERP comparison
+- Six-run policies support offline replay on 338 same-panel pairs, not new datasets
+- Separate strict-admission replay tests conditional MOQ/capacity compliance

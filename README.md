@@ -27,7 +27,24 @@ archives/tags/DOIs remain unchanged. Private submission files and the completed
 declaration are not exported. Preparation/replay does not certify acceptance,
 anonymity or publication rights. No archive update or submission occurs here.
 
-## Reproducibility Boundary
+## Separately identified secondary support — 29 October 2026
+
+The working revision credits Yan–Ji, SimGPT and InvEvolve (arXiv v4 preprint),
+within inspected preview/abstract access limits. `docs/secondary_admission.md`
+documents an offline strict-MOQ/capacity intervention reusing frozen policies,
+a conditional admission invariant and independent finite-state/counterexample
+tests. `outputs/secondary_admission/` contains separate detailed results.
+No primary result, archived version, tag or DOI is replaced. No service,
+optimality, human-benefit, anonymity or publication-rights guarantee follows.
+
+```sh
+python3 -B -S scripts/build_secondary_admission.py --dest /absolute/absent/scratch
+```
+
+This is training-free candidate screening, not reconstruction of proprietary
+inference. The original frozen numerical replay remains distinct below.
+
+## Reproducibility levels
 
 The public synthetic benchmark fully reproduces the released software method:
 fixture generation, schema handling, calendar repair, eligibility, policy-artifact

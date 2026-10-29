@@ -9,6 +9,7 @@ from pathlib import Path, PurePosixPath
 import re
 import subprocess
 import sys
+import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -71,6 +72,15 @@ def verify(root: Path, recompute: bool = False, *, strict: bool = False) -> None
                      "manuscript/Figure_S1_Three_Run_Reproducibility.tex"):
             if hashlib.sha256((root / name).read_bytes()).hexdigest() != manifest[name]:
                 raise SystemExit("Numerical replay differs: " + name)
+        if "outputs/secondary_admission/evidence.json" in manifest:
+            with tempfile.TemporaryDirectory(prefix="secondary-replay-") as tmp:
+                dest = Path(tmp).resolve() / "results"
+                subprocess.run([sys.executable, "-B", "-S", str(root / "scripts/build_secondary_admission.py"),
+                                "--dest", str(dest)], cwd=root, check=True)
+                for name in ("evidence.json", "report.md"):
+                    rel = "outputs/secondary_admission/" + name
+                    if hashlib.sha256((dest / name).read_bytes()).hexdigest() != manifest.get(rel):
+                        raise SystemExit("Secondary replay differs: " + rel)
     print(f"Verified {len(manifest)} release files; numerical replay={recompute}")
 
 

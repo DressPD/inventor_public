@@ -6,7 +6,7 @@ As of 29 October 2026, these sources prepare a **fresh Computers & Industrial
 Engineering submission**, distinct from archived paper preprint v3
 (https://doi.org/10.5281/zenodo.23628463) and software v1.3.0
 (https://doi.org/10.5281/zenodo.23627916). Archives/tags and frozen evidence remain
-unchanged. The revision reports industrial evidence and trajectory validation,
+unchanged. The revision reports training-free candidate screening and trajectory validation,
 not a new algorithm, measured runtime/fee savings or observed planner benefit.
 Original results use n=346; six-run replay uses n=338 on the same masked panel.
 
@@ -44,7 +44,12 @@ separate editable table DOCXs (`12_Table_1.docx` through `17_Table_6.docx`) and 
 identified `02_Title_Page.docx`. C&IE requires editable source and mandatory
 highlights; authenticated portal requirements remain unverified. The existing
 ESWA packet is historical preparation and must not be rebuilt for this task.
-The private packet verifier requires all 26 artifacts and refuses optimized
+Supplementary File S2 (`18_Secondary_Admission_Support.zip`) adds anonymous
+methods, code, finite-state/counterexample tests, masked replay inputs and separate
+strict-admission results. See `docs/secondary_admission.md` in the repository.
+It reproduces frozen clipping first and provides only conditional simulator
+support, not service, optimality or real-world safety guarantees.
+The private packet verifier requires all 27 artifacts and refuses optimized
 Python execution. It compares current source-derived abstract/body prose with
 Word text independently of table/equation counts; text checks do not establish
 visual correctness.

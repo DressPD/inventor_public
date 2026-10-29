@@ -11,6 +11,38 @@ from scripts.verify_public import verify
 
 
 class VerifyPublicTest(unittest.TestCase):
+    def test_recompute_checks_secondary_outputs_in_fresh_scratch_and_detects_drift(self):
+        names = ('outputs/masked_replication_evidence.json', 'outputs/six_run_evidence.json',
+                 'manuscript/Six_Run_Table.tex', 'manuscript/Figure_2_Cost_Decomposition.tex',
+                 'manuscript/Figure_3_Segments.tex', 'manuscript/Figure_S1_Three_Run_Reproducibility.tex',
+                 'outputs/secondary_admission/evidence.json', 'outputs/secondary_admission/report.md')
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp).resolve()
+            for name in names:
+                (root / name).parent.mkdir(parents=True, exist_ok=True)
+                (root / name).write_bytes(b'evidence')
+            (root / 'PUBLIC_MANIFEST.json').write_text(json.dumps({'schema_version': 1,
+                'files': {name: hashlib.sha256(b'evidence').hexdigest() for name in names}}))
+            for drift in (False, True):
+                secondary_calls = []
+                def run(cmd, **kwargs):
+                    if any(str(part).endswith('build_secondary_admission.py') for part in cmd):
+                        secondary_calls.append(cmd)
+                        dest = Path(cmd[cmd.index('--dest') + 1])
+                        self.assertFalse(dest.exists())
+                        self.assertFalse(dest.is_relative_to(root))
+                        dest.mkdir()
+                        (dest / 'evidence.json').write_bytes(b'changed' if drift else b'evidence')
+                        (dest / 'report.md').write_bytes(b'evidence')
+                with patch('scripts.verify_public.subprocess.run', side_effect=run):
+                    if drift:
+                        with self.assertRaisesRegex(SystemExit, 'Secondary replay differs'):
+                            verify(root, recompute=True)
+                    else:
+                        verify(root, recompute=True)
+                self.assertEqual(len(secondary_calls), 1)
+                self.assertEqual((root / names[-2]).read_bytes(), b'evidence')
+
     def test_duplicate_json_keys_are_rejected_at_every_manifest_level(self):
         digest = hashlib.sha256(b'source').hexdigest()
         for text in (

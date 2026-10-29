@@ -1,5 +1,20 @@
 # InventOR v1.3.0 — verified archive and subsequent paper corrections
 
+## Secondary offline support — 29 October 2026 (later local extension)
+
+The working revision now credits Yan–Ji, SimGPT and InvEvolve (explicit arXiv v4
+preprint), with preview/abstract access limits. Training-free proposal screening
+leads the framing. New, separate `outputs/secondary_admission/` evidence reuses
+fixed policies and compares frozen clipping with strict MOQ/capacity admission.
+`docs/secondary_admission.md` supplies reproducible methods, a conditional
+invariant, finite-state/counterexample checks and adverse cost/service examples.
+Anonymous CIE S2 support is private; screened replay code/inputs/results are local
+public-repository support. This is no longer a manuscript-only working change,
+but no new archive, tag, DOI, remote publication or submission is authorized.
+Archived software v1.3.0 and preprint v3 remain unchanged; any future archive
+refresh requires separate approval. Source semantics, privacy/rights, historical
+inference reconstruction and prospective planner benefits remain unresolved.
+
 ## Working C&IE revision — 29 October 2026 (superseding status)
 
 The current manuscript prepares a fresh Computers & Industrial Engineering
