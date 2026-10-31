@@ -1,5 +1,5 @@
-- Training-free LLM proposals undergo auditable cost, service and trajectory screening
 - LLM costs 11% less than ERP-derived policies at zero shortage price
+- Three classical baselines cost less than LLM policies at zero shortage price
 - Plant C and shortage pricing reverse the pooled ERP comparison
-- Six-run policies support offline replay on 338 same-panel pairs, not new datasets
-- Separate strict-admission replay tests conditional MOQ/capacity compliance
+- Joint trajectory checks expose storage and minimum-order failures
+- Strict admission enforces MOQ/storage bounds from feasible initialization
