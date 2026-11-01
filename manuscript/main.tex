@@ -178,7 +178,7 @@ We propose three rules for planners, in line with guidelines for human--AI inter
 
 \subsection{Provenance and reproducibility of the configuration}
 \label{subsec:provenance}
-The system prompt, deployed unchanged, defines the task, forbidden methods, capacity rules and output schema (Supplementary File S1; excerpts in Appendix~\ref{app:prompt}). Calls log input SHA-256, UTC time, session identifier and raw response. The platform does not expose model identifier or sampling settings; Anthropic Claude Sonnet 4.6 with a code interpreter is operator-declared. Frozen policies support numerical replay, not regeneration of proprietary inference. Three repeated generations examine within-panel variation (Section~\ref{subsec:stability}).
+The system prompt, deployed unchanged, defines the task, forbidden methods, capacity rules and output schema (Supplementary File S1; excerpts in \ref{app:prompt}). Calls log input SHA-256, UTC time, session identifier and raw response. The platform does not expose model identifier or sampling settings; Anthropic Claude Sonnet 4.6 with a code interpreter is operator-declared. Frozen policies support numerical replay, not regeneration of proprietary inference. Three repeated generations examine within-panel variation (Section~\ref{subsec:stability}).
 
 \section{Application and Evaluation Design}
 \label{sec:design}
@@ -438,7 +438,7 @@ InventOR shows when ERP-relative LLM savings are insufficient evidence for opera
 
 \appendix
 \singlespacing
-\section{Formal Definitions and Prompt Excerpts}
+\section{Formal Definitions of the Reference Calculation and Simulation}
 \label{app:math}
 
 \paragraph{Reference calculation.}
@@ -447,11 +447,10 @@ These are standard textbook calculations \cite{silver2017inventory, axsater2015i
 \paragraph{Simulation.}
 Review is discrete, not event-driven continuous review. Each post-cutoff working observation receives due orders, serves demand, loses unmet demand, then orders at most once if position (on hand plus on order) $\le R_i$. Rounded mean lead time is at least one subsequent working observation. Historical receipts/corrections/scrap are ignored. Cost is $TC_i=h_i\bar I_iT/250+K_iN_i$: $\bar I_i$ averages end-observation stock over $T$ working observations; $N_i$ counts placed orders, including arrivals beyond the horizon; no terminal salvage is applied. Fill is served/recorded units (100\% for zero recorded demand); stockout days count unmet-demand working observations. Positive hard-limit orders are $\min\{Q_i,\mathrm{capacity}_i-\lfloor\mathrm{position}_i\rfloor\}$, even below MOQ; otherwise none. Observed opening stock is not clipped.
 
-\paragraph{System prompt excerpts.}
+\section{System Prompt Excerpts}
 \label{app:prompt}
-\begingroup\small
+
 The complete prompts are verbatim in Supplementary File S1. Key instructions: ``You are an autonomous inventory analyst'' who analyses one material with code and saves a JSON policy; forbidden are ``No Monte Carlo / np.random,'' distribution fitting, ML libraries and ``No Croston, ADI, Syntetos-Boylan''; \texttt{max\_storage\_units}$>0$ is a hard limit, $\mathrm{safety\_stock}+\mathrm{order\_quantity}\le\texttt{max\_storage\_units}$, and a MOQ-capacity conflict must be escalated, not silently emitted; policy values are conservative integers (\texttt{math.ceil}).
-\endgroup
 
 \section*{Author Contributions}
 Conceptualization, Methodology, Software, Formal analysis, Investigation, Data curation, Validation, Visualization, Writing -- original draft, Writing -- review and editing: Aris Dressino.
@@ -464,7 +463,7 @@ The author received non-financial support in the form of access to operational i
 The author reports an employment relationship with an industrial manufacturer (name withheld). The author declares no other competing interests.
 
 \section*{Data and Code Availability}
-Raw operational data are confidential. A masked panel contains the same 233{,}078 records, with pseudonymous identifiers and secret per-pair quantity and price factors. The panel, rescaled frozen policies, three masked generations, sanitized provenance, scoring code, aggregate evidence and manuscript sources are at \texttt{github.com/DressPD/inventor\_public}. The archive version DOI is \texttt{https://doi.org/10.5281/zenodo.23627916} (software v1.3.0). That archive preserves the evaluated evidence; subsequent manuscript reporting corrections do not amend its frozen source snapshot. Supplementary File S1 contains the prompt. Runner-hash amendments are recorded separately from original call provenance, with retained original hashes and amendment histories; they must not be read as original execution hashes. Model identity (Claude Sonnet 4.6) is operator-declared; runtime identifier and sampling settings are unavailable.
+Raw operational data are confidential. A masked panel contains the same 233{,}078 records, with pseudonymous identifiers and secret per-pair quantity and price factors. The panel, rescaled frozen policies, three masked generations, sanitized provenance, scoring code, aggregate evidence and manuscript sources are at \texttt{github.com/DressPD/inventor\_public}. The archive version DOI is \texttt{https://doi.org/10.5281/zenodo.23627916} (software v1.3.0). That archive preserves the evaluated evidence; subsequent manuscript reporting corrections do not amend its frozen source snapshot. Supplementary File S1 contains the prompt (excerpts in \ref{app:prompt}). Runner-hash amendments are recorded separately from original call provenance, with retained original hashes and amendment histories; they must not be read as original execution hashes. Model identity (Claude Sonnet 4.6) is operator-declared; runtime identifier and sampling settings are unavailable.
 
 Supplementary File S2 supplies anonymous methods, code, masked inputs, frozen policies, tests and separate strict-admission results. This later working support is distinct from the unchanged archives; it supports replay, not proprietary inference reconstruction.
 
